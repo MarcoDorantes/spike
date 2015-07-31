@@ -17,7 +17,13 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             var x = new X();
-            WriteLine("X: {0} {1} | {2}",x.Name, x.Age, x);
+            WriteLine($"X: {x.Name} {x.Age} | {x}");
+            WriteLine("{0} {1}",nameof(x),nameof(X));
+            X y = null;
+            if (y?.Name?.Length > 0)
+            {
+                WriteLine("Name len is ok");
+            }
         }
     }
 }
