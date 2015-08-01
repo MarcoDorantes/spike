@@ -1,4 +1,6 @@
-﻿using static System.Console;
+﻿using System;
+using System.Collections.Generic;
+using static System.Console;
 
 namespace ConsoleApplication1
 {
@@ -14,16 +16,25 @@ namespace ConsoleApplication1
     }
     class Program
     {
+        static void f()
+        {
+            var csc = new Microsoft.CSharp.CSharpCodeProvider(new Dictionary<string, string>() { { "CompilerVersion", "v6.0" } });
+        }
         static void Main(string[] args)
         {
-            var x = new X();
-            WriteLine($"X: {x.Name} {x.Age} | {x}");
-            WriteLine("{0} {1}",nameof(x),nameof(X));
-            X y = null;
-            if (y?.Name?.Length > 0)
+            try
             {
-                WriteLine("Name len is ok");
+                f();
+                var x = new X();
+                WriteLine($"X: {x.Name} {x.Age} | {x}");
+                WriteLine("{0} {1}", nameof(x), nameof(X));
+                X y = null;
+                if (y?.Name?.Length > 0)
+                {
+                    WriteLine("Name len is ok");
+                }
             }
+            catch (Exception ex) { WriteLine($"{ex.GetType().FullName} : {ex.Message}"); }
         }
     }
 }
