@@ -16,15 +16,28 @@ namespace ConsoleApplication1
     }
     class Program
     {
-        static void f()
+        static bool log(Exception ex) { WriteLine($"An exception ocurred: {ex.GetType().FullName}"); return false; }
+        static void with_logged_exception(int n)
         {
-            var csc = new Microsoft.CSharp.CSharpCodeProvider(new Dictionary<string, string>() { { "CompilerVersion", "v6.0" } });
+            try
+            {
+                int r = 10 / n;
+            }
+            catch (Exception ex) when (log(ex))
+            {
+                WriteLine("ex is null");
+            }
         }
+        static void exception_filter()
+        {
+            with_logged_exception(0);
+            WriteLine("Done.");
+        }
+
         static void Main(string[] args)
         {
             try
             {
-                f();
                 var x = new X();
                 WriteLine($"X: {x.Name} {x.Age} | {x}");
                 WriteLine("{0} {1}", nameof(x), nameof(X));
