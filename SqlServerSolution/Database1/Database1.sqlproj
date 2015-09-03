@@ -66,4 +66,7 @@
   <ItemGroup>
     <Compile Include="SqlStoredProcedure1.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Procedure1.sql" />
+  </ItemGroup>
 </Project>
