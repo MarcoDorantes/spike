@@ -24,19 +24,36 @@ namespace specs
   }
 
   [TestClass]
-  public class Patterns_of_Parallel_Programming_CSharp_pdf
+  public class UnitTest1
   {
-    [TestMethod]
+    [TestMethod, Description("Patterns_of_Parallel_Programming_CSharp_pdf")]
     public void word_count()
     {
       var dirPath = "";
-      char[] delimiters=null;
+      char[] delimiters= Enumerable.Range(0, 256).Select(i => (char)i).Where(c => Char.IsWhiteSpace(c) || Char.IsPunctuation(c)).ToArray();
 
       var files = Directory.EnumerateFiles(dirPath, "*.txt").AsParallel();
       var counts = files.MapReduce(
       path => File.ReadLines(path).SelectMany(line => line.Split(delimiters)),
       word => word,
       group => new[] { new KeyValuePair<string, int>(group.Key, group.Count()) });
+    }
+
+    [TestMethod]
+    public void destinations()
+    {
+      var input = new Dictionary<string, string> { { "dest1", "A/B/1" }, { "dest2", "A/B/2" } };
+      var r = input.SelectMany(pair => { var v = pair.Value.Split('/'); return new Dictionary<string, string> { { "m", v[0] }, { "c", v[1] }, { "h", v[2] } }; });
+      //Write(r.Count());
+      //foreach(var x in r) Write($"{x} ");
+      var gs = r.GroupBy(p => p.Key);
+      gs.Aggregate(new StringWriter(), (whole, next) => { whole.WriteLine($"[{next.Key}]" + next.Aggregate(new System.Text.StringBuilder(), (w, n) => w.AppendFormat($"{n} ")).ToString()); return whole; });
+
+/*
+[m][m, A] [m, A]
+[c][c, B] [c, B]
+[h][h, 1] [h, 2]
+*/
     }
   }
 }
