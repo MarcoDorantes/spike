@@ -5,7 +5,6 @@ using System.Linq;
 using System.IO;
 /*
 t0740
-t0741
 */
 namespace specs
 {
