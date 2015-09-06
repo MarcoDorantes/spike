@@ -6,7 +6,6 @@ using System.IO;
 /*
 t0740
 t0741
-t0742
 */
 namespace specs
 {
