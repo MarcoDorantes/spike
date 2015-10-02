@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Owin;
 using System.Web.Http;
 
+//http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 namespace ConsoleApplication1
 {
   public class ValuesController : ApiController
