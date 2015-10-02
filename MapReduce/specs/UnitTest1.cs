@@ -30,7 +30,7 @@ namespace specs
     public void word_count()
     {
       var dirPath = "";
-      char[] delimiters= Enumerable.Range(0, 256).Select(i => (char)i).Where(c => Char.IsWhiteSpace(c) || Char.IsPunctuation(c)).ToArray();
+      char[] delimiters = Enumerable.Range(0, 256).Select(i => (char)i).Where(c => Char.IsWhiteSpace(c) || Char.IsPunctuation(c)).ToArray();
 
       var files = Directory.EnumerateFiles(dirPath, "*.txt").AsParallel();
       var counts = files.MapReduce(
@@ -49,11 +49,31 @@ namespace specs
       var gs = r.GroupBy(p => p.Key);
       gs.Aggregate(new StringWriter(), (whole, next) => { whole.WriteLine($"[{next.Key}]" + next.Aggregate(new System.Text.StringBuilder(), (w, n) => w.AppendFormat($"{n} ")).ToString()); return whole; });
 
-/*
-[m][m, A] [m, A]
-[c][c, B] [c, B]
-[h][h, 1] [h, 2]
-*/
+      /*
+      [m][m, A] [m, A]
+      [c][c, B] [c, B]
+      [h][h, 1] [h, 2]
+      */
+    }
+  }
+  [TestClass]
+  public class play
+  {
+    [TestMethod]
+    public void MCD_0()
+    {
+      Assert.AreEqual<int>(1,MCD(2,3));
+      Assert.AreEqual<int>(6, mcm(2, 3));
+      Assert.AreEqual<int>(3, MCD(153, 93, 78));
+      Assert.AreEqual<int>(123318, mcm(153, 93, 78));
+    }
+    private int MCD(params int[] n)
+    {
+      return 0;
+    }
+    private int mcm(params int[] n)
+    {
+      return 0;
     }
   }
 }
