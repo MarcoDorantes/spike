@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Owin;
 using System.Web.Http;
+using ContractLib;
 
 namespace RedundantQuasiService
 {
@@ -10,18 +11,27 @@ namespace RedundantQuasiService
     // GET api/time
     public string Get()
     {
-      return DateTime.Now.ToString("o");
+      var result = string.Format("[{0}] {1}", Environment.CurrentManagedThreadId, DateTime.Now.ToString("o"));
+      Console.WriteLine(result);
+      return result;
     }
 
-    // GET api/time/5 
-    public string Get(int id)
+    // GET api/time/5
+    public Timepoint Get(int id)
     {
-      return "value";
+      var result= new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = id.ToString(), Response = DateTime.Now.ToString("o") };
+      Console.WriteLine("\nThread: {0}\nRequest: {1}\nResponse:{2}", result.Thread, result.Request, result.Response);
+      return result;
     }
 
     // POST api/time
-    public void Post([FromBody]string value)
+    //public void Post([FromBody]string value)
+    public Timepoint Post(Timepoint value)
     {
+      //Console.WriteLine("Request: {0}",value);
+      Console.WriteLine("\nThread: {0}\nRequest: {1}\nResponse:{2}", value.Thread, value.Request, value.Response);
+      var result = new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = value.Request, Response = DateTime.Now.ToString("o") };
+      return result;
     }
 
     // PUT api/time/5
@@ -51,7 +61,7 @@ namespace RedundantQuasiService
       appBuilder.UseWebApi(config);
     }
   }
-  class Program
+  class RedundantQuasiServiceExe
   {
     static void Main(string[] args)
     {
@@ -62,7 +72,7 @@ namespace RedundantQuasiService
         // Start OWIN host
         using (Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddress))
         {
-          Console.WriteLine("Listening at: {0}",baseAddress);
+          Console.WriteLine("[{0}] Listening at: {1}", Environment.CurrentManagedThreadId, baseAddress);
           Console.WriteLine("Press ENTER to exit");
           Console.ReadLine();
         }
