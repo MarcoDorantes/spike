@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThinClient", "ThinClient\Th
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractLib", "ContractLib\ContractLib.csproj", "{37324C1A-6DD1-4D6F-8E82-587AFCF06507}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPISpec", "WebAPISpec\WebAPISpec.csproj", "{0691959D-8E10-4371-ADC6-3258E0F613C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{37324C1A-6DD1-4D6F-8E82-587AFCF06507}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37324C1A-6DD1-4D6F-8E82-587AFCF06507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37324C1A-6DD1-4D6F-8E82-587AFCF06507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0691959D-8E10-4371-ADC6-3258E0F613C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0691959D-8E10-4371-ADC6-3258E0F613C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0691959D-8E10-4371-ADC6-3258E0F613C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0691959D-8E10-4371-ADC6-3258E0F613C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

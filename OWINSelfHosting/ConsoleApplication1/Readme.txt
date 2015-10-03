@@ -1,4 +1,9 @@
-﻿ASP.NET - Getting Started with the Katana Project
+﻿http://www.asp.net/web-api
+
+Attribute Routing in ASP.NET Web API 2
+http://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
+
+ASP.NET - Getting Started with the Katana Project
 https://msdn.microsoft.com/en-us/magazine/dn451439.aspx
 
 Creating a simple REST like service with OWIN – Open Web Server Interface

@@ -52,9 +52,9 @@ namespace ThinClient
     {
       try
       {
-        //get1();
+        get1();
         //get2(321);
-        post(456);
+        //post(456);
       }
       catch (Exception ex)
       {

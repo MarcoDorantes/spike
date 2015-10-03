@@ -11,6 +11,7 @@ namespace RedundantQuasiService
     // GET api/time
     public string Get()
     {
+      Console.WriteLine("Request: {0}\n", Request);
       var result = string.Format("[{0}] {1}", Environment.CurrentManagedThreadId, DateTime.Now.ToString("o"));
       Console.WriteLine(result);
       return result;
@@ -19,7 +20,8 @@ namespace RedundantQuasiService
     // GET api/time/5
     public Timepoint Get(int id)
     {
-      var result= new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = id.ToString(), Response = DateTime.Now.ToString("o") };
+      Console.WriteLine("Request: {0}\n", Request);
+      var result = new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = id.ToString(), Response = DateTime.Now.ToString("o") };
       Console.WriteLine("\nThread: {0}\nRequest: {1}\nResponse:{2}", result.Thread, result.Request, result.Response);
       return result;
     }
@@ -28,7 +30,7 @@ namespace RedundantQuasiService
     //public void Post([FromBody]string value)
     public Timepoint Post(Timepoint value)
     {
-      //Console.WriteLine("Request: {0}",value);
+      Console.WriteLine("Request: {0}\n", Request);
       Console.WriteLine("\nThread: {0}\nRequest: {1}\nResponse:{2}", value.Thread, value.Request, value.Response);
       var result = new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = value.Request, Response = DateTime.Now.ToString("o") };
       return result;
@@ -43,6 +45,11 @@ namespace RedundantQuasiService
     public void Delete(int id)
     {
     }
+
+    /*public IDictionary<string, object> PostMap(IDictionary<string, object> request)
+    {
+      return null;
+    }*/
   }
   public class Startup
   {
