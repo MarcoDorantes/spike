@@ -1,4 +1,17 @@
-﻿
+﻿ASP.NET - Getting Started with the Katana Project
+https://msdn.microsoft.com/en-us/magazine/dn451439.aspx
+
+Creating a simple REST like service with OWIN – Open Web Server Interface
+http://weblogs.asp.net/fredriknormen/creating-a-simple-rest-like-service-with-owin-open-web-server-interface
+
+Strategies for Fault-Tolerant Computing
+https://msdn.microsoft.com/en-us/library/bb742373.aspx
+
+Introduction to REST and .net Web API
+http://blogs.msdn.com/b/martinkearn/archive/2015/01/05/introduction-to-rest-and-net-web-api.aspx
+
+http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
+
 --Nuget log:
 Each package is licensed to you by its owner. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may include dependencies which are governed by additional licenses. Follow the package source (feed) URL to determine any dependencies.
 
