@@ -11,7 +11,7 @@ namespace WebAPISpec
   {
     public static System.Net.Http.HttpRequestMessage GetRequest;
     public static System.Net.Http.HttpRequestMessage GetXRequest;
-    public static System.Net.Http.HttpRequestMessage PostRequest;
+    public static Dictionary<string,System.Net.Http.HttpRequestMessage> PostRequest;
     public static List<string> PostRequestValue;
 
     // GET api/values
@@ -36,7 +36,12 @@ namespace WebAPISpec
         PostRequestValue = new List<string>();
       }
       PostRequestValue.Add(value);
-      PostRequest = Request;
+
+      if (PostRequest == null)
+      {
+        PostRequest = new Dictionary<string, HttpRequestMessage>();
+      }
+      PostRequest[value] = Request;
     }
 
     // PUT api/values/5
@@ -115,23 +120,22 @@ namespace WebAPISpec
     public void PostValue()
     {
       string baseAddress = "http://localhost:9002/";
+      const string posted_datakey = "posted";
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {
         using (var client = new System.Net.Http.HttpClient())
         {
-          //var content = new System.Net.Http.StringContent("posted");
-          //content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/plain");
-          //var response = client.PostAsync(baseAddress + "api/values", content).Result;
-          var response = client.PostAsJsonAsync(baseAddress + "api/values", "posted").Result;
+          var response = client.PostAsJsonAsync(baseAddress + "api/values", posted_datakey).Result;
 
           Assert.IsTrue(response.IsSuccessStatusCode);
           Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.NoContent, response.StatusCode);
           Assert.AreEqual<string>("No Content", response.ReasonPhrase);
 
           Assert.IsNotNull(ValuesController.PostRequest);
-          Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest.Content.Headers.ContentType.ToString());
+          Assert.IsTrue(ValuesController.PostRequest.ContainsKey(posted_datakey));
+          Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest[posted_datakey].Content.Headers.ContentType.ToString());
           Assert.IsNotNull(ValuesController.PostRequestValue);
-          Assert.IsTrue(ValuesController.PostRequestValue.Contains("posted"));
+          Assert.IsTrue(ValuesController.PostRequestValue.Contains(posted_datakey));
         }
       }
     }
@@ -140,12 +144,13 @@ namespace WebAPISpec
     public void PostValueWithWebRequest()
     {
       string baseAddress = "http://localhost:9003/";
+      const string posted_datakey = "posted2";
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {
         var request = System.Net.WebRequest.Create(baseAddress + "api/values");
         request.Method = "POST";
         request.ContentType = "application/json; charset=utf-8";
-        var payload = System.Text.Encoding.UTF8.GetBytes("\"posted2\"");
+        var payload = System.Text.Encoding.UTF8.GetBytes("\""+ posted_datakey + "\"");
         using (var bodystream = request.GetRequestStream())
         {
           bodystream.Write(payload, 0, payload.Length);
@@ -162,11 +167,39 @@ namespace WebAPISpec
           }
 
           Assert.IsNotNull(ValuesController.PostRequest);
-          Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest.Content.Headers.ContentType.ToString());
+          Assert.IsTrue(ValuesController.PostRequest.ContainsKey(posted_datakey));
+          Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest[posted_datakey].Content.Headers.ContentType.ToString());
           Assert.IsNotNull(ValuesController.PostRequestValue);
-          Assert.IsTrue(ValuesController.PostRequestValue.Contains("posted2"));
+          Assert.IsTrue(ValuesController.PostRequestValue.Contains(posted_datakey));
         }
       }
     }
+
+    /*
+        [TestMethod]
+        public void PostValue()
+        {
+          string baseAddress = "http://localhost:9002/";
+          using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
+          {
+            using (var client = new System.Net.Http.HttpClient())
+            {
+              //var content = new System.Net.Http.StringContent("posted");
+              //content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/plain");
+              //var response = client.PostAsync(baseAddress + "api/values", content).Result;
+              var response = client.PostAsJsonAsync(baseAddress + "api/values", "posted").Result;
+
+              Assert.IsTrue(response.IsSuccessStatusCode);
+              Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.NoContent, response.StatusCode);
+              Assert.AreEqual<string>("No Content", response.ReasonPhrase);
+
+              Assert.IsNotNull(ValuesController.PostRequest);
+              Assert.IsTrue(ValuesController.PostRequest.ContainsKey("posted"));
+              Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest["posted"].Content.Headers.ContentType.ToString());
+              Assert.IsNotNull(ValuesController.PostRequestValue);
+              Assert.IsTrue(ValuesController.PostRequestValue.Contains("posted"));
+            }
+          }
+        }*/
   }
 }
