@@ -99,7 +99,7 @@ namespace WebAPISpec
   [TestClass]
   public class ValuesSpec
   {
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void GetValues()
     {
       string baseAddress = "http://localhost:9000/";
@@ -121,7 +121,7 @@ namespace WebAPISpec
       }
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void GetValue()
     {
       string baseAddress = "http://localhost:9001/";
@@ -143,7 +143,7 @@ namespace WebAPISpec
       }
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void PostValue()
     {
       string baseAddress = "http://localhost:9002/";
@@ -167,7 +167,7 @@ namespace WebAPISpec
       }
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void PostValueWithWebRequest()
     {
       string baseAddress = "http://localhost:9003/";
@@ -202,7 +202,7 @@ namespace WebAPISpec
       }
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void PutValue()
     {
       string baseAddress = "http://localhost:9004/";
@@ -227,7 +227,7 @@ namespace WebAPISpec
       }
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void PutValueWithWebRequest()
     {
       string baseAddress = "http://localhost:9005/";
@@ -263,7 +263,7 @@ namespace WebAPISpec
       }
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void DeleteValue()
     {
       string baseAddress = "http://localhost:9006/";
@@ -287,7 +287,7 @@ namespace WebAPISpec
       }
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Values")]
     public void DeleteValueWithWebRequest()
     {
       string baseAddress = "http://localhost:9007/";
@@ -315,36 +315,5 @@ namespace WebAPISpec
         }
       }
     }
-
-    /*
-    TODO Post/Put with response, not just response status
-    TODO text/plain
-
-    [TestMethod]
-    public void PostValue()
-    {
-      string baseAddress = "http://localhost:9010/";
-      using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
-      {
-        using (var client = new System.Net.Http.HttpClient())
-        {
-          //var content = new System.Net.Http.StringContent("posted");
-          //content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/plain");
-          //var response = client.PostAsync(baseAddress + "api/values", content).Result;
-          var response = client.PostAsJsonAsync(baseAddress + "api/values", "posted").Result;
-
-          Assert.IsTrue(response.IsSuccessStatusCode);
-          Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.NoContent, response.StatusCode);
-          Assert.AreEqual<string>("No Content", response.ReasonPhrase);
-
-          Assert.IsNotNull(ValuesController.PostRequest);
-          Assert.IsTrue(ValuesController.PostRequest.ContainsKey("posted"));
-          Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest["posted"].Content.Headers.ContentType.ToString());
-          Assert.IsNotNull(ValuesController.PostRequestValue);
-          Assert.IsTrue(ValuesController.PostRequestValue.Contains("posted"));
-        }
-      }
-    }
-    */
   }
 }
