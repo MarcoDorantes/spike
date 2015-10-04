@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 
 namespace ThinClient
 {
@@ -47,14 +48,13 @@ namespace ThinClient
         Console.WriteLine("Thread: {0}\nRequest: {1}\nResponse:{2}", got.Thread, got.Request, got.Response);
       }
     }
-
     static void Main(string[] args)
     {
       try
       {
-        get1();
+        //get1();
         //get2(321);
-        //post(456);
+        post(456);
       }
       catch (Exception ex)
       {
