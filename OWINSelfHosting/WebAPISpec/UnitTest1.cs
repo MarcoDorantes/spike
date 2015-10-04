@@ -12,6 +12,7 @@ namespace WebAPISpec
     public static System.Net.Http.HttpRequestMessage GetRequest;
     public static System.Net.Http.HttpRequestMessage GetXRequest;
     public static System.Net.Http.HttpRequestMessage PostRequest;
+    public static List<string> PostRequestValue;
 
     // GET api/values
     public IEnumerable<string> Get()
@@ -29,8 +30,12 @@ namespace WebAPISpec
 
     // POST api/values
     public void Post([FromBody]string value)
-    //public void Post(string value)
     {
+      if (PostRequestValue == null)
+      {
+        PostRequestValue = new List<string>();
+      }
+      PostRequestValue.Add(value);
       PostRequest = Request;
     }
 
@@ -124,8 +129,42 @@ namespace WebAPISpec
           Assert.AreEqual<string>("No Content", response.ReasonPhrase);
 
           Assert.IsNotNull(ValuesController.PostRequest);
-          //Assert.AreEqual<string>("", ValuesController.PostRequest.ToString());
           Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest.Content.Headers.ContentType.ToString());
+          Assert.IsNotNull(ValuesController.PostRequestValue);
+          Assert.IsTrue(ValuesController.PostRequestValue.Contains("posted"));
+        }
+      }
+    }
+
+    [TestMethod]
+    public void PostValueWithWebRequest()
+    {
+      string baseAddress = "http://localhost:9003/";
+      using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
+      {
+        var request = System.Net.WebRequest.Create(baseAddress + "api/values");
+        request.Method = "POST";
+        request.ContentType = "application/json; charset=utf-8";
+        var payload = System.Text.Encoding.UTF8.GetBytes("\"posted2\"");
+        using (var bodystream = request.GetRequestStream())
+        {
+          bodystream.Write(payload, 0, payload.Length);
+        }
+        using (var response = request.GetResponse())
+        {
+          var http_response = response as System.Net.HttpWebResponse;
+          Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.NoContent, http_response.StatusCode);
+          Assert.AreEqual<string>("No Content", http_response.StatusDescription);
+          using (var response_stream = response.GetResponseStream())
+          {
+            var buffer = new byte[1];
+            Assert.AreEqual<int>(0, response_stream.Read(buffer, 0, 1));
+          }
+
+          Assert.IsNotNull(ValuesController.PostRequest);
+          Assert.AreEqual<string>("application/json; charset=utf-8", ValuesController.PostRequest.Content.Headers.ContentType.ToString());
+          Assert.IsNotNull(ValuesController.PostRequestValue);
+          Assert.IsTrue(ValuesController.PostRequestValue.Contains("posted2"));
         }
       }
     }
