@@ -144,7 +144,7 @@ namespace WebAPISpec
     }
 
     [TestMethod, TestCategory("Values")]
-    public void PostValue()
+    public void PostValueAsJSON()
     {
       string baseAddress = "http://localhost:9002/";
       const string posted_datakey = "posted";
@@ -168,9 +168,33 @@ namespace WebAPISpec
     }
 
     [TestMethod, TestCategory("Values")]
-    public void PostValueWithWebRequest()
+    public void PostValueAsXML()
     {
       string baseAddress = "http://localhost:9003/";
+      const string posted_datakey = "posted";
+      using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
+      {
+        using (var client = new System.Net.Http.HttpClient())
+        {
+          var response = client.PostAsXmlAsync(baseAddress + "api/values", posted_datakey).Result;
+
+          Assert.IsTrue(response.IsSuccessStatusCode);
+          Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.NoContent, response.StatusCode);
+          Assert.AreEqual<string>("No Content", response.ReasonPhrase);
+
+          Assert.IsNotNull(ValuesController.PostRequest);
+          Assert.IsTrue(ValuesController.PostRequest.ContainsKey(posted_datakey));
+          Assert.AreEqual<string>("application/xml; charset=utf-8", ValuesController.PostRequest[posted_datakey].Content.Headers.ContentType.ToString());
+          Assert.IsNotNull(ValuesController.PostRequestValue);
+          Assert.IsTrue(ValuesController.PostRequestValue.Contains(posted_datakey));
+        }
+      }
+    }
+
+    [TestMethod, TestCategory("Values")]
+    public void PostValueAsJSONWithWebRequest()
+    {
+      string baseAddress = "http://localhost:9004/";
       const string posted_datakey = "posted2";
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {
@@ -203,9 +227,44 @@ namespace WebAPISpec
     }
 
     [TestMethod, TestCategory("Values")]
-    public void PutValue()
+    public void PostValueAsXMLWithWebRequest()
     {
       string baseAddress = "http://localhost:9004/";
+      const string posted_datakey = "posted2";
+      using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
+      {
+        var request = System.Net.WebRequest.Create(baseAddress + "api/values");
+        request.Method = "POST";
+        request.ContentType = "application/xml; charset=utf-8";
+        var payload = System.Text.Encoding.UTF8.GetBytes("<value>" + posted_datakey + "</value>");
+        using (var bodystream = request.GetRequestStream())
+        {
+          bodystream.Write(payload, 0, payload.Length);
+        }
+        using (var response = request.GetResponse())
+        {
+          var http_response = response as System.Net.HttpWebResponse;
+          Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.NoContent, http_response.StatusCode);
+          Assert.AreEqual<string>("No Content", http_response.StatusDescription);
+          using (var response_stream = response.GetResponseStream())
+          {
+            var buffer = new byte[1];
+            Assert.AreEqual<int>(0, response_stream.Read(buffer, 0, 1));
+          }
+
+          Assert.IsNotNull(ValuesController.PostRequest);
+          Assert.IsTrue(ValuesController.PostRequest.ContainsKey(posted_datakey));
+          Assert.AreEqual<string>("application/xml; charset=utf-8", ValuesController.PostRequest[posted_datakey].Content.Headers.ContentType.ToString());
+          Assert.IsNotNull(ValuesController.PostRequestValue);
+          Assert.IsTrue(ValuesController.PostRequestValue.Contains(posted_datakey));
+        }
+      }
+    }
+
+    [TestMethod, TestCategory("Values")]
+    public void PutValue()
+    {
+      string baseAddress = "http://localhost:9005/";
       const string posted_datakey = "posted3";
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {
@@ -230,7 +289,7 @@ namespace WebAPISpec
     [TestMethod, TestCategory("Values")]
     public void PutValueWithWebRequest()
     {
-      string baseAddress = "http://localhost:9005/";
+      string baseAddress = "http://localhost:9006/";
       const string posted_datakey = "posted4";
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {
@@ -266,7 +325,7 @@ namespace WebAPISpec
     [TestMethod, TestCategory("Values")]
     public void DeleteValue()
     {
-      string baseAddress = "http://localhost:9006/";
+      string baseAddress = "http://localhost:9007/";
       const int posted_datakey = 5;
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {
@@ -290,7 +349,7 @@ namespace WebAPISpec
     [TestMethod, TestCategory("Values")]
     public void DeleteValueWithWebRequest()
     {
-      string baseAddress = "http://localhost:9007/";
+      string baseAddress = "http://localhost:9008/";
       const int posted_datakey = 6;
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {

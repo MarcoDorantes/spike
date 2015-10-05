@@ -17,6 +17,26 @@ http://blogs.msdn.com/b/martinkearn/archive/2015/01/05/introduction-to-rest-and-
 
 http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
 
+<send>
+They look at examples and w/o theory they learn nothing
+http://blog.deming.org/2015/09/people-copy-examples-and-wonder-why-they-dont-succeed
+
+Seven Agile Best Practices
+http://www.estherderby.com/2015/10/seven-agile-best-practices.html
+
+We are not fucking competent
+http://arlobelshee.com/we-are-not-fucking-competent
+
+Passing multiple POST parameters to Web API Controller Methods
+https://weblog.west-wind.com/posts/2012/May/08/Passing-multiple-POST-parameters-to-Web-API-Controller-Methods
+
+How should I pass multiple parameters to an ASP.Net Web API GET?
+http://stackoverflow.com/questions/10937524/how-should-i-pass-multiple-parameters-to-an-asp-net-web-api-get
+
+Web API unsupported media type when uploading - charset not passed
+http://stackoverflow.com/questions/24998144/web-api-unsupported-media-type-when-uploading-charset-not-passed
+</send>
+
 --Nuget log:
 Each package is licensed to you by its owner. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may include dependencies which are governed by additional licenses. Follow the package source (feed) URL to determine any dependencies.
 
