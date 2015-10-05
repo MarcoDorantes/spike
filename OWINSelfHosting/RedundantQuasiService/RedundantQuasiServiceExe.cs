@@ -74,7 +74,7 @@ namespace RedundantQuasiService
     {
       try
       {
-        string baseAddress = "http://localhost:7000/";
+        string baseAddress = string.Format("http://{0}:7000/", Environment.MachineName);
 
         // Start OWIN host
         using (Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddress))
@@ -84,7 +84,14 @@ namespace RedundantQuasiService
           Console.ReadLine();
         }
       }
-      catch (Exception ex) { Console.WriteLine("{0}: {1}", ex.GetType().FullName, ex.Message); }
+      catch (Exception ex)
+      {
+        while (ex != null)
+        {
+          Console.WriteLine("{0}: {1}", ex.GetType().FullName, ex.Message);
+          ex = ex.InnerException;
+        }
+      }
     }
   }
 }
