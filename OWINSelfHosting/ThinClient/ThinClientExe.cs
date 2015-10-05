@@ -6,6 +6,7 @@ namespace ThinClient
   class ThinClientExe
   {
     const string baseAddress_template = "http://{0}:7000/";
+    //http://MX-CB-MDORANTES:7000/api/time
     static string hostname { }
 
     static void get1()
