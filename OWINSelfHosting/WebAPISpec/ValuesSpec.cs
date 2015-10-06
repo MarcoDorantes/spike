@@ -233,11 +233,19 @@ namespace WebAPISpec
       const string posted_datakey = "posted2";
       using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
       {
-        var request = System.Net.WebRequest.Create(baseAddress + "api/values");
+        var request = System.Net.WebRequest.Create(baseAddress + "api/values") as System.Net.HttpWebRequest;
         request.Method = "POST";
         request.ContentType = "application/xml; charset=utf-8";
-        var payload = System.Text.Encoding.UTF8.GetBytes("<value>" + posted_datakey + "</value>");
-        using (var bodystream = request.GetRequestStream())
+/*
+<Timepoint xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContractLib">
+<Request>789</Request>
+<Response>2015-10-05T20:08:56.0955651-05:00</Response>
+<Thread>5</Thread>
+</Timepoint>
+<string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">aval1</string>
+*/
+        var payload = System.Text.Encoding.UTF8.GetBytes("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">" + posted_datakey + "</string>");
+         using (var bodystream = request.GetRequestStream())
         {
           bodystream.Write(payload, 0, payload.Length);
         }

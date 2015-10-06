@@ -30,6 +30,7 @@ namespace RedundantQuasiService
     //public void Post([FromBody]string value)
     public Timepoint Post(Timepoint value)
     {
+      //Console.WriteLine("Request: {0}\n", Request.Content.ReadAsStringAsync().Result);
       Console.WriteLine("Request: {0}\n", Request);
       Console.WriteLine("\nThread: {0}\nRequest: {1}\nResponse:{2}", value.Thread, value.Request, value.Response);
       var result = new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = value.Request, Response = DateTime.Now.ToString("o") };
