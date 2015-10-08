@@ -55,11 +55,10 @@ namespace ThinClient
       using (var client = new System.Net.Http.HttpClient())
       {
         var timepoint = new ContractLib.Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = id.ToString(), Response = DateTime.Now.ToString("o") };
-        //string posted = Newtonsoft.Json.JsonConvert.SerializeObject(timepoint);
-        //var content = new System.Net.Http.StringContent(posted);
-        //content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
         var baseAddress = GetBaseAddress();
-        var response = client.PostAsXmlAsync(baseAddress + "api/time", timepoint).Result;
+        var url = baseAddress + "api/time";
+        Console.WriteLine(url);
+        var response = client.PostAsXmlAsync(url, timepoint).Result;
 
         Console.WriteLine(response);
         var xml = response.Content.ReadAsStringAsync().Result;
@@ -145,8 +144,11 @@ namespace ThinClient
       try
       {
         hostname =
-          null;
+        //null;
         //"MX-CB-MDORANTES";
+        //"GBMSOLACEWIN01";
+        //"GBMVSDRPN1";
+        "GBMPRUFW2";
         if (string.IsNullOrWhiteSpace(hostname))
         {
           hostname = Environment.MachineName;
