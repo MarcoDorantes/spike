@@ -144,11 +144,8 @@ namespace ThinClient
       try
       {
         hostname =
-        //null;
-        //"MX-CB-MDORANTES";
-        //"GBMSOLACEWIN01";
-        //"GBMVSDRPN1";
-        "GBMPRUFW2";
+        null;
+        //"otherhost";
         if (string.IsNullOrWhiteSpace(hostname))
         {
           hostname = Environment.MachineName;
