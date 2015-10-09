@@ -86,6 +86,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="VpnSpec.cs" />
     <Compile Include="ValueSpec.cs" />
     <Compile Include="ValuesSpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
