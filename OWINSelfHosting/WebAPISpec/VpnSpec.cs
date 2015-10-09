@@ -3,34 +3,36 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Http;
 
 /*
-*** Reliable ***
+*** Reliable WebAPI ***
 
 POST REQUEST:
-	URL	: api/reliable
-	Payload	: 
-		<SendRequest>
-			<vpn>registeredVPN</vpn>
-			<destination.type>topic</destination.type>
-			<destination>topic</destination>
-			<correlationID>integer</correlationID>
-			<message>text-message</message>
-		</SendRequest>
+	POST api/reliable
+	<SendRequest>
+		<vpn>registeredVPN</vpn>
+		<topic>topic</topic>
+		<message>text-message</message>
+	</SendRequest>
+
+POST RESPONSE: 204 NoContent
+
+*** Guaranteed WebAPI ***
+
+POST REQUEST:
+	POST api/guaranteed
+	<SendRequest>
+		<vpn>registeredVPN</vpn>
+		<destination_type>topic-or-queue</destination_type>
+		<destination>topicpath-or-queue</destination>
+		<correlationid>integer</correlationid>
+		<message>text-message</message>
+	</SendRequest>
 
 POST RESPONSE:
-		<SendResponse>
-			<correlationID>integer</correlationID>
-			<status>enum</status>
-		</SendResponse>
-
-PUT REQUEST:
-	URL	: api/queue
-	Payload	: 
-		<SendRequest>
-			<vpn>registeredVPN</vpn>
-			<destination>queue</destination>
-			<correlationID>integer</correlationID>
-			<message>text-message</message>
-		</SendRequest>
+	<SendResponse>
+		<correlationid>integer</correlationid>
+		<status>string</status>
+		<description>string</description>
+	</SendResponse>
 
 Ejemplos:
 A tópico:
@@ -46,10 +48,6 @@ A queue:
 		<destination>QUEUE1</destination>
 		<message>8=FIX ...</message>
 
-*** Guaranteed ***
-
-  POST REQUEST:
-	URL	: api/guaranteed
 
   */
 
