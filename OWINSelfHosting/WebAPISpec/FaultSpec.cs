@@ -36,7 +36,7 @@ namespace WebAPISpec
   }
 
   [TestClass]
-  public class FaultSpec
+  public class FaultSpec //http://www.asp.net/web-api/overview/error-handling/exception-handling
   {
     [TestMethod]
     public void PostFaultAsXML()
