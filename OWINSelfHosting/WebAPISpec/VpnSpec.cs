@@ -53,20 +53,20 @@ A queue:
 
 namespace WebAPISpec
 {
-    public class VpnController : ApiController
+  public class SendRequest { }
+  public class SendResponse { }
+  public class VpnController : ApiController
+  {
+    // POST api/value
+    public SendResponse Post([FromBody]SendRequest request) { return null; }
+  }
+
+  [TestClass]
+  public class VpnSpec
+  {
+    [TestMethod]
+    public void VPN_()
     {
-        // POST api/value
-        public SendResponse Post([FromBody]SendRequest request) { return null; }
-
-
     }
-
-    [TestClass]
-    public class VpnSpec
-    {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
-    }
+  }
 }
