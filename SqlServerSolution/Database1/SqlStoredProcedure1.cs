@@ -10,9 +10,33 @@ https://msdn.microsoft.com/en-us/library/ms131052(v=sql.110).aspx
 */
 public partial class StoredProcedures
 {
-    [Microsoft.SqlServer.Server.SqlProcedure]
-    public static void SqlStoredProcedure1()
+  [Microsoft.SqlServer.Server.SqlProcedure]
+  public static void WriteMessageToQueue(string vpn, string queuename, string message, int correlationID)
+  {
+    //SqlContext.Pipe.ExecuteAndSend(cmd);
+
+    string baseAddress = "http://localhost:9004/";
+    const string posted_datakey = "posted2";
+    var request = System.Net.WebRequest.Create(baseAddress + "api/values") as System.Net.HttpWebRequest;
+    request.Method = "POST";
+    request.ContentType = "application/xml; charset=utf-8";
+    var payload = System.Text.Encoding.UTF8.GetBytes("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">" + posted_datakey + "</string>");
+    using (var bodystream = request.GetRequestStream())
     {
-      //SqlContext.Pipe.ExecuteAndSend(cmd);
+      bodystream.Write(payload, 0, payload.Length);
     }
+    using (var response = request.GetResponse())
+    {
+      System.Net.HttpWebResponse http_response = response as System.Net.HttpWebResponse;
+      System.Net.HttpStatusCode status = http_response.StatusCode;
+      using (var reader = new System.IO.StreamReader(response.GetResponseStream()))
+      {
+        string response_payload = reader.ReadToEnd();
+        if (response_payload.Length <= 0)
+        {
+          throw new Exception("no response");
+        }
+      }
+    }
+  }
 }
