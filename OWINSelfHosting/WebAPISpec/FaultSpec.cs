@@ -18,8 +18,14 @@ namespace WebAPISpec
     // POST api/fault
     public void Post([FromBody]string value)
     {
-      throw new Exception("top", new Exception("inner"));
+      //throw new Exception("top", new Exception("inner"));
+      throw new HttpResponseException(System.Net.HttpStatusCode.ServiceUnavailable);
     }
+
+    /*public void f()
+    {
+      throw new HttpResponseException(System.Net.HttpStatusCode.ServiceUnavailable);
+    }*/
   }
   public class FaultStartup
   {
@@ -56,6 +62,7 @@ namespace WebAPISpec
         try
         {
           request.GetResponse();//https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.getresponse(v=vs.100).aspx
+          Assert.Fail("no error");
         }
         catch (System.Net.WebException ex)
         {
@@ -63,6 +70,9 @@ namespace WebAPISpec
           using (var reader = new StreamReader(ex.Response.GetResponseStream()))
           {
             Assert.AreEqual<string>("", reader.ReadToEnd());
+            var response = ex.Response as System.Net.HttpWebResponse;
+            Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.ServiceUnavailable, response.StatusCode);
+            Assert.AreEqual<System.Net.WebExceptionStatus>(System.Net.WebExceptionStatus.ProtocolError, ex.Status);
           }
         }
         catch (Exception ex)
