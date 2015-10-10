@@ -135,7 +135,7 @@ public static class SolSenderClientStoredProcedures
   {
     if (string.IsNullOrWhiteSpace(vpn))
     {
-      throw new ArgumentNullException("vpn", "QueryForConfiguredSchemaAndHostNameOrIPAndPort was called with an empty or null argument value.");
+      throw new ArgumentException("vpn", "QueryForConfiguredSchemaAndHostNameOrIPAndPort was called with an empty or null argument value.");
     }
 
     string result = "";
