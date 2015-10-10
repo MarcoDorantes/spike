@@ -15,7 +15,7 @@ public partial class StoredProcedures
   {
     //SqlContext.Pipe.ExecuteAndSend(cmd);
 
-    string baseAddress = "http://localhost:9004/";
+    string baseAddress = GetConfiguredSchemaAndHostNameOrIPAndPort(vpn);
     const string posted_datakey = "posted2";
     var request = System.Net.WebRequest.Create(baseAddress + "api/values") as System.Net.HttpWebRequest;
     request.Method = "POST";
@@ -39,4 +39,21 @@ public partial class StoredProcedures
       }
     }
   }
+
+  private static string GetConfiguredSchemaAndHostNameOrIPAndPort(string vpn)
+  {
+    //TODO static cache | each hit | cancelable/unloadable static cache
+
+    string result = "";//https://hostname:7000/
+
+    //result = f(vpn); //https://msdn.microsoft.com/es-es/library/ms186755(v=sql.110).aspx
+
+    return result;
+  }
+
+  /*private static string GetBaseAddress(string hostname_or_IP_and_port)
+  {
+    const string baseAddress_template = "http://{0}/";
+    return string.Format(baseAddress_template, hostname_or_IP_and_port);
+  }*/
 }
