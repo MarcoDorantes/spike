@@ -30,16 +30,16 @@ public static class SolSenderClientStoredProcedures
   }
 
   [Microsoft.SqlServer.Server.SqlProcedure]
-  public static string PublishMessage(string vpn, string topicpath, string message, int correlationID)
+  public static string SendMessage(string VPNkey, string topicpath, string message, int correlationID)
   {
     #region Parameter validation
-    if (string.IsNullOrWhiteSpace(vpn))
+    if (string.IsNullOrWhiteSpace(VPNkey))
     {
-      throw new ArgumentNullException("vpn", "VPN cannot be empty or null.");
+      throw new ArgumentNullException("VPNkey", "VPN cannot be empty or null.");
     }
     else
     {
-      vpn = vpn.Trim();
+      VPNkey = VPNkey.Trim();
     }
 
     if (string.IsNullOrWhiteSpace(topicpath))
@@ -55,7 +55,7 @@ public static class SolSenderClientStoredProcedures
     //SqlContext.Pipe.ExecuteAndSend(cmd);?
 
     string result = "";
-    string base_address = GetConfiguredSchemaAndHostNameOrIPAndPort(vpn);
+    string base_address = GetConfiguredSchemaAndHostNameOrIPAndPort(VPNkey);
 
     const string posted_datakey = "posted2";
     var request = System.Net.WebRequest.Create(base_address + "api/values") as System.Net.HttpWebRequest;
@@ -83,25 +83,25 @@ public static class SolSenderClientStoredProcedures
     }
   }
 
-  private static string GetConfiguredSchemaAndHostNameOrIPAndPort(string vpn)
+  private static string GetConfiguredSchemaAndHostNameOrIPAndPort(string VPNkey)
   {
-    string result = GetCachedConfiguredSchemaAndHostNameOrIPAndPort(vpn);
+    string result = GetCachedConfiguredSchemaAndHostNameOrIPAndPort(VPNkey);
     if (string.IsNullOrWhiteSpace(result))
     {
-      string url = QueryForConfiguredSchemaAndHostNameOrIPAndPort(vpn);
-      SetCachedConfiguredSchemaAndHostNameOrIPAndPort(vpn, url);
+      string url = QueryForConfiguredSchemaAndHostNameOrIPAndPort(VPNkey);
+      SetCachedConfiguredSchemaAndHostNameOrIPAndPort(VPNkey, url);
       result = url;
     }
     return result;
   }
 
-  private static string GetCachedConfiguredSchemaAndHostNameOrIPAndPort(string vpn)
+  private static string GetCachedConfiguredSchemaAndHostNameOrIPAndPort(string VPNkey)
   {
     //static reset-able cache | -- each hit | cancelable/unloadable static cache
     string result = null;
     if (CachedConfiguredSchemaAndHostNameOrIPAndPort != null)
     {
-      if (!CachedConfiguredSchemaAndHostNameOrIPAndPort.TryGetValue(vpn, out result))
+      if (!CachedConfiguredSchemaAndHostNameOrIPAndPort.TryGetValue(VPNkey, out result))
       {
         result = null;
       }
@@ -112,13 +112,13 @@ public static class SolSenderClientStoredProcedures
     }
     return result;
   }
-  private static void SetCachedConfiguredSchemaAndHostNameOrIPAndPort(string vpn, string url)
+  private static void SetCachedConfiguredSchemaAndHostNameOrIPAndPort(string VPNkey, string url)
   {
     if (CachedConfiguredSchemaAndHostNameOrIPAndPort == null)
     {
       throw new InvalidOperationException("Internal cache was not properly created.");
     }
-    if (!CachedConfiguredSchemaAndHostNameOrIPAndPort.TryAdd(vpn, url))
+    if (!CachedConfiguredSchemaAndHostNameOrIPAndPort.TryAdd(VPNkey, url))
     {
       throw new Exception("Target URL cannot be added to internal cache.");
     }
@@ -129,20 +129,20 @@ public static class SolSenderClientStoredProcedures
   /// https://msdn.microsoft.com/es-es/library/ms186755(v=sql.110).aspx
   /// https://msdn.microsoft.com/es-es/library/ms131043(v=sql.110).aspx
   /// </summary>
-  /// <param name="vpn">Key into the index of registered VPNs at SolSenderService-side.</param>
+  /// <param name="VPNkey">Key into the index of registered VPNs at SolSenderService-side.</param>
   /// <returns>Target URL for requests.</returns>
-  private static string QueryForConfiguredSchemaAndHostNameOrIPAndPort(string vpn)
+  private static string QueryForConfiguredSchemaAndHostNameOrIPAndPort(string VPNkey)
   {
-    if (string.IsNullOrWhiteSpace(vpn))
+    if (string.IsNullOrWhiteSpace(VPNkey))
     {
-      throw new ArgumentException("vpn", "QueryForConfiguredSchemaAndHostNameOrIPAndPort was called with an empty or null argument value.");
+      throw new ArgumentException("VPNkey", "QueryForConfiguredSchemaAndHostNameOrIPAndPort was called with an empty or null argument value.");
     }
 
     string result = "";
     using (var connection = new SqlConnection("context connection=true"))
     {
       connection.Open();
-      var command = new SqlCommand(string.Format("SELECT dbo.DatabaseScalarFunction1('{0}') AS RequestAddress", vpn), connection);
+      var command = new SqlCommand(string.Format("SELECT dbo.DatabaseScalarFunction1('{0}') AS RequestAddress", VPNkey), connection);
       object value = command.ExecuteScalar();
       if (value == null)
       {
