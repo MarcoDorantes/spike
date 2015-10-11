@@ -265,6 +265,12 @@ namespace ThinClient
           Console.WriteLine("{0}: {1}", ex.GetType().FullName, ex.Message);
           ex = ex.InnerException;
         }
+        /*
+        System.AggregateException: One or more errors occurred.
+        System.Net.Http.HttpRequestException: An error occurred while sending the request.
+        System.Net.WebException: Unable to connect to the remote server
+        System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 192.168.1.72:7000
+        */
       }
     }
   }
