@@ -9,13 +9,17 @@ https://msdn.microsoft.com/en-us/magazine/dn451439.aspx
 Creating a simple REST like service with OWIN – Open Web Server Interface
 http://weblogs.asp.net/fredriknormen/creating-a-simple-rest-like-service-with-owin-open-web-server-interface
 
-Strategies for Fault-Tolerant Computing
-https://msdn.microsoft.com/en-us/library/bb742373.aspx
-
 Introduction to REST and .net Web API
 http://blogs.msdn.com/b/martinkearn/archive/2015/01/05/introduction-to-rest-and-net-web-api.aspx
 
+Strategies for Fault-Tolerant Computing
+https://msdn.microsoft.com/en-us/library/bb742373.aspx
+
 http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
+
+http://www.codeproject.com/Articles/864725/ASP-NET-Understanding-OWIN-Katana-and-the-Middlewa
+
+http://www.strathweb.com/2013/05/the-future-is-now-owin-and-multi-hosting-asp-net-web-applications/
 
 <send>
 They look at examples and w/o theory they learn nothing

@@ -254,9 +254,9 @@ namespace ThinClient
         //postJSON(456);
         //postXML(789);
         //format();
-        //postVPN();
+        postVPN();
         //PostVPNAsXMLWithWebRequest();
-        get_many(int.Parse(args[0]), int.Parse(args[1]));
+        //get_many(int.Parse(args[0]), int.Parse(args[1]));
       }
       catch (Exception ex)
       {
