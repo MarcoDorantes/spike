@@ -44,7 +44,7 @@ namespace WebAPISpec
   [TestClass]
   public class FaultSpec //http://www.asp.net/web-api/overview/error-handling/exception-handling
   {
-    [TestMethod]
+    [TestMethod, TestCategory("Fault")]
     public void PostFaultAsXML()
     {
       string baseAddress = "http://localhost:7000/";

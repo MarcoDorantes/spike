@@ -52,6 +52,16 @@ namespace RedundantQuasiService
       return null;
     }*/
   }
+
+  public class VpnController : ApiController
+  {
+    // POST api/vpn
+    public SendResponse Post([FromBody]SendRequest request)
+    {
+      Console.WriteLine("Request: {0}\n", Request);
+      return new SendResponse() { CorrelationID = request.CorrelationID, Status = 102, Description = request.VPNKey + "|" + request.Topic + "|" + request.Message };
+    }
+  }
   public class Startup
   {
     // This code configures Web API. The Startup class is specified as a type

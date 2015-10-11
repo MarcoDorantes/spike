@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
+using System.Xml.Linq;
 
 namespace ThinClient
 {
@@ -65,6 +69,101 @@ namespace ThinClient
         Console.WriteLine(xml);
         //var got = Newtonsoft.Json.JsonConvert.DeserializeObject<ContractLib.Timepoint>(json);
         //Console.WriteLine("Thread: {0}\nRequest: {1}\nResponse:{2}", got.Thread, got.Request, got.Response);
+      }
+    }
+
+    static void postVPN()
+    {
+      using (var client = new System.Net.Http.HttpClient())
+      {
+        var request_payload = new ContractLib.SendRequest() { VPNKey = "vpn11", Topic = "B/C", Message = "msg11", CorrelationID = 456 };
+        var baseAddress = GetBaseAddress();
+        var url = baseAddress + "api/vpn";
+        Console.WriteLine(url);
+        var response = client.PostAsXmlAsync(url, request_payload).Result;
+
+        Console.WriteLine(response);
+        var xml = response.Content.ReadAsStringAsync().Result;
+        Console.WriteLine(xml);
+      }
+    }
+
+    static void PostVPNAsXMLWithWebRequest()
+    {
+      var request_payload = new ContractLib.SendRequest() { VPNKey = "-vpn2", Topic = "B/C", Message = "msg2", CorrelationID = 456 };
+      var baseAddress = GetBaseAddress();
+      var request = System.Net.WebRequest.Create(baseAddress + "api/vpn") as System.Net.HttpWebRequest;
+      request.Method = "POST";
+      request.ContentType = "application/xml; charset=utf-8";
+
+      string payload_template = @"<SendRequest xmlns:i='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://schemas.datacontract.org/2004/07/ContractLib'>
+<VPNKey>{0}</VPNKey>
+<Topic>{1}</Topic>
+<Message>{2}</Message>
+<CorrelationID>{3}</CorrelationID>
+</SendRequest>";
+      var payload_text = string.Format(payload_template, request_payload.VPNKey, request_payload.Topic, request_payload.Message, request_payload.CorrelationID);
+      var payload = System.Text.Encoding.UTF8.GetBytes(payload_text);
+
+      //Assert.AreEqual<string>("", payload_text);
+      using (var bodystream = request.GetRequestStream())
+      {
+        bodystream.Write(payload, 0, payload.Length);
+      }
+      using (var response = request.GetResponse())
+      {
+        var http_response = response as System.Net.HttpWebResponse;
+        Console.WriteLine("{0} {1}", http_response.StatusCode, http_response.StatusDescription);
+        using (var response_stream = response.GetResponseStream())
+        using (var reader = new StreamReader(response_stream))
+        {
+          string response_xml = reader.ReadToEnd();
+          //Assert.AreEqual<string>("", response_xml);
+          var response_doc = XDocument.Parse(response_xml);
+          XNamespace ns = "http://schemas.datacontract.org/2004/07/ContractLib";
+
+          //Assert.IsNotNull(response_doc.Root);
+          //Assert.IsTrue(response_doc.Root.HasElements);
+          //Assert.AreEqual<int>(3, response_doc.Root.Elements().Count());
+          var correlationID = response_doc.Root.Element(ns + "CorrelationID");
+          //Assert.IsNotNull(correlationID);
+          var status = response_doc.Root.Element(ns + "Status");
+          //Assert.IsNotNull(status);
+          var description = response_doc.Root.Element(ns + "Description");
+          //Assert.IsNotNull(description);
+          Console.WriteLine("CorrelationID:{0}\nStatus:{1}\nDescription:{2}", correlationID.Value, status.Value, description.Value);
+        }
+      }
+    }
+
+    static ContractLib.Timepoint get_time(System.Net.Http.HttpClient client, string uri, int id)
+    {
+        var response = client.GetAsync(uri).Result;
+        var json = response.Content.ReadAsStringAsync().Result;
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<ContractLib.Timepoint>(json);
+    }
+    static IEnumerable<ContractLib.Timepoint> get_times(int from, int to)
+    {
+      using (var client = new System.Net.Http.HttpClient())
+      {
+        var baseAddress = GetBaseAddress();
+        for (int k = from; k < to; ++k)
+        {
+          var uri = baseAddress + "api/time/" + k;
+          yield return get_time(client, uri, k);
+        }
+      }
+    }
+    static void get_many(int start, int size)
+    {
+      for (int k = 0; k < 3; ++k)
+      {
+        int from = k * size + 1;
+        int to = from + size;
+        foreach (var t in get_times(from + start - 1, to + start - 1))
+        {
+          Console.WriteLine("[{0,3}] {1,3}\t{2}", t.Thread, t.Request, t.Response);
+        }
       }
     }
 
@@ -153,8 +252,11 @@ namespace ThinClient
         //get1();
         //get2(321);
         //postJSON(456);
-        postXML(789);
+        //postXML(789);
         //format();
+        //postVPN();
+        //PostVPNAsXMLWithWebRequest();
+        get_many(int.Parse(args[0]), int.Parse(args[1]));
       }
       catch (Exception ex)
       {
