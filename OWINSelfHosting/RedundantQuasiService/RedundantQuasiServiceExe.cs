@@ -74,6 +74,14 @@ namespace RedundantQuasiService
     }
   }
 
+  static class Correlation
+  {
+    internal static readonly System.Collections.Concurrent.ConcurrentDictionary<uint, System.Threading.ManualResetEvent> syncs;
+    static Correlation()
+    {
+      syncs = new System.Collections.Concurrent.ConcurrentDictionary<uint, System.Threading.ManualResetEvent>();
+    }
+  }
   public class TrackController : ApiController
   {
     // POST api/track
@@ -86,13 +94,25 @@ namespace RedundantQuasiService
     }
     private byte GetStatus(uint id)
     {
-      var sync = new System.Threading.ManualResetEvent(false);
-      System.Threading.Tasks.Task.Run(() => callback(sync));
-      return (byte)(sync.WaitOne(3000) ? 101 : 0xFF);
+      try
+      {
+        Correlation.syncs[id] = new System.Threading.ManualResetEvent(false);
+        System.Threading.Tasks.Task.Run(() => callback(id));
+        return (byte)(Correlation.syncs[id].WaitOne(10000) ? 101 : 0xFF);
+      }
+      finally
+      {
+        System.Threading.ManualResetEvent sync = null;
+        if (Correlation.syncs.TryRemove(id, out sync))
+        {
+          sync.Dispose();
+        }
+      }
     }
-    private void callback(System.Threading.EventWaitHandle sync)
+    private void callback(uint id)
     {
       System.Threading.Thread.Sleep(5000);
+      System.Threading.EventWaitHandle sync= Correlation.syncs[id];
       sync.Set();
     }
   }
