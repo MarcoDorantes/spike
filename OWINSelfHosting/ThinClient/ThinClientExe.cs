@@ -154,16 +154,52 @@ namespace ThinClient
         }
       }
     }
+    static ContractLib.Timepoint get_time2(int k)
+    {
+      using (var client = new System.Net.Http.HttpClient())
+      {
+        var baseAddress = GetBaseAddress();
+        var uri = baseAddress + "api/time/" + k;
+        var response = client.GetAsync(uri).Result;
+        var json = response.Content.ReadAsStringAsync().Result;
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<ContractLib.Timepoint>(json);
+      }
+    }
+    static IEnumerable<ContractLib.Timepoint> get_times2(int from, int to)
+    {
+      for (int k = from; k < to; ++k)
+      {
+        yield return get_time2(k);
+      }
+    }
     static void get_many(int start, int size)
     {
       for (int k = 0; k < 3; ++k)
       {
         int from = k * size + 1;
         int to = from + size;
-        foreach (var t in get_times(from + start - 1, to + start - 1))
+        //foreach (var t in get_times(from + start - 1, to + start - 1))
+        foreach (var t in get_times2(from + start - 1, to + start - 1))
         {
           Console.WriteLine("[{0,3}] {1,3}\t{2}", t.Thread, t.Request, t.Response);
         }
+      }
+    }
+
+    static void track(int count)
+    {
+      for(int k=0;k<count;++k)
+      using (var client = new System.Net.Http.HttpClient())
+      {
+        var request_payload = new ContractLib.SendRequest() { VPNKey = "vpn10", Topic = "B/C", Message = "msg10", CorrelationID = 789 };
+        var baseAddress = GetBaseAddress();
+        var url = baseAddress + "api/track";
+        Console.WriteLine(url);
+        var response = client.PostAsXmlAsync(url, request_payload).Result;
+
+        Console.WriteLine(response);
+        var xml = response.Content.ReadAsStringAsync().Result;
+        Console.WriteLine(xml);
       }
     }
 
@@ -254,9 +290,10 @@ namespace ThinClient
         //postJSON(456);
         //postXML(789);
         //format();
-        postVPN();
+        //postVPN();
         //PostVPNAsXMLWithWebRequest();
         //get_many(int.Parse(args[0]), int.Parse(args[1]));
+        track(5);
       }
       catch (Exception ex)
       {

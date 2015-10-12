@@ -21,8 +21,19 @@ namespace RedundantQuasiService
     public Timepoint Get(int id)
     {
       Console.WriteLine("Request: {0}\n", Request);
-      var result = new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = id.ToString(), Response = DateTime.Now.ToString("o") };
+      string request = GetRequestID(id);
+      var result = new Timepoint() { Thread = Environment.CurrentManagedThreadId, Request = request, Response = DateTime.Now.ToString("o") };
       Console.WriteLine("\nThread: {0}\nRequest: {1}\nResponse:{2}", result.Thread, result.Request, result.Response);
+      return result;
+    }
+    private string GetRequestID(int id)
+    {
+      string result = id.ToString();
+      if (id % 8 == 0)
+      {
+        System.Threading.Thread.Sleep(5000);
+        result = "0xFF";
+      }
       return result;
     }
 
@@ -62,6 +73,30 @@ namespace RedundantQuasiService
       return new SendResponse() { CorrelationID = request.CorrelationID, Status = 102, Description = request.VPNKey + "|" + request.Topic + "|" + request.Message };
     }
   }
+
+  public class TrackController : ApiController
+  {
+    // POST api/track
+    public SendResponse Post([FromBody]SendRequest request)
+    {
+      //Console.WriteLine("Request: {0}\n", Request);
+      var result = new SendResponse() { CorrelationID = request.CorrelationID, Status = 103, Description = request.VPNKey + "|" + request.Topic + "|" + request.Message };
+      result.Status = GetStatus(request.CorrelationID);
+      return result;
+    }
+    private byte GetStatus(uint id)
+    {
+      var sync = new System.Threading.ManualResetEvent(false);
+      System.Threading.Tasks.Task.Run(() => callback(sync));
+      return (byte)(sync.WaitOne(3000) ? 101 : 0xFF);
+    }
+    private void callback(System.Threading.EventWaitHandle sync)
+    {
+      System.Threading.Thread.Sleep(5000);
+      sync.Set();
+    }
+  }
+
   public class Startup
   {
     // This code configures Web API. The Startup class is specified as a type
