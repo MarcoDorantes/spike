@@ -276,9 +276,7 @@ namespace ThinClient
       try
       {
         hostname =
-        "GBMPRUFW2";
-        //"GBMVSDRPN1";
-        //null;
+        null;
         //"otherhost";
         if (string.IsNullOrWhiteSpace(hostname))
         {
