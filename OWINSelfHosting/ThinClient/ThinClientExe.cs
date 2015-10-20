@@ -72,6 +72,23 @@ namespace ThinClient
       }
     }
 
+    static void getVPNWithWebRequest()
+    {
+      var baseAddress = GetBaseAddress();
+      var request = System.Net.WebRequest.Create(baseAddress + "api/vpn") as System.Net.HttpWebRequest;
+      request.Method = "GET";
+      using (var response = request.GetResponse())
+      {
+        var http_response = response as System.Net.HttpWebResponse;
+        Console.WriteLine("{0} {1}", http_response.StatusCode, http_response.StatusDescription);
+        using (var response_stream = response.GetResponseStream())
+        using (var reader = new StreamReader(response_stream))
+        {
+          string response_text = reader.ReadToEnd();
+          Console.WriteLine(response_text.Trim('"'));
+        }
+      }
+    }
     static void postVPN()
     {
       using (var client = new System.Net.Http.HttpClient())
@@ -290,10 +307,11 @@ namespace ThinClient
         //postJSON(456);
         //postXML(789);
         //format();
+        getVPNWithWebRequest();
         //postVPN();
         //PostVPNAsXMLWithWebRequest();
         //get_many(int.Parse(args[0]), int.Parse(args[1]));
-        track(5);
+        //track(5);
       }
       catch (Exception ex)
       {

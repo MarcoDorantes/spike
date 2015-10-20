@@ -66,6 +66,14 @@ namespace RedundantQuasiService
 
   public class VpnController : ApiController
   {
+    // GET api/vpn
+    public string Get()
+    {
+      Console.WriteLine("Request: {0}\n", Request);
+      var result = string.Format("[{0} {1}] {2}", Environment.MachineName, Environment.CurrentManagedThreadId, DateTime.Now.ToString("o"));
+      Console.WriteLine(result);
+      return result;
+    }
     // POST api/vpn
     public SendResponse Post([FromBody]SendRequest request)
     {
