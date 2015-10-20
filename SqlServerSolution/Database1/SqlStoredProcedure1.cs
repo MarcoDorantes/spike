@@ -30,7 +30,7 @@ public static class SolSenderClientStoredProcedures
   }
 
   [Microsoft.SqlServer.Server.SqlProcedure]
-  public static string SendMessage(string VPNkey, string topicpath, string message, int correlationID)
+  public static int SendMessage(string VPNkey, string topicpath, string message, int correlationID)
   {
     #region Parameter validation
     if (string.IsNullOrWhiteSpace(VPNkey))
@@ -54,7 +54,7 @@ public static class SolSenderClientStoredProcedures
 
     //SqlContext.Pipe.ExecuteAndSend(cmd);?
 
-    string result = "";
+    int result = 0; //TODO ??
     string base_address = GetConfiguredSchemaAndHostNameOrIPAndPort(VPNkey);
 
     const string posted_datakey = "posted2";
@@ -77,13 +77,24 @@ public static class SolSenderClientStoredProcedures
         {
           throw new Exception("no response" + "<correlationid> + <status> + <description>"); //exception flow
         }
-        result = "<correlationid> + <status> + <description>"; //normal flow
+        //result = "<correlationid> + <status> + <description>"; //normal flow
       }
       return result;
     }
-  }
 
-  private static string GetConfiguredSchemaAndHostNameOrIPAndPort(string VPNkey)
+    /*
+    // Create a record object that represents an individual row, including it's metadata.
+    SqlDataRecord record = new SqlDataRecord(new SqlMetaData("stringcol", SqlDbType.NVarChar, 128));
+
+    // Populate the record.
+    record.SetSqlString(0, "Hello World!");
+
+    // Send the record to the client.
+    SqlContext.Pipe.Send(record);
+    */
+    }
+
+    private static string GetConfiguredSchemaAndHostNameOrIPAndPort(string VPNkey)
   {
     string result = GetCachedConfiguredSchemaAndHostNameOrIPAndPort(VPNkey);
     if (string.IsNullOrWhiteSpace(result))

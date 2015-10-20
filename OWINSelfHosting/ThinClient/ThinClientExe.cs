@@ -109,20 +109,17 @@ namespace ThinClient
     {
       var request_payload = new ContractLib.SendRequest() { VPNKey = "-vpn2", Topic = "B/C", Message = "msg2", CorrelationID = 456 };
       var baseAddress = GetBaseAddress();
-      var request = System.Net.WebRequest.Create(baseAddress + "api/vpn") as System.Net.HttpWebRequest;
+      var url = baseAddress + "api/vpn";
+      Console.WriteLine(url);
+      var request = System.Net.WebRequest.Create(url) as System.Net.HttpWebRequest;
       request.Method = "POST";
       request.ContentType = "application/xml; charset=utf-8";
 
-      string payload_template = @"<SendRequest xmlns:i='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://schemas.datacontract.org/2004/07/ContractLib'>
-<VPNKey>{0}</VPNKey>
-<Topic>{1}</Topic>
-<Message>{2}</Message>
-<CorrelationID>{3}</CorrelationID>
-</SendRequest>";
+      var payload_template = "<SendRequest xmlns:i='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://schemas.datacontract.org/2004/07/ContractLib'><CorrelationID>{3}</CorrelationID><Message>{2}</Message><Topic>{1}</Topic><VPNKey>{0}</VPNKey></SendRequest>";
       var payload_text = string.Format(payload_template, request_payload.VPNKey, request_payload.Topic, request_payload.Message, request_payload.CorrelationID);
       var payload = System.Text.Encoding.UTF8.GetBytes(payload_text);
+      //Console.WriteLine(payload);
 
-      //Assert.AreEqual<string>("", payload_text);
       using (var bodystream = request.GetRequestStream())
       {
         bodystream.Write(payload, 0, payload.Length);
@@ -309,7 +306,7 @@ namespace ThinClient
         //format();
         getVPNWithWebRequest();
         //postVPN();
-        //PostVPNAsXMLWithWebRequest();
+        PostVPNAsXMLWithWebRequest();
         //get_many(int.Parse(args[0]), int.Parse(args[1]));
         //track(5);
       }
