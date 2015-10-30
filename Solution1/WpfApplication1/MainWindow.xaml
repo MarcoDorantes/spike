@@ -11,22 +11,6 @@
             <MenuItem Header="_New" Command="{Binding OnNew}"/>
             <MenuItem Header="_Quit" Command="{Binding OnQuit}"/>
         </Menu>
-<!--
-        <TabControl IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Viewers}" SelectedIndex="0">
-            <TabControl.Resources>
-                <DataTemplate x:Key="contentTemplate" x:Shared="False">
-                    <StackPanel Orientation="Vertical">
-                        <Button Content="{Binding Action}" Width="100" Height="30" Command="{Binding OnRun}"/>
-                        <local:UserControl1 Tag="{Binding Data}" />
-                    </StackPanel>
-                </DataTemplate>
-                <Style TargetType="{x:Type TabItem}">
-                    <Setter Property="Header" Value="{Binding Name}"/>
-                    <Setter Property="ContentTemplate" Value="{StaticResource contentTemplate}"/>
-                </Style>
-            </TabControl.Resources>
-        </TabControl>
--->
 
         <TabControl ItemsSource="{Binding Viewers}" SelectedIndex="0">
             <TabControl.ItemTemplate>

@@ -29,3 +29,31 @@ namespace WpfApplication1
     #endregion
   }
 }
+/* some refs and fragments
+http://stackoverflow.com/questions/601826/multiple-usercontrol-instances-in-tabcontrol
+http://stackoverflow.com/questions/1965355/how-to-add-new-user-control-in-tabcontrol-contenttemplate
+            <TabControl.Resources>
+                <DataTemplate x:Key="contentTemplate" x:Shared="False">
+                    <local:ViewerWindow/>
+                </DataTemplate>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Header" Value="{Binding Header}"/>
+                    <Setter Property="ContentTemplate" Value="{StaticResource contentTemplate}"/>
+                </Style>
+            </TabControl.Resources>
+
+        <TabControl IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Viewers}" SelectedIndex="0">
+            <TabControl.Resources>
+                <DataTemplate x:Key="contentTemplate" x:Shared="False">
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="{Binding Action}" Width="100" Height="30" Command="{Binding OnRun}"/>
+                        <local:UserControl1 Tag="{Binding Data}" />
+                    </StackPanel>
+                </DataTemplate>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Header" Value="{Binding Name}"/>
+                    <Setter Property="ContentTemplate" Value="{StaticResource contentTemplate}"/>
+                </Style>
+            </TabControl.Resources>
+        </TabControl>
+*/
