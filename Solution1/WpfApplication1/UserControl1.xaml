@@ -9,6 +9,6 @@
     <StackPanel Orientation="Vertical">
         <TextBlock Text="{Binding ID}"/>
         <TextBlock Text="Select:"/>
-        <ComboBox ItemsSource="{Binding Names}" Height="20"/>
+        <ComboBox ItemsSource="{Binding Names}" Height="20" IsSynchronizedWithCurrentItem="True"/>
     </StackPanel>
 </UserControl>

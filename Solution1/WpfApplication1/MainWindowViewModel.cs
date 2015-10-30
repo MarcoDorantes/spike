@@ -11,7 +11,7 @@ namespace WpfApplication1
 {
   class MainWindowViewModel : INotifyPropertyChanged
   {
-    private uint tabcount;
+    private int tabcount;
     public MainWindowViewModel()
     {
       tabcount = 0;
@@ -23,7 +23,9 @@ namespace WpfApplication1
     private void AddViewer()
     {
       ++tabcount;
-      Viewers.Add(new Viewer { Name = $"Tab{tabcount}", Action = $"Action{tabcount}", Data = new UserControl1ViewModel($"{tabcount}") });
+      int a = 1;// 5 * (tabcount - 1) + 1;
+      int z = 5;
+      Viewers.Add(new Viewer { Name = $"Tab{tabcount}", Action = $"Action{tabcount}", Data = new UserControl1ViewModel($"{tabcount}",a,z) });
     }
 
 

@@ -10,12 +10,12 @@ namespace WpfApplication1
 {
   class UserControl1ViewModel : INotifyPropertyChanged
   {
-    public UserControl1ViewModel(string id)
+    public UserControl1ViewModel(string id, int a,int z)
     {
-      ID = id;
+      ID = $"UserControl Data ID: {id}";
       System.Diagnostics.Trace.WriteLine($"[{DateTime.Now.ToString("s")}] UserControl1ViewModel {ID}");
       Names = new ObservableCollection<string>();
-      Enumerable.Range(0, 5).ToList().ForEach(n => Names.Add($"Item{n}"));
+      Enumerable.Range(a, z).ToList().ForEach(n => Names.Add($"Item{n}"));
     }
     public string ID { get; private set; }
     public ObservableCollection<string> Names { get; private set; }
