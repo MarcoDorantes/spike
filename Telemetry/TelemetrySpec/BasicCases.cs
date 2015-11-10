@@ -72,14 +72,6 @@ namespace TelemetrySpec
 
       public void Stop() { }
 
-      private void RemoveObserver(IObserver<string> observer)
-      {
-        bool unused;
-        if (!observers.TryRemove(observer, out unused))
-        {
-          throw new Exception("Cannot remove observer");
-        }
-      }
       #region IObservable<string> by monitoring application
       public IDisposable Subscribe(IObserver<string> observer)
       {
@@ -89,7 +81,14 @@ namespace TelemetrySpec
         }
         return new Subscription(this, observer);
       }
-
+      private void RemoveObserver(IObserver<string> observer)
+      {
+        bool unused;
+        if (!observers.TryRemove(observer, out unused))
+        {
+          throw new Exception("Cannot remove observer");
+        }
+      }
       internal class Subscription: IDisposable
       {
         private ExecutionStateReceiver observable;
@@ -213,6 +212,7 @@ namespace TelemetrySpec
           {"X1", new PairsFormatter() },
           {"Pa", new ArrayFormatter() },
           {"X2", new ObjectBinaryFormatter() }
+          //https://msdn.microsoft.com/en-us/library/182eeyhh(v=vs.110).aspx
         };
       }
       public IExecutionStateTransport GetExecutionStateTransport()
