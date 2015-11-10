@@ -3,11 +3,12 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace TelemetrySpec
 {
   [TestClass]
-  public class UnitTest1
+  public class BasicCases
   {
     interface IPayloadFormatter
     {
@@ -42,7 +43,13 @@ namespace TelemetrySpec
       {
         IPayloadFormatter formatter = formatters[message_type];
         string payload = formatter.Serialize(message_type, values);
-        publisher.Send(payload.ToString());
+        publisher.Send(payload);
+      }
+      public void Send(string message_type, System.Runtime.Serialization.ISerializable value)
+      {
+        IPayloadFormatter formatter = formatters[message_type];
+        string payload = formatter.Serialize(message_type,new object[] { value });
+        publisher.Send(payload);
       }
     }
     class ExecutionStateReceiver : IExecutionStateReceiver, IObserver<string>
@@ -120,12 +127,6 @@ namespace TelemetrySpec
       #endregion
     }
 
-    void f1(int index, out string name, out object value)
-    {
-      name = "name1";
-      value = 12.5;
-    }
-
     interface ITransportPublisher
     {
       void Send(string payload);
@@ -178,7 +179,28 @@ namespace TelemetrySpec
         return payload.ToString();
       }
     }
+    class ObjectBinaryFormatter : IPayloadFormatter
+    {
+      private System.Runtime.Serialization.Formatters.Binary.BinaryFormatter serializer;
 
+      public ObjectBinaryFormatter()
+      {
+        serializer = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+      }
+
+      public object Deserialize(string message_type, string payload)
+      {
+        var stream = new System.IO.MemoryStream(Convert.FromBase64String(payload));
+        return serializer.Deserialize(stream);
+      }
+
+      public string Serialize(string message_type, object[] values)
+      {
+        var stream = new System.IO.MemoryStream();
+        serializer.Serialize(stream, values[0]);
+        return Convert.ToBase64String(stream.GetBuffer());
+      }
+    }
     class TelemetryService : ITelemetryService
     {
       private IDictionary<string, IPayloadFormatter> formatters;
@@ -189,7 +211,8 @@ namespace TelemetrySpec
         formatters = new Dictionary<string, IPayloadFormatter>
         {
           {"X1", new PairsFormatter() },
-          {"Pa", new ArrayFormatter() }
+          {"Pa", new ArrayFormatter() },
+          {"X2", new ObjectBinaryFormatter() }
         };
       }
       public IExecutionStateTransport GetExecutionStateTransport()
@@ -281,7 +304,7 @@ namespace TelemetrySpec
 
       //Assert
       Assert.AreEqual<int>(1, monitor_app.Messages.Count);
-      Assert.AreEqual<string>("Pa|value1|2|12.5", monitor_app.Messages.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}", next)).ToString());
+      Assert.AreEqual<string>("Pa|value1|2|12.5", monitor_app.Messages[0]);
     }
 
     [TestMethod, Description("StringPayload-with-ContentType-for-PairsContent")]
@@ -306,7 +329,42 @@ namespace TelemetrySpec
 
       //Assert
       Assert.AreEqual<int>(1, monitor_app.Messages.Count);
-      Assert.AreEqual<string>("X1|name1|value1|count|2|metric1|12.5", monitor_app.Messages.Aggregate(new StringBuilder(),(whole,next)=>whole.AppendFormat("{0}",next)).ToString());
+      Assert.AreEqual<string>("X1|name1|value1|count|2|metric1|12.5", monitor_app.Messages[0]);
+    }
+
+    [Serializable]
+    class RunState //: System.Runtime.Serialization.ISerializable
+    {
+      public string ID;
+      public string Name;
+      public string State;
+      public string Count;
+      public string Time;
+
+      //public void GetObjectData(SerializationInfo info, StreamingContext context) {throw new NotImplementedException();}
+    }
+
+    [TestMethod, Description("StringPayload-with-ContentType-for-ComplexTypeContent")]
+    public void send_object()
+    {
+      //Arrange
+      var service = new TelemetryService();
+      var state_receiver = new ExecutionStateReceiver(service);
+      var state_sender = new ExecutionStateSender(service);
+      var monitor_app = new MonitorApp();
+
+      state_receiver.Start();
+      state_receiver.Subscribe(monitor_app);
+      state_sender.Start();
+
+      var runstate = new RunState() { ID = "id2", Name = "name1", State = "OK", Count = "1,234", Time = "8:40:23" };
+
+      //Act
+      state_sender.Send("X2", runstate);
+
+      //Assert
+      Assert.AreEqual<int>(1, monitor_app.Messages.Count);
+      Assert.IsTrue(monitor_app.Messages[0].Length > 0);
     }
   }
 }
