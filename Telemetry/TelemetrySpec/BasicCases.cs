@@ -297,7 +297,7 @@ namespace TelemetrySpec
 
       string name1 = "value1";
       int count = 2;
-      decimal metric1 = 12.5M; ;
+      decimal metric1 = 12.5M;
 
       //Act
       state_sender.Send("Pa", name1, count, metric1);
@@ -322,7 +322,7 @@ namespace TelemetrySpec
 
       string name1 = "value1";
       int count = 2;
-      decimal metric1 = 12.5M; ;
+      decimal metric1 = 12.5M;
 
       //Act
       state_sender.Send("X1", nameof(name1), name1, nameof(count), count, nameof(metric1), metric1);
@@ -344,7 +344,7 @@ namespace TelemetrySpec
       //public void GetObjectData(SerializationInfo info, StreamingContext context) {throw new NotImplementedException();}
     }
 
-    [TestMethod, Description("StringPayload-with-ContentType-for-ComplexTypeContent")]
+    [TestMethod, Description("BinaryPayload-with-ContentType-for-ComplexTypeContent")]
     public void send_object()
     {
       //Arrange
@@ -361,6 +361,29 @@ namespace TelemetrySpec
 
       //Act
       state_sender.Send("X2", runstate);
+
+      //Assert
+      Assert.AreEqual<int>(1, monitor_app.Messages.Count);
+      Assert.IsTrue(monitor_app.Messages[0].Length > 0);
+    }
+
+    [TestMethod, Description("Headers/Payload-with-ContentType-for-ComplexTypeContent"),Ignore]
+    public void send_with_headers()
+    {
+      //Arrange
+      var service = new TelemetryService();
+      var state_receiver = new ExecutionStateReceiver(service);
+      var state_sender = new ExecutionStateSender(service);
+      var monitor_app = new MonitorApp();
+
+      state_receiver.Start();
+      state_receiver.Subscribe(monitor_app);
+      state_sender.Start();
+
+      var runstate = new RunState() { ID = "id2", Name = "name1", State = "OK", Count = "1,234", Time = "8:40:23" };
+
+      //Act
+      //state_sender.Post(runstate);//, "PayloadType", "aType", );
 
       //Assert
       Assert.AreEqual<int>(1, monitor_app.Messages.Count);
