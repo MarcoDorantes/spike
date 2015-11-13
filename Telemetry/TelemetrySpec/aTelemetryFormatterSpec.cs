@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TelemetrySpec
 {
-  public static class aTelemetryFormatter
+  /*public static class LegacyTelemetryFormatter
   {
     public static string Serialize(string data_to_send)
     {
@@ -13,44 +13,47 @@ namespace TelemetrySpec
       //return formatter.Serialize(data_to_send)
       return data_to_send;
     }
-  }
+  }*/
 
-  [TestClass]
-  public class aTelemetryFormatterSpec
+  public static class LegacyTelemetry
   {
-    public enum Notification
+    public static string NotifySharedState(Identity id, string shared_state = null)
     {
-      MessageWriterStatus,
-      UnrecoverSqlConnection,
-      Alert,
-      WriterReplaced
-    }
-    public static class NotificationType
-    {
-      public const string MessagePersistance = "P";
-      public const string MessagePersistanceException = "X";
-      public const string MessageReception = "R";
-      public const string Status = "S";
-    }
-    public enum PersistResult
-    {
-      OK,
-      SystemException,
-      ApplicationException,
-      BusinessException
+      return LegacySerializeStateNotification(id, shared_state);
     }
 
-    public class Identity
+    public static string NotifyState(Identity id)
     {
-      public string ID { get; set; }
-      public string Host { get; set; }
-      public string Service { get; set; }
-      public string Name { get; set; }
-      public string SourceName { get; set; }
-      public string TargetName { get; set; }
-      public string State { get; set; }
+      return LegacySerializeStateNotification(id);
     }
-    private string LegacySerializeStateNotification(Identity id, string shared_state = null)
+
+    public static string NotifyThroughput(Identity id, uint diachronicCount, decimal diachronicElapsed_s, decimal synchronicThroughputMin, decimal synchronicThroughput, decimal synchronicThroughputMax, decimal diachronicThroughput, uint success_count, uint error_count, uint received, uint queued_count, uint queued_maxcount)
+    {
+      return LegacyNotifyThroughputSerialization(id, diachronicCount, diachronicElapsed_s, synchronicThroughputMin, synchronicThroughput, synchronicThroughputMax, diachronicThroughput, success_count, error_count, received, queued_count, queued_maxcount);
+    }
+
+    public static string NotifyReceivedCounts(Identity id, uint receivedCount, uint queuedCount, uint queued_maxcount)
+    {
+      return LegacyNotifyReceivedCountsSerialization(id, receivedCount, queuedCount, queued_maxcount);
+    }
+
+    public static string NotifyBurnException(Identity id, PersistResult exception_category, string log)
+    {
+      return LegacyNotifyBurnExceptionSerialization(id, exception_category, log);
+    }
+
+    public static string NotifyBurnException(Identity id, PersistResult exception_category, string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
+    {
+      return LegacyNotifyBurnExceptionSerialization(id, exception_category, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
+    }
+
+    public static string NotifyException(Identity id, PersistResult exception_category, string log)
+    {
+      return LegacyTelemetry.LegacyNotifyExceptionSerialization(id, exception_category, log);
+
+    }
+    //
+    public static string LegacySerializeStateNotification(Identity id, string shared_state = null)
     {
       return string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}",
           NotificationType.Status,
@@ -64,7 +67,7 @@ namespace TelemetrySpec
       );
     }
 
-    public string LegacyNotifyThroughputSerialization(Identity id, uint diachronicCount, decimal diachronicElapsed_s, decimal synchronicThroughputMin, decimal synchronicThroughput, decimal synchronicThroughputMax, decimal diachronicThroughput, uint success_count, uint error_count, uint received, uint queued_count, uint queued_maxcount)
+    public static string LegacyNotifyThroughputSerialization(Identity id, uint diachronicCount, decimal diachronicElapsed_s, decimal synchronicThroughputMin, decimal synchronicThroughput, decimal synchronicThroughputMax, decimal diachronicThroughput, uint success_count, uint error_count, uint received, uint queued_count, uint queued_maxcount)
     {
       return string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}\x0{10}\x0{11}\x0{12}\x0{13}\x0{14}\x0{15}\x0{16}\x0{17}\x0{18}",
           NotificationType.MessagePersistance,
@@ -89,7 +92,7 @@ namespace TelemetrySpec
       );
     }
 
-    public string LegacyNotifyReceivedCountsSerialization(Identity id, uint receivedCount, uint queuedCount, uint queued_maxcount)
+    public static string LegacyNotifyReceivedCountsSerialization(Identity id, uint receivedCount, uint queuedCount, uint queued_maxcount)
     {
       return string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}\x0{10}",
           NotificationType.MessageReception,
@@ -106,12 +109,12 @@ namespace TelemetrySpec
       );
     }
 
-    public string ToStringSentToMonitorUI(string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
+    private static string ToStringSentToMonitorUI(string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
     {
       return string.Format("{0}\x1{1}\x1{2}\x1{3}\x1{4}\x1{5}\x1{6}", Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
     }
 
-    public string LegacyNotifyBurnExceptionSerialization(Identity id, PersistResult exception_category, string log_to_send)
+    public static string LegacyNotifyBurnExceptionSerialization(Identity id, PersistResult exception_category, string log)
     {
       return string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
        NotificationType.MessagePersistanceException,
@@ -122,12 +125,17 @@ namespace TelemetrySpec
        id.SourceName,
        id.TargetName,
        id.State,
-       log_to_send,
+       log,
        exception_category
       );
     }
+    public static string LegacyNotifyBurnExceptionSerialization(Identity id, PersistResult exception_category, string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
+    {
+      string log_to_send = ToStringSentToMonitorUI(Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
+      return LegacyNotifyBurnExceptionSerialization(id, exception_category, log_to_send);
+    }
 
-    public string LegacyNotifyExceptionSerialization(Identity id, PersistResult exception_category, string log)
+    public static string LegacyNotifyExceptionSerialization(Identity id, PersistResult exception_category, string log)
     {
       return string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
       NotificationType.MessagePersistanceException,
@@ -142,122 +150,194 @@ namespace TelemetrySpec
       exception_category
      );
     }
+  }
 
+  public enum Notification
+  {
+    MessageWriterStatus,
+    UnrecoverSqlConnection,
+    Alert,
+    WriterReplaced
+  }
+  public static class NotificationType
+  {
+    public const string MessagePersistance = "P";
+    public const string MessagePersistanceException = "X";
+    public const string MessageReception = "R";
+    public const string Status = "S";
+  }
+  public enum PersistResult
+  {
+    OK,
+    SystemException,
+    ApplicationException,
+    BusinessException
+  }
+
+  public class Identity
+  {
+    public string ID { get; set; }
+    public string Host { get; set; }
+    public string Service { get; set; }
+    public string Name { get; set; }
+    public string SourceName { get; set; }
+    public string TargetName { get; set; }
+    public string State { get; set; }
+  }
+
+  [TestClass]
+  public class LegacyTelemetrySpec
+  {
     [TestMethod]
     public void NotifySharedState()
     {
       //Arrange
       string shared_state1 = "shared_state1";
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(aTelemetryFormatterSpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      string data_to_send = LegacySerializeStateNotification(id, shared_state1);
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      string expected_payload = LegacyTelemetry.LegacySerializeStateNotification(id, shared_state1);
 
       //Act
-      string payload = aTelemetryFormatter.Serialize(data_to_send);
+      string payload = LegacyTelemetry.NotifySharedState(id, shared_state1);
 
       //Assert
-      Assert.AreEqual<string>(payload, data_to_send);
+      Assert.AreEqual<string>(expected_payload, payload);
     }
+
     [TestMethod]
     public void NotifyEventid_SerializeStateNotification()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(aTelemetryFormatterSpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      string data_to_send = LegacySerializeStateNotification(id);
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      string expected_payload = LegacyTelemetry.LegacySerializeStateNotification(id);
 
       //Act
-      string payload = aTelemetryFormatter.Serialize(data_to_send);
+      string payload = LegacyTelemetry.NotifyState(id);
 
       //Assert
-      Assert.AreEqual<string>(payload, data_to_send);
+      Assert.AreEqual<string>(expected_payload, payload);
     }
 
     [TestMethod]
     public void NotifyThroughput()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(aTelemetryFormatterSpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      string data_to_send = LegacyNotifyThroughputSerialization(
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      uint
+        diachronicCount = 1,
+        success_count = 2,
+        error_count = 3,
+        received = 4,
+        queued_count = 5,
+        queued_maxcount = 6;
+      decimal
+        diachronicElapsed_s = 12.5M,
+        synchronicThroughputMin = 1.1M,
+        synchronicThroughput = 2.2M,
+        synchronicThroughputMax = 3.3M,
+        diachronicThroughput = 4.4M;
+
+      string expected_payload = LegacyTelemetry.LegacyNotifyThroughputSerialization(
         id,
-        diachronicCount: 1,
-        diachronicElapsed_s: 12.5M,
-        synchronicThroughputMin: 1.1M,
-        synchronicThroughput: 2.2M,
-        synchronicThroughputMax: 3.3M,
-        diachronicThroughput: 4.4M,
-        success_count: 2,
-        error_count: 3,
-        received: 4,
-        queued_count: 5,
-        queued_maxcount: 6
+        diachronicCount,
+        diachronicElapsed_s,
+        synchronicThroughputMin,
+        synchronicThroughput,
+        synchronicThroughputMax,
+        diachronicThroughput,
+        success_count,
+        error_count,
+        received,
+        queued_count,
+        queued_maxcount
       );
 
       //Act
-      string payload = aTelemetryFormatter.Serialize(data_to_send);
+      string payload = LegacyTelemetry.NotifyThroughput(
+        id,
+        diachronicCount,
+        diachronicElapsed_s,
+        synchronicThroughputMin,
+        synchronicThroughput,
+        synchronicThroughputMax,
+        diachronicThroughput,
+        success_count,
+        error_count,
+        received,
+        queued_count,
+        queued_maxcount
+      );
 
       //Assert
-      Assert.AreEqual<string>(payload, data_to_send);
+      Assert.AreEqual<string>(expected_payload, payload);
     }
 
     [TestMethod]
     public void NotifyReceivedCounts()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(aTelemetryFormatterSpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      string data_to_send = LegacyNotifyReceivedCountsSerialization(
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      uint receivedCount = 2, queuedCount = 3, queued_maxcount = 4;
+
+      string expected_payload = LegacyTelemetry.LegacyNotifyReceivedCountsSerialization(
         id,
-        receivedCount:2,
-        queuedCount:3,
-        queued_maxcount:4
+        receivedCount,
+        queuedCount,
+        queued_maxcount
       );
 
       //Act
-      string payload = aTelemetryFormatter.Serialize(data_to_send);
+      string payload = LegacyTelemetry.NotifyReceivedCounts(id, receivedCount, queuedCount, queued_maxcount);
 
       //Assert
-      Assert.AreEqual<string>(payload, data_to_send);
+      Assert.AreEqual<string>(expected_payload, payload);
     }
 
     [TestMethod]
     public void NotifyBurnException()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(aTelemetryFormatterSpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      string data_to_send = LegacyNotifyBurnExceptionSerialization(id, PersistResult.SystemException, "logline1");
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      PersistResult exception = PersistResult.SystemException;
+      string log_to_send = "logline1";
+      string expected_payload = LegacyTelemetry.LegacyNotifyBurnExceptionSerialization(id, exception, log_to_send);
 
       //Act
-      string payload = aTelemetryFormatter.Serialize(data_to_send);
+      string payload = LegacyTelemetry.NotifyBurnException(id, exception, log_to_send);
 
       //Assert
-      Assert.AreEqual<string>(payload, data_to_send);
+      Assert.AreEqual<string>(expected_payload, payload);
     }
 
     [TestMethod]
     public void NotifyBurnExceptionWithQuasiTSQL()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(aTelemetryFormatterSpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      string sqlcall = ToStringSentToMonitorUI("Timepoint", "WriterName", "MessageCount", "Description", "InboundMessage", "SQL_Parameters", "QuasiTSL");
-      string data_to_send = LegacyNotifyBurnExceptionSerialization(id, PersistResult.SystemException, sqlcall);
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      string Timepoint = "Timepoint", WriterName = "WriterName", MessageCount = "MessageCount", Description = "Description", InboundMessage = "InboundMessage", SQL_Parameters = "SQL_Parameters", QuasiTSL = "QuasiTSL";
+      PersistResult exception = PersistResult.SystemException;
+      string expected_payload = LegacyTelemetry.LegacyNotifyBurnExceptionSerialization(id, exception, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
 
       //Act
-      string payload = aTelemetryFormatter.Serialize(data_to_send);
+      string payload = LegacyTelemetry.NotifyBurnException(id, exception, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
 
       //Assert
-      Assert.AreEqual<string>(payload, data_to_send);
+      Assert.AreEqual<string>(expected_payload, payload);
     }
 
     [TestMethod]
     public void NotifyException()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(aTelemetryFormatterSpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      string data_to_send = LegacyNotifyExceptionSerialization(id, PersistResult.SystemException, "logline1");
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      PersistResult exception = PersistResult.SystemException;
+      string log = "logline1";
+      string expected_payload = LegacyTelemetry.LegacyNotifyExceptionSerialization(id, exception, log);
 
       //Act
-      string payload = aTelemetryFormatter.Serialize(data_to_send);
+      string payload = LegacyTelemetry.NotifyException(id, exception, log);
 
       //Assert
-      Assert.AreEqual<string>(payload, data_to_send);
+      Assert.AreEqual<string>(expected_payload, payload);
     }
   }
 }
