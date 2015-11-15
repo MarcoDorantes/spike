@@ -3,18 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TelemetrySpec
 {
-  /*public class LegacyTelemetryFormatter
-  {
-    public string Serialize(string data_to_send)
-    {
-      //get headers=f(data_to_send)
-      //formatter_key=f(headers)
-      //formatter=formatters(formatter_key)
-      //return formatter.Serialize(data_to_send)
-      return data_to_send;
-    }
-  }*/
-
   public static class LegacyTelemetryFormatterV1
   {
     public static string NotifySharedState(Identity id, string shared_state = null)
