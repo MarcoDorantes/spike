@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="BasicCases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="aTelemetryFormatterSpec.cs" />
+    <Compile Include="LegacyTelemetrySenderV1Spec.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
