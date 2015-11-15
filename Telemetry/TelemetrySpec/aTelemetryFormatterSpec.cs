@@ -39,7 +39,7 @@ namespace TelemetrySpec
 
     public static string NotifyBurnException(Identity id, PersistResult exception_category, string log)
     {
-      return LegacyNotifyBurnExceptionSerialization(id, exception_category, log);
+      return LegacyNotifyExceptionSerialization(id, exception_category, log);
     }
 
     public static string NotifyBurnException(Identity id, PersistResult exception_category, string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
@@ -114,40 +114,25 @@ namespace TelemetrySpec
       return string.Format("{0}\x1{1}\x1{2}\x1{3}\x1{4}\x1{5}\x1{6}", Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
     }
 
-    private static string LegacyNotifyBurnExceptionSerialization(Identity id, PersistResult exception_category, string log)
-    {
-      return string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
-       NotificationType.MessagePersistanceException,
-       id.ID,
-       id.Host,
-       id.Service,
-       id.Name,
-       id.SourceName,
-       id.TargetName,
-       id.State,
-       log,
-       exception_category
-      );
-    }
-    public static string LegacyNotifyBurnExceptionSerialization(Identity id, PersistResult exception_category, string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
+    private static string LegacyNotifyBurnExceptionSerialization(Identity id, PersistResult exception_category, string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
     {
       string log_to_send = ToStringSentToMonitorUI(Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
-      return LegacyNotifyBurnExceptionSerialization(id, exception_category, log_to_send);
+      return LegacyNotifyExceptionSerialization(id, exception_category, log_to_send);
     }
 
-    public static string LegacyNotifyExceptionSerialization(Identity id, PersistResult exception_category, string log)
+    private static string LegacyNotifyExceptionSerialization(Identity id, PersistResult exception_category, string log)
     {
       return string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
-      NotificationType.MessagePersistanceException,
-      id.ID,
-      id.Host,
-      id.Service,
-      id.Name,
-      id.SourceName,
-      id.TargetName,
-      id.State,
-      log,
-      exception_category
+        NotificationType.MessagePersistanceException,
+        id.ID,
+        id.Host,
+        id.Service,
+        id.Name,
+        id.SourceName,
+        id.TargetName,
+        id.State,
+        log,
+        exception_category
      );
     }
   }
@@ -363,7 +348,20 @@ namespace TelemetrySpec
       var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       string Timepoint = "Timepoint", WriterName = "WriterName", MessageCount = "MessageCount", Description = "Description", InboundMessage = "InboundMessage", SQL_Parameters = "SQL_Parameters", QuasiTSL = "QuasiTSL";
       PersistResult exception = PersistResult.SystemException;
-      string expected_payload = LegacyTelemetrySenderV1.LegacyNotifyBurnExceptionSerialization(id, exception, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
+      string log_to_send = string.Format("{0}\x1{1}\x1{2}\x1{3}\x1{4}\x1{5}\x1{6}", Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
+      string expected_payload =
+        string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
+         NotificationType.MessagePersistanceException,
+         id.ID,
+         id.Host,
+         id.Service,
+         id.Name,
+         id.SourceName,
+         id.TargetName,
+         id.State,
+         log_to_send,
+         exception
+        );
 
       //Act
       string payload = LegacyTelemetrySenderV1.NotifyBurnException(id, exception, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
@@ -377,12 +375,24 @@ namespace TelemetrySpec
     {
       //Arrange
       var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      PersistResult exception = PersistResult.SystemException;
+      PersistResult exception_category = PersistResult.SystemException;
       string log = "logline1";
-      string expected_payload = LegacyTelemetrySenderV1.LegacyNotifyExceptionSerialization(id, exception, log);
+      string expected_payload = //LegacyTelemetrySenderV1.LegacyNotifyExceptionSerialization(id, exception, log);
+        string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
+         NotificationType.MessagePersistanceException,
+         id.ID,
+         id.Host,
+         id.Service,
+         id.Name,
+         id.SourceName,
+         id.TargetName,
+         id.State,
+         log,
+         exception_category
+       );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifyException(id, exception, log);
+      string payload = LegacyTelemetrySenderV1.NotifyException(id, exception_category, log);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
