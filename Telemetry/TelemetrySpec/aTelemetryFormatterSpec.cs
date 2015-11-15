@@ -377,7 +377,7 @@ namespace TelemetrySpec
       var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySpec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       PersistResult exception_category = PersistResult.SystemException;
       string log = "logline1";
-      string expected_payload = //LegacyTelemetrySenderV1.LegacyNotifyExceptionSerialization(id, exception, log);
+      string expected_payload =
         string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
          NotificationType.MessagePersistanceException,
          id.ID,
