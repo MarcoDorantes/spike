@@ -15,7 +15,7 @@ namespace TelemetrySpec
     }
   }*/
 
-  public static class LegacyTelemetrySenderV1
+  public static class LegacyTelemetryFormatterV1
   {
     public static string NotifySharedState(Identity id, string shared_state = null)
     {
@@ -49,7 +49,7 @@ namespace TelemetrySpec
 
     public static string NotifyException(Identity id, PersistResult exception_category, string log)
     {
-      return LegacyTelemetrySenderV1.LegacyNotifyExceptionSerialization(id, exception_category, log);
+      return LegacyTelemetryFormatterV1.LegacyNotifyExceptionSerialization(id, exception_category, log);
 
     }
     //
@@ -171,14 +171,14 @@ namespace TelemetrySpec
   }
 
   [TestClass]
-  public class LegacyTelemetrySenderV1Spec
+  public class LegacyTelemetryFormatterV1Spec
   {
     [TestMethod]
     public void NotifySharedState()
     {
       //Arrange
       string shared_state1 = "shared_state1";
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySenderV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetryFormatterV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       string expected_payload =
         string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}",
           NotificationType.Status,
@@ -192,7 +192,7 @@ namespace TelemetrySpec
         );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifySharedState(id, shared_state1);
+      string payload = LegacyTelemetryFormatterV1.NotifySharedState(id, shared_state1);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -203,7 +203,7 @@ namespace TelemetrySpec
     {
       //Arrange
       string shared_state1 = null;
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySenderV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetryFormatterV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       string expected_payload =
         string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}",
           NotificationType.Status,
@@ -217,7 +217,7 @@ namespace TelemetrySpec
         );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifyState(id);
+      string payload = LegacyTelemetryFormatterV1.NotifyState(id);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -227,7 +227,7 @@ namespace TelemetrySpec
     public void NotifyThroughput()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySenderV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetryFormatterV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       uint
         diachronicCount = 1,
         success_count = 2,
@@ -266,7 +266,7 @@ namespace TelemetrySpec
       );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifyThroughput(
+      string payload = LegacyTelemetryFormatterV1.NotifyThroughput(
         id,
         diachronicCount,
         diachronicElapsed_s,
@@ -289,7 +289,7 @@ namespace TelemetrySpec
     public void NotifyReceivedCounts()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySenderV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetryFormatterV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       uint receivedCount = 2, queuedCount = 3, queued_maxcount = 4;
       string expected_payload =
         string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}\x0{10}",
@@ -307,7 +307,7 @@ namespace TelemetrySpec
       );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifyReceivedCounts(id, receivedCount, queuedCount, queued_maxcount);
+      string payload = LegacyTelemetryFormatterV1.NotifyReceivedCounts(id, receivedCount, queuedCount, queued_maxcount);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -317,8 +317,8 @@ namespace TelemetrySpec
     public void NotifyBurnException()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySenderV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
-      PersistResult exception = PersistResult.SystemException;
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetryFormatterV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      PersistResult exception_category = PersistResult.SystemException;
       string log_to_send = "logline1";
       string expected_payload =
         string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
@@ -331,11 +331,11 @@ namespace TelemetrySpec
          id.TargetName,
          id.State,
          log_to_send,
-         exception
+         exception_category
         );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifyBurnException(id, exception, log_to_send);
+      string payload = LegacyTelemetryFormatterV1.NotifyBurnException(id, exception_category, log_to_send);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -345,9 +345,9 @@ namespace TelemetrySpec
     public void NotifyBurnExceptionWithQuasiTSQL()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySenderV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetryFormatterV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       string Timepoint = "Timepoint", WriterName = "WriterName", MessageCount = "MessageCount", Description = "Description", InboundMessage = "InboundMessage", SQL_Parameters = "SQL_Parameters", QuasiTSL = "QuasiTSL";
-      PersistResult exception = PersistResult.SystemException;
+      PersistResult exception_category = PersistResult.SystemException;
       string log_to_send = string.Format("{0}\x1{1}\x1{2}\x1{3}\x1{4}\x1{5}\x1{6}", Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
       string expected_payload =
         string.Format("{0}\x0{1}\x0{2}\x0{3}\x0{4}\x0{5}\x0{6}\x0{7}\x0{8}\x0{9}",
@@ -360,11 +360,11 @@ namespace TelemetrySpec
          id.TargetName,
          id.State,
          log_to_send,
-         exception
+         exception_category
         );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifyBurnException(id, exception, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
+      string payload = LegacyTelemetryFormatterV1.NotifyBurnException(id, exception_category, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -374,7 +374,7 @@ namespace TelemetrySpec
     public void NotifyException()
     {
       //Arrange
-      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetrySenderV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
+      var id = new Identity { ID = Guid.NewGuid().ToString(), Host = Environment.MachineName, Service = nameof(LegacyTelemetryFormatterV1Spec), Name = nameof(NotifySharedState), SourceName = nameof(NotifySharedState), TargetName = nameof(Assert), State = "Arranged" };
       PersistResult exception_category = PersistResult.SystemException;
       string log = "logline1";
       string expected_payload =
@@ -392,7 +392,7 @@ namespace TelemetrySpec
        );
 
       //Act
-      string payload = LegacyTelemetrySenderV1.NotifyException(id, exception_category, log);
+      string payload = LegacyTelemetryFormatterV1.NotifyException(id, exception_category, log);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
