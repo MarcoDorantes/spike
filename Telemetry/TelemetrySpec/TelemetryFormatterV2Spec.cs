@@ -1,17 +1,50 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
+using System.Collections.Generic;
 
 namespace TelemetrySpec
 {
+  public interface ITelemetryFormatter
+  {
+    string Serialize(object x);
+  }
+  class Formatter1 : ITelemetryFormatter
+  {
+    public string Serialize(object x)
+    {
+      var payload = new StringBuilder($"{message_type}");
+      for (int k = 0; k < values.Length; ++k)
+      {
+        payload.AppendFormat("|{0}", values[k]);
+      }
+      return payload.ToString();
+    }
+  }
   public class TelemetryFormatterV2
   {
-    public string NotifySharedState(Identity id, string shared_state = null)
+    private Dictionary<string, ITelemetryFormatter> formatters;
+    public TelemetryFormatterV2()
+    {
+      formatters = new Dictionary<string, ITelemetryFormatter>();
+      formatters.Add("S",new Formatter1());
+    }
+    public string NotifyState(object payload, params string[] headers)
     {
       //get headers=f(data_to_send)
       //formatter_key=f(headers)
       //formatter=formatters(formatter_key)
       //return formatter.Serialize(data_to_send)
-      return "";
+
+      string formatter_key = get_key(headers);
+      ITelemetryFormatter formatter = formatters[formatter_key];
+      return formatter.Serialize(payload);
+    }
+
+    private string get_key(string[] headers)
+    {
+      return headers.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}", next)).ToString();
     }
   }
 
@@ -39,8 +72,8 @@ namespace TelemetrySpec
       var formatter = new TelemetryFormatterV2();
 
       //Act
-      string payload = formatter.NotifySharedState(id, shared_state1);
-
+      string payload = formatter.NotifyState(id, NotificationType.Status);
+      //
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
     }
