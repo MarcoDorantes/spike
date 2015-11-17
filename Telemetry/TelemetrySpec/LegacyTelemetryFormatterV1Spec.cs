@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TelemetrySpec
 {
-  public static class LegacyTelemetryFormatterV1 //a)	SqlWriterV1BurnTelemetryFormatter
+  public static class LegacyTelemetryFormatterV1
   {
     public static string GetSharedStateNotice(Identity id, string shared_state = null)
     {
