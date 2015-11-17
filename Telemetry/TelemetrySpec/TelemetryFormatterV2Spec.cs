@@ -8,18 +8,18 @@ namespace TelemetrySpec
 {
   public interface ITelemetryFormatter
   {
-    string Serialize(object x);
+    string Serialize(object x, string[] headers);
   }
   class Formatter1 : ITelemetryFormatter
   {
-    public string Serialize(object x)
+    public string Serialize(object x, string[] headers)
     {
-      var payload = new StringBuilder($"{message_type}");
-      for (int k = 0; k < values.Length; ++k)
-      {
-        payload.AppendFormat("|{0}", values[k]);
-      }
-      return payload.ToString();
+      //var payload = new StringBuilder($"{message_type}");
+      //for (int k = 0; k < values.Length; ++k)
+      //{
+      //  payload.AppendFormat("|{0}", values[k]);
+      //}
+      return "";// payload.ToString();
     }
   }
   public class TelemetryFormatterV2
@@ -30,16 +30,16 @@ namespace TelemetrySpec
       formatters = new Dictionary<string, ITelemetryFormatter>();
       formatters.Add("S",new Formatter1());
     }
-    public string NotifyState(object payload, params string[] headers)
+    public string GetStateNotice(string message_type)
     {
       //get headers=f(data_to_send)
       //formatter_key=f(headers)
       //formatter=formatters(formatter_key)
       //return formatter.Serialize(data_to_send)
 
-      string formatter_key = get_key(headers);
-      ITelemetryFormatter formatter = formatters[formatter_key];
-      return formatter.Serialize(payload);
+      //string formatter_key = get_key(headers);
+      //ITelemetryFormatter formatter = formatters[formatter_key];
+      return "";// formatter.Serialize(payload, headers);
     }
 
     private string get_key(string[] headers)
@@ -72,8 +72,8 @@ namespace TelemetrySpec
       var formatter = new TelemetryFormatterV2();
 
       //Act
-      string payload = formatter.NotifyState(id, NotificationType.Status);
-      //
+      string payload = "";//formatter.GetStateNotice(NotificationType.Status, id.ID, id.Host, id.Service, id.Name, id.SourceName, id.TargetName, shared_state1);
+
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
     }

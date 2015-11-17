@@ -3,42 +3,41 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TelemetrySpec
 {
-  public static class LegacyTelemetryFormatterV1
+  public static class LegacyTelemetryFormatterV1 //a)	SqlWriterV1BurnTelemetryFormatter
   {
-    public static string NotifySharedState(Identity id, string shared_state = null)
+    public static string GetSharedStateNotice(Identity id, string shared_state = null)
     {
       return LegacySerializeStateNotification(id, shared_state);
     }
 
-    public static string NotifyState(Identity id)
+    public static string GetStateNotice(Identity id)
     {
       return LegacySerializeStateNotification(id);
     }
 
-    public static string NotifyThroughput(Identity id, uint diachronicCount, decimal diachronicElapsed_s, decimal synchronicThroughputMin, decimal synchronicThroughput, decimal synchronicThroughputMax, decimal diachronicThroughput, uint success_count, uint error_count, uint received, uint queued_count, uint queued_maxcount)
+    public static string GetThroughputNotice(Identity id, uint diachronicCount, decimal diachronicElapsed_s, decimal synchronicThroughputMin, decimal synchronicThroughput, decimal synchronicThroughputMax, decimal diachronicThroughput, uint success_count, uint error_count, uint received, uint queued_count, uint queued_maxcount)
     {
       return LegacyNotifyThroughputSerialization(id, diachronicCount, diachronicElapsed_s, synchronicThroughputMin, synchronicThroughput, synchronicThroughputMax, diachronicThroughput, success_count, error_count, received, queued_count, queued_maxcount);
     }
 
-    public static string NotifyReceivedCounts(Identity id, uint receivedCount, uint queuedCount, uint queued_maxcount)
+    public static string GetReceivedCountsNotice(Identity id, uint receivedCount, uint queuedCount, uint queued_maxcount)
     {
       return LegacyNotifyReceivedCountsSerialization(id, receivedCount, queuedCount, queued_maxcount);
     }
 
-    public static string NotifyBurnException(Identity id, PersistResult exception_category, string log)
+    public static string GetBurnExceptionNotice(Identity id, PersistResult exception_category, string log)
     {
       return LegacyNotifyExceptionSerialization(id, exception_category, log);
     }
 
-    public static string NotifyBurnException(Identity id, PersistResult exception_category, string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
+    public static string GetBurnExceptionNotice(Identity id, PersistResult exception_category, string Timepoint, string WriterName, string MessageCount, string Description, string InboundMessage, string SQL_Parameters, string QuasiTSL)
     {
       return LegacyNotifyBurnExceptionSerialization(id, exception_category, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
     }
 
-    public static string NotifyException(Identity id, PersistResult exception_category, string log)
+    public static string GetExceptionNotice(Identity id, PersistResult exception_category, string log)
     {
       return LegacyTelemetryFormatterV1.LegacyNotifyExceptionSerialization(id, exception_category, log);
-
     }
     //
     private static string LegacySerializeStateNotification(Identity id, string shared_state = null)
@@ -180,7 +179,7 @@ namespace TelemetrySpec
         );
 
       //Act
-      string payload = LegacyTelemetryFormatterV1.NotifySharedState(id, shared_state1);
+      string payload = LegacyTelemetryFormatterV1.GetSharedStateNotice(id, shared_state1);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -205,7 +204,7 @@ namespace TelemetrySpec
         );
 
       //Act
-      string payload = LegacyTelemetryFormatterV1.NotifyState(id);
+      string payload = LegacyTelemetryFormatterV1.GetStateNotice(id);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -254,7 +253,7 @@ namespace TelemetrySpec
       );
 
       //Act
-      string payload = LegacyTelemetryFormatterV1.NotifyThroughput(
+      string payload = LegacyTelemetryFormatterV1.GetThroughputNotice(
         id,
         diachronicCount,
         diachronicElapsed_s,
@@ -295,7 +294,7 @@ namespace TelemetrySpec
       );
 
       //Act
-      string payload = LegacyTelemetryFormatterV1.NotifyReceivedCounts(id, receivedCount, queuedCount, queued_maxcount);
+      string payload = LegacyTelemetryFormatterV1.GetReceivedCountsNotice(id, receivedCount, queuedCount, queued_maxcount);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -323,7 +322,7 @@ namespace TelemetrySpec
         );
 
       //Act
-      string payload = LegacyTelemetryFormatterV1.NotifyBurnException(id, exception_category, log_to_send);
+      string payload = LegacyTelemetryFormatterV1.GetBurnExceptionNotice(id, exception_category, log_to_send);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -352,7 +351,7 @@ namespace TelemetrySpec
         );
 
       //Act
-      string payload = LegacyTelemetryFormatterV1.NotifyBurnException(id, exception_category, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
+      string payload = LegacyTelemetryFormatterV1.GetBurnExceptionNotice(id, exception_category, Timepoint, WriterName, MessageCount, Description, InboundMessage, SQL_Parameters, QuasiTSL);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
@@ -380,7 +379,7 @@ namespace TelemetrySpec
        );
 
       //Act
-      string payload = LegacyTelemetryFormatterV1.NotifyException(id, exception_category, log);
+      string payload = LegacyTelemetryFormatterV1.GetExceptionNotice(id, exception_category, log);
 
       //Assert
       Assert.AreEqual<string>(expected_payload, payload);
