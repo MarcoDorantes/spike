@@ -145,7 +145,7 @@ namespace TelemetrySpec
 
     IEnumerable<PartCollectionElement> GetParts()
     {
-      WnConfigurationSection existing_section = System.Configuration.ConfigurationManager.GetSection("WnConfigurationSection") as WnConfigurationSection;
+      WnConfigurationSection existing_section = System.Configuration.ConfigurationManager.GetSection("GettingPartsGroup/WnConfigurationSection") as WnConfigurationSection;
       if (existing_section != null)
       {
         foreach (var part in existing_section.Parts.OfType<PartCollectionElement>())
