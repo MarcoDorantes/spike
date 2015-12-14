@@ -176,11 +176,13 @@ namespace TelemetrySpec
           Assert.AreEqual<string>(PartCollectionElement.DefaultProviderName, parts.ElementAt(0).Name);
           Assert.AreEqual<string>(PartCollectionElement.DefaultProviderType, parts.ElementAt(0).Provider);
           break;
-        case 2:
+        case 3:
           Assert.AreEqual<string>("name1", parts.ElementAt(0).Name);
           Assert.AreEqual<string>("ProviderAssembly.Provider1, ProviderAssembly", parts.ElementAt(0).Provider);
           Assert.AreEqual<string>("name2", parts.ElementAt(1).Name);
           Assert.AreEqual<string>("Provider2, Provider2Assembly", parts.ElementAt(1).Provider);
+          Assert.AreEqual<string>("name3", parts.ElementAt(2).Name);
+          Assert.AreEqual<string>("ProviderAssembly2.Provider3, ProviderAssembly2", parts.ElementAt(2).Provider);
           break;
         default:
           Assert.Fail("parts.Count={0}", parts.Count());
