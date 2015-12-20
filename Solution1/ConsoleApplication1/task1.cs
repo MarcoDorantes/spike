@@ -81,6 +81,7 @@ class task1_exe
   {
     try
     {
+      //https://msdn.microsoft.com/en-us/library/hh191443.aspx
       WriteLine($"[{Environment.CurrentManagedThreadId}] Begin");
       var a = new A();
       g(a);
