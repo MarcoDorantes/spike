@@ -39,10 +39,8 @@ namespace ConsoleApplication1
   }
   class packmap
   {
-
-    public static void _Main()
+    static void try0()
     {
-      var s1 = new MapPacker();
       var map1 = Enumerable.Range(0, 0xFFF).ToDictionary(n => n.ToString(), n => (object)(n * 2));
       map1["AppInstanceID"] = Guid.NewGuid().ToString();
       map1["AppName"] = "TestApp1";
@@ -50,24 +48,78 @@ namespace ConsoleApplication1
       map1["NamespaceName"] = "namespace1";
       map1["ProcessorID"] = Guid.NewGuid().ToString();
       map1["ProcessorName"] = "namespace1";
+
+      var s1 = new MapPacker();
       byte[] packet = s1.Pack(map1);
-      Console.WriteLine($"map1: {packet.Length}");
+      WriteLine($"map1: {packet.Length}");
 
       var s2 = new MapPacker();
       var map2 = s2.UnPack(packet);
 
       bool equals = map1.SequenceEqual(map2);
-      Console.WriteLine($"=: {equals}");
+      WriteLine($"=: {equals}");
 
       if (!equals)
       {
-        Console.WriteLine("\nmap1:");
-        Console.WriteLine(map1.Count);
+        WriteLine("\nmap1:");
+        WriteLine(map1.Count);
         map1.Aggregate(Console.Out, (whole, next) => { whole.WriteLine($"[{next.Key}] : [{next.Value}]"); return whole; });
-        Console.WriteLine("\nmap2:");
-        Console.WriteLine(map2.Count);
+        WriteLine("\nmap2:");
+        WriteLine(map2.Count);
         map2.Aggregate(Console.Out, (whole, next) => { whole.WriteLine($"[{next.Key}] : [{next.Value}]"); return whole; });
       }
+    }
+    void start(Action<byte[]> send)
+    {
+      var map = Enumerable.Range(0, 0xF).ToDictionary(n => n.ToString(), n => (object)((decimal)(n * 2)));
+      map["AppInstanceID"] = Guid.NewGuid().ToString();
+      map["AppName"] = "TestApp1";
+      map["NamespaceID"] = Guid.NewGuid().ToString();
+      map["NamespaceName"] = "namespace1";
+      map["ProcessorID"] = Guid.NewGuid().ToString();
+      map["ProcessorName"] = "namespace1";
+
+      var packer = new MapPacker();
+
+      for (int k = 0; k < limit; ++k)
+      {
+        map["Count1"] = k.ToString("N0");
+        byte[] packet = packer.Pack(map);
+        send(packet);
+        System.Threading.Thread.Sleep(100);
+      }
+    }
+    const int limit = 100;
+/*
+Done:10 in 1110
+Checked:10
+
+Done:100 in 10926ms
+Checked:100
+*/
+    void otherend(List<byte[]> packets)
+    {
+      var packer = new MapPacker();
+      for(int k =0;k< packets.Count;++k)
+      {
+        var p = packets[k];
+        var map=packer.UnPack(p);
+        if (map["Count1"].ToString() != k.ToString("N0"))
+        {
+          WriteLine($"{k} Count1 does not match");
+        }
+      };
+    }
+    public static void _Main()
+    {
+      var packets = new List<byte[]>();
+      var x = new packmap();
+      var watch = System.Diagnostics.Stopwatch.StartNew();
+      x.start(packet=>packets.Add(packet));
+      watch.Stop();
+      WriteLine($"Done:{packets.Count} in {watch.ElapsedMilliseconds}ms");
+      x.otherend(packets);
+      WriteLine($"Checked:{packets.Count}");
     }
   }
   class Program
@@ -80,7 +132,7 @@ namespace ConsoleApplication1
         //task1_exe._Main();
         packmap._Main();
       }
-      catch (Exception ex) { Console.WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
+      catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
     }
   }
 }
