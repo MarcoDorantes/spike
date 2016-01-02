@@ -16,8 +16,11 @@ namespace ConsoleApplication1
     public MapPacker()
     {
       serial = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+      serial.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
+      serial.TypeFormat = System.Runtime.Serialization.Formatters.FormatterTypeStyle.TypesAlways;
+      serial.FilterLevel = System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
     }
-    public byte[] Pack(IDictionary<string, string> map)
+    public byte[] Pack(IDictionary<string, object> map)
     {
       using (var stream = new System.IO.MemoryStream())
       {
@@ -26,26 +29,27 @@ namespace ConsoleApplication1
       }
     }
 
-    public IDictionary<string, string> UnPack(byte[] packet)
+    public IDictionary<string, object> UnPack(byte[] packet)
     {
       using (var stream = new System.IO.MemoryStream(packet))
       {
-        return serial.Deserialize(stream) as IDictionary<string, string>;
+        return serial.Deserialize(stream) as IDictionary<string, object>;
       }
     }
   }
   class packmap
   {
+
     public static void _Main()
     {
-      /*var serial = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-      var map=Enumerable.Range(0, 0xFFF).ToDictionary(n => n, n => n * 2);
-      var stream = new System.IO.MemoryStream();
-      serial.Serialize(stream, map);
-      Console.WriteLine($"{stream.GetBuffer().Length}");*/
-
       var s1 = new MapPacker();
-      var map1 = Enumerable.Range(0, 0xFFF).ToDictionary(n => n.ToString(), n => (n * 2).ToString());
+      var map1 = Enumerable.Range(0, 0xFFF).ToDictionary(n => n.ToString(), n => (object)(n * 2));
+      map1["AppInstanceID"] = Guid.NewGuid().ToString();
+      map1["AppName"] = "TestApp1";
+      map1["NamespaceID"] = Guid.NewGuid().ToString();
+      map1["NamespaceName"] = "namespace1";
+      map1["ProcessorID"] = Guid.NewGuid().ToString();
+      map1["ProcessorName"] = "namespace1";
       byte[] packet = s1.Pack(map1);
       Console.WriteLine($"map1: {packet.Length}");
 
@@ -64,8 +68,6 @@ namespace ConsoleApplication1
         Console.WriteLine(map2.Count);
         map2.Aggregate(Console.Out, (whole, next) => { whole.WriteLine($"[{next.Key}] : [{next.Value}]"); return whole; });
       }
-
-//      Console.WriteLine(int.Parse("1,234", System.Globalization.NumberStyles.AllowThousands));
     }
   }
   class Program
