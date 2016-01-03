@@ -7,9 +7,12 @@ using static System.Console;
 
 namespace ConsoleApplication1
 {
-  class IFormatter
-  { }
-  class MapPacker
+  interface IMapPacker
+  {
+    byte[] Pack(IDictionary<string, object> map);
+    IDictionary<string, object> UnPack(byte[] packet);
+  }
+  class MapPacker : IMapPacker
   {
     private System.Runtime.Serialization.Formatters.Binary.BinaryFormatter serial;
 
@@ -37,8 +40,33 @@ namespace ConsoleApplication1
       }
     }
   }
+  class WnMapPacker : IMapPacker
+  {
+    public byte[] Pack(IDictionary<string, object> map)
+    {
+      return Encoding.UTF8.GetBytes(map.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}\x1{1}\x0", next.Key, next.Value)).ToString());
+    }
+
+    public IDictionary<string, object> UnPack(byte[] packet)
+    {
+      var result = new Dictionary<string, object>();
+      var text = Encoding.UTF8.GetString(packet);
+      foreach (var pair in text.Split('\x0'))
+      {
+        if (string.IsNullOrWhiteSpace(pair)) continue;
+        string[] keyvalue = pair.Split('\x1');
+        result[keyvalue[0]] = keyvalue[1];
+      }
+      return result;
+    }
+  }
   class packmap
   {
+    IMapPacker packer;
+    public packmap(IMapPacker packer)
+    {
+      this.packer = packer;
+    }
     static void try0()
     {
       var map1 = Enumerable.Range(0, 0xFFF).ToDictionary(n => n.ToString(), n => (object)(n * 2));
@@ -69,6 +97,7 @@ namespace ConsoleApplication1
         map2.Aggregate(Console.Out, (whole, next) => { whole.WriteLine($"[{next.Key}] : [{next.Value}]"); return whole; });
       }
     }
+
     void start(Action<byte[]> send)
     {
       var map = Enumerable.Range(0, 0xF).ToDictionary(n => n.ToString(), n => (object)((decimal)(n * 2)));
@@ -79,8 +108,6 @@ namespace ConsoleApplication1
       map["ProcessorID"] = Guid.NewGuid().ToString();
       map["ProcessorName"] = "namespace1";
 
-      var packer = new MapPacker();
-
       for (int k = 0; k < limit; ++k)
       {
         map["Count1"] = k.ToString("N0");
@@ -90,20 +117,19 @@ namespace ConsoleApplication1
       }
     }
     const int limit = 100;
-/*
-Done:10 in 1110
-Checked:10
+    /*
+    Done:10 in 1110
+    Checked:10
 
-Done:100 in 10926ms
-Checked:100
-*/
+    Done:100 in 10926ms
+    Checked:100
+    */
     void otherend(List<byte[]> packets)
     {
-      var packer = new MapPacker();
-      for(int k =0;k< packets.Count;++k)
+      for (int k = 0; k < packets.Count; ++k)
       {
         var p = packets[k];
-        var map=packer.UnPack(p);
+        var map = packer.UnPack(p);
         if (map["Count1"].ToString() != k.ToString("N0"))
         {
           WriteLine($"{k} Count1 does not match");
@@ -112,10 +138,14 @@ Checked:100
     }
     public static void _Main()
     {
+      var packer =
+        new MapPacker();//built_in
+        //new WnMapPacker();//custom
+
       var packets = new List<byte[]>();
-      var x = new packmap();
+      var x = new packmap(packer);
       var watch = System.Diagnostics.Stopwatch.StartNew();
-      x.start(packet=>packets.Add(packet));
+      x.start(packet => packets.Add(packet));
       watch.Stop();
       WriteLine($"Done:{packets.Count} in {watch.ElapsedMilliseconds}ms");
       x.otherend(packets);
@@ -132,7 +162,7 @@ Checked:100
         //task1_exe._Main();
         packmap._Main();
       }
-      catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
+      catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
     }
   }
 }
