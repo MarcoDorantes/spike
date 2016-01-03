@@ -113,17 +113,29 @@ namespace ConsoleApplication1
         map["Count1"] = k.ToString("N0");
         byte[] packet = packer.Pack(map);
         send(packet);
-        System.Threading.Thread.Sleep(100);
+//        System.Threading.Thread.Sleep(100);
       }
     }
-    const int limit = 100;
-    /*
-    Done:10 in 1110
-    Checked:10
+    const int limit = 1000;
+/*
+Done:10 in 1110
+Checked:10
 
-    Done:100 in 10926ms
-    Checked:100
-    */
+Done:100 in 10926ms
+Checked:100
+
+Done:1000 in 277m
+Checked:1000
+
+Done:1000 in 283m
+Checked:1000
+
+Done:1000 in 98ms
+Checked:1000
+
+Done:1000 in 29ms
+Checked:1000
+*/
     void otherend(List<byte[]> packets)
     {
       for (int k = 0; k < packets.Count; ++k)
@@ -139,8 +151,8 @@ namespace ConsoleApplication1
     public static void _Main()
     {
       var packer =
-        new MapPacker();//built_in
-        //new WnMapPacker();//custom
+      //new MapPacker();//built_in
+      new WnMapPacker();//custom
 
       var packets = new List<byte[]>();
       var x = new packmap(packer);
