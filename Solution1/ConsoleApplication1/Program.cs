@@ -40,7 +40,7 @@ namespace ConsoleApplication1
       }
     }
   }
-  class WnMapPacker : IMapPacker
+  class SingleLevelMapPacker : IMapPacker
   {
     public byte[] Pack(IDictionary<string, object> map)
     {
@@ -60,6 +60,61 @@ namespace ConsoleApplication1
       return result;
     }
   }
+  class MultiLevelMapPacker : IMapPacker
+  {
+    public byte[] Pack(IDictionary<string, object> map)
+    {
+      return Encoding.UTF8.GetBytes(GetStringFor(map, 1));
+    }
+    private string GetStringFor(IDictionary<string, object> map, byte level)
+    {
+      char pair_separator = (char)(level - 1);
+      char keyvalue_separator = (char)(level);
+      return map.Aggregate(new StringBuilder(), (whole, next) =>
+      {
+        object value = next.Value;
+        if (value is IDictionary<string, object>)
+        {
+          value = GetStringFor(value as IDictionary<string, object>, (byte)(level + 2));
+        }
+        return whole.AppendFormat("{0}{1}{2}{3}", next.Key, keyvalue_separator, value, pair_separator);
+      }).ToString();
+    }
+
+    public IDictionary<string, object> UnPack(byte[] packet)
+    {
+      return GetMapFrom(Encoding.UTF8.GetString(packet), 1);
+    }
+    private IDictionary<string, object> GetMapFrom(string text, byte level)
+    {
+      char pair_separator = (char)(level - 1);
+      char keyvalue_separator = (char)(level);
+
+      if (!text.Contains(pair_separator))
+      {
+        return null;
+      }
+
+      var result = new Dictionary<string, object>();
+      foreach (var pair in text.Split(pair_separator))
+      {
+        if (string.IsNullOrWhiteSpace(pair)) continue;
+        string[] keyvalue = pair.Split(keyvalue_separator);
+        string value = keyvalue[1];
+        var map = GetMapFrom(value, (byte)(level + 1));
+        if (map != null)
+        {
+          result[keyvalue[0]] = map;
+        }
+        else
+        {
+          result[keyvalue[0]] = value;
+        }
+      }
+      return result;
+    }
+  }
+
   class packmap
   {
     IMapPacker packer;
@@ -152,7 +207,8 @@ Checked:1000
     {
       var packer =
       //new MapPacker();//built_in
-      new WnMapPacker();//custom
+      //new SingleLevelMapPacker();//custom
+      new MultiLevelMapPacker();
 
       var packets = new List<byte[]>();
       var x = new packmap(packer);
