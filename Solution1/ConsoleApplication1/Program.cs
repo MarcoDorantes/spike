@@ -215,7 +215,7 @@ namespace ConsoleApplication1
     static void test_limit_count()
     {
       var packer =
-      //new MapPacker();//built_in
+      //new MapFormatter();//built_in
       //new SingleLevelMapPacker();//custom
       new MultiLevelMapFormatter();
 
