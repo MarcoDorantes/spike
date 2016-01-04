@@ -68,6 +68,10 @@ namespace ConsoleApplication1
     }
     private string GetStringFor(IDictionary<string, object> map, byte level)
     {
+      if (level > 7)
+      {
+        throw new NotSupportedException($"Unsupported nesting level for {nameof(MultiLevelMapPacker)}.");
+      }
       char pair_separator = (char)(level - 1);
       char keyvalue_separator = (char)(level);
       return map.Aggregate(new StringBuilder(), (whole, next) =>
