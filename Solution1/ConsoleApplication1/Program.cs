@@ -155,7 +155,7 @@ namespace ConsoleApplication1
 
     void start(Action<byte[]> send)
     {
-      var map = Enumerable.Range(0, 0xF).ToDictionary(n => n.ToString(), n => (object)((decimal)(n * 2)));
+      var map = Enumerable.Range(0, 0xF).ToDictionary(n => n.ToString(), n => (object)((decimal)(n * 2)).ToString("N2"));
       map["AppInstanceID"] = Guid.NewGuid().ToString();
       map["AppName"] = "TestApp1";
       map["NamespaceID"] = Guid.NewGuid().ToString();
@@ -163,34 +163,37 @@ namespace ConsoleApplication1
       map["ProcessorID"] = Guid.NewGuid().ToString();
       map["ProcessorName"] = "namespace1";
 
+      //map["sub1"] = map;//Invalid
+      map["sub1"] = new Dictionary<string, object> { { "f1", "val1" }, { "f2", "val2" } };
+
       for (int k = 0; k < limit; ++k)
       {
         map["Count1"] = k.ToString("N0");
         byte[] packet = packer.Pack(map);
         send(packet);
-//        System.Threading.Thread.Sleep(100);
+        //        System.Threading.Thread.Sleep(100);
       }
     }
     const int limit = 1000;
-/*
-Done:10 in 1110
-Checked:10
+    /*
+    Done:10 in 1110
+    Checked:10
 
-Done:100 in 10926ms
-Checked:100
+    Done:100 in 10926ms
+    Checked:100
 
-Done:1000 in 277m
-Checked:1000
+    Done:1000 in 277m
+    Checked:1000
 
-Done:1000 in 283m
-Checked:1000
+    Done:1000 in 283m
+    Checked:1000
 
-Done:1000 in 98ms
-Checked:1000
+    Done:1000 in 98ms
+    Checked:1000
 
-Done:1000 in 29ms
-Checked:1000
-*/
+    Done:1000 in 29ms
+    Checked:1000
+    */
     void otherend(List<byte[]> packets)
     {
       for (int k = 0; k < packets.Count; ++k)
@@ -203,7 +206,7 @@ Checked:1000
         }
       };
     }
-    public static void _Main()
+    static void test_limit_count()
     {
       var packer =
       //new MapPacker();//built_in
@@ -218,6 +221,26 @@ Checked:1000
       WriteLine($"Done:{packets.Count} in {watch.ElapsedMilliseconds}ms");
       x.otherend(packets);
       WriteLine($"Checked:{packets.Count}");
+    }
+    static void to_file()
+    {
+      var packer =
+      //new SingleLevelMapPacker();
+      new MultiLevelMapPacker();
+
+      var packets = new List<byte[]>();
+      var x = new packmap(packer);
+      x.start(packet => packets.Add(packet));
+      using (var writer = System.IO.File.Create("map1.dat"))
+      {
+        var packet = packets[0];
+        writer.Write(packet, 0, packet.Length);
+      }
+    }
+    public static void _Main()
+    {
+      test_limit_count();
+      //to_file();
     }
   }
   class Program
