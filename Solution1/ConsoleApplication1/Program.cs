@@ -7,23 +7,23 @@ using static System.Console;
 
 namespace ConsoleApplication1
 {
-  interface IMapPacker
+  interface IMapFormatter
   {
-    byte[] Pack(IDictionary<string, object> map);
-    IDictionary<string, object> UnPack(byte[] packet);
+    byte[] Serialize(IDictionary<string, object> map);
+    IDictionary<string, object> Deserialize(byte[] packet);
   }
-  class MapPacker : IMapPacker
+  class MapFormatter : IMapFormatter
   {
     private System.Runtime.Serialization.Formatters.Binary.BinaryFormatter serial;
 
-    public MapPacker()
+    public MapFormatter()
     {
       serial = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
       serial.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
       serial.TypeFormat = System.Runtime.Serialization.Formatters.FormatterTypeStyle.TypesAlways;
       serial.FilterLevel = System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
     }
-    public byte[] Pack(IDictionary<string, object> map)
+    public byte[] Serialize(IDictionary<string, object> map)
     {
       using (var stream = new System.IO.MemoryStream())
       {
@@ -32,7 +32,7 @@ namespace ConsoleApplication1
       }
     }
 
-    public IDictionary<string, object> UnPack(byte[] packet)
+    public IDictionary<string, object> Deserialize(byte[] packet)
     {
       using (var stream = new System.IO.MemoryStream(packet))
       {
@@ -40,14 +40,14 @@ namespace ConsoleApplication1
       }
     }
   }
-  class SingleLevelMapPacker : IMapPacker
+  class SingleLevelMapFormatter : IMapFormatter
   {
-    public byte[] Pack(IDictionary<string, object> map)
+    public byte[] Serialize(IDictionary<string, object> map)
     {
       return Encoding.UTF8.GetBytes(map.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}\x1{1}\x0", next.Key, next.Value)).ToString());
     }
 
-    public IDictionary<string, object> UnPack(byte[] packet)
+    public IDictionary<string, object> Deserialize(byte[] packet)
     {
       var result = new Dictionary<string, object>();
       var text = Encoding.UTF8.GetString(packet);
@@ -60,9 +60,9 @@ namespace ConsoleApplication1
       return result;
     }
   }
-  class MultiLevelMapPacker : IMapPacker
+  class MultiLevelMapFormatter : IMapFormatter
   {
-    public byte[] Pack(IDictionary<string, object> map)
+    public byte[] Serialize(IDictionary<string, object> map)
     {
       return Encoding.UTF8.GetBytes(GetStringFor(map, 1));
     }
@@ -70,7 +70,7 @@ namespace ConsoleApplication1
     {
       if (level > 7)
       {
-        throw new NotSupportedException($"Unsupported nesting level for {nameof(MultiLevelMapPacker)}.");
+        throw new NotSupportedException($"Unsupported nesting level ({level}) for {nameof(MultiLevelMapFormatter)}.");
       }
       char pair_separator = (char)(level - 1);
       char keyvalue_separator = (char)(level);
@@ -85,12 +85,14 @@ namespace ConsoleApplication1
       }).ToString();
     }
 
-    public IDictionary<string, object> UnPack(byte[] packet)
+    public IDictionary<string, object> Deserialize(byte[] packet)
     {
       return GetMapFrom(Encoding.UTF8.GetString(packet), 1);
     }
     private IDictionary<string, object> GetMapFrom(string text, byte level)
     {
+      //TODO null input text parameter
+
       char pair_separator = (char)(level - 1);
       char keyvalue_separator = (char)(level);
 
@@ -121,8 +123,8 @@ namespace ConsoleApplication1
 
   class packmap
   {
-    IMapPacker packer;
-    public packmap(IMapPacker packer)
+    IMapFormatter packer;
+    public packmap(IMapFormatter packer)
     {
       this.packer = packer;
     }
@@ -136,12 +138,12 @@ namespace ConsoleApplication1
       map1["ProcessorID"] = Guid.NewGuid().ToString();
       map1["ProcessorName"] = "namespace1";
 
-      var s1 = new MapPacker();
-      byte[] packet = s1.Pack(map1);
+      var s1 = new MapFormatter();
+      byte[] packet = s1.Serialize(map1);
       WriteLine($"map1: {packet.Length}");
 
-      var s2 = new MapPacker();
-      var map2 = s2.UnPack(packet);
+      var s2 = new MapFormatter();
+      var map2 = s2.Deserialize(packet);
 
       bool equals = map1.SequenceEqual(map2);
       WriteLine($"=: {equals}");
@@ -173,7 +175,7 @@ namespace ConsoleApplication1
       for (int k = 0; k < limit; ++k)
       {
         map["Count1"] = k.ToString("N0");
-        byte[] packet = packer.Pack(map);
+        byte[] packet = packer.Serialize(map);
         send(packet);
         //        System.Threading.Thread.Sleep(100);
       }
@@ -203,7 +205,7 @@ namespace ConsoleApplication1
       for (int k = 0; k < packets.Count; ++k)
       {
         var p = packets[k];
-        var map = packer.UnPack(p);
+        var map = packer.Deserialize(p);
         if (map["Count1"].ToString() != k.ToString("N0"))
         {
           WriteLine($"{k} Count1 does not match");
@@ -215,7 +217,7 @@ namespace ConsoleApplication1
       var packer =
       //new MapPacker();//built_in
       //new SingleLevelMapPacker();//custom
-      new MultiLevelMapPacker();
+      new MultiLevelMapFormatter();
 
       var packets = new List<byte[]>();
       var x = new packmap(packer);
@@ -230,7 +232,7 @@ namespace ConsoleApplication1
     {
       var packer =
       //new SingleLevelMapPacker();
-      new MultiLevelMapPacker();
+      new MultiLevelMapFormatter();
 
       var packets = new List<byte[]>();
       var x = new packmap(packer);
