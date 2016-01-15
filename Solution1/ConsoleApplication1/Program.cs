@@ -249,15 +249,88 @@ namespace ConsoleApplication1
       //to_file();
     }
   }
+
+  #region tcps
+  [System.ServiceModel.ServiceContract]
+  public interface IServiceT
+  {
+    [System.ServiceModel.OperationContract]
+    string gettime(int n);
+  }
+  [System.ServiceModel.ServiceBehavior(InstanceContextMode = System.ServiceModel.InstanceContextMode.PerCall, ConcurrencyMode = System.ServiceModel.ConcurrencyMode.Multiple)]
+  class ServiceT : IServiceT
+  {
+    public string gettime(int n) => $"{n} | {DateTime.Now.ToString("s")}";
+  }
+  class tcps
+  {
+    const string addr = "net.tcp://localhost:9001/ServiceT";
+    static void start_service()
+    {
+      using (var host = new System.ServiceModel.ServiceHost(typeof(ServiceT)))
+      {
+
+        host.AddServiceEndpoint(typeof(IServiceT), new System.ServiceModel.NetTcpBinding(), new Uri(addr));
+        host.Open();
+        WriteLine("Listening at:");
+        foreach (var e in host.Description.Endpoints) WriteLine(e.Address.Uri);
+        WriteLine("Press ENTER to exit");
+        ReadLine();
+      }
+    }
+    static IServiceT start_client()
+    {
+      //new System.ServiceModel.ChannelFactory<IServiceT>(new System.ServiceModel.NetTcpBinding(), "");
+      return null;
+    }
+    static void call()
+    {
+      using (var f = new System.ServiceModel.ChannelFactory<IServiceT>(new System.ServiceModel.NetTcpBinding(), addr))
+      {
+        IServiceT proxy = f.CreateChannel();
+        WriteLine(proxy.gettime(1));
+      }
+    }
+
+    public static void _Main()
+    {
+      bool running = true;
+      //tcps client;
+      do
+      {
+        WriteLine("usage: call | client | service | exit");
+        string cmd = ReadLine();
+        switch (cmd)
+        {
+          case "client":
+            //client=start_client();
+            break;
+          case "call":
+            call();
+            break;
+          case "service":
+            start_service();
+            break;
+          case "exit":
+            running = false;
+            break;
+          default: WriteLine($"unknown command: {cmd}"); break;
+        }
+      } while (running);
+    }
+  }
+  #endregion
+
   class Program
   {
-    static void Main()
+    static void Main(string[] args)
     {
       try
       {
         //ExploreFeatureCS6_exe._Main_cs6();
         //task1_exe._Main();
-        packmap._Main();
+        //packmap._Main();
+        tcps._Main();
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
     }
