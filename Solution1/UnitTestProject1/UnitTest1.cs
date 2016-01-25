@@ -97,11 +97,11 @@ namespace UnitTestProject1
     {
       //Arrange
       var list = new List<GeneralAlgorithm>();
-      Enumerable.Range(1, 10).Aggregate(list,(whole, next) =>
-      {
-        whole.Add(new GeneralAlgorithm(next));
-        return whole;
-      });
+      Enumerable.Range(1, 10).Aggregate(list, (whole, next) =>
+       {
+         whole.Add(new GeneralAlgorithm(next));
+         return whole;
+       });
       Trace.WriteLine($"[{Environment.CurrentManagedThreadId}] Arrange {DateTime.Now.ToString(Constant.PrecisionFormat)}");
 
       //Act
@@ -137,6 +137,11 @@ namespace UnitTestProject1
     public void AsyncDelegateThreading3()
     {
       //Arrange
+      int minW, minIO, minAvailW, maxW, maxIO, maxAvailIO;
+      ThreadPool.GetMinThreads(out minW, out minIO);
+      ThreadPool.GetMaxThreads(out maxW, out maxIO);
+      ThreadPool.GetAvailableThreads(out minAvailW, out maxAvailIO);
+      Trace.WriteLine($"ProcessorCount: {Environment.ProcessorCount} | {nameof(minW)}:{minW} |{nameof(minIO)}:{minIO} | {nameof(maxW)}:{maxW} | {nameof(maxIO)}:{maxIO} | {nameof(minAvailW)}:{minAvailW} | {nameof(maxAvailIO)}:{maxAvailIO}");
       var x = new GeneralAlgorithm(321);
       Trace.WriteLine($"[{Environment.CurrentManagedThreadId}] Arrange {DateTime.Now.ToString(Constant.PrecisionFormat)}");
 
@@ -240,4 +245,42 @@ namespace UnitTestProject1
     }
   }
 
+  [TestClass]
+  public class ReactiveDataflowSpec
+  {
+    [TestMethod]
+    public void _basic0()
+    {
+      //Arrange
+      var datastream = new int[] { 1, 2, 3 };
+      var calls = new List<int>();
+      var match = new Func<int, bool>(x => x >= 2);
+      var fire = new Action<int>(x => calls.Add(x));
+
+      //Act
+      foreach (var n in datastream)
+      {
+        if (match(n))
+        {
+          fire(n);
+        }
+      }
+
+      //Assert
+      Assert.AreEqual<int>(2, calls.Count);
+    }
+    [TestMethod]
+    public void basic0()
+    {/*
+      //Arrange
+      var datastream = new int[] { 1, 2, 3 };
+      var reactor = new Reactor(source,subs,target);
+
+      //Act
+      reactor.Start();
+
+      //Assert
+      Assert.AreEqual<int>(2, calls.Count);*/
+    }
+  }
 }
