@@ -327,10 +327,10 @@ namespace ConsoleApplication1
     {
       try
       {
-        //ExploreFeatureCS6_exe._Main_cs6();
+        ExploreFeatureCS6_exe._Main_cs6();
         //task1_exe._Main();
         //packmap._Main();
-        tcps._Main();
+        //tcps._Main();
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
     }

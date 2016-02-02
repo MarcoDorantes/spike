@@ -41,14 +41,17 @@ namespace ConsoleApplication1
     {
       try
       {
+        WriteLine(typeof(System.Array).GetProperties(System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.Public).Aggregate(new StringBuilder(), (whole, next) => whole.Append(next.Name + " | ")));
         var x = new X();
         WriteLine($"X: {x.Name} {x.Age} | {x}");
         WriteLine("{0} {1}", nameof(x), nameof(X));
         X y = null;
         if (y?.Name?.Length > 0)
         {
-          WriteLine("Name len is ok");
+            WriteLine("Name len is ok");
         }
+        else { WriteLine("Name is null"); }
+        string ss = null; WriteLine("string {0}", ss?.Length);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName} : {ex.Message}"); }
     }
