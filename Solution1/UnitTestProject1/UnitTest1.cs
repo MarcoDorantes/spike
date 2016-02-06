@@ -5,6 +5,7 @@ using System.Threading;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace UnitTestProject1
 {
@@ -269,6 +270,35 @@ namespace UnitTestProject1
       //Assert
       Assert.AreEqual<int>(2, calls.Count);
     }
+    class SymbolInterestSubscriber
+    {
+      public SymbolInterestSubscriber(int symbol)
+      {
+        this.Symbol = symbol;
+      }
+      public int Symbol;
+      public void EvaluateNewQuote(int quote)
+      { }
+    }
+    [TestMethod]
+    public void _basic1()
+    {
+      //Arrange
+      var datastream = new int[] { 2, 2, 3, 2 };
+      var calls = new List<int>();
+      var subs = new List<SymbolInterestSubscriber> { new SymbolInterestSubscriber(2), new SymbolInterestSubscriber(2), new SymbolInterestSubscriber(3) };
+      var fire = new Action<int>(x => calls.Add(x));
+
+      //Act
+      foreach (var quote in datastream)
+      {
+        Parallel.ForEach(subs, s => s.EvaluateNewQuote(quote));
+      }
+
+      //Assert
+      Assert.AreEqual<int>(2, calls.Count);
+    }
+
     [TestMethod]
     public void basic0()
     {/*
