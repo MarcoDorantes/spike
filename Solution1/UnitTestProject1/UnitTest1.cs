@@ -272,31 +272,53 @@ namespace UnitTestProject1
     }
     class SymbolInterestSubscriber
     {
-      public SymbolInterestSubscriber(int symbol)
+      private BlockingCollection<KeyValuePair<string, int>> quotes;
+      public SymbolInterestSubscriber(string symbol, BlockingCollection<KeyValuePair<string, int>> quotes)
       {
-        this.Symbol = symbol;
+        this.Symbol = symbol;this.quotes = quotes;
       }
-      public int Symbol;
-      public void EvaluateNewQuote(int quote)
-      { }
+      public string Symbol;
+      public void EvaluateNewQuote(KeyValuePair<string, int> quote)
+      {
+        if (string.Compare(quote.Key, Symbol) == 0)
+        {
+          quotes.Add(quote);
+        }
+      }
     }
     [TestMethod]
     public void _basic1()
     {
       //Arrange
-      var datastream = new int[] { 2, 2, 3, 2 };
-      var calls = new List<int>();
-      var subs = new List<SymbolInterestSubscriber> { new SymbolInterestSubscriber(2), new SymbolInterestSubscriber(2), new SymbolInterestSubscriber(3) };
-      var fire = new Action<int>(x => calls.Add(x));
+      var datastream = new List<KeyValuePair<string, int>>
+      {
+        new KeyValuePair<string,int>("s2",2),
+        new KeyValuePair<string, int>("s2", 2),
+        new KeyValuePair<string,int>("s3",3),
+        new KeyValuePair<string, int>("s2", 2),
+        new KeyValuePair<string,int>("s3",3),
+        new KeyValuePair<string,int>("s2",2),
+      };
+      var calls = new BlockingCollection<KeyValuePair<string, int>>();
+      var subs = new List<SymbolInterestSubscriber>
+      {
+        new SymbolInterestSubscriber("s2", calls),
+        new SymbolInterestSubscriber("s2", calls),
+        new SymbolInterestSubscriber("s3", calls)
+      };
 
       //Act
       foreach (var quote in datastream)
       {
         Parallel.ForEach(subs, s => s.EvaluateNewQuote(quote));
       }
+      calls.CompleteAdding();
+      var executed_calls = calls.GetConsumingEnumerable().ToList();
 
       //Assert
-      Assert.AreEqual<int>(2, calls.Count);
+      Assert.AreEqual<int>(10, executed_calls.Count);
+      Assert.AreEqual<int>(8 * 2, executed_calls.Where(q => q.Key == "s2").Sum(q => q.Value));
+      Assert.AreEqual<int>(3 * 2, executed_calls.Where(q => q.Key == "s3").Sum(q => q.Value));
     }
 
     [TestMethod]
