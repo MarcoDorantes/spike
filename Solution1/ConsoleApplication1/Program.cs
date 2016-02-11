@@ -327,8 +327,8 @@ namespace ConsoleApplication1
     {
       try
       {
-        ExploreFeatureCS6_exe._Main_cs6();
-        //task1_exe._Main();
+        //ExploreFeatureCS6_exe._Main_cs6();
+        task1_exe._Main();
         //packmap._Main();
         //tcps._Main();
       }
