@@ -105,15 +105,15 @@ namespace nesting
     public static void child1()
     {
       WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] child1 start");
-      Thread.Sleep(15000);
+      Thread.Sleep(5000);
       WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] child1 end");
     }
     public static void parent()
     {
       WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] parent start");
-      var child1_task = Task.Factory.StartNew(child1, CancellationToken.None, TaskCreationOptions.AttachedToParent, TaskScheduler.Current);
-      //var child1_task = Task.Factory.StartNew(child1);
-      Thread.Sleep(5000);
+      //var child1_task = Task.Factory.StartNew(child1, CancellationToken.None, TaskCreationOptions.AttachedToParent, TaskScheduler.Current);
+      var child1_task = Task.Factory.StartNew(child1);
+      Thread.Sleep(2500);
       //child1_task.Wait();
       WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] parent end");
     }
@@ -121,7 +121,6 @@ namespace nesting
     {
       WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] main start");
       var parent_task = Task.Factory.StartNew(parent);
-      //root();
       parent_task.Wait();
       WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] parent waited");
       WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] Press ENTER to exit"); ReadLine();
@@ -142,7 +141,7 @@ class task1_exe
     try
     {
       //async_await_and_interface.task1_main.async_await_and_interface();
-      nesting.tasknest_main.main0();
+      nesting.tasknest_main.main();
     }
     catch (Exception ex) { WriteLine($"[{Environment.CurrentManagedThreadId} {DateTime.Now.TimeOfDay}] {ex.GetType().FullName}: {ex.Message}"); }
   }
