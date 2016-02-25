@@ -6,6 +6,8 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.IO;
 
 namespace UnitTestProject1
 {
@@ -319,6 +321,17 @@ namespace UnitTestProject1
       Assert.AreEqual<int>(10, executed_calls.Count);
       Assert.AreEqual<int>(8 * 2, executed_calls.Where(q => q.Key == "s2").Sum(q => q.Value));
       Assert.AreEqual<int>(3 * 2, executed_calls.Where(q => q.Key == "s3").Sum(q => q.Value));
+    }
+
+    [TestMethod]
+    public void proj()
+    {
+      var file = @"..\..\..\ConsoleApplication1\ConsoleApplication1.csproj";
+      var doc = XDocument.Load(File.OpenText(file));
+      Assert.IsNotNull(doc);
+      XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
+      Assert.AreEqual<string>("Project", doc.Root.Name.LocalName);
+      Assert.AreEqual<int>(1, doc.Root.Descendants(ns+"Reference").Count());
     }
 
     [TestMethod]
