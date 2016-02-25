@@ -49,7 +49,7 @@ namespace UnitTestProject1
 
       //Ack
       var doc = XDocument.Load(textReader);
-      var proj = new ProjectFile(doc);
+      var proj = new MSBuildProjectFile(doc);
 
       //Assert
       Assert.IsNotNull(doc);
@@ -58,12 +58,12 @@ namespace UnitTestProject1
       Assert.AreEqual<int>(2, doc.Root.Descendants(ns + "ProjectReference").Count());
       Assert.AreEqual<int>(2, doc.Root.Descendants(ns + "Content").Count());
 
-      Assert.AreEqual<int?>(7, proj.All()?.Count());
+      Assert.AreEqual<int>(7, proj.All().Count());
 
     }
 
     [TestMethod]
-    public void proj_compiletime_empty()
+    public void emptyItemGroups()
     {
       //Arrange
       XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
@@ -78,31 +78,24 @@ namespace UnitTestProject1
       var textReader = new StringReader(proj_xml);
 
       //Ack
-      var doc = XDocument.Load(textReader);
-      var proj = new ProjectFile(doc);
+      var proj = new MSBuildProjectFile(XDocument.Load(textReader));
 
       //Assert
-      Assert.IsNotNull(doc);
-      Assert.AreEqual<string>("Project", doc.Root.Name.LocalName);
-      Assert.AreEqual<int>(0, doc.Root.Descendants(ns + "Reference").Count());
-      Assert.AreEqual<int>(0, doc.Root.Descendants(ns + "ProjectReference").Count());
-      Assert.AreEqual<int>(0, doc.Root.Descendants(ns + "Content").Count());
-
-      Assert.AreEqual<int?>(0, proj.All()?.Count());
+      Assert.AreEqual<int>(0, proj.All().Count());
     }
 
-    class ProjectFile
+    class MSBuildProjectFile
     {
       public static readonly XNamespace ns;
 
-      static ProjectFile()
+      static MSBuildProjectFile()
       {
         ns = "http://schemas.microsoft.com/developer/msbuild/2003";
       }
 
       private XDocument doc;
       private List<Dependency> efferent;
-      public ProjectFile(XDocument xml)
+      public MSBuildProjectFile(XDocument xml)
       {
         doc = xml;
         Init();
