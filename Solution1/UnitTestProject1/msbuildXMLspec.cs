@@ -257,7 +257,7 @@ namespace UnitTestProject1
         //{
         //  options.ReferencedAssemblies.Add(assemblyname);
         //}
-        string GeneratedName = "";
+        string GeneratedName = name.Replace(' ', '_').Replace('.', '_');
         if (string.IsNullOrEmpty(GeneratedName))
         {
           options.GenerateInMemory = true;
@@ -271,7 +271,7 @@ namespace UnitTestProject1
         options.TreatWarningsAsErrors = false;
         options.CompilerOptions = "";
         options.TempFiles = new System.CodeDom.Compiler.TempFileCollection(".", false);
-        string[] sources = new string[] { string.Format("namespace {0}_ns {{ public class {0} {{ }} }}", name.Replace(' ', '_')) };
+        string[] sources = new string[] { string.Format("namespace {0}_ns {{ public class {0}_type {{ }} }}", GeneratedName) };
         System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(options, sources);
         if (results.NativeCompilerReturnValue == 0)
         {
