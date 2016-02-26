@@ -49,7 +49,6 @@ namespace UnitTestProject1
 
       //Ack
       var doc = XDocument.Load(textReader);
-      var proj = new MSBuildProjectFile(doc);
 
       //Assert
       Assert.IsNotNull(doc);
@@ -57,16 +56,56 @@ namespace UnitTestProject1
       Assert.AreEqual<int>(3, doc.Root.Descendants(ns + "Reference").Count());
       Assert.AreEqual<int>(2, doc.Root.Descendants(ns + "ProjectReference").Count());
       Assert.AreEqual<int>(2, doc.Root.Descendants(ns + "Content").Count());
+    }
 
+    [TestMethod]
+    public void project_file()
+    {
+      //Arrange
+      XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
+      var proj_xml = @"<Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+<ItemGroup>
+  <Reference Include='System' />
+  <Reference Include='System.Data' />
+  <Reference Include='Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL'>
+    <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\Lib\Json.NET\Net40\Newtonsoft.Json.dll</HintPath>
+  </Reference>
+</ItemGroup>
+<ItemGroup>
+  <ProjectReference Include='..\..\Services\Nasdaq.IBM.ServicesLib.csproj'>
+    <Project>{AB38AF66-37C4-4FE8-B44E-DC26849131A6}</Project>
+    <Name>Nasdaq.IBM.ServicesLib</Name>
+  </ProjectReference>
+  <ProjectReference Include='..\Parser\Parser.csproj'>
+    <Project>{8D940AEC-ECFD-49D0-AF41-29D048A9751C}</Project>
+    <Name>Parser</Name>
+  </ProjectReference>
+</ItemGroup>
+<ItemGroup>
+  <Content Include='..\..\..\..\Solution1\Main\Lib\Nasdaq 1.2\win64\libclient_64.dll'>
+    <Link>libclient_64.dll</Link>
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <Content Include='..\..\Lib\Microsoft.Exchange.WebServices.dll'>
+    <Link>Microsoft.Exchange.WebServices.dll</Link>
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+</Project>";
+      var textReader = new StringReader(proj_xml);
+
+      //Ack
+      var proj = new MSBuildProjectFile(textReader);
+
+      //Assert
       Assert.AreEqual<int>(7, proj.All().Count());
-
     }
 
     [TestMethod]
     public void emptyItemGroups()
     {
       //Arrange
-      XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
       var proj_xml = @"<Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
 <ItemGroup>
 </ItemGroup>
@@ -78,10 +117,18 @@ namespace UnitTestProject1
       var textReader = new StringReader(proj_xml);
 
       //Ack
-      var proj = new MSBuildProjectFile(XDocument.Load(textReader));
+      var proj = new MSBuildProjectFile(textReader);
 
       //Assert
       Assert.AreEqual<int>(0, proj.All().Count());
+    }
+
+    [TestMethod,Ignore]
+    public void from_file()
+    {
+      //var msbuild = new MSBuildProjectFile(file.FullName);
+      //if (msbuild.IsValid)
+      //  assembly = msbuild.GetProxyAssembly();
     }
 
     class MSBuildProjectFile
@@ -95,9 +142,9 @@ namespace UnitTestProject1
 
       private XDocument doc;
       private List<Dependency> efferent;
-      public MSBuildProjectFile(XDocument xml)
+      public MSBuildProjectFile(TextReader textReader)
       {
-        doc = xml;
+        doc = XDocument.Load(textReader);
         Init();
       }
       public IEnumerable<Dependency> All()
