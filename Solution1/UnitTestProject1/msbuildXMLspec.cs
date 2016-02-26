@@ -209,9 +209,7 @@ namespace UnitTestProject1
       public class ProjectReference : Dependency
       {
         public ProjectReference(XElement source) : base(source) { }
-        //public override string Name { get { return xml.ToString(); } }
         public override string Name { get { return xml.Element(MSBuildProjectFile.NS + "Name").Value; } }
-        //public override string Name { get { return xml.Element("Name").Value; } }
       }
       public class Content : Dependency
       {
@@ -273,7 +271,7 @@ namespace UnitTestProject1
         options.TreatWarningsAsErrors = false;
         options.CompilerOptions = "";
         options.TempFiles = new System.CodeDom.Compiler.TempFileCollection(".", false);
-        string[] sources = new string[] { $"public class {name} {{ }}" };
+        string[] sources = new string[] { string.Format("namespace {0}_ns {{ public class {0} {{ }} }}", name.Replace(' ', '_')) };
         System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(options, sources);
         if (results.NativeCompilerReturnValue == 0)
         {
