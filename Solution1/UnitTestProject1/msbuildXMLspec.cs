@@ -180,12 +180,14 @@ namespace UnitTestProject1
       string a_proj_ref = msbuild.All().First(d => d is MSBuildProjectFile.ProjectReference).Name;
       string a_ref = msbuild.All().First(d => d is MSBuildProjectFile.Reference).Name;
       string a_content = msbuild.All().First(d => d is MSBuildProjectFile.Content).Name;
+      string last_ref = msbuild.All().Last(d => d is MSBuildProjectFile.Reference).Name;
       Assembly assembly = msbuild.GetProxyAssembly();
 
       Assert.IsTrue(ok);
       Assert.AreEqual<string>("Nasdaq.IBM.ServicesLib", a_proj_ref);
       Assert.AreEqual<string>("System", a_ref);
       Assert.AreEqual<string>("libclient_64", a_content);
+      Assert.AreEqual<string>("Newtonsoft.Json", last_ref);
       Assert.IsNotNull(assembly);
     }
 
@@ -204,7 +206,15 @@ namespace UnitTestProject1
       public class Reference : Dependency
       {
         public Reference(XElement source) : base(source) { }
-        public override string Name { get { return Path.GetFileNameWithoutExtension(xml.Attribute("Include").Value); } }
+        public override string Name
+        {
+          get
+          {
+            var include = xml.Attribute("Include").Value;//TODO input validation
+            int index = include.IndexOf(',');
+            return index > 0 ? include.Substring(0, index) : include;//TODO option switch to Display Name instead of Simple Name
+          }
+        }
       }
       public class ProjectReference : Dependency
       {
