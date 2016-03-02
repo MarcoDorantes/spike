@@ -191,6 +191,54 @@ namespace UnitTestProject1
       Assert.IsNotNull(assembly);
     }
 
+    [TestMethod]
+    public void discriminated_dependencies()
+    {
+      //Arrange
+      var proj_xml = @"<Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+<ItemGroup>
+  <Reference Include='System' />
+  <Reference Include='System.Data' />
+  <Reference Include='Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL'>
+    <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\Lib\Json.NET\Net40\Newtonsoft.Json.dll</HintPath>
+  </Reference>
+</ItemGroup>
+<ItemGroup>
+  <ProjectReference Include='..\..\Services\Nasdaq.IBM.ServicesLib.csproj'>
+    <Project>{AB38AF66-37C4-4FE8-B44E-DC26849131A6}</Project>
+    <Name>Nasdaq.IBM.ServicesLib</Name>
+  </ProjectReference>
+  <ProjectReference Include='..\Parser\Parser.csproj'>
+    <Project>{8D940AEC-ECFD-49D0-AF41-29D048A9751C}</Project>
+    <Name>Parser</Name>
+  </ProjectReference>
+</ItemGroup>
+<ItemGroup>
+  <Content Include='..\..\..\..\Solution1\Main\Lib\Nasdaq 1.2\win64\libclient_64.dll'>
+    <Link>libclient_64.dll</Link>
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <Content Include='..\..\Lib\Microsoft.Exchange.WebServices.dll'>
+    <Link>Microsoft.Exchange.WebServices.dll</Link>
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+</Project>";
+      var textReader = new StringReader(proj_xml);
+      var msbuild = new MSBuildProjectFile($"{nameof(proj_xml)}", textReader);
+
+      //Ack
+      bool ok = msbuild.IsWellFormedXML;
+      IEnumerable<MSBuildProjectFile.ProjectReference> proj_refs = msbuild.ProjectReferences();
+      IEnumerable<MSBuildProjectFile.Reference> refs = msbuild.References();
+      IEnumerable<MSBuildProjectFile.Content> contents = msbuild.Contents();
+
+      Assert.IsTrue(ok);
+      Assert.AreEqual<int>(2, proj_refs.Count());
+      Assert.AreEqual<int>(3, refs.Count());
+      Assert.AreEqual<int>(2, contents.Count());
+    }
     public class MSBuildProjectFile
     {
       #region Nested classes
@@ -235,7 +283,6 @@ namespace UnitTestProject1
         NS = "http://schemas.microsoft.com/developer/msbuild/2003";
       }
 
-      private string name;
       private XDocument doc;
       private List<Dependency> efferent;
       public MSBuildProjectFile(string name, TextReader textReader)
@@ -244,12 +291,26 @@ namespace UnitTestProject1
       }
 
       public bool IsWellFormedXML { get; private set; }
+      public string Name { get; private set; }
 
       public IEnumerable<Dependency> All()
       {
         IEnumerable<Dependency> result = efferent;
         return result;
       }
+      public IEnumerable<MSBuildProjectFile.ProjectReference> ProjectReferences()
+      {
+        return efferent.OfType<MSBuildProjectFile.ProjectReference>();
+      }
+      public IEnumerable<MSBuildProjectFile.Reference> References()
+      {
+        return efferent.OfType<MSBuildProjectFile.Reference>();
+      }
+      public IEnumerable<MSBuildProjectFile.Content> Contents()
+      {
+        return efferent.OfType<MSBuildProjectFile.Content>();
+      }
+
 
       public Assembly GetProxyAssembly()
       {
@@ -267,8 +328,7 @@ namespace UnitTestProject1
         //{
         //  options.ReferencedAssemblies.Add(assemblyname);
         //}
-        string name_id = name.Replace(' ', '_').Replace('.', '_');
-        string GeneratedName = null;
+        string GeneratedName = Name.Replace(' ', '_').Replace('.', '_');
         if (string.IsNullOrEmpty(GeneratedName))
         {
           options.GenerateInMemory = true;
@@ -282,7 +342,7 @@ namespace UnitTestProject1
         options.TreatWarningsAsErrors = false;
         options.CompilerOptions = "";
         options.TempFiles = new System.CodeDom.Compiler.TempFileCollection(".", false);
-        string[] sources = new string[] { string.Format("namespace {0}_ns {{ public class {0}_type {{ }} }}", name_id) };
+        string[] sources = new string[] { string.Format("namespace {0}_ns {{ public class {0}_type {{ }} }}", GeneratedName) };
         System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(options, sources);
         if (results.NativeCompilerReturnValue == 0)
         {
@@ -303,7 +363,7 @@ namespace UnitTestProject1
         try
         {
           IsWellFormedXML = false;
-          this.name = name;
+          this.Name = name;
           doc = XDocument.Load(textReader);
           IsWellFormedXML = true;
           efferent = new List<Dependency>();
