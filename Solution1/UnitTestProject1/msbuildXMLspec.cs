@@ -184,7 +184,7 @@ namespace UnitTestProject1
       Assembly assembly = msbuild.GetProxyAssembly();
 
       Assert.IsTrue(ok);
-      Assert.AreEqual<string>("Nasdaq.IBM.ServicesLib", a_proj_ref);
+      Assert.AreEqual<string>("Nasdaq.IBM.ServicesLib.csproj", a_proj_ref);
       Assert.AreEqual<string>("System", a_ref);
       Assert.AreEqual<string>("libclient_64", a_content);
       Assert.AreEqual<string>("Newtonsoft.Json", last_ref);
@@ -267,7 +267,7 @@ namespace UnitTestProject1
       public class ProjectReference : Dependency
       {
         public ProjectReference(XElement source) : base(source) { }
-        public override string Name { get { return xml.Element(MSBuildProjectFile.NS + "Name").Value; } }
+        public override string Name { get { return Path.GetFileName(xml.Attribute("Include").Value); } }
       }
       public class Content : Dependency
       {
@@ -310,7 +310,6 @@ namespace UnitTestProject1
       {
         return efferent.OfType<MSBuildProjectFile.Content>();
       }
-
 
       public Assembly GetProxyAssembly()
       {
