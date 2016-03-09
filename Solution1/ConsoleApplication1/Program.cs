@@ -416,52 +416,71 @@ namespace ConsoleApplication1
 
     public static void _Main()
     {
-      //http://stackoverflow.com/questions/105031/how-do-you-get-total-amount-of-ram-the-computer-has
-      var x = "System Code Total Bytes";
-      var pc = new System.Diagnostics.PerformanceCounter("Memory", x);
-      Console.WriteLine("{0}: {1}", x, pc.RawValue);
+      const uint _1Mb = 1048576;
+      const uint _1Gb = 1073741824;
 
-      var mc = new System.Management.ManagementClass("Win32_ComputerSystem");
-      System.Management.ManagementObjectCollection moc = mc.GetInstances();
+      //http://stackoverflow.com/questions/105031/how-do-you-get-total-amount-of-ram-the-computer-has
+      var counter_name = "System Code Total Bytes";
+      var pc = new System.Diagnostics.PerformanceCounter("Memory", counter_name);
+      Console.WriteLine("PerformanceCounter Memory {0}: {1}", counter_name, pc.RawValue);
+
+      var pc_class = new System.Management.ManagementClass("Win32_ComputerSystem");
+      System.Management.ManagementObjectCollection moc = pc_class.GetInstances();
       foreach (System.Management.ManagementObject item in moc)
       {
         double n=Convert.ToDouble(item.Properties["TotalPhysicalMemory"].Value);
-        Console.WriteLine("{0} {1}",Math.Round(n / 1048576, 0) + " MB", n);
+        Console.WriteLine("\nWin32_ComputerSystem TotalPhysicalMemory: {0:N0} bytes {1:N0}Mb {2:N0}Gb", n,Math.Round(n / _1Mb, 0), Math.Round(n / _1Gb, 0));
       }
 
       string wmiquery = "SELECT Capacity FROM Win32_PhysicalMemory";
       var searcher = new System.Management.ManagementObjectSearcher(wmiquery);
-      ulong capacity = 0L;
+      decimal capacity = 0L;
+      Console.WriteLine($"\n{wmiquery}:");
       foreach (System.Management.ManagementObject wmiobject in searcher.Get())
       {
-        ulong n = Convert.ToUInt64(wmiobject.Properties["Capacity"].Value);
+        decimal n = Convert.ToUInt64(wmiobject.Properties["Capacity"].Value);
         capacity += n;
-        Console.WriteLine(n);
+        Console.WriteLine("{0:N0} bytes {1:N0}Mb {2:N0}Gb", n, Math.Round(n / _1Mb, 0), Math.Round(n / _1Gb, 0));
       }
-      Console.WriteLine($"capacity: {capacity}");
+      Console.WriteLine($"Total capacity: {capacity:N0} bytes {Math.Round(capacity / _1Mb, 0):N0}Mb {Math.Round(capacity / _1Gb, 0)}Gb");
 
-      long memKb;
-      bool result_code=GetPhysicallyInstalledSystemMemory(out memKb);
-      Console.WriteLine($"(GetPhysicallyInstalledSystemMemory result code: {result_code}) {(memKb / 1024 / 1024)} GB of RAM installed. memKb: {memKb}");
+      long memoryKb;
+      bool result_code=GetPhysicallyInstalledSystemMemory(out memoryKb);
+      double b = memoryKb * 1024D;
+      Console.WriteLine($"\n(GetPhysicallyInstalledSystemMemory result code: {result_code}) {b:N0} bytes {Math.Round(b / _1Mb, 0):N0}Mb {Math.Round(b / _1Gb, 0)}Gb");
 
       //https://msdn.microsoft.com/en-us/library/windows/desktop/aa366589(v=vs.85).aspx
       var memory_status = new MEMORYSTATUSEX();
       result_code = GlobalMemoryStatusEx(memory_status);
-      Console.WriteLine($"(GlobalMemoryStatusEx result code: {result_code})");
+      Console.WriteLine($"\n(GlobalMemoryStatusEx result code: {result_code})");
       foreach (var field in memory_status.GetType().GetFields())
       {
-        Console.WriteLine($"{field.Name} = {field.GetValue(memory_status)}");
+        Console.WriteLine($"{field.Name} = {field.GetValue(memory_status):N0}");
       }
 
       //https://msdn.microsoft.com/en-us/library/windows/desktop/ms683210(v=vs.85).aspx
       var performance_data = new PERFORMANCE_INFORMATION();
       uint input_size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(PERFORMANCE_INFORMATION));
       result_code = GetPerformanceInfo(out performance_data, input_size);
-      Console.WriteLine($"(GetPerformanceInfo result code: {result_code})");
+      Console.WriteLine($"\n(Global GetPerformanceInfo result code: {result_code})");
       foreach (var field in performance_data.GetType().GetFields())
       {
-        Console.WriteLine($"{field.Name} = {field.GetValue(performance_data)}");
+        object xx = field.GetValue(performance_data);
+        ulong v=xx is UIntPtr? ((UIntPtr)xx).ToUInt64():(uint)xx;
+        Console.WriteLine($"{field.Name} = {v:N0}");
       }
+
+      var this_process = System.Diagnostics.Process.GetCurrentProcess();
+      counter_name = "Working Set Peak";
+      var instanceName = "ConsoleApplication1";
+      pc = new System.Diagnostics.PerformanceCounter("Process", counter_name, instanceName);
+      decimal raw_value = pc.RawValue;
+      Console.WriteLine("\nPerformanceCounter Process {0} {1}:\t{2:N0} bytes {3:N0}Mb {4:N0}Gb ({5:N0})", instanceName, counter_name, raw_value, Math.Round(raw_value / _1Mb, 0), Math.Round(raw_value / _1Gb, 0), this_process.PeakWorkingSet64);
+      counter_name = "Working Set";
+      instanceName = "ConsoleApplication1";
+      pc = new System.Diagnostics.PerformanceCounter("Process", counter_name, instanceName);
+      raw_value = pc.RawValue;
+      Console.WriteLine("PerformanceCounter Process {0} {1}:\t\t{2:N0} bytes {3:N0}Mb {4:N0}Gb ({5:N0})", instanceName, counter_name, raw_value, Math.Round(raw_value / _1Mb, 0), Math.Round(raw_value / _1Gb, 0), this_process.WorkingSet64);
     }
     #endregion
   }
