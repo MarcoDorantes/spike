@@ -322,11 +322,98 @@ namespace ConsoleApplication1
   #endregion
 
   #region pcinfo
+  //http://www.pinvoke.net/default.aspx/Structures/MEMORYSTATUSEX.html
+  /// <summary>
+  /// contains information about the current state of both physical and virtual memory, including extended memory
+  /// </summary>
+  [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+  public class MEMORYSTATUSEX
+  {
+    /// <summary>
+    /// Size of the structure, in bytes. You must set this member before calling GlobalMemoryStatusEx. 
+    /// </summary>
+    public uint dwLength;
+
+    /// <summary>
+    /// Number between 0 and 100 that specifies the approximate percentage of physical memory that is in use (0 indicates no memory use and 100 indicates full memory use). 
+    /// </summary>
+    public uint dwMemoryLoad;
+
+    /// <summary>
+    /// Total size of physical memory, in bytes.
+    /// </summary>
+    public ulong ullTotalPhys;
+
+    /// <summary>
+    /// Size of physical memory available, in bytes. 
+    /// </summary>
+    public ulong ullAvailPhys;
+
+    /// <summary>
+    /// Size of the committed memory limit, in bytes. This is physical memory plus the size of the page file, minus a small overhead. 
+    /// </summary>
+    public ulong ullTotalPageFile;
+
+
+    /// <summary>
+    /// Size of available memory to commit, in bytes. The limit is ullTotalPageFile. 
+    /// </summary>
+    public ulong ullAvailPageFile;
+
+    /// <summary>
+    /// Total size of the user mode portion of the virtual address space of the calling process, in bytes. 
+    /// </summary>
+    public ulong ullTotalVirtual;
+
+    /// <summary>
+    /// Size of unreserved and uncommitted memory in the user mode portion of the virtual address space of the calling process, in bytes. 
+    /// </summary>
+    public ulong ullAvailVirtual;
+
+    /// <summary>
+    /// Size of unreserved and uncommitted memory in the extended portion of the virtual address space of the calling process, in bytes. 
+    /// </summary>
+    public ulong ullAvailExtendedVirtual;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="T:MEMORYSTATUSEX"/> class.
+    /// </summary>
+    public MEMORYSTATUSEX()
+    {
+      this.dwLength = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(MEMORYSTATUSEX));
+    }
+  }
+  [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+  public struct PERFORMANCE_INFORMATION
+  {
+    public uint cb;
+    public UIntPtr CommitTotal;
+    public UIntPtr CommitLimit;
+    public UIntPtr CommitPeak;
+    public UIntPtr PhysicalTotal;
+    public UIntPtr PhysicalAvailable;
+    public UIntPtr SystemCache;
+    public UIntPtr KernelTotal;
+    public UIntPtr KernelPaged;
+    public UIntPtr KernelNonpaged;
+    public UIntPtr PageSize;
+    public uint HandleCount;
+    public uint ProcessCount;
+    public uint ThreadCount;
+  }
+
   class pcinfo
   {
     [System.Runtime.InteropServices.DllImport("kernel32.dll")]
     [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
     static extern bool GetPhysicallyInstalledSystemMemory(out long TotalMemoryInKilobytes);
+
+    [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+    static extern bool GlobalMemoryStatusEx([System.Runtime.InteropServices.In, System.Runtime.InteropServices.Out] MEMORYSTATUSEX memory_status);
+
+    [System.Runtime.InteropServices.DllImport("psapi.dll", SetLastError = true)]
+    static extern bool GetPerformanceInfo(out PERFORMANCE_INFORMATION performance_data, uint input_size);
+
     public static void _Main()
     {
       //http://stackoverflow.com/questions/105031/how-do-you-get-total-amount-of-ram-the-computer-has
@@ -354,10 +441,27 @@ namespace ConsoleApplication1
       Console.WriteLine($"capacity: {capacity}");
 
       long memKb;
-      GetPhysicallyInstalledSystemMemory(out memKb);
-      Console.WriteLine($"{(memKb / 1024 / 1024)} GB of RAM installed. memKb: {memKb}");
+      bool result_code=GetPhysicallyInstalledSystemMemory(out memKb);
+      Console.WriteLine($"(GetPhysicallyInstalledSystemMemory result code: {result_code}) {(memKb / 1024 / 1024)} GB of RAM installed. memKb: {memKb}");
 
       //https://msdn.microsoft.com/en-us/library/windows/desktop/aa366589(v=vs.85).aspx
+      var memory_status = new MEMORYSTATUSEX();
+      result_code = GlobalMemoryStatusEx(memory_status);
+      Console.WriteLine($"(GlobalMemoryStatusEx result code: {result_code})");
+      foreach (var field in memory_status.GetType().GetFields())
+      {
+        Console.WriteLine($"{field.Name} = {field.GetValue(memory_status)}");
+      }
+
+      //https://msdn.microsoft.com/en-us/library/windows/desktop/ms683210(v=vs.85).aspx
+      var performance_data = new PERFORMANCE_INFORMATION();
+      uint input_size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(PERFORMANCE_INFORMATION));
+      result_code = GetPerformanceInfo(out performance_data, input_size);
+      Console.WriteLine($"(GetPerformanceInfo result code: {result_code})");
+      foreach (var field in performance_data.GetType().GetFields())
+      {
+        Console.WriteLine($"{field.Name} = {field.GetValue(performance_data)}");
+      }
     }
     #endregion
   }
