@@ -321,6 +321,47 @@ namespace ConsoleApplication1
   }
   #endregion
 
+  #region pcinfo
+  class pcinfo
+  {
+    [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+    [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+    static extern bool GetPhysicallyInstalledSystemMemory(out long TotalMemoryInKilobytes);
+    public static void _Main()
+    {
+      //http://stackoverflow.com/questions/105031/how-do-you-get-total-amount-of-ram-the-computer-has
+      var x = "System Code Total Bytes";
+      var pc = new System.Diagnostics.PerformanceCounter("Memory", x);
+      Console.WriteLine("{0}: {1}", x, pc.RawValue);
+
+      var mc = new System.Management.ManagementClass("Win32_ComputerSystem");
+      System.Management.ManagementObjectCollection moc = mc.GetInstances();
+      foreach (System.Management.ManagementObject item in moc)
+      {
+        double n=Convert.ToDouble(item.Properties["TotalPhysicalMemory"].Value);
+        Console.WriteLine("{0} {1}",Math.Round(n / 1048576, 0) + " MB", n);
+      }
+
+      string wmiquery = "SELECT Capacity FROM Win32_PhysicalMemory";
+      var searcher = new System.Management.ManagementObjectSearcher(wmiquery);
+      ulong capacity = 0L;
+      foreach (System.Management.ManagementObject wmiobject in searcher.Get())
+      {
+        ulong n = Convert.ToUInt64(wmiobject.Properties["Capacity"].Value);
+        capacity += n;
+        Console.WriteLine(n);
+      }
+      Console.WriteLine($"capacity: {capacity}");
+
+      long memKb;
+      GetPhysicallyInstalledSystemMemory(out memKb);
+      Console.WriteLine($"{(memKb / 1024 / 1024)} GB of RAM installed. memKb: {memKb}");
+
+      //https://msdn.microsoft.com/en-us/library/windows/desktop/aa366589(v=vs.85).aspx
+    }
+    #endregion
+  }
+
   class Program
   {
     static void Main(string[] args)
@@ -328,9 +369,10 @@ namespace ConsoleApplication1
       try
       {
         //ExploreFeatureCS6_exe._Main_cs6();
-        task1_exe._Main();
+        //task1_exe._Main();
         //packmap._Main();
         //tcps._Main();
+        pcinfo._Main();
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
     }
