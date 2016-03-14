@@ -495,7 +495,8 @@ namespace ConsoleApplication1
         //task1_exe._Main();
         //packmap._Main();
         //tcps._Main();
-        pcinfo._Main();
+        //pcinfo._Main();
+        per_process_threads._Main(args);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
     }
