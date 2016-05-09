@@ -148,7 +148,8 @@ namespace RedundantQuasiService
     {
       try
       {
-        string baseAddress = string.Format("http://{0}:7000/", Environment.MachineName);
+        string hostname = args.Length > 0 ? args[0] : Environment.MachineName;
+        string baseAddress = string.Format("http://{0}:7000/", hostname);
 
         // Start OWIN host
         using (Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddress))
