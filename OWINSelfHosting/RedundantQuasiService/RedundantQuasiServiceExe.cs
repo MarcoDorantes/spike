@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using Owin;
 using System.Web.Http;
 using ContractLib;
+using System.Collections.Concurrent;
+using System.IO;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net;
 
 namespace RedundantQuasiService
 {
@@ -125,6 +130,73 @@ namespace RedundantQuasiService
     }
   }
 
+  public class EventController : ApiController
+  {
+    public static BlockingCollection<string> Notifications = new BlockingCollection<string>(new ConcurrentQueue<string>());
+    private static ConcurrentBag<StreamWriter> clients;
+    private static bool running = false;
+
+    static EventController()
+    {
+      clients = new ConcurrentBag<StreamWriter>();
+      running = true;
+      Task.Run(() => StartNotifications());
+      var timer = new System.Timers.Timer(2000);
+      timer.Elapsed += (s,e) => Notify(e.SignalTime.ToString("s"));
+      timer.Start();
+    }
+
+    private async static void StartNotifications()
+    {
+      while (running)
+      {
+        foreach (var notification in Notifications.GetConsumingEnumerable())
+        {
+          foreach (var client in clients)
+          {
+            try
+            {
+              var data = $"data: {notification}\n\n";
+              await client.WriteAsync(data);
+              await client.FlushAsync();
+            }
+            catch (Exception)
+            {
+              StreamWriter ignore;
+              clients.TryTake(out ignore);
+            }
+          }
+        }
+      }
+    }
+
+    public static void Notify(string message)
+    {
+      Notifications.Add(message);
+    }
+
+    public static void StopNotifications()
+    {
+      running = false;
+    }
+
+
+    [Route("api/event/messages")]
+    [HttpGet]
+    public HttpResponseMessage Subscribe(HttpRequestMessage request)
+    {
+      var response = request.CreateResponse();
+      response.Content = new PushStreamContent((a, b, c) => { OnStreamAvailable(a, b, c); }, "text/event-stream");
+      return response;
+    }
+
+    private void OnStreamAvailable(Stream stream, HttpContent content, TransportContext context)
+    {
+      var client = new StreamWriter(stream);
+      clients.Add(client);
+    }
+  }
+
   public class Startup
   {
     // This code configures Web API. The Startup class is specified as a type
@@ -148,7 +220,8 @@ namespace RedundantQuasiService
     {
       try
       {
-        string baseAddress = string.Format("http://{0}:7000/", Environment.MachineName);
+        string hostname = args.Length > 0 ? args[0] : Environment.MachineName;
+        string baseAddress = string.Format("http://{0}:7000/", hostname);
 
         // Start OWIN host
         using (Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddress))

@@ -293,7 +293,7 @@ namespace ThinClient
       try
       {
         hostname =
-        null;
+        (args.Length > 0 ? args[0] : null);
         //"otherhost";
         if (string.IsNullOrWhiteSpace(hostname))
         {
