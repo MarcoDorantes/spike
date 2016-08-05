@@ -61,6 +61,7 @@
     <Compile Include="per_process_threads.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sockets1.cs" />
     <Compile Include="task1.cs" />
     <Compile Include="unhandled_exceptions.cs" />
   </ItemGroup>
