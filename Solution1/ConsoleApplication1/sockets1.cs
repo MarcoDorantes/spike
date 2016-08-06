@@ -6,6 +6,98 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
+  class MsgSource
+  {
+    const int buffer_size = 0xFF;
+
+    int port;
+    System.Net.Sockets.TcpListener server;
+    System.Net.Sockets.TcpClient serverside_client;
+    System.Net.Sockets.NetworkStream stream;
+    public MsgSource(int port)
+    {
+      this.port = port;
+      Console.Write("Listening...");
+      server = System.Net.Sockets.TcpListener.Create(port);
+      server.Start();
+      serverside_client = server.AcceptTcpClient();
+      Console.WriteLine("\nClient connected");
+      stream = serverside_client.GetStream();
+    }
+    public void Start()
+    {
+      do
+      {
+        Console.Write("> ");
+        var cmd = Console.ReadLine();
+        if (cmd == "quit") break;
+        switch (cmd)
+        {
+          case "wait":
+            wait();
+            break;
+
+          case "send":
+            send();
+            break;
+
+          case "read":
+            read();
+            break;
+
+          default:
+            Console.WriteLine($"What is [{cmd}]?");
+            break;
+        }
+      } while (true);
+    }
+    void wait()
+    {
+      var buffer = new byte[buffer_size];
+      do
+      {
+        int read = stream.Read(buffer, 0, buffer_size);
+        if (read == 0) break;
+        string handshake = Encoding.UTF8.GetString(buffer, 0, read);
+        if (string.Compare(handshake, "GO", true) != 0)
+        {
+          Console.WriteLine($"No session for [{handshake}]");
+          continue;
+        }
+        Console.WriteLine("Session started");break;
+      } while (true);
+      Console.WriteLine("wait done");
+    }
+    void send()
+    {
+      Console.Write("Send:");
+      var app = Console.ReadLine();
+      var msg = Encoding.UTF8.GetBytes(app);
+      stream.Write(msg, 0, msg.Length);
+      //System.IO.IOException: Unable to write data to the transport connection: An established connection was aborted by the software in your host machine.
+      //at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+    }
+    void read()
+    {
+      var buffer = new byte[buffer_size];
+      int read = stream.Read(buffer, 0, buffer_size);
+      if (read != 0)
+      {
+        var received_text = Encoding.UTF8.GetString(buffer, 0, read);
+        foreach (var msg in received_text.Split('|'))
+        {
+          Console.WriteLine($"Received:[{msg}]");
+        }
+      }
+      else Console.WriteLine($"No bytes read");
+    }
+    public void Stop()
+    {
+      stream.Dispose();
+      serverside_client.Dispose();
+      server.Stop();
+    }
+  }
   class Feed
   {
     const int buffer_size = 0xFF;
@@ -82,6 +174,97 @@ namespace ConsoleApplication1
           if (msg.StartsWith("NACK")) ++nack; else ++ack;
         }
       } while (true);
+    }
+
+    public void GD1()
+    {
+      var server = new MsgSource(port);
+      server.Start();
+      Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
+      server.Stop();
+    }
+  }
+
+  class MsgTarget
+  {
+    const int buffer_size = 0xFF;
+
+    int port;
+    System.Net.Sockets.TcpClient client;
+    System.Net.Sockets.NetworkStream stream;
+    public MsgTarget(int port)
+    {
+      this.port = port;
+      client = new System.Net.Sockets.TcpClient();
+    }
+    public void Start()
+    {
+      client.Connect(Environment.MachineName, port);
+      stream = client.GetStream();
+
+      do
+      {
+        Console.Write("> ");
+        var cmd = Console.ReadLine();
+        if (cmd == "quit") break;
+        switch (cmd)
+        {
+          case "open":
+            open();
+            break;
+
+          case "read":
+            read();
+            break;
+
+          case "send":
+            send();
+            break;
+
+          default:
+            Console.WriteLine($"What is [{cmd}]?");
+            break;
+        }
+      } while (true);
+    }
+    void open()
+    {
+      do
+      {
+        Console.Write("Handshake:");
+        var input = Console.ReadLine();
+        if (input == "done") break;
+        var handshake = Encoding.UTF8.GetBytes(input);
+        stream.Write(handshake, 0, handshake.Length);
+      } while (true);
+    }
+    void read()
+    {
+      var buffer = new byte[buffer_size];
+      int read = stream.Read(buffer, 0, buffer_size);
+      if (read != 0)
+      {
+        var received_text = Encoding.UTF8.GetString(buffer, 0, read);
+        foreach (var msg in received_text.Split('|'))
+        {
+          Console.WriteLine($"Received:[{msg}]");
+        }
+      }
+      else Console.WriteLine($"No bytes read");
+    }
+    void send()
+    {
+      Console.Write("Send:");
+      var app = Console.ReadLine();
+      var msg = Encoding.UTF8.GetBytes(app);
+      stream.Write(msg, 0, msg.Length);
+      //System.IO.IOException: Unable to write data to the transport connection: An established connection was aborted by the software in your host machine.
+      //at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+    }
+    public void Stop()
+    {
+      stream.Dispose();
+      client.Dispose();
     }
   }
 
@@ -161,6 +344,14 @@ namespace ConsoleApplication1
         stream.Write(msg, 0, msg.Length);
       }
     }
+
+    public void GD1()
+    {
+      var client = new MsgTarget(port);
+      client.Start();
+      Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
+      client.Stop();
+    }
   }
 
   class sockets1
@@ -172,7 +363,8 @@ namespace ConsoleApplication1
       {
         var feed = new Feed(port);
         //feed.Echo();
-        feed.Handshake();
+        //feed.Handshake();
+        feed.GD1();
 
         /*do
         {
@@ -185,7 +377,8 @@ namespace ConsoleApplication1
       {
         var client = new FeedHandler(port);
         //client.Echo();
-        client.Handshake();
+        //client.Handshake();
+        client.GD1();
       }
     }
   }
