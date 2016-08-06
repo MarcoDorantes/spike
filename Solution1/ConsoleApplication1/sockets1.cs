@@ -141,10 +141,10 @@ namespace ConsoleApplication1
         stream?.Dispose();
         serverside_client?.Dispose();
 
-        //inbound?.Dispose();
-        //outbound?.Dispose();
-        //inbound = null;
-        //outbound = null;
+        inbound?.Dispose();
+        outbound?.Dispose();
+        inbound = null;
+        outbound = null;
 
         stream = null;
         serverside_client = null;
@@ -538,6 +538,7 @@ namespace ConsoleApplication1
     public void Start()
     {
       client.Connect(Environment.MachineName, port);
+      //System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it x.x.x.x:13001
       Console.WriteLine("Connected");
       stream = client.GetStream();
 
@@ -558,10 +559,10 @@ namespace ConsoleApplication1
       stream?.Dispose();
       client?.Dispose();
 
-      //inbound?.Dispose();
-      //outbound?.Dispose();
-      //inbound = null;
-      //outbound = null;
+      inbound?.Dispose();
+      outbound?.Dispose();
+      inbound = null;
+      outbound = null;
 
       stream = null;
       client = null;
@@ -781,13 +782,6 @@ namespace ConsoleApplication1
         //feed.Handshake();
         //feed.GD1();
         feed.GD2();
-
-        /*do
-        {
-          var cmd = Console.ReadLine();
-          if (string.Compare(cmd, "quit", true) == 0) break;
-        } while (true);
-        feed.Stop();*/
       }
       else
       {
