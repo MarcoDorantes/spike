@@ -139,6 +139,8 @@ namespace ConsoleApplication1
         app_read_task.Wait(1000);
 
         stream?.Dispose();
+        //TcpClient.Dispose
+        //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
         serverside_client?.Dispose();
 
         inbound?.Dispose();
@@ -509,6 +511,8 @@ namespace ConsoleApplication1
     public void Stop()
     {
       stream.Dispose();
+      //TcpClient.Dispose
+      //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
       client.Dispose();
     }
   }
@@ -562,6 +566,8 @@ namespace ConsoleApplication1
       app_read_task.Wait(1000);
 
       stream?.Dispose();
+      //TcpClient.Dispose
+      //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
       client?.Dispose();
 
       inbound?.Dispose();
