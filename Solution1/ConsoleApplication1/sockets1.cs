@@ -266,11 +266,11 @@ namespace ConsoleApplication1
 
     int port;
     System.Net.Sockets.TcpListener server;
-    List<MsgSender> providers;
+    List<MsgSender> senders;
     public ClientAccepter(int port)
     {
       this.port = port;
-      providers = new List<MsgSender>();
+      senders = new List<MsgSender>();
     }
     public void Start()
     {
@@ -278,9 +278,9 @@ namespace ConsoleApplication1
     }
     public void Stop()
     {
-      providers?.ForEach(p => p.Stop());
+      senders?.ForEach(p => p.Stop());
       server?.Stop();
-      providers = null;
+      senders = null;
       server = null;
     }
     void listen()
@@ -292,7 +292,7 @@ namespace ConsoleApplication1
       {
         var serverside_client = server.AcceptTcpClient();
         var provider = new MsgSender(serverside_client);
-        providers.Add(provider);
+        senders.Add(provider);
         provider.Start();
         Console.WriteLine("\nClient connected");
       } while (true);
