@@ -287,7 +287,7 @@ namespace ConsoleApplication1
     {
       server = System.Net.Sockets.TcpListener.Create(port);
       server.Start();
-      Console.Write("Listening...");
+      Console.Write($"Listening at {port}...");
       do
       {
         var serverside_client = server.AcceptTcpClient();
@@ -432,17 +432,19 @@ namespace ConsoleApplication1
   {
     const int buffer_size = 0xFF;
 
+    string host;
     int port;
     System.Net.Sockets.TcpClient client;
     System.Net.Sockets.NetworkStream stream;
-    public MsgTarget(int port)
+    public MsgTarget(string host, int port)
     {
+      this.host = host;
       this.port = port;
       client = new System.Net.Sockets.TcpClient();
     }
     public void Start()
     {
-      client.Connect(Environment.MachineName, port);
+      client.Connect(host, port);
       stream = client.GetStream();
 
       do
@@ -515,6 +517,7 @@ namespace ConsoleApplication1
   {
     const int buffer_size = 0xFF;
 
+    string host;
     int port;
     System.Net.Sockets.TcpClient client;
     System.Net.Sockets.NetworkStream stream;
@@ -524,9 +527,10 @@ namespace ConsoleApplication1
     bool connection_lost;
 
     List<string> msgs;
-    public MsgReceiver(int port)
+    public MsgReceiver(string host, int port)
     {
       connection_lost = false;
+      this.host = host;
       this.port = port;
       client = new System.Net.Sockets.TcpClient();
       inbound = new System.Collections.Concurrent.BlockingCollection<AppMessage>();
@@ -537,7 +541,8 @@ namespace ConsoleApplication1
 
     public void Start()
     {
-      client.Connect(Environment.MachineName, port);
+      Console.WriteLine($"Connecting to {host} {port}");
+      client.Connect(host, port);
       //System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it x.x.x.x:13001
       Console.WriteLine("Connected");
       stream = client.GetStream();
@@ -681,12 +686,14 @@ namespace ConsoleApplication1
   {
     const int buffer_size = 0xFF;
     byte[] buffer;
+    string host;
     int port;
     int received;
     System.Threading.CancellationTokenSource source;
     System.Threading.CancellationToken cancel;
-    public FeedHandler(int port)
+    public FeedHandler(string host, int port)
     {
+      this.host = host;
       this.port = port;
       buffer = new byte[buffer_size];
     }
@@ -695,7 +702,7 @@ namespace ConsoleApplication1
     {
       using (var client = new System.Net.Sockets.TcpClient())
       {
-        client.Connect(Environment.MachineName, port);
+        client.Connect(host, port);
         using (var stream = client.GetStream())
         {
           for (int k = 0; k < 10; ++k)
@@ -756,14 +763,14 @@ namespace ConsoleApplication1
 
     public void GD1()
     {
-      var client = new MsgTarget(port);
+      var client = new MsgTarget(host, port);
       client.Start();
       Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
       client.Stop();
     }
     public void GD2()
     {
-      var client = new MsgReceiver(port);
+      var client = new MsgReceiver(host, port);
       client.Start();
       Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
       client.Stop();
@@ -775,21 +782,45 @@ namespace ConsoleApplication1
     const int port = 13001;
     public static void _Main(string[] args)
     {
-      if (args.Length > 0)
+      var usage = new Action(()=>
       {
-        var feed = new Feed(port);
-        //feed.Echo();
-        //feed.Handshake();
-        //feed.GD1();
-        feed.GD2();
+        Console.WriteLine("Server usage: server <port> | default");
+        Console.WriteLine("Client usage: client <host> <port> | default [default]");
+      });
+      if (args.Length <= 0 || args.Length > 3)
+      {
+        usage();
+        return;
       }
-      else
+      switch (args[0])
       {
-        var client = new FeedHandler(port);
-        //client.Echo();
-        //client.Handshake();
-        //client.GD1();
-        client.GD2();
+        case "server":
+          if (args.Length == 2)
+          {
+            Console.WriteLine("Feed mode");
+            var feed = new Feed(args[1] == "default" ? port : int.Parse(args[1]));
+            //feed.Echo();
+            //feed.Handshake();
+            //feed.GD1();
+            feed.GD2();
+          }
+          else usage();
+          break;
+        case "client":
+          if (args.Length >= 2)
+          {
+            Console.WriteLine("FeedHandler mode");
+            var client = new FeedHandler(args[1] == "default" ? Environment.MachineName : args[1], args.Length == 3 ? (args[2] == "default" ? port : int.Parse(args[2])) : port);
+            //client.Echo();
+            //client.Handshake();
+            //client.GD1();
+            client.GD2();
+          }
+          else usage();
+          break;
+        default:
+          Console.WriteLine($"Unknown mode: [{args[0]}]");
+          break;
       }
     }
   }
