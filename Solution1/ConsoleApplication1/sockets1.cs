@@ -177,13 +177,18 @@ namespace ConsoleApplication1
         {
           Console.WriteLine("app_read start");
           var acks = new List<string>();
-          foreach (var msg in inbound.GetConsumingEnumerable())
+          foreach (var received in inbound.GetConsumingEnumerable())
           {
-            acks.Add(msg.data);
+            string[] msgs = received.data?.Split('\n');
+            if (msgs != null)
+            {
+              Array.ForEach(msgs, msg => acks.Add(msg));
+            }
+            else Console.WriteLine("received.data?.Split(\n) returned null");
           }
           Console.WriteLine($"Received ACK count: {acks.Count}\n{acks.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("->{0}\n", n))}");
         }
-                catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+        catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
       }
       void read()
       {
@@ -198,7 +203,7 @@ namespace ConsoleApplication1
             if (read != 0)
             {
               var received_text = Encoding.UTF8.GetString(buffer, 0, read);
-              foreach (var msg in received_text.Split('|'))
+              foreach (var msg in received_text.Split('\n'))
               {
                 inbound.Add(new AppMessage { data = msg });
               }
@@ -221,7 +226,7 @@ namespace ConsoleApplication1
           Console.WriteLine("send start");
           foreach (var app in outbound.GetConsumingEnumerable())
           {
-            var msg = Encoding.UTF8.GetBytes(app.data);
+            var msg = Encoding.UTF8.GetBytes($"{app.data}\n");
             stream.Write(msg, 0, msg.Length);
           }
           Console.WriteLine("send stop");
@@ -293,9 +298,9 @@ namespace ConsoleApplication1
       do
       {
         var serverside_client = server.AcceptTcpClient();
-        var provider = new MsgSender(serverside_client);
-        senders.Add(provider);
-        provider.Start();
+        var sender = new MsgSender(serverside_client);
+        senders.Add(sender);
+        sender.Start();
         Console.WriteLine("\nClient connected");
       } while (true);
     }
@@ -596,11 +601,18 @@ namespace ConsoleApplication1
       {
         Console.WriteLine("app_read start");
         int count = 0;
-        foreach (var msg in inbound.GetConsumingEnumerable())
+        foreach (var received in inbound.GetConsumingEnumerable())
         {
-          msgs.Add(msg.data);
-          Console.WriteLine("app_msg received & ack sent");
-          outbound.Add(new AppMessage { data = $"ack{++count}" });
+          string[] received_msgs = received.data?.Split('\n');
+          if (received_msgs != null)
+          {
+            Array.ForEach(received_msgs, msg =>
+            {
+              msgs.Add(msg);
+              Console.WriteLine("app_msg received & ack sent");
+              outbound.Add(new AppMessage { data = $"ack{++count}" });
+            });
+          }
         }
         Console.WriteLine("app_read stop");
       }
@@ -619,7 +631,7 @@ namespace ConsoleApplication1
           if (read != 0)
           {
             var received_text = Encoding.UTF8.GetString(buffer, 0, read);
-            foreach (var msg in received_text.Split('|'))
+            foreach (var msg in received_text.Split('\n'))
             {
               inbound.Add(new AppMessage { data = msg });
             }
@@ -643,7 +655,7 @@ namespace ConsoleApplication1
         Console.WriteLine("send start");
         foreach (var app in outbound.GetConsumingEnumerable())
         {
-          var msg = Encoding.UTF8.GetBytes(app.data);
+          var msg = Encoding.UTF8.GetBytes($"{app.data}\n");
           stream.Write(msg, 0, msg.Length);
         }
         Console.WriteLine("send stop");
