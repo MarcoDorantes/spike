@@ -181,9 +181,9 @@ namespace ConsoleApplication1
           {
             acks.Add(msg.data);
           }
-          Console.WriteLine($"Received ACK count: {acks.Count}");
+          Console.WriteLine($"Received ACK count: {acks.Count}\n{acks.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("->{0}\n", n))}");
         }
-        catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+                catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
       }
       void read()
       {
@@ -578,7 +578,7 @@ namespace ConsoleApplication1
       stream = null;
       client = null;
 
-      Console.WriteLine($"Received msg count: {msgs.Count}");
+      Console.WriteLine($"Received msg count: {msgs.Count}\n{msgs.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("->{0}\n", n))}");
     }
 
     void mex()
