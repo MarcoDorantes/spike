@@ -110,8 +110,10 @@ namespace ConsoleApplication1
 
       System.Net.Sockets.TcpClient serverside_client;
       System.Net.Sockets.NetworkStream stream;
-      System.Collections.Concurrent.BlockingCollection<AppMessage> inbound;
-      System.Collections.Concurrent.BlockingCollection<AppMessage> outbound;
+      System.IO.BinaryReader reader;
+      System.IO.BinaryWriter writer;
+      System.Collections.Concurrent.BlockingCollection<string> inbound;
+      System.Collections.Concurrent.BlockingCollection<string> outbound;
       Task read_task, send_task, mex_task, app_read_task;
       bool connection_lost;
       public MsgSender(System.Net.Sockets.TcpClient client)
@@ -119,8 +121,10 @@ namespace ConsoleApplication1
         connection_lost = false;
         serverside_client = client;
         stream = serverside_client.GetStream();
-        inbound = new System.Collections.Concurrent.BlockingCollection<AppMessage>();
-        outbound = new System.Collections.Concurrent.BlockingCollection<AppMessage>();
+        reader = new System.IO.BinaryReader(stream);
+        writer = new System.IO.BinaryWriter(stream);
+        inbound = new System.Collections.Concurrent.BlockingCollection<string>();
+        outbound = new System.Collections.Concurrent.BlockingCollection<string>();
         read_task = Task.Run(() => read());
         send_task = Task.Run(() => send());
       }
@@ -138,6 +142,10 @@ namespace ConsoleApplication1
         mex_task.Wait(1000);
         app_read_task.Wait(1000);
 
+        reader?.Close();
+        reader?.Dispose();
+        writer?.Close();
+        writer?.Dispose();
         stream?.Dispose();
         //TcpClient.Dispose
         //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
@@ -148,6 +156,8 @@ namespace ConsoleApplication1
         inbound = null;
         outbound = null;
 
+        reader = null;
+        writer = null;
         stream = null;
         serverside_client = null;
       }
@@ -159,13 +169,13 @@ namespace ConsoleApplication1
           app_read_task = Task.Run(() => app_read());
           foreach (var msg in inbound.GetConsumingEnumerable())
           {
-            if (msg.data == "GO") break;
+            if (msg == "GO") break;
           }
           Console.WriteLine("Session started");
           int k;
           for (k = 0; k < 5; ++k)
           {
-            outbound.Add(new AppMessage { data = $"msg{k}" });
+            outbound.Add($"msg{k}");
           }
           Console.WriteLine($"Sent msg count: {k}");
         }
@@ -179,7 +189,7 @@ namespace ConsoleApplication1
           var acks = new List<string>();
           foreach (var received in inbound.GetConsumingEnumerable())
           {
-            string[] msgs = received.data?.Split('\n');
+            string[] msgs = received?.Split('\n');
             if (msgs != null)
             {
               Array.ForEach(msgs, msg => acks.Add(msg));
@@ -199,14 +209,11 @@ namespace ConsoleApplication1
           do
           {
             if (connection_lost) continue;
-            int read = stream.Read(buffer, 0, buffer_size);
-            if (read != 0)
+            char[] read = reader.ReadChars(buffer_size); //.Read(buffer, 0, buffer_size); https://msdn.microsoft.com/en-us/library/system.io.binaryreader.readchars(v=vs.110).aspx
+            if (read != null)
             {
-              var received_text = Encoding.UTF8.GetString(buffer, 0, read);
-              foreach (var msg in received_text.Split('\n'))
-              {
-                inbound.Add(new AppMessage { data = msg });
-              }
+              var received_text = new string(read);//Encoding.UTF8.GetString(buffer, 0, read);
+              inbound.Add(received_text);
             }
             else
             {
@@ -226,8 +233,8 @@ namespace ConsoleApplication1
           Console.WriteLine("send start");
           foreach (var app in outbound.GetConsumingEnumerable())
           {
-            var msg = Encoding.UTF8.GetBytes($"{app.data}\n");
-            stream.Write(msg, 0, msg.Length);
+            //var msg = Encoding.UTF8.GetBytes($"{app.data}\n");
+            writer.Write($"{app}\n");
           }
           Console.WriteLine("send stop");
         }
