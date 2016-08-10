@@ -110,8 +110,8 @@ namespace ConsoleApplication1
 
       System.Net.Sockets.TcpClient serverside_client;
       System.Net.Sockets.NetworkStream stream;
-      System.IO.BinaryReader reader;
-      System.IO.BinaryWriter writer;
+      System.IO.StreamReader reader;
+      System.IO.StreamWriter writer;
       System.Collections.Concurrent.BlockingCollection<string> inbound;
       System.Collections.Concurrent.BlockingCollection<string> outbound;
       Task read_task, send_task, mex_task, app_read_task;
@@ -121,8 +121,9 @@ namespace ConsoleApplication1
         connection_lost = false;
         serverside_client = client;
         stream = serverside_client.GetStream();
-        reader = new System.IO.BinaryReader(stream);
-        writer = new System.IO.BinaryWriter(stream);
+        reader = new System.IO.StreamReader(stream, Encoding.UTF8); //System.IO.BufferedStream? https://msdn.microsoft.com/en-us/library/system.io.bufferedstream(v=vs.110).aspx
+        writer = new System.IO.StreamWriter(stream, Encoding.UTF8);
+        writer.AutoFlush = true;
         inbound = new System.Collections.Concurrent.BlockingCollection<string>();
         outbound = new System.Collections.Concurrent.BlockingCollection<string>();
         read_task = Task.Run(() => read());
@@ -137,19 +138,20 @@ namespace ConsoleApplication1
         inbound?.CompleteAdding();
         outbound?.CompleteAdding();
 
-        read_task.Wait(1000);
-        send_task.Wait(1000);
-        mex_task.Wait(1000);
-        app_read_task.Wait(1000);
+        read_task?.Wait(1000);
+        send_task?.Wait(1000);
+        mex_task?.Wait(1000);
+        app_read_task?.Wait(1000);
 
         reader?.Close();
         reader?.Dispose();
-        writer?.Close();
-        writer?.Dispose();
         stream?.Dispose();
+
         //TcpClient.Dispose
         //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
         serverside_client?.Dispose();
+
+        read_task = send_task = mex_task = app_read_task = null;
 
         inbound?.Dispose();
         outbound?.Dispose();
@@ -175,6 +177,11 @@ namespace ConsoleApplication1
           int k;
           for (k = 0; k < 5; ++k)
           {
+            if (outbound.IsAddingCompleted)
+            {
+              Console.WriteLine("Cannot add msg to outbound");
+              continue;
+            }
             outbound.Add($"msg{k}");
           }
           Console.WriteLine($"Sent msg count: {k}");
@@ -189,12 +196,7 @@ namespace ConsoleApplication1
           var acks = new List<string>();
           foreach (var received in inbound.GetConsumingEnumerable())
           {
-            string[] msgs = received?.Split('\n');
-            if (msgs != null)
-            {
-              Array.ForEach(msgs, msg => acks.Add(msg));
-            }
-            else Console.WriteLine("received.data?.Split(\n) returned null");
+            acks.Add(received);
           }
           Console.WriteLine($"Received ACK count: {acks.Count}\n{acks.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("->{0}\n", n))}");
         }
@@ -205,23 +207,18 @@ namespace ConsoleApplication1
         try
         {
           Console.WriteLine("read start");
-          var buffer = new byte[buffer_size];
           do
           {
             if (connection_lost) continue;
-            char[] read = reader.ReadChars(buffer_size); //.Read(buffer, 0, buffer_size); https://msdn.microsoft.com/en-us/library/system.io.binaryreader.readchars(v=vs.110).aspx
-            if (read != null)
-            {
-              var received_text = new string(read);//Encoding.UTF8.GetString(buffer, 0, read);
-              inbound.Add(received_text);
-            }
-            else
+            string line = reader.ReadLine(); //Console.WriteLine($"read: [{line}]");
+            if (line == null)
             {
               connection_lost = true;
-              //Console.WriteLine($"No bytes read");
+              break;
             }
+            inbound.Add(line);
           } while (inbound?.IsAddingCompleted == false);
-          Console.WriteLine("read stop");
+          Console.WriteLine($"read stop - connection_lost: {connection_lost}");
         }
         catch (System.IO.IOException) { connection_lost = true; }
         catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
@@ -233,8 +230,7 @@ namespace ConsoleApplication1
           Console.WriteLine("send start");
           foreach (var app in outbound.GetConsumingEnumerable())
           {
-            //var msg = Encoding.UTF8.GetBytes($"{app.data}\n");
-            writer.Write($"{app}\n");
+            writer.WriteLine(app);// Console.WriteLine($"send: [{app}]");
           }
           Console.WriteLine("send stop");
         }
@@ -537,8 +533,10 @@ namespace ConsoleApplication1
     int port;
     System.Net.Sockets.TcpClient client;
     System.Net.Sockets.NetworkStream stream;
-    System.Collections.Concurrent.BlockingCollection<AppMessage> inbound;
-    System.Collections.Concurrent.BlockingCollection<AppMessage> outbound;
+    System.IO.StreamReader reader;
+    System.IO.StreamWriter writer;
+    System.Collections.Concurrent.BlockingCollection<string> inbound;
+    System.Collections.Concurrent.BlockingCollection<string> outbound;
     Task read_task, send_task, mex_task, app_read_task;
     bool connection_lost;
 
@@ -549,8 +547,8 @@ namespace ConsoleApplication1
       this.host = host;
       this.port = port;
       client = new System.Net.Sockets.TcpClient();
-      inbound = new System.Collections.Concurrent.BlockingCollection<AppMessage>();
-      outbound = new System.Collections.Concurrent.BlockingCollection<AppMessage>();
+      inbound = new System.Collections.Concurrent.BlockingCollection<string>();
+      outbound = new System.Collections.Concurrent.BlockingCollection<string>();
 
       msgs = new List<string>();
     }
@@ -562,6 +560,9 @@ namespace ConsoleApplication1
       //System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it x.x.x.x:13001
       Console.WriteLine("Connected");
       stream = client.GetStream();
+      reader = new System.IO.StreamReader(stream, Encoding.UTF8);
+      writer = new System.IO.StreamWriter(stream, Encoding.UTF8);
+      writer.AutoFlush = true;
 
       read_task = Task.Run(() => read());
       send_task = Task.Run(() => send());
@@ -572,21 +573,28 @@ namespace ConsoleApplication1
       inbound?.CompleteAdding();
       outbound?.CompleteAdding();
 
-      read_task.Wait(1000);
-      send_task.Wait(1000);
-      mex_task.Wait(1000);
-      app_read_task.Wait(1000);
+      read_task?.Wait(1000);
+      send_task?.Wait(1000);
+      mex_task?.Wait(1000);
+      app_read_task?.Wait(1000);
 
+      reader?.Close();
+      reader?.Dispose();
       stream?.Dispose();
+
       //TcpClient.Dispose
       //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
       client?.Dispose();
+
+      read_task = send_task = mex_task = app_read_task = null;
 
       inbound?.Dispose();
       outbound?.Dispose();
       inbound = null;
       outbound = null;
 
+      reader = null;
+      writer = null;
       stream = null;
       client = null;
 
@@ -598,7 +606,7 @@ namespace ConsoleApplication1
       try
       {
         app_read_task = Task.Run(() => app_read());
-        outbound.Add(new AppMessage { data = "GO" });
+        outbound.Add("GO");
       }
       catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
     }
@@ -610,16 +618,20 @@ namespace ConsoleApplication1
         int count = 0;
         foreach (var received in inbound.GetConsumingEnumerable())
         {
-          string[] received_msgs = received.data?.Split('\n');
-          if (received_msgs != null)
-          {
-            Array.ForEach(received_msgs, msg =>
-            {
-              msgs.Add(msg);
-              Console.WriteLine("app_msg received & ack sent");
-              outbound.Add(new AppMessage { data = $"ack{++count}" });
-            });
-          }
+          msgs.Add(received);
+          Console.WriteLine("app_msg received & ack sent");
+          outbound.Add($"ack{++count}");
+
+          //string[] received_msgs = received.data?.Split('\n');
+          //if (received_msgs != null)
+          //{
+          //  Array.ForEach(received_msgs, msg =>
+          //  {
+          //    msgs.Add(msg);
+          //    Console.WriteLine("app_msg received & ack sent");
+          //    outbound.Add(new AppMessage { data = $"ack{++count}" });
+          //  });
+          //}
         }
         Console.WriteLine("app_read stop");
       }
@@ -630,26 +642,18 @@ namespace ConsoleApplication1
       try
       {
         Console.WriteLine("read start");
-        var buffer = new byte[buffer_size];
         do
         {
           if (connection_lost) continue;
-          int read = stream.Read(buffer, 0, buffer_size);
-          if (read != 0)
-          {
-            var received_text = Encoding.UTF8.GetString(buffer, 0, read);
-            foreach (var msg in received_text.Split('\n'))
-            {
-              inbound.Add(new AppMessage { data = msg });
-            }
-          }
-          else
+          string line = reader.ReadLine();// Console.WriteLine($"read: [{line}]");
+          if (line == null)
           {
             connection_lost = true;
-            //Console.WriteLine($"No bytes read");
+            break;
           }
+          inbound.Add(line);
         } while (inbound?.IsAddingCompleted == false);
-        Console.WriteLine("read stop");
+        Console.WriteLine($"read stop - connection_lost: {connection_lost}");
       }
       //The underlying Socket is closed. -> System.IO.IOException: Unable to read data from the transport connection: A blocking operation was interrupted by a call to WSACancelBlockingCall.
       catch (System.IO.IOException) { connection_lost = true; }
@@ -662,8 +666,7 @@ namespace ConsoleApplication1
         Console.WriteLine("send start");
         foreach (var app in outbound.GetConsumingEnumerable())
         {
-          var msg = Encoding.UTF8.GetBytes($"{app.data}\n");
-          stream.Write(msg, 0, msg.Length);
+          writer.WriteLine(app);// Console.WriteLine($"send: [{app}]");
         }
         Console.WriteLine("send stop");
       }
