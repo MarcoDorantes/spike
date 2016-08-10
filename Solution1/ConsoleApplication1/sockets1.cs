@@ -621,17 +621,6 @@ namespace ConsoleApplication1
           msgs.Add(received);
           Console.WriteLine("app_msg received & ack sent");
           outbound.Add($"ack{++count}");
-
-          //string[] received_msgs = received.data?.Split('\n');
-          //if (received_msgs != null)
-          //{
-          //  Array.ForEach(received_msgs, msg =>
-          //  {
-          //    msgs.Add(msg);
-          //    Console.WriteLine("app_msg received & ack sent");
-          //    outbound.Add(new AppMessage { data = $"ack{++count}" });
-          //  });
-          //}
         }
         Console.WriteLine("app_read stop");
       }
