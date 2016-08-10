@@ -210,7 +210,7 @@ namespace ConsoleApplication1
           do
           {
             if (connection_lost) continue;
-            string line = reader.ReadLine(); //Console.WriteLine($"read: [{line}]");
+            string line = reader.ReadLine(); //Console.WriteLine($"read: [{line}]"); //https://msdn.microsoft.com/en-us/library/system.io.streamreader.readline(v=vs.110).aspx
             if (line == null)
             {
               connection_lost = true;
@@ -645,7 +645,7 @@ namespace ConsoleApplication1
         do
         {
           if (connection_lost) continue;
-          string line = reader.ReadLine();// Console.WriteLine($"read: [{line}]");
+          string line = reader.ReadLine();// Console.WriteLine($"read: [{line}]"); //https://msdn.microsoft.com/en-us/library/system.io.streamreader.readline(v=vs.110).aspx
           if (line == null)
           {
             connection_lost = true;
