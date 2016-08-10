@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
-  class MsgSource
+  public class MsgSource
   {
     const int buffer_size = 0xFF;
 
@@ -98,11 +98,7 @@ namespace ConsoleApplication1
       server.Stop();
     }
   }
-  class AppMessage
-  {
-    public string data;
-  }
-  class ClientAccepter : IDisposable
+  public class ClientAccepter : IDisposable
   {
     public class MsgSender : IDisposable
     {
@@ -344,7 +340,7 @@ namespace ConsoleApplication1
     }
     #endregion
   }
-  class Feed
+  public class Feed
   {
     const int buffer_size = 0xFF;
     byte[] buffer;
@@ -438,7 +434,7 @@ namespace ConsoleApplication1
     }
   }
 
-  class MsgTarget
+  public class MsgTarget
   {
     const int buffer_size = 0xFF;
 
@@ -525,7 +521,7 @@ namespace ConsoleApplication1
     }
   }
 
-  class MsgReceiver : IDisposable
+  public class MsgReceiver : IDisposable
   {
     const int buffer_size = 0xFF;
 
@@ -699,7 +695,7 @@ namespace ConsoleApplication1
     #endregion
   }
 
-  class FeedHandler
+  public class FeedHandler
   {
     const int buffer_size = 0xFF;
     byte[] buffer;
@@ -794,7 +790,7 @@ namespace ConsoleApplication1
     }
   }
 
-  class sockets1
+  public class sockets1
   {
     const int port = 13001;
     public static void _Main(string[] args)
