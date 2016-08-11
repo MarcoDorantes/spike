@@ -98,12 +98,246 @@ namespace ConsoleApplication1
       server.Stop();
     }
   }
-  public class ClientAccepter : IDisposable
+  public class ClientAccepter2 : IDisposable
   {
     public class MsgSender : IDisposable
     {
-      const int buffer_size = 0xFF;
+      const int buffer_size = 0xFFFF;
 
+      System.Net.Sockets.TcpClient serverside_client;
+      System.Net.Sockets.NetworkStream stream;
+      System.Collections.Concurrent.BlockingCollection<string> inbound;
+      System.Collections.Concurrent.BlockingCollection<string> outbound;
+      Task read_task, send_task, mex_task, app_read_task;
+      bool connection_lost;
+      public MsgSender(System.Net.Sockets.TcpClient client)
+      {
+        connection_lost = false;
+        serverside_client = client;
+        stream = serverside_client.GetStream();
+        inbound = new System.Collections.Concurrent.BlockingCollection<string>();
+        outbound = new System.Collections.Concurrent.BlockingCollection<string>();
+        read_task = Task.Run(() => read());
+        send_task = Task.Run(() => send());
+      }
+      public void Start()
+      {
+        mex_task = Task.Run(() => mex());
+      }
+      public void Stop()
+      {
+        inbound?.CompleteAdding();
+        outbound?.CompleteAdding();
+
+        read_task?.Wait(1000);
+        send_task?.Wait(1000);
+        mex_task?.Wait(1000);
+        app_read_task?.Wait(1000);
+
+        stream?.Dispose();
+
+        //TcpClient.Dispose
+        //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
+        serverside_client?.Dispose();
+
+        read_task = send_task = mex_task = app_read_task = null;
+
+        inbound?.Dispose();
+        outbound?.Dispose();
+        inbound = null;
+        outbound = null;
+
+        stream = null;
+        serverside_client = null;
+      }
+
+      void mex()
+      {
+        try
+        {
+          app_read_task = Task.Run(() => app_read());
+          foreach (var msg in inbound.GetConsumingEnumerable())
+          {
+            if (msg == "GO") break;
+          }
+          Console.WriteLine("Session started");
+          int k;
+          for (k = 0; k < 5; ++k)
+          {
+            if (outbound.IsAddingCompleted)
+            {
+              Console.WriteLine("Cannot add msg to outbound");
+              continue;
+            }
+            outbound.Add($"msg{k}");
+          }
+          Console.WriteLine($"Sent msg count: {k}");
+        }
+        catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+      }
+      void app_read()
+      {
+        try
+        {
+          Console.WriteLine("app_read start");
+          var acks = new List<string>();
+          foreach (var received in inbound.GetConsumingEnumerable())
+          {
+            acks.Add(received);
+          }
+          Console.WriteLine($"Received ACK count: {acks.Count}\n{acks.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("->{0}\n", n))}");
+        }
+        catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+      }
+      void read()
+      {
+        try
+        {
+          var buffer = new byte[buffer_size];
+          Console.WriteLine("read start");
+          do
+          {
+            if (connection_lost) continue;
+            int read = stream.Read(buffer, 0, buffer_size); Console.WriteLine($"read: [{read}]");
+            if (read == 0)
+            {
+              connection_lost = true;
+              break;
+            }
+            foreach (var msg in Encoding.UTF8.GetString(buffer, 0, read).Split('\n')) if (!string.IsNullOrEmpty(msg)) inbound.Add(msg);
+          } while (inbound?.IsAddingCompleted == false);
+          Console.WriteLine($"read stop - connection_lost: {connection_lost}");
+        }
+        catch (System.IO.IOException) { connection_lost = true; }
+        catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+      }
+      void send()
+      {
+        try
+        {
+          Console.WriteLine("send start");
+          foreach (var app in outbound.GetConsumingEnumerable())
+          {
+            var msg = $"{app}\n";
+            var bytes = Encoding.UTF8.GetBytes(msg);
+            stream.Write(bytes,0,bytes.Length); Console.WriteLine($"send: [{msg}]");
+          }
+          Console.WriteLine("send stop");
+        }
+        catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+      }
+
+      #region IDisposable Support
+      private bool disposedValue = false; // To detect redundant calls
+
+      protected virtual void Dispose(bool disposing)
+      {
+        if (!disposedValue)
+        {
+          if (disposing)
+          {
+            // dispose managed state (managed objects).
+            Stop();
+          }
+
+          // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+          // TODO: set large fields to null.
+
+          disposedValue = true;
+        }
+      }
+
+      // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+      // ~MsgProvider() {
+      //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      //   Dispose(false);
+      // }
+
+      // This code added to correctly implement the disposable pattern.
+      public void Dispose()
+      {
+        // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        Dispose(true);
+        // TODO: uncomment the following line if the finalizer is overridden above.
+        // GC.SuppressFinalize(this);
+      }
+      #endregion
+    }
+
+    int port;
+    System.Net.Sockets.TcpListener server;
+    List<MsgSender> senders;
+    public ClientAccepter2(int port)
+    {
+      this.port = port;
+      senders = new List<MsgSender>();
+    }
+    public void Start()
+    {
+      Task.Run(() => listen());
+    }
+    public void Stop()
+    {
+      senders?.ForEach(p => p.Stop());
+      server?.Stop();
+      senders = null;
+      server = null;
+    }
+    void listen()
+    {
+      server = System.Net.Sockets.TcpListener.Create(port);
+      server.Start();
+      Console.Write($"Listening at {port}...");
+      do
+      {
+        var serverside_client = server.AcceptTcpClient();
+        var sender = new MsgSender(serverside_client);
+        senders.Add(sender);
+        sender.Start();
+        Console.WriteLine("\nClient connected");
+      } while (true);
+    }
+
+    #region IDisposable Support
+    private bool disposedValue = false; // To detect redundant calls
+
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!disposedValue)
+      {
+        if (disposing)
+        {
+          // dispose managed state (managed objects).
+          Stop();
+        }
+
+        // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+        // TODO: set large fields to null.
+
+        disposedValue = true;
+      }
+    }
+
+    // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+    // ~ClientAccepter() {
+    //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+    //   Dispose(false);
+    // }
+
+    // This code added to correctly implement the disposable pattern.
+    public void Dispose()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(true);
+      // TODO: uncomment the following line if the finalizer is overridden above.
+      // GC.SuppressFinalize(this);
+    }
+    #endregion
+  }
+  public class ClientAccepter3 : IDisposable
+  {
+    public class MsgSender : IDisposable
+    {
       System.Net.Sockets.TcpClient serverside_client;
       System.Net.Sockets.NetworkStream stream;
       System.IO.StreamReader reader;
@@ -273,7 +507,7 @@ namespace ConsoleApplication1
     int port;
     System.Net.Sockets.TcpListener server;
     List<MsgSender> senders;
-    public ClientAccepter(int port)
+    public ClientAccepter3(int port)
     {
       this.port = port;
       senders = new List<MsgSender>();
@@ -427,7 +661,14 @@ namespace ConsoleApplication1
     }
     public void GD2()
     {
-      var server = new ClientAccepter(port);
+      var server = new ClientAccepter2(port);
+      server.Start();
+      Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
+      server.Stop();
+    }
+    public void GD3()
+    {
+      var server = new ClientAccepter3(port);
       server.Start();
       Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
       server.Stop();
@@ -521,10 +762,176 @@ namespace ConsoleApplication1
     }
   }
 
-  public class MsgReceiver : IDisposable
+  public class MsgReceiver2 : IDisposable
   {
     const int buffer_size = 0xFF;
 
+    string host;
+    int port;
+    System.Net.Sockets.TcpClient client;
+    System.Net.Sockets.NetworkStream stream;
+    System.Collections.Concurrent.BlockingCollection<string> inbound;
+    System.Collections.Concurrent.BlockingCollection<string> outbound;
+    Task read_task, send_task, mex_task, app_read_task;
+    bool connection_lost;
+
+    List<string> msgs;
+    public MsgReceiver2(string host, int port)
+    {
+      connection_lost = false;
+      this.host = host;
+      this.port = port;
+      client = new System.Net.Sockets.TcpClient();
+      inbound = new System.Collections.Concurrent.BlockingCollection<string>();
+      outbound = new System.Collections.Concurrent.BlockingCollection<string>();
+
+      msgs = new List<string>();
+    }
+
+    public void Start()
+    {
+      Console.WriteLine($"Connecting to {host} {port}");
+      client.Connect(host, port);
+      //System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it x.x.x.x:13001
+      Console.WriteLine("Connected");
+      stream = client.GetStream();
+
+      read_task = Task.Run(() => read());
+      send_task = Task.Run(() => send());
+      mex_task = Task.Run(() => mex());
+    }
+    public void Stop()
+    {
+      inbound?.CompleteAdding();
+      outbound?.CompleteAdding();
+
+      read_task?.Wait(1000);
+      send_task?.Wait(1000);
+      mex_task?.Wait(1000);
+      app_read_task?.Wait(1000);
+
+      stream?.Dispose();
+
+      //TcpClient.Dispose
+      //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
+      client?.Dispose();
+
+      read_task = send_task = mex_task = app_read_task = null;
+
+      inbound?.Dispose();
+      outbound?.Dispose();
+      inbound = null;
+      outbound = null;
+
+      stream = null;
+      client = null;
+
+      Console.WriteLine($"Received msg count: {msgs.Count}\n{msgs.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("->{0}\n", n))}");
+    }
+
+    void mex()
+    {
+      try
+      {
+        app_read_task = Task.Run(() => app_read());
+        outbound.Add("GO");
+      }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
+    void app_read()
+    {
+      try
+      {
+        Console.WriteLine("app_read start");
+        int count = 0;
+        foreach (var received in inbound.GetConsumingEnumerable())
+        {
+          msgs.Add(received);
+          Console.WriteLine("app_msg received & ack sent");
+          outbound.Add($"ack{++count}");
+        }
+        Console.WriteLine("app_read stop");
+      }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
+    void read()
+    {
+      try
+      {
+        var buffer = new byte[buffer_size];
+        Console.WriteLine("read start");
+        do
+        {
+          if (connection_lost) continue;
+          int read = stream.Read(buffer, 0, buffer_size); Console.WriteLine($"read: [{read}]");
+          if (read == 0)
+          {
+            connection_lost = true;
+            break;
+          }
+          foreach (var msg in Encoding.UTF8.GetString(buffer, 0, read).Split('\n')) if (!string.IsNullOrEmpty(msg)) inbound.Add(msg);
+        } while (inbound?.IsAddingCompleted == false);
+        Console.WriteLine($"read stop - connection_lost: {connection_lost}");
+      }
+      //The underlying Socket is closed. -> System.IO.IOException: Unable to read data from the transport connection: A blocking operation was interrupted by a call to WSACancelBlockingCall.
+      catch (System.IO.IOException) { connection_lost = true; }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
+    void send()
+    {
+      try
+      {
+        Console.WriteLine("send start");
+        foreach (var app in outbound.GetConsumingEnumerable())
+        {
+          var msg = $"{app}\n";
+          var bytes = Encoding.UTF8.GetBytes(msg);
+          stream.Write(bytes, 0, bytes.Length); Console.WriteLine($"send: [{msg}]");
+        }
+        Console.WriteLine("send stop");
+      }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
+
+    #region IDisposable Support
+    private bool disposedValue = false; // To detect redundant calls
+
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!disposedValue)
+      {
+        if (disposing)
+        {
+          // dispose managed state (managed objects).
+          Stop();
+        }
+
+        // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+        // TODO: set large fields to null.
+
+        disposedValue = true;
+      }
+    }
+
+    // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+    // ~MsgAccepter() {
+    //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+    //   Dispose(false);
+    // }
+
+    // This code added to correctly implement the disposable pattern.
+    public void Dispose()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(true);
+      // TODO: uncomment the following line if the finalizer is overridden above.
+      // GC.SuppressFinalize(this);
+    }
+    #endregion
+  }
+
+  public class MsgReceiver3 : IDisposable
+  {
     string host;
     int port;
     System.Net.Sockets.TcpClient client;
@@ -537,7 +944,7 @@ namespace ConsoleApplication1
     bool connection_lost;
 
     List<string> msgs;
-    public MsgReceiver(string host, int port)
+    public MsgReceiver3(string host, int port)
     {
       connection_lost = false;
       this.host = host;
@@ -783,7 +1190,14 @@ namespace ConsoleApplication1
     }
     public void GD2()
     {
-      var client = new MsgReceiver(host, port);
+      var client = new MsgReceiver2(host, port);
+      client.Start();
+      Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
+      client.Stop();
+    }
+    public void GD3()
+    {
+      var client = new MsgReceiver3(host, port);
       client.Start();
       Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
       client.Stop();
@@ -815,7 +1229,8 @@ namespace ConsoleApplication1
             //feed.Echo();
             //feed.Handshake();
             //feed.GD1();
-            feed.GD2();
+            //feed.GD2();
+            feed.GD3();
           }
           else usage();
           break;
@@ -827,7 +1242,8 @@ namespace ConsoleApplication1
             //client.Echo();
             //client.Handshake();
             //client.GD1();
-            client.GD2();
+            //client.GD2();
+            client.GD3();
           }
           else usage();
           break;
