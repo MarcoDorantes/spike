@@ -155,12 +155,13 @@ namespace ConsoleApplication1
       {
         try
         {
-          app_read_task = Task.Run(() => app_read());
           foreach (var msg in inbound.GetConsumingEnumerable())
           {
+            Console.WriteLine($"sesion id to check: [{msg}]");
             if (msg == "GO") break;
           }
           Console.WriteLine("Session started");
+          app_read_task = Task.Run(() => app_read());
           int k;
           for (k = 0; k < 5; ++k)
           {
@@ -204,7 +205,9 @@ namespace ConsoleApplication1
               connection_lost = true;
               break;
             }
-            foreach (var msg in Encoding.UTF8.GetString(buffer, 0, read).Split('\n')) if (!string.IsNullOrEmpty(msg)) inbound.Add(msg);
+            Console.Write($"\treceived bytes: "); for (int k = 0; k < read; ++k) Console.Write("{0:X}/{1} ", buffer[k], buffer[k]);
+            Console.WriteLine();
+            foreach (var msg in Encoding.UTF8.GetString(buffer, 0, read).Split('\n')) if (!string.IsNullOrEmpty(msg)) { inbound.Add(msg); Console.WriteLine($"received: {msg}"); }
           } while (inbound?.IsAddingCompleted == false);
           Console.WriteLine($"read stop - connection_lost: {connection_lost}");
         }
@@ -398,11 +401,11 @@ namespace ConsoleApplication1
       {
         try
         {
-          app_read_task = Task.Run(() => app_read());
           foreach (var msg in inbound.GetConsumingEnumerable())
           {
             if (msg == "GO") break;
           }
+          app_read_task = Task.Run(() => app_read());
           Console.WriteLine("Session started");
           int k;
           for (k = 0; k < 5; ++k)
@@ -964,7 +967,9 @@ namespace ConsoleApplication1
       Console.WriteLine("Connected");
       stream = client.GetStream();
       reader = new System.IO.StreamReader(stream, Encoding.UTF8);
-      writer = new System.IO.StreamWriter(stream, Encoding.UTF8);
+      writer = new System.IO.StreamWriter(stream, new UTF8Encoding(false));
+      writer.NewLine = $"\n";
+      Console.WriteLine($"writer.NewLine ({writer.NewLine.Length}): {Encoding.UTF8.GetBytes(writer.NewLine).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0:X}/{1} ", (int)n, (int)n))}");
       writer.AutoFlush = true;
 
       read_task = Task.Run(() => read());
@@ -1229,8 +1234,8 @@ namespace ConsoleApplication1
             //feed.Echo();
             //feed.Handshake();
             //feed.GD1();
-            //feed.GD2();
-            feed.GD3();
+            feed.GD2();
+            //feed.GD3();
           }
           else usage();
           break;
