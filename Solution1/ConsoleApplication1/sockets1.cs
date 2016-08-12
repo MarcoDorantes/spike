@@ -1109,7 +1109,7 @@ namespace ConsoleApplication1
 
   public class FeedHandler
   {
-    const int buffer_size = 0xFF;
+    const int buffer_size = 0xFFFF;
     byte[] buffer;
     string host;
     int port;
