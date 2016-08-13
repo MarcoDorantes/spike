@@ -1107,6 +1107,59 @@ namespace ConsoleApplication1
     #endregion
   }
 
+  class MsgReceiver4 : IDisposable
+  {
+    public MsgReceiver4(string host, int port)
+    {
+
+    }
+
+    public void Start()
+    {
+      //start hosting itself as IService1, where calls from client (IMessageTarget) will be received and added to the outbound queue.
+    }
+
+    public void Stop()
+    { }
+
+    #region IDisposable Support
+    private bool disposedValue = false; // To detect redundant calls
+
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!disposedValue)
+      {
+        if (disposing)
+        {
+          // TODO: dispose managed state (managed objects).
+        }
+
+        // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+        // TODO: set large fields to null.
+        Stop();
+
+        disposedValue = true;
+      }
+    }
+
+    // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+    ~MsgReceiver4()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(false);
+    }
+
+    // This code added to correctly implement the disposable pattern.
+    public void Dispose()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(true);
+      // TODO: uncomment the following line if the finalizer is overridden above.
+       GC.SuppressFinalize(this);
+    }
+    #endregion
+  }
+
   public class FeedHandler
   {
     const int buffer_size = 0xFFFF;
@@ -1207,6 +1260,13 @@ namespace ConsoleApplication1
       Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
       client.Stop();
     }
+    public void GD4()
+    {
+      var client = new MsgReceiver4(host, port);
+      client.Start();
+      Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
+      client.Stop();
+    }
   }
 
   public class sockets1
@@ -1248,7 +1308,8 @@ namespace ConsoleApplication1
             //client.Handshake();
             //client.GD1();
             //client.GD2();
-            client.GD3();
+            //client.GD3();
+            client.GD4();
           }
           else usage();
           break;
