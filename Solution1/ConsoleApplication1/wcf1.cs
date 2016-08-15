@@ -75,8 +75,15 @@ namespace ConsoleApplication1
     {
       using (var client = new ACKReceiverProxy(new NetNamedPipeBinding(NetNamedPipeSecurityMode.None),$"net.pipe://{host}/{pipename}"))
       {
-        client.ACK("ack1");
-        client.NACK("nack1");
+        try
+        {
+          client.ACK("ack1");
+          client.NACK("nack1");
+        }
+        catch (Exception ex)
+        {
+          Console.WriteLine($"{ex.GetType().FullName}: {ex.Message}");
+        }
       }
     }
   }
