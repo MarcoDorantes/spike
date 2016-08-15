@@ -46,7 +46,7 @@ namespace ConsoleApplication1
       this.pipename = pipename;
     }
 
-    public void Echo()
+    public void Ack_Nack()
     {
       using (var host = new ServiceHost(typeof(ACKReceiver)))
       {
@@ -71,7 +71,7 @@ namespace ConsoleApplication1
       this.host = host;
       this.pipename = pipename;
     }
-    public void Echo()
+    public void Ack_Nack()
     {
       using (var client = new ACKReceiverProxy(new NetNamedPipeBinding(NetNamedPipeSecurityMode.None),$"net.pipe://{host}/{pipename}"))
       {
@@ -109,8 +109,8 @@ namespace ConsoleApplication1
           if (args.Length == 2)
           {
             Console.WriteLine("Server mode");
-            var pipeserver = new PipeServer(args[1] == "default" ? namedpipe : args[1]);
-            pipeserver.Echo();
+            var server = new PipeServer(args[1] == "default" ? namedpipe : args[1]);
+            server.Ack_Nack();
           }
           else usage();
           break;
@@ -119,7 +119,7 @@ namespace ConsoleApplication1
           {
             Console.WriteLine("Client mode");
             var client = new PipeClient(args[1] == "default" ? Environment.MachineName : args[1], args.Length == 3 ? (args[2] == "default" ? namedpipe : args[2]) : namedpipe);
-            client.Echo();
+            client.Ack_Nack();
           }
           else usage();
           break;
