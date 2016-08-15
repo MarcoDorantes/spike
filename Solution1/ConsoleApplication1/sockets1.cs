@@ -1109,18 +1109,141 @@ namespace ConsoleApplication1
 
   class MsgReceiver4 : IDisposable
   {
+    string host;
+    int port;
+    System.Net.Sockets.TcpClient client;
+    System.Net.Sockets.NetworkStream stream;
+    System.IO.StreamReader reader;
+    System.IO.StreamWriter writer;
+    System.Collections.Concurrent.BlockingCollection<string> inbound;
+    System.Collections.Concurrent.BlockingCollection<string> outbound;
+    Task read_task, send_task, mex_task, app_read_task;
+    bool connection_lost;
+
     public MsgReceiver4(string host, int port)
     {
+      connection_lost = false;
+      this.host = host;
+      this.port = port;
+      client = new System.Net.Sockets.TcpClient();
+      inbound = new System.Collections.Concurrent.BlockingCollection<string>();
+      outbound = new System.Collections.Concurrent.BlockingCollection<string>();
 
+      //msgs = new List<string>();
     }
 
     public void Start()
     {
+      Console.WriteLine($"Connecting to {host} {port}");
+      client.Connect(host, port);
+      //System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it x.x.x.x:13001
+      Console.WriteLine("Connected");
+      stream = client.GetStream();
+      reader = new System.IO.StreamReader(stream, Encoding.UTF8);
+      writer = new System.IO.StreamWriter(stream, new UTF8Encoding(false));
+      writer.NewLine = $"\n";
+      Console.WriteLine($"writer.NewLine ({writer.NewLine.Length}): {Encoding.UTF8.GetBytes(writer.NewLine).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0:X}/{1} ", (int)n, (int)n))}");
+      writer.AutoFlush = true;
+
+      read_task = Task.Run(() => read());
+      send_task = Task.Run(() => send());
+      mex_task = Task.Run(() => mex());
+
       //start hosting itself as IService1, where calls from client (IMessageTarget) will be received and added to the outbound queue.
     }
 
     public void Stop()
-    { }
+    {
+      inbound?.CompleteAdding();
+      outbound?.CompleteAdding();
+
+      read_task?.Wait(1000);
+      send_task?.Wait(1000);
+      mex_task?.Wait(1000);
+      app_read_task?.Wait(1000);
+
+      reader?.Close();
+      reader?.Dispose();
+      stream?.Dispose();
+
+      //TcpClient.Dispose
+      //https://msdn.microsoft.com/en-us/library/dn823304(v=vs.110).aspx
+      client?.Dispose();
+
+      read_task = send_task = mex_task = app_read_task = null;
+
+      inbound?.Dispose();
+      outbound?.Dispose();
+      inbound = null;
+      outbound = null;
+
+      reader = null;
+      writer = null;
+      stream = null;
+      client = null;
+
+      //Console.WriteLine($"Received msg count: {msgs.Count}\n{msgs.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("->{0}\n", n))}");
+    }
+    void mex()
+    {
+      try
+      {
+        app_read_task = Task.Run(() => app_read());
+        outbound.Add("GO");
+      }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
+    void app_read()
+    {
+      try
+      {
+        Console.WriteLine("app_read start");
+        int count = 0;
+        foreach (var received in inbound.GetConsumingEnumerable())
+        {
+          //msgs.Add(received);
+          Console.WriteLine("app_msg received & ack sent");
+          outbound.Add($"ack{++count}");
+        }
+        Console.WriteLine("app_read stop");
+      }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
+    void read()
+    {
+      try
+      {
+        Console.WriteLine("read start");
+        do
+        {
+          if (connection_lost) continue;
+          string line = reader.ReadLine();// Console.WriteLine($"read: [{line}]"); //https://msdn.microsoft.com/en-us/library/system.io.streamreader.readline(v=vs.110).aspx
+          if (line == null)
+          {
+            connection_lost = true;
+            break;
+          }
+          inbound.Add(line);
+        } while (inbound?.IsAddingCompleted == false);
+        Console.WriteLine($"read stop - connection_lost: {connection_lost}");
+      }
+      //The underlying Socket is closed. -> System.IO.IOException: Unable to read data from the transport connection: A blocking operation was interrupted by a call to WSACancelBlockingCall.
+      catch (System.IO.IOException) { connection_lost = true; }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
+    void send()
+    {
+      try
+      {
+        Console.WriteLine("send start");
+        foreach (var app in outbound.GetConsumingEnumerable())
+        {
+          writer.WriteLine(app);// Console.WriteLine($"send: [{app}]");
+        }
+        Console.WriteLine("send stop");
+      }
+      catch (Exception ex) { Console.WriteLine($"->{System.Reflection.MethodBase.GetCurrentMethod().Name} {ex.GetType().FullName}: {ex.Message}"); }
+    }
 
     #region IDisposable Support
     private bool disposedValue = false; // To detect redundant calls
@@ -1155,7 +1278,7 @@ namespace ConsoleApplication1
       // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
       Dispose(true);
       // TODO: uncomment the following line if the finalizer is overridden above.
-       GC.SuppressFinalize(this);
+      GC.SuppressFinalize(this);
     }
     #endregion
   }

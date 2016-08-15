@@ -497,7 +497,8 @@ namespace ConsoleApplication1
         //tcps._Main();
         //pcinfo._Main();
         //per_process_threads._Main(args);
-        sockets1._Main(args);
+        //sockets1._Main(args);
+        wcf1._Main(args);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 
