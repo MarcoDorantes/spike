@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace ConsoleApplication1
 {
@@ -19,11 +20,11 @@ namespace ConsoleApplication1
   {
     public void ACK(string msg)
     {
-      Console.WriteLine($"{System.Reflection.MethodBase.GetCurrentMethod().Name}({msg})");
+      WriteLine($"{System.Reflection.MethodBase.GetCurrentMethod().Name}({msg})");
     }
     public void NACK(string msg)
     {
-      Console.WriteLine($"{System.Reflection.MethodBase.GetCurrentMethod().Name}({msg})");
+      WriteLine($"{System.Reflection.MethodBase.GetCurrentMethod().Name}({msg})");
     }
   }
   class ACKReceiverProxy : ClientBase<IACKReceiver>
@@ -54,11 +55,11 @@ namespace ConsoleApplication1
         {
           host.AddServiceEndpoint(typeof(IACKReceiver), new NetNamedPipeBinding(NetNamedPipeSecurityMode.None), $"net.pipe://localhost/{pipename}");
           host.Open();
-          Console.WriteLine("Press ENTER to exit"); Console.ReadLine();
+          WriteLine("Press ENTER to exit"); ReadLine();
         }
         catch (Exception ex)
         {
-          Console.WriteLine($"{ex.GetType().FullName}: {ex.Message}");
+          WriteLine($"{ex.GetType().FullName}: {ex.Message}");
         }
       }
     }
@@ -78,11 +79,13 @@ namespace ConsoleApplication1
         try
         {
           client.ACK("ack1");
+          WriteLine("Press ENTER to continue");ReadLine();
           client.NACK("nack1");
+          WriteLine("Press ENTER to exit");ReadLine();
         }
         catch (Exception ex)
         {
-          Console.WriteLine($"{ex.GetType().FullName}: {ex.Message}");
+          WriteLine($"{ex.GetType().FullName}: {ex.Message}");
         }
       }
     }
@@ -95,8 +98,8 @@ namespace ConsoleApplication1
     {
       var usage = new Action(() =>
       {
-        Console.WriteLine("Server usage: server <named-pipe> | default");
-        Console.WriteLine("Client usage: client <host> <named-pipe> | default [default]");
+        WriteLine("Server usage: server <named-pipe> | default");
+        WriteLine("Client usage: client <host> <named-pipe> | default [default]");
       });
       if (args.Length <= 0 || args.Length > 3)
       {
@@ -108,7 +111,7 @@ namespace ConsoleApplication1
         case "server":
           if (args.Length == 2)
           {
-            Console.WriteLine("Server mode");
+            WriteLine("Server mode");
             var server = new PipeServer(args[1] == "default" ? namedpipe : args[1]);
             server.Ack_Nack();
           }
@@ -117,14 +120,14 @@ namespace ConsoleApplication1
         case "client":
           if (args.Length >= 2)
           {
-            Console.WriteLine("Client mode");
+            WriteLine("Client mode");
             var client = new PipeClient(args[1] == "default" ? Environment.MachineName : args[1], args.Length == 3 ? (args[2] == "default" ? namedpipe : args[2]) : namedpipe);
             client.Ack_Nack();
           }
           else usage();
           break;
         default:
-          Console.WriteLine($"Unknown mode: [{args[0]}]");
+          WriteLine($"Unknown mode: [{args[0]}]");
           break;
       }
     }
