@@ -47,22 +47,22 @@ namespace ConsoleApplication1
       this.pipename = pipename;
     }
 
+    ServiceHost host;
     public void Ack_Nack()
     {
-      using (var host = new ServiceHost(typeof(ACKReceiver)))
-      {
+      host = new ServiceHost(typeof(ACKReceiver));
         try
         {
           host.AddServiceEndpoint(typeof(IACKReceiver), new NetNamedPipeBinding(NetNamedPipeSecurityMode.None), $"net.pipe://localhost/{pipename}");
           host.Open();
-          WriteLine("Press ENTER to exit"); ReadLine();
+          //WriteLine("Press ENTER to exit"); ReadLine();
         }
         catch (Exception ex)
         {
           WriteLine($"{ex.GetType().FullName}: {ex.Message}");
         }
-      }
     }
+    public void Stop() { host.Close(); }
   }
   class PipeClient
   {
@@ -72,10 +72,10 @@ namespace ConsoleApplication1
       this.host = host;
       this.pipename = pipename;
     }
+    ACKReceiverProxy client;
     public void Ack_Nack()
     {
-      using (var client = new ACKReceiverProxy(new NetNamedPipeBinding(NetNamedPipeSecurityMode.None),$"net.pipe://{host}/{pipename}"))
-      {
+      client = new ACKReceiverProxy(new NetNamedPipeBinding(NetNamedPipeSecurityMode.None), $"net.pipe://{host}/{pipename}");
         try
         {
           client.ACK("ack1");
@@ -87,14 +87,26 @@ namespace ConsoleApplication1
         {
           WriteLine($"{ex.GetType().FullName}: {ex.Message}");
         }
-      }
     }
+    public void Stop() { client.Close(); }
   }
 
   class wcf1
   {
     const string namedpipe = "wnpipe1";
+    static PipeServer server;
+    static PipeClient client;
     public static void _Main(string[] args)
+    {
+      _Main0(new string[] { "server", "default" });
+      _Main0(new string[] { "client", "default" });
+      WriteLine("Press ENTER to stop Server"); ReadLine();
+      server.Stop();
+      WriteLine("Server Stopped. Press ENTER to exit"); ReadLine();
+      client.Stop();
+      WriteLine("Client Stopped. Press ENTER to stop Server"); ReadLine();
+    }
+    public static void _Main0(string[] args)
     {
       var usage = new Action(() =>
       {
@@ -112,7 +124,7 @@ namespace ConsoleApplication1
           if (args.Length == 2)
           {
             WriteLine("Server mode");
-            var server = new PipeServer(args[1] == "default" ? namedpipe : args[1]);
+            server = new PipeServer(args[1] == "default" ? namedpipe : args[1]);
             server.Ack_Nack();
           }
           else usage();
@@ -121,7 +133,7 @@ namespace ConsoleApplication1
           if (args.Length >= 2)
           {
             WriteLine("Client mode");
-            var client = new PipeClient(args[1] == "default" ? Environment.MachineName : args[1], args.Length == 3 ? (args[2] == "default" ? namedpipe : args[2]) : namedpipe);
+            client = new PipeClient(args[1] == "default" ? Environment.MachineName : args[1], args.Length == 3 ? (args[2] == "default" ? namedpipe : args[2]) : namedpipe);
             client.Ack_Nack();
           }
           else usage();
