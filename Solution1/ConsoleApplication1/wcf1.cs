@@ -80,13 +80,13 @@ namespace ConsoleApplication1
       this.host = host;
       this.pipename = pipename;
     }
-    public ACKReceiverProxy client;
+    public ACKReceiverProxy proxy;
     public void Ack_Nack()
     {
       var binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
       binding.ReceiveTimeout = TimeSpan.Parse("00:00:30");
-      client = new ACKReceiverProxy(binding, $"net.pipe://{host}/{pipename}");
-      var comm = client as ICommunicationObject;
+      proxy = new ACKReceiverProxy(binding, $"net.pipe://{host}/{pipename}");
+      var comm = proxy as ICommunicationObject;
       if (comm != null)
       {
         comm.Faulted += (s, e) => WriteLine("Client Faulted");
@@ -98,11 +98,11 @@ namespace ConsoleApplication1
       else WriteLine("No Client ICommunicationObject");
       try
       {
-        //client.ACK("ack1");
-        Task.Run(() => client.ACK("ack1"));
+        proxy.ACK("ack1");
+        //Task.Run(() => client.ACK("ack1"));
         WriteLine("Press ENTER to continue"); ReadLine();
-        //client.NACK("nack1");
-        Task.Run(() => { if (client.State != CommunicationState.Opened) client.NACK("nack1"); else WriteLine($"cannot call NACK ({client.State})"); });
+        proxy.NACK("nack1");
+        //Task.Run(() => { if (client.State == CommunicationState.Opened) client.NACK("nack1"); else WriteLine($"cannot call NACK ({client.State})"); });
         WriteLine("Press ENTER to exit"); ReadLine();
       }
       catch (Exception ex)
@@ -110,7 +110,61 @@ namespace ConsoleApplication1
         WriteLine($"{ex.GetType().FullName}: {ex.Message}");
       }
     }
-    public void Stop() { client.Close(); }
+    public void Ack_Nack_percall()
+    {
+      try
+      {
+        ACK_percall("ack1");
+        //Task.Run(() => client.ACK("ack1"));
+        WriteLine("Press ENTER to continue"); ReadLine();
+        NACK_percall("nack1");
+        //Task.Run(() => { if (client.State == CommunicationState.Opened) client.NACK("nack1"); else WriteLine($"cannot call NACK ({client.State})"); });
+        WriteLine("Press ENTER to exit"); ReadLine();
+      }
+      catch (Exception ex)
+      {
+        WriteLine($"{ex.GetType().FullName}: {ex.Message}");
+      }
+    }
+    public void Stop() { proxy.Close(); }
+    private void ACK_percall(string msg)
+    {
+      var binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
+      binding.ReceiveTimeout = TimeSpan.Parse("00:00:30");
+      using (var proxy = new ACKReceiverProxy(binding, $"net.pipe://{host}/{pipename}"))
+      {
+        var comm = proxy as ICommunicationObject;
+        if (comm != null)
+        {
+          comm.Faulted += (s, e) => WriteLine("Client Faulted");
+          comm.Opening += (s, e) => WriteLine("Client Opening");
+          comm.Opened += (s, e) => WriteLine("Client Opened");
+          comm.Closing += (s, e) => WriteLine("Client Closing");
+          comm.Closed += (s, e) => WriteLine("Client Closed");
+        }
+        else WriteLine("No Client ICommunicationObject");
+        proxy.ACK(msg);
+      }
+    }
+    private void NACK_percall(string msg)
+    {
+      var binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
+      binding.ReceiveTimeout = TimeSpan.Parse("00:00:30");
+      using (var proxy = new ACKReceiverProxy(binding, $"net.pipe://{host}/{pipename}"))
+      {
+        var comm = proxy as ICommunicationObject;
+        if (comm != null)
+        {
+          comm.Faulted += (s, e) => WriteLine("Client Faulted");
+          comm.Opening += (s, e) => WriteLine("Client Opening");
+          comm.Opened += (s, e) => WriteLine("Client Opened");
+          comm.Closing += (s, e) => WriteLine("Client Closing");
+          comm.Closed += (s, e) => WriteLine("Client Closed");
+        }
+        else WriteLine("No Client ICommunicationObject");
+        proxy.NACK(msg);
+      }
+    }
   }
 
   class wcf1
@@ -120,14 +174,15 @@ namespace ConsoleApplication1
       _Main0(new string[] { "server", "default" });
       _Main0(new string[] { "client", "default" });
       WriteLine("Press ENTER to check Client"); ReadLine();
-      WriteLine($"client.State:{client.client.State}");
+      //WriteLine($"client.State:{client.proxy.State}");
       WriteLine("Press ENTER to stop Server"); ReadLine();
       server.Stop();
       WriteLine("Server stopped. Press ENTER to check Client"); ReadLine();
-      WriteLine($"client.State:{client.client.State}");
+      //WriteLine($"client.State:{client.proxy.State}");
       WriteLine("Press ENTER to stop Client"); ReadLine();
-      client.Stop();
-      WriteLine($"client.State:{client.client.State}");
+      //client.Stop();
+      //WriteLine($"client.State:{client.proxy.State}");
+      //WriteLine($"client.State:{(client.proxy.State != null ? client?.proxy.State.ToString() : "no proxy")}");
     }
 
     const string namedpipe = "wnpipe1";
@@ -171,7 +226,8 @@ namespace ConsoleApplication1
           {
             WriteLine("Client mode");
             client = new PipeClient(args[1] == "default" ? Environment.MachineName : args[1], args.Length == 3 ? (args[2] == "default" ? namedpipe : args[2]) : namedpipe);
-            client.Ack_Nack();
+            //client.Ack_Nack();
+            client.Ack_Nack_percall();
           }
           else usage();
           break;
