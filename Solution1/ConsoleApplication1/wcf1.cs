@@ -38,6 +38,7 @@ namespace ConsoleApplication1
     {
       Channel.NACK(msg);
     }
+    
   }
   class PipeServer
   {
@@ -51,16 +52,23 @@ namespace ConsoleApplication1
     public void Ack_Nack()
     {
       host = new ServiceHost(typeof(ACKReceiver));
-        try
-        {
-          host.AddServiceEndpoint(typeof(IACKReceiver), new NetNamedPipeBinding(NetNamedPipeSecurityMode.None), $"net.pipe://localhost/{pipename}");
-          host.Open();
-          //WriteLine("Press ENTER to exit"); ReadLine();
-        }
-        catch (Exception ex)
-        {
-          WriteLine($"{ex.GetType().FullName}: {ex.Message}");
-        }
+      host.Faulted += (s, e) => WriteLine("Server Faulted");
+      host.Opening += (s, e) => WriteLine("Server Opening");
+      host.Opened += (s, e) => WriteLine("Server Opened");
+      host.Closing += (s, e) => WriteLine("Server Closing");
+      host.Closed += (s, e) => WriteLine("Server Closed");
+      try
+      {
+        var binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
+        binding.ReceiveTimeout = TimeSpan.Parse("00:00:30");
+        host.AddServiceEndpoint(typeof(IACKReceiver), binding, $"net.pipe://localhost/{pipename}");
+        host.Open();
+        //WriteLine("Press ENTER to exit"); ReadLine();
+      }
+      catch (Exception ex)
+      {
+        WriteLine($"{ex.GetType().FullName}: {ex.Message}");
+      }
     }
     public void Stop() { host.Close(); }
   }
@@ -72,37 +80,66 @@ namespace ConsoleApplication1
       this.host = host;
       this.pipename = pipename;
     }
-    ACKReceiverProxy client;
+    public ACKReceiverProxy client;
     public void Ack_Nack()
     {
-      client = new ACKReceiverProxy(new NetNamedPipeBinding(NetNamedPipeSecurityMode.None), $"net.pipe://{host}/{pipename}");
-        try
-        {
-          client.ACK("ack1");
-          WriteLine("Press ENTER to continue");ReadLine();
-          client.NACK("nack1");
-          WriteLine("Press ENTER to exit");ReadLine();
-        }
-        catch (Exception ex)
-        {
-          WriteLine($"{ex.GetType().FullName}: {ex.Message}");
-        }
+      var binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
+      binding.ReceiveTimeout = TimeSpan.Parse("00:00:30");
+      client = new ACKReceiverProxy(binding, $"net.pipe://{host}/{pipename}");
+      var comm = client as ICommunicationObject;
+      if (comm != null)
+      {
+        comm.Faulted += (s, e) => WriteLine("Client Faulted");
+        comm.Opening += (s, e) => WriteLine("Client Opening");
+        comm.Opened += (s, e) => WriteLine("Client Opened");
+        comm.Closing += (s, e) => WriteLine("Client Closing");
+        comm.Closed += (s, e) => WriteLine("Client Closed");
+      }
+      else WriteLine("No Client ICommunicationObject");
+      try
+      {
+        //client.ACK("ack1");
+        Task.Run(() => client.ACK("ack1"));
+        WriteLine("Press ENTER to continue"); ReadLine();
+        //client.NACK("nack1");
+        Task.Run(() => { if (client.State != CommunicationState.Opened) client.NACK("nack1"); else WriteLine($"cannot call NACK ({client.State})"); });
+        WriteLine("Press ENTER to exit"); ReadLine();
+      }
+      catch (Exception ex)
+      {
+        WriteLine($"{ex.GetType().FullName}: {ex.Message}");
+      }
     }
     public void Stop() { client.Close(); }
   }
 
   class wcf1
   {
+    public static void _Main(string[] args)
+    {
+      _Main0(new string[] { "server", "default" });
+      _Main0(new string[] { "client", "default" });
+      WriteLine("Press ENTER to check Client"); ReadLine();
+      WriteLine($"client.State:{client.client.State}");
+      WriteLine("Press ENTER to stop Server"); ReadLine();
+      server.Stop();
+      WriteLine("Server stopped. Press ENTER to check Client"); ReadLine();
+      WriteLine($"client.State:{client.client.State}");
+      WriteLine("Press ENTER to stop Client"); ReadLine();
+      client.Stop();
+      WriteLine($"client.State:{client.client.State}");
+    }
+
     const string namedpipe = "wnpipe1";
     static PipeServer server;
     static PipeClient client;
-    public static void _Main(string[] args)
+    public static void _Main1(string[] args)
     {
       _Main0(new string[] { "server", "default" });
       _Main0(new string[] { "client", "default" });
       WriteLine("Press ENTER to stop Server"); ReadLine();
       server.Stop();
-      WriteLine("Server Stopped. Press ENTER to exit"); ReadLine();
+      WriteLine("Server Stopped. Press ENTER to stop Client"); ReadLine();
       client.Stop();
       WriteLine("Client Stopped. Press ENTER to stop Server"); ReadLine();
     }
