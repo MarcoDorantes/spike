@@ -99,10 +99,10 @@ namespace ConsoleApplication1
       try
       {
         proxy.ACK("ack1");
-        //Task.Run(() => client.ACK("ack1"));
+        //Task.Run(() => proxy.ACK("ack1"));
         WriteLine("Press ENTER to continue"); ReadLine();
         proxy.NACK("nack1");
-        //Task.Run(() => { if (client.State == CommunicationState.Opened) client.NACK("nack1"); else WriteLine($"cannot call NACK ({client.State})"); });
+        //Task.Run(() => { if (proxy.State == CommunicationState.Opened) proxy.NACK("nack1"); else WriteLine($"cannot call NACK ({proxy.State})"); });
         WriteLine("Press ENTER to exit"); ReadLine();
       }
       catch (Exception ex)
@@ -226,8 +226,8 @@ namespace ConsoleApplication1
           {
             WriteLine("Client mode");
             client = new PipeClient(args[1] == "default" ? Environment.MachineName : args[1], args.Length == 3 ? (args[2] == "default" ? namedpipe : args[2]) : namedpipe);
-            //client.Ack_Nack();
-            client.Ack_Nack_percall();
+            client.Ack_Nack();
+            //client.Ack_Nack_percall();
           }
           else usage();
           break;
