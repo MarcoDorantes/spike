@@ -80,7 +80,7 @@ namespace GOF_Visitor
     [TestMethod]
     public void basic_gof_visitor()
     {
-      IEnumerable<Shape> draw = new List<Shape> { new Circle(new System.Drawing.Point(0, 0), 10), new Rectangle(new System.Drawing.Point(20, 0), 10, 30) };
+      IEnumerable<Shape> draw = new List<Shape> { new Circle(new System.Drawing.Point(0, 1), 10), new Rectangle(new System.Drawing.Point(20, 5), 10, 30) };
       double all_area = draw.Sum(s => s.Area);
       Assert.AreEqual<double>(100D * Math.PI + 300, all_area);
 
@@ -89,8 +89,8 @@ namespace GOF_Visitor
       Assert.AreEqual<double>(50D, width.Result);
 
       var length = new LengthOperation();
-      draw.Aggregate(width, (whole, next) => { next.Accept(whole); return whole; });
-      Assert.AreEqual<double>(0D, length.Result);
+      draw.Aggregate(length, (whole, next) => { next.Accept(whole); return whole; });
+      Assert.AreEqual<double>(56D, length.Result);
 
       var area = new AreaOperation();
       draw.Aggregate(area, (whole, next) => { next.Accept(whole); return whole; });
@@ -192,7 +192,7 @@ namespace Acyclic_Visitor
     [TestMethod]
     public void basic_acyclic_visitor()
     {
-      IEnumerable<Shape> draw = new List<Shape> { new Circle(new System.Drawing.Point(0, 0), 10), new Rectangle(new System.Drawing.Point(20, 0), 10, 30) };
+      IEnumerable<Shape> draw = new List<Shape> { new Circle(new System.Drawing.Point(0, 1), 10), new Rectangle(new System.Drawing.Point(20, 5), 10, 30) };
       double all_area = draw.Sum(s => s.Area);
       Assert.AreEqual<double>(100D * Math.PI + 300, all_area);
 
@@ -201,12 +201,66 @@ namespace Acyclic_Visitor
       Assert.AreEqual<double>(50D, width.Result);
 
       var length = new LengthOperation();
-      draw.Aggregate(width, (whole, next) => { next.Accept(whole); return whole; });
-      Assert.AreEqual<double>(0D, length.Result);
+      draw.Aggregate(length, (whole, next) => { next.Accept(whole); return whole; });
+      Assert.AreEqual<double>(56D, length.Result);
 
       var area = new AreaOperation();
       draw.Aggregate(area, (whole, next) => { next.Accept(whole); return whole; });
       Assert.AreEqual<double>(all_area, area.Result);
+    }
+  }
+}
+
+namespace a_cs_spike
+{
+  abstract class Shape
+  {
+    public Shape(System.Drawing.Point topleft)
+    {
+      TopLeft = topleft;
+    }
+    public System.Drawing.Point TopLeft;
+    public abstract double Area { get; }
+  }
+  class Circle : Shape
+  {
+    public Circle(System.Drawing.Point topleft, double ratio) : base(topleft)
+    {
+      Ratio = ratio;
+    }
+    public double Ratio;
+    public override double Area => Math.PI * Math.Pow(Ratio, 2);
+  }
+  class Rectangle : Shape
+  {
+    public Rectangle(System.Drawing.Point topleft, double width, double length) : base(topleft)
+    {
+      Width = width;
+      Length = length;
+    }
+    public double Width;
+    public double Length;
+    public override double Area => Width * Length;
+  }
+
+  [TestClass]
+  public class a_cs_visitor_spec
+  {
+    [TestMethod]
+    public void basic_cs_spike_visitor()
+    {
+      IEnumerable<Shape> draw = new List<Shape> { new Circle(new System.Drawing.Point(0, 1), 10), new Rectangle(new System.Drawing.Point(20, 5), 10, 30) };
+      double all_area = draw.Sum(s => s.Area);
+      Assert.AreEqual<double>(100D * Math.PI + 300, all_area);
+
+      double width = draw.Where(s => s is Circle).Cast<Circle>().Sum(c => c.TopLeft.X + c.Ratio * 2) + draw.Where(s => s is Rectangle).Cast<Rectangle>().Sum(r => r.TopLeft.X + r.Width);
+      Assert.AreEqual<double>(50D, width);
+
+      var length = draw.Where(s => s is Circle).Cast<Circle>().Sum(c => c.TopLeft.Y + c.Ratio * 2) + draw.Where(s => s is Rectangle).Cast<Rectangle>().Sum(r => r.TopLeft.Y + r.Length);
+      Assert.AreEqual<double>(56D, length);
+
+      double area = draw.Sum(s => s.Area);
+      Assert.AreEqual<double>(all_area, area);
     }
   }
 }
