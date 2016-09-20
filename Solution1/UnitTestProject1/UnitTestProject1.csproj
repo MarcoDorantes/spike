@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="FeedReactorsSpec.cs" />
     <Compile Include="fix_specs.cs" />
+    <Compile Include="hashtextSpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskSyncsSpec.cs" />
     <Compile Include="msbuildXMLspec.cs" />
