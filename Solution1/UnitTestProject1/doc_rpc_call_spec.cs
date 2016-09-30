@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using nutility;
 
 namespace UnitTestProject1
 {
@@ -20,7 +21,7 @@ namespace UnitTestProject1
     {
       var xml = new XDocument(
         new XElement("proc1",
-          new XElement("arg1","val1")
+          new XElement("arg1", "val1")
         )
       );
 
@@ -49,7 +50,7 @@ namespace UnitTestProject1
       string RenderArguments();
     }
     interface IParameterMetadataProvider { string GetLiteralValue(string parameter_name, string parameter_value); }
-    string GetOperationCall(XDocument xml, nutility.ITypeClassMapper typemap)
+    static string GetOperationCall(XDocument xml, nutility.ITypeClassMapper typemap)
     {
       typemap.AddMapping<XDocument>(xml);
       var builder = typemap.GetService<IOperationCallBuilder>();
@@ -92,7 +93,7 @@ namespace UnitTestProject1
         if (Schema != null && Schema.ContainsKey(parameter_name))
         {
           //TODO Check Get_Quasi_T_SQL
-          return  Schema[parameter_name] == typeof(decimal) ? $"{parameter_value}" : $"'{parameter_value}'";
+          return Schema[parameter_name] == typeof(decimal) ? $"{parameter_value}" : $"'{parameter_value}'";
         }
         return $"'{parameter_value}'";
       }
@@ -108,14 +109,15 @@ namespace UnitTestProject1
         { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) },
       });
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
-      var tsql = GetOperationCall(xml,typemap);
+      var tsql = GetOperationCall(xml, typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = '123.45'", tsql);
     }
     [TestMethod]
     public void a_xml_call_4()
     {
       var metadata = new ParameterMetadataProvider() { Schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } } };
-      var typemap = new nutility.TypeClassMapper(
+      var typemap = new nutility.TypeClassMapper
+      (
         new Dictionary<Type, Type> { { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) } },
         new Dictionary<Type, object> { { typeof(IParameterMetadataProvider), metadata } }
       );
@@ -123,6 +125,48 @@ namespace UnitTestProject1
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
       var tsql = GetOperationCall(xml, typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", tsql);
+    }
+    interface IDataType { XDocument GetXDocument(); }
+    interface IDataTypeToOperationExecution { string GetOperationExecution(IDataType data, nutility.ITypeClassMapper typemap); }
+    class DataTypeToStoredProcedureCall : IDataTypeToOperationExecution
+    {
+      public string GetOperationExecution(IDataType data, ITypeClassMapper typemap)
+      {
+        var tsql = GetOperationCall(data.GetXDocument(), typemap);
+        return tsql;
+      }
+    }
+    class DataType : IDataType
+    {
+      private XDocument xml;
+      public DataType(nutility.ITypeClassMapper typemap)
+      {
+        xml = typemap.GetService<XDocument>();
+      }
+      public XDocument GetXDocument() => xml;
+    }
+    [TestMethod]
+    public void a_xml_call_5()
+    {
+      var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
+      var metadata = new ParameterMetadataProvider() { Schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } } };
+      var typemap = new nutility.TypeClassMapper
+      (
+        new Dictionary<Type, Type>
+        {
+          { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) },
+          { typeof(IDataTypeToOperationExecution), typeof(DataTypeToStoredProcedureCall) },
+        },
+        new Dictionary<Type, object>
+        {
+          { typeof(IParameterMetadataProvider), metadata },
+          { typeof(XDocument), xml },
+        }
+      );
+      var inbound = typemap.GetService<IDataType>();
+      var transform = typemap.GetService<IDataTypeToOperationExecution>();
+      var execution = transform.GetOperationExecution(inbound, typemap);
+      Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", execution);
     }
   }
 }
