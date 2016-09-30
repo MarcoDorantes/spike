@@ -49,7 +49,11 @@ namespace UnitTestProject1
       string GetOperationName();
       string RenderArguments();
     }
-    interface IParameterMetadataProvider { string GetLiteralValue(string parameter_name, string parameter_value); }
+    interface IParameterMetadataProvider
+    {
+      void LoadSchemaFor(string operation_name);
+      string GetLiteralValue(string parameter_name, string parameter_value);
+    }
     static string GetStoredProcedureCall(nutility.ITypeClassMapper typemap)
     {
       var builder = typemap.GetService<IOperationCallBuilder>();
@@ -63,6 +67,7 @@ namespace UnitTestProject1
       {
         xml = typemap.GetService<XDocument>();
         metadata = typemap.GetService<IParameterMetadataProvider>();
+        metadata.LoadSchemaFor(GetOperationName());
       }
       public string GetRunStatement()
       {
@@ -86,6 +91,17 @@ namespace UnitTestProject1
     }
     class ParameterMetadataProvider : IParameterMetadataProvider
     {
+      private nutility.ITypeClassMapper typemap;
+      private IDictionary<string, Type> Schema;
+      public ParameterMetadataProvider(nutility.ITypeClassMapper typemap)
+      {
+        this.typemap = typemap;
+      }
+      public void LoadSchemaFor(string operation_name)
+      {
+        Schema = typemap.GetService<IDictionary<string, Type>>();
+      }
+
       public string GetLiteralValue(string parameter_name, string parameter_value)
       {
         if (Schema != null && Schema.ContainsKey(parameter_name))
@@ -95,7 +111,6 @@ namespace UnitTestProject1
         }
         return $"'{parameter_value}'";
       }
-      public Dictionary<string, Type> Schema;
     }
 
     [TestMethod]
@@ -111,7 +126,8 @@ namespace UnitTestProject1
         },
         new Dictionary<Type, object>
         {
-          { typeof(XDocument), xml }
+          { typeof(XDocument), xml },
+          { typeof(IDictionary<string, Type>), null }
         }
       );
       var tsql = GetStoredProcedureCall(typemap);
@@ -121,12 +137,15 @@ namespace UnitTestProject1
     public void a_xml_call_4()
     {
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
-      var metadata = new ParameterMetadataProvider() { Schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } } };
+      var schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } };
       var typemap = new nutility.TypeClassMapper
       (
-        new Dictionary<Type, Type> { { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) } },
+        new Dictionary<Type, Type> {
+          { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) },
+          { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) }
+        },
         new Dictionary<Type, object> {
-          { typeof(IParameterMetadataProvider), metadata },
+          { typeof(IDictionary<string, Type>), schema },
           { typeof(XDocument), xml},
         }
       );
@@ -160,18 +179,19 @@ namespace UnitTestProject1
     public void a_xml_call_5()
     {
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
-      var metadata = new ParameterMetadataProvider() { Schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } } };
+      var schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } };
       var typemap = new nutility.TypeClassMapper
       (
         new Dictionary<Type, Type>
         {
           { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) },
           { typeof(IDataTypeToOperationExecution), typeof(DataTypeToStoredProcedureCall) },
-          { typeof(IDataType), typeof(DataType) }
+          { typeof(IDataType), typeof(DataType) },
+          { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) }
         },
         new Dictionary<Type, object>
         {
-          { typeof(IParameterMetadataProvider), metadata }
+          { typeof(IDictionary<string, Type>), schema }
         }
       );
       var inbound = typemap.GetService<IDataType>();
