@@ -49,7 +49,7 @@ namespace UnitTestProject1
       string RenderArguments();
     }
     interface IParameterMetadataProvider { string GetLiteralValue(string parameter_name, string parameter_value); }
-    string GetTSQL(XDocument xml, nutility.ITypeClassMapper typemap)
+    string GetOperationCall(XDocument xml, nutility.ITypeClassMapper typemap)
     {
       typemap.AddMapping<XDocument>(xml);
       var builder = typemap.GetService<IOperationCallBuilder>();
@@ -108,7 +108,7 @@ namespace UnitTestProject1
         { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) },
       });
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
-      var tsql = GetTSQL(xml,typemap);
+      var tsql = GetOperationCall(xml,typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = '123.45'", tsql);
     }
     [TestMethod]
@@ -121,7 +121,7 @@ namespace UnitTestProject1
       );
 
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
-      var tsql = GetTSQL(xml, typemap);
+      var tsql = GetOperationCall(xml, typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", tsql);
     }
   }
