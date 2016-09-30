@@ -50,11 +50,9 @@ namespace UnitTestProject1
       string RenderArguments();
     }
     interface IParameterMetadataProvider { string GetLiteralValue(string parameter_name, string parameter_value); }
-    static string GetOperationCall(XDocument xml, nutility.ITypeClassMapper typemap)
+    static string GetStoredProcedureCall(nutility.ITypeClassMapper typemap)
     {
-      typemap.AddMapping<XDocument>(xml);
       var builder = typemap.GetService<IOperationCallBuilder>();
-
       return $"{builder.GetRunStatement()} {builder.GetOperationName()} {builder.RenderArguments()}";
     }
     class OperationCallBuilder : IOperationCallBuilder
@@ -103,27 +101,37 @@ namespace UnitTestProject1
     [TestMethod]
     public void a_xml_call_3()
     {
-      var typemap = new nutility.TypeClassMapper(new Dictionary<Type, Type>
-      {
-        { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) },
-        { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) },
-      });
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
-      var tsql = GetOperationCall(xml, typemap);
+      var typemap = new nutility.TypeClassMapper
+      (
+        new Dictionary<Type, Type>
+        {
+          { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) },
+          { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) }
+        },
+        new Dictionary<Type, object>
+        {
+          { typeof(XDocument), xml }
+        }
+      );
+      var tsql = GetStoredProcedureCall(typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = '123.45'", tsql);
     }
     [TestMethod]
     public void a_xml_call_4()
     {
+      var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
       var metadata = new ParameterMetadataProvider() { Schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } } };
       var typemap = new nutility.TypeClassMapper
       (
         new Dictionary<Type, Type> { { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) } },
-        new Dictionary<Type, object> { { typeof(IParameterMetadataProvider), metadata } }
+        new Dictionary<Type, object> {
+          { typeof(IParameterMetadataProvider), metadata },
+          { typeof(XDocument), xml},
+        }
       );
 
-      var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
-      var tsql = GetOperationCall(xml, typemap);
+      var tsql = GetStoredProcedureCall(typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", tsql);
     }
     interface IDataType { XDocument GetXDocument(); }
@@ -132,7 +140,8 @@ namespace UnitTestProject1
     {
       public string GetOperationExecution(IDataType data, ITypeClassMapper typemap)
       {
-        var tsql = GetOperationCall(data.GetXDocument(), typemap);
+//        typemap.AddMapping<XDocument>(data.GetXDocument());
+        var tsql = GetStoredProcedureCall(typemap);
         return tsql;
       }
     }
@@ -156,6 +165,7 @@ namespace UnitTestProject1
         {
           { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) },
           { typeof(IDataTypeToOperationExecution), typeof(DataTypeToStoredProcedureCall) },
+          { typeof(IDataType), typeof(DataType) }
         },
         new Dictionary<Type, object>
         {
