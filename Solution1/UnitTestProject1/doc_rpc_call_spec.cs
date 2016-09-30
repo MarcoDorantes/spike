@@ -134,13 +134,17 @@ namespace UnitTestProject1
       var tsql = GetStoredProcedureCall(typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", tsql);
     }
-    interface IDataType { XDocument GetXDocument(); }
+    interface IDataType
+    {
+      void SetSerializedDataTypeAsXDocument(XDocument xml);
+      XDocument GetXDocument();
+    }
     interface IDataTypeToOperationExecution { string GetOperationExecution(IDataType data, nutility.ITypeClassMapper typemap); }
     class DataTypeToStoredProcedureCall : IDataTypeToOperationExecution
     {
       public string GetOperationExecution(IDataType data, ITypeClassMapper typemap)
       {
-//        typemap.AddMapping<XDocument>(data.GetXDocument());
+        typemap.AddMapping<XDocument>(data.GetXDocument());
         var tsql = GetStoredProcedureCall(typemap);
         return tsql;
       }
@@ -148,10 +152,8 @@ namespace UnitTestProject1
     class DataType : IDataType
     {
       private XDocument xml;
-      public DataType(nutility.ITypeClassMapper typemap)
-      {
-        xml = typemap.GetService<XDocument>();
-      }
+
+      public void SetSerializedDataTypeAsXDocument(XDocument xml) { this.xml = xml; }
       public XDocument GetXDocument() => xml;
     }
     [TestMethod]
@@ -169,11 +171,11 @@ namespace UnitTestProject1
         },
         new Dictionary<Type, object>
         {
-          { typeof(IParameterMetadataProvider), metadata },
-          { typeof(XDocument), xml },
+          { typeof(IParameterMetadataProvider), metadata }
         }
       );
       var inbound = typemap.GetService<IDataType>();
+      inbound.SetSerializedDataTypeAsXDocument(xml);
       var transform = typemap.GetService<IDataTypeToOperationExecution>();
       var execution = transform.GetOperationExecution(inbound, typemap);
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", execution);
