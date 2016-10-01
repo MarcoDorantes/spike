@@ -164,47 +164,69 @@ namespace UnitTestProject1
     }
     #endregion
 
-    #region An inbound XML message processing
+    #region An inbound XML message processing second try
+    static class RPC_Constant
+    {
+      public static string SerializedRPCDataType = "SerializedRPCDataType";
+    }
     interface RPC_As_AbstractDataType
     {
-      void SetSerializedDataTypeAsXDocument(XDocument xml);
-      XDocument GetXDocument();
-
-      //string GetRunStatement();
-      //string GetOperationName();
-      //string GetArguments();
+      string GetRunStatement();
+      string GetOperationName();
+      string GetArguments();
     }
-    interface IDataTypeToOperationExecution
+    interface RPC_DataType_To_OperationExecution
     {
-      string GetOperationExecution(RPC_As_AbstractDataType data, nutility.ITypeClassMapper typemap);
+      string GetOperationExecution(RPC_As_AbstractDataType calltype_instance);
     }
-    class DataTypeToStoredProcedureCall : IDataTypeToOperationExecution
+    class MessageToStoredProcedureCall : RPC_DataType_To_OperationExecution
     {
-      public string GetOperationExecution(RPC_As_AbstractDataType data, ITypeClassMapper typemap)
+      public string GetOperationExecution(RPC_As_AbstractDataType calltype_instance) => GetStoredProcedureCall(calltype_instance);
+      private string GetStoredProcedureCall(RPC_As_AbstractDataType calltype_instance)
       {
-        typemap.AddMapping<XDocument>(data.GetXDocument());
-        var tsql = GetStoredProcedureCall(typemap);
-        return tsql;
+        return $"{calltype_instance.GetRunStatement()} {calltype_instance.GetOperationName()} {calltype_instance.GetArguments()}";
       }
     }
     class ProcedureCallAsXmlMessage : RPC_As_AbstractDataType
     {
       private XDocument xml;
-
-      public void SetSerializedDataTypeAsXDocument(XDocument xml) { this.xml = xml; }
-      public XDocument GetXDocument() => xml;
+      private IParameterMetadataProvider metadata;
+      public ProcedureCallAsXmlMessage(nutility.ITypeClassMapper typemap)
+      {
+        xml = typemap.GetValue<XDocument>(RPC_Constant.SerializedRPCDataType);
+        metadata = typemap.GetService<IParameterMetadataProvider>();
+        metadata.LoadSchemaFor(GetOperationName());
+      }
+      public string GetRunStatement()
+      {
+        return "EXECUTE";
+      }
+      public string GetOperationName()
+      {
+        return xml.Root.Name.LocalName;
+      }
+      public string GetArguments()
+      {
+        if (xml.Root.Elements().Count() > 0)
+        {
+          return xml.Root.Elements().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(", @{0} = {1}", n.Name.LocalName, metadata.GetLiteralValue(n.Name.LocalName, n.Value))).ToString().Substring(2);
+        }
+        else
+        {
+          return string.Empty;
+        }
+      }
     }
     [TestMethod]
     public void a_xml_call_5()
     {
-      var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
+      //Arrange
       var schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } };
       var typemap = new nutility.TypeClassMapper
       (
         new Dictionary<Type, Type>
         {
-          { typeof(IOperationCallBuilder), typeof(OperationCallBuilder) },
-          { typeof(IDataTypeToOperationExecution), typeof(DataTypeToStoredProcedureCall) },
+          { typeof(RPC_DataType_To_OperationExecution), typeof(MessageToStoredProcedureCall) },
           { typeof(RPC_As_AbstractDataType), typeof(ProcedureCallAsXmlMessage) },
           { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) }
         },
@@ -213,10 +235,16 @@ namespace UnitTestProject1
           { typeof(IDictionary<string, Type>), schema }
         }
       );
+
+      //Act
+      var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
+      typemap.SetValue<XDocument>(RPC_Constant.SerializedRPCDataType, xml);
       var inbound = typemap.GetService<RPC_As_AbstractDataType>();
-      inbound.SetSerializedDataTypeAsXDocument(xml);
-      var transform = typemap.GetService<IDataTypeToOperationExecution>();
-      var execution = transform.GetOperationExecution(inbound, typemap);
+
+      var transform = typemap.GetService<RPC_DataType_To_OperationExecution>();
+      var execution = transform.GetOperationExecution(inbound);
+
+      //Assert
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", execution);
     }
     #endregion
