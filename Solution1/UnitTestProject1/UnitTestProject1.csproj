@@ -40,8 +40,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="TypeClassMapper, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TypeClassMapper.1.3.0\lib\net46\TypeClassMapper.dll</HintPath>
+    <Reference Include="TypeClassMapper, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TypeClassMapper.1.4.0\lib\net46\TypeClassMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -70,7 +70,9 @@
     <Compile Include="visitor_spec.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

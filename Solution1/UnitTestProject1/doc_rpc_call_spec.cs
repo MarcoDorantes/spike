@@ -247,6 +247,47 @@ namespace UnitTestProject1
       //Assert
       Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", execution);
     }
+
+    [TestMethod]
+    public void a_xml_call_6()
+    {
+      //Arrange
+      var schema = new Dictionary<string, Type> { { "par2", typeof(decimal) } };
+      var typemap = new nutility.TypeClassMapper
+      (
+        new Dictionary<Type, Type>
+        {
+          { typeof(RPC_DataType_To_OperationExecution), typeof(MessageToStoredProcedureCall) },
+          { typeof(RPC_As_AbstractDataType), typeof(ProcedureCallAsXmlMessage) },
+          { typeof(IParameterMetadataProvider), typeof(ParameterMetadataProvider) }
+        },
+        new Dictionary<Type, object>
+        {
+          { typeof(IDictionary<string, Type>), schema }
+        }
+      );
+
+      //Act
+      var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
+      typemap.SetValue<XDocument>(RPC_Constant.SerializedRPCDataType, xml);
+      var inbound = typemap.GetService<RPC_As_AbstractDataType>();
+
+      var transform = typemap.GetService<RPC_DataType_To_OperationExecution>();
+      var execution = transform.GetOperationExecution(inbound);
+
+      //Assert
+      Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", execution);
+
+      var xml2 = XDocument.Parse("<sp2><par1>val1</par1><par2>123.45</par2></sp2>");
+      typemap.SetValue<XDocument>(RPC_Constant.SerializedRPCDataType, xml2);
+      var inbound2 = typemap.GetService<RPC_As_AbstractDataType>();
+
+      transform = typemap.GetService<RPC_DataType_To_OperationExecution>();
+      execution = transform.GetOperationExecution(inbound2);
+
+      //Assert
+      Assert.AreEqual<string>("EXECUTE sp2 @par1 = 'val1', @par2 = 123.45", execution);
+    }
     #endregion
   }
 }
