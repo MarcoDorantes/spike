@@ -268,25 +268,25 @@ namespace UnitTestProject1
       );
 
       //Act
+      //Call 1
       var xml = XDocument.Parse("<sp1><par1>val1</par1><par2>123.45</par2></sp1>");
       typemap.SetValue<XDocument>(RPC_Constant.SerializedRPCDataType, xml);
-      var inbound = typemap.GetService<RPC_As_AbstractDataType>();
+      var inbound1 = typemap.GetService<RPC_As_AbstractDataType>();
 
       var transform = typemap.GetService<RPC_DataType_To_OperationExecution>();
-      var execution = transform.GetOperationExecution(inbound);
+      var execution1 = transform.GetOperationExecution(inbound1);
 
-      //Assert
-      Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", execution);
-
+      //Call 2
       var xml2 = XDocument.Parse("<sp2><par1>val1</par1><par2>123.45</par2></sp2>");
       typemap.SetValue<XDocument>(RPC_Constant.SerializedRPCDataType, xml2);
       var inbound2 = typemap.GetService<RPC_As_AbstractDataType>();
 
       transform = typemap.GetService<RPC_DataType_To_OperationExecution>();
-      execution = transform.GetOperationExecution(inbound2);
+      var execution2 = transform.GetOperationExecution(inbound2);
 
       //Assert
-      Assert.AreEqual<string>("EXECUTE sp2 @par1 = 'val1', @par2 = 123.45", execution);
+      Assert.AreEqual<string>("EXECUTE sp1 @par1 = 'val1', @par2 = 123.45", execution1);
+      Assert.AreEqual<string>("EXECUTE sp2 @par1 = 'val1', @par2 = 123.45", execution2);
     }
     #endregion
   }
