@@ -5,6 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using nutility;
+using System.Xml;
+using System.Xml.Schema;
+using System.Diagnostics;
+using System.IO;
 
 namespace UnitTestProject1
 {
@@ -45,6 +49,128 @@ namespace UnitTestProject1
       );
 
       Assert.AreEqual<string>("<proc><name>proc1</name><args><arg><name>name1</name><value>val1</value></arg></args></proc>", xml.ToString(SaveOptions.DisableFormatting));
+    }
+
+    /*
+     Inferring an XML Schema
+     https://msdn.microsoft.com/en-us/library/b6kwb7fd(v=vs.110).aspx
+     https://msdn.microsoft.com/en-us/library/system.xml.schema.xmlschemainference(v=vs.110).aspx
+
+     Generating XML Documents from XML Schemas
+     https://msdn.microsoft.com/en-us/library/aa302296.aspx
+
+     XML Schema Object Model (SOM)
+     https://msdn.microsoft.com/en-us/library/bs8hh90b(v=vs.110).aspx
+     */
+    [TestMethod, Description("https://msdn.microsoft.com/en-us/library/system.xml.schema.xmlschemainference(v=vs.110).aspx")]
+    public void inferXSD_1()
+    {
+      var xml = @"<bookstore xmlns='http://www.contoso.com/books'>
+  <book genre='autobiography' publicationdate='1981-03-22' ISBN='1-861003-11-0'>
+    <title>The Autobiography of Benjamin Franklin</title>
+    <author>
+      <first-name>Benjamin</first-name>
+      <last-name>Franklin</last-name>
+    </author>
+    <price>8.99</price>
+  </book>
+  <book genre='novel' publicationdate='1967-11-17' ISBN='0-201-63361-2'>
+    <title>The Confidence Man</title>
+    <author>
+      <first-name>Herman</first-name>
+      <last-name>Melville</last-name>
+    </author>
+    <price>11.99</price>
+  </book>
+  <book genre='philosophy' publicationdate='1991-02-15' ISBN='1-861001-57-6'>
+    <title>The Gorgias</title>
+    <author>
+      <name>Plato</name>
+    </author>
+    <price>9.99</price>
+  </book>
+</bookstore>";
+      XmlReader reader = XmlReader.Create(new System.IO.StringReader(xml));
+      XmlSchemaSet schemaSet = new XmlSchemaSet();
+      XmlSchemaInference schema = new XmlSchemaInference();
+
+      schemaSet = schema.InferSchema(reader);
+      var output = new System.IO.StringWriter();
+      foreach (XmlSchema s in schemaSet.Schemas())
+      {
+        s.Write(output);
+      }
+      output.Flush();
+      var xsd_text = output.GetStringBuilder().ToString();
+      Trace.WriteLine(xsd_text);
+      var xsd = XDocument.Parse(xsd_text);
+      Assert.IsNotNull(xsd);
+    }
+
+    private XDocument InferXMLDataType(string xml_text)
+    {
+      var schema = new XmlSchemaInference();
+      XmlSchemaSet schemaSet = schema.InferSchema(XmlReader.Create(new System.IO.StringReader(xml_text)));
+
+      var output = new System.IO.StringWriter();
+      foreach (XmlSchema s in schemaSet.Schemas())
+      {
+        s.Write(output);
+      }
+      output.Flush();
+      var xsd_text = output.GetStringBuilder().ToString();
+      Trace.WriteLine($"XML Instance:{xml_text}");
+      Trace.WriteLine($"Inferred XSD:{xsd_text}");
+      Trace.WriteLine("");
+      return XDocument.Parse(xsd_text);
+    }
+    [TestMethod]
+    public void inferXSD_2()
+    {
+      var xml_text0 = "<proc1><arg1>val1</arg1></proc1>";
+      var xsd0 = InferXMLDataType(xml_text0);
+
+      var xml_text1 = "<proc1><args><arg1>val1</arg1></args></proc1>";
+      var xsd1 = InferXMLDataType(xml_text1);
+
+      var xml_text2 = "<proc1><args><arg1>val1</arg1><arg1>val2</arg1></args></proc1>";
+      var xsd2 = InferXMLDataType(xml_text2);
+
+      var xml_text3 = "<proc><name>proc1</name><args><arg><name>name1</name><value>val1</value></arg></args></proc>";
+      var xsd3 = InferXMLDataType(xml_text3);
+
+      var xml_text4 = "<sp1><par1>val1</par1><par2>123.45</par2></sp1>";
+      var xsd4 = InferXMLDataType(xml_text4);
+
+      Assert.IsNotNull(xsd1);
+      Assert.IsNotNull(xsd2);
+      Assert.AreNotEqual<string>(xsd1.ToString(), xsd2.ToString());
+    }
+    [TestMethod, Description("https://msdn.microsoft.com/en-us/library/bb340331(v=vs.110).aspx")]
+    public void validXML_1()
+    {
+      var xsd1_text = @"<?xml version='1.0' encoding='utf-16'?>
+<xs:schema attributeFormDefault='unqualified' elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+  <xs:element name='sp1'>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name='par1' type='xs:string' />
+        <xs:element name='par2' type='xs:decimal' />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>";
+      var schemas = new XmlSchemaSet();
+      schemas.Add("", XmlReader.Create(new StringReader(xsd1_text)));
+
+      //var xml_instance1 = "<sp1><par1>val1</par1><par2>123.45</par2></sp1>";
+      var xml_instance1 = "<sp1><par1>val1</par1><par2>ABC</par2></sp1>";
+      var xml1 = XDocument.Parse(xml_instance1);
+
+      bool typemismatch = false;
+      xml1.Validate(schemas, (_, e) => { Trace.WriteLine(e.Message); typemismatch = true; });
+
+      Assert.IsTrue(typemismatch);
     }
     #endregion
 
