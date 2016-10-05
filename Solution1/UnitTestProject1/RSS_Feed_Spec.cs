@@ -104,7 +104,7 @@ namespace UnitTestProject1
       Assert.AreEqual<int>(2, source.Root.Descendants("item").Count());
       Assert.AreEqual<int>(3, merged.Root.Descendants("item").Count());
     }
-    class guid_based_comparer : IEqualityComparer<XElement>
+    class guid_based_comparer : IEqualityComparer<XElement>//http://blog.alex-turok.com/2013/03/c-linq-and-iequalitycomparer.html
     {
       public bool Equals(XElement x, XElement y) => x.Element("guid").Value == y.Element("guid").Value;
 
