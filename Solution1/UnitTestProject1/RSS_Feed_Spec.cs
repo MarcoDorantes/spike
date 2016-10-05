@@ -4,6 +4,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Linq;
 using System.Diagnostics;
 using System.IO;
+using System.Collections.Generic;
+using System.Text;
 
 namespace UnitTestProject1
 {
@@ -85,8 +87,24 @@ namespace UnitTestProject1
       var target = XDocument.Load(new StringReader(target_text));
       var source = XDocument.Load(new StringReader(source_text));
 
+      //Trace.WriteLine(target.Root.Descendants("item").Select(e => e.Element("guid").Value).Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("{0}|",n)).ToString());
+      Trace.WriteLine(source.Root.Descendants("item").Where(e => target.Root.Descendants("item").Any(x=>x.Element("guid").Value != e.Element("guid").Value)).Select(e => e.Element("guid").Value).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n)).ToString());
+
+      //var merged = merge(source, target);
+
       Assert.AreEqual<int>(2, target.Root.Descendants("item").Count());
       Assert.AreEqual<int>(2, source.Root.Descendants("item").Count());
+      //Assert.AreEqual<int>(3, merged.Root.Descendants("item").Count());
     }
+    XDocument merge(XDocument source, XDocument target)
+    {
+      //var t = new List<XElement>(target.Root.Descendants("item"));
+      //var s = new List<XElement>(source.Root.Descendants("item"));
+      //var f1 = new Func<XElement, string>();
+      var r = source.Root.Descendants("item").Where(e=>target.Root.Descendants("item").Contains(e)==false).Select(e => e.Element("guid").Value);
+      return new XDocument(r.ToArray());
+//      target.Root.Descendants("item").Join(source.Root.Descendants("items"), e=>e,);
+    }
+//    string f1(XElement e) => e.Element("guid").Value;
   }
 }
