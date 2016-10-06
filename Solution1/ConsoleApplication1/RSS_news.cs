@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using static System.Console;
 
 namespace ConsoleApplication1
 {
@@ -34,15 +35,17 @@ namespace ConsoleApplication1
       //var sourcefile = args[0];
       //if (!File.Exists(sourcefile)) throw new Exception($"No source file found: {sourcefile}");
       var source = XDocument.Load(sourceURL);
-      Console.WriteLine($"Source text received: {source}");
+      WriteLine($"Source text received: {source}");
       if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
       var target = XDocument.Load(targetfile);
-      Console.Write($"Target file: {targetfile}...");
+      Write($"Target file: {targetfile}...");
       var m = new guid_based_comparer();
       var merged = m.merge(source, target);
       merged.Save(targetfile);
-      Console.WriteLine("merged.");
-      Console.WriteLine(@"tools\windiff afile_copy.xml vsnews_merge_target.xml");
+      WriteLine("merged.");
+      var next = @"tools\windiff afile_copy.xml vsnews_merge_target.xml";
+      System.Windows.Clipboard.SetText(next);
+      WriteLine(next);
     }
   }
 }
