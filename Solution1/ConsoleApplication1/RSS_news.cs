@@ -27,12 +27,14 @@ namespace ConsoleApplication1
   {
     public static void _Main(string[] args)
     {
+      string sourceURL = "http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews";
       string targetfile = $"{Path.GetFileNameWithoutExtension(Environment.GetCommandLineArgs()[0])}_target.xml";
-      if (args.Length != 1) throw new Exception("No source file specified.");
-      var sourcefile = args[0];
-      if (!File.Exists(sourcefile)) throw new Exception($"No source file found: {sourcefile}");
-      var source = XDocument.Load(sourcefile);
-      Console.WriteLine($"Source file: {sourcefile}");
+
+      //if (args.Length != 1) throw new Exception("No source file specified.");
+      //var sourcefile = args[0];
+      //if (!File.Exists(sourcefile)) throw new Exception($"No source file found: {sourcefile}");
+      var source = XDocument.Load(sourceURL);
+      Console.WriteLine($"Source text received: {source}");
       if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
       var target = XDocument.Load(targetfile);
       Console.Write($"Target file: {targetfile}...");
@@ -40,6 +42,7 @@ namespace ConsoleApplication1
       var merged = m.merge(source, target);
       merged.Save(targetfile);
       Console.WriteLine("merged.");
+      Console.WriteLine(@"tools\windiff afile_copy.xml vsnews_merge_target.xml");
     }
   }
 }
