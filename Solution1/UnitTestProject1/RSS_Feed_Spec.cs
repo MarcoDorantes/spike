@@ -39,6 +39,20 @@ namespace UnitTestProject1
       }
     }
 
+    class guid_based_comparer : IEqualityComparer<XElement>//http://blog.alex-turok.com/2013/03/c-linq-and-iequalitycomparer.html
+    {
+      public bool Equals(XElement x, XElement y) => x.Element("guid").Value == y.Element("guid").Value;
+
+      public int GetHashCode(XElement x) => x.Element("guid").Value.GetHashCode();
+      public XDocument merge(XDocument source, XDocument target)
+      {
+        var r = source.Root.Descendants("item").Except(target.Root.Descendants("item"), this);
+        var result = XDocument.Parse(target.ToString());
+        r.Aggregate(result, (w, n) => { w.Root.Element("channel").Add(XElement.Parse(n.ToString())); return w; });
+        return result;
+      }
+
+    }
     [TestMethod]
     public void addnews()
     {
@@ -87,45 +101,12 @@ namespace UnitTestProject1
       var target = XDocument.Load(new StringReader(target_text));
       var source = XDocument.Load(new StringReader(source_text));
 
-      //Trace.WriteLine(target.Root.Descendants("item").Select(e => e.Element("guid").Value).Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("{0}|",n)).ToString());
-      //Trace.WriteLine(source.Root.Descendants("item").Where(e => target.Root.Descendants("item").Any(x=>x.Element("guid").Value != e.Element("guid").Value)).Select(e => e.Element("guid").Value).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("| {0}", n)).ToString());
-      //Trace.WriteLine(source.Root.Descendants("item").Where(e => !target.Root.Descendants("item").Any(x => x.Element("guid").Value == e.Element("guid").Value)).Select(e => e.Element("guid").Value).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("| {0}", n)).ToString());
-/*
-      var tt = new int[] { 1, 2, 3 };
-      var ss = new int[] { 7, 2, 5 };
-      var mm = ss.Except(tt);
-      Trace.WriteLine(mm.Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("| {0}",n)).ToString());
-*/
-
-      var merged = merge(source, target);
-      //Assert.AreEqual<int>(1, merged);
+      var m = new guid_based_comparer();
+      var merged = m.merge(source, target);
 
       Assert.AreEqual<int>(2, target.Root.Descendants("item").Count());
       Assert.AreEqual<int>(2, source.Root.Descendants("item").Count());
       Assert.AreEqual<int>(3, merged.Root.Descendants("item").Count());
     }
-    class guid_based_comparer : IEqualityComparer<XElement>//http://blog.alex-turok.com/2013/03/c-linq-and-iequalitycomparer.html
-    {
-      public bool Equals(XElement x, XElement y) => x.Element("guid").Value == y.Element("guid").Value;
-
-      public int GetHashCode(XElement x) => x.Element("guid").Value.GetHashCode();
-    }
-    XDocument merge(XDocument source, XDocument target)
-    //int merge(XDocument source, XDocument target)
-    {
-      var r=source.Root.Descendants("item").Except(target.Root.Descendants("item"),new guid_based_comparer());
-      //return r.Count();
-      var result = XDocument.Parse(target.ToString());
-      r.Aggregate(result,(w,n)=> { w.Root.Element("channel").Add(XElement.Parse(n.ToString())); return w; });
-      return result;
-
-      //var t = new List<XElement>(target.Root.Descendants("item"));
-      //var s = new List<XElement>(source.Root.Descendants("item"));
-      //var f1 = new Func<XElement, string>();
-      //var r = source.Root.Descendants("item").Where(e=>target.Root.Descendants("item").Contains(e)==false).Select(e => e.Element("guid").Value);
-      //return new XDocument(r.ToArray());
-      //      target.Root.Descendants("item").Join(source.Root.Descendants("items"), e=>e,);
-    }
-    //    string f1(XElement e) => e.Element("guid").Value;
   }
 }
