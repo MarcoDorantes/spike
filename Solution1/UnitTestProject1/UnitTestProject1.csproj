@@ -68,6 +68,7 @@
     <Compile Include="msbuildXMLspec.cs" />
     <Compile Include="doc_rpc_call_spec.cs" />
     <Compile Include="RSS_Feed_Spec.cs" />
+    <Compile Include="timedreplay_Spec.cs" />
     <Compile Include="visitor_spec.cs" />
   </ItemGroup>
   <ItemGroup>
