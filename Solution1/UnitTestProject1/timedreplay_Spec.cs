@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.Linq;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -43,6 +43,22 @@ namespace UnitTestProject1
   [TestClass]
   public class timedreplay_Spec
   {
+    IEnumerable<KeyValuePair<int, TimeSpan>> getpairs()
+    {
+      for (int k = 0; k < 24; ++k)
+      {
+        yield return new KeyValuePair<int, TimeSpan>(k, DateTime.Now.TimeOfDay);
+      }
+    }
+    [TestMethod]
+    public void grouping()
+    {
+      var groups = getpairs().GroupBy(p => p.Key % 5);
+      Assert.AreEqual<int>(5, groups.Count());
+      Assert.AreEqual<string>("0|1|2|3|4|", groups.ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Key)).ToString());
+      Assert.AreEqual<string>("5|5|5|5|4|", groups.ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Count())).ToString());
+    }
+
     [TestMethod]
     public void basic1()
     {
@@ -168,6 +184,55 @@ namespace UnitTestProject1
       }
 
       using (var timer = new utility.SequenceTimeOfDayTimer2(fire_times, () => { var fire = DateTime.Now; fires.Add(fire); Trace.WriteLine($"->{fire}"); }, id: "time1"))
+      {
+        Thread.Sleep(10000);
+
+        for (int k = 1; k < fires.Count; ++k)
+        {
+          var dx = fires[k].Subtract(fires[k - 1]);
+          played_intervals.Add(dx);
+        }
+      }
+
+      Assert.AreEqual<int>(2, fires.Count);
+      Assert.AreEqual<int>(1, played_intervals.Count);
+      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+    }
+
+    class SequenceMember : utility.ISequenceMember
+    {
+      public int SequenceNumber { get; set; }
+      public TimeSpan When { get; set; }
+      public string OutboundMessage { get; set; }
+    }
+
+    IEnumerable<SequenceMember> getmembers(IEnumerable<TimeSpan> times)
+    {
+      int count = 0;
+      foreach (var when in times)
+      {
+        yield return new SequenceMember { SequenceNumber = count++, When = when, OutboundMessage = null };
+      }
+    }
+    [TestMethod]
+    public void time_precision4()
+    {
+      var fires = new List<DateTime>();
+      var played_intervals = new List<TimeSpan>();
+
+      var expected_fire_intervals = new List<TimeSpan> { TimeSpan.Parse("00:00:03"), TimeSpan.Parse("00:00:05") };
+
+      var now = DateTime.Now.TimeOfDay;
+      var fire_times = new List<TimeSpan>();
+      TimeSpan fire_time = now;
+      foreach (var dx in expected_fire_intervals)
+      {
+        fire_time = fire_time.Add(dx);
+        fire_times.Add(fire_time);
+        Trace.WriteLine($"expected_fire_interval: {fire_time}");
+      }
+
+      using (var timer = new utility.SequencerTimeOfDayTimer<SequenceMember>(getmembers(fire_times), () => { var fire = DateTime.Now; fires.Add(fire); Trace.WriteLine($"->{fire}"); }, id: "time1"))
       {
         Thread.Sleep(10000);
 
@@ -398,6 +463,95 @@ namespace utility
         ResultLogger.LogSuccess(ID + " PrecisionTimeOfDayTimer disposed.");
       }
     }
+  }
+
+  public interface ISequenceMember
+  {
+    int SequenceNumber { get; }
+    TimeSpan When { get; }
+    string OutboundMessage { get; }
+  }
+  public class SequencerTimeOfDayTimer<T> : IDisposable where T : ISequenceMember
+  {
+    private string ID;
+    private Action Operation;
+    private List<IEnumerator<T>> InvokeDayTimesGroups;
+    private List<SequenceTimeOfDayTimer2> Timers;
+
+    public SequencerTimeOfDayTimer(IEnumerable<T> when, Action operation, string id = null)
+    {
+      this.ID = string.IsNullOrWhiteSpace(id) ? string.Format("ID_{0}", DateTime.Now.ToString("MMMdd-HHmmss-fffffff")) : id;
+      Reset(when, operation);
+    }
+
+    private void Reset(IEnumerable<T> when, Action operation)
+    {
+      if (operation == null)
+      {
+        throw new InvalidOperationException(ID + " Timer operation cannot be null.");
+      }
+      if (when == null || when.Count() <= 0)
+      {
+        throw new System.Configuration.ConfigurationErrorsException(ID + " Daytimes are not configured");
+      }
+
+      this.Operation = operation;
+      var groups = when.GroupBy(p => p.SequenceNumber % 10);
+      Trace.WriteLine($"groups: {groups.Count()}");
+      this.InvokeDayTimesGroups = groups.Aggregate(new List<IEnumerator<T>>(), (whole, next) => { whole.Add(next.GetEnumerator()); return whole; });
+      StartNextSetOfInvokeTimers();
+    }
+
+    private void StartNextSetOfInvokeTimers()
+    {
+      //IGrouping<int, T> next_group = this.InvokeDayTimesGroups.Current;
+      this.Timers = new List<SequenceTimeOfDayTimer2>();
+      foreach (var k in InvokeDayTimesGroups)
+      {
+        if(k.MoveNext())
+        {
+          Trace.WriteLine($"SequenceTimeOfDayTimer2: {k.Current.When}");
+          this.Timers.Add(new SequenceTimeOfDayTimer2(new List<TimeSpan> { k.Current.When }, this.Operation, id: $"{k.Current.SequenceNumber}"));
+        }
+      }
+    }
+
+    #region IDisposable Support
+    private bool disposedValue = false; // To detect redundant calls
+
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!disposedValue)
+      {
+        if (disposing)
+        {
+          // dispose managed state (managed objects).
+        }
+
+        // free unmanaged resources (unmanaged objects) and override a finalizer below.
+        this.Timers.ForEach(t => t.Dispose());
+        // set large fields to null.
+
+        disposedValue = true;
+      }
+    }
+
+    //override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+    ~SequencerTimeOfDayTimer()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(false);
+    }
+
+    // This code added to correctly implement the disposable pattern.
+    public void Dispose()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(true);
+      // uncomment the following line if the finalizer is overridden above.
+      GC.SuppressFinalize(this);
+    }
+    #endregion
   }
 
   public class RetryTimeOfDayTimer : IDisposable
