@@ -133,7 +133,41 @@ namespace UnitTestProject1
         Trace.WriteLine($"expected_fire_interval: {fire_time}");
       }
 
-      using (var timer = new utility.PrecisionTimeOfDayTimer(fire_times, () => { var fire = DateTime.Now; fires.Add(fire); Trace.WriteLine($"->{fire}"); }, id: "time1"))
+      using (var timer = new utility.SequenceTimeOfDayTimer(fire_times, () => { var fire = DateTime.Now; fires.Add(fire); Trace.WriteLine($"->{fire}"); }, id: "time1"))
+      {
+        Thread.Sleep(10000);
+
+        for (int k = 1; k < fires.Count; ++k)
+        {
+          var dx = fires[k].Subtract(fires[k - 1]);
+          played_intervals.Add(dx);
+        }
+      }
+
+      Assert.AreEqual<int>(2, fires.Count);
+      Assert.AreEqual<int>(1, played_intervals.Count);
+      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+    }
+
+    [TestMethod]
+    public void time_precision3()
+    {
+      var fires = new List<DateTime>();
+      var played_intervals = new List<TimeSpan>();
+
+      var expected_fire_intervals = new List<TimeSpan> { TimeSpan.Parse("00:00:03"), TimeSpan.Parse("00:00:05") };
+
+      var now = DateTime.Now.TimeOfDay;
+      var fire_times = new List<TimeSpan>();
+      TimeSpan fire_time = now;
+      foreach (var dx in expected_fire_intervals)
+      {
+        fire_time = fire_time.Add(dx);
+        fire_times.Add(fire_time);
+        Trace.WriteLine($"expected_fire_interval: {fire_time}");
+      }
+
+      using (var timer = new utility.SequenceTimeOfDayTimer2(fire_times, () => { var fire = DateTime.Now; fires.Add(fire); Trace.WriteLine($"->{fire}"); }, id: "time1"))
       {
         Thread.Sleep(10000);
 
@@ -154,20 +188,20 @@ namespace UnitTestProject1
 #region Nuget nutility
 namespace utility
 {
-  public class PrecisionTimeOfDayTimer:IDisposable
+  public class SequenceTimeOfDayTimer : IDisposable
   {
     private string ID;
     private System.Threading.Timer MainTimer;
     private Action Operation;
     private IEnumerator<TimeSpan> InvokeDayTimes;
 
-    public PrecisionTimeOfDayTimer(IEnumerable<TimeSpan> when, Action operation, string id = null)
+    public SequenceTimeOfDayTimer(IEnumerable<TimeSpan> when, Action operation, string id = null)
     {
       this.ID = string.IsNullOrWhiteSpace(id) ? string.Format("ID_{0}", DateTime.Now.ToString("MMMdd-HHmmss-fffffff")) : id;
       Reset(when, operation);
     }
 
-    ~PrecisionTimeOfDayTimer()
+    ~SequenceTimeOfDayTimer()
     {
       Dispose(false);
     }
@@ -244,6 +278,113 @@ namespace utility
       if (this.MainTimer != null)
       {
         this.MainTimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
+        this.MainTimer.Dispose();
+        this.MainTimer = null;
+      }
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+      if (disposing)
+      {
+        DisposeTimer();
+        ResultLogger.LogSuccess(ID + " PrecisionTimeOfDayTimer disposed.");
+      }
+    }
+  }
+
+  public class SequenceTimeOfDayTimer2 : IDisposable
+  {
+    private string ID;
+    private System.Timers.Timer MainTimer;
+    private Action Operation;
+    private IEnumerator<TimeSpan> InvokeDayTimes;
+
+    public SequenceTimeOfDayTimer2(IEnumerable<TimeSpan> when, Action operation, string id = null)
+    {
+      this.ID = string.IsNullOrWhiteSpace(id) ? string.Format("ID_{0}", DateTime.Now.ToString("MMMdd-HHmmss-fffffff")) : id;
+      Reset(when, operation);
+    }
+
+    ~SequenceTimeOfDayTimer2()
+    {
+      Dispose(false);
+    }
+
+    public void Dispose()
+    {
+      Dispose(true);
+      GC.SuppressFinalize(this);
+    }
+
+    private void Reset(IEnumerable<TimeSpan> when, Action operation)
+    {
+      if (operation == null)
+      {
+        throw new InvalidOperationException(ID + " Timer operation cannot be null.");
+      }
+      if (when == null || when.Count() <= 0)
+      {
+        throw new System.Configuration.ConfigurationErrorsException(ID + " Daytimes are not configured");
+      }
+      //if (when.Distinct().Count() != when.Count())
+      //{
+      //  throw new System.Configuration.ConfigurationErrorsException(ID + " Duplicated daytimes are not supported");
+      //}
+
+      this.Operation = operation;
+      this.InvokeDayTimes = when.GetEnumerator();
+      this.InvokeDayTimes.MoveNext();
+      StartNextInvokeTimer();
+    }
+
+    private void StartNextInvokeTimer()
+    {
+      if (this.MainTimer != null)
+      {
+        DisposeTimer();
+      }
+      TimeSpan diff = this.InvokeDayTimes.Current.Duration() - DateTime.Now.TimeOfDay;
+      var nextinvoke = diff;
+      this.MainTimer = new System.Timers.Timer(nextinvoke.TotalMilliseconds);
+      this.MainTimer.Elapsed += (s, e) => { this.TimerInvoke(null); };
+      this.MainTimer.Start();
+      ResultLogger.LogSuccess(ID + " Next invoke:" + nextinvoke);
+    }
+
+    private void TimerInvoke(object unused_state)
+    {
+      try
+      {
+        PauseTimer();
+        this.Operation();
+      }
+      finally
+      {
+        if (this.InvokeDayTimes.MoveNext())
+        {
+          StartNextInvokeTimer();
+        }
+        else
+        {
+          DisposeTimer();
+        }
+      }
+    }
+
+    private void PauseTimer()
+    {
+      if (this.MainTimer != null)
+      {
+        this.MainTimer.Stop();
+      }
+    }
+
+    private void DisposeTimer()
+    {
+      if (this.MainTimer != null)
+      {
+        this.MainTimer.Stop();
         this.MainTimer.Dispose();
         this.MainTimer = null;
       }
