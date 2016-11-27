@@ -58,7 +58,19 @@ namespace UnitTestProject1
       Assert.AreEqual<string>("0|1|2|3|4|", groups.ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Key)).ToString());
       Assert.AreEqual<string>("5|5|5|5|4|", groups.ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Count())).ToString());
     }
-
+    [TestMethod]
+    public void basic0()
+    {
+      TimeSpan fire = TimeSpan.Zero;
+      var timer = new System.Timers.Timer(3000D);
+      timer.Elapsed += (s, e) => fire = DateTime.Now.TimeOfDay;
+      timer.Start();
+      var now = DateTime.Now.TimeOfDay;
+      var expected = now.Add(TimeSpan.Parse("00:00:03"));
+      Thread.Sleep(6000);
+      timer.Stop();
+      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:03"), fire-now);
+    }
     [TestMethod]
     public void basic1()
     {
