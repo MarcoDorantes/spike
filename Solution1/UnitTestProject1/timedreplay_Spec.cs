@@ -58,8 +58,52 @@ namespace UnitTestProject1
       Assert.AreEqual<string>("0|1|2|3|4|", groups.ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Key)).ToString());
       Assert.AreEqual<string>("5|5|5|5|4|", groups.ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Count())).ToString());
     }
+    class TimeSpanDateTimeComparer : System.Collections.IComparer
+    {
+      public static bool AreEqual(TimeSpan a, TimeSpan b)
+      {
+        bool result = false;
+        var diff1 = Math.Abs(a.TotalMilliseconds - b.TotalMilliseconds);
+        var diff2 = Math.Abs(a.Ticks - b.Ticks);
+        Trace.WriteLine($"diff ms: {diff1} diff ticks: {diff2}");
+        result = diff1 <= 500D;
+        return result;
+      }
+      public static bool AreEqual(DateTime a, DateTime b)
+      {
+        bool result = false;
+        var diff2 = Math.Abs(a.Ticks - b.Ticks);
+        Trace.WriteLine($"diff ticks: {diff2}");
+        result = diff2 <= 500L;
+        return result;
+      }
+      public int Compare(object x, object y)
+      {
+        if (x == null || y == null) throw new ArgumentNullException();
+        if ((x.GetType() == typeof(TimeSpan) && y.GetType() == typeof(TimeSpan)) || (x.GetType() == typeof(DateTime) && y.GetType() == typeof(DateTime)))
+        {
+          bool equal;
+          if (x.GetType() == typeof(TimeSpan)) equal = AreEqual((TimeSpan)x, (TimeSpan)y);
+          else equal = AreEqual((DateTime)x, (DateTime)y);
+          return equal ? 0 : -1;
+        }
+        else throw new ArgumentException("Cannot compare other than TimeSpan or DateTime");
+      }
+    }
     [TestMethod]
     public void basic0_a()
+    {
+      TimeSpan fire = TimeSpan.Zero;
+      var timer = new System.Threading.Timer(x => fire = DateTime.Now.TimeOfDay, null, TimeSpan.Parse("00:00:03"), TimeSpan.FromMilliseconds(-1D));
+      var now = DateTime.Now.TimeOfDay;
+      Thread.Sleep(5000);
+      timer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
+      timer.Dispose();
+      //Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:03"), fire - now);
+      Assert.IsTrue(TimeSpanDateTimeComparer.AreEqual(TimeSpan.Parse("00:00:03"), fire - now));
+    }
+    [TestMethod]
+    public void basic0_b()
     {
       TimeSpan fire = TimeSpan.Zero;
       var timer = new System.Timers.Timer(3000D);
@@ -68,18 +112,8 @@ namespace UnitTestProject1
       var now = DateTime.Now.TimeOfDay;
       Thread.Sleep(5000);
       timer.Stop();
-      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:03"), fire-now);
-    }
-    [TestMethod]
-    public void basic0_b()
-    {
-      TimeSpan fire = TimeSpan.Zero;
-      var timer = new System.Threading.Timer(x=> fire = DateTime.Now.TimeOfDay, null, TimeSpan.Parse("00:00:03"), TimeSpan.FromMilliseconds(-1D));
-      var now = DateTime.Now.TimeOfDay;
-      Thread.Sleep(5000);
-      timer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
-      timer.Dispose();
-      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:03"), fire - now);
+      //Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:03"), fire - now);
+      Assert.IsTrue(TimeSpanDateTimeComparer.AreEqual(TimeSpan.Parse("00:00:03"), fire - now));
     }
     [TestMethod]
     public void basic1()
@@ -88,6 +122,7 @@ namespace UnitTestProject1
       var captured = new List<DateTime> { DateTime.Parse("2016-11-26T07:53:48"), DateTime.Parse("2016-11-26T07:53:49") };
       var processor = new TimedReplay(msg => { });
       var start = DateTime.Parse("2016-11-27T01:00:00");
+      var comparer = new TimeSpanDateTimeComparer();
 
       //Act
       var replayed = processor.GetReplayedFrom(start, captured);
@@ -150,7 +185,8 @@ namespace UnitTestProject1
 
       Assert.AreEqual<int>(2, fires.Count);
       Assert.AreEqual<int>(1, played_intervals.Count);
-      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      //Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      Assert.IsTrue(TimeSpanDateTimeComparer.AreEqual(TimeSpan.Parse("00:00:05"), played_intervals[0]));
     }
 
     [TestMethod]
@@ -184,7 +220,8 @@ namespace UnitTestProject1
 
       Assert.AreEqual<int>(2, fires.Count);
       Assert.AreEqual<int>(1, played_intervals.Count);
-      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      //Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      Assert.IsTrue(TimeSpanDateTimeComparer.AreEqual(TimeSpan.Parse("00:00:05"), played_intervals[0]));
     }
 
     [TestMethod]
@@ -218,7 +255,8 @@ namespace UnitTestProject1
 
       Assert.AreEqual<int>(2, fires.Count);
       Assert.AreEqual<int>(1, played_intervals.Count);
-      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      //Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      Assert.IsTrue(TimeSpanDateTimeComparer.AreEqual(TimeSpan.Parse("00:00:05"), played_intervals[0]));
     }
 
     class SequenceMember : utility.ISequenceMember
@@ -267,7 +305,8 @@ namespace UnitTestProject1
 
       Assert.AreEqual<int>(2, fires.Count);
       Assert.AreEqual<int>(1, played_intervals.Count);
-      Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      //Assert.AreEqual<TimeSpan>(TimeSpan.Parse("00:00:05"), played_intervals[0]);
+      Assert.IsTrue(TimeSpanDateTimeComparer.AreEqual(TimeSpan.Parse("00:00:05"), played_intervals[0]));
     }
   }
 }
