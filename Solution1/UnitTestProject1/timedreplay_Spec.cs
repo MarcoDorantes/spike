@@ -41,6 +41,7 @@ namespace UnitTestProject1
   }
 
   [TestClass]
+  //tools\spec.exe -methods basic0_a basic0_b time_precision time_precision2 time_precision3 time_precision4 -assembly=C:\design\github_spike\spike\Solution1\UnitTestProject1\bin\Release\UnitTestProject1.dll
   public class timedreplay_Spec
   {
     IEnumerable<KeyValuePair<int, TimeSpan>> getpairs()
