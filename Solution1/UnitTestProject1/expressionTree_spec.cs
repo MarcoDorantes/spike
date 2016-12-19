@@ -82,6 +82,71 @@ namespace expressionTree_specs
 
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter3(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
+    {
+      IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
+      if (Q == null) throw new Exception("AsQueryable returned null");
+
+      //new Func<IEnumerable<KeyValuePair<int, string>>, bool>(msg => msg.Any(pair => pair.Key == 35 && pair.Value == "j"))
+      ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+      ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
+      var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
+
+      Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+      Expression key_right = Expression.Constant(35, typeof(int));
+      Expression key_expr = Expression.Equal(key_left, key_right);
+      Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+      Expression value_right = Expression.Constant("j", typeof(string));
+      Expression value_expr = Expression.Equal(value_left, value_right);
+      var pair_filter_and = Expression.And(key_expr, value_expr);
+
+      var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_and, new ParameterExpression[] { pair });
+      Expression filter_expression = Expression.Call(any_method, msg, pair_filter);
+      var selection = Expression.Lambda<Func<IEnumerable<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msg });
+      MethodCallExpression where_call = Expression.Call(
+        typeof(Queryable),
+        "Where",
+        new Type[] { Q.ElementType },
+        Q.Expression,
+        selection);
+
+      return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
+    }
+    static Expression parse(string input)
+    {
+      return null;
+    }
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter4(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
+    {
+      IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
+
+      ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+      ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
+
+      Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+      Expression key_right = Expression.Constant(35, typeof(int));
+      Expression key_expr = Expression.Equal(key_left, key_right);
+      Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+      Expression value_right = Expression.Constant("j", typeof(string));
+      Expression value_expr = Expression.Equal(value_left, value_right);
+      var pair_filter_and = Expression.And(key_expr, value_expr);
+      var pair_filter_subtree = pair_filter_and;
+
+      var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_subtree, new ParameterExpression[] { pair });
+
+      var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
+      Expression filter_expression = Expression.Call(any_method, msg, pair_filter);
+      var selection = Expression.Lambda<Func<IEnumerable<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msg });
+      MethodCallExpression where_call = Expression.Call
+      (
+        typeof(Queryable),
+        "Where",
+        new Type[] { Q.ElementType },
+        Q.Expression,
+        selection
+      );
+      return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
+    }
     [TestMethod]
     public void call_static_Ia()
     {
@@ -139,12 +204,27 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = filter2(L, "35==8");
+      var filtered = filter2(L, "35=8");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
+    [TestMethod]
+    public void call_static_IIc()
+    {
+      IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
+      {
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"AMX L") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(55,"WALMEX V") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(55,"AMX L") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
+      };
 
+      var filtered = filter3(L, "35=j");
+      var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
+
+      Assert.AreEqual<string>("(35,j) (55,WALMEX V) | (35,j) (55,AMX L) | ", output.ToString());
+    }
     [TestMethod]
     public void call_static_00a()
     {
@@ -397,6 +477,13 @@ namespace expressionTree_specs
 
       var output = $"{result}";
       Assert.AreEqual<string>("3|3|", output);
+    }
+    [TestMethod]
+    public void parse_expr1()
+    {
+      var input = "35=8";
+      Expression exp = parse(input);
+      Assert.IsNotNull(exp);
     }
   }
 }
