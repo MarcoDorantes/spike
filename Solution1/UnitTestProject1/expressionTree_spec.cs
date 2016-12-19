@@ -99,7 +99,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
     [TestMethod]
-    public void call_static_0a()
+    public void call_static_00a()
     {
       Expression<Func<int, int, int>> e = (a, b) => a + b;
       var f = e.Compile();
@@ -107,7 +107,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("15", output);
     }
     [TestMethod]
-    public void call_static_0b()
+    public void call_static_00b()
     {
       Expression<Func<int, B>> e = n => new B(n);
       var f = e.Compile();
@@ -116,7 +116,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("132", output);
     }
     [TestMethod]
-    public void call_static_0c()
+    public void call_static_00c()
     {
       var E = new List<B> { new B(0), new B(5), new B(125) };
       IQueryable<B> Q = E.AsQueryable<B>();
@@ -129,7 +129,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("132", output);
     }
     [TestMethod]
-    public void call_static_1()
+    public void call_static_01()
     {
       var E = new List<B> { new B(0), new B(5), new B(125) };
       IQueryable<B> Q = E.AsQueryable<B>();
@@ -143,7 +143,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("System.Action", output);
     }
     [TestMethod]
-    public void call_static_2()
+    public void call_static_02()
     {
       MethodCallExpression c = Expression.Call(typeof(A).GetMethod("f1"));
       LambdaExpression l = Expression.Lambda(c);
@@ -154,7 +154,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("System.Action", output);
     }
     [TestMethod]
-    public void call_static_3()
+    public void call_static_03()
     {
       MethodCallExpression c = Expression.Call(typeof(A).GetMethod("f2"));
       LambdaExpression l = Expression.Lambda(c);
@@ -165,7 +165,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("144", output);
     }
     [TestMethod]
-    public void call_static_4()
+    public void call_static_04()
     {
       //B b=new B(12); WriteLine(b.g1());
 
@@ -179,7 +179,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("321", output);
     }
     [TestMethod]
-    public void call_static_5()
+    public void call_static_05()
     {
       var E = new List<B> { new B(0), new B(5), new B(125) };
       IQueryable<B> Q = E.AsQueryable<B>();
@@ -208,7 +208,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("3", output);
     }
     [TestMethod]
-    public void call_static_6()
+    public void call_static_06()
     {
       var E = new List<B> { new B(0), new B(5), new B(125) };
       IQueryable<B> Q = E.AsQueryable<B>();
@@ -226,7 +226,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("True", output);
     }
     [TestMethod]
-    public void call_static_7()
+    public void call_static_07()
     {
       var E = new List<B> { new B(0), new B(5), new B(125) };
       IQueryable<B> Q = E.AsQueryable<B>();
@@ -242,7 +242,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("True", output);
     }
     [TestMethod]
-    public void call_static_7a()
+    public void call_static_07a()
     {
       var any_methods_1 = typeof(Enumerable).GetMethods().Where(m => m.Name.Contains("Any")).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}({1}:{2})|", n.Name, n.GetParameters().Length, n.GetParameters().Aggregate(new StringBuilder(), (w1, n1) => w1.AppendFormat("{0},", n1.ParameterType.Name))));
       var any_methods_2 = typeof(Queryable).GetMethods().Where(m => m.Name.Contains("Any")).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}({1}:{2})|", n.Name, n.GetParameters().Length,n.GetParameters().Aggregate(new StringBuilder(),(w1,n1)=>w1.AppendFormat("{0},",n1.ParameterType.Name))));
@@ -250,7 +250,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("Any(1:IQueryable`1,)|Any(2:IQueryable`1,Expression`1,)|", any_methods_2.ToString());
     }
     [TestMethod]
-    public void call_static_8()
+    public void call_static_08()
     {
       var E = new List<B> { new B(0), new B(5), new B(125) };
       IQueryable<B> Q = E.AsQueryable<B>();
@@ -267,7 +267,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("0|5|125|", output);
     }
     [TestMethod]
-    public void call_static_9()
+    public void call_static_09()
     {
       var E = new List<B> { new B(0), new B(5), null, new B(125) };
       IQueryable<B> Q = E.AsQueryable<B>();
@@ -290,6 +290,30 @@ namespace expressionTree_specs
 
       var output = $"{result}";
       Assert.AreEqual<string>("0|5|125|", output);
+    }
+    [TestMethod]
+    public void call_static_10()
+    {
+      var E = new List<List<B>> { new List<B> { new B(0), new B(5), new B(125) } };
+      IQueryable<IEnumerable<B>> Q = E.AsQueryable<IEnumerable<B>>();
+
+      ParameterExpression bb = Expression.Parameter(typeof(IEnumerable<B>), "bb");
+      var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(B));
+      MethodCallExpression c = Expression.Call(any_method, bb);
+      var selection = Expression.Lambda<Func<IEnumerable<B>, bool>>(c, new ParameterExpression[] { bb });
+
+      MethodCallExpression where_expression = Expression.Call(
+        typeof(Queryable),
+        "Where",
+        new Type[] { Q.ElementType },
+        Q.Expression,
+        selection);
+
+      var q = Q.Provider.CreateQuery<IEnumerable<B>>(where_expression);
+      var result = q.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Count())).ToString();
+
+      var output = $"{result}";
+      Assert.AreEqual<string>("3|", output);
     }
   }
 }
