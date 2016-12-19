@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Text;
 
-namespace expressionTree_specs//UnitTestProject1
+namespace expressionTree_specs
 {
   class B
   {
@@ -35,15 +35,21 @@ namespace expressionTree_specs//UnitTestProject1
       if (Q == null) throw new Exception("AsQueryable returned null");
 
       ParameterExpression msg = Expression.Parameter(typeof(List<KeyValuePair<int, string>>), "msg");
-      //ParameterExpression msgs_parameter = Expression.Parameter(typeof(IQueryable<List<KeyValuePair<int,string>>>), "msgs_parameter");
-      Expression filter_expression = Expression.Call(typeof(Queryable).GetMethods().Where(n => n.Name == "Any").ElementAt(0).MakeGenericMethod(typeof(List<KeyValuePair<int, string>>)), msg);
+      ParameterExpression msgs_parameter = Expression.Parameter(typeof(IQueryable<List<KeyValuePair<int,string>>>), "msgs_parameter");
+
+      var any_method = typeof(Queryable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(List<KeyValuePair<int, string>>));
+      Expression filter_expression = Expression.Call(any_method, msgs_parameter);
+      LambdaExpression l = Expression.Lambda<Func<IQueryable<List<KeyValuePair<int, string>>>, bool>>(filter_expression, new ParameterExpression[] { msg });
+
+      //var selection = Expression.Lambda<Func<List<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msgs_parameter })
+      var selection = Expression.Lambda<Func<List<KeyValuePair<int, string>>, bool>>(l, new ParameterExpression[] { msgs_parameter });
 
       MethodCallExpression where_call = Expression.Call(
         typeof(Queryable),
         "Where",
-        new Type[] { Q.ElementType }, //new Type[] { typeof(List<KeyValuePair<int,string>>) },
+        new Type[] { Q.ElementType },
         Q.Expression,
-        Expression.Lambda<Func<List<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msg }));
+        selection);
 
       return Q.Provider.CreateQuery<List<KeyValuePair<int, string>>>(where_call);
     }
@@ -188,7 +194,8 @@ namespace expressionTree_specs//UnitTestProject1
       //int r=fn(E);
       //WriteLine(r);return;
       ParameterExpression Btypes = Expression.Parameter(typeof(IEnumerable<B>));
-      MethodCallExpression c = Expression.Call(typeof(Enumerable).GetMethods().Where(n => n.Name == "Count").ElementAt(0).MakeGenericMethod(typeof(B)), Btypes);
+      var count_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Count" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(B));
+      MethodCallExpression c = Expression.Call(count_method, Btypes);
       LambdaExpression l = Expression.Lambda<Func<IEnumerable<B>, int>>(c, new ParameterExpression[] { Btypes });
 
       var f = l.Compile();
@@ -209,7 +216,8 @@ namespace expressionTree_specs//UnitTestProject1
       //WriteLine($"{E.Any()}");
 
       ParameterExpression Btypes = Expression.Parameter(typeof(IEnumerable<B>));
-      MethodCallExpression c=Expression.Call(typeof(Enumerable).GetMethods().Where(n=>n.Name=="Any").ElementAt(0).MakeGenericMethod(typeof(B)), Btypes);
+      var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(B));
+      MethodCallExpression c =Expression.Call(any_method, Btypes);
       LambdaExpression l=Expression.Lambda<Func<IEnumerable<B>,bool>>(c,new ParameterExpression[] {Btypes});
       var f=l.Compile();
       var result=((Func<IEnumerable<B>,bool>)f).Invoke(E);
@@ -224,13 +232,64 @@ namespace expressionTree_specs//UnitTestProject1
       IQueryable<B> Q = E.AsQueryable<B>();
 
       ParameterExpression Btypes = Expression.Parameter(typeof(IQueryable<B>));
-      MethodCallExpression c = Expression.Call(typeof(Queryable).GetMethods().Where(n => n.Name == "Any").ElementAt(0).MakeGenericMethod(typeof(B)), Btypes);
+      var any_method = typeof(Queryable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(B));
+      MethodCallExpression c = Expression.Call(any_method, Btypes);
       LambdaExpression l = Expression.Lambda<Func<IQueryable<B>, bool>>(c, new ParameterExpression[] { Btypes });
       var f = l.Compile();
       var result = ((Func<IQueryable<B>, bool>)f).Invoke(Q);
 
       var output = $"{result}";
       Assert.AreEqual<string>("True", output);
+    }
+    [TestMethod]
+    public void call_static_7a()
+    {
+      var any_methods_1 = typeof(Enumerable).GetMethods().Where(m => m.Name.Contains("Any")).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}({1}:{2})|", n.Name, n.GetParameters().Length, n.GetParameters().Aggregate(new StringBuilder(), (w1, n1) => w1.AppendFormat("{0},", n1.ParameterType.Name))));
+      var any_methods_2 = typeof(Queryable).GetMethods().Where(m => m.Name.Contains("Any")).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}({1}:{2})|", n.Name, n.GetParameters().Length,n.GetParameters().Aggregate(new StringBuilder(),(w1,n1)=>w1.AppendFormat("{0},",n1.ParameterType.Name))));
+      Assert.AreEqual<string>("Any(1:IEnumerable`1,)|Any(2:IEnumerable`1,Func`2,)|", any_methods_1.ToString());
+      Assert.AreEqual<string>("Any(1:IQueryable`1,)|Any(2:IQueryable`1,Expression`1,)|", any_methods_2.ToString());
+    }
+    [TestMethod]
+    public void call_static_8()
+    {
+      var E = new List<B> { new B(0), new B(5), new B(125) };
+      IQueryable<B> Q = E.AsQueryable<B>();
+
+      ParameterExpression b = Expression.Parameter(typeof(B), "b");
+      Expression left = b;
+      Expression right = Expression.Constant(null);
+      Expression expr = Expression.NotEqual(left, right);
+      var selection= Expression.Lambda<Func<B, bool>>(expr, new ParameterExpression[] { b });
+      var q = Q.Where(selection);
+      var result = q.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n)).ToString();
+
+      var output = $"{result}";
+      Assert.AreEqual<string>("0|5|125|", output);
+    }
+    [TestMethod]
+    public void call_static_9()
+    {
+      var E = new List<B> { new B(0), new B(5), null, new B(125) };
+      IQueryable<B> Q = E.AsQueryable<B>();
+
+      ParameterExpression b = Expression.Parameter(typeof(B), "b");
+      Expression left = b;
+      Expression right = Expression.Constant(null);
+      Expression expr = Expression.NotEqual(left, right);
+      var selection = Expression.Lambda<Func<B, bool>>(expr, new ParameterExpression[] { b });
+
+      MethodCallExpression where_expression = Expression.Call(
+        typeof(Queryable),
+        "Where",
+        new Type[] { Q.ElementType },
+        Q.Expression,
+        selection);
+
+      var q = Q.Provider.CreateQuery<B>(where_expression);
+      var result = q.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n)).ToString();
+
+      var output = $"{result}";
+      Assert.AreEqual<string>("0|5|125|", output);
     }
   }
 }
