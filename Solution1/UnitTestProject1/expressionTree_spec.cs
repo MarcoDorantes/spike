@@ -24,26 +24,21 @@ namespace expressionTree_specs
   [TestClass]
   public class expressionTree_spec
   {
-    static IEnumerable<List<KeyValuePair<int, string>>> filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs)
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs)
     {
       return msgs.Where(msg => msg.Any());
       //return msgs.Where(msg=>msg.Any(pair=>pair.Key==35) && msg.First(pair=>pair.Key==35).Value=="j");
     }
-    static IEnumerable<List<KeyValuePair<int, string>>> filter2(IEnumerable<List<KeyValuePair<int, string>>> msgs)
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter2(IEnumerable<List<KeyValuePair<int, string>>> msgs)
     {
-      IQueryable<List<KeyValuePair<int, string>>> Q = msgs.AsQueryable<List<KeyValuePair<int, string>>>();
+      IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
       if (Q == null) throw new Exception("AsQueryable returned null");
 
-      ParameterExpression msg = Expression.Parameter(typeof(List<KeyValuePair<int, string>>), "msg");
-      ParameterExpression msgs_parameter = Expression.Parameter(typeof(IQueryable<List<KeyValuePair<int,string>>>), "msgs_parameter");
+      ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
+      var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(KeyValuePair<int, string>));
 
-      var any_method = typeof(Queryable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(List<KeyValuePair<int, string>>));
-      Expression filter_expression = Expression.Call(any_method, msgs_parameter);
-      LambdaExpression l = Expression.Lambda<Func<IQueryable<List<KeyValuePair<int, string>>>, bool>>(filter_expression, new ParameterExpression[] { msg });
-
-      //var selection = Expression.Lambda<Func<List<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msgs_parameter })
-      var selection = Expression.Lambda<Func<List<KeyValuePair<int, string>>, bool>>(l, new ParameterExpression[] { msgs_parameter });
-
+      Expression filter_expression = Expression.Call(any_method, msg);
+      var selection = Expression.Lambda<Func<IEnumerable<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msg });
       MethodCallExpression where_call = Expression.Call(
         typeof(Queryable),
         "Where",
@@ -51,7 +46,7 @@ namespace expressionTree_specs
         Q.Expression,
         selection);
 
-      return Q.Provider.CreateQuery<List<KeyValuePair<int, string>>>(where_call);
+      return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }
     [TestMethod]
     public void call_static_I()
