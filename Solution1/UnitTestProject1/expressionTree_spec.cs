@@ -32,15 +32,16 @@ namespace expressionTree_specs
     {
       return msgs.Where(predicate);
     }
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter2(IEnumerable<List<KeyValuePair<int, string>>> msgs)
+    #region tries
+    /*static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter2(IEnumerable<List<KeyValuePair<int, string>>> msgs)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
       if (Q == null) throw new Exception("AsQueryable returned null");
 
       ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
       var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(KeyValuePair<int, string>));
-
       Expression filter_expression = Expression.Call(any_method, msg);
+
       var selection = Expression.Lambda<Func<IEnumerable<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msg });
       MethodCallExpression where_call = Expression.Call(
         typeof(Queryable),
@@ -50,7 +51,7 @@ namespace expressionTree_specs
         selection);
 
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
-    }
+    }*/
     /*static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter2(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
@@ -111,35 +112,45 @@ namespace expressionTree_specs
 
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }*/
-    //static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter3(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
+    #endregion
     static Expression parse(string input)
     {
       return null;
     }
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter4(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter4(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config = null)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
 
-      ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
       ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
 
-      var filter_tags = filter_config.Split('=');
-      int filter_tag = int.Parse(filter_tags[0]);
-      string filter_value = filter_tags[1];
+      Expression filter_expression = null;
+      if (string.IsNullOrWhiteSpace(filter_config) == true)
+      {
+        var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 1).MakeGenericMethod(typeof(KeyValuePair<int, string>));
+        filter_expression = Expression.Call(any_method, msg);
+      }
+      else
+      {
+        var filter_tags = filter_config.Split('=');
+        int filter_tag = int.Parse(filter_tags[0]);
+        string filter_value = filter_tags[1];
 
-      Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
-      Expression key_right = Expression.Constant(filter_tag, typeof(int));
-      Expression key_expr = Expression.Equal(key_left, key_right);
-      Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
-      Expression value_right = Expression.Constant(filter_value, typeof(string));
-      Expression value_expr = Expression.Equal(value_left, value_right);
-      var pair_filter_and = Expression.And(key_expr, value_expr);
-      var pair_filter_subtree = pair_filter_and;
+        ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
 
-      var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_subtree, new ParameterExpression[] { pair });
+        Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+        Expression key_right = Expression.Constant(filter_tag, typeof(int));
+        Expression key_expr = Expression.Equal(key_left, key_right);
+        Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+        Expression value_right = Expression.Constant(filter_value, typeof(string));
+        Expression value_expr = Expression.Equal(value_left, value_right);
+        var pair_filter_and = Expression.And(key_expr, value_expr);
+        var pair_filter_subtree = pair_filter_and;
+        var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_subtree, new ParameterExpression[] { pair });
 
-      var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
-      Expression filter_expression = Expression.Call(any_method, msg, pair_filter);
+        var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
+        filter_expression = Expression.Call(any_method, msg, pair_filter);
+      }
+
       var selection = Expression.Lambda<Func<IEnumerable<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msg });
       MethodCallExpression where_call = Expression.Call
       (
@@ -194,7 +205,7 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var output = filter2(L).Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
+      var output = filter4(L).Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
