@@ -27,7 +27,6 @@ namespace expressionTree_specs
     static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs)
     {
       return msgs.Where(msg => msg.Any());
-      //return msgs.Where(msg=>msg.Any(pair=>pair.Key==35) && msg.First(pair=>pair.Key==35).Value=="j");
     }
     static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs, Func<IEnumerable<KeyValuePair<int,string>>,bool> predicate)
     {
@@ -52,7 +51,7 @@ namespace expressionTree_specs
 
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter2(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
+    /*static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter2(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
       if (Q == null) throw new Exception("AsQueryable returned null");
@@ -81,8 +80,8 @@ namespace expressionTree_specs
         selection);
 
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
-    }
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter3(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
+    }*/
+    /*static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter3(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
       if (Q == null) throw new Exception("AsQueryable returned null");
@@ -111,7 +110,8 @@ namespace expressionTree_specs
         selection);
 
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
-    }
+    }*/
+    //static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter3(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config)
     static Expression parse(string input)
     {
       return null;
@@ -123,11 +123,15 @@ namespace expressionTree_specs
       ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
       ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
 
+      var filter_tags = filter_config.Split('=');
+      int filter_tag = int.Parse(filter_tags[0]);
+      string filter_value = filter_tags[1];
+
       Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
-      Expression key_right = Expression.Constant(35, typeof(int));
+      Expression key_right = Expression.Constant(filter_tag, typeof(int));
       Expression key_expr = Expression.Equal(key_left, key_right);
       Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
-      Expression value_right = Expression.Constant("j", typeof(string));
+      Expression value_right = Expression.Constant(filter_value, typeof(string));
       Expression value_expr = Expression.Equal(value_left, value_right);
       var pair_filter_and = Expression.And(key_expr, value_expr);
       var pair_filter_subtree = pair_filter_and;
@@ -147,6 +151,7 @@ namespace expressionTree_specs
       );
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }
+
     [TestMethod]
     public void call_static_Ia()
     {
@@ -204,7 +209,7 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = filter2(L, "35=8");
+      var filtered = filter4(L, "35=8");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
@@ -220,7 +225,7 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = filter3(L, "35=j");
+      var filtered = filter4(L, "35=j");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
       Assert.AreEqual<string>("(35,j) (55,WALMEX V) | (35,j) (55,AMX L) | ", output.ToString());
