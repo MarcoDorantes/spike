@@ -24,11 +24,11 @@ namespace expressionTree_specs
   [TestClass]
   public class expressionTree_spec
   {
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs)
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter_by_simple_Any(IEnumerable<List<KeyValuePair<int, string>>> msgs)
     {
       return msgs.Where(msg => msg.Any());
     }
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs, Func<IEnumerable<KeyValuePair<int,string>>,bool> predicate)
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter_by_Predicate(IEnumerable<List<KeyValuePair<int, string>>> msgs, Func<IEnumerable<KeyValuePair<int,string>>,bool> predicate)
     {
       return msgs.Where(predicate);
     }
@@ -113,11 +113,11 @@ namespace expressionTree_specs
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }*/
     #endregion
-    static Expression parse(string input)
-    {
-      return null;
-    }
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> filter4(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config = null)
+    //static Expression parse(string input)
+    //{
+    //  return null;
+    //}
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config = null)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
 
@@ -164,7 +164,7 @@ namespace expressionTree_specs
     }
 
     [TestMethod]
-    public void call_static_Ia()
+    public void fixed_filter_by_Any()
     {
       IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
       {
@@ -174,12 +174,14 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var output=filter1(L).Aggregate(new StringBuilder(),(whole,msg)=>whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
+      var filtered = filter_by_simple_Any(L);
+      var output= filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
+      Assert.AreEqual<int>(4, filtered.Count());
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
     [TestMethod]
-    public void call_static_Ib()
+    public void fixed_filter_by_fixed_Predicate()
     {
       IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
       {
@@ -189,13 +191,14 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = filter1(L, new Func<IEnumerable<KeyValuePair<int, string>>, bool>(msg => msg.Any(pair => pair.Key == 35 && pair.Value == "8")));
+      var filtered = filter_by_Predicate(L, new Func<IEnumerable<KeyValuePair<int, string>>, bool>(msg => msg.Any(pair => pair.Key == 35 && pair.Value == "8")));
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
+      Assert.AreEqual<int>(2, filtered.Count());
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
     [TestMethod]
-    public void call_static_IIa()
+    public void dynamic_filter_by_simple_Any()
     {
       IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
       {
@@ -205,12 +208,14 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var output = filter4(L).Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
+      var filtered = dynamic_filter1(L);
+      var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
+      Assert.AreEqual<int>(4, filtered.Count());
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
     [TestMethod]
-    public void call_static_IIb()
+    public void dynamic_filter_by_configured_Any_1()
     {
       IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
       {
@@ -220,13 +225,14 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = filter4(L, "35=8");
+      var filtered = dynamic_filter1(L, "35=8");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
+      Assert.AreEqual<int>(2, filtered.Count());
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
     [TestMethod]
-    public void call_static_IIc()
+    public void dynamic_filter_by_configured_Any_2()
     {
       IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
       {
@@ -236,10 +242,45 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = filter4(L, "35=j");
+      var filtered = dynamic_filter1(L, "35=j");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
+      Assert.AreEqual<int>(2, filtered.Count());
       Assert.AreEqual<string>("(35,j) (55,WALMEX V) | (35,j) (55,AMX L) | ", output.ToString());
+    }
+    [TestMethod]
+    public void dynamic_filter_by_configured_Any_3()
+    {
+      IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
+      {
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"AMX L") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(55,"WALMEX V") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(55,"AMX L") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
+      };
+
+      var filtered = dynamic_filter1(L, "35=8 & 35=j");
+      var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
+
+      Assert.AreEqual<int>(0, filtered.Count());
+      Assert.AreEqual<string>("", output.ToString());
+    }
+    [TestMethod]
+    public void dynamic_filter_by_configured_Any_4()
+    {
+      IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
+      {
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"AMX L") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(55,"WALMEX V") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(55,"AMX L") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
+      };
+
+      var filtered = dynamic_filter1(L, "35=8 | 35=j");
+      var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
+
+      Assert.AreEqual<int>(4, filtered.Count());
+      Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
     }
     [TestMethod]
     public void call_static_00a()
@@ -493,13 +534,6 @@ namespace expressionTree_specs
 
       var output = $"{result}";
       Assert.AreEqual<string>("3|3|", output);
-    }
-    [TestMethod]
-    public void parse_expr1()
-    {
-      var input = "35=8";
-      Expression exp = parse(input);
-      Assert.IsNotNull(exp);
     }
   }
 }
