@@ -125,6 +125,30 @@ namespace expressionTree_specs
     }
     static IEnumerable<string> get_expression_tokens(string input)
     {
+      /*
+       35=8
+       35=j
+       35=8 AND 35=j
+       35=8 OR 35=j
+       35=8 OR 421=3 AND 34=12
+       35=8 OR (421=3 AND 34=12)
+       35=8 AND 421=3 OR 34=12
+       35=8 AND (421=3 OR 34=12)
+       35=8 AND 55=AMX L AND 34=12
+
+      12=A123 55=1
+      (?<pair>(?<tag>\d+)=(?<val>\w+))+
+
+      (?<pair>(?<tag>\d+)=(?<right>(?<value>[_0-9A-Za-z]+))(?<sep>&|))+
+
+      12=A123 OR 55=1 AND 34=123
+      (?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+
+      http://regexstorm.net/tester
+
+      An Extensive Examination of Data Structures
+      https://msdn.microsoft.com/en-us/library/aa287104(VS.71).aspx
+      http://stackoverflow.com/questions/942053/why-is-there-no-treet-class-in-net
+      */
       var regex = new Regex(@"(?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+");
       foreach (Match match in regex.Matches(input))
       {
@@ -189,7 +213,6 @@ namespace expressionTree_specs
       }
 
       var operators = new string[] { "AND", "OR" };
-
       var rexpr_tokens = get_expression_tokens(input).Reverse().ToArray();
       if (rexpr_tokens.Length == 0)
       {
@@ -248,30 +271,8 @@ namespace expressionTree_specs
       }
       else
       {
-        /*
-         35=8
-         35=j
-         35=8 AND 35=j
-         35=8 OR 35=j
-         35=8 OR 421=3 AND 34=12
-         35=8 OR (421=3 AND 34=12)
-         35=8 AND 421=3 OR 34=12
-         35=8 AND (421=3 OR 34=12)
-         35=8 AND 55=AMX L AND 34=12
+        Tree<string> tree = tree_parse(filter_config);
 
-        12=A123 55=1
-        (?<pair>(?<tag>\d+)=(?<val>\w+))+
-
-        (?<pair>(?<tag>\d+)=(?<right>(?<value>[_0-9A-Za-z]+))(?<sep>&|))+
-
-        12=A123 OR 55=1 AND 34=123
-        (?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+
-        http://regexstorm.net/tester
-
-        An Extensive Examination of Data Structures
-        https://msdn.microsoft.com/en-us/library/aa287104(VS.71).aspx
-        http://stackoverflow.com/questions/942053/why-is-there-no-treet-class-in-net
-        */
         var filter_tags = filter_config.Split('=');
         int filter_tag = int.Parse(filter_tags[0]);
         string filter_value = filter_tags[1];
