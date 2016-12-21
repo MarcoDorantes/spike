@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace expressionTree_specs
 {
@@ -122,9 +123,100 @@ namespace expressionTree_specs
     {
       public V Value { get; set; }
     }
+    static IEnumerable<string> get_expression_tokens(string input)
+    {
+      var regex = new Regex(@"(?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+");
+      foreach (Match match in regex.Matches(input))
+      {
+        var pair = match.Groups["pair"].Value;
+        var op = match.Groups["op"].Value;
+        if (string.IsNullOrWhiteSpace(pair) == false)
+        {
+          yield return pair.Trim();
+        }
+        if (string.IsNullOrWhiteSpace(op) == false)
+        {
+          yield return op.Trim();
+        }
+      }
+    }
+    static int IndexOfLogicalOperator(IEnumerable<string> operators, string[] expr_tokens, out string operator_token)
+    {
+      int result = -1;
+      operator_token = null;
+      bool found = false;
+      string current_token = null;
+      int index = -1;
+      while (found == false && index + 1 < expr_tokens.Length)
+      {
+        ++index;
+        current_token = expr_tokens[index];
+        found = operators.Any(op => op == current_token);
+      }
+      if (found)
+      {
+        result = index;
+        operator_token = current_token;
+      }
+      return result;
+    }
+    static string reverse_sub_expression(string[] expr_tokens, int start_index, int count = 0)
+    {
+      var result = "";
+      if (start_index < 0 || start_index >= expr_tokens.Length)
+      {
+        throw new ArgumentOutOfRangeException(nameof(start_index));
+      }
+      if (count < 0 || count > expr_tokens.Length)
+      {
+        throw new ArgumentOutOfRangeException(nameof(count));
+      }
+      if (count == 0)
+      {
+        count = expr_tokens.Length - start_index;
+      }
+      for (int k = 0; k < count; ++k)
+      {
+        result = $"{expr_tokens[start_index++]} {result}";
+      }
+      return result;
+    }
     static Tree<string> tree_parse(string input)
     {
+      if (string.IsNullOrWhiteSpace(input))
+      {
+        throw new ArgumentNullException(nameof(input));
+      }
+
+      var operators = new string[] { "AND", "OR" };
+
+      var rexpr_tokens = get_expression_tokens(input).Reverse().ToArray();
+      if (rexpr_tokens.Length == 0)
+      {
+        throw new Exception("Invalid syntax: No expression.");
+      }
+      if (operators.Any(op => op == rexpr_tokens.First()) || operators.Any(op => op == rexpr_tokens.Last()))
+      {
+        throw new Exception("Invalid syntax: malformed logical operator.");
+      }
+
       var result = new Tree<string>();
+      string operator_token = null;
+      int operator_index = IndexOfLogicalOperator(operators, rexpr_tokens, out operator_token);
+      if (operator_index >= 0)
+      {
+        result.Value = operator_token;
+        result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, operator_index + 1)));
+        result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, 0, operator_index)));
+      }
+      else if (rexpr_tokens.Length == 1)
+      {
+        result.Value = rexpr_tokens[0];
+      }
+      else throw new Exception("Invalid syntax.");
+      return result;
+
+      /*var result = new Tree<string>();
       if (input.Contains("OR"))
       {
         var terms = input.Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries);
@@ -140,7 +232,7 @@ namespace expressionTree_specs
         result.Add(tree_parse(terms[1].Trim()));
       }
       else result.Value = input;
-      return result;
+      return result;*/
     }
     static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config = null)
     {
@@ -166,7 +258,15 @@ namespace expressionTree_specs
          35=8 AND 421=3 OR 34=12
          35=8 AND (421=3 OR 34=12)
          35=8 AND 55=AMX L AND 34=12
-         (?<pair>(?<tag>\d+)=(?<right>(?<value>[_0-9A-Za-z]+))(?<sep>&|))+
+
+        12=A123 55=1
+        (?<pair>(?<tag>\d+)=(?<val>\w+))+
+
+        (?<pair>(?<tag>\d+)=(?<right>(?<value>[_0-9A-Za-z]+))(?<sep>&|))+
+
+        12=A123 OR 55=1 AND 34=123
+        (?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+
+        http://regexstorm.net/tester
 
         An Extensive Examination of Data Structures
         https://msdn.microsoft.com/en-us/library/aa287104(VS.71).aspx
@@ -322,6 +422,64 @@ namespace expressionTree_specs
 
       Assert.AreEqual<int>(4, filtered.Count());
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
+    }
+    [TestMethod]
+    public void expr1()
+    {
+      var regex = new Regex(@"(?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+");
+      var input = "12=A123 OR 55=1 AND 34=123";
+
+      var matches = regex.Matches(input);
+
+      Assert.AreEqual<int>(3, matches.Count);
+      Assert.AreEqual<string>("12=A123 OR", matches[0].Value);
+      Assert.AreEqual<string>("55=1 AND", matches[1].Value);
+      Assert.AreEqual<string>("34=123", matches[2].Value);
+
+      Assert.AreEqual<string>("12=A123", matches[0].Groups["pair"].Value);
+      Assert.AreEqual<string>("12", matches[0].Groups["tag"].Value);
+      Assert.AreEqual<string>("A123", matches[0].Groups["val"].Value);
+      Assert.AreEqual<string>("OR", matches[0].Groups["op"].Value);
+
+      Assert.AreEqual<string>("55=1", matches[1].Groups["pair"].Value);
+      Assert.AreEqual<string>("55", matches[1].Groups["tag"].Value);
+      Assert.AreEqual<string>("1", matches[1].Groups["val"].Value);
+      Assert.AreEqual<string>("AND", matches[1].Groups["op"].Value);
+
+      Assert.AreEqual<string>("34=123", matches[2].Groups["pair"].Value);
+      Assert.AreEqual<string>("34", matches[2].Groups["tag"].Value);
+      Assert.AreEqual<string>("123", matches[2].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[2].Groups["op"].Value);
+    }
+    [TestMethod]
+    public void expression_tokens1()
+    {
+      var input = "12=A123 OR 55=1 AND 34=123";
+      var tokens = get_expression_tokens(input).Reverse().ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
+      Assert.AreEqual<string>("34=123,AND,55=1,OR,12=A123,", tokens);
+    }
+    [TestMethod]
+    public void rsub_expr1()
+    {
+      var tokens = new string[] { "1", "2", "3" };
+      Assert.AreEqual<string>("3 2 1 ", reverse_sub_expression(tokens, 0));
+      Assert.AreEqual<string>("3 2 ", reverse_sub_expression(tokens, 1, 2));
+      Assert.AreEqual<string>("3 2 ", reverse_sub_expression(tokens, 1));
+      Assert.AreEqual<string>("3 ", reverse_sub_expression(tokens, 2));
+      Assert.AreEqual<string>("1 ", reverse_sub_expression(tokens, 0, 1));
+    }
+    [TestMethod]
+    public void indexof()
+    {
+      var operators = new string[] { "AND", "OR" };
+      var input = "12=A123 OR 55=1 AND 34=123";
+      var tokens = get_expression_tokens(input).Reverse().ToArray();
+      Assert.AreEqual<string>("34=123,AND,55=1,OR,12=A123,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
+
+      string operator_token;
+      int index = IndexOfLogicalOperator(operators, tokens, out operator_token);
+      Assert.AreEqual<int>(1, index);
+      Assert.AreEqual<string>("AND", operator_token);
     }
     [TestMethod]
     public void tree1()
