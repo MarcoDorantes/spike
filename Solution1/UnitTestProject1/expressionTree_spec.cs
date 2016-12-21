@@ -129,15 +129,15 @@ namespace expressionTree_specs
       {
         var terms = input.Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries);
         result.Value = "OR";
-        result.Add(new Tree<string> { Value = terms[0].Trim() });
-        result.Add(new Tree<string> { Value = terms[1].Trim() });
+        result.Add(tree_parse(terms[0].Trim()));
+        result.Add(tree_parse(terms[1].Trim()));
       }
       else if (input.Contains("AND"))
       {
         var terms = input.Split(new string[] { "AND" }, StringSplitOptions.RemoveEmptyEntries);
         result.Value = "AND";
-        result.Add(new Tree<string> { Value = terms[0].Trim() });
-        result.Add(new Tree<string> { Value = terms[1].Trim() });
+        result.Add(tree_parse(terms[0].Trim()));
+        result.Add(tree_parse(terms[1].Trim()));
       }
       else result.Value = input;
       return result;
@@ -329,14 +329,32 @@ namespace expressionTree_specs
       Tree<string> t1 = tree_parse("35=j");
       Tree<string> t2 = tree_parse("35=8 OR 35=j");
       Tree<string> t3 = tree_parse("35=8 AND 55=AMX");
+      Tree<string> t4 = tree_parse("35=8 AND 55=AMX OR 34=123");
+      Tree<string> t5 = tree_parse("35=8 AND 55=X OR 34=1 AND 22=4");
 
       Assert.AreEqual<string>("35=j", t1.Value);
+
       Assert.AreEqual<string>("OR", t2.Value);
       Assert.AreEqual<string>("35=8", t2.ElementAt(0).Value);
       Assert.AreEqual<string>("35=j", t2.ElementAt(1).Value);
+
       Assert.AreEqual<string>("AND", t3.Value);
       Assert.AreEqual<string>("35=8", t3.ElementAt(0).Value);
       Assert.AreEqual<string>("55=AMX", t3.ElementAt(1).Value);
+
+      Assert.AreEqual<string>("OR", t4.Value);
+      Assert.AreEqual<string>("AND", t4.ElementAt(0).Value);
+      Assert.AreEqual<string>("35=8", t4.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("55=AMX", t4.ElementAt(0).ElementAt(1).Value);
+      Assert.AreEqual<string>("34=123", t4.ElementAt(1).Value);
+
+      Assert.AreEqual<string>("AND", t5.Value);
+      Assert.AreEqual<string>("OR", t5.ElementAt(0).Value);
+      Assert.AreEqual<string>("AND", t5.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("35=8", t5.ElementAt(0).ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("55=X", t5.ElementAt(0).ElementAt(0).ElementAt(1).Value);
+      Assert.AreEqual<string>("34=1", t5.ElementAt(0).ElementAt(1).Value);
+      Assert.AreEqual<string>("22=4", t5.ElementAt(1).Value);
     }
     [TestMethod]
     public void call_static_00a()
