@@ -401,7 +401,7 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = dynamic_filter1(L, "35=8 & 35=j");
+      var filtered = dynamic_filter1(L, "35=8 AND 35=j");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
       Assert.AreEqual<int>(0, filtered.Count());
@@ -418,7 +418,7 @@ namespace expressionTree_specs
       new List<KeyValuePair<int,string>> {new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(55,"X") }
       };
 
-      var filtered = dynamic_filter1(L, "35=8 | 35=j");
+      var filtered = dynamic_filter1(L, "35=8 OR 35=j");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))));
 
       Assert.AreEqual<int>(4, filtered.Count());
@@ -514,6 +514,45 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("55=X", t5.ElementAt(0).ElementAt(0).ElementAt(1).Value);
       Assert.AreEqual<string>("34=1", t5.ElementAt(0).ElementAt(1).Value);
       Assert.AreEqual<string>("22=4", t5.ElementAt(1).Value);
+    }
+    [TestMethod]
+    public void tree2()
+    {
+      Tree<string> t = tree_parse("35=8 OR 35=j");
+
+      var filter_tags = t.ElementAt(0).Value.Split('=');
+      int filter_tag = int.Parse(filter_tags[0]);
+      string filter_value = filter_tags[1];
+
+      ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+
+      Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+      Expression key_right = Expression.Constant(filter_tag, typeof(int));
+      Expression key_expr = Expression.Equal(key_left, key_right);
+      Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+      Expression value_right = Expression.Constant(filter_value, typeof(string));
+      Expression value_expr = Expression.Equal(value_left, value_right);
+      var pair_filter_and = Expression.And(key_expr, value_expr);
+
+      var filter_tags_ = t.ElementAt(1).Value.Split('=');
+      int filter_tag_ = int.Parse(filter_tags_[0]);
+      string filter_value_ = filter_tags_[1];
+
+      //ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+
+      Expression key_left_ = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+      Expression key_right_ = Expression.Constant(filter_tag_, typeof(int));
+      Expression key_expr_ = Expression.Equal(key_left_, key_right_);
+      Expression value_left_ = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+      Expression value_right_ = Expression.Constant(filter_value_, typeof(string));
+      Expression value_expr_ = Expression.Equal(value_left_, value_right_);
+      var pair_filter_and_ = Expression.And(key_expr_, value_expr_);
+
+      Expression or = Expression.Or(pair_filter_and, pair_filter_and_);
+
+      Assert.AreEqual<string>("((pair.Key == 35) And (pair.Value == \"8\"))", pair_filter_and.ToString());
+      Assert.AreEqual<string>("((pair.Key == 35) And (pair.Value == \"j\"))", pair_filter_and_.ToString());
+      Assert.AreEqual<string>("(((pair.Key == 35) And (pair.Value == \"8\")) Or ((pair.Key == 35) And (pair.Value == \"j\")))", or.ToString());
     }
     [TestMethod]
     public void call_static_00a()
