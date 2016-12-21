@@ -113,10 +113,35 @@ namespace expressionTree_specs
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }*/
     #endregion
-    //static Expression parse(string input)
-    //{
-    //  return null;
-    //}
+
+/*public class Tree<K, V> : Dictionary<K, Tree<K, V>>
+{
+    public V Value { get; set; }
+}*/
+    public class Tree<V> : HashSet<Tree<V>>
+    {
+      public V Value { get; set; }
+    }
+    static Tree<string> tree_parse(string input)
+    {
+      var result = new Tree<string>();
+      if (input.Contains("OR"))
+      {
+        var terms = input.Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries);
+        result.Value = "OR";
+        result.Add(new Tree<string> { Value = terms[0].Trim() });
+        result.Add(new Tree<string> { Value = terms[1].Trim() });
+      }
+      else if (input.Contains("AND"))
+      {
+        var terms = input.Split(new string[] { "AND" }, StringSplitOptions.RemoveEmptyEntries);
+        result.Value = "AND";
+        result.Add(new Tree<string> { Value = terms[0].Trim() });
+        result.Add(new Tree<string> { Value = terms[1].Trim() });
+      }
+      else result.Value = input;
+      return result;
+    }
     static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config = null)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
@@ -131,6 +156,22 @@ namespace expressionTree_specs
       }
       else
       {
+        /*
+         35=8
+         35=j
+         35=8 AND 35=j
+         35=8 OR 35=j
+         35=8 OR 421=3 AND 34=12
+         35=8 OR (421=3 AND 34=12)
+         35=8 AND 421=3 OR 34=12
+         35=8 AND (421=3 OR 34=12)
+         35=8 AND 55=AMX L AND 34=12
+         (?<pair>(?<tag>\d+)=(?<right>(?<value>[_0-9A-Za-z]+))(?<sep>&|))+
+
+        An Extensive Examination of Data Structures
+        https://msdn.microsoft.com/en-us/library/aa287104(VS.71).aspx
+        http://stackoverflow.com/questions/942053/why-is-there-no-treet-class-in-net
+        */
         var filter_tags = filter_config.Split('=');
         int filter_tag = int.Parse(filter_tags[0]);
         string filter_value = filter_tags[1];
@@ -281,6 +322,21 @@ namespace expressionTree_specs
 
       Assert.AreEqual<int>(4, filtered.Count());
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
+    }
+    [TestMethod]
+    public void tree1()
+    {
+      Tree<string> t1 = tree_parse("35=j");
+      Tree<string> t2 = tree_parse("35=8 OR 35=j");
+      Tree<string> t3 = tree_parse("35=8 AND 55=AMX");
+
+      Assert.AreEqual<string>("35=j", t1.Value);
+      Assert.AreEqual<string>("OR", t2.Value);
+      Assert.AreEqual<string>("35=8", t2.ElementAt(0).Value);
+      Assert.AreEqual<string>("35=j", t2.ElementAt(1).Value);
+      Assert.AreEqual<string>("AND", t3.Value);
+      Assert.AreEqual<string>("35=8", t3.ElementAt(0).Value);
+      Assert.AreEqual<string>("55=AMX", t3.ElementAt(1).Value);
     }
     [TestMethod]
     public void call_static_00a()
