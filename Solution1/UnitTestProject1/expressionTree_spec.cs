@@ -273,13 +273,18 @@ namespace expressionTree_specs
         int filter_tag = int.Parse(filter_tags[0]);
         string filter_value = filter_tags[1];
 
+        ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
+        var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
+
         Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
         Expression key_right = Expression.Constant(filter_tag, typeof(int));
         Expression key_expr = Expression.Equal(key_left, key_right);
         Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
         Expression value_right = Expression.Constant(filter_value, typeof(string));
         Expression value_expr = Expression.Equal(value_left, value_right);
-        return Expression.And(key_expr, value_expr);
+        var pair_filter_and = Expression.And(key_expr, value_expr);
+        var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_and, new ParameterExpression[] { pair });
+        return Expression.Call(any_method, msg, pair_filter);
       }
     }
 
@@ -675,6 +680,8 @@ Trace.WriteLine(where_selection.ToString());
       string filter_value = filter_tags[1];
 
       ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+      ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
+      var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
 
       Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
       Expression key_right = Expression.Constant(filter_tag, typeof(int));
@@ -683,6 +690,8 @@ Trace.WriteLine(where_selection.ToString());
       Expression value_right = Expression.Constant(filter_value, typeof(string));
       Expression value_expr = Expression.Equal(value_left, value_right);
       var pair_filter_and = Expression.And(key_expr, value_expr);
+      var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_and, new ParameterExpression[] { pair });
+      MethodCallExpression any = Expression.Call(any_method, msg, pair_filter);
 
       var filter_tags_ = t.ElementAt(1).Value.Split('=');
       int filter_tag_ = int.Parse(filter_tags_[0]);
@@ -695,13 +704,15 @@ Trace.WriteLine(where_selection.ToString());
       Expression value_right_ = Expression.Constant(filter_value_, typeof(string));
       Expression value_expr_ = Expression.Equal(value_left_, value_right_);
       var pair_filter_and_ = Expression.And(key_expr_, value_expr_);
+      var pair_filter_ = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_and_, new ParameterExpression[] { pair });
+      MethodCallExpression any_ = Expression.Call(any_method, msg, pair_filter_);
 
       //t.Value == "OR"
-      Expression or = Expression.Or(pair_filter_and, pair_filter_and_);
+      Expression or = Expression.Or(any, any_);
 
-      Assert.AreEqual<string>("((pair.Key == 35) And (pair.Value == \"8\"))", pair_filter_and.ToString());
-      Assert.AreEqual<string>("((pair.Key == 35) And (pair.Value == \"j\"))", pair_filter_and_.ToString());
-      Assert.AreEqual<string>("(((pair.Key == 35) And (pair.Value == \"8\")) Or ((pair.Key == 35) And (pair.Value == \"j\")))", or.ToString());
+      Assert.AreEqual<string>("msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\")))", any.ToString());
+      Assert.AreEqual<string>("msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"j\")))", any_.ToString());
+      Assert.AreEqual<string>("(msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\"))) Or msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"j\"))))", or.ToString());
     }
     [TestMethod]
     public void tree4()
@@ -714,8 +725,8 @@ Trace.WriteLine(where_selection.ToString());
       Tree<string> t5 = tree_parse("35=8 AND 55=X OR 34=1 AND 22=4");
       Expression expr5 = build_filter_expression(t5, pair);
 
-      Assert.AreEqual<string>("(((pair.Key == 35) And (pair.Value == \"8\")) Or ((pair.Key == 35) And (pair.Value == \"j\")))", expr1.ToString());
-      Assert.AreEqual<string>("(((((pair.Key == 35) And (pair.Value == \"8\")) And ((pair.Key == 55) And (pair.Value == \"X\"))) Or ((pair.Key == 34) And (pair.Value == \"1\"))) And ((pair.Key == 22) And (pair.Value == \"4\")))", expr5.ToString());
+      Assert.AreEqual<string>("(msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\"))) Or msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"j\"))))", expr1.ToString());
+      Assert.AreEqual<string>("(((msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\"))) And msg.Any(pair => ((pair.Key == 55) And (pair.Value == \"X\")))) Or msg.Any(pair => ((pair.Key == 34) And (pair.Value == \"1\")))) And msg.Any(pair => ((pair.Key == 22) And (pair.Value == \"4\"))))", expr5.ToString());
     }
     [TestMethod]
     public void call_static_00a()
