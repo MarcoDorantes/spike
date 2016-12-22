@@ -355,6 +355,7 @@ namespace expressionTree_specs
 
         ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
         var pair_filter_subtree = build_filter_expression(tree, pair);
+Trace.WriteLine(pair_filter_subtree.ToString());
         var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_subtree, new ParameterExpression[] { pair });
 
         var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
@@ -442,6 +443,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
 
       Assert.AreEqual<int>(2, L.Where(LL => LL.First(pair => pair.Key == 35).Value == "8").Count());
+      Assert.AreEqual<int>(2, L.Where(LL => LL.Any(pair => pair.Key == 35 && pair.Value == "8")).Count());
     }
     [TestMethod]
     public void dynamic_filter_by_configured_Any_2()
@@ -462,6 +464,7 @@ namespace expressionTree_specs
 
       //var fixlog = L.Where(LL => LL.First(pair => pair.Key == 56).Value == "GBM10DC1" && LL.First(pair => pair.Key == 35).Value == "8" && LL.First(pair => pair.Key == 39).Value == "2");
       Assert.AreEqual<int>(2, L.Where(LL => LL.First(pair => pair.Key == 35).Value == "j").Count());
+      Assert.AreEqual<int>(2, L.Where(LL => LL.Any(pair => pair.Key == 35 && pair.Value == "j")).Count());
     }
     [TestMethod]
     public void dynamic_filter_by_configured_Any_3()
@@ -481,6 +484,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("", output.ToString());
 
       Assert.AreEqual<int>(0, L.Where(LL => LL.First(pair => pair.Key == 35).Value == "8" && LL.First(pair => pair.Key == 35).Value == "j").Count());
+      Assert.AreEqual<int>(0, L.Where(LL => LL.Any(pair => pair.Key == 35 && pair.Value == "8") && LL.Any(pair => pair.Key == 35 && pair.Value == "j")).Count());
     }
     [TestMethod]
     public void dynamic_filter_by_configured_Any_4()
@@ -500,6 +504,7 @@ namespace expressionTree_specs
       Assert.AreEqual<string>("(35,8) (55,AMX L) | (35,j) (55,WALMEX V) | (35,j) (55,AMX L) | (35,8) (55,X) | ", output.ToString());
 
       Assert.AreEqual<int>(4, L.Where(LL => LL.First(pair => pair.Key == 35).Value == "8" || LL.First(pair => pair.Key == 35).Value == "j").Count());
+      Assert.AreEqual<int>(4, L.Where(LL => LL.Any(pair => pair.Key == 35 && pair.Value == "8") || LL.Any(pair => pair.Key == 35 && pair.Value == "j")).Count());
     }
     [TestMethod]
     public void expr1()
