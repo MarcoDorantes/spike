@@ -269,7 +269,7 @@ namespace expressionTree_specs
       }
     }
 
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<List<KeyValuePair<int, string>>> msgs, string filter_config = null)
+    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<IEnumerable<KeyValuePair<int, string>>> msgs, string filter_config = null)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
 
@@ -628,7 +628,7 @@ Trace.WriteLine(where_selection.ToString());
       Assert.AreEqual<string>("22=4", t5.ElementAt(1).Value);
     }
     [TestMethod]
-    public void tree2()
+    public void tree_expr1()
     {
       Tree<string> t = tree_parse("35=8");
 
@@ -653,7 +653,7 @@ Trace.WriteLine(where_selection.ToString());
       Assert.AreEqual<string>("msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\")))", any.ToString());
     }
     [TestMethod]
-    public void tree3()
+    public void tree_expr2()
     {
       Tree<string> t = tree_parse("35=8 OR 35=j");
 
@@ -697,7 +697,7 @@ Trace.WriteLine(where_selection.ToString());
       Assert.AreEqual<string>("(msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\"))) Or msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"j\"))))", or.ToString());
     }
     [TestMethod]
-    public void tree4()
+    public void tree_expr3()
     {
       ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
       ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
