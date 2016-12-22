@@ -238,34 +238,16 @@ namespace expressionTree_specs
       }
       else throw new Exception("Invalid syntax.");
       return result;
-
-      /*var result = new Tree<string>();
-      if (input.Contains("OR"))
-      {
-        var terms = input.Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries);
-        result.Value = "OR";
-        result.Add(tree_parse(terms[0].Trim()));
-        result.Add(tree_parse(terms[1].Trim()));
-      }
-      else if (input.Contains("AND"))
-      {
-        var terms = input.Split(new string[] { "AND" }, StringSplitOptions.RemoveEmptyEntries);
-        result.Value = "AND";
-        result.Add(tree_parse(terms[0].Trim()));
-        result.Add(tree_parse(terms[1].Trim()));
-      }
-      else result.Value = input;
-      return result;*/
     }
-    static Expression build_filter_expression(Tree<string> t, ParameterExpression pair)
+    static Expression build_filter_expression(Tree<string> t, ParameterExpression pair, ParameterExpression msg)
     {
       if (t.Value == "AND")
       {
-        return Expression.And(build_filter_expression(t.ElementAt(0), pair), build_filter_expression(t.ElementAt(1), pair));
+        return Expression.And(build_filter_expression(t.ElementAt(0), pair, msg), build_filter_expression(t.ElementAt(1), pair, msg));
       }
       else if (t.Value == "OR")
       {
-        return Expression.Or(build_filter_expression(t.ElementAt(0), pair), build_filter_expression(t.ElementAt(1), pair));
+        return Expression.Or(build_filter_expression(t.ElementAt(0), pair, msg), build_filter_expression(t.ElementAt(1), pair, msg));
       }
       else
       {
@@ -273,7 +255,6 @@ namespace expressionTree_specs
         int filter_tag = int.Parse(filter_tags[0]);
         string filter_value = filter_tags[1];
 
-        ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
         var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
 
         Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
@@ -359,7 +340,8 @@ namespace expressionTree_specs
         #endregion
 
         ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
-        var pair_filter_subtree = build_filter_expression(tree, pair);
+
+        var pair_filter_subtree = build_filter_expression(tree, pair, msg);
         var pair_filter = Expression.Lambda<Func<KeyValuePair<int, string>, bool>>(pair_filter_subtree, new ParameterExpression[] { pair });
         var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(KeyValuePair<int, string>));
         filter_expression = Expression.Call(any_method, msg, pair_filter);
@@ -718,12 +700,13 @@ Trace.WriteLine(where_selection.ToString());
     public void tree4()
     {
       ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+      ParameterExpression msg = Expression.Parameter(typeof(IEnumerable<KeyValuePair<int, string>>), "msg");
 
       Tree<string> t1 = tree_parse("35=8 OR 35=j");
-      Expression expr1 = build_filter_expression(t1, pair);
+      Expression expr1 = build_filter_expression(t1, pair, msg);
 
       Tree<string> t5 = tree_parse("35=8 AND 55=X OR 34=1 AND 22=4");
-      Expression expr5 = build_filter_expression(t5, pair);
+      Expression expr5 = build_filter_expression(t5, pair, msg);
 
       Assert.AreEqual<string>("(msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\"))) Or msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"j\"))))", expr1.ToString());
       Assert.AreEqual<string>("(((msg.Any(pair => ((pair.Key == 35) And (pair.Value == \"8\"))) And msg.Any(pair => ((pair.Key == 55) And (pair.Value == \"X\")))) Or msg.Any(pair => ((pair.Key == 34) And (pair.Value == \"1\")))) And msg.Any(pair => ((pair.Key == 22) And (pair.Value == \"4\"))))", expr5.ToString());
