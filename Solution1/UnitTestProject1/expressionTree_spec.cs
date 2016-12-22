@@ -921,6 +921,16 @@ Trace.WriteLine(pair_filter_subtree.ToString());
             pair => pair.Key == 35 && pair.Value == "j"
           )
       )
+
+      Where(LL => LL.Any(pair => pair.n == 0) || LL.Any(pair => pair.n == 6))
+
+      Where
+      (
+        LL =>
+          LL.Any(pair => pair.n == 0)
+          ||
+          LL.Any(pair => pair.n == 6)
+      )
       */
       var E = new List<List<B>>
       {
@@ -935,20 +945,19 @@ Trace.WriteLine(pair_filter_subtree.ToString());
       var any_method = typeof(Enumerable).GetMethods().Single(m => m.Name == "Any" && m.GetParameters().Count() == 2).MakeGenericMethod(typeof(B));
 
       Expression left1 = Expression.Field(b, typeof(B).GetField("n"));
-      Expression right1 = Expression.Constant(5, typeof(int));
+      Expression right1 = Expression.Constant(0, typeof(int));
       Expression expr1 = Expression.Equal(left1, right1);
       var b_filter1 = Expression.Lambda<Func<B, bool>>(expr1, new ParameterExpression[] { b });
-      MethodCallExpression c1 = Expression.Call(any_method, bb, b_filter1);
+      MethodCallExpression any1 = Expression.Call(any_method, bb, b_filter1);
 
       Expression left2 = Expression.Field(b, typeof(B).GetField("n"));
-      Expression right2 = Expression.Constant(125, typeof(int));
+      Expression right2 = Expression.Constant(6, typeof(int));
       Expression expr2 = Expression.Equal(left2, right2);
       var b_filter2 = Expression.Lambda<Func<B, bool>>(expr2, new ParameterExpression[] { b });
-      MethodCallExpression c2 = Expression.Call(any_method, bb, b_filter2);
+      MethodCallExpression any2 = Expression.Call(any_method, bb, b_filter2);
 
-      Expression c = Expression.And(c1, c2);
-      Trace.WriteLine(c.ToString());
-      var selection = Expression.Lambda<Func<IEnumerable<B>, bool>>(c, new ParameterExpression[] { bb });
+      Expression main_where_filter = Expression.Or(any1, any2);
+      var selection = Expression.Lambda<Func<IEnumerable<B>, bool>>(main_where_filter, new ParameterExpression[] { bb });
 
       MethodCallExpression where_expression = Expression.Call(
         typeof(Queryable),
@@ -958,10 +967,13 @@ Trace.WriteLine(pair_filter_subtree.ToString());
         selection);
 
       var q = Q.Provider.CreateQuery<IEnumerable<B>>(where_expression);
-      var result = q.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n.Count()));
+      var filtered_iqueryable_output = q.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0}) ", n.Aggregate(new StringBuilder(), (w2, n2) => w2.AppendFormat("{0},", n2.n))));
 
-      var output = $"{result}";
-      Assert.AreEqual<string>("3|3|", output);
+      var filtered_ienumerable = E.Where(LL => LL.Any(pair => pair.n == 0) || LL.Any(pair => pair.n == 6));
+      var filtered_ienumerable_output = filtered_ienumerable.Aggregate(new StringBuilder(), (w, next) => w.AppendFormat("({0}) ", next.Aggregate(new StringBuilder(), (w2, n2) => w2.AppendFormat("{0},", n2.n))));
+
+      Assert.AreEqual<string>("(0,5,125,) (1,6,126,) ", $"{filtered_iqueryable_output}");
+      Assert.AreEqual<string>("(0,5,125,) (1,6,126,) ", $"{filtered_ienumerable_output}");
     }
   }
 }
