@@ -230,21 +230,23 @@ namespace expressionTree_specs
       }
       return true;
     }
-    static Tree<int, StringBuilder> tree_parse_top(string input, int start_index)
+    static Tree<int, StringBuilder> tree_parse_top(string input, ref int k)
     {
-      var result = new Tree<int, StringBuilder>();
+      var result = new Tree<int, StringBuilder> { Value = new StringBuilder() };
       int current = 0;
       result[current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
 
-      int k = start_index;
+      //int k = start_index;
       while(k < input.Length)
       {
         char c = input[k];
         if (c == '(')
         {
-          var subtree = tree_parse_top(input, k + 1);
+          ++k;
+          var subtree = tree_parse_top(input, ref k);
           result[++current] = subtree;
-          k += subtree.Value.Length;
+          //k += subtree.Value.Length;
+          ++k;
         }
         else if (c == ')')
         {
@@ -252,7 +254,7 @@ namespace expressionTree_specs
         }
         else
         {
-          result[current].Value.Append(c);
+          result.Value.Append(c);
           ++k;
         }
       }
@@ -269,7 +271,7 @@ namespace expressionTree_specs
       {
         throw new Exception("Malformed expression. Check your parenthesis.");
       }
-      var result = new Tree<int, StringBuilder>();
+      var result = new Tree<int, StringBuilder> { Value = new StringBuilder() };
       int current = 0;
       result[current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
 
@@ -281,9 +283,11 @@ namespace expressionTree_specs
         {
           case '(':
             {
-              var subtree = tree_parse_top(input, k + 1);
+              ++k;
+              var subtree = tree_parse_top(input, ref k);
               result[++current] = subtree;
-              k += subtree.Value.Length;
+              ++k;
+              //k += subtree.Value.Length;
             }
             break;
           case ')':
@@ -760,16 +764,16 @@ Trace.WriteLine(where_selection.ToString());
     public void tree2()
     {
       Tree<int, StringBuilder> t0 = tree_parse_initial("x - y + abc");
-      //Tree<int, StringBuilder> t1 = tree_parse_initial("(x) - () + (abc)");
+      Tree<int, StringBuilder> t1 = tree_parse_initial("(x) - () + (abc)");
 
       Assert.AreEqual<string>("x - y + abc", t0[0].Value.ToString());
-      //Assert.AreEqual<string>("+", t1.Value);
 
-      //Assert.AreEqual<string>("+", t1.Value);
-      //Assert.AreEqual<string>("-", t1.ElementAt(0).Value);
-      //Assert.AreEqual<string>("abc", t1.ElementAt(1).Value);
-      //Assert.AreEqual<string>("x", t1.ElementAt(0).ElementAt(0).Value);
-      //Assert.AreEqual<string>("", t1.ElementAt(0).ElementAt(1).Value);//throw: bad syntax
+      Assert.AreEqual<int>(0, t1.Value.ToString().Length);
+      Assert.AreEqual<string>("x", t1[0].Value.ToString());
+      //Assert.AreEqual<string>("-", t1.ElementAt(1).Value.ToString());
+      //Assert.AreEqual<int>(0, t1.ElementAt(2).Value.ToString().Length);//throw: bad syntax
+      //Assert.AreEqual<string>("+", t1.ElementAt(3).Value.ToString());
+      //Assert.AreEqual<string>("abc", t1.ElementAt(4).Value.ToString());
     }
     [TestMethod]
     public void tree_expr1()
