@@ -530,6 +530,29 @@ Trace.WriteLine(where_selection.ToString());
       Assert.AreEqual<string>("(56,DC1) (35,8) (39,2) | (56,DC1) (35,8) (39,2) | ", output.ToString());
     }
     [TestMethod]
+    public void dynamic_filter_by_configured_Where_6()
+    {
+      IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
+      {
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "A"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"0") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"0") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"j") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "VX"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "A"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") }
+      };
+
+      var L2 = L.Where(msg => msg.First(pair => pair.Key == -1).Value == "IN" && "8|j".Contains(msg.First(pair => pair.Key == 35).Value));
+      var filtered = dynamic_filter1(L2, "56=DC1 AND 35=8 AND 39=2");
+      var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => n.Key != -1 ? w.AppendFormat("({0},{1}) ", n.Key, n.Value) : w)));
+
+      Assert.AreEqual<int>(6, L2.Count());
+      Assert.AreEqual<int>(2, filtered.Count());
+      Assert.AreEqual<string>("(56,DC1) (35,8) (39,2) | (56,DC1) (35,8) (39,2) | ", output.ToString());
+    }
+    [TestMethod]
     public void expr1()
     {
       var regex = new Regex(@"(?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+");
