@@ -205,6 +205,42 @@ namespace expressionTree_specs
       }
       return result;
     }
+    static Tree<string> tree_parse_top(string input)
+    {
+      if (string.IsNullOrWhiteSpace(input))
+      {
+        throw new ArgumentNullException(nameof(input));
+      }
+
+      var exprs = new Tree<KeyValuePair<char, StringBuilder>>();
+      exprs.Value = new KeyValuePair<char, StringBuilder>('^', new StringBuilder());
+      //int index = 0;
+      foreach(char c in input)
+      {
+        var top = exprs.Value;
+        switch (c)
+        {
+          case '(':
+            exprs.Add(new Tree<KeyValuePair<char, StringBuilder>> { Value = new KeyValuePair<char, StringBuilder>(c, new StringBuilder()) });
+            //++index;
+            break;
+          default:
+            exprs.Value.Value.Append(c);
+            break;
+        }
+      }
+      var result = exprs.Aggregate(new Tree<string>(), (w, n) => { w.Add(new Tree<string> { Value = n.Value.Value.ToString() }); return w; });
+
+      /*var node=input.Aggregate(new StringBuilder(), (whole, next) =>
+      {
+        whole.Append(next);
+        return whole;
+      });
+      var result = new Tree<string>() { Value = node.ToString() };*/
+      //      int index = input.IndexOf('(');
+
+      return result;
+    }
     static Tree<string> tree_parse(string input)
     {
       if (string.IsNullOrWhiteSpace(input))
@@ -544,7 +580,7 @@ Trace.WriteLine(where_selection.ToString());
       new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "A"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") }
       };
 
-      var L2 = L.Where(msg => msg.First(pair => pair.Key == -1).Value == "IN" && "8|j".Contains(msg.First(pair => pair.Key == 35).Value));
+      var L2 = L.Where(msg => msg.First(pair => pair.Key == -1).Value == "IN" && "8|j".Contains(msg.First(pair => pair.Key == 35).Value)).Cast<IEnumerable<KeyValuePair<int, string>>>();
       var filtered = dynamic_filter1(L2, "56=DC1 AND 35=8 AND 39=2");
       var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => n.Key != -1 ? w.AppendFormat("({0},{1}) ", n.Key, n.Value) : w)));
 
@@ -649,6 +685,19 @@ Trace.WriteLine(where_selection.ToString());
       Assert.AreEqual<string>("55=X", t5.ElementAt(0).ElementAt(0).ElementAt(1).Value);
       Assert.AreEqual<string>("34=1", t5.ElementAt(0).ElementAt(1).Value);
       Assert.AreEqual<string>("22=4", t5.ElementAt(1).Value);
+    }
+    [TestMethod]
+    public void tree2()
+    {
+      Tree<string> t0 = tree_parse_top("x - y + abc");
+      Tree<string> t1 = tree_parse_top("(x) - () + (abc)");
+
+      Assert.AreEqual<string>("x - y + abc", t0.Value);
+      Assert.AreEqual<string>("+", t1.Value);
+      Assert.AreEqual<string>("-", t1.ElementAt(0).Value);
+      Assert.AreEqual<string>("abc", t1.ElementAt(1).Value);
+      Assert.AreEqual<string>("x", t1.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("", t1.ElementAt(0).ElementAt(1).Value);//throw: bad syntax
     }
     [TestMethod]
     public void tree_expr1()
