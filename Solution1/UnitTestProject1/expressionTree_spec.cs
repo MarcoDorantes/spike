@@ -117,11 +117,32 @@ namespace expressionTree_specs
 
     public class Tree<K, V> : Dictionary<K, Tree<K, V>>
     {
-        public V Value { get; set; }
+      public V Value { get; set; }
+      public override string ToString()
+      {
+        var result = new System.Xml.Linq.XDocument(new System.Xml.Linq.XElement("tree", new System.Xml.Linq.XAttribute("value", Value)));
+        this.Aggregate(result, (whole, next) =>
+        {
+          var subtree = new System.Xml.Linq.XElement("tree", new System.Xml.Linq.XAttribute("key", next.Key));
+          subtree.Add(System.Xml.Linq.XElement.Parse(next.Value.ToString()));
+          whole.Root.Add(subtree);
+          return whole; });
+        return result.ToString();
+      }
     }
     public class Tree<V> : HashSet<Tree<V>>
     {
       public V Value { get; set; }
+      public override string ToString()
+      {
+        var result = new System.Xml.Linq.XDocument(new System.Xml.Linq.XElement("tree", new System.Xml.Linq.XAttribute("value", Value)));
+        this.Aggregate(result, (whole, next) =>
+        {
+          whole.Root.Add(System.Xml.Linq.XElement.Parse(next.ToString()));
+          return whole;
+        });
+        return result.ToString();
+      }
     }
     static IEnumerable<string> get_expression_tokens(string input)
     {
@@ -236,17 +257,14 @@ namespace expressionTree_specs
       int current = 0;
       result[current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
 
-      //int k = start_index;
       while(k < input.Length)
       {
         char c = input[k];
+        ++k;
         if (c == '(')
         {
-          ++k;
           var subtree = tree_parse_top(input, ref k);
           result[++current] = subtree;
-          //k += subtree.Value.Length;
-          ++k;
         }
         else if (c == ')')
         {
@@ -255,10 +273,8 @@ namespace expressionTree_specs
         else
         {
           result.Value.Append(c);
-          ++k;
         }
       }
-      //result.Value = this_level.ToString();
       return result;
     }
     static Tree<int, StringBuilder> tree_parse_initial(string input)
@@ -286,7 +302,7 @@ namespace expressionTree_specs
               ++k;
               var subtree = tree_parse_top(input, ref k);
               result[++current] = subtree;
-              ++k;
+              //++k;
               //k += subtree.Value.Length;
             }
             break;
@@ -768,12 +784,54 @@ Trace.WriteLine(where_selection.ToString());
 
       Assert.AreEqual<string>("x - y + abc", t0[0].Value.ToString());
 
+      Assert.AreEqual<string>("", t1.ToString());
+      Assert.AreEqual<int>(5, t1.Count);
       Assert.AreEqual<int>(0, t1.Value.ToString().Length);
-      Assert.AreEqual<string>("x", t1[0].Value.ToString());
+      Assert.AreEqual<string>("x", t1[1].Value.ToString());
+
       //Assert.AreEqual<string>("-", t1.ElementAt(1).Value.ToString());
       //Assert.AreEqual<int>(0, t1.ElementAt(2).Value.ToString().Length);//throw: bad syntax
       //Assert.AreEqual<string>("+", t1.ElementAt(3).Value.ToString());
       //Assert.AreEqual<string>("abc", t1.ElementAt(4).Value.ToString());
+    }
+    [TestMethod]
+    public void keyed_tree_data_schema_0()
+    {
+      Tree<string> x = new Tree<string> { Value = "cero" };
+      x.Add(new Tree<string> { Value = "uno" });
+      x.Add(new Tree<string> { Value = "subuno" });
+
+      var xml = x.ToString();
+      Trace.WriteLine(xml);
+      Assert.IsNotNull(System.Xml.Linq.XDocument.Parse(xml));
+    }
+    [TestMethod]
+    public void keyed_tree_data_schema_2()
+    {
+      Tree<int, string> x = new Tree<int, string> { Value = "cero" };
+      x[1] = new Tree<int, string> { Value = "uno" };
+      x[2] = new Tree<int, string> { Value = "dos" };
+      x[8] = new Tree<int, string> { Value = "ocho" };
+
+      Assert.AreEqual<int>(3, x.Count);
+
+      Assert.AreEqual<string>("cero", x.Value);
+      Assert.AreEqual<string>("uno", x[1].Value);
+      Assert.AreEqual<string>("dos", x[2].Value);
+      Assert.AreEqual<string>("ocho", x[8].Value);
+      Assert.AreEqual<int>(1, x.ElementAt(0).Key);
+      Assert.AreEqual<int>(2, x.ElementAt(1).Key);
+      Assert.AreEqual<int>(8, x.ElementAt(2).Key);
+      Assert.AreEqual<int>(0, x.ElementAt(0).Value.Count);
+      Assert.AreEqual<int>(0, x.ElementAt(1).Value.Count);
+      Assert.AreEqual<int>(0, x.ElementAt(2).Value.Count);
+
+      Assert.AreEqual<Type>(typeof(int), x.ElementAt(0).Key.GetType());
+      Assert.AreEqual<Type>(typeof(Tree<int, string>), x.ElementAt(0).Value.GetType());
+
+      var xml = x.ToString();
+      Trace.WriteLine(xml);
+      Assert.IsNotNull(System.Xml.Linq.XDocument.Parse(xml));
     }
     [TestMethod]
     public void tree_expr1()
