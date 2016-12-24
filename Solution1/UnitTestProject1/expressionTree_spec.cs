@@ -325,7 +325,7 @@ namespace expressionTree_specs
       }
       return result;
     }
-    Tree<string> tree_parse_pass2(IEnumerable<string> rexpr_tokens, IEnumerable<string> operators)
+    /*Tree<string> tree_parse_pass2(IEnumerable<string> rexpr_tokens, IEnumerable<string> operators)
     {
       var result = new Tree<string>();
       if (operators.Any(op => op == rexpr_tokens.Last()))
@@ -335,24 +335,30 @@ namespace expressionTree_specs
       }
 
       return result;
-    }
-    Tree<string> tree_parse_parenthesis_pass2(Tree<int, StringBuilder> pass1)
+    }*/
+    Tree<string> tree_parse_parenthesis_pass2(Tree<int, StringBuilder> pass1, IEnumerable<string> operators = null)
     {
       if (pass1 == null)
       {
         throw new ArgumentNullException(nameof(pass1));
       }
 
-      var operators = new string[] { "AND", "OR" };
+      if (operators == null)
+      {
+        operators = new string[] { "AND", "OR" };
+      }
       //var rexpr_tokens = get_expression_tokens(pass1[0].Value.ToString().Trim()).ToArray();
       //if (rexpr_tokens.Length == 0)
       //{
       //  throw new Exception("Invalid syntax: No expression.");
       //}
+      //var result = new Tree<string>();
+      //var rexpr_tokens = get_expression_tokens(pass1[0].Value.ToString().Trim()).ToArray();
       //result.Value = rexpr_tokens.Last();
       //result.Add(new Tree<string> { Value = rexpr_tokens[0] });
       //result.Add(new Tree<string> { Value = pass1[1].Value.ToString() });
-      var result = new Tree<string>();
+
+      var current_head = new Tree<string>();
       for (int k = pass1.Count - 2; k >= 0; ++k)
       {
         var rexpr_tokens = get_expression_tokens(pass1[k].Value.ToString().Trim()).ToArray();
@@ -366,41 +372,44 @@ namespace expressionTree_specs
         if (operators.Any(op => op == rexpr_tokens.First()))
         {
           node = rexpr_tokens.Last();
+
         }
-        if (operators.Any(op => op == rexpr_tokens.Last()))
-        {
-        }
-        result.Value = node;
-        result.Add(tree_parse_pass2(right, operators));
-        result.Add(tree_parse_pass2(left, operators));
+        //if (operators.Any(op => op == rexpr_tokens.Last()))
+        //{
+        //}
+        else node = rexpr_tokens.Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat(" {0}",n)).ToString();
+        current_head.Value = node.Trim();
+        //result.Add(tree_parse_parenthesis_pass2(right, operators));
+        //result.Add(tree_parse_parenthesis_pass2(left, operators));
       }
+      var result = current_head;
 
       //Tree<string> result = tree_parse_pass2(rexpr_tokens, operators);
       //result.Add(tree_parse_parenthesis_pass2(pass1[0]));
       //result.Add(tree_parse_parenthesis_pass2(pass1[1]));
       //result.Add(tree_parse_parenthesis_pass2(pass1[2]));
 
-      /*
-            if (operators.Any(op => op == rexpr_tokens.First()) || operators.Any(op => op == rexpr_tokens.Last()))
-            {
-              throw new Exception("Invalid syntax: malformed logical operator.");
-            }
+/*
+      if (operators.Any(op => op == rexpr_tokens.First()) || operators.Any(op => op == rexpr_tokens.Last()))
+      {
+        throw new Exception("Invalid syntax: malformed logical operator.");
+      }
 
-            var result = new Tree<string>();
-            string operator_token = null;
-            int operator_index = IndexOfLogicalOperator(operators, rexpr_tokens, out operator_token);
-            if (operator_index >= 0)
-            {
-              result.Value = operator_token;
-              result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, operator_index + 1)));
-              result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, 0, operator_index)));
-            }
-            else if (rexpr_tokens.Length == 1)
-            {
-              result.Value = rexpr_tokens[0];
-            }
-            else throw new Exception("Invalid syntax.");
-      */
+      var result = new Tree<string>();
+      string operator_token = null;
+      int operator_index = IndexOfLogicalOperator(operators, rexpr_tokens, out operator_token);
+      if (operator_index >= 0)
+      {
+        result.Value = operator_token;
+        result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, operator_index + 1)));
+        result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, 0, operator_index)));
+      }
+      else if (rexpr_tokens.Length == 1)
+      {
+        result.Value = rexpr_tokens[0];
+      }
+      else throw new Exception("Invalid syntax.");
+*/
       return result;
     }
     static Tree<string> tree_parse(string input)
