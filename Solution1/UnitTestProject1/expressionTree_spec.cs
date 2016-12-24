@@ -295,22 +295,20 @@ namespace expressionTree_specs
       while (k < input.Length)
       {
         char c = input[k];
+        ++k;
         switch (c)
         {
           case '(':
             {
-              ++k;
               var subtree = tree_parse_top(input, ref k);
               result[++current] = subtree;
-              //++k;
-              //k += subtree.Value.Length;
+              result[++current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
             }
             break;
           case ')':
             throw new Exception("Bad syntax. Check parenthesis.");
           default:
             result[current].Value.Append(c);
-            ++k;
             break;
         }
       }
@@ -783,16 +781,31 @@ Trace.WriteLine(where_selection.ToString());
       Tree<int, StringBuilder> t1 = tree_parse_initial("(x) - () + (abc)");
 
       Assert.AreEqual<string>("x - y + abc", t0[0].Value.ToString());
+      Trace.WriteLine($"t0=\n{t0}\n");
 
-      Assert.AreEqual<string>("", t1.ToString());
-      Assert.AreEqual<int>(5, t1.Count);
-      Assert.AreEqual<int>(0, t1.Value.ToString().Length);
+      Assert.AreEqual<int>(7, t1.Count);
+      Assert.AreEqual<string>("", t1.Value.ToString());
       Assert.AreEqual<string>("x", t1[1].Value.ToString());
+      Assert.AreEqual<int>(1, t1[1].Count);
+      Assert.AreEqual<string>(" - ", t1[2].Value.ToString());
+      Assert.AreEqual<int>(0, t1[2].Count);
+      Assert.AreEqual<string>("", t1[3].Value.ToString());
+      Assert.AreEqual<int>(1, t1[3].Count);
+      Assert.AreEqual<string>(" + ", t1[4].Value.ToString());
+      Assert.AreEqual<int>(0, t1[4].Count);
+      Assert.AreEqual<string>("abc", t1[5].Value.ToString());
+      Assert.AreEqual<int>(1, t1[5].Count);
 
-      //Assert.AreEqual<string>("-", t1.ElementAt(1).Value.ToString());
-      //Assert.AreEqual<int>(0, t1.ElementAt(2).Value.ToString().Length);//throw: bad syntax
-      //Assert.AreEqual<string>("+", t1.ElementAt(3).Value.ToString());
-      //Assert.AreEqual<string>("abc", t1.ElementAt(4).Value.ToString());
+      var xml = t1.ToString();
+      Trace.WriteLine($"t1=\n{xml}");
+      Assert.IsNotNull(System.Xml.Linq.XDocument.Parse(xml));
+    }
+    [TestMethod]
+    public void tree3()
+    {
+      Tree<int, StringBuilder> t = tree_parse_initial("(35=8) AND (39=1 OR 39=2)");
+
+      Assert.AreEqual<string>("", t.ToString());
     }
     [TestMethod]
     public void keyed_tree_data_schema_0()
