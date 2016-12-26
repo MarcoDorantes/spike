@@ -366,7 +366,7 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
       {
         var child = pass1[k];
         string expr = child.Value.ToString().Trim();
-//Trace.WriteLine($"\nturn expr:[{expr}]\n");
+Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
         string[] expr_tokens = null;
         if (operators.Any(op => op == expr))
         {
@@ -396,31 +396,39 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
             current_node.Add(new Tree<string> { Value = expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim() });
             //current_node.Add(tree_parse_parenthesis_pass2(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim())));
             current_node.Add(result_head);
+Trace.WriteLine($"\nexpr in turn: taken:{taken}\n");
           }
           else
           {
             pending_node = new Tree<string> { Value = expr_tokens.First() };
             pending_node.Add(new Tree<string> { Value = "<pending>" });
             pending_node.Add(result_head);
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
           }
         }
         else
         {
+          var current_expression_node = new Tree<string> { Value = expr_tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim() };
           if (pending_node != null)
           {
             current_node = new Tree<string> { Value = pending_node.Value };
-            current_node.Add(new Tree<string> { Value = expr_tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim() });
+            current_node.Add(current_expression_node);
             current_node.Add(result_head);
             pending_node = null;
+Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
           }
           else
           {
-            current_node = new Tree<string> { Value = expr_tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim() };
+            current_node = current_expression_node;
+Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_node}\n");
           }
         }
         //result.Add(tree_parse_parenthesis_pass2(right, operators));
         //result.Add(tree_parse_parenthesis_pass2(left, operators));
-        result_head = current_node;
+        if (current_node != null)
+        {
+          result_head = current_node;
+        }
         //tree_parse_parenthesis_pass2(child);
       }
 
@@ -982,10 +990,10 @@ Trace.WriteLine(where_selection.ToString());
 
       Trace.WriteLine(whole_expr.ToString());
       Assert.AreEqual<string>("AND", whole_expr.Value);
-      Assert.AreEqual<string>("AND", whole_expr.ElementAt(0).Value);
-      Assert.AreEqual<string>("56=DC1", whole_expr.ElementAt(0).ElementAt(0).Value);
-      Assert.AreEqual<string>("35=8 OR 35=9", whole_expr.ElementAt(0).ElementAt(1).Value);
-      Assert.AreEqual<string>("39=1 OR 39=2", whole_expr.ElementAt(1).Value);
+      Assert.AreEqual<string>("56=DC1", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("AND", whole_expr.ElementAt(1).Value);
+      Assert.AreEqual<string>("35=8 OR 35=9", whole_expr.ElementAt(1).ElementAt(0).Value);
+      Assert.AreEqual<string>("39=1 OR 39=2", whole_expr.ElementAt(1).ElementAt(1).Value);
     }
     [TestMethod]
     public void keyed_tree_data_schema_0()
