@@ -337,7 +337,7 @@ namespace expressionTree_specs
 
       return result;
     }*/
-    Tree<string> tree_parse_parenthesis_pass2(Tree<int, StringBuilder> pass1, IEnumerable<string> operators = null)
+    static Tree<string> tree_parse_parenthesis_pass2(Tree<int, StringBuilder> pass1, IEnumerable<string> operators = null)
     {
       if (pass1 == null)
       {
@@ -366,7 +366,7 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
       {
         var child = pass1[k];
         string expr = child.Value.ToString().Trim();
-Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
+//Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
         string[] expr_tokens = null;
         if (operators.Any(op => op == expr))
         {
@@ -396,14 +396,14 @@ Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
             current_node.Add(new Tree<string> { Value = expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim() });
             //current_node.Add(tree_parse_parenthesis_pass2(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim())));
             current_node.Add(result_head);
-Trace.WriteLine($"\nexpr in turn: taken:{taken}\n");
+//Trace.WriteLine($"\nexpr in turn: taken:{taken}\n");
           }
           else
           {
             pending_node = new Tree<string> { Value = expr_tokens.First() };
             pending_node.Add(new Tree<string> { Value = "<pending>" });
             pending_node.Add(result_head);
-Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+//Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
           }
         }
         else
@@ -415,12 +415,12 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
             current_node.Add(current_expression_node);
             current_node.Add(result_head);
             pending_node = null;
-Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
+//Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
           }
           else
           {
             current_node = current_expression_node;
-Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_node}\n");
+//Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_node}\n");
           }
         }
         //result.Add(tree_parse_parenthesis_pass2(right, operators));
@@ -438,25 +438,25 @@ Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_nod
       //result.Add(tree_parse_parenthesis_pass2(pass1[2]));
 
       /*ref pattern:
-            if (operators.Any(op => op == rexpr_tokens.First()) || operators.Any(op => op == rexpr_tokens.Last()))
-            {
-              throw new Exception("Invalid syntax: malformed logical operator.");
-            }
+        if (operators.Any(op => op == rexpr_tokens.First()) || operators.Any(op => op == rexpr_tokens.Last()))
+        {
+          throw new Exception("Invalid syntax: malformed logical operator.");
+        }
 
-            var result = new Tree<string>();
-            string operator_token = null;
-            int operator_index = IndexOfLogicalOperator(operators, rexpr_tokens, out operator_token);
-            if (operator_index >= 0)
-            {
-              result.Value = operator_token;
-              result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, operator_index + 1)));
-              result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, 0, operator_index)));
-            }
-            else if (rexpr_tokens.Length == 1)
-            {
-              result.Value = rexpr_tokens[0];
-            }
-            else throw new Exception("Invalid syntax.");
+        var result = new Tree<string>();
+        string operator_token = null;
+        int operator_index = IndexOfLogicalOperator(operators, rexpr_tokens, out operator_token);
+        if (operator_index >= 0)
+        {
+          result.Value = operator_token;
+          result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, operator_index + 1)));
+          result.Add(tree_parse(reverse_sub_expression(rexpr_tokens, 0, operator_index)));
+        }
+        else if (rexpr_tokens.Length == 1)
+        {
+          result.Value = rexpr_tokens[0];
+        }
+        else throw new Exception("Invalid syntax.");
       */
       return result_head;
     }
@@ -540,7 +540,8 @@ Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_nod
       }
       else
       {
-        Tree<string> tree = tree_parse(filter_config);
+        Tree<string> tree = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1(filter_config));
+        //Tree<string> tree = tree_parse(filter_config);
 
         #region old steps
 /*
@@ -994,6 +995,18 @@ Trace.WriteLine(where_selection.ToString());
       Assert.AreEqual<string>("AND", whole_expr.ElementAt(1).Value);
       Assert.AreEqual<string>("35=8 OR 35=9", whole_expr.ElementAt(1).ElementAt(0).Value);
       Assert.AreEqual<string>("39=1 OR 39=2", whole_expr.ElementAt(1).ElementAt(1).Value);
+    }
+    [TestMethod, Ignore]
+    public void tree3_pass2_e_nested_parenthesis()
+    {
+      Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(56=DC1 AND (35=8 OR 35=9)) OR (39=1 OR 39=2)"));
+
+      Trace.WriteLine(whole_expr.ToString());
+      Assert.AreEqual<string>("AND", whole_expr.Value);
+      Assert.AreEqual<string>("AND", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("56=DC1", whole_expr.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("35=8 OR 35=9", whole_expr.ElementAt(0).ElementAt(1).Value);
+      Assert.AreEqual<string>("39=1 OR 39=2", whole_expr.ElementAt(1).Value);
     }
     [TestMethod]
     public void keyed_tree_data_schema_0()
