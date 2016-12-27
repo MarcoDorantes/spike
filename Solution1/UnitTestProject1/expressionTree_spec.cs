@@ -556,7 +556,7 @@ Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_nod
       }
     }
 
-    static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<IEnumerable<KeyValuePair<int, string>>> msgs, string filter_config = null)
+    public static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<IEnumerable<KeyValuePair<int, string>>> msgs, string filter_config = null)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
 
