@@ -157,6 +157,10 @@ namespace expressionTree_specs
     }
     static IEnumerable<string> get_expression_tokens(string input)
     {
+      if (input == null)
+      {
+        throw new ArgumentNullException(nameof(input));
+      }
       /*
        35=8
        35=j
@@ -177,10 +181,6 @@ namespace expressionTree_specs
       12=A123 OR 55=1 AND 34=123
       (?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+
       http://regexstorm.net/tester
-
-      An Extensive Examination of Data Structures
-      https://msdn.microsoft.com/en-us/library/aa287104(VS.71).aspx
-      http://stackoverflow.com/questions/942053/why-is-there-no-treet-class-in-net
       */
       var regex = new Regex(@"(?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+");
       foreach (Match match in regex.Matches(input))
@@ -196,6 +196,16 @@ namespace expressionTree_specs
           yield return op.Trim();
         }
       }
+
+      /*foreach (string segment in input.Trim().Split(' '))
+      {
+        var token = segment?.Trim();
+        if (string.IsNullOrWhiteSpace(token))
+        {
+          continue;
+        }
+        yield return token;
+      }*/
     }
     static int IndexOfLogicalOperator(IEnumerable<string> operators, string[] expr_tokens, out string operator_token)
     {
@@ -289,7 +299,24 @@ namespace expressionTree_specs
       }
       return result;
     }
-    static Tree<int, StringBuilder> tree_parse_parenthesis_pass1(string input)
+    static Tree<int, string> trim_nodes(Tree<int, StringBuilder> raw_node)
+    {
+      var result = new Tree<int, string> { Value = raw_node.Value?.ToString() };
+      int index = 0;
+      var keys = raw_node.Keys.OrderBy(k => k);
+      foreach (int subnode_key in keys)
+      {
+        Tree<int, StringBuilder> subnode = raw_node[subnode_key];
+        string value = subnode.Value?.ToString();
+        if ((subnode_key == keys.First() || subnode_key == keys.Last()) && string.IsNullOrWhiteSpace(value) == true)
+        {
+          continue;
+        }
+        result[index++] = trim_nodes(subnode);
+      }
+      return result;
+    }
+    static Tree<int, string> tree_parse_parenthesis_pass1(string input)
     {
       if (string.IsNullOrWhiteSpace(input))
       {
@@ -299,9 +326,9 @@ namespace expressionTree_specs
       {
         throw new Exception("Malformed expression. Check your parenthesis.");
       }
-      var result = new Tree<int, StringBuilder> { Value = new StringBuilder() };
+      var tree = new Tree<int, StringBuilder> { Value = new StringBuilder() };
       int current = 0;
-      result[current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
+      tree[current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
 
       int k = 0;
       while (k < input.Length)
@@ -313,18 +340,18 @@ namespace expressionTree_specs
           case '(':
             {
               var subtree = tree_parse_parenthesis(input, ref k);
-              result[++current] = subtree;
-              result[++current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
+              tree[++current] = subtree;
+              tree[++current] = new Tree<int, StringBuilder> { Value = new StringBuilder() };
             }
             break;
           case ')':
             throw new Exception("Bad syntax. Check parenthesis.");
           default:
-            result[current].Value.Append(c);
+            tree[current].Value.Append(c);
             break;
         }
       }
-      return result;
+      return trim_nodes(tree);
     }
     /*Tree<string> tree_parse_pass2(IEnumerable<string> rexpr_tokens, IEnumerable<string> operators)
     {
@@ -337,7 +364,7 @@ namespace expressionTree_specs
 
       return result;
     }*/
-    static Tree<string> tree_parse_parenthesis_pass2(Tree<int, StringBuilder> pass1, IEnumerable<string> operators = null)
+    static Tree<string> tree_parse_parenthesis_pass2(Tree<int, string> pass1, IEnumerable<string> operators = null)
     {
       if (pass1 == null)
       {
@@ -348,24 +375,14 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
       {
         operators = new string[] { "AND", "OR" };
       }
-      //var rexpr_tokens = get_expression_tokens(pass1[0].Value.ToString().Trim()).ToArray();
-      //if (rexpr_tokens.Length == 0)
-      //{
-      //  throw new Exception("Invalid syntax: No expression.");
-      //}
-      //var result = new Tree<string>();
-      //var rexpr_tokens = get_expression_tokens(pass1[0].Value.ToString().Trim()).ToArray();
-      //result.Value = rexpr_tokens.Last();
-      //result.Add(new Tree<string> { Value = rexpr_tokens[0] });
-      //result.Add(new Tree<string> { Value = pass1[1].Value.ToString() });
 
       Tree<string> result_head = null;
       Tree<string> pending_node = null;
-      int start_index = pass1.Count - (pass1.Count == 1 ? 1 : 2);
+      int start_index = pass1.Count - 1;
       for (int k = start_index; k >= 0; --k)
       {
         var child = pass1[k];
-        string expr = child.Value.ToString().Trim();
+        string expr = child.Value.Trim();
 Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
         string[] expr_tokens = null;
         if (operators.Any(op => op == expr))
@@ -385,9 +402,22 @@ Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
         //IEnumerable<string> right = null;
         /*if (operators.Any(op => op == expr_tokens.First()))
         {
-          //node = expr_tokens.Last();
-        }*/
-        if (operators.Any(op => op == expr_tokens.Last()))
+          int taken = expr_tokens.Count() - 1;
+          if (taken > 0)
+          {
+            current_node = new Tree<string> { Value = expr_tokens.First() };
+            current_node.Add(result_head);
+            current_node.Add(tree_parse(expr_tokens.SkipWhile((_, index) => index == 0).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
+          }
+          else
+          {
+            pending_node = new Tree<string> { Value = expr_tokens.First() };
+            pending_node.Add(new Tree<string> { Value = "<pending>" });
+            pending_node.Add(result_head);
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+          }
+        }
+        else */if (operators.Any(op => op == expr_tokens.Last()))
         {
           int taken = expr_tokens.Count() - 1;
           if (taken > 0)
@@ -855,6 +885,13 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       var tokens = get_expression_tokens(input).Reverse().ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
       Assert.AreEqual<string>("34=123,AND,55=1,OR,12=A123,", tokens);
     }
+    [TestMethod, Ignore]
+    public void expression_tokens3()
+    {
+      var input = "AND 55=1 OR";
+      var tokens = get_expression_tokens(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
+      Assert.AreEqual<string>("AND,55=1,OR,", tokens);
+    }
     [TestMethod]
     public void rsub_expr1()
     {
@@ -927,28 +964,27 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
     [TestMethod]
     public void tree2()
     {
-      Tree<int, StringBuilder> t0 = tree_parse_parenthesis_pass1("x - y + abc");
-      Tree<int, StringBuilder> t1 = tree_parse_parenthesis_pass1("(x) - () + (abc)");
+      Tree<int, string> t0 = tree_parse_parenthesis_pass1("x - y + abc");
+      Tree<int, string> t1 = tree_parse_parenthesis_pass1("(x) - () + (abc)");
 
-      Assert.AreEqual<string>("x - y + abc", t0[0].Value.ToString());
+      Assert.AreEqual<string>("x - y + abc", t0[0].Value);
       Trace.WriteLine($"t0=\n{t0}\n");
-
-      Assert.AreEqual<int>(7, t1.Count);
-      Assert.AreEqual<string>("", t1.Value.ToString());
-      Assert.AreEqual<string>("x", t1[1].Value.ToString());
-      Assert.AreEqual<int>(1, t1[1].Count);
-      Assert.AreEqual<string>(" - ", t1[2].Value.ToString());
-      Assert.AreEqual<int>(0, t1[2].Count);
-      Assert.AreEqual<string>("", t1[3].Value.ToString());
-      Assert.AreEqual<int>(1, t1[3].Count);
-      Assert.AreEqual<string>(" + ", t1[4].Value.ToString());
-      Assert.AreEqual<int>(0, t1[4].Count);
-      Assert.AreEqual<string>("abc", t1[5].Value.ToString());
-      Assert.AreEqual<int>(1, t1[5].Count);
 
       var xml = t1.ToString();
       Trace.WriteLine($"t1=\n{xml}");
       Assert.IsNotNull(System.Xml.Linq.XDocument.Parse(xml));
+
+      Assert.AreEqual<int>(5, t1.Count);
+      Assert.AreEqual<string>("x", t1[0].Value);
+      Assert.AreEqual<int>(0, t1[0].Count);
+      Assert.AreEqual<string>(" - ", t1[1].Value);
+      Assert.AreEqual<int>(0, t1[1].Count);
+      Assert.AreEqual<string>("", t1[2].Value);
+      Assert.AreEqual<int>(0, t1[2].Count);
+      Assert.AreEqual<string>(" + ", t1[3].Value);
+      Assert.AreEqual<int>(0, t1[3].Count);
+      Assert.AreEqual<string>("abc", t1[4].Value);
+      Assert.AreEqual<int>(0, t1[4].Count);
     }
     [TestMethod]
     public void tree3_pass2_a()
@@ -965,14 +1001,18 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
     {
       //Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(35=8) AND (39=1 OR 39=2)"));
       Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("35=8 AND (39=1 OR 39=2)"));
-      //(56=DC1 OR 56=DC2) AND 35=8 AND (39=1 OR 39=2)
-      //56=DC1 AND 35=8 AND (39=1 OR 39=2) OR 23=B
-      //(39=1 OR 39=2) AND
-      //AND (39=1 OR 39=2)
-      //AND (39=1 OR 39=2) OR
-      //(39=1 OR 39=2)
 
-      //(34>4566 AND 34<5000) AND 35=8 AND (39=1 OR 39=2)
+      Trace.WriteLine(whole_expr.ToString());
+      Assert.AreEqual<string>("AND", whole_expr.Value);
+      Assert.AreEqual<string>("35=8", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("OR", whole_expr.ElementAt(1).Value);
+      Assert.AreEqual<string>("39=1", whole_expr.ElementAt(1).ElementAt(0).Value);
+      Assert.AreEqual<string>("39=2", whole_expr.ElementAt(1).ElementAt(1).Value);
+    }
+    [TestMethod]
+    public void tree3_pass2_b2()
+    {
+      Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(35=8) AND (39=1 OR 39=2)"));
 
       Trace.WriteLine(whole_expr.ToString());
       Assert.AreEqual<string>("AND", whole_expr.Value);
@@ -1015,8 +1055,21 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
     public void tree3_pass2_e()
     {
       Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(35=8 OR 35=9) AND 39=1"));
+      //(56=DC1 OR 56=DC2) AND 35=8 AND (39=1 OR 39=2)
+      //56=DC1 AND 35=8 AND (39=1 OR 39=2) OR 23=B
+      //(39=1 OR 39=2) AND
+      //AND (39=1 OR 39=2)
+      //AND (39=1 OR 39=2) OR
+      //(39=1 OR 39=2)
+
+      //(34>4566 AND 34<5000) AND 35=8 AND (39=1 OR 39=2)
 
       Trace.WriteLine(whole_expr.ToString());
+      Assert.AreEqual<string>("AND", whole_expr.Value);
+      Assert.AreEqual<string>("OR", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("39=1", whole_expr.ElementAt(1).Value);
+      Assert.AreEqual<string>("35=8", whole_expr.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("35=9", whole_expr.ElementAt(0).ElementAt(1).Value);
     }
     [TestMethod, Ignore]
     public void tree3_pass2_nested_parenthesis_a()
