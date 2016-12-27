@@ -343,7 +343,7 @@ namespace expressionTree_specs
       {
         throw new ArgumentNullException(nameof(pass1));
       }
-Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
+//Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
       if (operators == null)
       {
         operators = new string[] { "AND", "OR" };
@@ -540,61 +540,63 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
       }
       else
       {
-        Tree<string> tree = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1(filter_config));
         //Tree<string> tree = tree_parse(filter_config);
+        Tree<string> tree_prev = tree_parse(filter_config);
+        Tree<string> tree = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1(filter_config));
+Trace.WriteLine($"\ntree_parse:\n{tree_prev}\n\ntree_parse_parenthesis_pass2:\n{tree}");
 
         #region old steps
-/*
-        var filter_tags = filter_config.Split('=');
-        int filter_tag = int.Parse(filter_tags[0]);
-        string filter_value = filter_tags[1];
+        /*
+                var filter_tags = filter_config.Split('=');
+                int filter_tag = int.Parse(filter_tags[0]);
+                string filter_value = filter_tags[1];
 
-        ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+                ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
 
-        Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
-        Expression key_right = Expression.Constant(filter_tag, typeof(int));
-        Expression key_expr = Expression.Equal(key_left, key_right);
-        Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
-        Expression value_right = Expression.Constant(filter_value, typeof(string));
-        Expression value_expr = Expression.Equal(value_left, value_right);
-        var pair_filter_and = Expression.And(key_expr, value_expr);
-        var pair_filter_subtree = pair_filter_and;
-*/
+                Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+                Expression key_right = Expression.Constant(filter_tag, typeof(int));
+                Expression key_expr = Expression.Equal(key_left, key_right);
+                Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+                Expression value_right = Expression.Constant(filter_value, typeof(string));
+                Expression value_expr = Expression.Equal(value_left, value_right);
+                var pair_filter_and = Expression.And(key_expr, value_expr);
+                var pair_filter_subtree = pair_filter_and;
+        */
 
-/*
-        var filter_tags = tree.ElementAt(0).Value.Split('=');
-        int filter_tag = int.Parse(filter_tags[0]);
-        string filter_value = filter_tags[1];
+        /*
+                var filter_tags = tree.ElementAt(0).Value.Split('=');
+                int filter_tag = int.Parse(filter_tags[0]);
+                string filter_value = filter_tags[1];
 
-        ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+                ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
 
-        Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
-        Expression key_right = Expression.Constant(filter_tag, typeof(int));
-        Expression key_expr = Expression.Equal(key_left, key_right);
-        Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
-        Expression value_right = Expression.Constant(filter_value, typeof(string));
-        Expression value_expr = Expression.Equal(value_left, value_right);
-        var pair_filter_and = Expression.And(key_expr, value_expr);
+                Expression key_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+                Expression key_right = Expression.Constant(filter_tag, typeof(int));
+                Expression key_expr = Expression.Equal(key_left, key_right);
+                Expression value_left = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+                Expression value_right = Expression.Constant(filter_value, typeof(string));
+                Expression value_expr = Expression.Equal(value_left, value_right);
+                var pair_filter_and = Expression.And(key_expr, value_expr);
 
-        var filter_tags_ = tree.ElementAt(1).Value.Split('=');
-        int filter_tag_ = int.Parse(filter_tags_[0]);
-        string filter_value_ = filter_tags_[1];
+                var filter_tags_ = tree.ElementAt(1).Value.Split('=');
+                int filter_tag_ = int.Parse(filter_tags_[0]);
+                string filter_value_ = filter_tags_[1];
 
-        //ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
+                //ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
 
-        Expression key_left_ = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
-        Expression key_right_ = Expression.Constant(filter_tag_, typeof(int));
-        Expression key_expr_ = Expression.Equal(key_left_, key_right_);
-        Expression value_left_ = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
-        Expression value_right_ = Expression.Constant(filter_value_, typeof(string));
-        Expression value_expr_ = Expression.Equal(value_left_, value_right_);
-        var pair_filter_and_ = Expression.And(key_expr_, value_expr_);
+                Expression key_left_ = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Key"));
+                Expression key_right_ = Expression.Constant(filter_tag_, typeof(int));
+                Expression key_expr_ = Expression.Equal(key_left_, key_right_);
+                Expression value_left_ = Expression.Property(pair, typeof(KeyValuePair<int, string>).GetProperty("Value"));
+                Expression value_right_ = Expression.Constant(filter_value_, typeof(string));
+                Expression value_expr_ = Expression.Equal(value_left_, value_right_);
+                var pair_filter_and_ = Expression.And(key_expr_, value_expr_);
 
-        //t.Value == "OR"
-        Expression or = Expression.Or(pair_filter_and, pair_filter_and_);
+                //t.Value == "OR"
+                Expression or = Expression.Or(pair_filter_and, pair_filter_and_);
 
-        var pair_filter_subtree = or;
-*/
+                var pair_filter_subtree = or;
+        */
         #endregion
 
         ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
@@ -606,7 +608,7 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
       }
 
       var where_selection = Expression.Lambda<Func<IEnumerable<KeyValuePair<int, string>>, bool>>(filter_expression, new ParameterExpression[] { msg });
-Trace.WriteLine(where_selection.ToString());
+Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       MethodCallExpression where_call = Expression.Call
       (
         typeof(Queryable),
