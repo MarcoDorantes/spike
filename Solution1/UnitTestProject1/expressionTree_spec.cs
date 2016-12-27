@@ -115,6 +115,7 @@ namespace expressionTree_specs
     }*/
     #endregion
 
+    #region Filter by LINQ Expression Trees
     public class Tree<K, V> : Dictionary<K, Tree<K, V>>
     {
       public V Value { get; set; }
@@ -650,6 +651,7 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       );
       return Q.Provider.CreateQuery<IEnumerable<KeyValuePair<int, string>>>(where_call);
     }
+    #endregion
 
     [TestMethod]
     public void fixed_filter_by_WhereAny()
