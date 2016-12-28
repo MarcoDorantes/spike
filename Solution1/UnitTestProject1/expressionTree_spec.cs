@@ -388,14 +388,14 @@ Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
             current_node = new Tree<string> { Value = expr_tokens.Last() };
             current_node.Add(tree_parse(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
             //current_node.Add(tree_parse_parenthesis_pass2(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim())));
-            current_node.Add(result_head);
+            Trace.Assert(current_node.Add(result_head));//Be careful with backend/background executions.
 Trace.WriteLine($"\nexpr in turn: taken:{taken}\n");
           }
           else
           {
             pending_node = new Tree<string> { Value = expr_tokens.First() };
             pending_node.Add(new Tree<string> { Value = "<pending>" });
-            pending_node.Add(result_head);
+            Trace.Assert(pending_node.Add(result_head));
 Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
           }
         }
@@ -414,7 +414,7 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
           {
             pending_node = new Tree<string> { Value = expr_tokens.First() };
             pending_node.Add(new Tree<string> { Value = "<pending>" });
-            pending_node.Add(result_head);
+            Trace.Assert(pending_node.Add(result_head));
 Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
           }
         }
@@ -427,7 +427,7 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
             {
               current_node = new Tree<string> { Value = pending_node.Value };
               current_node.Add(current_expression_node);
-              current_node.Add(result_head);
+              Trace.Assert(current_node.Add(result_head));
               pending_node = null;
 Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
             }
@@ -435,7 +435,7 @@ Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
             {
               current_node = new Tree<string> { Value = pending_node.Value };
               current_node.Add(current_expression_node);
-              current_node.Add(pending_node.ElementAt(1));
+              Trace.Assert(current_node.Add(pending_node.ElementAt(1)));
               pending_node = null;
 Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
             }
