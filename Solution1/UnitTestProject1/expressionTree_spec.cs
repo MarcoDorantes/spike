@@ -402,29 +402,48 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
         else if (operators.Any(op => op == expr_tokens.First()))
         {
           int taken = expr_tokens.Count() - 1;
-          var thisnode = taken > 0 ?
-            tree_parse(expr_tokens.SkipWhile((_, index) => index == 0).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()) :
-            new Tree<string> { Value = expr_tokens.First() };
-          pending_node = new Tree<string> { Value = expr_tokens.First() };
-          pending_node.Add(new Tree<string> { Value = "<pending>" });
-          pending_node.Add(thisnode);
+          if (taken > 0)
+          {
+            pending_node = new Tree<string> { Value = expr_tokens.First() };
+            pending_node.Add(new Tree<string> { Value = "<pending>" });
+            pending_node.Add(tree_parse(expr_tokens.SkipWhile((_, index) => index == 0).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));//TODO: test the case where there are head and tail operators.
+            //ForAll: result_head == null?
 Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+          }
+          else
+          {
+            pending_node = new Tree<string> { Value = expr_tokens.First() };
+            pending_node.Add(new Tree<string> { Value = "<pending>" });
+            pending_node.Add(result_head);
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+          }
         }
         else //no operators at the head or tail.
         {
           var current_expression_node = tree_parse(expr_tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim());
           if (pending_node != null)
           {
-            current_node = new Tree<string> { Value = pending_node.Value };
-            current_node.Add(current_expression_node);
-            current_node.Add(result_head);
-            pending_node = null;
+            if (result_head != null)
+            {
+              current_node = new Tree<string> { Value = pending_node.Value };
+              current_node.Add(current_expression_node);
+              current_node.Add(result_head);
+              pending_node = null;
 Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
+            }
+            else
+            {
+              current_node = new Tree<string> { Value = pending_node.Value };
+              current_node.Add(current_expression_node);
+              current_node.Add(pending_node.ElementAt(1));
+              pending_node = null;
+Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
+            }
           }
           else
           {
             current_node = current_expression_node;
-Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_node}\n");
+            Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_node}\n");
           }
         }
         //result.Add(tree_parse_parenthesis_pass2(right, operators));
@@ -1189,10 +1208,10 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
 
       Trace.WriteLine(whole_expr.ToString());
       Assert.AreEqual<string>("AND", whole_expr.Value);
-      Assert.AreEqual<string>("35=8 OR 35=9", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("OR", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("35=8", whole_expr.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("35=9", whole_expr.ElementAt(0).ElementAt(1).Value);
       Assert.AreEqual<string>("39=1", whole_expr.ElementAt(1).Value);
-      //Assert.AreEqual<string>("35=8", whole_expr.ElementAt(0).ElementAt(0).Value);
-      //Assert.AreEqual<string>("35=9", whole_expr.ElementAt(0).ElementAt(1).Value);
     }
     [TestMethod, Ignore]
     public void tree3_pass2_nested_parenthesis_a()
