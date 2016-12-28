@@ -385,17 +385,39 @@ Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
           int taken = expr_tokens.Count() - 1;
           if (taken > 0)
           {
-            current_node = new Tree<string> { Value = expr_tokens.Last() };
-            current_node.Add(tree_parse(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
-            //current_node.Add(tree_parse_parenthesis_pass2(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim())));
-            Trace.Assert(current_node.Add(result_head));//Be careful with backend/background executions.
+            if (operators.Any(op => op == expr_tokens.First()))
+            {
+              pending_node = new Tree<string> { Value = expr_tokens.Last() };
+              pending_node.Add(new Tree<string> { Value = "<pending>" });
+              var node = new Tree<string> { Value = expr_tokens.First() };
+              node.Add(tree_parse(expr_tokens.Where((token, index) => index > 0 && index < expr_tokens.Length - 1).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
+              if (node.Add(result_head) == false)
+              {
+                throw new Exception($"Node has been already added to the tree: {result_head}");
+              }
+              pending_node.Add(node);
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+            }
+            else
+            {
+              current_node = new Tree<string> { Value = expr_tokens.Last() };
+              current_node.Add(tree_parse(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
+              //current_node.Add(tree_parse_parenthesis_pass2(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim())));
+              if (current_node.Add(result_head) == false)
+              {
+                throw new Exception($"Node has been already added to the tree: {result_head}");
+              }
 Trace.WriteLine($"\nexpr in turn: taken:{taken}\n");
+            }
           }
           else
           {
             pending_node = new Tree<string> { Value = expr_tokens.First() };
             pending_node.Add(new Tree<string> { Value = "<pending>" });
-            Trace.Assert(pending_node.Add(result_head));
+            if (pending_node.Add(result_head) == false)
+            {
+              throw new Exception($"Node has been already added to the tree: {result_head}");
+            }
 Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
           }
         }
@@ -414,7 +436,10 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
           {
             pending_node = new Tree<string> { Value = expr_tokens.First() };
             pending_node.Add(new Tree<string> { Value = "<pending>" });
-            Trace.Assert(pending_node.Add(result_head));
+            if (pending_node.Add(result_head) == false)
+            {
+              throw new Exception($"Node has been already added to the tree: {result_head}");
+            }
 Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
           }
         }
@@ -426,19 +451,25 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
             if (result_head != null)
             {
               current_node = new Tree<string> { Value = pending_node.Value };
+              //TODO: current_expression_node goes into the <pending> node and the current_node should be the 'modified' pending_node.
               current_node.Add(current_expression_node);
-              Trace.Assert(current_node.Add(result_head));
-              pending_node = null;
-Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
+              if (current_node.Add(result_head) == false)
+              {
+                throw new Exception($"Node has been already added to the tree: {result_head}");
+              }
+Trace.WriteLine($"\nexpr in turn: pending_node processed (result_head added):{current_node}\n");
             }
             else
             {
               current_node = new Tree<string> { Value = pending_node.Value };
               current_node.Add(current_expression_node);
-              Trace.Assert(current_node.Add(pending_node.ElementAt(1)));
-              pending_node = null;
-Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
+              if (current_node.Add(pending_node.ElementAt(1)) == false)
+              {
+                throw new Exception($"Node has been already added to the tree: {result_head}");
+              }
+Trace.WriteLine($"\nexpr in turn: pending_node processed (result_head is null):{current_node}\n");
             }
+            pending_node = null;
           }
           else
           {
@@ -481,6 +512,10 @@ Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
         }
         else throw new Exception("Invalid syntax.");
       */
+      if (pending_node != null)
+      {
+        throw new ArgumentException("Bad syntax.", $"{pass1}");
+      }
       return result_head;
     }
     static Tree<string> tree_parse(string input)
@@ -547,7 +582,20 @@ Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
         return Expression.Call(any_method, msg, pair_filter);
       }
     }
-
+    static bool is_binary_tree(Tree<string> tree)
+    {
+      bool result = false;
+      if (tree != null)
+      {
+        result = tree.Count == 0 || tree.Count == 2;
+        var k = tree.GetEnumerator();
+        while (result == true && k.MoveNext())
+        {
+          result = is_binary_tree(k.Current);
+        }
+      }
+      return result;
+    }
     public static IEnumerable<IEnumerable<KeyValuePair<int, string>>> dynamic_filter1(IEnumerable<IEnumerable<KeyValuePair<int, string>>> msgs, string filter_config = null)
     {
       IQueryable<IEnumerable<KeyValuePair<int, string>>> Q = msgs.AsQueryable<IEnumerable<KeyValuePair<int, string>>>();
@@ -567,7 +615,7 @@ Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
         //Tree<string> tree_prev = tree_parse(filter_config);
 
         Tree<string> tree = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1(filter_config));
-//Trace.WriteLine($"\ntree_parse:\n{tree_prev}\n\ntree_parse_parenthesis_pass2:\n{tree}");
+        //Trace.WriteLine($"\ntree_parse:\n{tree_prev}\n\ntree_parse_parenthesis_pass2:\n{tree}");
 
         #region old steps
         /*
@@ -623,6 +671,10 @@ Trace.WriteLine($"\nexpr in turn: pending_node processed:{current_node}\n");
         */
         #endregion
 
+        if (is_binary_tree(tree) == false)
+        {
+          throw new ArgumentException("Bad syntax.",$"{filter_config}");
+        }
         ParameterExpression pair = Expression.Parameter(typeof(KeyValuePair<int, string>), "pair");
 
         var pair_filter_subtree = build_filter_expression(tree, pair, msg);
@@ -1208,14 +1260,6 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
     public void tree3_pass2_e()
     {
       Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(35=8 OR 35=9) AND 39=1"));
-      //(56=DC1 OR 56=DC2) AND 35=8 AND (39=1 OR 39=2)
-      //56=DC1 AND 35=8 AND (39=1 OR 39=2) OR 23=B
-      //(39=1 OR 39=2) AND
-      //AND (39=1 OR 39=2)
-      //AND (39=1 OR 39=2) OR
-      //(39=1 OR 39=2)
-
-      //(34>4566 AND 34<5000) AND 35=8 AND (39=1 OR 39=2)
 
       Trace.WriteLine(whole_expr.ToString());
       Assert.AreEqual<string>("AND", whole_expr.Value);
@@ -1223,6 +1267,152 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       Assert.AreEqual<string>("35=8", whole_expr.ElementAt(0).ElementAt(0).Value);
       Assert.AreEqual<string>("35=9", whole_expr.ElementAt(0).ElementAt(1).Value);
       Assert.AreEqual<string>("39=1", whole_expr.ElementAt(1).Value);
+    }
+    [TestMethod]
+    public void tree3_pass2_f()
+    {
+      Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(39=1 OR 39=2)"));
+
+      Trace.WriteLine(whole_expr.ToString());
+      Assert.AreEqual<string>("OR", whole_expr.Value);
+      Assert.AreEqual<string>("39=1", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("39=2", whole_expr.ElementAt(1).Value);
+    }
+    [TestMethod]
+    public void tree3_pass2_g()
+    {
+      Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(39=1 OR 39=2) AND"));
+      bool btree = is_binary_tree(whole_expr);
+
+      Trace.WriteLine(whole_expr.ToString());
+      Assert.IsFalse(btree);
+    }
+    [TestMethod]
+    public void tree3_pass2_h()
+    {
+      string output = null;
+      try
+      {
+        Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("AND (39=1 OR 39=2)"));
+      }
+      catch (Exception ex)
+      {
+        output = $"{ex.GetType().Name}: {ex.Message}";
+      }
+
+      Assert.IsNotNull(output);
+      Assert.IsTrue(output.Contains("ArgumentException: Bad syntax."));
+    }
+    [TestMethod]
+    public void tree3_pass2_i()
+    {
+      string output = null;
+      try
+      {
+        tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("AND (39=1 OR 39=2) OR"));
+      }
+      catch (Exception ex)
+      {
+        output = $"{ex.GetType().Name}: {ex.Message}";
+      }
+
+      Assert.IsNotNull(output);
+      Assert.IsTrue(output.Contains("ArgumentException: Bad syntax."));
+    }
+
+    [TestMethod]
+    public void tree3_pass2_j()
+    {
+      string output = null;
+      try
+      {
+        tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("AND 39=1 OR 39=2 OR"));
+      }
+      catch (Exception ex)
+      {
+        output = $"{ex.GetType().Name}: {ex.Message}";
+      }
+
+      Assert.IsNotNull(output);
+      Assert.AreEqual<string>("Exception: Invalid syntax: malformed logical operator.", output);
+    }
+    [TestMethod]
+    public void tree3_pass2_k()
+    {
+      var whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("39=1 OR 39=2 OR"));
+      bool btree = is_binary_tree(whole_expr);
+
+      Trace.WriteLine(whole_expr.ToString());
+      Assert.IsFalse(btree);
+    }
+    [TestMethod]
+    public void tree3_pass2_l()
+    {
+      string output = null;
+      try
+      {
+        tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("AND 39=1 OR 39=2"));
+      }
+      catch (Exception ex)
+      {
+        output = $"{ex.GetType().Name}: {ex.Message}";
+      }
+
+      //56=DC1 AND 35=8 AND (39=1 OR 39=2) OR 23=B
+
+      Assert.IsNotNull(output);
+      Assert.IsTrue(output.Contains("ArgumentException: Bad syntax."));
+    }
+    [TestMethod]
+    public void tree3_pass2_m()
+    {
+      Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(56=DC1 OR 56=DC2) AND (35=8) AND (39=1 OR 39=2)"));
+
+      Trace.WriteLine(whole_expr.ToString());
+      Assert.AreEqual<string>("AND", whole_expr.Value);
+      Assert.AreEqual<string>("OR", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("56=DC1", whole_expr.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("56=DC2", whole_expr.ElementAt(0).ElementAt(1).Value);
+      Assert.AreEqual<string>("AND", whole_expr.ElementAt(1).Value);
+      Assert.AreEqual<string>("35=8", whole_expr.ElementAt(1).ElementAt(0).Value);
+      Assert.AreEqual<string>("OR", whole_expr.ElementAt(1).ElementAt(1).Value);
+      Assert.AreEqual<string>("39=1", whole_expr.ElementAt(1).ElementAt(1).ElementAt(0).Value);
+      Assert.AreEqual<string>("39=2", whole_expr.ElementAt(1).ElementAt(1).ElementAt(1).Value);
+    }
+    [TestMethod]
+    public void tree3_pass2_n()
+    {
+      Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(56=DC1 OR 56=DC2) AND 35=8 AND (39=1 OR 39=2)"));
+      //TODO; add this expression to a test with dynamicfilter1
+
+      /*
+      (56=DC1 OR 56=DC2) AND 35=8 AND (39=1 OR 39=2)
+
+      <tree value="AND">
+        <tree value="OR">
+          <tree value="56=DC1" />
+          <tree value="56=DC2" />
+        </tree>
+        <tree value="AND">
+          <tree value="35=8" />
+          <tree value="OR">
+            <tree value="39=1" />
+            <tree value="39=2" />
+          </tree>
+        </tree>
+      </tree>
+      */
+
+      Trace.WriteLine(whole_expr.ToString());
+      Assert.AreEqual<string>("AND", whole_expr.Value);
+      Assert.AreEqual<string>("OR", whole_expr.ElementAt(0).Value);
+      Assert.AreEqual<string>("56=DC1", whole_expr.ElementAt(0).ElementAt(0).Value);
+      Assert.AreEqual<string>("56=DC2", whole_expr.ElementAt(0).ElementAt(1).Value);
+      Assert.AreEqual<string>("AND", whole_expr.ElementAt(1).Value);
+      Assert.AreEqual<string>("35=8", whole_expr.ElementAt(1).ElementAt(0).Value);
+      Assert.AreEqual<string>("OR", whole_expr.ElementAt(1).ElementAt(1).Value);
+      Assert.AreEqual<string>("39=1", whole_expr.ElementAt(1).ElementAt(1).ElementAt(0).Value);
+      Assert.AreEqual<string>("39=2", whole_expr.ElementAt(1).ElementAt(1).ElementAt(1).Value);
     }
     [TestMethod, Ignore]
     public void tree3_pass2_nested_parenthesis_a()
@@ -1235,6 +1425,11 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       Assert.AreEqual<string>("56=DC1", whole_expr.ElementAt(0).ElementAt(0).Value);
       Assert.AreEqual<string>("35=8 OR 35=9", whole_expr.ElementAt(0).ElementAt(1).Value);
       Assert.AreEqual<string>("39=1 OR 39=2", whole_expr.ElementAt(1).Value);
+    }
+    [TestMethod, Ignore]
+    public void less_than_greater_than()
+    {
+      dynamic_filter1(null, "(34>4566 AND 34<5000) AND 35=8 AND (39=1 OR 39=2)");
     }
     [TestMethod]
     public void keyed_tree_data_schema_0()
