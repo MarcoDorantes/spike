@@ -183,30 +183,15 @@ namespace expressionTree_specs
       (?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+
       http://regexstorm.net/tester
       */
-      var regex = new Regex(@"(?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+");
+      var regex = new Regex(@"(?<pair>(?<tag>\d+)=(?<val>\w+))|(?<op>AND|OR)");
       foreach (Match match in regex.Matches(input))
       {
-        var pair = match.Groups["pair"].Value;
-        var op = match.Groups["op"].Value;
-        if (string.IsNullOrWhiteSpace(pair) == false)
+        var token = match.Value?.Trim();
+        if (string.IsNullOrWhiteSpace(token) == false)
         {
-          yield return pair.Trim();
-        }
-        if (string.IsNullOrWhiteSpace(op) == false)
-        {
-          yield return op.Trim();
+          yield return token;
         }
       }
-
-      /*foreach (string segment in input.Trim().Split(' '))
-      {
-        var token = segment?.Trim();
-        if (string.IsNullOrWhiteSpace(token))
-        {
-          continue;
-        }
-        yield return token;
-      }*/
     }
     static int IndexOfLogicalOperator(IEnumerable<string> operators, string[] expr_tokens, out string operator_token)
     {
@@ -872,30 +857,154 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
     [TestMethod]
     public void expr1()
     {
-      var regex = new Regex(@"(?<expr>((?<pair>(?<tag>\d+)=(?<val>\w+))\s?(?<op>AND|OR)?))+");
+      var regex = new Regex(@"(?<pair>(?<tag>\d+)=(?<val>\w+))|(?<op>AND|OR)");
       var input = "12=A123 OR 55=1 AND 34=123";
 
       var matches = regex.Matches(input);
 
-      Assert.AreEqual<int>(3, matches.Count);
-      Assert.AreEqual<string>("12=A123 OR", matches[0].Value);
-      Assert.AreEqual<string>("55=1 AND", matches[1].Value);
-      Assert.AreEqual<string>("34=123", matches[2].Value);
+      Assert.AreEqual<int>(5, matches.Count);
+      Assert.AreEqual<string>("12=A123", matches[0].Value);
+      Assert.AreEqual<string>("OR", matches[1].Value);
+      Assert.AreEqual<string>("55=1", matches[2].Value);
+      Assert.AreEqual<string>("AND", matches[3].Value);
+      Assert.AreEqual<string>("34=123", matches[4].Value);
 
       Assert.AreEqual<string>("12=A123", matches[0].Groups["pair"].Value);
       Assert.AreEqual<string>("12", matches[0].Groups["tag"].Value);
       Assert.AreEqual<string>("A123", matches[0].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[0].Groups["op"].Value);
+
+      Assert.AreEqual<string>("", matches[1].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[1].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[1].Groups["val"].Value);
+      Assert.AreEqual<string>("OR", matches[1].Groups["op"].Value);
+
+      Assert.AreEqual<string>("55=1", matches[2].Groups["pair"].Value);
+      Assert.AreEqual<string>("55", matches[2].Groups["tag"].Value);
+      Assert.AreEqual<string>("1", matches[2].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[2].Groups["op"].Value);
+
+      Assert.AreEqual<string>("", matches[3].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[3].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[3].Groups["val"].Value);
+      Assert.AreEqual<string>("AND", matches[3].Groups["op"].Value);
+
+      Assert.AreEqual<string>("34=123", matches[4].Groups["pair"].Value);
+      Assert.AreEqual<string>("34", matches[4].Groups["tag"].Value);
+      Assert.AreEqual<string>("123", matches[4].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[4].Groups["op"].Value);
+    }
+    [TestMethod]
+    public void expr2()
+    {
+      var regex = new Regex(@"(?<pair>(?<tag>\d+)=(?<val>\w+))|(?<op>AND|OR)");
+      var input = "OR 35=8 OR 421=3 AND 34=12 AND";
+
+      var matches = regex.Matches(input);
+
+      Assert.AreEqual<int>(7, matches.Count);
+      Assert.AreEqual<string>("OR", matches[0].Value);
+      Assert.AreEqual<string>("35=8", matches[1].Value);
+      Assert.AreEqual<string>("OR", matches[2].Value);
+      Assert.AreEqual<string>("421=3", matches[3].Value);
+      Assert.AreEqual<string>("AND", matches[4].Value);
+      Assert.AreEqual<string>("34=12", matches[5].Value);
+      Assert.AreEqual<string>("AND", matches[6].Value);
+
+      Assert.AreEqual<string>("", matches[0].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[0].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[0].Groups["val"].Value);
       Assert.AreEqual<string>("OR", matches[0].Groups["op"].Value);
 
-      Assert.AreEqual<string>("55=1", matches[1].Groups["pair"].Value);
-      Assert.AreEqual<string>("55", matches[1].Groups["tag"].Value);
-      Assert.AreEqual<string>("1", matches[1].Groups["val"].Value);
-      Assert.AreEqual<string>("AND", matches[1].Groups["op"].Value);
+      Assert.AreEqual<string>("35=8", matches[1].Groups["pair"].Value);
+      Assert.AreEqual<string>("35", matches[1].Groups["tag"].Value);
+      Assert.AreEqual<string>("8", matches[1].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[1].Groups["op"].Value);
 
-      Assert.AreEqual<string>("34=123", matches[2].Groups["pair"].Value);
-      Assert.AreEqual<string>("34", matches[2].Groups["tag"].Value);
-      Assert.AreEqual<string>("123", matches[2].Groups["val"].Value);
-      Assert.AreEqual<string>("", matches[2].Groups["op"].Value);
+      Assert.AreEqual<string>("", matches[2].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[2].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[2].Groups["val"].Value);
+      Assert.AreEqual<string>("OR", matches[2].Groups["op"].Value);
+
+      Assert.AreEqual<string>("421=3", matches[3].Groups["pair"].Value);
+      Assert.AreEqual<string>("421", matches[3].Groups["tag"].Value);
+      Assert.AreEqual<string>("3", matches[3].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[3].Groups["op"].Value);
+
+      Assert.AreEqual<string>("", matches[4].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[4].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[4].Groups["val"].Value);
+      Assert.AreEqual<string>("AND", matches[4].Groups["op"].Value);
+
+      Assert.AreEqual<string>("34=12", matches[5].Groups["pair"].Value);
+      Assert.AreEqual<string>("34", matches[5].Groups["tag"].Value);
+      Assert.AreEqual<string>("12", matches[5].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[5].Groups["op"].Value);
+
+      Assert.AreEqual<string>("", matches[6].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[6].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[6].Groups["val"].Value);
+      Assert.AreEqual<string>("AND", matches[6].Groups["op"].Value);
+    }
+    [TestMethod]
+    public void expr3()
+    {
+      var regex = new Regex(@"(?<pair>(?<tag>\d+)=(?<val>\w+))|(?<op>AND|OR)");
+      var input = "35=8 OR";
+
+      var matches = regex.Matches(input);
+
+      Assert.AreEqual<int>(2, matches.Count);
+      Assert.AreEqual<string>("35=8", matches[0].Value);
+      Assert.AreEqual<string>("OR", matches[1].Value);
+
+      Assert.AreEqual<string>("35=8", matches[0].Groups["pair"].Value);
+      Assert.AreEqual<string>("35", matches[0].Groups["tag"].Value);
+      Assert.AreEqual<string>("8", matches[0].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[0].Groups["op"].Value);
+
+      Assert.AreEqual<string>("", matches[1].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[1].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[1].Groups["val"].Value);
+      Assert.AreEqual<string>("OR", matches[1].Groups["op"].Value);
+    }
+    [TestMethod]
+    public void expr4()
+    {
+      var regex = new Regex(@"(?<pair>(?<tag>\d+)=(?<val>\w+))|(?<op>AND|OR)");
+      var input = "AND 35=8";
+
+      var matches = regex.Matches(input);
+
+      Assert.AreEqual<int>(2, matches.Count);
+      Assert.AreEqual<string>("AND", matches[0].Value);
+      Assert.AreEqual<string>("35=8", matches[1].Value);
+
+      Assert.AreEqual<string>("", matches[0].Groups["pair"].Value);
+      Assert.AreEqual<string>("", matches[0].Groups["tag"].Value);
+      Assert.AreEqual<string>("", matches[0].Groups["val"].Value);
+      Assert.AreEqual<string>("AND", matches[0].Groups["op"].Value);
+
+      Assert.AreEqual<string>("35=8", matches[1].Groups["pair"].Value);
+      Assert.AreEqual<string>("35", matches[1].Groups["tag"].Value);
+      Assert.AreEqual<string>("8", matches[1].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[1].Groups["op"].Value);
+    }
+    [TestMethod]
+    public void expr5()
+    {
+      var regex = new Regex(@"(?<pair>(?<tag>\d+)=(?<val>\w+))|(?<op>AND|OR)");
+      var input = "35=8";
+
+      var matches = regex.Matches(input);
+
+      Assert.AreEqual<int>(1, matches.Count);
+      Assert.AreEqual<string>("35=8", matches[0].Value);
+
+      Assert.AreEqual<string>("35=8", matches[0].Groups["pair"].Value);
+      Assert.AreEqual<string>("35", matches[0].Groups["tag"].Value);
+      Assert.AreEqual<string>("8", matches[0].Groups["val"].Value);
+      Assert.AreEqual<string>("", matches[0].Groups["op"].Value);
     }
     [TestMethod]
     public void expression_tokens1()
@@ -911,7 +1020,7 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       var tokens = get_expression_tokens(input).Reverse().ToList().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
       Assert.AreEqual<string>("34=123,AND,55=1,OR,12=A123,", tokens);
     }
-    [TestMethod, Ignore]
+    [TestMethod]
     public void expression_tokens3()
     {
       var input = "AND 55=1 OR";
