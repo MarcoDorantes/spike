@@ -1058,6 +1058,17 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       Assert.AreEqual<string>("AND", operator_token);
     }
     [TestMethod]
+    public void tree0()
+    {
+      Tree<string> t0 = new Tree<string> { Value = "head" };
+      Assert.IsTrue(t0.Add(new Tree<string> { Value = "uno" }));
+      Assert.IsTrue(t0.Add(new Tree<string> { Value = "uno" }));
+
+      var sub = new Tree<string> { Value = "dos" };
+      Assert.IsTrue(t0.Add(sub));
+      Assert.IsFalse(t0.Add(sub));
+    }
+    [TestMethod]
     public void tree1()
     {
       Tree<string> t1 = tree_parse("35=j");
