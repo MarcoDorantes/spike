@@ -451,7 +451,7 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
             if (result_head != null)
             {
               current_node = new Tree<string> { Value = pending_node.Value };
-              //TODO: current_expression_node goes into the <pending> node and the current_node should be the 'modified' pending_node.
+              //TODO: current_expression_node goes into the <pending> node and the current_node should be a 'modified' new pending_node.
               current_node.Add(current_expression_node);
               if (current_node.Add(result_head) == false)
               {
