@@ -370,7 +370,7 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
         var child = pass1[k];
         string expr = child.Value.Trim();
 Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
-        string[] expr_tokens = expr_tokens = get_expression_tokens(expr).ToArray();
+        string[] expr_tokens = get_expression_tokens(expr).ToArray();
         if (expr_tokens.Length == 0)
         {
           throw new Exception("Invalid syntax: No expression.");
@@ -429,7 +429,7 @@ Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{cur
           {
             pending_node = new Tree<string> { Value = expr_tokens.First() };
             pending_node.Add(new Tree<string> { Value = "<pending>" });
-            pending_node.Add(tree_parse(expr_tokens.SkipWhile((_, index) => index == 0).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));//TODO: test the case where there are head and tail operators.
+            pending_node.Add(tree_parse(expr_tokens.SkipWhile((_, index) => index == 0).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
             //ForAll: result_head == null?
 Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
           }
@@ -914,6 +914,30 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       Assert.AreEqual<string>("(56,DC1) (35,8) (39,2) | (56,DC1) (35,8) (39,2) | (56,DC1) (35,8) (39,1) | ", output.ToString());
     }
     [TestMethod]
+    public void dynamic_filter_by_configured_Where_8()
+    {
+      IEnumerable<List<KeyValuePair<int, string>>> L = new List<List<KeyValuePair<int, string>>>
+      {
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "A"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"0") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"0") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"j"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"j") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "VX"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "A"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"2") },
+      new List<KeyValuePair<int,string>> {new KeyValuePair<int, string>(-1, "IN"), new KeyValuePair<int, string>(56, "DC1"), new KeyValuePair<int,string>(35,"8"), new KeyValuePair<int,string>(39,"1") }
+      };
+
+      var L2 = L.Where(msg => msg.First(pair => pair.Key == -1).Value == "IN" && "8|j".Contains(msg.First(pair => pair.Key == 35).Value)).Cast<IEnumerable<KeyValuePair<int, string>>>();
+      var filtered = dynamic_filter1(L2, "(56=DC1 OR 56=VX) AND 35=8 AND (39=1 OR 39=2)");
+      var output = filtered.Aggregate(new StringBuilder(), (whole, msg) => whole.AppendFormat("{0}| ", msg.Aggregate(new StringBuilder(), (w, n) => n.Key != -1 ? w.AppendFormat("({0},{1}) ", n.Key, n.Value) : w)));
+
+      Assert.AreEqual<int>(7, L2.Count());
+      Assert.AreEqual<int>(4, filtered.Count());
+      Assert.AreEqual<string>("(56,VX) (35,8) (39,2) | (56,DC1) (35,8) (39,2) | (56,DC1) (35,8) (39,2) | (56,DC1) (35,8) (39,1) | ", output.ToString());
+    }
+    [TestMethod]
     public void expr1()
     {
       var regex = new Regex(@"(?<pair>(?<tag>\d+)=(?<val>\w+))|(?<op>AND|OR)");
@@ -1383,25 +1407,6 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
     public void tree3_pass2_n()
     {
       Tree<string> whole_expr = tree_parse_parenthesis_pass2(tree_parse_parenthesis_pass1("(56=DC1 OR 56=DC2) AND 35=8 AND (39=1 OR 39=2)"));
-      //TODO; add this expression to a test with dynamicfilter1
-
-      /*
-      (56=DC1 OR 56=DC2) AND 35=8 AND (39=1 OR 39=2)
-
-      <tree value="AND">
-        <tree value="OR">
-          <tree value="56=DC1" />
-          <tree value="56=DC2" />
-        </tree>
-        <tree value="AND">
-          <tree value="35=8" />
-          <tree value="OR">
-            <tree value="39=1" />
-            <tree value="39=2" />
-          </tree>
-        </tree>
-      </tree>
-      */
 
       Trace.WriteLine(whole_expr.ToString());
       Assert.AreEqual<string>("AND", whole_expr.Value);
