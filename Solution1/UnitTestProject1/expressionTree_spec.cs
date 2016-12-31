@@ -367,8 +367,7 @@ Trace.WriteLine($"{nameof(pass1)}:\n{pass1}");
       int start_index = pass1.Count - 1;
       for (int k = start_index; k >= 0; --k)
       {
-        var child = pass1[k];
-        string expr = child.Value.Trim();
+        string expr = pass1[k].Value.Trim();
 Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
         string[] expr_tokens = get_expression_tokens(expr).ToArray();
         if (expr_tokens.Length == 0)
@@ -380,103 +379,8 @@ Trace.WriteLine($"\nexpr in turn:[{expr}]\n");
         //IEnumerable<string> left = null;
         //IEnumerable<string> right = null;
 
-        if (operators.Any(op => op == expr_tokens.Last()))
-        {
-          int taken = expr_tokens.Count() - 1;
-          if (taken > 0)
-          {
-            if (operators.Any(op => op == expr_tokens.First()))
-            {
-              pending_node = new Tree<string> { Value = expr_tokens.Last() };
-              pending_node.Add(new Tree<string> { Value = "<pending>" });
-              var node = new Tree<string> { Value = expr_tokens.First() };
-              node.Add(tree_parse(expr_tokens.Where((token, index) => index > 0 && index < expr_tokens.Length - 1).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
-              if (node.Add(result_head) == false)
-              {
-                throw new Exception($"Node {result_head} has been already added to the tree: {node}");
-              }
-              result_head = null;
-              pending_node.Add(node);
-Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
-            }
-            else
-            {
-              current_node = new Tree<string> { Value = expr_tokens.Last() };
-              current_node.Add(tree_parse(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
-              //current_node.Add(tree_parse_parenthesis_pass2(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim())));
-              if (current_node.Add(result_head) == false)
-              {
-                throw new Exception($"Node {result_head} has been already added to the tree: {current_node}");
-              }
-Trace.WriteLine($"\nexpr in turn: taken:{taken}\n");
-            }
-          }
-          else
-          {
-            pending_node = new Tree<string> { Value = expr_tokens.First() };
-            pending_node.Add(new Tree<string> { Value = "<pending>" });
-            if (pending_node.Add(result_head) == false)
-            {
-              throw new Exception($"Node {result_head} has been already added to the tree: {pending_node}");
-            }
-Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
-          }
-        }
-        else if (operators.Any(op => op == expr_tokens.First()))
-        {
-          int taken = expr_tokens.Count() - 1;
-          if (taken > 0)
-          {
-            pending_node = new Tree<string> { Value = expr_tokens.First() };
-            pending_node.Add(new Tree<string> { Value = "<pending>" });
-            pending_node.Add(tree_parse(expr_tokens.SkipWhile((_, index) => index == 0).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
-            //ForAll: result_head == null?
-Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
-          }
-          else
-          {
-            pending_node = new Tree<string> { Value = expr_tokens.First() };
-            pending_node.Add(new Tree<string> { Value = "<pending>" });
-            if (pending_node.Add(result_head) == false)
-            {
-              throw new Exception($"Node {result_head} has been already added to the tree: {pending_node}");
-            }
-Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
-          }
-        }
-        else //no operators at the head or tail.
-        {
-          var current_expression_node = tree_parse(expr_tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim());
-          if (pending_node != null)
-          {
-            if (result_head != null)
-            {
-              current_node = new Tree<string> { Value = pending_node.Value };
-              current_node.Add(current_expression_node);
-              if (current_node.Add(result_head) == false)
-              {
-                throw new Exception($"Node {result_head} has been already added to the tree: {current_node}");
-              }
-Trace.WriteLine($"\nexpr in turn: pending_node processed (result_head added):{current_node}\n");
-            }
-            else
-            {
-              current_node = new Tree<string> { Value = pending_node.Value };
-              current_node.Add(current_expression_node);
-              if (current_node.Add(pending_node.ElementAt(1)) == false)
-              {
-                throw new Exception($"Node {pending_node.ElementAt(1)} has been already added to the tree: {current_node}");
-              }
-Trace.WriteLine($"\nexpr in turn: pending_node processed (result_head is null):{current_node}\n");
-            }
-            pending_node = null;
-          }
-          else
-          {
-            current_node = current_expression_node;
-Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_node}\n");
-          }
-        }
+        parse_pass1_node(expr_tokens, operators, ref result_head, ref current_node , ref pending_node);
+
         //result.Add(tree_parse_parenthesis_pass2(right, operators));
         //result.Add(tree_parse_parenthesis_pass2(left, operators));
         if (current_node != null)
@@ -517,6 +421,106 @@ Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_nod
         throw new ArgumentException("Bad syntax.", $"{pass1}");
       }
       return result_head;
+    }
+    static void parse_pass1_node(string[] expr_tokens, IEnumerable<string> operators, ref Tree<string> result_head, ref Tree<string> current_node, ref Tree<string> pending_node)
+    {
+      if (operators.Any(op => op == expr_tokens.Last()))
+      {
+        int taken = expr_tokens.Count() - 1;
+        if (taken > 0)
+        {
+          if (operators.Any(op => op == expr_tokens.First()))
+          {
+            pending_node = new Tree<string> { Value = expr_tokens.Last() };
+            pending_node.Add(new Tree<string> { Value = "<pending>" });
+            var node = new Tree<string> { Value = expr_tokens.First() };
+            node.Add(tree_parse(expr_tokens.Where((token, index) => index > 0 && index < expr_tokens.Length - 1).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
+            if (node.Add(result_head) == false)
+            {
+              throw new Exception($"Node {result_head} has been already added to the tree: {node}");
+            }
+            result_head = null;
+            pending_node.Add(node);
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+          }
+          else
+          {
+            current_node = new Tree<string> { Value = expr_tokens.Last() };
+            current_node.Add(tree_parse(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
+            //current_node.Add(tree_parse_parenthesis_pass2(expr_tokens.Take(taken).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim())));
+            if (current_node.Add(result_head) == false)
+            {
+              throw new Exception($"Node {result_head} has been already added to the tree: {current_node}");
+            }
+Trace.WriteLine($"\nexpr in turn: taken:{taken}\n");
+          }
+        }
+        else
+        {
+          pending_node = new Tree<string> { Value = expr_tokens.First() };
+          pending_node.Add(new Tree<string> { Value = "<pending>" });
+          if (pending_node.Add(result_head) == false)
+          {
+            throw new Exception($"Node {result_head} has been already added to the tree: {pending_node}");
+          }
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+        }
+      }
+      else if (operators.Any(op => op == expr_tokens.First()))
+      {
+        int taken = expr_tokens.Count() - 1;
+        if (taken > 0)
+        {
+          pending_node = new Tree<string> { Value = expr_tokens.First() };
+          pending_node.Add(new Tree<string> { Value = "<pending>" });
+          pending_node.Add(tree_parse(expr_tokens.SkipWhile((_, index) => index == 0).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim()));
+          //ForAll: result_head == null?
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+        }
+        else
+        {
+          pending_node = new Tree<string> { Value = expr_tokens.First() };
+          pending_node.Add(new Tree<string> { Value = "<pending>" });
+          if (pending_node.Add(result_head) == false)
+          {
+            throw new Exception($"Node {result_head} has been already added to the tree: {pending_node}");
+          }
+Trace.WriteLine($"\nexpr in turn: pending_node:{pending_node}\ncurrent_node:{current_node}");
+        }
+      }
+      else //no operators at the head or tail.
+      {
+        var current_expression_node = tree_parse(expr_tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat(" {0}", n)).ToString().Trim());
+        if (pending_node != null)
+        {
+          if (result_head != null)
+          {
+            current_node = new Tree<string> { Value = pending_node.Value };
+            current_node.Add(current_expression_node);
+            if (current_node.Add(result_head) == false)
+            {
+              throw new Exception($"Node {result_head} has been already added to the tree: {current_node}");
+            }
+Trace.WriteLine($"\nexpr in turn: pending_node processed (result_head added):{current_node}\n");
+          }
+          else
+          {
+            current_node = new Tree<string> { Value = pending_node.Value };
+            current_node.Add(current_expression_node);
+            if (current_node.Add(pending_node.ElementAt(1)) == false)
+            {
+              throw new Exception($"Node {pending_node.ElementAt(1)} has been already added to the tree: {current_node}");
+            }
+Trace.WriteLine($"\nexpr in turn: pending_node processed (result_head is null):{current_node}\n");
+          }
+          pending_node = null;
+        }
+        else
+        {
+          current_node = current_expression_node;
+Trace.WriteLine($"\nexpr in turn: current_expression_node processed:{current_node}\n");
+        }
+      }
     }
     static Tree<string> tree_parse(string input)
     {
