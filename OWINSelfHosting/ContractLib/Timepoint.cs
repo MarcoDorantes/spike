@@ -1,4 +1,6 @@
-﻿namespace ContractLib
+﻿using System.Collections.Generic;
+
+namespace ContractLib
 {
   public class Timepoint
   {
@@ -19,5 +21,15 @@
     public uint CorrelationID;
     public byte Status;
     public string Description;
+  }
+
+  public class AdminRequest
+  {
+    public string cmd;
+  }
+  public class ServiceList : List<string> { }
+  public class AdminResponse
+  {
+    public string[] services;
   }
 }

@@ -91,6 +91,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FaultSpec.cs" />
+    <Compile Include="AdminSpec.cs" />
     <Compile Include="VpnSpec.cs" />
     <Compile Include="ValueSpec.cs" />
     <Compile Include="ValuesSpec.cs" />
