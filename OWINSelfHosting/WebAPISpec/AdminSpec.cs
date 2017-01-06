@@ -102,7 +102,7 @@ namespace WebAPISpec
       {
         using (var client = new System.Net.Http.HttpClient())
         {
-          string url = baseAddress + "api/admin/1";
+          string url = baseAddress + "api/admin";
           var request_payload = Newtonsoft.Json.JsonConvert.SerializeObject(request);
           var payload = new System.Net.Http.StringContent(request_payload, Encoding.UTF8, "application/json");
           var response = client.PutAsync(url, payload).Result;
