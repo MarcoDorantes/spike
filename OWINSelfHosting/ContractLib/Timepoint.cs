@@ -27,9 +27,21 @@ namespace ContractLib
   {
     public string cmd;
   }
-  public class ServiceList : List<string> { }
+//  public class ServiceList : List<string> { }
   public class AdminResponse
   {
     public string[] services;
   }
+
+  public class AdminRequest2
+  {
+    public string Name;
+    public Dictionary<string, string> Values;
+  }
+  public class AdminResponse2
+  {
+    public string Name;
+    public Dictionary<string, string> Values;
+  }
+
 }

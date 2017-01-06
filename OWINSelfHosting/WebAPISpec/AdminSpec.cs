@@ -17,6 +17,10 @@ namespace WebAPISpec
     {
       return new ContractLib.AdminResponse { services = new string[] { "uno", "dos" } };
     }
+    public ContractLib.AdminResponse2 Put([FromBody]ContractLib.AdminRequest2 request)
+    {
+      return new ContractLib.AdminResponse2 { Name = request.Name, Values = request.Values };
+    }
   }
   public class AdminStartup
   {
@@ -85,6 +89,33 @@ namespace WebAPISpec
           Assert.AreEqual<int>(2, admin_response.services.Count());
           Assert.AreEqual<string>("uno", admin_response.services.ElementAt(0));
           Assert.AreEqual<string>("dos", admin_response.services.ElementAt(1));
+        }
+      }
+    }
+
+    [TestMethod]
+    public void services_OWIN_service_side2()
+    {
+      string baseAddress = "http://localhost:5002/";
+      var request = new ContractLib.AdminRequest2() { Name = "name1", Values = new Dictionary<string, string> { { "name1", "val1" } } };
+      using (Microsoft.Owin.Hosting.WebApp.Start<ValuesStartup>(url: baseAddress))
+      {
+        using (var client = new System.Net.Http.HttpClient())
+        {
+          string url = baseAddress + "api/admin/1";
+          var request_payload = Newtonsoft.Json.JsonConvert.SerializeObject(request);
+          var payload = new System.Net.Http.StringContent(request_payload, Encoding.UTF8, "application/json");
+          var response = client.PutAsync(url, payload).Result;
+
+          Assert.IsTrue(response.IsSuccessStatusCode);
+          Assert.AreEqual<System.Net.HttpStatusCode>(System.Net.HttpStatusCode.OK, response.StatusCode);
+          Assert.AreEqual<string>("OK", response.ReasonPhrase);
+          string response_json = response.Content.ReadAsStringAsync().Result;
+          var admin_response = Newtonsoft.Json.JsonConvert.DeserializeObject<ContractLib.AdminResponse2>(response_json);
+          Assert.IsNotNull(admin_response);
+          Assert.AreEqual<string>(request.Name,admin_response.Name);
+          Assert.AreEqual<int>(request.Values.Count, admin_response.Values.Count);
+          Assert.AreEqual<string>(request.Values["name1"], admin_response.Values["name1"]);
         }
       }
     }
