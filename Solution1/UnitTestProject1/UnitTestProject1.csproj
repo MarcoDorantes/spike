@@ -71,6 +71,7 @@
     <Compile Include="RSS_Feed_Spec.cs" />
     <Compile Include="timedreplay_Spec.cs" />
     <Compile Include="expressionTree_spec.cs" />
+    <Compile Include="RX_Spec.cs" />
     <Compile Include="visitor_spec.cs" />
   </ItemGroup>
   <ItemGroup>
