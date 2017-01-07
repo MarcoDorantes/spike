@@ -158,8 +158,8 @@ namespace expressionTree_specs
     }
     static IEnumerable<string> get_expression_tokens(string input)
     {
-      return get_expression_tokens_regex(input);
-      //return get_expression_tokens_alt1(input);
+      //return get_expression_tokens_regex(input);
+      return get_expression_tokens_alt1(input);
     }
     static IEnumerable<string> get_expression_tokens_regex(string input)
     {
