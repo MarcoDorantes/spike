@@ -201,14 +201,18 @@ namespace expressionTree_specs
         char c = input[k];
         if (char.IsLetterOrDigit(c))
         {
-          yield return input.Substring(k, count(input , ref k, next => char.IsLetterOrDigit(next)));
+          yield return input.Substring(k, count(input, ref k, next => char.IsLetterOrDigit(next)));
         }
-        else if (c == '=')
+        else if (char.IsSeparator(c))
+        {
+          ++k;
+        }
+        else
         {
           ++k;
           yield return new string(c, 1);
         }
-        else throw new Exception($"Bad syntax: {c}");
+//        else throw new Exception($"Bad syntax: {c}");
       }
     }
     static int count(string input, ref int k, Func<char, bool> is_included)
@@ -1153,15 +1157,30 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
       var tokens = get_expression_tokens(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
       Assert.AreEqual<string>("AND,55=1,OR,", tokens);
     }
-    [TestMethod]
+    [TestMethod, TestCategory("alt1")]
     public void expression_tokens_alt1_a()
     {
       var input = "55=1";
       var tokens = get_expression_tokens_alt1(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
 
-      Assert.IsFalse(char.IsSeparator('='));
       Assert.IsFalse(char.IsPunctuation('='));
       Assert.AreEqual<string>("55,=,1,", tokens);
+    }
+    [TestMethod, TestCategory("alt1")]
+    public void expression_tokens_alt1_b()
+    {
+      var input = " 55 =  1  ";
+      var tokens = get_expression_tokens_alt1(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
+
+      Assert.AreEqual<string>("55,=,1,", tokens);
+    }
+    [TestMethod, TestCategory("alt1")]
+    public void expression_tokens_alt1_c()
+    {
+      var input = " 55 =  1  OR 2=ABC";
+      var tokens = get_expression_tokens_alt1(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
+
+      Assert.AreEqual<string>("55,=,1,OR,2,=,ABC,", tokens);
     }
     [TestMethod]
     public void rsub_expr1()
