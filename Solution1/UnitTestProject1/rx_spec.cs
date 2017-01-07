@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Text;
+using System.Collections.Generic;
 
 namespace UnitTestProject1
 {
@@ -29,10 +30,18 @@ https://www.nuget.org/packages/System.Reactive/
     {
       //System.Reactive.dll ?
 
-      //System.Reactive.Linq.Observable.
       Assert.AreEqual<string>("System.Reactive.Linq.Observable", typeof(System.Reactive.Linq.Observable).FullName);
       Trace.WriteLine(this.GetType().Assembly.GetReferencedAssemblies().Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("{0}\n",n.FullName)).ToString());
       Assert.IsTrue(this.GetType().Assembly.GetReferencedAssemblies().Any(a => a.FullName.StartsWith("System.Reactive")));
+
+      var t = new List<int>();
+      bool done = false;
+
+      IObservable<int> source = System.Reactive.Linq.Observable.Range(1, 5);
+      IDisposable subscription = source.Subscribe(n => t.Add(n), () => done = true);
+
+      Assert.IsTrue(done);
+      Assert.AreEqual<int>(5, t.Count);
     }
   }
 }
