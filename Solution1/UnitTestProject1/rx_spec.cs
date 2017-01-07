@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
+using System.Text;
 
 namespace UnitTestProject1
 {
@@ -21,8 +23,11 @@ https://www.nuget.org/packages/System.Reactive/
     [TestMethod]
     public void TestMethod1()
     {
-      //System.Reactive.dll
-      //Observable.
+      //System.Reactive.dll ?
+
+      //System.Reactive.Linq.Observable.
+      Assert.AreEqual<string>("System.Reactive.Linq.Observable", typeof(System.Reactive.Linq.Observable).FullName);
+      Trace.WriteLine(this.GetType().Assembly.GetReferencedAssemblies().Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("{0}\n",n.FullName)).ToString());
       Assert.IsTrue(this.GetType().Assembly.GetReferencedAssemblies().Any(a => a.FullName.StartsWith("System.Reactive")));
     }
   }
