@@ -10,6 +10,10 @@ namespace UnitTestProject1
   public class RX_Spec
   {
     /*
+
+http://reactivex.io
+http://reactivex.io/intro.html
+
 https://github.com/Reactive-Extensions/Rx.NET
 https://msdn.microsoft.com/en-us/library/hh242985(v=vs.103).aspx
 https://msdn.microsoft.com/en-us/library/system.reactive.linq.observable(v=vs.103).aspx
