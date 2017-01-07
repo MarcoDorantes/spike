@@ -33,6 +33,12 @@ https://www.nuget.org/packages/System.Reactive/
   }
 }
 /*
+Each package is licensed to you by its owner. NuGet is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may include dependencies which are governed by additional licenses. Follow the package source (feed) URL to determine any dependencies.
+
+Package Manager Console Host Version 3.4.4.1321
+
+Type 'get-help NuGet' to see all available NuGet commands.
+
 PM> Install-Package System.Reactive
 Attempting to gather dependency information for package 'System.Reactive.3.1.1' with respect to project 'UnitTestProject1', targeting '.NETFramework,Version=v4.6.1'
 Attempting to resolve dependencies for package 'System.Reactive.3.1.1' with DependencyBehavior 'Lowest'
