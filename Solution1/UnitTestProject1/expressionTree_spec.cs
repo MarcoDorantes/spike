@@ -158,6 +158,11 @@ namespace expressionTree_specs
     }
     static IEnumerable<string> get_expression_tokens(string input)
     {
+      //return get_expression_tokens_regex(input);
+      return get_expression_tokens_alt1(input);
+    }
+    static IEnumerable<string> get_expression_tokens_regex(string input)
+    {
       if (input == null)
       {
         throw new ArgumentNullException(nameof(input));
@@ -193,7 +198,44 @@ namespace expressionTree_specs
         }
       }
     }
-    static IEnumerable<string> get_expression_tokens_alt1(string input)
+    static IEnumerable<string> get_expression_tokens_alt1(string input, IEnumerable<string> operators = null)
+    {
+      if (operators == null)
+      {
+        operators = new string[] { "AND", "OR" };
+      }
+
+      var tokens = get_tokens_alt1(input).ToArray();
+      int k = 0;
+      while (k < tokens.Length)
+      {
+        KeyValuePair<Token, string> token = tokens[k];
+        switch (token.Key)
+        {
+          case Token.Text:
+            if (operators.Any(op => op == token.Value))
+            {
+              yield return token.Value;
+              ++k;
+            }
+            else
+            {
+              if (k + 2 < tokens.Length && tokens[k+1].Key == Token.Equals && tokens[k + 2].Key == Token.Text)
+              {
+                yield return token.Value + tokens[++k].Value + tokens[++k].Value;
+                ++k;
+              }
+              else throw new Exception($"Bad syntax starting at: {token.Value}");
+            }
+            break;
+
+          default:
+            throw new Exception($"Bad syntax starting at: {token.Value}");
+        }
+      }
+    }
+    enum Token { Text, Equals, LeftParenthesis, RightParenthesis, LessThan, GreaterThan }
+    static IEnumerable<KeyValuePair<Token,string>> get_tokens_alt1(string input)
     {
       int k = 0;
       while (k < input.Length)
@@ -201,18 +243,38 @@ namespace expressionTree_specs
         char c = input[k];
         if (char.IsLetterOrDigit(c))
         {
-          yield return input.Substring(k, count(input, ref k, next => char.IsLetterOrDigit(next)));
+          yield return new KeyValuePair<Token, string>(Token.Text, input.Substring(k, count(input, ref k, next => char.IsLetterOrDigit(next))));
         }
         else if (char.IsSeparator(c))
         {
           ++k;
         }
-        else
+        else if (c == '=')
         {
           ++k;
-          yield return new string(c, 1);
+          yield return new KeyValuePair<Token, string>(Token.Equals, new string(c, 1));
         }
-//        else throw new Exception($"Bad syntax: {c}");
+        else if (c == '(')
+        {
+          ++k;
+          yield return new KeyValuePair<Token, string>(Token.LeftParenthesis, new string(c, 1));
+        }
+        else if (c == ')')
+        {
+          ++k;
+          yield return new KeyValuePair<Token, string>(Token.RightParenthesis, new string(c, 1));
+        }
+        else if (c == '<')
+        {
+          ++k;
+          yield return new KeyValuePair<Token, string>(Token.LessThan, new string(c, 1));
+        }
+        else if (c == '>')
+        {
+          ++k;
+          yield return new KeyValuePair<Token, string>(Token.GreaterThan, new string(c, 1));
+        }
+        else throw new Exception($"Bad syntax: {c}");
       }
     }
     static int count(string input, ref int k, Func<char, bool> is_included)
@@ -1160,27 +1222,63 @@ Trace.WriteLine($"\n\nwhere_selection:{where_selection}");
     [TestMethod, TestCategory("alt1")]
     public void expression_tokens_alt1_a()
     {
-      var input = "55=1";
+      var input = "AND 55=1 OR";
       var tokens = get_expression_tokens_alt1(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
-
-      Assert.IsFalse(char.IsPunctuation('='));
-      Assert.AreEqual<string>("55,=,1,", tokens);
+      Assert.AreEqual<string>("AND,55=1,OR,", tokens);
     }
     [TestMethod, TestCategory("alt1")]
-    public void expression_tokens_alt1_b()
+    public void tokens_alt1_a()
+    {
+      var input = "55=1";
+      var tokens = get_tokens_alt1(input);
+
+      Assert.AreEqual<string>("55,=,1,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Value)).ToString());
+      Assert.AreEqual<string>("Text,Equals,Text,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Key)).ToString());
+    }
+    [TestMethod, TestCategory("alt1")]
+    public void tokens_alt1_b()
     {
       var input = " 55 =  1  ";
-      var tokens = get_expression_tokens_alt1(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
+      var tokens = get_tokens_alt1(input);
 
-      Assert.AreEqual<string>("55,=,1,", tokens);
+      Assert.AreEqual<string>("55,=,1,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Value)).ToString());
+      Assert.AreEqual<string>("Text,Equals,Text,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Key)).ToString());
     }
     [TestMethod, TestCategory("alt1")]
-    public void expression_tokens_alt1_c()
+    public void tokens_alt1_c()
     {
       var input = " 55 =  1  OR 2=ABC";
-      var tokens = get_expression_tokens_alt1(input).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString();
+      var tokens = get_tokens_alt1(input);
 
-      Assert.AreEqual<string>("55,=,1,OR,2,=,ABC,", tokens);
+      Assert.AreEqual<string>("55,=,1,OR,2,=,ABC,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Value)).ToString());
+      Assert.AreEqual<string>("Text,Equals,Text,Text,Text,Equals,Text,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Key)).ToString());
+    }
+    [TestMethod, TestCategory("alt1")]
+    public void tokens_alt1_d()
+    {
+      var input = " 55 =  1  OR (2=ABC)";
+      var tokens = get_tokens_alt1(input);
+
+      Assert.AreEqual<string>("55,=,1,OR,(,2,=,ABC,),", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Value)).ToString());
+      Assert.AreEqual<string>("Text,Equals,Text,Text,LeftParenthesis,Text,Equals,Text,RightParenthesis,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Key)).ToString());
+    }
+    [TestMethod, TestCategory("alt1")]
+    public void tokens_alt1_e()
+    {
+      var input = "NOT 55 =  1  AND NOT(2=ABC)";
+      var tokens = get_tokens_alt1(input);
+
+      Assert.AreEqual<string>("NOT,55,=,1,AND,NOT,(,2,=,ABC,),", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Value)).ToString());
+      Assert.AreEqual<string>("Text,Text,Equals,Text,Text,Text,LeftParenthesis,Text,Equals,Text,RightParenthesis,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Key)).ToString());
+    }
+    [TestMethod, TestCategory("alt1")]
+    public void tokens_alt1_f()
+    {
+      var input = "NOT 55 >  1  AND NOT(2<10)   ";
+      var tokens = get_tokens_alt1(input);
+
+      Assert.AreEqual<string>("NOT,55,>,1,AND,NOT,(,2,<,10,),", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Value)).ToString());
+      Assert.AreEqual<string>("Text,Text,GreaterThan,Text,Text,Text,LeftParenthesis,Text,LessThan,Text,RightParenthesis,", tokens.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n.Key)).ToString());
     }
     [TestMethod]
     public void rsub_expr1()
