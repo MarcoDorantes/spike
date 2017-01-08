@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace UnitTestProject1
 {
@@ -26,22 +27,31 @@ Reactive Extensions (Rx) - Main Library 3.1.1
 https://www.nuget.org/packages/System.Reactive/
      */
     [TestMethod]
-    public void TestMethod1()
+    public void basic0()
     {
       //System.Reactive.dll ?
 
       Assert.AreEqual<string>("System.Reactive.Linq.Observable", typeof(System.Reactive.Linq.Observable).FullName);
-      Trace.WriteLine(this.GetType().Assembly.GetReferencedAssemblies().Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("{0}\n",n.FullName)).ToString());
+      Trace.WriteLine(this.GetType().Assembly.GetReferencedAssemblies().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}\n", n.FullName)).ToString());
       Assert.IsTrue(this.GetType().Assembly.GetReferencedAssemblies().Any(a => a.FullName.StartsWith("System.Reactive")));
 
       var t = new List<int>();
-      bool done = false;
+      var s = new List<int>();
+      bool done1 = false;
+      DateTime t_done1 = DateTime.MinValue;
+      bool done2 = false;
+      DateTime t_done2 = DateTime.MinValue;
 
       IObservable<int> source = System.Reactive.Linq.Observable.Range(1, 5);
-      IDisposable subscription = source.Subscribe(n => t.Add(n), () => done = true);
+      IDisposable subscription1 = source.Subscribe(n => { t.Add(n); Thread.Sleep(1000); }, () => { t_done1 = DateTime.Now; done1 = true; });
+      IDisposable subscription2 = source.Subscribe(n => { s.Add(n); Thread.Sleep(1000); }, () => { t_done2 = DateTime.Now; done2 = true; });
 
-      Assert.IsTrue(done);
+      Assert.IsTrue(done1);
+      Assert.IsTrue(done2);
       Assert.AreEqual<int>(5, t.Count);
+      Assert.AreEqual<int>(5, s.Count);
+      Trace.WriteLine($"{t_done1.ToString("s")}");
+      Trace.WriteLine($"{t_done2.ToString("s")}");
     }
   }
 }
