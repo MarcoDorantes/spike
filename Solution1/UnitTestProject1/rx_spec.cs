@@ -51,13 +51,17 @@ https://www.nuget.org/packages/System.Reactive/
     }
     class A
     {
+      private System.Reactive.Subjects.IConnectableObservable<long> hot_prices;
       public A()
       {
-        Prices = System.Reactive.Linq.Observable.Timer(TimeSpan.Parse("00:00:02"), TimeSpan.Parse("00:00:03"));
-        PriceTimes= System.Reactive.Linq.Observable.Timestamp(Prices);
+        ColdPrices = System.Reactive.Linq.Observable.Timer(TimeSpan.Parse("00:00:02"), TimeSpan.Parse("00:00:03"));
+        ColdPriceTimes= System.Reactive.Linq.Observable.Timestamp(ColdPrices);
+        HotPrices = hot_prices = System.Reactive.Linq.Observable.Publish(System.Reactive.Linq.Observable.Interval(TimeSpan.FromSeconds(2)));
       }
-      public IObservable<long> Prices { get; private set; }
-      public IObservable<System.Reactive.Timestamped<long>> PriceTimes { get; private set; }
+      public IObservable<long> ColdPrices { get; private set; }
+      public IObservable<System.Reactive.Timestamped<long>> ColdPriceTimes { get; private set; }
+      public IObservable<long> HotPrices { get; private set; }
+      public void StartHotPrices() { hot_prices.Connect(); }
     }
     [TestMethod]
     public void basic1()
@@ -66,8 +70,8 @@ https://www.nuget.org/packages/System.Reactive/
       var s = new List<long>();
 
       A a = new A();
-      IDisposable subscription1 = a.Prices.Subscribe(n => t.Add(n));
-      IDisposable subscription2 = a.Prices.Subscribe(n => s.Add(n));
+      IDisposable subscription1 = a.ColdPrices.Subscribe(n => t.Add(n));
+      IDisposable subscription2 = a.ColdPrices.Subscribe(n => s.Add(n));
 
       Thread.Sleep(12000);
       subscription1.Dispose();
@@ -88,8 +92,8 @@ https://www.nuget.org/packages/System.Reactive/
       IObserver<long> observer = System.Reactive.Observer.Create<long>(n => t.Add(n));
 
       A a = new A();
-      IDisposable subscription1 = a.Prices.Subscribe(observer);
-      IDisposable subscription2 = a.Prices.Subscribe(observer);
+      IDisposable subscription1 = a.ColdPrices.Subscribe(observer);
+      IDisposable subscription2 = a.ColdPrices.Subscribe(observer);
 
       Thread.Sleep(12000);
       subscription1.Dispose();
@@ -107,8 +111,8 @@ https://www.nuget.org/packages/System.Reactive/
       IObserver<long> observer = System.Reactive.Observer.Create<long>(n => t.Add(n));
 
       A a = new A();
-      IDisposable subscription1 = a.Prices.Subscribe(observer);
-      IDisposable subscription2 = a.PriceTimes.Subscribe(n=>Trace.WriteLine($"{n.Value} {n.Timestamp}"));
+      IDisposable subscription1 = a.ColdPrices.Subscribe(observer);
+      IDisposable subscription2 = a.ColdPriceTimes.Subscribe(n=>Trace.WriteLine($"{n.Value} {n.Timestamp}"));
 
       Thread.Sleep(12000);
       subscription1.Dispose();
@@ -117,6 +121,29 @@ https://www.nuget.org/packages/System.Reactive/
       Assert.AreEqual<int>(4, t.Count);
       Assert.AreEqual<long>(6, t.Sum());
       Assert.AreEqual<string>("0,1,2,3,", t.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
+    }
+    [TestMethod]
+    public void basic4()
+    {
+      var t = new List<long>();
+      var s = new List<long>();
+
+      A a = new A();
+      IDisposable subscription1 = a.HotPrices.Subscribe(n => t.Add(n));
+      a.StartHotPrices();
+      Thread.Sleep(6000);
+      IDisposable subscription2 = a.HotPrices.Subscribe(n => s.Add(n));
+      Thread.Sleep(5000);
+
+      subscription1.Dispose();
+      subscription2.Dispose();
+
+      Assert.AreEqual<int>(5, t.Count);
+      Assert.AreEqual<long>(10, t.Sum());
+      Assert.AreEqual<string>("0,1,2,3,4,", t.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
+      Assert.AreEqual<int>(3, s.Count);
+      Assert.AreEqual<long>(9, s.Sum());
+      Assert.AreEqual<string>("2,3,4,", s.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
     }
   }
 }
