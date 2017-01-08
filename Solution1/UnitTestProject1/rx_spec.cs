@@ -29,29 +29,94 @@ https://www.nuget.org/packages/System.Reactive/
     [TestMethod]
     public void basic0()
     {
-      //System.Reactive.dll ?
-
-      Assert.AreEqual<string>("System.Reactive.Linq.Observable", typeof(System.Reactive.Linq.Observable).FullName);
-      Trace.WriteLine(this.GetType().Assembly.GetReferencedAssemblies().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}\n", n.FullName)).ToString());
-      Assert.IsTrue(this.GetType().Assembly.GetReferencedAssemblies().Any(a => a.FullName.StartsWith("System.Reactive")));
-
       var t = new List<int>();
       var s = new List<int>();
       bool done1 = false;
-      DateTime t_done1 = DateTime.MinValue;
       bool done2 = false;
-      DateTime t_done2 = DateTime.MinValue;
 
       IObservable<int> source = System.Reactive.Linq.Observable.Range(1, 5);
-      IDisposable subscription1 = source.Subscribe(n => { t.Add(n); Thread.Sleep(1000); }, () => { t_done1 = DateTime.Now; done1 = true; });
-      IDisposable subscription2 = source.Subscribe(n => { s.Add(n); Thread.Sleep(1000); }, () => { t_done2 = DateTime.Now; done2 = true; });
+      IDisposable subscription1 = source.Subscribe(n => t.Add(n), () => done1 = true);
+      subscription1.Dispose();
+      IDisposable subscription2 = source.Subscribe(n => s.Add(n), () => done2 = true);
+      subscription2.Dispose();
 
       Assert.IsTrue(done1);
       Assert.IsTrue(done2);
       Assert.AreEqual<int>(5, t.Count);
       Assert.AreEqual<int>(5, s.Count);
-      Trace.WriteLine($"{t_done1.ToString("s")}");
-      Trace.WriteLine($"{t_done2.ToString("s")}");
+
+      Trace.WriteLine(this.GetType().Assembly.GetReferencedAssemblies().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}\n", n.FullName)).ToString());
+      Assert.AreEqual<string>("System.Reactive.Linq.Observable", typeof(System.Reactive.Linq.Observable).FullName);
+      Assert.IsTrue(this.GetType().Assembly.GetReferencedAssemblies().Any(a => a.FullName.StartsWith("System.Reactive")));
+    }
+    class A
+    {
+      public A()
+      {
+        Prices = System.Reactive.Linq.Observable.Timer(TimeSpan.Parse("00:00:02"), TimeSpan.Parse("00:00:03"));
+        PriceTimes= System.Reactive.Linq.Observable.Timestamp(Prices);
+      }
+      public IObservable<long> Prices { get; private set; }
+      public IObservable<System.Reactive.Timestamped<long>> PriceTimes { get; private set; }
+    }
+    [TestMethod]
+    public void basic1()
+    {
+      var t = new List<long>();
+      var s = new List<long>();
+
+      A a = new A();
+      IDisposable subscription1 = a.Prices.Subscribe(n => t.Add(n));
+      IDisposable subscription2 = a.Prices.Subscribe(n => s.Add(n));
+
+      Thread.Sleep(12000);
+      subscription1.Dispose();
+      subscription2.Dispose();
+
+      Assert.AreEqual<int>(4, t.Count);
+      Assert.AreEqual<long>(6, t.Sum());
+      Assert.AreEqual<string>("0,1,2,3,", t.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
+      Assert.AreEqual<int>(4, s.Count);
+      Assert.AreEqual<long>(6, s.Sum());
+      Assert.AreEqual<string>("0,1,2,3,", s.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
+    }
+    [TestMethod]
+    public void basic2()
+    {
+      var t = new System.Collections.Concurrent.BlockingCollection<long>();
+
+      IObserver<long> observer = System.Reactive.Observer.Create<long>(n => t.Add(n));
+
+      A a = new A();
+      IDisposable subscription1 = a.Prices.Subscribe(observer);
+      IDisposable subscription2 = a.Prices.Subscribe(observer);
+
+      Thread.Sleep(12000);
+      subscription1.Dispose();
+      subscription2.Dispose();
+
+      Assert.AreEqual<int>(8, t.Count);
+      Assert.AreEqual<long>(12, t.Sum());
+      Assert.AreEqual<string>("0,0,1,1,2,2,3,3,", t.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
+    }
+    [TestMethod]
+    public void basic3()
+    {
+      var t = new List<long>();
+
+      IObserver<long> observer = System.Reactive.Observer.Create<long>(n => t.Add(n));
+
+      A a = new A();
+      IDisposable subscription1 = a.Prices.Subscribe(observer);
+      IDisposable subscription2 = a.PriceTimes.Subscribe(n=>Trace.WriteLine($"{n.Value} {n.Timestamp}"));
+
+      Thread.Sleep(12000);
+      subscription1.Dispose();
+      subscription2.Dispose();
+
+      Assert.AreEqual<int>(4, t.Count);
+      Assert.AreEqual<long>(6, t.Sum());
+      Assert.AreEqual<string>("0,1,2,3,", t.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
     }
   }
 }
