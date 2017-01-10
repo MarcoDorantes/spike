@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Reactive.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using System.Threading;
+using System.Collections.Concurrent;
 
 namespace UnitTestProject1
 {
@@ -57,11 +59,24 @@ https://www.nuget.org/packages/System.Reactive/
         ColdPrices = System.Reactive.Linq.Observable.Timer(TimeSpan.Parse("00:00:02"), TimeSpan.Parse("00:00:03"));
         ColdPriceTimes= System.Reactive.Linq.Observable.Timestamp(ColdPrices);
         HotPrices = hot_prices = System.Reactive.Linq.Observable.Publish(System.Reactive.Linq.Observable.Interval(TimeSpan.FromSeconds(2)));
+
+        IncomingValues = new BlockingCollection<int>();
+        //ReadValues = System.Reactive.Linq.Observable.Publish(read_values().ToObservable());
+        ReadValues = read_values().ToObservable();
       }
       public IObservable<long> ColdPrices { get; private set; }
       public IObservable<System.Reactive.Timestamped<long>> ColdPriceTimes { get; private set; }
       public IObservable<long> HotPrices { get; private set; }
+      public IObservable<int> ReadValues { get; private set; }
+      public BlockingCollection<int> IncomingValues { get; private set; }
       public void StartHotPrices() { hot_prices.Connect(); }
+      private IEnumerable<int> read_values()
+      {
+        foreach (int n in IncomingValues.GetConsumingEnumerable())
+        {
+          yield return n;
+        }
+      }
     }
     [TestMethod]
     public void basic1()
@@ -144,6 +159,17 @@ https://www.nuget.org/packages/System.Reactive/
       Assert.AreEqual<int>(3, s.Count);
       Assert.AreEqual<long>(9, s.Sum());
       Assert.AreEqual<string>("2,3,4,", s.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0},", n)).ToString());
+    }
+    [TestMethod]
+    public void basic5()
+    {
+      var t = new List<long>();
+      A a = new A();
+      Enumerable.Range(0, 50).ToList().ForEach(n => a.IncomingValues.Add(n));
+      a.IncomingValues.CompleteAdding();
+      IDisposable subscription = a.ReadValues.Subscribe(n => t.Add(n));
+      subscription.Dispose();
+      Assert.AreEqual<int>(50, t.Count);
     }
   }
 }
