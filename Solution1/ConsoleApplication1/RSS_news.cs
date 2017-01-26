@@ -35,6 +35,11 @@ namespace ConsoleApplication1
         if (args.Length == 0)
         {
           string sourceURL = "http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews";
+          /*
+https://go.microsoft.com/fwlink/p/?LinkId=659113&clcid=409
+https://blogs.msdn.microsoft.com/visualstudio/
+https://blogs.msdn.microsoft.com/visualstudio/feed/
+          */
 
           //if (args.Length != 1) throw new Exception("No source file specified.");
           //var sourcefile = args[0];
