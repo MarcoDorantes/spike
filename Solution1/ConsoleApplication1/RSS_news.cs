@@ -1,4 +1,5 @@
 ﻿//tools\getWebfile.exe http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews vsnews_03Oct2016.xml
+//tools\getWebfile.exe https://vsstartpage.blob.core.windows.net/news/vs vsnews_27Jan2017.xml
 //csc /r:"\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\PresentationCore.dll" vsnews_merge.cs
 using System;
 using System.IO;
@@ -12,9 +13,9 @@ namespace ConsoleApplication1
 
   class guid_based_comparer : IEqualityComparer<XElement>
   {
-    public bool Equals(XElement x, XElement y) => x.Element("guid").Value == y.Element("guid").Value;
+    public bool Equals(XElement x, XElement y) => x.Element("link").Value == y.Element("link").Value;
 
-    public int GetHashCode(XElement x) => x.Element("guid").Value.GetHashCode();
+    public int GetHashCode(XElement x) => x.Element("link").Value.GetHashCode();
 
     public XDocument merge(XDocument source, XDocument target)
     {
@@ -27,6 +28,19 @@ namespace ConsoleApplication1
 
   class RSS_news
   {
+    static void add(string sourceURL, string targetfile)
+    {
+      var source = XDocument.Load(sourceURL);
+      WriteLine($"Source received: {source.Root.Element("channel").Element("title").Value} ({source.Root.Element("channel").Descendants("item").Count()} items)");
+      if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
+      var target = XDocument.Load(targetfile);
+      Write($"Target file: {targetfile}...");
+      var m = new guid_based_comparer();
+      WriteLine("\n");
+      var merged = m.merge(source, target);
+      merged.Save(targetfile);
+      WriteLine("merged.");
+    }
     public static void _Main(string[] args)
     {
       try
@@ -34,26 +48,20 @@ namespace ConsoleApplication1
         string targetfile = $"{Path.GetFileNameWithoutExtension(Environment.GetCommandLineArgs()[0])}_target.xml";
         if (args.Length == 0)
         {
-          string sourceURL = "http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews";
           /*
 https://go.microsoft.com/fwlink/p/?LinkId=659113&clcid=409
 https://blogs.msdn.microsoft.com/visualstudio/
 https://blogs.msdn.microsoft.com/visualstudio/feed/
+
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\VisualStudio\14.0_Config\StartPage
+https://go.microsoft.com/fwlink/?linkid=87676&clcid=%VSSPV_LCID_HEX%
+https://go.microsoft.com/fwlink/?linkid=87676&clcid=409
+https://vsstartpage.blob.core.windows.net/news/vs
           */
 
-          //if (args.Length != 1) throw new Exception("No source file specified.");
-          //var sourcefile = args[0];
-          //if (!File.Exists(sourcefile)) throw new Exception($"No source file found: {sourcefile}");
-          var source = XDocument.Load(sourceURL);
-          WriteLine($"Source text received: {source}");
-          if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
-          var target = XDocument.Load(targetfile);
-          Write($"Target file: {targetfile}...");
-          var m = new guid_based_comparer();
-          WriteLine("\n");
-          var merged = m.merge(source, target);
-          merged.Save(targetfile);
-          WriteLine("merged.");
+          add("http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews", targetfile);
+          add("https://vsstartpage.blob.core.windows.net/news/vs", targetfile);
+
           var next = @"tools\windiff vsnews_merge_target.xml afile_copy.xml";
           System.Windows.Clipboard.SetText(next);
           WriteLine(next);
@@ -62,7 +70,9 @@ https://blogs.msdn.microsoft.com/visualstudio/feed/
         {
           var target = XDocument.Load(targetfile);
           WriteLine($"Links in target file: {targetfile}...");
-          target.Root.Descendants("item").ToList().ForEach(n => { WriteLine($"{n.Element("link").Value}\t{n.Element("title").Value}"); });
+          var list = target.Root.Descendants("item").ToList();
+          list.ForEach(n => { WriteLine($"{n.Element("link").Value}\t{n.Element("title").Value}"); });
+          WriteLine($"Items: {list.Count}");
         }
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
