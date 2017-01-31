@@ -21,7 +21,7 @@ namespace ConsoleApplication1
     {
       var r = source.Root.Descendants("item").Except(target.Root.Descendants("item"), this);
       var result = XDocument.Parse(target.ToString());
-      r.Aggregate(result, (w, n) => { var @new = XElement.Parse(n.ToString()); w.Root.Element("channel").Add(@new); WriteLine($"{@new.Element("link").Value}\t{@new.Element("title").Value}"); return w; });
+      r.Aggregate(result, (w, n) => { var @new = XElement.Parse(n.ToString()); w.Root.Element("channel").Add(@new); WriteLine($"\t{@new.Element("link").Value}\t{@new.Element("title").Value}"); return w; });
       return result;
     }
   }
@@ -31,12 +31,11 @@ namespace ConsoleApplication1
     static void add(string sourceURL, string targetfile)
     {
       var source = XDocument.Load(sourceURL);
-      WriteLine($"Source received: {source.Root.Element("channel").Element("title").Value} ({source.Root.Element("channel").Descendants("item").Count()} items)");
+      WriteLine($"\nSource received: {source.Root.Element("channel").Element("title").Value} ({source.Root.Element("channel").Descendants("item").Count()} items)");
       if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
       var target = XDocument.Load(targetfile);
-      Write($"Target file: {targetfile}...");
+      WriteLine($"Target file: {targetfile}...");
       var m = new guid_based_comparer();
-      WriteLine("\n");
       var merged = m.merge(source, target);
       merged.Save(targetfile);
       WriteLine("merged.");
@@ -64,7 +63,7 @@ https://vsstartpage.blob.core.windows.net/news/vs
 
           var next = @"tools\windiff vsnews_merge_target.xml afile_copy.xml";
           System.Windows.Clipboard.SetText(next);
-          WriteLine(next);
+          WriteLine($"\n{next}");
         }
         else
         {
