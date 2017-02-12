@@ -94,6 +94,7 @@
     <Compile Include="timedreplay_Spec.cs" />
     <Compile Include="expressionTree_spec.cs" />
     <Compile Include="RX_Spec.cs" />
+    <Compile Include="singlemap_Spec.cs" />
     <Compile Include="visitor_spec.cs" />
   </ItemGroup>
   <ItemGroup>

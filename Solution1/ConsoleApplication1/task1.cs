@@ -134,6 +134,7 @@ namespace nesting
     }
   }
 }
+
 class task1_exe
 {
   public static void _Main()
