@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading;
 /*
 https://referencesource.microsoft.com/#mscorlib/system/Collections/Concurrent/ConcurrentDictionary.cs
 https://msdn.microsoft.com/en-us/library/dd287191(v=vs.110).aspx
@@ -16,7 +17,7 @@ namespace UnitTestProject1
   class Suffix
   {
     public string Nick;
-    public DateTime LastUpdatedTimestamp;
+    public DateTime LastUpdated;
   }
   [TestClass]
   public class singlemap_Spec
@@ -52,9 +53,17 @@ namespace UnitTestProject1
 
       @new = new Suffix { Nick = "4" };
       updated = new Suffix { Nick = "4" };
-      @this = map.AddOrUpdate("name4", @new, (key, found) => updated);
+      @this = map.AddOrUpdate("name4", @new, (key, found) => { throw new Exception("is there a 5 key?"); });
       Assert.AreSame(@new, @this);
-      @this = map.AddOrUpdate("name4", @new, (key, found) => updated);
+      @this = map.AddOrUpdate("name4", updated, (key, found) => updated);
+      Assert.AreSame(@updated, @this);
+
+      @new = new Suffix { Nick = "5", LastUpdated = DateTime.Now };
+      @this = map.AddOrUpdate("name5", @new, (key, found) => { throw new Exception("is there a 5 key?"); });
+      Assert.AreSame(@new, @this);
+      Thread.Sleep(1000);
+      updated = new Suffix { Nick = "5", LastUpdated = DateTime.Now };
+      @this = map.AddOrUpdate("name5", updated, (key, found) => found.LastUpdated < updated.LastUpdated ? updated : found);
       Assert.AreSame(@updated, @this);
     }
   }
