@@ -53,7 +53,7 @@ namespace UnitTestProject1
 
       @new = new Suffix { Nick = "4" };
       updated = new Suffix { Nick = "4" };
-      @this = map.AddOrUpdate("name4", @new, (key, found) => { throw new Exception("is there a 5 key?"); });
+      @this = map.AddOrUpdate("name4", @new, (key, found) => { throw new Exception("is there a 4 key?"); });
       Assert.AreSame(@new, @this);
       @this = map.AddOrUpdate("name4", updated, (key, found) => updated);
       Assert.AreSame(@updated, @this);
