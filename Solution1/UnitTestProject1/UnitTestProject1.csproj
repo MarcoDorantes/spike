@@ -95,6 +95,7 @@
     <Compile Include="expressionTree_spec.cs" />
     <Compile Include="RX_Spec.cs" />
     <Compile Include="singlemap_Spec.cs" />
+    <Compile Include="aSpec_withCmd.cs" />
     <Compile Include="visitor_spec.cs" />
   </ItemGroup>
   <ItemGroup>
