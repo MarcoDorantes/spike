@@ -8,8 +8,8 @@ namespace ConsoleApplication1
     {
       try
       {
-        //SelfHostTry1.Run(args);
-        DuplexSpike.Run(args);
+        SelfHostTry1.Run(args);
+        //DuplexSpike.Run(args);
       }
       catch (Exception ex)
       {

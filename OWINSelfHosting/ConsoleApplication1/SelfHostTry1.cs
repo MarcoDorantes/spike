@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Owin;
 using System.Web.Http;
 using System.Net.Http;
+using System.Threading.Tasks;
+using static System.Console;
 
 //http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 namespace ConsoleApplication1
@@ -12,7 +15,7 @@ namespace ConsoleApplication1
     // GET api/values 
     public IEnumerable<string> Get()
     {
-      return new string[] { "value1", "value2" };
+      return new string[] { $"thread: {Environment.CurrentManagedThreadId}", $"instance: {this.GetHashCode()}" };
     }
 
     // GET api/values/5 
@@ -27,8 +30,8 @@ namespace ConsoleApplication1
       var s = new System.IO.MemoryStream();
       Request.Content.CopyToAsync(s);
       s.Flush();
-      Console.WriteLine("payload:[{0}]", System.Text.Encoding.UTF8.GetString(s.ToArray()));
-      Console.WriteLine(value);
+      WriteLine("payload:[{0}]", System.Text.Encoding.UTF8.GetString(s.ToArray()));
+      WriteLine(value);
     }
 
     // PUT api/values/5 
@@ -62,7 +65,20 @@ namespace ConsoleApplication1
 
   class SelfHostTry1
   {
-    public static void Run(string[] args)
+    public static void FullClientCall(string baseAddress)
+    {
+      // Create HttpClient and make a request to api/values
+      var client = new System.Net.Http.HttpClient();
+
+      string url = baseAddress + "api/values";
+      //WriteLine("HTTP to: {0}", url);
+      var response = client.GetAsync(url).Result;
+
+      //WriteLine(response);
+      WriteLine(response.Content.ReadAsStringAsync().Result);
+    }
+
+    public static void SingleRequest(string[] args)
     {
       try
       {
@@ -71,27 +87,49 @@ namespace ConsoleApplication1
         // Start OWIN host
         using (Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddress))
         {
-          // Create HttpClient and make a request to api/values
-          var client = new System.Net.Http.HttpClient();
-
-          string url = baseAddress + "api/values";
-          Console.WriteLine("HTTP to: {0}", url);
-          var response = client.GetAsync(url).Result;
-
-          Console.WriteLine(response);
-          Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+          FullClientCall(baseAddress);
         }
 
-        Console.ReadLine();
+        ReadLine();
       }
       catch (Exception ex)
       {
         while (ex != null)
         {
-          Console.WriteLine("{0}: {1}", ex.GetType().FullName, ex.Message);
+          WriteLine("{0}: {1}", ex.GetType().FullName, ex.Message);
           ex = ex.InnerException;
         }
       }
+    }
+    public static void MultiRequest(string[] args)
+    {
+      try
+      {
+        int max = args.Length == 1 ? int.Parse(args[0]) : 10;
+        string baseAddress = "http://localhost:9000/";
+
+        // Start OWIN host
+        using (Microsoft.Owin.Hosting.WebApp.Start<Startup>(url: baseAddress))
+        {
+          Parallel.ForEach(Enumerable.Range(1, max), n => FullClientCall(baseAddress));
+        }
+
+        ReadLine();
+      }
+      catch (Exception ex)
+      {
+        while (ex != null)
+        {
+          WriteLine("{0}: {1}", ex.GetType().FullName, ex.Message);
+          ex = ex.InnerException;
+        }
+      }
+    }
+
+    public static void Run(string[] args)
+    {
+      //SingleRequest(args);
+      MultiRequest(args);
     }
   }
 }
