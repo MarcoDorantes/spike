@@ -10,32 +10,32 @@ class CopyProcessor
 
   public void start() { }
   public void stop() { }
-  public void execute(string cmd)
+  public void _1_execute(string cmd)
   {
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] execute({cmd}).");
-    _execute();
-    //_execute();
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] execute({cmd}) Done.");
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_1_execute)}({cmd}).");
+    _2_inner_execute(cmd);
+    //_2_inner_execute(cmd);
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_1_execute)}({cmd}) Done.");
   }
-  private async void _execute()
+  private async void _2_inner_execute(string cmd)
   {
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] _execute().");
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_2_inner_execute)}({cmd}).");
 
-    //await _execute_twice();
-    await single_copy();
+    //await _3_execute_twice(cmd);
+    await _3_single_copy(cmd);
 
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] _execute() Done.");
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_2_inner_execute)}({cmd}) Done.");
   }
-  private async Task _execute_twice()
+  private async Task _3_execute_twice(string cmd)
   {
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] _execute_twice().");
-    await single_copy();
-    await single_copy();
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] _execute_twice() Done.");
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_3_execute_twice)}({cmd}).");
+    await _3_single_copy(cmd);
+    await _3_single_copy(cmd);
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_3_execute_twice)}({cmd}) Done.");
   }
-  private async Task single_copy()
+  private async Task _3_single_copy(string cmd)
   {
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] single_copy().");
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_3_single_copy)}({cmd}).");
     try
     {
       using (var sourceStream = File.Open(source, FileMode.Open))
@@ -47,7 +47,7 @@ class CopyProcessor
       }
     }
     catch (Exception ex) { WriteLine($"[{Environment.CurrentManagedThreadId,4}] {ex.GetType().FullName}: {ex.Message}"); }
-    WriteLine($"[{Environment.CurrentManagedThreadId,4}] single_copy() Done.");
+    WriteLine($"[{Environment.CurrentManagedThreadId,4}] {nameof(_3_single_copy)}({cmd}) Done.");
   }
 }
 
@@ -65,7 +65,8 @@ class async_Copy
         var cmd = ReadLine();
         if (cmd == "") break;
         WriteLine($"[{Environment.CurrentManagedThreadId,4}] {cmd}");
-        x.execute(cmd);
+        x._1_execute(cmd);
+        //x._1_execute($"2_{cmd}");
       } while (true);
       x.stop();
       WriteLine($"\n[{Environment.CurrentManagedThreadId,4}] Done.");
