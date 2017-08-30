@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="async_Copy.cs" />
     <Compile Include="ExploreFeatureCS6_exe.cs" />
     <Compile Include="per_process_threads.cs" />
     <Compile Include="Program.cs" />
