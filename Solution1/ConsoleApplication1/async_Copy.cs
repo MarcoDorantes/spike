@@ -66,7 +66,7 @@ class async_Copy
         if (cmd == "") break;
         WriteLine($"[{Environment.CurrentManagedThreadId,4}] {cmd}");
         x._1_execute(cmd);
-        //x._1_execute($"2_{cmd}");
+        x._1_execute($"2_{cmd}");
       } while (true);
       x.stop();
       WriteLine($"\n[{Environment.CurrentManagedThreadId,4}] Done.");
