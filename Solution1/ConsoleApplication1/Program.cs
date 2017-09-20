@@ -501,7 +501,8 @@ namespace ConsoleApplication1
         //sockets1._Main(args);
         //wcf1._Main(args);
         //RSS_news._Main(args);
-        async_Copy._Main(args);
+        //async_Copy._Main(args);
+        json._Main(args);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 
