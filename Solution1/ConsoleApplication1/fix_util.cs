@@ -566,7 +566,29 @@ namespace SqlWriterAgent
           yield return message;
         } while (true);
     }
+    public static IEnumerable<T> read_as<T>(System.IO.FileInfo file)
+    {
+      var payload = System.IO.File.ReadAllText(file.FullName);
+      yield return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(payload);
+      /*using (var reader = file.OpenText()) do
+          {
+              string line = reader.ReadLine();
+              if (line == null) break;
+              if (string.IsNullOrWhiteSpace(line)) continue;
 
+              var start_of_JSON = line.IndexOf("{");
+              if (start_of_JSON < 0)
+              {
+                  System.Diagnostics.Trace.WriteLine($"WARNING: no start of JSON message found ({line})");
+                  continue;
+              }
+              var payload = line.Substring(start_of_JSON);
+              var destination = start_of_JSON > 0 ? line.Substring(0, start_of_JSON) : "no-destination";
+              T message = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(payload);
+              //message[Constant.SolaceDestinationNameKey] = destination.Trim();
+              yield return message;
+          } while (true);*/
+    }
     public static IEnumerable<IDictionary<string, object>> scan(System.IO.FileInfo file, string payloadkey = null)
     {
       using (var reader = file.OpenText()) do
@@ -603,76 +625,92 @@ namespace SqlWriterAgent
 
 class json
 {
-  public static void _Main(string[] args)
+  public static void OrderTypeID(string[] args)
   {
     var OrderTypeID = new Func<IDictionary<string, object>, string>(J => J.ContainsKey("OrderTypeID") ? $"{J["OrderTypeID"]}" : "none");
-    try
-    {
-      //var file = new System.IO.FileInfo(@"C:\Users\41477\Documents\Topic_EER_CAPITALES__VIRTU___sep.19_0911.txt");
-      /*
+    //var file = new System.IO.FileInfo(@"C:\Users\41477\Documents\Topic_EER_CAPITALES__VIRTU___sep.19_0911.txt");
+    /*
 none: 521
 61: 230
 60: 312
 23: 67
 22: 13
-       */
-      //var file = new System.IO.FileInfo(@"C:\Users\41477\Documents\Topic_EER_CAPITALES__VIRTU___sep.19_0947.txt");
-      /*
+     */
+    //var file = new System.IO.FileInfo(@"C:\Users\41477\Documents\Topic_EER_CAPITALES__VIRTU___sep.19_0947.txt");
+    /*
 60: 501
 22: 49
 none: 966
 61: 578
 23: 138
-       */
-      //const string payloadkey = "$<payload>$";
-      //var json_log = SqlWriterAgent.json_util.scan(file);//, payloadkey);
-      //foreach (var group in json_log.GroupBy(J => OrderTypeID(J)))
-      //{
-      //  WriteLine($"{group.Key}: {group.Count()}");
-      //}
+     */
+    //const string payloadkey = "$<payload>$";
+    //var json_log = SqlWriterAgent.json_util.scan(file);//, payloadkey);
+    //foreach (var group in json_log.GroupBy(J => OrderTypeID(J)))
+    //{
+    //  WriteLine($"{group.Key}: {group.Count()}");
+    //}
 
+    /*
+    var folder = @"C:\Users\41477\Documents";
+    WriteLine($"{folder}");
+    var all_json = System.IO.Directory.EnumerateFiles(folder, "Topic_EER_CAPITALES__VIRTU*.txt").Aggregate(new List<IDictionary<string, object>>(), (whole, next) =>
+    {
+      WriteLine($"\t{next}");
+      foreach (var msg in SqlWriterAgent.json_util.read(new System.IO.FileInfo(next)))
+      {
+        whole.Add(msg);
+      }
+      return whole;
+    });
+    WriteLine($"FixEngine all_json.Count: {all_json.Count}");
+    foreach (var group in all_json.GroupBy(J => OrderTypeID(J)))
+    {
+      WriteLine($"{group.Key}: {group.Count()}");
+    }
+    */
+
+    var folder = @"C:\Users\41477\Documents";
+    WriteLine($"{folder}");
+    ulong all_json_Count = 0UL;
+    var map = new Dictionary<string, int>();
+    foreach (var next in System.IO.Directory.EnumerateFiles(folder, "Topic_EER_CAPITALES__VIRTU*.txt"))
+    {
+      WriteLine($"\n{next}");
+      foreach (var J in SqlWriterAgent.json_util.read(new System.IO.FileInfo(next)))
+      {
+        Write($"\r\t{++all_json_Count,-10}");
+        var id = OrderTypeID(J);
+        if (map.ContainsKey(id) == false)
+        {
+          map[id] = 0;
+        }
+        ++map[id];
+      }
+    }
+    WriteLine($"\nFixEngine all_json.Count: {all_json_Count}");
+    foreach (var id in map.Keys)
+    {
+      WriteLine($"{id}: {map[id]}");
+    }
+  }
+  public static void _Main(string[] args)
+  {
+    try
+    {
       /*
-      var folder = @"C:\Users\41477\Documents";
-      WriteLine($"{folder}");
-      var all_json = System.IO.Directory.EnumerateFiles(folder, "Topic_EER_CAPITALES__VIRTU*.txt").Aggregate(new List<IDictionary<string, object>>(), (whole, next) =>
-      {
-        WriteLine($"\t{next}");
-        foreach (var msg in SqlWriterAgent.json_util.read(new System.IO.FileInfo(next)))
-        {
-          whole.Add(msg);
-        }
-        return whole;
-      });
-      WriteLine($"FixEngine all_json.Count: {all_json.Count}");
-      foreach (var group in all_json.GroupBy(J => OrderTypeID(J)))
-      {
-        WriteLine($"{group.Key}: {group.Count()}");
-      }
-      */
-
-      var folder = @"C:\Users\41477\Documents";
-      WriteLine($"{folder}");
-      ulong all_json_Count = 0UL;
-      var map = new Dictionary<string, int>();
-      foreach (var next in System.IO.Directory.EnumerateFiles(folder, "Topic_EER_CAPITALES__VIRTU*.txt"))
-      {
-        WriteLine($"\n{next}");
-        foreach (var J in SqlWriterAgent.json_util.read(new System.IO.FileInfo(next)))
-        {
-          Write($"\r\t{++all_json_Count,-10}");
-          var id = OrderTypeID(J);
-          if (map.ContainsKey(id) == false)
-          {
-            map[id] = 0;
-          }
-          ++map[id];
-        }
-      }
-      WriteLine($"\nFixEngine all_json.Count: {all_json_Count}");
-      foreach (var id in map.Keys)
-      {
-        WriteLine($"{id}: {map[id]}");
-      }
+[ {"Service Name":"BBO", "Session":1497438007, "Next SeqNum":1}
+, {"SeqNum":1,"Hexadecimal":"54 00 00 54 86 ","Time Stamp":{"Type":"T","Seconds":21638}}
+]
+Newtonsoft.Json.Linq.JObject
+       */
+      var file = new System.IO.FileInfo(@"C:\Users\Marco\Downloads\BIVA_MarketData_Sample\BIVA\BBO_14062017.txt");
+      //var file = new System.IO.FileInfo(@"C:\Users\Marco\Downloads\BIVA_MarketData_Sample\BIVA\sample1.txt");
+      var json_log = SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file);
+      WriteLine($"{json_log.Count()}");
+      //json_log.First().Aggregate(Out,(w,n)=> { w.WriteLine($"{n.GetType().FullName}"); return w; });
+      foreach (var t in json_log.First().SelectMany(j => j.Values.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
+      //WriteLine($"{json_log.First().First().GetType().FullName}");
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
   }
