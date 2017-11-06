@@ -705,14 +705,14 @@ none: 966
 Newtonsoft.Json.Linq.JObject
        */
 
-      var folder = @"C:\Users\Marco\Downloads\BIVA_MarketData_Sample\BIVA";
+      var folder = @"C:\Users\41477\Documents\MarketData\DataCapture\BIVA";
       WriteLine($"{folder}");
       foreach (var filename in System.IO.Directory.EnumerateFiles(folder, "*.txt"))
       {
         try
         {
           var file = new System.IO.FileInfo(filename);
-          Write($"\n{file.Name}: ");
+          Write($"\n{file.FullName}:");
           var json_log = SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file);
           WriteLine($"{json_log.Count()}");
 
@@ -720,23 +720,25 @@ Newtonsoft.Json.Linq.JObject
           //foreach (var t in json_log.First().SelectMany(j => j.Values.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
           //foreach (var t in json_log.First().SelectMany(j => j.Keys.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
           //WriteLine($"{json_log.First().First().GetType().FullName}");
-          foreach (var maps in json_log) foreach (var map in maps)
-          {
-            foreach (var pair in map)
+          //continue;
+          foreach (var maps in json_log)
+            foreach (var map in maps)
             {
-              if ("System.String|System.Int64".Contains(pair.Value.GetType().Name)) continue;
-              var Jsubmap = pair.Value as Newtonsoft.Json.Linq.JObject;
-              if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
+              foreach (var pair in map)
               {
-                IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
+                if ("System.String|System.Int64".Contains(pair.Value.GetType().Name)) continue;
+                var Jsubmap = pair.Value as Newtonsoft.Json.Linq.JObject;
+                if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
+                {
+                  IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
                   WriteLine($"{pair.Key}: {submap.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1},{2})", n.Key, n.Value, n.Value.GetType().Name))}");
-              }
-              else
-              {
-                WriteLine($"[Unsupported] {pair.Key}: {pair.Value.GetType().FullName}");
+                }
+                else
+                {
+                  WriteLine($"[Unsupported] {pair.Key}: {pair.Value.GetType().FullName}");
+                }
               }
             }
-          }
         }
         catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
       }
