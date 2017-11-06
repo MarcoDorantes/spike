@@ -720,7 +720,7 @@ Newtonsoft.Json.Linq.JObject
           //foreach (var t in json_log.First().SelectMany(j => j.Values.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
           //foreach (var t in json_log.First().SelectMany(j => j.Keys.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
           //WriteLine($"{json_log.First().First().GetType().FullName}");
-          foreach (var map in json_log.First())
+          foreach (var maps in json_log) foreach (var map in maps)
           {
             foreach (var pair in map)
             {
@@ -729,7 +729,7 @@ Newtonsoft.Json.Linq.JObject
               if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
               {
                 IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
-                WriteLine($"{pair.Key}: {submap.GetType().Name}");
+                  WriteLine($"{pair.Key}: {submap.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1},{2})", n.Key, n.Value, n.Value.GetType().Name))}");
               }
               else
               {
