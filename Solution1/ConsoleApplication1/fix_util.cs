@@ -720,13 +720,14 @@ Newtonsoft.Json.Linq.JObject
           //foreach (var t in json_log.First().SelectMany(j => j.Values.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
           //foreach (var t in json_log.First().SelectMany(j => j.Keys.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
           //WriteLine($"{json_log.First().First().GetType().FullName}");
+          //json_log.First().Aggregate(Out, (w, n) => { w.WriteLine($"{n.Aggregate(new StringBuilder("\n"), (w2, n2) => w2.AppendFormat("\t({0},{1})\n", n2.Key, n2.Value == null ? "<null>" : n2.Value))}"); return w; });
           //continue;
           foreach (var maps in json_log)
             foreach (var map in maps)
             {
               foreach (var pair in map)
               {
-                if ("System.String|System.Int64".Contains(pair.Value.GetType().Name)) continue;
+                if (pair.Value == null || "System.String|System.Int64".Contains(pair.Value.GetType().Name)) continue;
                 var Jsubmap = pair.Value as Newtonsoft.Json.Linq.JObject;
                 if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
                 {
