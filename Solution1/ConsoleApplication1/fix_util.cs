@@ -721,9 +721,13 @@ Newtonsoft.Json.Linq.JObject
           //foreach (var t in json_log.First().SelectMany(j => j.Keys.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
           //WriteLine($"{json_log.First().First().GetType().FullName}");
           //json_log.First().Aggregate(Out, (w, n) => { w.WriteLine($"{n.Aggregate(new StringBuilder("\n"), (w2, n2) => w2.AppendFormat("\t({0},{1})\n", n2.Key, n2.Value == null ? "<null>" : n2.Value))}"); return w; });
-          //foreach (var t in json_log.First().SelectMany(j => j.Keys).Distinct()) WriteLine(t);
-          foreach (var t in json_log.First().Where(J => J.ContainsKey("Orderbook Directory")).Select(j => $"{(((Newtonsoft.Json.Linq.JObject)j["Orderbook Directory"]).ToObject<Dictionary<string, object>>())["Delisting or Maturity Date"]}").Distinct()) WriteLine(t);
+          foreach (var t in json_log.First().SelectMany(j => j.Keys).Distinct()) WriteLine(t);
+
+          //foreach (var t in json_log.First().Where(J => J.ContainsKey("Orderbook Directory")).Select(j => $"{(((Newtonsoft.Json.Linq.JObject)j["Orderbook Directory"]).ToObject<Dictionary<string, object>>())["Delisting or Maturity Date"]}").Distinct()) WriteLine(t);
+          //foreach (var t in json_log.First().Where(J => J.ContainsKey("Orderbook Directory")).Select(j => $"{(((Newtonsoft.Json.Linq.JObject)j["Orderbook Directory"]).ToObject<Dictionary<string, object>>())["Delisting Time"]}").Distinct()) WriteLine(t);
+
           continue;
+
           foreach (var maps in json_log)
             foreach (var map in maps)
             {
