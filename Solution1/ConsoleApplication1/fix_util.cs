@@ -566,28 +566,32 @@ namespace SqlWriterAgent
           yield return message;
         } while (true);
     }
-    public static IEnumerable<T> read_as<T>(System.IO.FileInfo file)
+    public static IEnumerable<T> read_as<T>(System.IO.FileInfo file, bool single_stored_object = false)
     {
-      var payload = System.IO.File.ReadAllText(file.FullName);
-      yield return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(payload);
-      /*using (var reader = file.OpenText()) do
+      if (single_stored_object)
+      {
+        var payload = System.IO.File.ReadAllText(file.FullName);
+        yield return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(payload);
+      }
+      else
+        using (var reader = file.OpenText()) do
           {
-              string line = reader.ReadLine();
-              if (line == null) break;
-              if (string.IsNullOrWhiteSpace(line)) continue;
+            string line = reader.ReadLine();
+            if (line == null) break;
+            if (string.IsNullOrWhiteSpace(line)) continue;
 
-              var start_of_JSON = line.IndexOf("{");
-              if (start_of_JSON < 0)
-              {
-                  System.Diagnostics.Trace.WriteLine($"WARNING: no start of JSON message found ({line})");
-                  continue;
-              }
-              var payload = line.Substring(start_of_JSON);
-              var destination = start_of_JSON > 0 ? line.Substring(0, start_of_JSON) : "no-destination";
-              T message = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(payload);
-              //message[Constant.SolaceDestinationNameKey] = destination.Trim();
-              yield return message;
-          } while (true);*/
+            var start_of_JSON = line.IndexOf("{");
+            if (start_of_JSON < 0)
+            {
+              System.Diagnostics.Trace.WriteLine($"WARNING: no start of JSON message found ({line})");
+              continue;
+            }
+            var payload = line.Substring(start_of_JSON);
+            //var destination = start_of_JSON > 0 ? line.Substring(0, start_of_JSON) : "no-destination";
+            T message = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(payload);
+            //message[Constant.SolaceDestinationNameKey] = destination.Trim();
+            yield return message;
+          } while (true);
     }
     public static IEnumerable<IDictionary<string, object>> scan(System.IO.FileInfo file, string payloadkey = null)
     {
@@ -694,6 +698,137 @@ none: 966
       WriteLine($"{id}: {map[id]}");
     }
   }
+  static IEnumerable<IDictionary<string,object>> getmsgs(IEnumerable<IEnumerable<Dictionary<string, object>>> json_log_array)
+  {
+    foreach (var maps in json_log_array)
+    {
+      WriteLine($"Array elements: {maps.Count()}");
+      foreach (var map in maps)
+      {
+        if (!map.ContainsKey("SeqNum"))
+        {
+          if (!(map.ContainsKey("Counts Update") || map.ContainsKey("Service Name")))
+            WriteLine($"\tExcluded: {map.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))}");
+          continue;
+        }
+        var seqnum = map["SeqNum"];
+        map.Remove("SeqNum");
+        map.Remove("Hexadecimal");
+        var msgtypename = map.First().Key;
+        var Jsubmap = map.First().Value as Newtonsoft.Json.Linq.JObject;
+        if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
+        {
+          IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
+          var msg = submap.Aggregate(new Dictionary<string, object>(), (w, n) => { w[n.Key] = n.Value; return w; });
+          msg.Add("SeqNum", seqnum);
+          msg.Add("Name", map.First().Key);
+          yield return msg;
+        }
+        else
+        {
+          WriteLine($"[Unsupported] {map.First().Key}: {map.First().Value.GetType().FullName}");
+        }
+      }
+    }
+  }
+  static IEnumerable<IDictionary<string, object>> getmsgs(IEnumerable<Dictionary<string, object>> json_log)
+  {
+    foreach (var map in json_log)
+    {
+      if (!map.ContainsKey("SeqNum"))
+      {
+        if (!map.ContainsKey("Service Name"))
+          WriteLine($"\tExcluded: {map.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))}");
+        continue;
+      }
+      var seqnum = map["SeqNum"];
+      map.Remove("SeqNum");
+      var msgtypename = map.First().Key;
+      var Jsubmap = map.First().Value as Newtonsoft.Json.Linq.JObject;
+      if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
+      {
+        IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
+        var msg = submap.Aggregate(new Dictionary<string, object>(), (w, n) => { w[n.Key] = n.Value; return w; });
+        msg.Add("SeqNum", seqnum);
+        yield return msg;
+      }
+      else
+      {
+        WriteLine($"[Unsupported] {map.First().Key}: {map.First().Value.GetType().FullName}");
+      }
+    }
+  }
+
+  static void as_json_array(IEnumerable<IEnumerable<Dictionary<string, object>>> json_log_array)
+  {
+    WriteLine($"{json_log_array.Count()}");
+    //json_log_array.First().Aggregate(Out,(w,n)=> { w.WriteLine($"{n.GetType().FullName}"); return w; });
+    //foreach (var t in json_log_array.First().SelectMany(j => j.Values.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
+    //foreach (var t in json_log_array.First().SelectMany(j => j.Keys.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
+    //WriteLine($"{json_log_array.First().First().GetType().FullName}");
+    //json_log_array.First().Aggregate(Out, (w, n) => { w.WriteLine($"{n.Aggregate(new StringBuilder("\n"), (w2, n2) => w2.AppendFormat("\t({0},{1})\n", n2.Key, n2.Value == null ? "<null>" : n2.Value))}"); return w; });
+    //foreach (var t in json_log_array.First().SelectMany(j => j.Keys).Distinct()) WriteLine(t);
+
+    //foreach (var t in json_log_array.First().Where(J => J.ContainsKey("Orderbook Directory")).Select(j => $"{(((Newtonsoft.Json.Linq.JObject)j["Orderbook Directory"]).ToObject<Dictionary<string, object>>())["Delisting or Maturity Date"]}").Distinct()) WriteLine(t);
+    //foreach (var t in json_log_array.First().Where(J => J.ContainsKey("Orderbook Directory")).Select(j => $"{(((Newtonsoft.Json.Linq.JObject)j["Orderbook Directory"]).ToObject<Dictionary<string, object>>())["Delisting Time"]}").Distinct()) WriteLine(t);
+
+    //getmsgs(json_log_array).Where(m => m.ContainsKey("Type") == false).ToList().ForEach(t => WriteLine($"{t.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))}"));
+    getmsgs(json_log_array).Where(m => m.ContainsKey("Type") == true).Select(m => $"{m["Name"]}[{m["Type"]}]").Distinct().ToList().ForEach(t => WriteLine(t));
+    WriteLine($"Array msgs: {getmsgs(json_log_array).Count()}");
+
+    //foreach (var msg in getmsgs(json_log_array))
+    //{
+    //}
+
+    return;
+    foreach (var maps in json_log_array)
+    {
+      WriteLine($"Array elements: {maps.Count()}");
+      foreach (var map in maps)
+      {
+        foreach (var pair in map)
+        {
+          if (pair.Value == null || "System.String|System.Int64".Contains(pair.Value.GetType().Name)) continue;
+          var Jsubmap = pair.Value as Newtonsoft.Json.Linq.JObject;
+          if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
+          {
+            IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
+            WriteLine($"{pair.Key}: {submap.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1},{2})", n.Key, n.Value, n.Value.GetType().Name))}");
+          }
+          else
+          {
+            WriteLine($"[Unsupported] {pair.Key}: {pair.Value.GetType().FullName}");
+          }
+        }
+      }
+    }
+  }
+  static void as_json_log(IEnumerable<Dictionary<string, object>> json_log)
+  {
+    WriteLine($"{json_log.Count()}");
+
+    getmsgs(json_log).Where(m => m.ContainsKey("Type") == true).Select(m => $"{m["Name"]}[{m["Type"]}]").Distinct().ToList().ForEach(t => WriteLine(t));
+    WriteLine($"msgs: {getmsgs(json_log).Count()}");
+
+    return;
+    foreach (var map in json_log)
+    {
+      foreach (var pair in map)
+      {
+        if (pair.Value == null || "System.String|System.Int64".Contains(pair.Value.GetType().Name)) continue;
+        var Jsubmap = pair.Value as Newtonsoft.Json.Linq.JObject;
+        if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
+        {
+          IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
+          WriteLine($"{pair.Key}: {submap.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1},{2})", n.Key, n.Value, n.Value.GetType().Name))}");
+        }
+        else
+        {
+          WriteLine($"[Unsupported] {pair.Key}: {pair.Value.GetType().FullName}");
+        }
+      }
+    }
+  }
   public static void _Main(string[] args)
   {
     try
@@ -707,47 +842,25 @@ Newtonsoft.Json.Linq.JObject
 
       var folder = @"C:\Users\41477\Documents\MarketData\DataCapture\BIVA";
       WriteLine($"{folder}");
-      foreach (var filename in System.IO.Directory.EnumerateFiles(folder, "*.txt"))
+      foreach(var ext in new string[] { "*.txt", "*.log" })
+      foreach (var filename in System.IO.Directory.EnumerateFiles(folder, ext))
       {
         try
         {
           var file = new System.IO.FileInfo(filename);
-          Write($"\n{file.FullName}:");
-          var json_log = SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file);
-          WriteLine($"{json_log.Count()}");
-
-          //json_log.First().Aggregate(Out,(w,n)=> { w.WriteLine($"{n.GetType().FullName}"); return w; });
-          //foreach (var t in json_log.First().SelectMany(j => j.Values.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
-          //foreach (var t in json_log.First().SelectMany(j => j.Keys.Select(v => v.GetType().FullName)).Distinct()) WriteLine(t);
-          //WriteLine($"{json_log.First().First().GetType().FullName}");
-          //json_log.First().Aggregate(Out, (w, n) => { w.WriteLine($"{n.Aggregate(new StringBuilder("\n"), (w2, n2) => w2.AppendFormat("\t({0},{1})\n", n2.Key, n2.Value == null ? "<null>" : n2.Value))}"); return w; });
-          foreach (var t in json_log.First().SelectMany(j => j.Keys).Distinct()) WriteLine(t);
-
-          //foreach (var t in json_log.First().Where(J => J.ContainsKey("Orderbook Directory")).Select(j => $"{(((Newtonsoft.Json.Linq.JObject)j["Orderbook Directory"]).ToObject<Dictionary<string, object>>())["Delisting or Maturity Date"]}").Distinct()) WriteLine(t);
-          //foreach (var t in json_log.First().Where(J => J.ContainsKey("Orderbook Directory")).Select(j => $"{(((Newtonsoft.Json.Linq.JObject)j["Orderbook Directory"]).ToObject<Dictionary<string, object>>())["Delisting Time"]}").Distinct()) WriteLine(t);
-
-          continue;
-
-          foreach (var maps in json_log)
-            foreach (var map in maps)
-            {
-              foreach (var pair in map)
-              {
-                if (pair.Value == null || "System.String|System.Int64".Contains(pair.Value.GetType().Name)) continue;
-                var Jsubmap = pair.Value as Newtonsoft.Json.Linq.JObject;
-                if (Jsubmap?.Type == Newtonsoft.Json.Linq.JTokenType.Object)
-                {
-                  IDictionary<string, object> submap = Jsubmap.ToObject<Dictionary<string, object>>();
-                  WriteLine($"{pair.Key}: {submap.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1},{2})", n.Key, n.Value, n.Value.GetType().Name))}");
-                }
-                else
-                {
-                  WriteLine($"[Unsupported] {pair.Key}: {pair.Value.GetType().FullName}");
-                }
-              }
-            }
+          Write($"\n{file.Name} ");
+          if (file.Name.EndsWith(".txt") && System.IO.File.ReadLines(file.FullName).First().TrimStart().StartsWith("["))
+          {
+            Write($"(Single JSON Array) ");
+            as_json_array(SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file, single_stored_object: true));
+          }
+          else
+          {
+            Write($"(JSON objects) ");
+            as_json_log(SqlWriterAgent.json_util.read_as<Dictionary<string, object>>(file));
+          }
         }
-        catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
+        catch (Exception ex) { WriteLine($"\n{filename}\n{ex.GetType().FullName}: {ex.Message} {ex.StackTrace}"); }
       }
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
