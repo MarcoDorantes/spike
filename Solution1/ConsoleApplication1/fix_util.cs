@@ -758,8 +758,36 @@ none: 966
       }
     }
   }
-
-  static void as_json_array(IEnumerable<IEnumerable<Dictionary<string, object>>> json_log_array)
+  static void writetoExcel(IEnumerable<IDictionary<string, object>> msgs, System.IO.FileInfo file)
+  {
+    var newfile = System.IO.Path.Combine(@"C:\temp\BIVA_MD", $"{System.IO.Path.GetFileNameWithoutExtension(file.Name)}.xml");
+    var output = new System.IO.FileInfo(newfile);
+    WriteLine($"newfile: {newfile}");
+    using (var excel = new nutility.ExcelDoc(output.CreateText()))
+    {
+      var pages = new Dictionary<string, KeyValuePair<nutility.ExcelPage, List<string>>>();
+      foreach (var msg in msgs.Where(m => m.ContainsKey("Type") == true))
+      {
+        var msgtype = $"{msg["Name"].ToString().Replace('/', ' ')}-{msg["Type"]}";
+        nutility.ExcelPage page = null;
+        if (pages.ContainsKey(msgtype))
+        {
+          page = pages[msgtype].Key;
+        }
+        else
+        {
+          page = new nutility.ExcelPage(msgtype);
+          var columns = msg.Keys.ToList();
+          columns.ForEach(c => page.AddColumn(c, nutility.ExcelPage.ColumnDataType.String, nutility.ExcelPage.Alignment.Left));
+          pages[msgtype] = new KeyValuePair<nutility.ExcelPage, List<string>>(page, columns);
+        }
+        page.AddRow(msg.Values.ToArray());
+      }
+      pages.Values.ToList().ForEach(p => excel.AddPage(p.Key));
+      excel.Persist();
+    }
+  }
+  static void as_json_array(System.IO.FileInfo file, IEnumerable<IEnumerable<Dictionary<string, object>>> json_log_array)
   {
     WriteLine($"{json_log_array.Count()}");
     //json_log_array.First().Aggregate(Out,(w,n)=> { w.WriteLine($"{n.GetType().FullName}"); return w; });
@@ -775,6 +803,35 @@ none: 966
     //getmsgs(json_log_array).Where(m => m.ContainsKey("Type") == false).ToList().ForEach(t => WriteLine($"{t.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("({0},{1}) ", n.Key, n.Value))}"));
     getmsgs(json_log_array).Where(m => m.ContainsKey("Type") == true).Select(m => $"{m["Name"]}[{m["Type"]}]").Distinct().ToList().ForEach(t => WriteLine(t));
     WriteLine($"Array msgs: {getmsgs(json_log_array).Count()}");
+
+    writetoExcel(getmsgs(json_log_array), file);
+
+    //var newfile = System.IO.Path.Combine(@"C:\temp\BIVA_MD", $"{System.IO.Path.GetFileNameWithoutExtension(file.Name)}.xml");
+    //var output = new System.IO.FileInfo(newfile);
+    //WriteLine($"newfile: {newfile}");
+    //using (var excel = new nutility.ExcelDoc(output.CreateText()))
+    //{
+    //  var pages = new Dictionary<string, KeyValuePair<nutility.ExcelPage, List<string>>>();
+    //  foreach (var msg in getmsgs(json_log_array).Where(m => m.ContainsKey("Type") == true))
+    //  {
+    //    var msgtype = $"{msg["Name"].ToString().Replace('/', ' ')}-{msg["Type"]}";
+    //    nutility.ExcelPage page = null;
+    //    if (pages.ContainsKey(msgtype))
+    //    {
+    //      page = pages[msgtype].Key;
+    //    }
+    //    else
+    //    {
+    //      page = new nutility.ExcelPage(msgtype);
+    //      var columns = msg.Keys.ToList();
+    //      columns.ForEach(c => page.AddColumn(c, nutility.ExcelPage.ColumnDataType.String, nutility.ExcelPage.Alignment.Left));
+    //      pages[msgtype] = new KeyValuePair<nutility.ExcelPage, List<string>>(page, columns);
+    //    }
+    //    page.AddRow(msg.Values.ToArray());
+    //  }
+    //  pages.Values.ToList().ForEach(p => excel.AddPage(p.Key));
+    //  excel.Persist();
+    //}
 
     //foreach (var msg in getmsgs(json_log_array))
     //{
@@ -803,12 +860,14 @@ none: 966
       }
     }
   }
-  static void as_json_log(IEnumerable<Dictionary<string, object>> json_log)
+  static void as_json_log(System.IO.FileInfo file, IEnumerable<Dictionary<string, object>> json_log)
   {
     WriteLine($"{json_log.Count()}");
 
     getmsgs(json_log).Where(m => m.ContainsKey("Type") == true).Select(m => $"{m["Name"]}[{m["Type"]}]").Distinct().ToList().ForEach(t => WriteLine(t));
     WriteLine($"msgs: {getmsgs(json_log).Count()}");
+
+    writetoExcel(getmsgs(json_log), file);
 
     return;
     foreach (var map in json_log)
@@ -852,12 +911,12 @@ Newtonsoft.Json.Linq.JObject
           if (file.Name.EndsWith(".txt") && System.IO.File.ReadLines(file.FullName).First().TrimStart().StartsWith("["))
           {
             Write($"(Single JSON Array) ");
-            as_json_array(SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file, single_stored_object: true));
+            as_json_array(file, SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file, single_stored_object: true));
           }
           else
           {
             Write($"(JSON objects) ");
-            as_json_log(SqlWriterAgent.json_util.read_as<Dictionary<string, object>>(file));
+            as_json_log(file, SqlWriterAgent.json_util.read_as<Dictionary<string, object>>(file));
           }
         }
         catch (Exception ex) { WriteLine($"\n{filename}\n{ex.GetType().FullName}: {ex.Message} {ex.StackTrace}"); }

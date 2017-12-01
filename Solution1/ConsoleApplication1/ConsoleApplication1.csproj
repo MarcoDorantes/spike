@@ -65,6 +65,8 @@
     <Compile Include="async_Copy.cs" />
     <Compile Include="ExploreFeatureCS6_exe.cs" />
     <Compile Include="fix_util.cs" />
+    <Compile Include="nutility\ExcelDoc.cs" />
+    <Compile Include="nutility\ExcelPage.cs" />
     <Compile Include="per_process_threads.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
