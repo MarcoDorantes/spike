@@ -901,22 +901,24 @@ Newtonsoft.Json.Linq.JObject
 
       var folder = @"C:\Users\41477\Documents\MarketData\DataCapture\BIVA";
       WriteLine($"{folder}");
-      foreach(var ext in new string[] { "*.txt", "*.log" })
+      //foreach (var ext in new string[] { "*.txt", "*.log" })
+      foreach(var ext in new string[] { "TV_05*.log" })
       foreach (var filename in System.IO.Directory.EnumerateFiles(folder, ext))
       {
         try
         {
           var file = new System.IO.FileInfo(filename);
           Write($"\n{file.Name} ");
-          if (file.Name.EndsWith(".txt") && System.IO.File.ReadLines(file.FullName).First().TrimStart().StartsWith("["))
-          {
-            Write($"(Single JSON Array) ");
-            as_json_array(file, SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file, single_stored_object: true));
-          }
-          else
-          {
-            Write($"(JSON objects) ");
-            as_json_log(file, SqlWriterAgent.json_util.read_as<Dictionary<string, object>>(file));
+            if (file.Name.EndsWith(".txt") && System.IO.File.ReadLines(file.FullName).First().TrimStart().StartsWith("["))
+            {
+              Write($"(Single JSON Array) ");
+              as_json_array(file, SqlWriterAgent.json_util.read_as<IEnumerable<Dictionary<string, object>>>(file, single_stored_object: true));
+            }
+            else
+            {
+              //Write($"(JSON objects) ");
+              //as_json_log(file, SqlWriterAgent.json_util.read_as<Dictionary<string, object>>(file));
+              writetoExcel(getmsgs(SqlWriterAgent.json_util.read_as<Dictionary<string, object>>(file)).Where(m => m.ContainsKey("Type") == true && $"{m["Name"]}" == "Price Tick"), file);
           }
         }
         catch (Exception ex) { WriteLine($"\n{filename}\n{ex.GetType().FullName}: {ex.Message} {ex.StackTrace}"); }
