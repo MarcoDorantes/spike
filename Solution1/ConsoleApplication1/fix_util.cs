@@ -899,7 +899,7 @@ none: 966
 Newtonsoft.Json.Linq.JObject
        */
 
-      var folder = @"C:\Users\41477\Documents\MarketData\DataCapture\BIVA";
+      var folder = @"C:\Users\41477\Documents\MarketData\DataCapture\BIVA\BIVA_sample_files";
       WriteLine($"{folder}");
       //foreach (var ext in new string[] { "*.txt", "*.log" })
       foreach(var ext in new string[] { "TV_05*.log" })
