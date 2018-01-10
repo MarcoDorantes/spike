@@ -1,0 +1,2889 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    FIX 4.0 Protocol Definition
+
+    Copyright (c) 2002-2003  Tepin Information LLC
+
+    All Rights Reserved.
+
+
+    Modification History
+
+Date        Who       Bug      Description
+__________________________________________________________
+2003.Apr.08 msipos            Initial Version for Starship 1.0
+2003.May.29 msipos    BZ00781 FailureMap support
+2003.Aug.01 msipos    BZ00900 change fix-enumeration to fixed-enumeration
+2003.Aug.27 msipos    BZ01047 Assign type of FIXID to all ID fields
+2003.Sep.02 msipos    BZ01088 Missing FIX types
+2003.Sep.18 phuang    BZ01128 OrdStatus 'E' not valid value
+2003.Oct.13 mbjarland BZ01175 Added missing tags (OrigClOrdID, ExecType, LastForwardPoints)
+                              to executionBody and removed (tag NetMoney, block FeeGroup)
+                              that weren't supposed to be there
+2003.Nov.01 phuang            Added Side to Allocation, OrdStatus to Order Cancel Reject
+-->
+<fix-protocol name="FIX 4.1 Standard" version="1.0" base="FIX.4.1">
+    <!--
+        All the messages defined in the FIX 4.1 Protocol.
+    -->
+    <message-map>
+    <fix-message name="Heartbeat"      type="0" header-ref="Header" body-ref="HeartbeatBody" trailer-ref="Trailer" >
+            <description>The Heartbeat monitors the status of the communication link and identifies when the last of a string of messages was not received.
+</description>
+            <format-display key="TestReqID" >
+                <!-- Default Template -->
+                <format-template field="TestReqID" value="0" type="1">
+                    <format-string value="Test Request {0}" />
+                    <format-tag name="TestReqID" />
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Test Request"   type="1" header-ref="Header" body-ref="TestRequestBody" trailer-ref="Trailer">
+            <description>The test request message forces a heartbeat from the opposing application.</description>
+            <format-display key="TestReqID" >
+                <!-- Default Template -->
+                <format-template field="TestReqID" value="0" type="1">
+                    <format-string value="Test Request ID: {0}"/>
+                    <format-tag name="TestReqID" />
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Resend Request" type="2" header-ref="Header" body-ref="ResendRequestBody" trailer-ref="Trailer">
+            <description>The resend request is sent by the receiving application to initiate the retransmission of messages. </description>
+            <format-display key="BeginSeqNo" >
+                <!-- Default Template -->
+                <format-template field="BeginSeqNo" value="0" type="1">
+                    <format-string value="Begin Seq: {0} End Seq: {1}"/>
+                    <format-tag name="BeginSeqNo" />
+                    <format-tag name="EndSeqNo" />
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Reject"         type="3" header-ref="Header" body-ref="RejectBody" trailer-ref="Trailer">
+            <description>The reject message should be issued when a message is received but cannot be properly processed due to a session-level rule violation. A</description>
+            <format-display key="RefSeqNo" >
+                <!-- Default Template -->
+                <format-template field="RefSeqNo" value="0" type="1">
+                    <format-string value="Seq #{0} rejected: {1}"/>
+                    <format-tag name="RefSeqNo"  />
+                    <format-tag name="Text"/>
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Sequence Reset" type="4" header-ref="Header" body-ref="SequenceResetBody" trailer-ref="Trailer">
+            <description>The sequence reset message is used by the sending application to reset the incoming sequence number on the opposing side. </description>
+            <format-display key="GapFillFlag" >
+                <!-- Default Template -->
+                <format-template field="GapFillFlag" value="Y" type="1">
+                    <format-string value="GapFill: {0}. New Sequence:  {1}" />
+                    <format-tag name="GapFillFlag" />
+                    <format-tag name="NewSeqNum"   />
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Logout"         type="5" header-ref="Header" body-ref="LogoutBody" trailer-ref="Trailer">
+            <description>Normal termination of the message exchange session will be completed via the exchange of Logout messages. </description>
+            <format-display key="Text" >
+                <!-- Default Template -->
+                <format-template field="Text" value="" type="1">
+                    <format-string value="Text: {0}" />
+                    <format-tag name="Text"/>
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Indication"     type="6" header-ref="Header" body-ref="IndicationBody" trailer-ref="Trailer">
+            <description>Indication of interest messages market merchandise which the broker is buying or selling in either a proprietary or agency capacity. </description>
+            <format-display key="IOITransType" >
+                <!-- Default Template -->
+                <format-template field="IOITransType" value="N" type="1">
+                    <format-string value="IOI# {0} {1} {2} {3} @{4} {5} until {6}"/>
+                    <format-tag name="IOIid"    />
+                    <format-tag name="Side"     />
+                    <format-tag name="IOIShares"/>
+                    <format-tag name="Symbol"   />
+                    <format-tag name="Price"    />
+                    <format-tag name="Currency" />
+                    <format-tag name="ValidUntilTime"/>
+                </format-template>
+                <!-- New IOI Template -->
+                <format-template field="IOITransType" value="N" type="2">
+                    <format-string value="IOI# {0} {1} {2} {3} @{4} {5} until {6}"/>
+                    <format-tag name="IOIid"    />
+                    <format-tag name="Side"     />
+                    <format-tag name="IOIShares"/>
+                     <format-tag name="Symbol"   />
+                    <format-tag name="Price"    />
+                    <format-tag name="Currency" />
+                    <format-tag name="ValidUntilTime"/>
+                </format-template>
+                <!-- Cancel IOI Template -->
+                <format-template field="IOITransType" value="C" type="2">
+                    <format-string value="IOI #{0} cancels IOI #{1}"/>
+                    <format-tag name="IOIid"/>
+                    <format-tag name="IOIRefID"/>
+                </format-template>
+                <!-- Replace IOI Template -->
+                <format-template field="IOITransType" value="R" type="2">
+                    <format-string value="IOI# {0} replaces IOI #{1}: {2} {3} {4} @{5} {6} until {7}"/>
+                    <format-tag name="IOIid" />
+                    <format-tag name="IOIRefID" />
+                    <format-tag name="Side"     />
+                    <format-tag name="IOIShares"/>
+                    <format-tag name="Symbol"   />
+                    <format-tag name="Price"    />
+                    <format-tag name="Currency" />
+                    <format-tag name="ValidUntilTime"/>
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Advertisement"  type="7" header-ref="Header" body-ref="AdvertisementBody" trailer-ref="Trailer">
+            <description>Advertisement messages are used to announce completed transactions. </description>
+            <format-display key="AdvTransType" >
+                <!-- Default Template -->
+                <format-template field="AdvTransType" value="N" type="1">
+                    <format-string value="Ad# {0} {1} {2} @{3} {4} {5}" />
+                    <format-tag name="AdvID" />
+                    <format-tag name="AdvSide"  />
+                    <format-tag name="Shares"/>
+                    <format-tag name="Price"    />
+                    <format-tag name="Currency" />
+                    <format-tag name="TransactTime"/>
+                </format-template>
+                <!-- New IOI Template -->
+                <format-template field="AdvTransType" value="N" type="2">
+                    <format-string value="Ad# {0} {1} {2} {3} @{4} {5}  at {6}" />
+                    <format-tag name="AdvID" />
+                    <format-tag name="AdvSide"  />
+                    <format-tag name="Shares"/>
+                    <format-tag name="Symbol"/>
+                    <format-tag name="Price"    />
+                    <format-tag name="Currency" />
+                    <format-tag name="TransactTime"/>
+                </format-template>
+                <!-- Cancel IOI Template -->
+                <format-template field="AdvTransType" value="C" type="2">
+                    <format-string value="Ad#{0} cancels Ad #{1}"/>
+                    <format-tag name="AdvID"/>
+                    <format-tag name="AdvRefID"/>
+                </format-template>
+                <!-- Replace IOI Template -->
+                <format-template field="AdvTransType" value="R" type="2">
+                    <format-string value="Adv# {0} replaces Adv #{1}: {2} {3} {4}@{5} {6} at {7}"/>
+                    <format-tag name="AdvID" />
+                    <format-tag name="AdvRefID" />
+                    <format-tag name="AdvSide"  />
+                    <format-tag name="Shares"/>
+                    <format-tag name="Symbol"/>
+                    <format-tag name="Price"    />
+                    <format-tag name="Currency" />
+                    <format-tag name="TransactTime"/>
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="Execution"      type="8" header-ref="Header" body-ref="ExecutionBody" trailer-ref="Trailer">
+            <description> The execution report message is used to:
+
+                    1. confirm the receipt of an order
+
+                    2. confirm changes to an existing order (i.e. accept cancel and replace requests)
+
+                    3. relay order status information
+
+                    4. relay fill information on working orders
+
+                    5. reject orders
+
+                    6. report post-trade fees calculations associated with a trade
+
+                    NOTE: Execution reports do not replace the end-of-day confirm. Execution reports are to be regarded only as replacements for the existing fill messages currently
+                    communicated via telephone.</description>
+            <format-display key="ExecTransType" >
+                <!-- Default Template -->
+                <format-template field="ExecTransType" value="0" type="1">
+                    <format-string value="ER# {0} {1}" />
+                    <format-tag name="ExecID"   />
+                    <format-tag name="OrdStatus"/>
+                </format-template>
+                <!-- New Execution -->
+                <format-template field="ExecTransType" value="0" type="2">
+                    <format-string value="ER# {0} {1}" />
+                    <format-tag name="ExecID"   />
+                    <format-tag name="OrdStatus"/>
+                </format-template>
+                <!-- Cancel Execution -->
+                <format-template field="ExecTransType" value="1" type="2">
+                    <format-string value="ER# {0} {1} {2} ER {3}" />
+                    <format-tag name="ExecID"   />
+                    <format-tag name="ExecTransType" />
+                    <format-tag name="OrdStatus"/>
+                    <format-tag name="ExecRefID"/>
+                </format-template>
+                <!-- Correct Execution -->
+                <format-template field="ExecTransType" value="2" type="2">
+                    <format-string value="ER# {0} {1} {2} ER {3}"/>
+                    <format-tag name="ExecID"   />
+                    <format-tag name="ExecTransType"/>
+                    <format-tag name="OrdStatus"/>
+                    <format-tag name="ExecRefID" />
+                </format-template>
+                <!-- Status Execution -->
+                <format-template field="ExecTransType" value="3" type="2">
+                    <format-string value="ER# {0} {1} {2} {3} "/>
+                    <format-tag name="ExecID"   />
+                    <format-tag name="ExecTransType" />
+                    <format-tag name="OrdStatus"/>
+                    <format-tag name="OrdRejReason"/>
+                </format-template>
+
+            </format-display>
+        </fix-message>
+        <fix-message name="Order Cancel Reject"         type="9" header-ref="Header" body-ref="OrderCancelRejectBody" trailer-ref="Trailer">
+             <description>The order cancel reject message is issued by the broker upon receipt of a cancel request or cancel/replace request message which cannot be honored. </description>
+             <format-display key="OrderID" >
+                <!-- Default Template -->
+                <format-template field="OrderID" value="0" type="1">
+                    <format-string value="Order {0} ({1}) {2}" />
+                    <format-tag name="OrderID"   />
+                    <format-tag name="ClOrdID"/>
+                    <format-tag name="CxlRejReason"/>
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Logon"           type="A" header-ref="Header" body-ref="LogonBody" trailer-ref="Trailer">
+            <description>Establishing a FIX connection involves three distinct operations: creation of a telecommunications level link, authentication/acceptance of the initiator by the acceptor and message
+       synchronization (initialization).</description>
+
+            <format-display key="HeartBtInt" >
+                <!-- Default Template -->
+                <format-template field="HeartBtInt" value="0" type="1">
+                    <format-string value="HB {0} sec. Encryption: {1}" />
+                    <format-tag name="HeartBtInt" />
+                    <format-tag name="EncryptMethod" />
+                </format-template>
+            </format-display>
+        </fix-message>
+        <fix-message name="News"            type="B" header-ref="Header" body-ref="NewsBody" trailer-ref="Trailer">
+            <description>The news message is a general free format message between the broker and institution. </description>
+             <format-display key="OrigTime" >
+                <!-- Default Template -->
+                <format-template field="OrigTime" value="0" type="1">
+                    <format-string value="{0} {1}" />
+                    <format-tag name="OrigTime"   />
+                    <format-tag name="Urgency"/>
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Email"           type="C" header-ref="Header" body-ref="EmailBody" trailer-ref="Trailer">
+                <description>The email message is similar to the format and purpose of to the News message, however, it is intended for private use between two par.</description>
+             <format-display key="OrigTime" >
+                <!-- Default Template -->
+                <format-template field="OrigTime" value="0" type="1">
+                    <format-string value="{0} {1}" />
+                    <format-tag name="EmailType" />
+                    <format-tag name="OrigTime"   />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Order"           type="D" header-ref="Header" body-ref="OrderBody" trailer-ref="Trailer">
+            <description>The new order message type is used by institutions wishing to electronically submit securities and forex orders to a broker for execution.</description>
+             <format-display key="ClOrdID" >
+                <!-- Default Template -->
+                <format-template field="ClOrdID" value="0" type="1">
+                    <format-string value="{0}: {1} {2} {3}@{4} {5}" />
+                    <format-tag name="ClOrdID" />
+                    <format-tag name="Side" />
+                    <format-tag name="OrderQty"   />
+                    <format-tag name="Symbol" />
+                    <format-tag name="Price" />
+                    <format-tag name="OrdType"/>
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="List Order"      type="E" header-ref="Header" body-ref="ListBody" trailer-ref="Trailer">
+            <description>The NewOrderList Message can be used in one of two ways depending on which market conventions are being followed.
+</description>
+             <format-display key="ListID" >
+                <!-- Default Template -->
+                <format-template field="ListID" value="0" type="1">
+                    <format-string value="{0}: Wave: {1} List Sequence: {2}" />
+                    <format-tag name="ListID" />
+                    <format-tag name="WaveNo" />
+                    <format-tag name="ListSeqNo" />
+                </format-template>
+             </format-display>
+
+        </fix-message>
+        <fix-message name="Order Cancel Request"   type="F" header-ref="Header" body-ref="OrderCancelRequestBody" trailer-ref="Trailer">
+            <description>The order cancel request message requests the cancelation of all of the remaining quantity of an existing order. Note that the Order
+       Cancel/Replace Request should be used to partially cancel (reduce) an order).</description>
+             <format-display key="ClOrdID" >
+                <!-- Default Template -->
+                <format-template field="ClOrdID" value="0" type="1">
+                    <format-string value="{0}: cancels Orig: {1}" />
+                    <format-tag name="ClOrdID" />
+                    <format-tag name="OrigClOrdID" />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Order Replace Request"  type="G" header-ref="Header" body-ref="OrderReplaceRequestBody" trailer-ref="Trailer">
+            <description>The order cancel/replace request is used to change the parameters of an existing order.</description>
+             <format-display key="ClOrdID" >
+                <!-- Default Template -->
+                <format-template field="ClOrdID" value="0" type="1">
+                    <format-string value="{0}: replaces Orig: {1}" />
+                    <format-tag name="ClOrdID" />
+                    <format-tag name="OrigClOrdID" />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Order Status Request"   type="H" header-ref="Header" body-ref="OrderStatusBody" trailer-ref="Trailer">
+             <description>The order status request message is used by the institution to generate an order status message back from the broker.</description>
+             <format-display key="ClOrdID" >
+                <!-- Default Template -->
+                <format-template field="ClOrdID" value="0" type="1">
+                    <format-string value="{0}: ({1}) {2} {3}" />
+                    <format-tag name="ClOrdID" />
+                    <format-tag name="OrderID" />
+                    <format-tag name="Side"/>
+                    <format-tag name="Symbol"/>
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Allocation"          type="J" header-ref="Header" body-ref="AllocationBody" trailer-ref="Trailer">
+            <description>The Allocation message provides the ability to specify how an order or set of orders should be subdivided amongst one or more accounts. It can also be used as a confirmation
+       message through which third parties can communicate execution and settlement details between trading partners. In addition, the allocation message can be sent by the broker to
+       communicate fees and other details that can only be computed once the sub-account breakdowns are known.</description>
+             <format-display key="AllocTransType" >
+                <!-- Default Template -->
+                <format-template field="AllocTransType" value="0" type="1">
+                    <format-string value="{0}: {1} Orders: {2} Executions: {3}" />
+                    <format-tag name="AllocID" />
+                    <format-tag name="AllocTransType" />
+                    <format-tag name="NoOrders"/>
+                    <format-tag name="NoExecs" />
+                </format-template>
+                <!-- New Template -->
+                <format-template field="AllocTransType" value="0" type="2">
+                    <format-string value="{0}: {1} Orders: {2} Executions: {3}" />
+                    <format-tag name="AllocID" />
+                    <format-tag name="AllocTransType" />
+                    <format-tag name="NoOrders"/>
+                    <format-tag name="NoExecs" />
+                </format-template>
+                <!-- Replace Template -->
+                <format-template field="AllocTransType" value="1" type="2">
+                    <format-string value="{0} replaces {1} Orders: {2} Executions: {3}" />
+                    <format-tag name="AllocID" />
+                    <format-tag name="RefAllocID" />
+                    <format-tag name="NoOrders"/>
+                    <format-tag name="NoExecs" />
+                </format-template>
+                <!-- Cancel Template -->
+                <format-template field="AllocTransType" value="1" type="2">
+                    <format-string value="{0} cancels {1} Orders: {2} Executions: {3}" />
+                    <format-tag name="AllocID" />
+                    <format-tag name="RefAllocID" />
+                    <format-tag name="NoOrders"/>
+                    <format-tag name="NoExecs" />
+                </format-template>
+             </format-display>
+
+
+        </fix-message>
+        <fix-message name="List Cancel Request" type="K" header-ref="Header" body-ref="ListCancelBody" trailer-ref="Trailer">
+            <description>The list cancel request message type is used by institutions wishing to cancel previously submitted lists either before or during execution.</description>
+             <format-display key="ListID" >
+                <!-- Default Template -->
+                <format-template field="ListID" value="0" type="1">
+                    <format-string value="List {0}: Wave: {1} {2} " />
+                    <format-tag name="ListID" />
+                    <format-tag name="WaveNo" />
+                    <format-tag name="Text"/>
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="List Execute"        type="L" header-ref="Header" body-ref="ListExecuteBody" trailer-ref="Trailer">
+            <description>he list execute message type is used by institutions to instruct the broker to begin execution of a previously submitted list. This message may or may not be used, as it may be
+       mirroring a phone conversation.</description>
+             <format-display key="ListID" >
+                <!-- Default Template -->
+                <format-template field="ListID" value="0" type="1">
+                    <format-string value="List {0}: Wave: {1} {2} " />
+                    <format-tag name="ListID" />
+                    <format-tag name="WaveNo" />
+                    <format-tag name="Text"/>
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="List Status Request" type="M" header-ref="Header" body-ref="ListStatusRequestBody" trailer-ref="Trailer">
+            <description>he list status request message type is used by institutions to instruct the broker to generate status messages for a list. </description>
+             <format-display key="ListID" >
+                <!-- Default Template -->
+                <format-template field="ListID" value="0" type="1">
+                    <format-string value="List {0}: Wave: {1} {2} " />
+                    <format-tag name="ListID" />
+                    <format-tag name="WaveNo" />
+                    <format-tag name="Text"/>
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="List Status"         type="N" header-ref="Header" body-ref="ListStatusBody" trailer-ref="Trailer">
+            <description>The list status message is issued as the response to a List Status Request message sent in an unsolicited fashion by the sell-side. It indicates the current state of the orders within
+       the list as they exists at the broker's site.</description>
+             <format-display key="ListID" >
+                <!-- Default Template -->
+                <format-template field="ListID" value="0" type="1">
+                    <format-string value="List {0}: Wave: {1} " />
+                    <format-tag name="ListID" />
+                    <format-tag name="WaveNo" />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Allocation ACK"      type="P" header-ref="Header" body-ref="AllocationAckBody" trailer-ref="Trailer">
+            <description>The allocation ACK message is used to acknowledge the receipt and status of an allocation message received from the institution.</description>
+             <format-display key="AllocID" >
+                <!-- Default Template -->
+                <format-template field="AllocID" value="0" type="1">
+                    <format-string value="Alloc {0} {1} TradeDate: {2}" />
+                    <format-tag name="AllocID" />
+                    <format-tag name="AllocStatus"  />
+                    <format-tag name="TransactTime" />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="DK Trade"            type="Q" header-ref="Header" body-ref="DontKnowBody" trailer-ref="Trailer">
+            <description>The Don&quot;t Know Trade (DK) message notifies a trading partner that an electronically received execution has been rejected. This message can be thought of as an execution reject
+       message.</description>
+             <format-display key="ExecID" >
+                <!-- Default Template -->
+                <format-template field="ExecID" value="0" type="1">
+                    <format-string value="OrderID {0} ExecID {1} {2}" />
+                    <format-tag name="OrderID" />
+                    <format-tag name="ExecID"  />
+                    <format-tag name="DKReason" />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Quote Request"       type="R" header-ref="Header" body-ref="QuoteRequestBody" trailer-ref="Trailer">
+            <description>In some markets it is the practice to request quotes from brokers prior to placement of an order. The quote request message is used for this purpose.</description>
+             <format-display key="QuoteReqID" >
+                <!-- Default Template -->
+                <format-template field="QuoteReqID" value="0" type="1">
+                    <format-string value="{0}: {1} {2} " />
+                    <format-tag name="QuoteReqID" />
+                    <format-tag name="Side"  />
+                    <format-tag name="Symbol" />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Quote"               type="S" header-ref="Header" body-ref="QuoteBody" trailer-ref="Trailer">
+            <description>The quote message is used as the response to a Quote Request message and can be used to publish unsolicited quotes.</description>
+             <format-display key="QuoteReqID" >
+                <!-- Default Template -->
+                <format-template field="QuoteReqID" value="0" type="1">
+                    <format-string value="{0}: ({1}) {2}" />
+                    <format-tag name="QuoteID"   />
+                    <format-tag name="QuoteReqID"/>
+                    <format-tag name="Symbol" />
+                </format-template>
+             </format-display>
+        </fix-message>
+        <fix-message name="Settlement Instructions" type="T" header-ref="Header" body-ref="SettlementBody" trailer-ref="Trailer">
+                <description>The Settlement Instructions message provides either the broker's or the institutions instructions for trade settlement</description>
+             <format-display key="SettlInstID" >
+                <!-- Default Template -->
+                <format-template field="SettlInstID" value="N" type="1">
+                    <format-string value="{0} {1} AllocID: {2}" />
+                    <format-tag name="SettlInstID"   />
+                    <format-tag name="SettlInstMode" />
+                    <format-tag name="AllocID" />
+                </format-template>
+                <format-template field="SettlInstID" value="N" type="2">
+                    <format-string value="{0} {1} AllocID: {2}" />
+                    <format-tag name="SettlInstID"   />
+                    <format-tag name="SettlInstMode" />
+                    <format-tag name="AllocID" />
+                </format-template>
+                <format-template field="SettlInstID" value="C" type="2">
+                    <format-string value="{0} cancel {1} AllocID: {2}" />
+                    <format-tag name="SettlInstID"    />
+                    <format-tag name="SettlInstMode"  />
+                    <format-tag name="AllocID" />
+                </format-template>
+                <format-template field="SettlInstID" value="R" type="2">
+                    <format-string value="{0} replaces {1}  AllocID: {2}" />
+                    <format-tag name="SettlInstID"    />
+                    <format-tag name="SettlInstMode"  />
+                    <format-tag name="AllocID" />
+                </format-template>
+             </format-display>
+        </fix-message>
+    </message-map>
+    <!--
+
+
+        All the Blocks of Tags needed for proper FIX 4.0 Interpretation.
+    -->
+    <block-map>
+
+        <!--
+            Standard FIX 4.0 Message Header
+        -->
+        <tag-block name="Header" type="Ordered Block">
+            <block-ref name="InitialTags"   required="true" />
+            <block-ref name="HeaderContent" required="true" />
+        </tag-block>
+
+        <!--
+            Unordered portion of Message Header
+        -->
+        <tag-block name="HeaderContent" type="Unordered Block">
+            <tag-ref name="SenderCompID"         required="true"  />
+            <tag-ref name="TargetCompID"     required="true"  />
+            <tag-ref name="OnBehalfOfCompID" required="false" />
+            <tag-ref name="DeliverToCompID"  required="false" />
+            <block-ref name="SecureDataGroup"                 />
+            <tag-ref name="MsgSeqNum"       required="true"   />
+            <tag-ref name="SenderSubID"     required="false"  />
+            <tag-ref name="SenderLocationID" required="false" /> <!-- FIX 4.1 -->
+            <tag-ref name="TargetSubID"     required="false"  />
+            <tag-ref name="OnBehalfOfSubID" required="false"  />
+            <tag-ref name="DeliverToSubID"  required="false"  />
+            <tag-ref name="PossDupFlag"     required="false"  />
+            <tag-ref name="PossResend"      required="false"  />
+            <tag-ref name="SendingTime"     required="true"   />
+            <tag-ref name="OrigSendingTime" required="false"  />
+            <!--
+                   Header fields added by FIX 4.1
+             -->
+            <tag-ref name="TargetLocationID"     required="false"/> <!-- FIX 4.1 -->
+            <tag-ref name="DeliverToLocationID"  required="false"/> <!-- FIX 4.1 -->
+            <tag-ref name="OnBehalfOfLocationID" required="false"/> <!-- FIX 4.1 -->
+    </tag-block>
+        <!--
+            Initial FIX Tags (required by all messages)
+        -->
+        <tag-block name="InitialTags" type="Initial Block">
+            <tag-ref name="BeginString" required="true" />
+            <tag-ref name="BodyLength"  required="true" />
+            <tag-ref name="MsgType"     required="true" />
+        </tag-block>
+
+    <!--
+
+        Standard FIX 4.0 Message Trailer
+    -->
+    <tag-block name="Trailer" type="Unordered Block">
+        <block-ref name="SignatureGroup" />
+        <tag-ref   name="CheckSum" required="true" />
+    </tag-block>
+
+    <!--
+        Message Signature Variable Length Group
+    -->
+    <tag-block name="SignatureGroup" type="Ordered Block">
+            <tag-ref name="SignatureLength" required="true" />
+            <tag-ref name="Signature"       required="true" />
+    </tag-block>
+    <!--
+        Raw Data Variable Length Group
+    -->
+    <tag-block name="RawDataGroup" type="Ordered Block">
+        <tag-ref name="RawDataLength" required="true" />
+        <tag-ref name="RawData"       required="true"  />
+    </tag-block>
+
+        <!---
+        Information that identifies a particular Instrument
+
+         -->
+        <tag-block name="SecurityInfoGroup" type="Unordered Block">
+            <tag-ref name="Symbol"        required="true"  />
+            <tag-ref name="SymbolSfx"     required="false"  />
+            <tag-ref name="SecurityID"    required="false"  />
+            <tag-ref name="IDSource"      required="false"  />
+            <!--
+                      Added in FIX 4.1
+             -->
+            <tag-ref name="SecurityType"     required="false"     />
+            <tag-ref name="MaturityMonthYear" required="false"/>
+            <tag-ref name="MaturityDay"      required="false"     />
+            <tag-ref name="PutOrCall"        required="false"     />
+            <tag-ref name="StrikePrice"      required="false" />
+            <tag-ref name="OptAttribute"     required="false" />
+            <tag-ref name="SecurityExchange" required="false" />
+            <tag-ref name="Issuer"        required="false"  />
+            <tag-ref name="SecurityDesc"  required="false"  />
+        </tag-block>
+
+        <!---
+        Information that identifies a particular Instrument
+                Same as SecurityInfoGroup, except for use of RelatdSym instead
+                of Symbol. Used by News and Email
+         -->
+        <tag-block name="RelatedSecurityInfoGroup" type="Unordered Block">
+        <tag-ref name="RelatedSym"    required="true"  />
+        <tag-ref name="SymbolSfx"     required="false"  />
+        <tag-ref name="SecurityID"    required="false"  />
+        <tag-ref name="IDSource"      required="false"  />
+        <tag-ref name="Issuer"        required="false"  />
+        <tag-ref name="SecurityDesc"  required="false"  />
+                <!--
+                          Added in FIX 4.1
+                 -->
+                <tag-ref name="SecurityType" required="false"     />
+                <tag-ref name="MaturityMonthYear" required="false"/>
+                <tag-ref name="MaturityDay"       required="false"     />
+                <tag-ref name="PutOrCall"         required="false"     />
+                <tag-ref name="StrikePrice"       required="false" />
+                <tag-ref name="OptAttribute"      required="false" />
+                <tag-ref name="SecurityExchange"  required="false" />
+        </tag-block>
+
+
+    <!--
+        Secure Data Variable Length Group
+    -->
+    <tag-block name="SecureDataGroup" type="Ordered Block">
+            <tag-ref name="SecureDataLen" required="true" />
+            <tag-ref name="SecureData"    required="true" />
+    </tag-block>
+
+    <!--
+        Contents of Heartbeat Message (35=0)
+    -->
+    <tag-block name="HeartbeatBody" type="Unordered Block">
+        <tag-ref name="TestReqID" required="false" />
+    </tag-block>
+
+    <!--
+        Contents of Test Request Message (35=1)
+
+    -->
+    <tag-block name="TestRequestBody" type="Unordered Block">
+        <tag-ref name="TestReqID" required="true" />
+    </tag-block>
+
+    <!--
+        Contents of Resend Request Message (35=2)
+
+    -->
+    <tag-block name="ResendRequestBody" type="Unordered Block">
+        <tag-ref name="BeginSeqNo" required="true" />
+        <tag-ref name="EndSeqNo"   required="true" />
+    </tag-block>
+    <!--
+        Contents of Reject Message (35=3)
+
+    -->
+    <tag-block name="RejectBody" type="Unordered Block">
+        <tag-ref name="RefSeqNo"  required="true"  />
+        <tag-ref name="Text"      required="false" />
+    </tag-block>
+
+    <!--
+
+        Contents of Sequence Reset Message (35=4)
+    -->
+    <tag-block name="SequenceResetBody" type="Unordered Block">
+        <tag-ref name="GapFillFlag"  required="false"  />
+        <tag-ref name="NewSeqNum"    required="true"   />
+    </tag-block>
+
+    <!--
+
+        Contents of Logout Message (35=5)
+    -->
+    <tag-block name="LogoutBody" type="Unordered Block">
+        <tag-ref name="Text"  required="false"  />
+    </tag-block>
+    <!--
+
+        Contents of Indication of Interest Message (35=6)
+    -->
+    <tag-block name="IndicationBody" type="Unordered Block">
+        <tag-ref name="IOIid"         required="true"  />
+        <tag-ref name="IOITransType"  required="true"  />
+        <tag-ref name="IOIRefID"      required="false" />
+        <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="Side"          required="true" />
+        <tag-ref name="IOIShares"     required="true"  />
+        <tag-ref name="Price"         required="false" />
+        <tag-ref name="Currency"      required="false" />
+        <tag-ref name="ValidUntilTime" required="false" />
+        <tag-ref name="IOIQltyInd"     required="false" />
+        <tag-ref name="IOIOthSvc"      required="false" />
+        <tag-ref name="IOINaturalFlag" required="false" />
+        <tag-ref name="Text"           required="false" />
+        <block-ref name="NoIOIQualifiersGroup" required="false" />  <!-- FIX 4.1 -->
+        <tag-ref name="TransactTime"  required="false"  />          <!-- FIX 4.1 -->
+        <tag-ref name="URLLink"       required="false"  />          <!-- FIX 4.1 -->
+    </tag-block>
+    <!--
+
+        Contents of Advertisement Message (35=7)
+    -->
+    <tag-block name="AdvertisementBody" type="Unordered Block">
+        <tag-ref name="AdvID"         required="true"  />
+        <tag-ref name="AdvTransType"  required="true"  />
+        <tag-ref name="AdvRefID"      required="false"  />
+        <block-ref name="SecurityInfoGroup" required ="true" />
+        <tag-ref name="AdvSide"       required="true"  />
+        <tag-ref name="Shares"        required="true"   />
+        <tag-ref name="Price"         required="false"  />
+        <tag-ref name="Currency"      required="false"  />
+        <tag-ref name="TransactTime"  required="false"  />
+        <tag-ref name="Text"          required="false"  />
+        <tag-ref name="TradeDate"     required="false"  /> <!-- FIX 4.1 -->
+        <tag-ref name="URLLink"       required="false"  /> <!-- FIX 4.1 -->
+        <tag-ref name="LastMkt"       required="false"  /> <!-- FIX 4.1 -->
+    </tag-block>
+    <!--
+
+        Contents of Execution Message (35=8)
+    -->
+    <tag-block name="ExecutionBody" type="Unordered Block">
+        <tag-ref   name="OrderID"    required="true"   />
+        <!-- Tag added in FIX 4.1 -->
+        <tag-ref   name="SecondaryOrderID" required="false" />
+        <tag-ref   name="ClOrdID"       required="false"   />
+        <tag-ref   name="OrigClOrdID"   required="false"   /> 
+        <tag-ref   name="ClientID"      required="false"   />
+        <tag-ref   name="ExecBroker"    required="false"   />
+        <tag-ref   name="ListID"        required="false"   />
+        <tag-ref   name="ExecID"        required="true"    />
+        <tag-ref   name="ExecTransType" required="true"   />
+        <tag-ref   name="ExecRefID"     required="false"   />
+        <tag-ref   name="ExecType"      required="true"   />
+        <tag-ref   name="OrdStatus"     required="true"    />
+        <tag-ref   name="OrdRejReason"  required="false"   />
+        <tag-ref   name="Account"       required="false"   />
+        <tag-ref   name="SettlmntTyp"   required="false"   />
+        <tag-ref   name="FutSettDate"   required="false"   />
+        <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref   name="Side"          required="true"   />
+        <tag-ref   name="OrderQty"      required="true"    />
+        <tag-ref   name="OrdType"       required="false"   />
+        <tag-ref   name="Price"         required="false"   />
+        <tag-ref   name="StopPx"        required="false"   />
+        <tag-ref   name="PegDifference" required="false"   />  <!-- FIX 4.1 -->
+        <tag-ref   name="Currency"      required="false"   />
+        <tag-ref   name="TimeInForce"   required="false"   />
+        <tag-ref   name="ExpireTime"    required="false"   />
+        <tag-ref   name="ExecInst"      required="false"   />
+        <tag-ref   name="Rule80A"       required="false"   />
+        <tag-ref   name="LastShares"    required="true"   />
+        <tag-ref   name="LastPx"        required="true"   />
+        <tag-ref   name="LastSpotRate"  required="false"  />   <!-- FIX 4.1 -->
+        <tag-ref   name="LastForwardPoints" required="false"   />
+        <tag-ref   name="LastMkt"       required="false"   />
+        <tag-ref   name="LastCapacity"  required="false"   />
+        <tag-ref   name="LeavesQty"     required="true"   />
+        <tag-ref   name="CumQty"        required="true"    />
+        <tag-ref   name="AvgPx"         required="true"   />
+        <tag-ref   name="TradeDate"     required="false"   />
+        <tag-ref   name="TransactTime"  required="false"   />
+        <tag-ref   name="ReportToExch"  required="false"   />
+        <tag-ref   name="Commission"    required="false"   />
+        <tag-ref   name="CommType"      required="false"   />
+        <!--block-ref name="FeeGroup"   />
+        <tag-ref   name="NetMoney"       required="false"   /--> <!-- removed by Matias, not part of 4.1 -->
+        <tag-ref   name="SettlCurrAmt"   required="false"   />
+        <tag-ref   name="SettlCurrency"  required="false"   />
+        <tag-ref   name="SettlCurrFxRate"     required="false" /> <!-- FIX 4.1-->
+        <tag-ref   name="SettlCurrFxRateCalc" required="false" /><!-- FIX 4.1 -->
+        <tag-ref   name="Text"                required="false"   />
+    </tag-block>
+    <!--
+
+        Contents of OrderCancel Reject Message (35=9)
+    -->
+    <tag-block name="OrderCancelRejectBody" type="Unordered Block">
+        <tag-ref name="OrderID"           required="true"  />
+        <tag-ref name="SecondaryOrderID"  required="false" />  <!-- FIX 4.1 -->
+        <tag-ref name="ClOrdID"           required="true"   />
+                <tag-ref name="OrigClOrdID"       required="true"   /> <!-- FIX 4.1 -->
+        <tag-ref name="OrdStatus"         required="true"  />
+        <tag-ref name="ClientID"          required="false"  />
+        <tag-ref name="ExecBroker"        required="false"  />
+        <tag-ref name="ListID"            required="false"  />
+        <tag-ref name="CxlRejReason"      required="false"   />
+        <tag-ref name="Text"              required="false"  />
+
+    </tag-block>
+    <!--
+
+        Contents of Logon Message (35=A)
+    -->
+    <tag-block name="LogonBody" type="Unordered Block">
+        <tag-ref   name="EncryptMethod"  required="true"  />
+        <tag-ref   name="HeartBtInt"     required="true"  />
+        <block-ref name="RawDataGroup"   required="false" />
+        <tag-ref   name="ResetSeqNumFlag" required="false"/> <!-- FIX 4.1 -->
+    </tag-block>
+
+    <!--
+        Contents of News Message (35=B)
+
+    -->
+    <tag-block name="NewsBody" type="Unordered Block">
+        <tag-ref name="OrigTime"       required="false"  />
+        <tag-ref name="Urgency"        required="false"  />
+        <tag-ref name="Headline"       required="true"  />
+        <tag-ref name="NoRelatedSym"    required="false"   />
+        <block-ref  name="RelatedSecurityInfoGroup"  required="false" repeating="true" />
+        <tag-ref name="LinesOfText"                required="true"   />
+        <tag-ref name="Text"                       required="true"  repeating="true"  />
+        <block-ref name="RawDataGroup" required="false"  />
+        <tag-ref name="URLLink"        required="false"  /> <!-- FIX 4.1 -->
+
+    </tag-block>
+    <!--
+        Contents of Email Message (35=C)
+    -->
+    <tag-block name="EmailBody" type="Unordered Block">
+        <tag-ref name="EmailThreadID"  required="true"   />
+        <tag-ref name="EmailType"      required="true"   />
+        <tag-ref name="OrigTime"       required="false"  />
+        <tag-ref name="Subject"        required="true"   />
+        <tag-ref name="NoRelatedSym"   required="false"   />
+        <block-ref name="RelatedSecurityInfoGroup" required="false" repeating="true" />
+        <tag-ref name="OrderID"        required="false"  />
+        <tag-ref name="ClOrdID"        required="false"  />
+        <tag-ref name="LinesOfText"    required="true"   />
+        <tag-ref name="Text"           required="true"  repeating="true"  />
+        <block-ref name="RawDataGroup" />
+    </tag-block>
+    <!--
+
+        Contents of Order Message (35=D)
+    -->
+    <tag-block name="OrderBody" type="Unordered Block">
+        <tag-ref name="ClOrdID"           required="true"   />
+        <tag-ref name="ClientID"          required="false"  />
+        <tag-ref name="ExecBroker"        required="false"  />
+        <tag-ref name="Account"           required="false"  />
+        <tag-ref name="SettlmntTyp"       required="false"  />
+        <tag-ref name="FutSettDate"       required="false"  />
+        <tag-ref name="HandlInst"         required="true"   />
+        <tag-ref name="ExecInst"          required="false"  />
+        <tag-ref name="MinQty"            required="false"  />
+        <tag-ref name="MaxFloor"          required="false"  />
+        <tag-ref name="ExDestination"     required="false"  />
+        <tag-ref name="ProcessCode"       required="false"  />
+                <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="PrevClosePx"       required="false"  />
+        <tag-ref name="Side"              required="true"   />
+        <tag-ref name="LocateReqd"        required="false"  />
+        <tag-ref name="OrderQty"          required="false"  />
+                <tag-ref name="CashOrderQty"      required="false"  />
+        <tag-ref name="OrdType"           required="true"   />
+        <tag-ref name="Price"             required="false"  />
+        <tag-ref name="StopPx"            required="false"  />
+        <tag-ref name="Currency"          required="false"  />
+        <tag-ref name="IOIid"             required="false"  />
+        <tag-ref name="QuoteID"           required="false"  />
+        <tag-ref name="TimeInForce"       required="false"  />
+        <tag-ref name="ExpireTime"        required="false"  />
+        <tag-ref name="Commission"        required="false"  />
+        <tag-ref name="CommType"          required="false"  />
+        <tag-ref name="Rule80A"           required="false"  />
+        <tag-ref name="ForexReq"          required="false"  />
+        <tag-ref name="SettlCurrency"     required="false"  />
+        <tag-ref name="Text"              required="false"  />
+        <tag-ref name="FutSettDate2"     required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="OrderQty2"        required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="OpenClose"        required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="CoveredOrUncovered"  required="false" /> <!-- FIX 4.1 -->        
+        <tag-ref name="CustomerOrFirm"   required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="MaxShow"          required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="PegDifference"    required="false" /> <!-- FIX 4.1 -->
+
+
+    </tag-block>
+    <!--
+
+        Contents of List Order  Message (35=E)
+    -->
+    <tag-block name="ListBody" type="Unordered Block">
+        <tag-ref name="ListID"            required="true"   />
+        <tag-ref name="WaveNo"            required="false"   />
+        <tag-ref name="ListNoOrds"        required="true"   />
+        <tag-ref name="ListSeqNo"         required="true"   />
+        <tag-ref name="ListExecInst"      required="false"   />
+        <tag-ref name="ClOrdID"           required="true"   />
+        <tag-ref name="ClientID"          required="false"  />
+        <tag-ref name="ExecBroker"        required="false"  />
+        <tag-ref name="Account"           required="false"  />
+
+        <tag-ref name="SettlmntTyp"       required="false"  />
+        <tag-ref name="FutSettDate"       required="false"  />
+        <tag-ref name="HandlInst"         required="true"   />
+        <tag-ref name="ExecInst"          required="false"  />
+        <tag-ref name="MinQty"            required="false"  />
+        <tag-ref name="MaxFloor"          required="false"  />
+        <tag-ref name="ExDestination"     required="false"  />
+        <tag-ref name="ProcessCode"       required="false"  />
+                <block-ref name="SecurityInfoGroup" required="true" />
+
+        <tag-ref name="PrevClosePx"       required="false"  />
+        <tag-ref name="Side"              required="true"   />
+        <tag-ref name="LocateReqd"        required="false"  />
+        <tag-ref name="OrderQty"          required="true"   />
+        <tag-ref name="OrdType"           required="true"   />
+        <tag-ref name="Price"             required="false"  />
+        <tag-ref name="StopPx"            required="false"  />
+        <tag-ref name="PegDifference"     required="false"  />
+        
+        <tag-ref name="Currency"          required="false"  />
+        <tag-ref name="TimeInForce"       required="false"  />
+        <tag-ref name="ExpireTime"        required="false"  />
+        <tag-ref name="Commission"        required="false"  />
+        <tag-ref name="CommType"          required="false"  />
+        <tag-ref name="Rule80A"           required="false"  />
+        <tag-ref name="ForexReq"          required="false"  />
+        <tag-ref name="SettlCurrency"     required="false"  />
+        <tag-ref name="Text"              required="false"  />
+                <tag-ref name="FutSettDate2"     required="false" /> <!-- FIX 4.1 -->
+                <tag-ref name="OrderQty2"        required="false" /> <!-- FIX 4.1 -->
+                <tag-ref name="OpenClose"        required="false" /> <!-- FIX 4.1 -->
+                <tag-ref name="CoveredOrUncovered" required="false"  />
+                <tag-ref name="CustomerOrFirm"   required="false" /> <!-- FIX 4.1 -->
+                <tag-ref name="MaxShow"          required="false" /> <!-- FIX 4.1 -->
+
+    </tag-block>
+    <!--
+
+        Contents of Order Cancel/Replace Request Message (35=F)
+    -->
+    <tag-block name="OrderCancelRequestBody" type="Unordered Block">
+        <tag-ref name="OrigClOrdID"       required="true"   />
+        <tag-ref name="OrderID"           required="false"  />
+        <tag-ref name="ClOrdID"           required="true"   />
+        <tag-ref name="ListID"            required="false"  />
+        <!--tag-ref name="CxlType"           required="true"   /> removed by Matias, not part of 4.1 -->
+        <tag-ref name="ClientID"          required="false"  />
+        <tag-ref name="ExecBroker"        required="false"  />
+        <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="Side"              required="true"  />
+        <tag-ref name="OrderQty"          required="false"  />
+                <tag-ref name="CashOrderQty"      required="false"  />     <!-- FIX 4.1 -->
+        <tag-ref name="Text"              required="false"  />
+
+
+    </tag-block>
+    <!--
+
+        Contents of Order Cancel/Replace Request Message (35=G)
+    -->
+    <tag-block name="OrderReplaceRequestBody" type="Unordered Block">
+        <tag-ref name="OrderID"           required="false"   />
+        <tag-ref name="ClientID"          required="false"  />
+        <tag-ref name="ExecBroker"        required="false"  />
+        <tag-ref name="OrigClOrdID"       required="true"   />
+        <tag-ref name="ClOrdID"           required="true"   />
+        <tag-ref name="ListID"            required="false"   />
+        <tag-ref name="Account"           required="false"  />
+        <tag-ref name="SettlmntTyp"       required="false"  />
+        <tag-ref name="FutSettDate"       required="false"  />
+        <tag-ref name="HandlInst"         required="true"   />
+        <tag-ref name="ExecInst"          required="false"  />
+        <tag-ref name="MinQty"            required="false"  />
+        <tag-ref name="MaxFloor"          required="false"  />
+        <tag-ref name="ExDestination"     required="false"  />
+                <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="Side"              required="true"   />
+        <tag-ref name="OrderQty"          required="false"   />
+                <tag-ref name="CashOrderQty"      required="false"  /> <!-- FIX 4.1 -->
+        <tag-ref name="OrdType"           required="true"   />
+        <tag-ref name="Price"             required="false"  />
+        <tag-ref name="StopPx"            required="false"  />
+        <tag-ref name="PegDifference"     required="false"  />
+        <tag-ref name="Currency"          required="false"  />
+        <tag-ref name="TimeInForce"       required="false"  />
+        <tag-ref name="ExpireTime"        required="false"  />
+        <tag-ref name="Commission"        required="false"  />
+        <tag-ref name="CommType"          required="false"  />
+        <tag-ref name="Rule80A"           required="false"  />
+        <tag-ref name="ForexReq"          required="false"  />
+        <tag-ref name="SettlCurrency"     required="false"  />
+        <tag-ref name="Text"              required="false"  />
+
+        <tag-ref name="FutSettDate2"     required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="OrderQty2"        required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="OpenClose"        required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="CoveredOrUncovered" required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="CustomerOrFirm"   required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="MaxShow"          required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="LocateReqd"       required="false" /> <!-- FIX 4.1 -->
+
+    </tag-block>
+
+
+    <!--
+        Contents of OrderStatus Request Message (35=H)
+    -->
+    <tag-block name="OrderStatusBody" type="Unordered Block">
+        <tag-ref name="OrderID"           required="false"   />
+        <tag-ref name="ClOrdID"           required="true"   />
+        <tag-ref name="ClientID"          required="false"  />
+        <tag-ref name="ExecBroker"        required="false"  />
+                <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="Side"                required="true"  />
+    </tag-block>
+    <!--
+        Contents of Allocation Message (35=J)
+    -->
+    <tag-block name="AllocationBody" type="Unordered Block">
+        <tag-ref name="AllocID"         required="true"  />
+        <tag-ref name="AllocTransType"  required="true"  />
+        <tag-ref name="RefAllocID"      required="false" />
+        <tag-ref name="AllocLinkID"     required="false" />
+        <tag-ref name="AllocLinkType"   required="false" />
+        <block-ref name="AllocationOrdersGroup" />
+        <block-ref name="AllocationExecGroup"   />
+        <tag-ref name="Side"         required="true" />
+                <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="Shares"          required="true"  />
+                <tag-ref name="LastMkt"         required="false" />
+        <tag-ref name="AvgPx"           required="true"  />
+        <tag-ref name="Currency"        required="false" />
+        <tag-ref name="AvgPrxPrecision" required="false" />
+        <tag-ref name="TradeDate"       required="true"  />
+        <tag-ref name="TransactTime"    required="false" />
+        <tag-ref name="SettlmntTyp"     required="false" />
+        <tag-ref name="FutSettDate"     required="false" />
+        <tag-ref name="NetMoney"        required="false" />
+
+        <tag-ref name="OpenClose"       required="false" />
+        <tag-ref name="Text"            required="false" />
+        <tag-ref name="NumDaysInterest"            required="false" />
+        <tag-ref name="AccruedInterestRate"            required="false" />
+        
+        <block-ref name="AllocationAllocGroup"  required="false"  />
+    </tag-block>
+
+    <!--
+        Contents of List Cancel Request Message (35=K)
+    -->
+    <tag-block name="ListCancelBody" type="Unordered Block">
+        <tag-ref name="ListID"          required="true"   />
+        <tag-ref name="WaveNo"          required="false"  />
+        <tag-ref name="Text"            required="false"  />
+    </tag-block>
+
+    <!--
+        Contents of List Execute Message (35=L)
+    -->
+    <tag-block name="ListExecuteBody" type="Unordered Block">
+        <tag-ref name="ListID"          required="true"   />
+        <tag-ref name="WaveNo"          required="false"  />
+        <tag-ref name="Text"            required="false"  />
+    </tag-block>
+
+    <!--
+        Contents of List Status Request Message (35=M)
+    -->
+    <tag-block name="ListStatusRequestBody" type="Unordered Block">
+        <tag-ref name="ListID"          required="true"   />
+        <tag-ref name="WaveNo"          required="false"  />
+        <tag-ref name="Text"            required="false"  />
+    </tag-block>
+
+
+    <!--
+
+        Contents of List Status Message (35=N)
+    -->
+    <tag-block name="ListStatusBody" type="Unordered Block">
+        <tag-ref name="ListID"          required="true"   />
+        <tag-ref name="WaveNo"          required="false"  />
+        <tag-ref name="NoRpts"          required="true"   />
+        <tag-ref name="RptSeq"          required="true"   />
+        <block-ref name="NoOrdersGroup" required="true"   />
+    </tag-block>
+    <!--
+
+        Contents of AllocationAck Message (35=P)
+    -->
+    <tag-block name="AllocationAckBody" type="Unordered Block">
+        <tag-ref name="ClientID"     required="false" />
+        <tag-ref name="ExecBroker"   required="false" />
+        <tag-ref name="AllocID"      required="true"  />
+        <tag-ref name="TradeDate"    required="true"  />
+        <tag-ref name="TransactTime" required="false" />
+        <tag-ref name="AllocStatus"  required="true" />
+        <tag-ref name="AllocRejCode" required="false" />
+        <tag-ref name="Text"         required="false" />
+    </tag-block>
+    <!--
+
+        Contents of DontKnow  Message (35=Q)
+    -->
+    <tag-block name="DontKnowBody" type="Unordered Block">
+        <tag-ref name="OrderID"    required="false" />
+        <tag-ref name="ExecID"     required="false" />
+        <tag-ref name="DKReason"   required="true" />
+        <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="Side"         required="true" />
+        <tag-ref name="OrderQty"     required="false" />
+        <tag-ref name="CashOrderQty" required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="LastShares"   required="false" />
+        <tag-ref name="LastPx"       required="false" />
+        <tag-ref name="Text"         required="false" />
+    </tag-block>
+    <!--
+
+        Contents of Quote Request Message (35=R)
+    -->
+    <tag-block name="QuoteRequestBody" type="Unordered Block">
+        <tag-ref name="QuoteReqID"   required="true" />
+        <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="PrevClosePx"  required="false" />
+        <tag-ref name="Side"         required="false" />
+        <tag-ref name="OrderQty"     required="false" />
+                <!--
+                       Fields in FIX 4.1
+                 -->
+                <tag-ref name="FutSettDate"  required="false" /> <!-- FIX 4.1 -->
+                <tag-ref name="OrdType"      required="false" /> <!-- FIX 4.1 -->
+                <tag-ref name="FutSettDate2" required="false" /> <!-- FIX 4.1 -->
+                <tag-ref name="OrderQty2"    required="false" /> <!-- FIX 4.1 -->
+    </tag-block>
+    <!--
+
+        Contents of Quote Message (35=S)
+    -->
+    <tag-block name="QuoteBody" type="Unordered Block">
+        <tag-ref name="QuoteReqID"   required="false" />
+        <tag-ref name="QuoteID"      required="true" />
+        <block-ref name="SecurityInfoGroup" required="true" />
+        <tag-ref name="BidPx" required="false" />
+        <tag-ref name="OfferPx"   required="false" />
+        <tag-ref name="BidSize"   required="false" />
+        <tag-ref name="OfferSize" required="false" />
+        <tag-ref name="ValidUntilTime" required="false" />
+         <!--
+                       Fields in FIX 4.1
+         -->
+         <tag-ref name="BidSpotRate"        required="false" />
+         <tag-ref name="OfferSpotRate"      required="false" />
+         <tag-ref name="BidForwardPoints"   required="false" />
+         <tag-ref name="OfferForwardPoints" required="false" />
+         <tag-ref name="TransactTime"       required="false" />
+         <tag-ref name="FutSettDate"        required="false" />
+         <tag-ref name="OrdType"            required="false" />
+         <tag-ref name="FutSettDate2"       required="false" />
+         <tag-ref name="OrderQty2"          required="false" />
+    </tag-block>
+    <!--
+
+        Contents of Settlement Instructions (35=T)
+       Since FIX 4.1
+    -->
+    <tag-block name="SettlementBody" type="Unordered Block">
+                <tag-ref name="SettlInstID"         required="true" />
+                <tag-ref name="SettlInstTransType"  required="true" />
+                <tag-ref name="SettlInstMode"   required="true" />
+                <tag-ref name="SettlInstSource" required="true" />
+                <tag-ref name="AllocAccount"    required="true" />
+                <tag-ref name="SettlLocation"   required="false" />
+                <tag-ref name="TradeDate"       required="false" />
+                <tag-ref name="AllocID"         required="false" />
+                <tag-ref name="LastMkt"         required="false" />
+                <tag-ref name="Side"            required="false" />
+                <tag-ref name="SecurityType"    required="false" />
+                <tag-ref name="EffectiveTime"   required="false" />
+                <tag-ref name="TransactTime"    required="true" />
+                <tag-ref name="ClientID"        required="false" />
+                <tag-ref name="ExecBroker"      required="false" />
+                <tag-ref name="StandInstDbType" required="false" />
+                <tag-ref name="StandInstDbName" required="false" />
+                <tag-ref name="StandInstDbID"   required="false" />
+                <tag-ref name="SettlDeliveryType"   required="false" />
+                <tag-ref name="SettlDepositoryCode" required="false" />
+                <tag-ref name="SettlBrkrCode"   required="false" />
+                <tag-ref name="SettlInstCode"   required="false" />
+                <tag-ref name="SecuritySettlAgentName" required="false" />
+                <tag-ref name="SecuritySettlAgentCode" required="false" />
+                <tag-ref name="SecuritySettlAgentAcctNum"      required="false" />
+                <tag-ref name="SecuritySettlAgentAcctName"     required="false" />
+                <tag-ref name="SecuritySettlAgentContactName"  required="false" />
+                <tag-ref name="SecuritySettlAgentContactPhone" required="false" />
+                <tag-ref name="CashSettlAgentName"             required="false" />
+                <tag-ref name="CashSettlAgentCode"             required="false" />
+                <tag-ref name="CashSettlAgentAcctNum"          required="false" />
+                <tag-ref name="CashSettlAgentAcctName"         required="false" />
+                <tag-ref name="CashSettlAgentContactName"      required="false" />
+                <tag-ref name="CashSettlAgentContactPhone"     required="false" />
+
+        </tag-block>
+         <!--
+                  Contains Repeating IOI Qualifier information for
+                  Indication Message
+                  Since FIX 4.1
+         -->
+        <tag-block name="NoIOIQualifiersGroup" type="Ordered Block">
+                <tag-ref name="NoIOIQualifiers" required="true" />
+                <tag-ref name="IOIQualifier"    required="true" repeating="true"/>
+        </tag-block>
+
+
+
+    <!--
+        Contains repeating Order Information for List Status Message.
+    -->
+    <tag-block name="NoOrdersGroup" type="Ordered Block">
+        <tag-ref name="NoOrders"               required="true"  />
+        <block-ref name="ListStatusOrderGroup" required="true"  repeating="true"   />
+    </tag-block>
+
+    <tag-block name="ListStatusOrderGroup" type="Ordered Block">
+        <tag-ref name="ClOrdID" required="true"   />
+        <tag-ref name="CumQty"  required="true"   />
+        <tag-ref name="LeavesQty" required="true" /> <!--FIX 4.1 -->
+        <tag-ref name="CxlQty"  required="true"   />
+        <tag-ref name="AvgPx"   required="true"   />
+    </tag-block>
+
+    <!--
+            Allocation Message specific block
+    -->
+    <tag-block name="AllocationOrdersGroup" type="Ordered Block">
+        <tag-ref   name="NoOrders"                 required="true"  />
+        <block-ref name="AllocationOrderInfoGroup" required="true" repeating="true"/>
+    </tag-block>
+    <!--
+            Allocation Message specific block
+    -->
+    <tag-block name="AllocationExecGroup" type="Ordered Block">
+        <tag-ref   name="NoExecs"                 required="true"  />
+        <block-ref name="AllocationExecInfoGroup" required="true" repeating="true" />
+    </tag-block>
+    <!--
+            Allocation Message specific block
+    -->
+    <tag-block name="AllocationAllocGroup" type="Ordered Block">
+        <tag-ref   name="NoAllocs"                  required="true"  />
+        <block-ref name="AllocationAllocInfoGroup"  required="true" repeating="true" />
+    </tag-block>
+    <!--
+            Allocation Message specific block
+    -->
+    <tag-block name="FeeGroup" type="Ordered Block">
+        <tag-ref   name="NoMiscFees"       required="true"  />
+        <block-ref name="FeeInfoGroup"     required="true" repeating="true" />
+    </tag-block>
+    <!--
+
+            Allocation Message specific block
+    -->
+    <tag-block name="AllocationOrderInfoGroup" type="Ordered Block">
+        <tag-ref name="ClOrdID" required="true"  />
+        <tag-ref name="OrderID" required="false" />
+        <tag-ref name="SecondaryOrderID" required="false" /> <!-- FIX 4.1 -->
+        <tag-ref name="ListID"  required="false" />
+        <tag-ref name="WaveNo"  required="false" />
+    </tag-block>
+    <!--
+            Allocation Message specific block
+    -->
+    <tag-block name="AllocationExecInfoGroup" type="Ordered Block">
+        <tag-ref name="LastShares"   required="true" />
+        <tag-ref name="ExecID"       required="false"  />
+        <tag-ref name="LastPx"       required="true" />
+        <tag-ref name="LastCapacity" required="false" />   <!-- FIX 4.1 -->
+    </tag-block>
+
+    <!--
+            Fee Info specific block
+    -->
+    <tag-block name="FeeInfoGroup" type="Ordered Block">
+        <tag-ref name="MiscFeeAmt"   required="true"  />
+        <tag-ref name="MiscFeeCurr"  required="true"  />
+        <tag-ref name="MiscFeeType"  required="true"  />
+    </tag-block>
+
+    <!--
+            Allocation Message specific block
+    -->
+    <tag-block name="AllocationAllocInfoGroup" type="Ordered Block">
+        <tag-ref name="AllocAccount"   required="true"   />
+        <tag-ref name="AllocShares"    required="true"   />
+        <tag-ref name="ProcessCode"    required="false"  />
+        <tag-ref name="BrokerOfCredit"       required="false"  /> <!-- FIX 4.1 -->
+        <tag-ref name="NotifyBrokerOfCredit" required="false"  />
+        <tag-ref name="AllocHandlInst"       required="false"  />
+        <tag-ref name="AllocText"            required="false"  />
+        <tag-ref name="ExecBroker"           required="false"  />
+        <tag-ref name="ClientID"        required="false"  />
+        <tag-ref name="Commission"      required="false"  />
+        <tag-ref name="CommType"        required="false"  />
+        <tag-ref name="AllocAvgPx"      required="false"  />
+        <tag-ref name="AllocNetMoney"   required="false"  />
+        <tag-ref name="SettlCurrAmt"    required="false" />
+        <tag-ref name="SettlCurrency"    required="false" />
+        <tag-ref name="SettlCurrFxRate"    required="false" />
+        <tag-ref name="SettlCurrFxRateCalc"    required="false" />
+        <tag-ref name="AccruedInterestAmt"    required="false" />
+        <tag-ref name="SettlInstMode"    required="false" />
+        
+        <block-ref name="FeeGroup"   />
+
+    </tag-block>
+
+    <!--
+
+        Empty Block
+    -->
+    <tag-block name="EmptyBody" type="Unordered Block" >
+    </tag-block>
+    </block-map>
+
+
+    <!--
+
+        All the FIX Tags defined in FIX 4.0
+    The tags here are ordered by Number
+    -->
+    <tag-map>
+        <fix-tag name="Account" number="1" type="FIXString">
+           <description>Account mnemonic as agreed between broker and institution.</description>
+        </fix-tag>
+        <fix-tag name="AdvID"   number="2" type="FIXID">
+           <description>Unique identifier of advertisement message.</description>
+        </fix-tag>
+
+        <fix-tag name="AdvRefID" number="3" type="FIXID">
+           <description>Reference identifier used with CANCEL and REPLACE transaction types.</description>
+
+        </fix-tag>
+
+        <fix-tag name="AdvSide"  number="4" type="FIXChar">
+           <description>Broker's side of advertised trade</description>
+           <tag-constraints name="AdvSideType" fixed-enumeration="true">
+               <valid-value name="Buy"    code="B">     <description></description> </valid-value>
+               <valid-value name="Sell"   code="S"> <description></description> </valid-value>
+               <valid-value name="Cross"  code="X"> <description></description> </valid-value>
+               <valid-value name="Trade"  code="T"> <description></description> </valid-value>
+        </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="AdvTransType" number="5" type="FIXString">
+           <description>Identifies advertisement message transaction type</description>
+           <tag-constraints name="AdvTransTypeType" fixed-enumeration="true">
+               <valid-value name="New"      code="N">  <description></description> </valid-value>
+               <valid-value name="Cancel"   code="C"> <description></description>  </valid-value>
+               <valid-value name="Replace"  code="R"> <description></description>  </valid-value>
+           </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="AvgPx" number="6" type="FIXPrice">
+           <description>Calculated average price of all fills on this order.</description>
+        </fix-tag>
+
+        <fix-tag name="BeginSeqNo" number="7" type="FIXSeqNum">
+           <description>Message sequence number of first record in range to be resent</description>
+        </fix-tag>
+
+        <fix-tag name="BeginString" number="8" type="FIXString">
+           <description>&lt;html&gt;Identifies beginning of new message and protocol version. &lt;p&gt;&lt;strong&gt;ALWAYS FIRST FIELD IN MESSAGE. &lt;/strong&gt;(Always unencrypted).  &lt;/html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="BodyLength" number="9" type="FIXLength">
+           <description>&lt;html&gt;Message length, in bytes, forward to the CheckSum field.
+                        &lt;p&gt;&lt;strong&gt;ALWAYS SECOND FIELD IN MESSAGE. &lt;/strong&gt;
+                        (Always unencrypted). &lt;p&gt;&lt; /html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="CheckSum" number="10" type="FIXString">
+           <description>Three byte, simple checksum. ALWAYS LAST FIELD IN MESSAGE;</description>
+        </fix-tag>
+
+        <fix-tag name="ClOrdID" number="11" type="FIXID">
+           <description>Unique identifier for Order as assigned by institution.&lt;p&gt;
+                     Uniqueness must be guaranteed within a single trading day. &lt;p&gt;
+                     Firms which electronically submit multi-day orders should &lt;p&gt;
+                     consider embedding a date within the ClOrdID field to assure
+                     uniqueness across days.</description>
+        </fix-tag>
+
+        <fix-tag name="Commission" number="12" type="FIXAmt">
+           <description>Commission. Note if CommType is percentage, Commission of 5% should be represented as .05.</description>
+        </fix-tag>
+
+        <fix-tag name="CommType" number="13" type="FIXChar">
+           <description>Commission type</description>
+           <tag-constraints name="CommissionTypeType" fixed-enumeration="true">
+               <valid-value name="Per Share"  code="1"> <description></description> </valid-value>
+               <valid-value name="Percentage" code="2"> <description></description>  </valid-value>
+               <valid-value name="Absolute"   code="3"> <description></description>  </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="CumQty" number="14" type="FIXQty">
+           <description>Total number of shares filled.</description>
+        </fix-tag>
+
+        <fix-tag name="Currency" number="15" type="FIXCurrency">
+           <description>&lt;html&gt;Identifies currency used for price.&lt;p&gt;
+                        Absence of this field in a message is interpreted as US Dollars.&lt;/html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="EndSeqNo" number="16" type="FIXSeqNum">
+          <description>&lt;html&gt;Message sequence number of last record in range to be resent.
+                    &lt;p&gt;If request is for a single record BeginSeqNo = EndSeqNo.
+                    &lt;p&gt;If request is for all messages subsequent to a particular message, EndSeqNo = "999999" &lt;/html&gt;
+          </description>
+        </fix-tag>
+
+        <fix-tag name="ExecID" number="17" type="FIXID">
+           <description>&lt;html&gt;Unique identifier of execution message as assigned by broker&lt;p&gt;
+                     (will be 0 (zero) for ExecTransType=3 (Status)).&lt;p&gt;
+                     Uniqueness must be guaranteed within a single trading day or &lt;p&gt;
+                     the life of a multi-day order. Firms which accept multi-day &lt;p&gt;
+                     orders should consider embedding a date within the ExecID &lt;p&gt;
+                     field to assure uniqueness across days.
+            </description>
+        </fix-tag>
+
+        <fix-tag name="ExecInst" number="18" type="FIXMultipleValueString">
+           <description>&lt;html&gt;Instructions for order handling on exchange trading floor.
+                        &lt;p&gt;If more than one instruction is applicable to an order, this field
+                        &lt;p&gt;can contain multiple instructions separated by space.&lt;/html&gt;</description>
+                <tag-constraints name="ExecInstType" fixed-enumeration="true">
+                       <valid-value name="Not Held"  code="1"> <description></description> </valid-value>
+                       <valid-value name="Work"      code="2"> <description></description> </valid-value>
+                       <valid-value name="Go Along"  code="3"> <description></description> </valid-value>
+                       <valid-value name="Over the day"  code="4"> <description></description> </valid-value>
+                       <valid-value name="Held"  code="5"> <description></description> </valid-value>
+                       <valid-value name="Participate don't initiate"  code="6"> <description></description> </valid-value>
+                       <valid-value name="Scrict scale"       code="7"> <description></description> </valid-value>
+                       <valid-value name="Try to scale"       code="8"> <description></description> </valid-value>
+                       <valid-value name="Stay on bidside"    code="9"> <description></description> </valid-value>
+                       <valid-value name="Stay on offerside"  code="0"> <description></description> </valid-value>
+                       <valid-value name="No Cross"           code="A"> <description></description> </valid-value>
+                       <valid-value name="OK to cross"        code="B"> <description></description> </valid-value>
+                       <valid-value name="Call first"         code="C"> <description></description> </valid-value>
+                       <valid-value name="Percent of volume"  code="D"> <description>Indicates that the sender does not want to be all of the volume on the floor vs. a specific percentage.</description> </valid-value>
+                       <valid-value name="DNI"  code="E"> <description>Do not increase</description> </valid-value>
+                       <valid-value name="DNR"  code="F"> <description>Do not reduce</description> </valid-value>
+                       <valid-value name="AON"  code="G"> <description>All or none</description> </valid-value>
+                       <valid-value name="Institutions only"  code="I"> <description></description> </valid-value>
+                       <valid-value name="Last peg"           code="j"> <description>(Last sale)</description> </valid-value>
+                       <valid-value name="Mid-price peg"      code="M"> <description>(midprice of inside quote)</description> </valid-value>
+                       <valid-value name="Non-negotiable"   code="N"> <description></description> </valid-value>
+                       <valid-value name="Opening peg"      code="O"> <description></description> </valid-value>
+                       <valid-value name="Market peg"       code="P"> <description></description> </valid-value>
+                       <valid-value name="Primary peg "     code="R"> <description>Primary market - buy at bid/sell at offer </description> </valid-value>
+                       <valid-value name="Suspend"          code="S"> <description></description> </valid-value>
+                       <valid-value name="Fix Local"        code="T"> <description>Fixed Peg to Local best bid or offer at time of order</description> </valid-value>
+                       <valid-value name="Customer display"  code="U"> <description>Customer Display Instruction (Rule11Ac1-1/4)</description> </valid-value>
+                       <valid-value name="Netting"      code="V"> <description>Netting (for Forex)</description> </valid-value>
+
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="ExecRefID" number="19" type="FIXID">
+           <description>Reference identifier used with Cancel and Correct transaction types.</description>
+        </fix-tag>
+
+        <fix-tag name="ExecTransType" number="20" type="FIXChar">
+           <description>Identifies transaction type </description>
+                <tag-constraints name="ExecTransTypeType" fixed-enumeration="true">
+                       <valid-value name="New"      code="0"> <description></description> </valid-value>
+                       <valid-value name="Cancel"   code="1"> <description></description> </valid-value>
+                       <valid-value name="Correct"  code="2"> <description></description> </valid-value>
+                       <valid-value name="Status"   code="3"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="HandlInst" number="21" type="FIXChar">
+           <description>Instructions for order handling on Broker trading floor</description>
+                <tag-constraints name="HandlInstType" fixed-enumeration="true">
+                       <valid-value name="Automated Private Order"      code="1">
+                            <description>Automated execution order, private, no Broker intervention</description>
+                        </valid-value>
+                       <valid-value name="Auomated Public Order"        code="2">
+                                <description>Automated execution order, public, Broker intervention OK</description>
+                        </valid-value>
+                       <valid-value name="Manual Order, Best Ex"        code="3">
+                            <description>Manual order, best execution</description>
+                        </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="IDSource" number="22" type="FIXString">
+           <description>Identifies class of alternative SecurityID. 100+ are reserved for private security identifications</description>
+                <tag-constraints name="IDSourceType" fixed-enumeration="false">
+                       <valid-value name="CUSIP"   code="1"> <description></description> </valid-value>
+                       <valid-value name="SEDOL"   code="2"> <description></description> </valid-value>
+                       <valid-value name="QUIK"   code="3"> <description></description> </valid-value>
+                       <valid-value name="ISIN"   code="4"> <description></description> </valid-value>
+                       <valid-value name="RIC"               code="5"> <description></description> </valid-value>
+                       <valid-value name="ISO Currency"      code="6"> <description></description> </valid-value>
+                       <valid-value name="ISO Country"       code="7"> <description></description> </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="IOIid" number="23" type="FIXString">
+           <description>Unique identifier of IOI message.  </description>
+        </fix-tag>
+
+        <fix-tag name="IOIOthSvc" number="24" type="FIXChar">
+           <description>Indicates if, and on which other services, the indication has been advertised. Each character
+                        represents an additonal service.
+            </description>
+            <tag-constraints name="IOIServiceType" fixed-enumeration="true">
+                   <valid-value name="Autex"    code="A"> <description></description> </valid-value>
+                   <valid-value name="Bridge"   code="B"> <description></description> </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="IOIQltyInd" number="25" type="FIXChar">
+           <description>Relative quality of indication</description>
+            <tag-constraints name="IOIQualityType" fixed-enumeration="true">
+                   <valid-value name="Low"    code="L"> <description></description> </valid-value>
+                   <valid-value name="Medium" code="M"> <description></description> </valid-value>
+                   <valid-value name="High"   code="H"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="IOIRefID" number="26" type="FIXID">
+           <description>Reference identifier used with CANCEL and REPLACE, transaction types.  </description>
+        </fix-tag>
+
+        <fix-tag name="IOIShares" number="27" type="FIXString">
+           <description>Number of shares in numeric or relative size.</description>
+                <tag-constraints name="IOISharesType" fixed-enumeration="false">
+                   <valid-value name="Small"  code="S"> <description></description> </valid-value>
+                   <valid-value name="Medium" code="M"> <description></description> </valid-value>
+                   <valid-value name="Large"  code="L"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="IOITransType" number="28" type="FIXChar">
+           <description>Identifies IOI message transaction type</description>
+                <tag-constraints name="IOITransTypeType" fixed-enumeration="true">
+                       <valid-value name="New"      code="N"> <description></description> </valid-value>
+                       <valid-value name="Cancel"   code="C"> <description></description> </valid-value>
+                       <valid-value name="Replace"  code="R"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="LastCapacity" number="29" type="FIXChar">
+           <description>Broker capacity in order execution</description>
+                <tag-constraints name="LastCapacityType" fixed-enumeration="true">
+                       <valid-value name="Agent"              code="1"> <description></description> </valid-value>
+                       <valid-value name="Cross as Agent"     code="2"> <description></description> </valid-value>
+                       <valid-value name="Cross as Principal" code="3"> <description></description> </valid-value>
+                       <valid-value name="Principal"          code="4"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="LastMkt" number="30" type="FIXExchange">
+           <description>Market of execution for last fill. See Appendix C of FIX protocol for valid values.</description>
+        </fix-tag>
+
+        <fix-tag name="LastPx" number="31" type="FIXPrice">
+           <description>Price of this (last) fill. Field not required for ExecTransType = 3 (Status)</description>
+        </fix-tag>
+
+        <fix-tag name="LastShares" number="32" type="FIXQty">
+           <description>Quantity of shares bought/sold on this (last) fill. Field not required for ExecTransType = 3 (Status) </description>
+        </fix-tag>
+
+        <fix-tag name="LinesOfText" number="33" type="FIXNumInGroup">
+           <description>Identifies number of lines of text body</description>
+        </fix-tag>
+
+        <fix-tag name="MsgSeqNum" number="34" type="FIXSeqNum">
+           <description>Integer message sequence number. </description>
+        </fix-tag>
+
+        <fix-tag name="MsgType" number="35" type="FIXString">
+            <description>&lt;html&gt;Defines message type. ALWAYS THIRD FIELD IN MESSAGE.(Always unencrypted).
+                    &lt;p&gt;Note: A "U" as the first character in the MsgType field (i.e. U1,
+                    &lt;p&gt;U2, etc) indicates that the message format is privately defined
+                     &lt;p&gt;between the sender and receiver. &lt;/html&gt;
+            </description>
+        <tag-constraints name="MsgTypeType" fixed-enumeration="true">
+           <valid-value name="Heartbeat"    code="0">
+                <description>The Heartbeat monitors the status of the communication link.</description>
+           </valid-value>
+           <valid-value name="Test Request" code="1">
+                <description>The test request message forces a heartbeat from the opposing application.</description>
+           </valid-value>
+           <valid-value name="Resend Request" code="2">
+                <description>The resend request is sent by the receiving application to initiate the retransmission of messages.</description>
+           </valid-value>
+
+           <valid-value name="Reject" code="3"><description></description></valid-value>
+           <valid-value name="Sequence Reset" code="4"><description></description></valid-value>
+           <valid-value name="Logout" code="5"><description></description></valid-value>
+           <valid-value name="Indication Of Interest" code="6"><description></description></valid-value>
+           <valid-value name="Advertisement" code="7"><description></description></valid-value>
+           <valid-value name="Execution Report" code="8"><description></description></valid-value>
+           <valid-value name="Order Cancel Reject" code="9"><description></description></valid-value>
+           <valid-value name="Logon" code="A"><description></description></valid-value>
+           <valid-value name="News" code="B"><description></description>       </valid-value>
+           <valid-value name="Email" code="C"><description></description></valid-value>
+           <valid-value name="New Single Order" code="D"><description></description></valid-value>
+           <valid-value name="New List Order" code="E"><description></description></valid-value>
+           <valid-value name="Order Cancel Request"  code="F"><description></description></valid-value>
+           <valid-value name="Order Replace Request" code="G"><description></description></valid-value>
+           <valid-value name="Order Status Request"  code="H"><description></description></valid-value>
+           <valid-value name="Allocation" code="J"><description></description></valid-value>
+           <valid-value name="List Cancel Request"   code="K"><description></description></valid-value>
+           <valid-value name="List Execute" code="L"><description></description></valid-value>
+           <valid-value name="List Status Request" code="M"><description></description></valid-value>
+           <valid-value name="List Status" code="N"><description></description></valid-value>
+           <valid-value name="Allocation ACK"  code="P"><description></description></valid-value>
+           <valid-value name="Dont Know Trade" code="Q"><description></description></valid-value>
+           <valid-value name="Quote Request"   code="R"><description></description></valid-value>
+           <valid-value name="Quote" code="S"><description></description>   </valid-value>
+           <valid-value name="Settlement Instruction" code="T"><description></description>  </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="NewSeqNum" number="36" type="FIXSeqNum">
+           <description>New sequence number</description>
+        </fix-tag>
+
+        <fix-tag name="OrderID" number="37" type="FIXID">
+           <description>&lt;html&gt; Unique identifier for Order as assigned by broker. Uniqueness
+                         &lt;p&gt;must be guaranteed within a single trading day. Firms which
+                         &lt;p&gt;accept multi-day orders should consider embedding a date
+                         &lt;p&gt;within the OrderID field to assure uniqueness across days. &lt;/html&gt;
+            </description>
+        </fix-tag>
+
+        <fix-tag name="OrderQty" number="38" type="FIXQty">
+           <description>Number of shares ordered.</description>
+        </fix-tag>
+
+        <fix-tag name="OrdStatus" number="39" type="FIXChar">
+           <description>Identifies current status of order.</description>
+                <tag-constraints name="OrdStatusType" fixed-enumeration="true">
+                   <valid-value name="New"             code="0"><description></description></valid-value>
+                   <valid-value name="Partial Fill"    code="1"><description></description></valid-value>
+                   <valid-value name="Filled"          code="2"><description></description></valid-value>
+                   <valid-value name="Done for Day"    code="3"><description></description></valid-value>
+                   <valid-value name="Canceled"        code="4"><description></description></valid-value>
+                   <valid-value name="Replaced"        code="5"><description></description></valid-value>
+                   <valid-value name="Cancel/Replace"  code="6"><description>Result of Order Cancel/Replace Request</description></valid-value>
+                   <valid-value name="Stopped"         code="7"><description></description></valid-value>
+                   <valid-value name="Rejected"        code="8"><description></description></valid-value>
+                   <valid-value name="Suspended"       code="9"><description></description></valid-value>
+                   <valid-value name="Pending New"     code="A"><description></description></valid-value>
+                   <valid-value name="Calculated"      code="B"><description></description></valid-value>
+                   <valid-value name="Expired"         code="C"><description></description></valid-value>
+                    </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="OrdType" number="40" type="FIXChar">
+           <description>Order type.</description>
+                <tag-constraints name="OrdTypeType" fixed-enumeration="true">
+                   <valid-value name="Market"          code="1"><description></description></valid-value>
+                   <valid-value name="Limit"           code="2"><description></description></valid-value>
+                   <valid-value name="Stop"             code="3"><description></description></valid-value>
+                   <valid-value name="Stop Limit"            code="4"><description></description></valid-value>
+                   <valid-value name="Market on Close"       code="5"><description></description></valid-value>
+                   <valid-value name="With or without"       code="6"><description></description></valid-value>
+                   <valid-value name="Limit or better"       code="7"><description></description></valid-value>
+                   <valid-value name="Limit with or without" code="8"><description></description></valid-value>
+                   <valid-value name="On basis"              code="9"><description></description></valid-value>
+                   <valid-value name="On close"                  code="A"><description></description></valid-value>
+                   <valid-value name="Limit on close"            code="B"><description></description></valid-value>
+                   <valid-value name="Forex -Market"             code="C"><description></description></valid-value>
+                   <valid-value name="Previously quoted"         code="D"><description></description></valid-value>
+                   <valid-value name="Previously indicated"      code="E"><description></description></valid-value>
+                   <valid-value name="Forex - Limit"             code="F"><description></description></valid-value>
+                   <valid-value name="Forex - Swap"              code="G"><description></description></valid-value>
+                   <valid-value name="Forex - Previously Quoted" code="H"><description></description></valid-value>
+                   <valid-value name="Pegged"             code="P"><description>requires ExecInst = L, R, M, P or O)</description></valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="OrigClOrdID" number="41" type="FIXID">
+           <description>&lt;html&gt;ClOrdID of the previous order (NOT the initial order of the day)
+                        &lt;p&gt;as assigned by the institution, used to identify the
+                        &lt;p&gt;previous order in cancel and cancel/replace requests.</description>
+        </fix-tag>
+
+        <fix-tag name="OrigTime" number="42" type="UTCTimestamp">
+           <description>Time of message origination. Aalways expressed in UTC (Universal Time Coordinated, also known as "GMT"). </description>
+        </fix-tag>
+
+        <fix-tag name="PossDupFlag" number="43" type="FIXBoolean">
+           <description>Indicates possible retransmission of message with this sequence number</description>
+            <tag-constraints name="PossDupType" fixed-enumeration="true">
+                   <valid-value name="Possible Duplicate"     code="Y"><description></description></valid-value>
+                   <valid-value name="Original Transmission"  code="N"><description></description></valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="Price" number="44" type="FIXPrice">
+            <description>Price per share</description>
+        </fix-tag>
+
+        <fix-tag name="RefSeqNo" number="45" type="FIXSeqNum">
+            <description>Reference message sequence number</description>
+        </fix-tag>
+
+        <fix-tag name="RelatedSym" number="46" type="FIXString">
+        <description>&lt;html&gt; Symbol of issue related to story.
+                      &lt;p&gt;Can be repeated within message to identify multiple companies.&lt;/html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="Rule80A" number="47" type="FIXChar">
+        <description>&lt;html&gt;Indicates order type upon which exchange Rule 80A is applied. &lt;/html&gt; </description>
+            <tag-constraints name="Rule80AType" fixed-enumeration="true">
+                   <valid-value name="Agency single order"                               code="A"><description></description></valid-value>
+                   <valid-value name="Program Order, non-index arb, for Member firm/org" code="C"><description></description></valid-value>
+                   <valid-value name="Program Order, index arb, for Member firm/org"     code="D"><description></description></valid-value>
+                   <valid-value name="Registered Equity Market Maker trades"             code="E"><description></description></valid-value>
+                   <valid-value name="Individual Investor, single order"                 code="I"><description></description></valid-value>
+                   <valid-value name="Program Order, index arb, for individual customer"      code="J"><description></description></valid-value>
+                   <valid-value name="Program Order, non-index arb, for individual customer"  code="K"><description></description></valid-value>
+                   <valid-value name="Program Order, index arb, for other agency"             code="U"><description></description></valid-value>
+                   <valid-value name="Program Order, non-index arb, for other agency"         code="Y"><description></description></valid-value>
+                   <valid-value name="Program Order, index arb, for other member"             code="M"><description></description></valid-value>
+                   <valid-value name="Program Order, non-index arb, for other member"         code="N"><description></description></valid-value>
+                   <valid-value name="Competing Dealer Trades"                                code="O"><description></description></valid-value>
+                   <valid-value name="Principal"                                              code="P"><description></description></valid-value>
+                   <valid-value name="Competing dealer trades"                                code="R"><description></description></valid-value>
+                   <valid-value name="Specialist trades"                                      code="S"><description></description></valid-value>
+                   <valid-value name="Competing dealer trades"                                code="T"><description></description></valid-value>
+                   <valid-value name="Program Order, index arb, for other agency"             code="U"><description></description></valid-value>
+                   <valid-value name="All other orders as agent for other member"             code="W"><description></description></valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="SecurityID" number="48" type="FIXString">
+        <description>CUSIP or other alternate security identifier</description>
+        </fix-tag>
+
+        <fix-tag name="SenderCompID" number="49" type="FIXString">
+        <description>Assigned value used to identify firm sending message.</description>
+        </fix-tag>
+
+        <fix-tag name="SenderSubID" number="50" type="FIXString">
+        <description>Assigned value used to identify specific message originator (desk, trader, etc.)</description>
+        </fix-tag>
+
+        <fix-tag name="SendingDate" number="51" type="LocalMktDate">
+            <description>This tag is currently not used.</description>
+        </fix-tag>
+
+
+        <fix-tag name="SendingTime" number="52" type="UTCTimestamp">
+            <description>Time of message transmission. Always expressed in UTC (Universal Time Coordinated, also known as "GMT")</description>
+        </fix-tag>
+
+        <fix-tag name="Shares" number="53" type="FIXQty">
+        <description>Number of shares.</description>
+        </fix-tag>
+
+        <fix-tag name="Side" number="54" type="FIXChar">
+
+            <tag-constraints name="SideType" fixed-enumeration="true">
+                <valid-value name="Buy" code="1">
+                    <description></description>
+                </valid-value>
+                <valid-value name="Sell" code="2">
+                    <description></description>
+                </valid-value>
+                <valid-value name="BuyMinus" code="3">
+                    <description></description>
+                </valid-value>
+                <valid-value name="SellPlus" code="4">
+                    <description></description>
+                </valid-value>
+                <valid-value name="SellShort" code="5">
+                    <description></description>
+                </valid-value>
+                <valid-value name="SellShortEx" code="6">
+                    <description></description>
+                </valid-value>
+                <valid-value name="Undisclosed" code="7">
+                    <description></description>
+                </valid-value>
+                <valid-value name="Cross" code="8">
+                    <description>Orders where counterparty is an exchange</description>
+                </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="Symbol" number="55" type="FIXString">
+            <description>Ticker Symbol</description>
+        </fix-tag>
+
+        <fix-tag name="TargetCompID" number="56" type="FIXString">
+            <description>Assigned value used to identify receiving firm.</description>
+        </fix-tag>
+
+        <fix-tag name="TargetSubID" number="57" type="FIXString">
+            <description>&lt;html&gt;Assigned value used to identify specific individual or unit
+                        &lt;p&gt; intended to receive message. "ADMIN" reserved for
+                        &lt;p&gt; administrative messages not intended for a specific user.&lt;/html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="Text" number="58" type="FIXString">
+        <description>Free format text string</description>
+        </fix-tag>
+
+        <fix-tag name="TimeInForce" number="59" type="FIXChar">
+            <description>Specifies how long the order remains in effect. Absence of this field is interpreted as DAY.</description>
+            <tag-constraints name="TimeInForceType" fixed-enumeration="true">
+                <valid-value name="Day"                 code="0"> <description></description> </valid-value>
+                <valid-value name="Good Till Cancel"    code="1"> <description></description> </valid-value>
+                <valid-value name="At the Opening"      code="2"> <description></description> </valid-value>
+                <valid-value name="Immediate or Cancel" code="3"> <description></description> </valid-value>
+                <valid-value name="Fill or Kill"        code="4"> <description></description> </valid-value>
+                <valid-value name="Good Till Crossing"  code="5"> <description></description> </valid-value>
+                <valid-value name="Good Till Date"      code="6"> <description></description> </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="TransactTime" number="60" type="UTCTimestamp">
+        <description>Time of execution/order creation expressed in GMT</description>
+        </fix-tag>
+
+    <fix-tag name="Urgency" number="61" type="FIXChar">
+    <description>Urgency Flag</description>
+            <tag-constraints name="UrgencyType" fixed-enumeration="true">
+                <valid-value name="Normal"     code="0"> <description></description> </valid-value>
+                <valid-value name="Flash"      code="1"> <description></description> </valid-value>
+                <valid-value name="Background" code="2"> <description></description> </valid-value>
+            </tag-constraints>
+    </fix-tag>
+
+    <fix-tag name="ValidUntilTime" number="62" type="UTCTimestamp">
+        <description>Indicates expiration time of indication message (always expressed in GMT). </description>
+    </fix-tag>
+
+        <fix-tag name="SettlmntTyp" number="63" type="FIXChar">
+            <description>&lt;html&gt;Indicates order settlement period. Absence of this field is
+                     &lt;p&gt; interpreted as Regular. Regular is defined as the default
+                     &lt;p&gt; settlement period for the particular security on the exchange of execution.&lt;/html&gt;</description>
+            <tag-constraints name="SttlmntTypType" fixed-enumeration="true">
+                <valid-value name="Regular"         code="0"> <description></description> </valid-value>
+                <valid-value name="Cash"            code="1"> <description></description> </valid-value>
+                <valid-value name="Next Day"        code="2"> <description></description> </valid-value>
+                <valid-value name="T+2"             code="3"> <description></description> </valid-value>
+                <valid-value name="T+3"             code="4"> <description></description> </valid-value>
+                <valid-value name="T+4"             code="5"> <description></description> </valid-value>
+                <valid-value name="Future"          code="6"> <description></description> </valid-value>
+                <valid-value name="When Issued"     code="7"> <description></description> </valid-value>
+                <valid-value name="Sellers Option"  code="8"> <description></description> </valid-value>
+                <valid-value name="T + 5"           code="9"> <description></description> </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="FutSettDate" number="64" type="LocalMktDate">
+            <description>&lt;html&gt;Specific date of trade settlement (SettlementDate) in
+                       &lt;p&gt; YYYYMMDD format. Required when SettlmntTyp = 6 (Future)
+                       &lt;p&gt; or SettlmntTyp = 8 (Sellers Option). (expressed in local time at place of settlement)&lt;/html&gt;</description>
+        </fix-tag>
+
+
+        <fix-tag name="SymbolSfx" number="65" type="FIXString">
+            <description>Additional information about the security (e.g. preferred, warrants, etc.). Note also see SecurityType.  </description>
+        </fix-tag>
+
+        <fix-tag name="ListID" number="66" type="FIXID">
+            <description>&lt;html&gt;Unique identifier for list as assigned by institution, used to
+                         &lt;p&gt;associate multiple individual orders. Uniqueness must be
+                         &lt;p&gt;guaranteed within a single trading day. Firms which generate
+                         &lt;p&gt;multi-day orders should consider embedding a date within the
+                         &lt;p&gt;ListID field to assure uniqueness across days.&lt;/html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="ListSeqNo" number="67" type="FIXInt">
+            <description>Sequence of individual order within list (i.e. ListSeqNo of ListNoOrds, 2 of 25, 3 of 25, . . . )</description>
+        </fix-tag>
+
+        <fix-tag name="ListNoOrds" number="68" type="FIXInt">
+            <description>&lt;html&gt;Total number of list order entries across all messages. Should
+                         &lt;p&gt; be the sum of all NoOrders in each message that has repeating
+                         &lt;p&gt; list order entries related to the same ListID. Used to support fragmentation. &lt;/html&gt;  </description>
+        </fix-tag>
+
+        <fix-tag name="ListExecInst" number="69" type="FIXString">
+            <description>Free format text message containing list handling and execution instructions.</description>
+        </fix-tag>
+
+
+        <fix-tag name="AllocID" number="70" type="FIXID">
+            <description>Unique identifier for allocation message.</description>
+        </fix-tag>
+
+        <fix-tag name="AllocTransType" number="71" type="FIXChar">
+            <description>Identifies allocation transaction type</description>
+            <tag-constraints name="AllocTransTypeType" fixed-enumeration="true">
+                <valid-value name="New"     code="0"> <description></description> </valid-value>
+                <valid-value name="Cancel"  code="1"> <description></description> </valid-value>
+                <valid-value name="Replace" code="2"> <description></description> </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="RefAllocID" number="72" type="FIXID">
+            <description>Reference identifier to be used with Replace and Cancel AllocTransType messages. </description>
+        </fix-tag>
+
+
+        <fix-tag name="NoOrders" number="73" type="FIXNumInGroup">
+            <description>Indicates number of orders to be combined for average pricing and allocation.</description>
+        </fix-tag>
+
+        <fix-tag name="AvgPrxPrecision" number="74" type="FIXInt">
+            <description>&lt;html&gt;Indicates number of decimal places to be used for average pricing.
+                         &lt;p&gt;Absence of this field indicates that default precision
+                         &lt;p&gt;arranged by the broker/institution is to be used.&lt;/html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="TradeDate" number="75" type="LocalMktDate">
+            <description>&lt;html&gt;Indicates date of trade referenced in this message in YYYYMMDD format.
+                        &lt;p&gt;Absence of this field indicates current
+                        &lt;p&gt;day (expressed in local time at place of trade).&lt;/html&gt;</description>
+        </fix-tag>
+
+
+        <fix-tag name="ExecBroker" number="76" type="FIXString">
+            <description>Identifies executing / give-up broker. Standard NASD market-maker mnemonic is preferred.</description>
+        </fix-tag>
+
+
+        <fix-tag name="OpenClose" number="77" type="FIXChar">
+            <description>For options only.</description>
+        </fix-tag>
+
+        <fix-tag name="NoAllocs" number="78" type="FIXNumInGroup">
+        <description>Number of repeating AllocAccount/AllocPrice entries.</description>
+        </fix-tag>
+
+        <fix-tag name="AllocAccount" number="79" type="FIXString">
+                <description>Sub-account mnemonic.</description>
+        </fix-tag>
+
+        <fix-tag name="AllocShares" number="80" type="FIXQty">
+            <description>Number of shares to be allocated to specific sub-account </description>
+        </fix-tag>
+
+        <fix-tag name="ProcessCode" number="81" type="FIXChar">
+            <description>&lt;html&gt;Processing code for sub-account. Absence of this field in
+                        &lt;p&gt; AllocAccount / AllocPrice/AllocShares / ProcessCode instance
+                        &lt;p&gt;indicates regular trade. &lt;/html&gt;</description>
+        </fix-tag>
+
+
+        <fix-tag name="NoRpts" number="82" type="FIXNumInGroup">
+            <description>Total number of reports within series.</description>
+        </fix-tag>
+
+        <fix-tag name="RptSeq" number="83" type="FIXInt">
+            <description>Sequence number of message within report series.</description>
+        </fix-tag>
+
+        <fix-tag name="CxlQty" number="84" type="FIXQty">
+            <description>Total number of shares canceled for this order.</description>
+        </fix-tag>
+
+        <fix-tag name="NoDlvyInst" number="85" type="FIXNumInGroup">
+            <description>Number of delivery instruction fields to follow.</description>
+        </fix-tag>
+
+        <fix-tag name="DlvyInst" number="86" type="FIXString">
+            <description>Free format text field to indicate delivery instructions </description>
+        </fix-tag>
+
+        <fix-tag name="AllocStatus" number="87" type="FIXInt">
+            <description>Identifies status of allocation.  </description>
+            <tag-constraints name="AllocStatusType" fixed-enumeration="true">
+                <valid-value name="Accepted"  code="0"> <description>Accepted (successfully processed) </description> </valid-value>
+                <valid-value name="Rejected"  code="1"> <description></description> </valid-value>
+                <valid-value name="Partial"   code="2"> <description>Partial Accept</description> </valid-value>
+                <valid-value name="Received"  code="3"> <description>Received (received, not yet processed)</description> </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="AllocRejCode" number="88" type="FIXInt">
+               <description>Identifies reason for rejection.</description>
+            <tag-constraints name="AllocRejType" fixed-enumeration="true">
+                <valid-value name="Unknown account(s)"       code="0"> <description></description> </valid-value>
+                <valid-value name="Incorrect quantity"       code="1"> <description></description> </valid-value>
+                <valid-value name="Incorrect average price"  code="2"> <description></description> </valid-value>
+                <valid-value name="Unknown executing broker mnemonic"  code="3"> <description></description> </valid-value>
+                <valid-value name="Commission difference"    code="4"> <description></description> </valid-value>
+                <valid-value name="Unknown OrderID"  code="5"> <description></description> </valid-value>
+                <valid-value name="Unknown ListID"   code="6"> <description></description> </valid-value>
+                <valid-value name="other"            code="7"> <description></description> </valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="Signature" number="89" type="FIXData">
+               <description>Electronic signature</description>
+        </fix-tag>
+
+        <fix-tag name="SecureDataLen" number="90" type="FIXLength">
+                   <description>Length of encrypted message</description>
+        </fix-tag>
+
+        <fix-tag name="SecureData" number="91" type="FIXData">
+                  <description>Actual encrypted data stream</description>
+        </fix-tag>
+
+        <fix-tag name="BrokerOfCredit" number="92" type="FIXString">
+               <description>Broker to receive trade credit.</description>
+        </fix-tag>
+
+    <fix-tag name="SignatureLength" number="93" type="FIXLength">
+           <description>Number of bytes in signature field.</description>
+    </fix-tag>
+
+    <fix-tag name="EmailType" number="94" type="FIXChar">
+        <description>Email message type.</description>
+        <tag-constraints name="EmailTypeType" fixed-enumeration="true">
+            <valid-value name="New"         code="0"> <description></description> </valid-value>
+            <valid-value name="Reply"       code="1"> <description></description> </valid-value>
+            <valid-value name="Admin Reply" code="2"> <description></description> </valid-value>
+        </tag-constraints>
+    </fix-tag>
+
+
+
+    <fix-tag name="RawDataLength" number="95" type="FIXLength">
+           <description>Number of bytes in raw data field.</description>
+    </fix-tag>
+
+    <fix-tag name="RawData" number="96" type="FIXData">
+           <description>Unformatted raw data, can include bitmaps, word processor documents, etc.</description>
+    </fix-tag>
+
+    <fix-tag name="PossResend" number="97" type="FIXBoolean">
+           <description>Indicates that message may contain information that has been sent under another sequence number.  </description>
+            <tag-constraints name="PossResendType" fixed-enumeration="true">
+                   <valid-value name="Possible Duplicate"     code="Y"><description></description></valid-value>
+                   <valid-value name="Original Transmission"  code="N"><description></description></valid-value>
+            </tag-constraints>
+    </fix-tag>
+
+        <fix-tag name="EncryptMethod" number="98" type="FIXInt">
+           <description>Method of encryption.</description>
+            <tag-constraints name="EncryptMethodType" fixed-enumeration="true">
+                   <valid-value name="None"        code="0"><description> None / other</description></valid-value>
+                   <valid-value name="PCKS"        code="1"><description>PKCS (proprietary)</description></valid-value>
+                   <valid-value name="DES"         code="2"><description> DES (ECB mode)</description></valid-value>
+                   <valid-value name="PKCS"        code="3"><description>PKCS/DES (proprietary)</description></valid-value>
+                   <valid-value name="PGP/DES"     code="4"><description>PGP/DES (defunct)</description></valid-value>
+                   <valid-value name="PGP/DES-MD5" code="5"><description>PGP/DES-MD5 (see app note on FIX web site)</description></valid-value>
+                   <valid-value name="PEM/DES-MD5" code="6"><description>PEM/DES-MD5 (see app note on FIX web site)</description></valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+
+        <fix-tag name="StopPx" number="99" type="FIXPrice">
+               <description>Price per share</description>
+        </fix-tag>
+
+        <fix-tag name="ExDestination" number="100" type="FIXExchange">
+               <description>Execution destination as defined by institution when order is entered.</description>
+        </fix-tag>
+
+
+        <fix-tag name="CxlRejReason" number="102" type="FIXInt">
+           <description>Code to identify reason for cancel rejection.  </description>
+            <tag-constraints name="CxlRejReasonType" fixed-enumeration="true">
+                   <valid-value name="Too Late to cancel"  code="0"><description></description></valid-value>
+                   <valid-value name="Unknown Order"       code="1"><description></description></valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="OrdRejReason" number="103" type="FIXInt">
+           <description>Code to identify reason for order rejection.</description>
+            <tag-constraints name="OrdRejReasonType" fixed-enumeration="true">
+                   <valid-value name="Broker option"       code="0"><description></description></valid-value>
+                   <valid-value name="Unknown Symbol"      code="1"><description></description></valid-value>
+                   <valid-value name="Exchange closed"     code="2"><description></description></valid-value>
+                   <valid-value name="Order Exceeds Limit" code="3"><description></description></valid-value>
+                   <valid-value name="Too late to enter"   code="4"><description></description></valid-value>
+                   <valid-value name="Unknown Order"       code="5"><description></description></valid-value>
+                   <valid-value name="Duplicate Order"     code="6"><description></description></valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+
+        <fix-tag name="IOIQualifier" number="104" type="FIXChar">
+           <description>Code to qualify IOI use.  </description>
+            <tag-constraints name="IOIQualifierType" fixed-enumeration="true">
+                   <valid-value name="Crossing opportunity"   code="X"><description></description></valid-value>
+                   <valid-value name="At the open"            code="O"><description></description></valid-value>
+                   <valid-value name="More behind"            code="M"><description></description></valid-value>
+                   <valid-value name="Taking a position"      code="P"><description></description></valid-value>
+                   <valid-value name="Versus"                 code="V"><description></description></valid-value>
+                   <valid-value name="Current Quote"          code="Q"><description></description></valid-value>
+                   <valid-value name="At the close"           code="C"><description></description></valid-value>
+                   <valid-value name="Portfolio show-n"       code="S"><description></description></valid-value>
+                   <valid-value name="In touch with"          code="I"><description></description></valid-value>
+                   <valid-value name="Indication - Working away"       code="W"><description></description></valid-value>
+                   <valid-value name="All or none"          code="A"><description></description></valid-value>
+                   <valid-value name="Limit"                code="L"><description></description></valid-value>
+                   <valid-value name="Through the day"      code="T"><description></description></valid-value>
+            </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="WaveNo" number="105" type="FIXString">
+           <description>Identifier to aid in the management of multiple lists derived from a single, master list.</description>
+        </fix-tag>
+
+        <fix-tag name="Issuer" number="106" type="FIXString">
+           <description>Company name of security issuer (e.g. International Business Machines) </description>
+        </fix-tag>
+
+        <fix-tag name="SecurityDesc" number="107" type="FIXString">
+           <description>Security description. </description>
+        </fix-tag>
+
+        <fix-tag name="HeartBtInt" number="108" type="FIXInt">
+           <description>Heartbeat interval (seconds) </description>
+        </fix-tag>
+
+
+        <fix-tag name="ClientID" number="109" type="FIXID">
+           <description>Firm identifier used in third party-transactions. </description>
+        </fix-tag>
+
+        <fix-tag name="MinQty" number="110" type="FIXQty">
+                   <description>Minimum quantity of an order to be executed. </description>
+        </fix-tag>
+
+        <fix-tag name="MaxFloor" number="111" type="FIXQty">
+                   <description>Maximum number of shares within an order to be shown on the exchange floor at any given time. </description>
+        </fix-tag>
+
+        <fix-tag name="TestReqID" number="112" type="FIXID">
+                   <description>Identifier included in Test Request message to be returned in resulting Heartbeat</description>
+        </fix-tag>
+
+    <fix-tag name="ReportToExch" number="113" type="FIXBoolean">
+           <description>Identifies party of trade responsible for exchange reporting.  </description>
+            <tag-constraints name="ReportToExchType" fixed-enumeration="true">
+                  <valid-value name="Receiver Reports" code="Y">
+                        <description>Indicates that party receiving message must report trade</description>
+                  </valid-value>
+                <valid-value name="Sender Reports"   code="N">
+                    <description>Indicates that party sending message will report trade</description>
+                </valid-value>
+            </tag-constraints>
+    </fix-tag>
+
+    <fix-tag name="LocateReqd" number="114" type="FIXBoolean">
+           <description>Indicates whether the broker is to locate the stock in conjunction with a short sell order.</description>
+            <tag-constraints name="LocateReqdType" fixed-enumeration="true">
+                  <valid-value name="Broker Locate required" code="Y">
+                    <description>Indicates the broker is responsible for locating the stock</description>
+                  </valid-value>
+                  <valid-value name="Broker Locate not required" code="N">
+                        <description>Indicates the broker is not required to locate</description>
+                  </valid-value>
+            </tag-constraints>
+    </fix-tag>
+
+    <fix-tag name="OnBehalfOfCompID" number="115" type="FIXString">
+           <description>&lt;html&gt;Assigned value used to identify firm originating message if the
+                        &lt;p&gt;message was delivered by a third party i.e. the third party firm
+                        &lt;p&gt;identifier would be delivered in the SenderCompID field and the
+                        &lt;p&gt;firm originating the message in this field.&lt;/html&gt;</description>
+
+    </fix-tag>
+
+    <fix-tag name="OnBehalfOfSubID" number="116" type="FIXString">
+           <description>Assigned value used to identify specific message originator (i.e.  trader) if the message was delivered by a third party</description>
+
+    </fix-tag>
+    <fix-tag name="QuoteID" number="117" type="FIXID">
+          <description>Unique identifier for quote</description>
+    </fix-tag>
+    <fix-tag name="NetMoney" number="118" type="FIXAmt">
+           <description>&lt;html&gt;Total amount due as the result of the transaction
+                        &lt;p&gt; (e.g. for Buy order - principal + commission + fees)
+                        &lt;p&gt; reported in currency of execution. &lt;/html&gt;</description>
+    </fix-tag>
+    <fix-tag name="SettlCurrAmt" number="119" type="FIXAmt">
+           <description>Total amount due expressed in settlement currency (includes the effect of the forex transaction)</description>
+    </fix-tag>
+
+    <fix-tag name="SettlCurrency" number="120" type="FIXCurrency">
+           <description>Currency code of settlement denomination. </description>
+    </fix-tag>
+
+            <fix-tag name="ForexReq" number="121" type="FIXBoolean">
+                <description>Indicates request for forex accommodation trade to be executed along with security transaction.</description>
+                <tag-constraints name="ForexReqType" fixed-enumeration="true">
+                    <valid-value name="Execute Forex" code="Y">
+                        <description>Execute Forex after security trade</description>
+                    </valid-value>
+                    <valid-value name="Don't execute Forex" code="N">
+                        <description>Do not execute Forex after security trade</description>
+                    </valid-value>
+                </tag-constraints>
+            </fix-tag>
+
+            <fix-tag name="OrigSendingTime" number="122" type="UTCTimestamp">
+               <description>Original time of message transmission (always expressed in GMT
+                            when transmitting orders as the result of a resend request.</description>
+            </fix-tag>
+
+            <fix-tag name="GapFillFlag" number="123" type="FIXBoolean">
+                <description></description>
+                <tag-constraints name="GapFillType" fixed-enumeration="true">
+                <valid-value name="Gap Fill message, valid MsgSeqNum " code="Y">
+                    <description></description>
+                </valid-value>
+                <valid-value name="Sequence Reset message, ingore MsgSeqNum" code="N">
+                    <description></description>
+                </valid-value>
+                </tag-constraints>
+            </fix-tag>
+
+            <fix-tag name="NoExecs" number="124" type="FIXNumInGroup">
+                <description>No of execution repeating group entries to follow.</description>
+            </fix-tag>
+
+            <fix-tag name="CxlType" number="125" type="FIXChar">
+               <description>Defines if cancel is for part or all of the remaining quantity of an order.</description>
+                    <tag-constraints name="CxlTypeType" fixed-enumeration="true">
+                        <valid-value name="Partial Cancel" code="P">
+                            <description>Partial cancel (reduce quantity)</description>
+                        </valid-value>
+                        <valid-value name="Full Cancel" code="F">
+                            <description>Full Remaining Quantity</description>
+                        </valid-value>
+                </tag-constraints>
+            </fix-tag>
+
+            <fix-tag name="ExpireTime" number="126" type="UTCTimestamp">
+                <description>Time/Date of order expiration expressed in GMT</description>
+            </fix-tag>
+
+        <fix-tag name="DKReason" number="127" type="FIXChar">
+           <description>Reason for execution rejection.</description>
+                <tag-constraints name="DKReasonType" fixed-enumeration="true">
+                    <valid-value name="Uknown Symbol"          code="A"> <description></description> </valid-value>
+                    <valid-value name="Wrong Side"             code="B"> <description></description> </valid-value>
+                    <valid-value name="Quantity Exceeds Order" code="C"> <description></description> </valid-value>
+                    <valid-value name="No matching order"      code="D"> <description></description> </valid-value>
+                    <valid-value name="Price exceeds Limit"    code="E"> <description></description> </valid-value>
+                    <valid-value name="Other" code="Z"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="DeliverToCompID" number="128" type="FIXString">
+           <description>&lt;html&gt;Assigned value used to identify the firm targeted to receive the
+                        &lt;p&gt;message if the message is delivered by a third party i.e. the
+                        &lt;p&gt;third party firm identifier would be delivered in the
+                        &lt;p&gt;TargetCompID field and the ultimate receiver firm ID in this field.&lt;/html&gt;</description>
+        </fix-tag>
+
+        <fix-tag name="DeliverToSubID" number="129" type="FIXString">
+           <description>Assigned value used to identify specific message recipient (i.e.  trader) if the message is delivered by a third part</description>
+        </fix-tag>
+
+        <fix-tag name="IOINaturalFlag" number="130" type="FIXBoolean">
+           <description>&lt;html&gt;Indicates that IOI is the result of an existing agency order or a
+                        &lt;p&gt;facilitation position resulting from an agency order, not from
+                        &lt;p&gt;principal trading or order solicitation activity.&lt;/html&gt;</description>
+                <tag-constraints name="IOINaturalType" fixed-enumeration="true">
+                    <valid-value name="Natural"     code="Y"> <description></description> </valid-value>
+                    <valid-value name="Not Natural" code="N"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="QuoteReqID" number="131" type="FIXID">
+           <description>Unique identifier for quote request</description>
+        </fix-tag>
+
+        <fix-tag name="BidPx" number="132" type="FIXPrice">
+           <description>Bid price/rate</description>
+        </fix-tag>
+
+        <fix-tag name="OfferPx" number="133" type="FIXPrice">
+           <description>Offer price/rate</description>
+        </fix-tag>
+
+        <fix-tag name="BidSize" number="134" type="FIXQty">
+           <description>Quantity of bid</description>
+        </fix-tag>
+
+        <fix-tag name="OfferSize" number="135" type="FIXQty">
+           <description>Quantity of offer</description>
+        </fix-tag>
+
+        <fix-tag name="NoMiscFees" number="136" type="FIXNumInGroup">
+           <description>Number of repeating groups of miscellaneous fees</description>
+        </fix-tag>
+
+        <fix-tag name="MiscFeeAmt" number="137" type="FIXAmt">
+           <description>Miscellaneous fee value</description>
+        </fix-tag>
+
+        <fix-tag name="MiscFeeCurr" number="138" type="FIXCurrency">
+           <description>Currency of miscellaneous fee</description>
+        </fix-tag>
+
+        <fix-tag name="MiscFeeType" number="139" type="FIXChar">
+           <description>Indicates type of miscellaneous fee.</description>
+                <tag-constraints name="MiscFeeTypeType" fixed-enumeration="true">
+                    <valid-value name="Regulatory"       code="1"> <description></description> </valid-value>
+                    <valid-value name="Tax"              code="2"> <description></description> </valid-value>
+                    <valid-value name="Local Commission" code="3"> <description></description> </valid-value>
+                    <valid-value name="Exchange Fees"    code="4"> <description></description> </valid-value>
+                    <valid-value name="Stamp"            code="5"> <description></description> </valid-value>
+                    <valid-value name="Levy"             code="6"> <description></description> </valid-value>
+                    <valid-value name="Other"            code="7"> <description></description> </valid-value>
+                    <valid-value name="Markup"           code="8"> <description></description> </valid-value>
+                </tag-constraints>
+        </fix-tag>
+
+        <fix-tag name="PrevClosePx" number="140" type="FIXPrice">
+           <description> Previous closing price of security.</description>
+        </fix-tag>
+
+        <fix-tag name="ResetSeqNumFlag" number="141" type="FIXBoolean">
+            <tag-constraints fixed-enumeration="true" name="ResetSeqNumFlagType">
+                <valid-value code="Y" name="Yes, reset sequence numbers">
+                    <description/>
+                </valid-value>
+                <valid-value code="N" name="No">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Indicates that the both sides of the FIX session should reset sequence numbers.Valid values:Y = Yes, reset sequence numbersN = No</description>
+        </fix-tag>
+        <fix-tag name="SenderLocationID" number="142" type="FIXString">
+            <description>Assigned value used to identify specific message originator?ocation (i.e. geographic location and/or desk, trader)</description>
+        </fix-tag>
+        <fix-tag name="TargetLocationID" number="143" type="FIXString">
+            <description>Assigned value used to identify specific message originator?ocation (i.e. geographic location and/or desk, trader)</description>
+        </fix-tag>
+        <fix-tag name="OnBehalfOfLocationID" number="144" type="FIXString">
+            <description>Assigned value used to identify specific message originator?ocation (i.e. geographic location and/or desk, trader) if the message was delivered by a third party</description>
+        </fix-tag>
+        <fix-tag name="DeliverToLocationID" number="145" type="FIXString">
+            <description>Assigned value used to identify specific message originator?ocation (i.e. geographic location and/or desk, trader) if the message was delivered by a third party</description>
+        </fix-tag>
+        <fix-tag name="NoRelatedSym" number="146" type="FIXNumInGroup">
+            <description>Specifies the number of repeating symbols specified.</description>
+        </fix-tag>
+        <fix-tag name="Subject" number="147" type="FIXString">
+            <description>The subject of an Email message</description>
+        </fix-tag>
+        <fix-tag name="Headline" number="148" type="FIXString">
+            <description>The headline of a News message</description>
+        </fix-tag>
+        <fix-tag name="URLLink" number="149" type="FIXString">
+            <description>A URL (Uniform Resource Locator) link to additional information (i.e. http://www.XYZ.com/research.html)</description>
+        </fix-tag>
+        <fix-tag name="ExecType" number="150" type="FIXChar">
+            <tag-constraints fixed-enumeration="true" name="ExecTypeType">
+                <valid-value code="0" name="New">
+                    <description/>
+                </valid-value>
+                <valid-value code="1" name="Partial fill">
+                    <description/>
+                </valid-value>
+                <valid-value code="2" name="Fill">
+                    <description/>
+                </valid-value>
+                <valid-value code="3" name="Done for day">
+                    <description/>
+                </valid-value>
+                <valid-value code="4" name="Cancelled">
+                    <description/>
+                </valid-value>
+                <valid-value code="5" name="Replace">
+                    <description/>
+                </valid-value>
+                <valid-value code="6" name="Pending Cancel/Replace">
+                    <description/>
+                </valid-value>
+                <valid-value code="7" name="Stopped">
+                    <description/>
+                </valid-value>
+                <valid-value code="8" name="Rejected">
+                    <description/>
+                </valid-value>
+                <valid-value code="9" name="Suspended">
+                    <description/>
+                </valid-value>
+                <valid-value code="A" name="Pending New">
+                    <description/>
+                </valid-value>
+                <valid-value code="B" name="Calculated">
+                    <description/>
+                </valid-value>
+                <valid-value code="C" name="Expired">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Describes the specific ExecutionRpt (i.e. Pending Cancel) while OrdStatus will always identify the current order status (i.e. Partially Filled) Valid values: 0 = New1 = Partial fill2 = Fill3 = Done for day4 = Cancelled5 = Replace6 = Pending Cancel/Replace7 = Stopped8 = Rejected9 = SuspendedA = Pending NewB = CalculatedC = Expired</description>
+        </fix-tag>
+        <fix-tag name="LeavesQty" number="151" type="FIXQty">
+            <description>Amount of shares open for further execution. If the OrdStatus is Canceled, DoneForTheDay, Expired, Calculated, or Rejected (in which case the order is no longer active) then LeavesQty could be 0, otherwise LeavesQty = OrderQty - CumQty.Valid values:(0 - 1000000000)</description>
+        </fix-tag>
+        <fix-tag name="CashOrderQty" number="152" type="FIXQty">
+            <description>Specifies the approximate  order quantity desired in total monetary units vs. as a number of shares.  The broker would be responsible for converting and calculating a share quantity (OrderQty) based upon this amount to be used for the actual order and subsequent messages.Valid values:  0 - 99999999.9999  (number of decimal places may vary and not limited to four)</description>
+        </fix-tag>
+        <fix-tag name="AllocAvgPx" number="153" type="FIXPrice">
+            <description>AvgPx for a specific AllocAccountValid values:  0 - 99999999.9999  (number of decimal places may vary and not limited to four)</description>
+        </fix-tag>
+        <fix-tag name="AllocNetMoney" number="154" type="FIXAmt">
+            <description>NetMoney for a specific AllocAccount</description>
+        </fix-tag>
+        <fix-tag name="SettlCurrFxRate" number="155" type="FIXFloat">
+            <description>Foreign exchange rate used to compute SettlCurrAmount from Currency to SettlCurrency</description>
+        </fix-tag>
+        <fix-tag name="SettlCurrFxRateCalc" number="156" type="FIXChar">
+            <description>Specifies whether or not SettlCurrFxRate should be multiplied or divided.M=MultiplyD=Divide</description>
+        </fix-tag>
+        <fix-tag name="NumDaysInterest" number="157" type="FIXInt">
+            <description>Number of Days of Interest for convertible bonds and fixed income</description>
+        </fix-tag>
+        <fix-tag name="AccruedInterestRate" number="158" type="FIXPercentage">
+            <description>Accrued Interest Rate for convertible bonds and fixed income</description>
+        </fix-tag>
+        <fix-tag name="AccruedInterestAmt" number="159" type="FIXAmt">
+            <description>Amount of Accrued Interest for convertible bonds and fixed income</description>
+        </fix-tag>
+        <fix-tag name="SettlInstMode" number="160" type="FIXChar">
+            <tag-constraints fixed-enumeration="true" name="SettlInstModeType">
+                <valid-value code="0" name="Default">
+                    <description/>
+                </valid-value>
+                <valid-value code="1" name="Standing Instructions Provided">
+                    <description/>
+                </valid-value>
+                <valid-value code="2" name="Specific Allocation Account Overriding">
+                    <description/>
+                </valid-value>
+                <valid-value code="3" name="Specific Allocation Account Standing">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Indicates mode used for Settlement InstructionsValid values:  0 = Default1 = Standing Instructions Provided2 = Specific Allocation Account Overriding3 = Specific Allocation Account Standing</description>
+        </fix-tag>
+        <fix-tag name="AllocText" number="161" type="FIXString">
+            <description>Free format text related to a specific AllocAccount.</description>
+        </fix-tag>
+        <fix-tag name="SettlInstID" number="162" type="FIXID">
+            <description>Unique identifier for Settlement Instructions record.</description>
+        </fix-tag>
+        <fix-tag name="SettlInstTransType" number="163" type="FIXChar">
+            <tag-constraints fixed-enumeration="true" name="SettlInstTransTypeType">
+                <valid-value code="N" name="New">
+                    <description/>
+                </valid-value>
+                <valid-value code="C" name="Cancel">
+                    <description/>
+                </valid-value>
+                <valid-value code="R" name="Replace">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Settlement Instructions message transaction typeValid values:  N = NewC = CancelR = Replace </description>
+        </fix-tag>
+        <fix-tag name="EmailThreadID" number="164" type="FIXID">
+            <description>Unique identifier for an email thread (new and chain of replies)</description>
+        </fix-tag>
+        <fix-tag name="SettlInstSource" number="165" type="FIXChar">
+            <tag-constraints fixed-enumeration="true" name="SettlInstSourceType">
+                <valid-value code="1" name="Broker?nstructions">
+                    <description/>
+                </valid-value>
+                <valid-value code="2" name="Institution?nstructions">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Indicates source of Settlement InstructionsValid values:  1 = Broker?nstructions2 = Institution?nstructions</description>
+        </fix-tag>
+        <fix-tag name="SettlLocation" number="166" type="FIXString">
+            <tag-constraints fixed-enumeration="true" name="SettlLocationType">
+                <valid-value code="CED" name="CEDEL">
+                    <description/>
+                </valid-value>
+                <valid-value code="DTC" name="Depository Trust Company">
+                    <description/>
+                </valid-value>
+                <valid-value code="EUR" name="Euroclear">
+                    <description/>
+                </valid-value>
+                <valid-value code="FED" name="Federal Book Entry">
+                    <description/>
+                </valid-value>
+                <valid-value code="PNY" name="Physical">
+                    <description/>
+                </valid-value>
+                <valid-value code="PTC" name="Participant Trust Company">
+                    <description/>
+                </valid-value>
+                <valid-value code="ISO Country Code" name="Local Market Settle Location">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Identifies Settlement Depository or Country Code (ISITC spec)Valid values:   CED = CEDEL  DTC = Depository Trust Company  EUR = Euroclear  FED = Federal Book Entry  PNY= Physical  PTC = Participant Trust Company  ISO Country Code = Local Market Settle Location</description>
+        </fix-tag>
+        <fix-tag name="SecurityType" number="167" type="FIXString">
+            <tag-constraints fixed-enumeration="true" name="SecurityTypeType">
+                <valid-value code="BA" name="Bankers Acceptance">
+                    <description/>
+                </valid-value>
+                <valid-value code="CD" name="Certificate Of Deposit">
+                    <description/>
+                </valid-value>
+                <valid-value code="CMO" name="Collateralize Mortgage Obligation">
+                    <description/>
+                </valid-value>
+                <valid-value code="CORP" name="Corporate Bond">
+                    <description/>
+                </valid-value>
+                <valid-value code="CP" name="Commercial Paper">
+                    <description/>
+                </valid-value>
+                <valid-value code="CPP" name="Corporate Private Placement">
+                    <description/>
+                </valid-value>
+                <valid-value code="CS" name="Common Stock">
+                    <description/>
+                </valid-value>
+                <valid-value code="FHA" name="Federal Housing Authority">
+                    <description/>
+                </valid-value>
+                <valid-value code="FHL" name="Federal Home Loan">
+                    <description/>
+                </valid-value>
+                <valid-value code="FN" name="Federal National Mortgage Association">
+                    <description/>
+                </valid-value>
+                <valid-value code="FOR" name="Foreign Exchange Contract">
+                    <description/>
+                </valid-value>
+                <valid-value code="FUT" name="Future">
+                    <description/>
+                </valid-value>
+                <valid-value code="GN" name="Government National Mortgage Association">
+                    <description/>
+                </valid-value>
+                <valid-value code="GOVT" name="Treasuries + Agency Debenture">
+                    <description/>
+                </valid-value>
+                <valid-value code="MF" name="Mutual Fund">
+                    <description/>
+                </valid-value>
+                <valid-value code="MIO" name="Mortgage Interest Only">
+                    <description/>
+                </valid-value>
+                <valid-value code="MPO" name="Mortgage Principle Only">
+                    <description/>
+                </valid-value>
+                <valid-value code="MPP" name="Mortgage Private Placement">
+                    <description/>
+                </valid-value>
+                <valid-value code="MPT" name="Miscellaneous Pass-Thru">
+                    <description/>
+                </valid-value>
+                <valid-value code="MUNI" name="Municipal Bond">
+                    <description/>
+                </valid-value>
+                <valid-value code="NONE" name="No ISITC Security Type">
+                    <description/>
+                </valid-value>
+                <valid-value code="OPT" name="Option">
+                    <description/>
+                </valid-value>
+                <valid-value code="PS" name="Preferred Stock">
+                    <description/>
+                </valid-value>
+                <valid-value code="RP" name="Repurchase Agreement">
+                    <description/>
+                </valid-value>
+                <valid-value code="RVRP" name="Reverse Repurchase Agreement">
+                    <description/>
+                </valid-value>
+                <valid-value code="SL" name="Student Loan Marketing Association">
+                    <description/>
+                </valid-value>
+                <valid-value code="TD" name="Time Deposit">
+                    <description/>
+                </valid-value>
+                <valid-value code="USTB" name="US Treasury Bill">
+                    <description/>
+                </valid-value>
+                <valid-value code="WAR" name="Warrant">
+                    <description/>
+                </valid-value>
+                <valid-value code="ZOO" name="Cats, Tigers &amp; Lions (a real code: US Treasury Receipts)">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Indicates type of security (ISITC spec)Valid values:  BA = Bankers AcceptanceCD = Certificate Of DepositCMO = Collateralize Mortgage ObligationCORP = Corporate BondCP = Commercial PaperCPP = Corporate Private PlacementCS = Common StockFHA = Federal Housing AuthorityFHL = Federal Home LoanFN = Federal National Mortgage AssociationFOR = Foreign Exchange ContractFUT = FutureGN =  Government National Mortgage AssociationGOVT = Treasuries + Agency DebentureIET Mortgage IOETTEMF =  Mutual FundMIO = Mortgage Interest OnlyMPO = Mortgage Principle OnlyMPP = Mortgage Private PlacementMPT = Miscellaneous Pass-ThruMUNI = Municipal BondNONE = No ISITC Security TypeOPT = OptionPS = Preferred StockRP = Repurchase AgreementRVRP =  Reverse Repurchase AgreementSL = Student Loan Marketing AssociationTD = Time DepositUSTB = US Treasury BillWAR = WarrantZOO = Cats, Tigers &amp; Lions (a real code: US Treasury Receipts) </description>
+        </fix-tag>
+        <fix-tag name="EffectiveTime" number="168" type="UTCTimestamp">
+            <description>Time the details within the message should take effect (always expressed in GMT)</description>
+        </fix-tag>
+        <fix-tag name="StandInstDbType" number="169" type="FIXInt">
+            <tag-constraints fixed-enumeration="true" name="StandInstDbTypeType">
+                <valid-value code="0" name="Other">
+                    <description/>
+                </valid-value>
+                <valid-value code="1" name="DTC SID">
+                    <description/>
+                </valid-value>
+                <valid-value code="2" name="Thomson ALERT">
+                    <description/>
+                </valid-value>
+                <valid-value code="3" name="A Global Custodian (StandInstDbName must be provided)">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Identifies the Standing Instruction database usedValid values:  0 = Other1 = DTC SID2 = Thomson ALERT3 = A Global Custodian (StandInstDbName must be provided)</description>
+        </fix-tag>
+        <fix-tag name="StandInstDbName" number="170" type="FIXString">
+            <description>Name of the Standing Instruction database represented with StandInstDbType (i.e. the Global Custodian?ame).</description>
+        </fix-tag>
+        <fix-tag name="StandInstDbID" number="171" type="FIXID">
+            <description>Unique identifier used on the Standing Instructions database for the Standing Instructions to be referenced.</description>
+        </fix-tag>
+        <fix-tag name="SettlDeliveryType" number="172" type="FIXInt">
+            <description>Identifies type of settlement0 = &quot;Versus. Payment&quot;: Deliver (if  Sell) or Receive (if Buy) vs. (Against) Payment 1 = &quot;Free&quot;: Deliver (if Sell) or Receive (if Buy) Free</description>
+        </fix-tag>
+        <fix-tag name="SettlDepositoryCode" number="173" type="FIXString">
+            <description>Broker?ccount code at the depository (i.e. CEDEL ID  for CEDEL, FINS for DTC, or Euroclear ID for Euroclear) if SettlLocation is a depository</description>
+        </fix-tag>
+        <fix-tag name="SettlBrkrCode" number="174" type="FIXString">
+            <description>BIC (Bank Identification Code??ft managed) code of  the broker involved (i.e. for multi-company brokerage firms)</description>
+        </fix-tag>
+        <fix-tag name="SettlInstCode" number="175" type="FIXString">
+            <description>BIC (Bank Identification Code??ft managed) code of  the institution involved (i.e. for multi-company institution firms)</description>
+        </fix-tag>
+        <fix-tag name="SecuritySettlAgentName" number="176" type="FIXString">
+            <description>Name of SettlInstSource&apos;s local agent bank if SettlLocation is  not a depository</description>
+        </fix-tag>
+        <fix-tag name="SecuritySettlAgentCode" number="177" type="FIXString">
+            <description>BIC (Bank Identification Code--Swift managed) code of  the SettlInstSource&apos;s local agent bank if SettlLocation  is not a depository</description>
+        </fix-tag>
+        <fix-tag name="SecuritySettlAgentAcctNum" number="178" type="FIXString">
+            <description>SettlInstSource&apos;s account number at local agent bank if  SettlLocation is not a depository</description>
+        </fix-tag>
+        <fix-tag name="SecuritySettlAgentAcctName" number="179" type="FIXString">
+            <description>Name of SettlInstSource&apos;s account at local agent bank if  SettlLocation is not a depository</description>
+        </fix-tag>
+        <fix-tag name="SecuritySettlAgentContactName" number="180" type="FIXString">
+            <description>Name of contact at local agent bank for SettlInstSource&apos;s account if SettlLocation is not a depository</description>
+        </fix-tag>
+        <fix-tag name="SecuritySettlAgentContactPhone" number="181" type="FIXString">
+            <description>Phone number for contact at local agent bank if  SettlLocation is not a depository</description>
+        </fix-tag>
+        <fix-tag name="CashSettlAgentName" number="182" type="FIXString">
+            <description>Name of SettlInstSource&apos;s local agent bank if SettlDeliveryType=Free</description>
+        </fix-tag>
+        <fix-tag name="CashSettlAgentCode" number="183" type="FIXString">
+            <description>BIC (Bank Identification Code--Swift managed) code of  the SettlInstSource&apos;s local agent bank if SettlDeliveryType=Free</description>
+        </fix-tag>
+        <fix-tag name="CashSettlAgentAcctNum" number="184" type="FIXString">
+            <description>SettlInstSource&apos;s account number at local agent bank if SettlDeliveryType=Free</description>
+        </fix-tag>
+        <fix-tag name="CashSettlAgentAcctName" number="185" type="FIXString">
+            <description>Name of SettlInstSource&apos;s account at local agent bank if SettlDeliveryType=Free</description>
+        </fix-tag>
+        <fix-tag name="CashSettlAgentContactName" number="186" type="FIXString">
+            <description>Name of contact at local agent bank for SettlInstSource&apos;s account  if SettlDeliveryType=Free</description>
+        </fix-tag>
+        <fix-tag name="CashSettlAgentContactPhone" number="187" type="FIXString">
+            <description>Phone number for contact at local agent bank for SettlInstSource&apos;s account  if SettlDeliveryType=Free</description>
+        </fix-tag>
+        <fix-tag name="BidSpotRate" number="188" type="FIXPrice">
+            <description>Bid F/X spot rate.Valid values:  0 - 99999999.9999  (number of decimal places may vary and not limited to four)</description>
+        </fix-tag>
+        <fix-tag name="BidForwardPoints" number="189" type="FIXPriceOffset">
+            <description>Bid F/X forward points added to spot rate. May be a negative value.</description>
+        </fix-tag>
+        <fix-tag name="OfferSpotRate" number="190" type="FIXPrice">
+            <description>Offer F/X spot rate.Valid values:  0 - 99999999.9999  (number of decimal places may vary and not limited to four)</description>
+        </fix-tag>
+        <fix-tag name="OfferForwardPoints" number="191" type="FIXPriceOffset">
+            <description>Offer F/X forward points added to spot rate. May be a negative value.</description>
+        </fix-tag>
+        <fix-tag name="OrderQty2" number="192" type="FIXQty">
+            <description>OrderQty of the future part of a F/X swap order.Valid values:(0 - 1000000000)</description>
+        </fix-tag>
+        <fix-tag name="FutSettDate2" number="193" type="LocalMktDate">
+            <description>FutSettDate of the future part of a F/X swap order.</description>
+        </fix-tag>
+        <fix-tag name="LastSpotRate" number="194" type="FIXPrice">
+            <description>F/X spot rate.Valid values:  0 - 99999999.9999  (number of decimal places may vary and not limited to four)</description>
+        </fix-tag>
+        <fix-tag name="LastForwardPoints" number="195" type="FIXPriceOffset">
+            <description>F/X forward points added to LastSpotRate.  May be a negative value.</description>
+        </fix-tag>
+        <fix-tag name="AllocLinkID" number="196" type="FIXID">
+            <description>Can be used to link two different Allocation messages (each with unique AllocID) together, i.e. for F/X &quot;Netting&quot; or &quot;Swaps&quot;.  Should be unique.</description>
+        </fix-tag>
+        <fix-tag name="AllocLinkType" number="197" type="FIXInt">
+            <tag-constraints fixed-enumeration="true" name="AllocLinkTypeType">
+                <valid-value code="0" name="F/X Netting">
+                    <description/>
+                </valid-value>
+                <valid-value code="1" name="F/X Swap">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Identifies the type of Allocation linkage when AllocLinkID is used.Valid values:  0 = F/X Netting1 = F/X Swap</description>
+        </fix-tag>
+        <fix-tag name="SecondaryOrderID" number="198" type="FIXID">
+            <description>Assigned by the party which accepts the order.  Can be used to provide the OrderID used by an exchange or executing system.</description>
+        </fix-tag>
+        <fix-tag name="NoIOIQualifiers" number="199" type="FIXNumInGroup">
+            <description>Number of repeating groups of IOIQualifiers.</description>
+        </fix-tag>
+        <fix-tag name="MaturityMonthYear" number="200" type="FIXMonth-Year">
+            <description>Month and Year of the maturity for SecurityType=FUT or SecurityType=OPT.Format:  YYYYMM       (i.e. 199903)</description>
+        </fix-tag>
+        <fix-tag name="PutOrCall" number="201" type="FIXInt">
+            <tag-constraints fixed-enumeration="true" name="PutOrCallType">
+                <valid-value code="0" name="Put">
+                    <description/>
+                </valid-value>
+                <valid-value code="1" name="Call">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Indicates whether an Option is for a put or call.Valid values:  0 = Put1 = Call</description>
+        </fix-tag>
+        <fix-tag name="StrikePrice" number="202" type="FIXPrice">
+            <description>Strike Price for an Option.Valid values:  0 - 99999999.9999  (number of decimal places may vary and not limited to four)</description>
+        </fix-tag>
+        <fix-tag name="CoveredOrUncovered" number="203" type="FIXInt">
+            <tag-constraints fixed-enumeration="true" name="CoveredOrUncoveredType">
+                <valid-value code="0" name="Covered">
+                    <description/>
+                </valid-value>
+                <valid-value code="1" name="Uncovered">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Used for optionsValid values:  0 = Covered1 = Uncovered</description>
+        </fix-tag>
+        <fix-tag name="CustomerOrFirm" number="204" type="FIXInt">
+            <tag-constraints fixed-enumeration="true" name="CustomerOrFirmType">
+                <valid-value code="0" name="Customer">
+                    <description/>
+                </valid-value>
+                <valid-value code="1" name="Firm">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Used for options when delivering the order to an execution system/exchange to specify if the order is for a customer or the firm placing the order itself.Valid values:  0 = Customer1 = Firm</description>
+        </fix-tag>
+        <fix-tag name="MaturityDay" number="205" type="FIXDay-Of-Month">
+            <description>Day of month used in conjunction with MaturityMonthYear to specify the maturity date for SecurityType=FUT or SecurityType=OPT.Valid values:      1-31</description>
+        </fix-tag>
+        <fix-tag name="OptAttribute" number="206" type="FIXChar">
+            <description>Can be used for SecurityType=OPT to identify a particular security.Valid values vary by SecurityExchange:      For Exchange: MONEP (Paris)       L = Long (a.k.a. &quot;American&quot;)       S = Short (a.k.a. &quot;European&quot;)   For Exchanges: DTB (Frankfurt), HKSE (Hong Kong), and SOFFEX (Zurich)      0-9 = single digit &quot;version&quot; number assigned by exchange following capital adjustments (0=current, 1=prior, 2=prior to 1, etc).</description>
+        </fix-tag>
+        <fix-tag name="SecurityExchange" number="207" type="FIXExchange">
+            <description>Market used to help identify a security.Valid values:      See Appendix C</description>
+        </fix-tag>
+        <fix-tag name="NotifyBrokerOfCredit" number="208" type="FIXBoolean">
+            <tag-constraints fixed-enumeration="true" name="NotifyBrokerOfCreditType">
+                <valid-value code="Y" name="Details should be communicated">
+                    <description/>
+                </valid-value>
+                <valid-value code="N" name="Details should not be communicated">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Indicates whether or not details should be communicated to BrokerOfCredit (i.e. step-in broker).Valid values:      Y = Details should be communicated    N = Details should not be communicated</description>
+        </fix-tag>
+        <fix-tag name="AllocHandlInst" number="209" type="FIXInt">
+            <tag-constraints fixed-enumeration="true" name="AllocHandlInstType">
+                <valid-value code="1" name="Match">
+                    <description/>
+                </valid-value>
+                <valid-value code="2" name="Forward">
+                    <description/>
+                </valid-value>
+                <valid-value code="3" name="Forward and Match">
+                    <description/>
+                </valid-value>
+            </tag-constraints>
+            <description>Indicates how the receiver (i.e. third party) of Allocation message should handle/process the account details.Valid values:      1 = Match    2 = Forward    3 = Forward and Match</description>
+        </fix-tag>
+        <fix-tag name="MaxShow" number="210" type="FIXQty">
+            <description>Maximum number of shares within an order to be shown  to other customers (i.e. sent via an IOI).</description>
+        </fix-tag>
+        <fix-tag name="PegDifference" number="211" type="FIXFloat">
+            <description>Price difference for a pegged order.</description>
+        </fix-tag>
+</tag-map>
+    <!--
+
+        Set of all Types  used in the FIX 4.1 Protocool
+    -->
+    <type-map>
+        <fix-type name="FIXAmt"      underlying="Double"  />
+        <fix-type name="FIXBoolean"  underlying="Boolean" />
+        <fix-type name="FIXChar"     underlying="String"  />
+        <fix-type name="FIXCurrency" underlying="String"  />
+        <fix-type name="FIXData"     underlying="String"  />
+        <fix-type name="FIXInt"      underlying="Integer" />
+		<fix-type name="FIXID"       underlying="String" />
+        <!--
+            Field containing the length in bytes of
+            the immediately following  field
+        -->
+        <fix-type name="FIXVarLength"  underlying="Integer" />
+        <fix-type name="FIXPercentage" underlying="Double"  />
+        <fix-type name="FIXPrice"      underlying="Double"  />
+        <fix-type name="FIXString"     underlying="String"  />
+        <fix-type name="LocalDate"     underlying="String"  />
+        <fix-type name="UTCTimestamp"  underlying="String"  />
+        
+        <fix-type name="FIXSeqNum" underlying="Integer"  />
+            <fix-type name="FIXLength" underlying="Integer"  />
+            <fix-type name="FIXQty" underlying="Integer"  />
+            <fix-type name="FIXMultipleValueString" underlying="String"  />
+            <fix-type name="FIXExchange" underlying="String"  />
+            <fix-type name="FIXNumInGroup" underlying="Integer"  />
+            <fix-type name="LocalMktDate" underlying="String"  />
+
+            <fix-type name="FIXDay-Of-Month" underlying="Integer"  />
+            <fix-type name="FIXFloat" underlying="Double"  />
+            <fix-type name="FIXPriceOffset" underlying="Double"  />
+            <fix-type name="FIXMonth-Year" underlying="String"  />
+    </type-map>
+    <!--
+         Failure map for the FIX 4.0 protocol. Because the Business reject doesn't exist yet, the only
+         possibility for rejection of most message types (such as Indication) lies with the session failure message.
+
+    -->
+    <failure-map>
+              <failure source="Execution"             source-key="ExecID"  target-key="ExecID"  response="DK Trade" />
+              <failure source="Order"                 source-key="ClOrdID" target-key="ClOrdID" response="Execution"  />
+              <failure source="List Order"            source-key="ListID"  target-key="ListID"  response="Execution"  />
+              <failure source="Order Cancel Request"  source-key="ClOrdID" target-key="ClOrdID" response="Order Cancel Reject" />
+              <failure source="Order Replace Request" source-key="ClOrdID" target-key="ClOrdID" response="Order Cancel Reject" />
+              <failure source="Order Status Request"  source-key="ClOrdID" target-key="ClOrdID" response="Order Cancel Request" />
+              <failure source="Allocation"            source-key="AllocID" target-key="AllocID" response="Allocation ACK" />
+              <failure source="List Cancel Request"   source-key="ListID"  target-key="ListID"  response="Order Cancel Reject" />
+              <failure source="List Execute"          source-key="ListID"  target-key="ListID"  response="Execution" />
+              <failure source="List Status Request"   source-key="ListID"  target-key="ListID"  response="List Status" />
+              <failure source="DK Trade"              source-key="OrderID" target-key="OrderID"  response="Order Cancel Reject" />
+
+
+              <session-failure name="Reject" source-key="MsgSeqNum" target-key="RefSeqNo" />
+    </failure-map>
+
+
+
+</fix-protocol>

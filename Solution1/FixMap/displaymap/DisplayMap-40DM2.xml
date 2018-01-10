@@ -1,0 +1,1341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dm2 base="FIX.4.0" name="FIX 4.0 Standard (DM2)" protocol="FIX 4.0 Standard" type="DM2" version="1.0">
+    <mm name="Execution" type="8">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Execution/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Execution/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Execution/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Execution/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Execution/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Execution/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Execution/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Execution/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Execution/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Execution/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="ExecutionBody">
+            <fl>
+                <field name="OrderID" number="37" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="ClOrdID" number="11" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="ClientID" number="109" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="ListID" number="66" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="ExecID" number="17" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="ExecTransType" number="20" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="ExecRefID" number="19" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="OrdStatus" number="39" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="OrdRejReason" number="103" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Account" number="1" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="SettlmntTyp" number="63" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="FutSettDate" number="64" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="OrderQty" number="38" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="OrdType" number="40" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Price" number="44" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="StopPx" number="99" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Currency" number="15" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="TimeInForce" number="59" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="ExpireTime" number="126" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="ExecInst" number="18" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Rule80A" number="47" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="LastShares" number="32" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="LastPx" number="31" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="LastMkt" number="30" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="LastCapacity" number="29" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="CumQty" number="14" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="AvgPx" number="6" path="Execution/ExecutionBody" required="true" type="tag" visible="true"/>
+                <field name="TradeDate" number="75" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="TransactTime" number="60" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="ReportToExch" number="113" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Commission" number="12" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="CommType" number="13" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="NoMiscFees" number="136" path="Execution/ExecutionBody/FeeGroup" required="true" type="tag" visible="true"/>
+                <field name="FeeInfoGroup" path="Execution/ExecutionBody/FeeGroup" required="true" type="block" visible="true"/>
+                <field name="NetMoney" number="118" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="SettlCurrAmt" number="119" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="SettlCurrency" number="120" path="Execution/ExecutionBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Execution/ExecutionBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Execution/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Execution/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Execution/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Order Replace Request" type="G">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Order Replace Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Order Replace Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Order Replace Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Order Replace Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Order Replace Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Order Replace Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Order Replace Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Order Replace Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Order Replace Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Order Replace Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="OrderReplaceRequestBody">
+            <fl>
+                <field name="OrderID" number="37" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="ClientID" number="109" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="OrigClOrdID" number="41" path="Order Replace Request/OrderReplaceRequestBody" required="true" type="tag" visible="true"/>
+                <field name="ClOrdID" number="11" path="Order Replace Request/OrderReplaceRequestBody" required="true" type="tag" visible="true"/>
+                <field name="ListID" number="66" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Account" number="1" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="SettlmntTyp" number="63" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="FutSettDate" number="64" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="HandlInst" number="21" path="Order Replace Request/OrderReplaceRequestBody" required="true" type="tag" visible="true"/>
+                <field name="ExecInst" number="18" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="MinQty" number="110" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="MaxFloor" number="111" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="ExDestination" number="100" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Order Replace Request/OrderReplaceRequestBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="Order Replace Request/OrderReplaceRequestBody" required="true" type="tag" visible="true"/>
+                <field name="OrderQty" number="38" path="Order Replace Request/OrderReplaceRequestBody" required="true" type="tag" visible="true"/>
+                <field name="OrdType" number="40" path="Order Replace Request/OrderReplaceRequestBody" required="true" type="tag" visible="true"/>
+                <field name="Price" number="44" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="StopPx" number="99" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Currency" number="15" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="TimeInForce" number="59" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="ExpireTime" number="126" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Commission" number="12" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="CommType" number="13" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Rule80A" number="47" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="ForexReq" number="121" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="SettlCurrency" number="120" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Order Replace Request/OrderReplaceRequestBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Order Replace Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Order Replace Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Order Replace Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Order" type="D">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Order/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Order/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Order/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Order/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Order/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Order/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="OrderBody">
+            <fl>
+                <field name="ClOrdID" number="11" path="Order/OrderBody" required="true" type="tag" visible="true"/>
+                <field name="ClientID" number="109" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Account" number="1" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="SettlmntTyp" number="63" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="FutSettDate" number="64" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="HandlInst" number="21" path="Order/OrderBody" required="true" type="tag" visible="true"/>
+                <field name="ExecInst" number="18" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="MinQty" number="110" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="MaxFloor" number="111" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="ExDestination" number="100" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="ProcessCode" number="81" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Order/OrderBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="PrevClosePx" number="140" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="Order/OrderBody" required="true" type="tag" visible="true"/>
+                <field name="LocateReqd" number="114" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="OrderQty" number="38" path="Order/OrderBody" required="true" type="tag" visible="true"/>
+                <field name="OrdType" number="40" path="Order/OrderBody" required="true" type="tag" visible="true"/>
+                <field name="Price" number="44" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="StopPx" number="99" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Currency" number="15" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="IOIid" number="23" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="QuoteID" number="117" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="TimeInForce" number="59" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="ExpireTime" number="126" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Commission" number="12" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="CommType" number="13" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Rule80A" number="47" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="ForexReq" number="121" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="SettlCurrency" number="120" path="Order/OrderBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Order/OrderBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Order/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Order/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Order/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Logout" type="5">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Logout/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Logout/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Logout/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Logout/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Logout/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Logout/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Logout/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Logout/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Logout/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Logout/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="LogoutBody">
+            <fl>
+                <field name="Text" number="58" path="Logout/LogoutBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Logout/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Logout/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Logout/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="List Status Request" type="M">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="List Status Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="List Status Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="List Status Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="List Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="List Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="List Status Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="List Status Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="List Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="List Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="List Status Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="ListStatusRequestBody">
+            <fl>
+                <field name="ListID" number="66" path="List Status Request/ListStatusRequestBody" required="true" type="tag" visible="true"/>
+                <field name="WaveNo" number="105" path="List Status Request/ListStatusRequestBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="List Status Request/ListStatusRequestBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="List Status Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="List Status Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="List Status Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="News" type="B">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="News/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="News/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="News/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="News/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="News/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="News/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="News/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="News/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="News/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="News/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="News/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="NewsBody">
+            <fl>
+                <field name="OrigTime" number="42" path="News/NewsBody" type="tag" visible="true"/>
+                <field name="Urgency" number="61" path="News/NewsBody" type="tag" visible="true"/>
+                <field name="RelatdSym" number="46" path="News/NewsBody" repeating="true" type="tag" visible="true"/>
+                <field name="LinesOfText" number="33" path="News/NewsBody" required="true" type="tag" visible="true"/>
+                <field name="Text" number="58" path="News/NewsBody" repeating="true" required="true" type="tag" visible="true"/>
+                <field name="RawDataLength" number="95" path="News/NewsBody/RawDataGroup" required="true" type="tag" visible="true"/>
+                <field name="RawData" number="96" path="News/NewsBody/RawDataGroup" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="News/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="News/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="News/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Resend Request" type="2">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Resend Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Resend Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Resend Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Resend Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Resend Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Resend Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Resend Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Resend Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Resend Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Resend Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="ResendRequestBody">
+            <fl>
+                <field name="BeginSeqNo" number="7" path="Resend Request/ResendRequestBody" required="true" type="tag" visible="true"/>
+                <field name="EndSeqNo" number="16" path="Resend Request/ResendRequestBody" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Resend Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Resend Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Resend Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Allocation" type="J">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Allocation/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Allocation/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Allocation/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Allocation/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Allocation/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Allocation/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Allocation/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Allocation/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Allocation/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Allocation/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="AllocationBody">
+            <fl>
+                <field name="AllocID" number="70" path="Allocation/AllocationBody" required="true" type="tag" visible="true"/>
+                <field name="AllocTransTyp" number="71" path="Allocation/AllocationBody" required="true" type="tag" visible="true"/>
+                <field name="RefAllocID" number="72" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="NoOrders" number="73" path="Allocation/AllocationBody/AllocationOrdersGroup" required="true" type="tag" visible="true"/>
+                <field name="AllocationOrderInfoGroup" path="Allocation/AllocationBody/AllocationOrdersGroup" required="true" type="block" visible="true"/>
+                <field name="NoExecs" number="124" path="Allocation/AllocationBody/AllocationExecGroup" required="true" type="tag" visible="true"/>
+                <field name="AllocationExecInfoGroup" path="Allocation/AllocationBody/AllocationExecGroup" required="true" type="block" visible="true"/>
+                <field name="Side" number="54" path="Allocation/AllocationBody" required="true" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Allocation/AllocationBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="Shares" number="53" path="Allocation/AllocationBody" required="true" type="tag" visible="true"/>
+                <field name="AvgPx" number="6" path="Allocation/AllocationBody" required="true" type="tag" visible="true"/>
+                <field name="Currency" number="15" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="AvgPrxPrecision" number="74" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="TradeDate" number="75" path="Allocation/AllocationBody" required="true" type="tag" visible="true"/>
+                <field name="TransactTime" number="60" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="SettlmntTyp" number="63" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="FutSettDate" number="64" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="NetMoney" number="118" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="NoMiscFees" number="136" path="Allocation/AllocationBody/FeeGroup" required="true" type="tag" visible="true"/>
+                <field name="FeeInfoGroup" path="Allocation/AllocationBody/FeeGroup" required="true" type="block" visible="true"/>
+                <field name="SettlCurrAmt" number="119" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="SettlCurrency" number="120" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="OpenClose" number="77" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Allocation/AllocationBody" type="tag" visible="true"/>
+                <field name="NoAllocs" number="78" path="Allocation/AllocationBody/AllocationAllocGroup" required="true" type="tag" visible="true"/>
+                <field name="AllocationAllocInfoGroup" path="Allocation/AllocationBody/AllocationAllocGroup" required="true" type="block" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Allocation/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Allocation/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Allocation/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="List Cancel Request" type="K">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="List Cancel Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="List Cancel Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="List Cancel Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="List Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="List Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="List Cancel Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="List Cancel Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="List Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="List Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="List Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="ListCancelBody">
+            <fl>
+                <field name="ListID" number="66" path="List Cancel Request/ListCancelBody" required="true" type="tag" visible="true"/>
+                <field name="WaveNo" number="105" path="List Cancel Request/ListCancelBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="List Cancel Request/ListCancelBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="List Cancel Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="List Cancel Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="List Cancel Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Indication" type="6">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Indication/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Indication/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Indication/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Indication/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Indication/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Indication/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Indication/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Indication/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Indication/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Indication/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="IndicationBody">
+            <fl>
+                <field name="IOIid" number="23" path="Indication/IndicationBody" required="true" type="tag" visible="true"/>
+                <field name="IOITransType" number="28" path="Indication/IndicationBody" required="true" type="tag" visible="true"/>
+                <field name="IOIRefID" number="26" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Indication/IndicationBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="Indication/IndicationBody" required="true" type="tag" visible="true"/>
+                <field name="IOIShares" number="27" path="Indication/IndicationBody" required="true" type="tag" visible="true"/>
+                <field name="Price" number="44" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="Currency" number="15" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="ValidUntilTime" number="62" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="IOIQltyInd" number="25" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="IOIOthSvc" number="24" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="IOINaturalFlag" number="130" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="IOIQualifier" number="104" path="Indication/IndicationBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Indication/IndicationBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Indication/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Indication/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Indication/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="List Execute" type="L">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="List Execute/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="List Execute/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="List Execute/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="List Execute/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="List Execute/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="List Execute/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="List Execute/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="List Execute/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="List Execute/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="List Execute/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="ListExecuteBody">
+            <fl>
+                <field name="ListID" number="66" path="List Execute/ListExecuteBody" required="true" type="tag" visible="true"/>
+                <field name="WaveNo" number="105" path="List Execute/ListExecuteBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="List Execute/ListExecuteBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="List Execute/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="List Execute/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="List Execute/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Quote" type="S">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Quote/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Quote/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Quote/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Quote/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Quote/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Quote/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Quote/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Quote/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Quote/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Quote/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="QuoteBody">
+            <fl>
+                <field name="QuoteReqID" number="131" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="QuoteID" number="117" path="Quote/QuoteBody" required="true" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Quote/QuoteBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="BidPx" number="132" path="Quote/QuoteBody" required="true" type="tag" visible="true"/>
+                <field name="OfferPx" number="133" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="BidSize" number="134" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="OfferSize" number="135" path="Quote/QuoteBody" type="tag" visible="true"/>
+                <field name="ValidUntilTime" number="62" path="Quote/QuoteBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Quote/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Quote/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Quote/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Order Cancel Request" type="F">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Order Cancel Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Order Cancel Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Order Cancel Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Order Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Order Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Order Cancel Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Order Cancel Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Order Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Order Cancel Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Order Cancel Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="OrderCancelRequestBody">
+            <fl>
+                <field name="OrigClOrdID" number="41" path="Order Cancel Request/OrderCancelRequestBody" required="true" type="tag" visible="true"/>
+                <field name="OrderID" number="37" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="ClOrdID" number="11" path="Order Cancel Request/OrderCancelRequestBody" required="true" type="tag" visible="true"/>
+                <field name="ListID" number="66" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="CxlType" number="125" path="Order Cancel Request/OrderCancelRequestBody" required="true" type="tag" visible="true"/>
+                <field name="ClientID" number="109" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Order Cancel Request/OrderCancelRequestBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="Order Cancel Request/OrderCancelRequestBody" required="true" type="tag" visible="true"/>
+                <field name="OrderQty" number="38" path="Order Cancel Request/OrderCancelRequestBody" required="true" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Order Cancel Request/OrderCancelRequestBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Order Cancel Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Order Cancel Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Order Cancel Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="List Order" type="E">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="List Order/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="List Order/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="List Order/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="List Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="List Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="List Order/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="List Order/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="List Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="List Order/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="List Order/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="ListBody">
+            <fl>
+                <field name="ListID" number="66" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="ListSeqNo" number="67" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="WaveNo" number="105" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="ListNoOrds" number="68" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="ListExecInst" number="69" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="ClOrdID" number="11" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="ClientID" number="109" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Account" number="1" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="SettlmntTyp" number="63" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="FutSettDate" number="64" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="HandlInst" number="21" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="ExecInst" number="18" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="MinQty" number="110" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="MaxFloor" number="111" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="ExDestination" number="100" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="ProcessCode" number="81" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="PrevClosePx" number="140" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="LocateReqd" number="114" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="OrderQty" number="38" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="OrdType" number="40" path="List Order/ListBody" required="true" type="tag" visible="true"/>
+                <field name="Price" number="44" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="StopPx" number="99" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Currency" number="15" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="TimeInForce" number="59" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="ExpireTime" number="126" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Commission" number="12" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="CommType" number="13" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Rule80A" number="47" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="ForexReq" number="121" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="SettlCurrency" number="120" path="List Order/ListBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="List Order/ListBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="List Order/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="List Order/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="List Order/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Reject" type="3">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Reject/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Reject/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Reject/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Reject/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Reject/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Reject/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="RejectBody">
+            <fl>
+                <field name="RefSeqNo" number="45" path="Reject/RejectBody" required="true" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Reject/RejectBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Reject/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Reject/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Reject/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Logon" type="A">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Logon/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Logon/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Logon/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Logon/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Logon/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Logon/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Logon/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Logon/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Logon/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Logon/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="LogonBody">
+            <fl>
+                <field name="EncryptMethod" number="98" path="Logon/LogonBody" required="true" type="tag" visible="true"/>
+                <field name="HeartBtInt" number="108" path="Logon/LogonBody" required="true" type="tag" visible="true"/>
+                <field name="RawDataLength" number="95" path="Logon/LogonBody/RawDataGroup" required="true" type="tag" visible="true"/>
+                <field name="RawData" number="96" path="Logon/LogonBody/RawDataGroup" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Logon/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Logon/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Logon/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Test Request" type="1">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Test Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Test Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Test Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Test Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Test Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Test Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Test Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Test Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Test Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Test Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="TestRequestBody">
+            <fl>
+                <field name="TestReqID" number="112" path="Test Request/TestRequestBody" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Test Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Test Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Test Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Heartbeat" type="0">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Heartbeat/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Heartbeat/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Heartbeat/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Heartbeat/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Heartbeat/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Heartbeat/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Heartbeat/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Heartbeat/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Heartbeat/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Heartbeat/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="HeartbeatBody">
+            <fl>
+                <field name="TestReqID" number="112" path="Heartbeat/HeartbeatBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Heartbeat/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Heartbeat/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Heartbeat/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Sequence Reset" type="4">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Sequence Reset/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Sequence Reset/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Sequence Reset/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Sequence Reset/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Sequence Reset/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Sequence Reset/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Sequence Reset/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Sequence Reset/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Sequence Reset/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Sequence Reset/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="SequenceResetBody">
+            <fl>
+                <field name="GapFillFlag" number="123" path="Sequence Reset/SequenceResetBody" type="tag" visible="true"/>
+                <field name="NewSeqNum" number="36" path="Sequence Reset/SequenceResetBody" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Sequence Reset/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Sequence Reset/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Sequence Reset/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Quote Request" type="R">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Quote Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Quote Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Quote Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Quote Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Quote Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Quote Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Quote Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Quote Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Quote Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Quote Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="QuoteRequestBody">
+            <fl>
+                <field name="QuoteReqID" number="131" path="Quote Request/QuoteRequestBody" required="true" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Quote Request/QuoteRequestBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+                <field name="PrevClosePx" number="140" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+                <field name="OrderQty" number="38" path="Quote Request/QuoteRequestBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Quote Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Quote Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Quote Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="List Status" type="N">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="List Status/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="List Status/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="List Status/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="List Status/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="List Status/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="List Status/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="List Status/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="List Status/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="List Status/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="List Status/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="ListStatusBody">
+            <fl>
+                <field name="ListID" number="66" path="List Status/ListStatusBody" required="true" type="tag" visible="true"/>
+                <field name="WaveNo" number="105" path="List Status/ListStatusBody" type="tag" visible="true"/>
+                <field name="NoRpts" number="82" path="List Status/ListStatusBody" required="true" type="tag" visible="true"/>
+                <field name="RptSeq" number="83" path="List Status/ListStatusBody" required="true" type="tag" visible="true"/>
+                <field name="NoOrders" number="73" path="List Status/ListStatusBody/NoOrdersGroup" required="true" type="tag" visible="true"/>
+                <field name="ListStatusOrderGroup" path="List Status/ListStatusBody/NoOrdersGroup" required="true" type="block" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="List Status/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="List Status/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="List Status/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Email" type="C">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Email/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Email/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Email/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Email/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Email/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Email/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Email/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Email/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Email/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Email/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="EmailBody">
+            <fl>
+                <field name="EmailType" number="94" path="Email/EmailBody" required="true" type="tag" visible="true"/>
+                <field name="OrigTime" number="42" path="Email/EmailBody" type="tag" visible="true"/>
+                <field name="RelatdSym" number="46" path="Email/EmailBody" repeating="true" type="tag" visible="true"/>
+                <field name="OrderID" number="37" path="Email/EmailBody" type="tag" visible="true"/>
+                <field name="ClOrdID" number="11" path="Email/EmailBody" type="tag" visible="true"/>
+                <field name="LinesOfText" number="33" path="Email/EmailBody" required="true" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Email/EmailBody" repeating="true" required="true" type="tag" visible="true"/>
+                <field name="RawDataLength" number="95" path="Email/EmailBody/RawDataGroup" required="true" type="tag" visible="true"/>
+                <field name="RawData" number="96" path="Email/EmailBody/RawDataGroup" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Email/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Email/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Email/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Advertisement" type="7">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Advertisement/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Advertisement/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Advertisement/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Advertisement/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Advertisement/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Advertisement/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Advertisement/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Advertisement/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Advertisement/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Advertisement/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="AdvertisementBody">
+            <fl>
+                <field name="AdvID" number="2" path="Advertisement/AdvertisementBody" required="true" type="tag" visible="true"/>
+                <field name="AdvTransType" number="5" path="Advertisement/AdvertisementBody" required="true" type="tag" visible="true"/>
+                <field name="AdvRefID" number="3" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Advertisement/AdvertisementBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="SecurityID" number="48" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="IDSource" number="22" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="AdvSide" number="4" path="Advertisement/AdvertisementBody" required="true" type="tag" visible="true"/>
+                <field name="Shares" number="53" path="Advertisement/AdvertisementBody" required="true" type="tag" visible="true"/>
+                <field name="Price" number="44" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="Currency" number="15" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="TransactTime" number="60" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Advertisement/AdvertisementBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Advertisement/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Advertisement/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Advertisement/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="DK Trade" type="Q">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="DK Trade/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="DK Trade/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="DK Trade/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="DK Trade/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="DK Trade/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="DK Trade/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="DK Trade/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="DK Trade/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="DK Trade/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="DK Trade/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="DontKnowBody">
+            <fl>
+                <field name="OrderID" number="37" path="DK Trade/DontKnowBody" type="tag" visible="true"/>
+                <field name="ExecID" number="17" path="DK Trade/DontKnowBody" type="tag" visible="true"/>
+                <field name="DKReason" number="127" path="DK Trade/DontKnowBody" required="true" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="DK Trade/DontKnowBody" required="true" type="tag" visible="true"/>
+                <field name="Side" number="54" path="DK Trade/DontKnowBody" required="true" type="tag" visible="true"/>
+                <field name="OrderQty" number="38" path="DK Trade/DontKnowBody" required="true" type="tag" visible="true"/>
+                <field name="LastShares" number="32" path="DK Trade/DontKnowBody" required="true" type="tag" visible="true"/>
+                <field name="LastPx" number="31" path="DK Trade/DontKnowBody" required="true" type="tag" visible="true"/>
+                <field name="Text" number="58" path="DK Trade/DontKnowBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="DK Trade/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="DK Trade/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="DK Trade/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Allocation ACK" type="P">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Allocation ACK/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Allocation ACK/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Allocation ACK/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Allocation ACK/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Allocation ACK/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Allocation ACK/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Allocation ACK/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Allocation ACK/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Allocation ACK/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Allocation ACK/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="AllocationAckBody">
+            <fl>
+                <field name="ClientID" number="109" path="Allocation ACK/AllocationAckBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="Allocation ACK/AllocationAckBody" type="tag" visible="true"/>
+                <field name="AllocID" number="70" path="Allocation ACK/AllocationAckBody" required="true" type="tag" visible="true"/>
+                <field name="TradeDate" number="75" path="Allocation ACK/AllocationAckBody" required="true" type="tag" visible="true"/>
+                <field name="TransactTime" number="60" path="Allocation ACK/AllocationAckBody" type="tag" visible="true"/>
+                <field name="AllocStatus" number="87" path="Allocation ACK/AllocationAckBody" required="true" type="tag" visible="true"/>
+                <field name="AllocRejCode" number="88" path="Allocation ACK/AllocationAckBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Allocation ACK/AllocationAckBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Allocation ACK/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Allocation ACK/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Allocation ACK/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Order Status Request" type="H">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Order Status Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Order Status Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Order Status Request/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Order Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Order Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Order Status Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Order Status Request/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Order Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Order Status Request/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Order Status Request/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="OrderStatusBody">
+            <fl>
+                <field name="OrderID" number="37" path="Order Status Request/OrderStatusBody" type="tag" visible="true"/>
+                <field name="ClOrdID" number="11" path="Order Status Request/OrderStatusBody" required="true" type="tag" visible="true"/>
+                <field name="ClientID" number="109" path="Order Status Request/OrderStatusBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="Order Status Request/OrderStatusBody" type="tag" visible="true"/>
+                <field name="Symbol" number="55" path="Order Status Request/OrderStatusBody" required="true" type="tag" visible="true"/>
+                <field name="SymbolSfx" number="65" path="Order Status Request/OrderStatusBody" type="tag" visible="true"/>
+                <field name="Issuer" number="106" path="Order Status Request/OrderStatusBody" type="tag" visible="true"/>
+                <field name="SecurityDesc" number="107" path="Order Status Request/OrderStatusBody" type="tag" visible="true"/>
+                <field name="Side" number="54" path="Order Status Request/OrderStatusBody" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Order Status Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Order Status Request/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Order Status Request/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <mm name="Order Cancel Reject" type="9">
+        <group name="Header">
+            <fl>
+                <field name="BeginString" number="8" path="Order Cancel Reject/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="BodyLength" number="9" path="Order Cancel Reject/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="MsgType" number="35" path="Order Cancel Reject/Header/InitialTags" required="true" type="tag" visible="true"/>
+                <field name="SenderCompID" number="49" path="Order Cancel Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="TargetCompID" number="56" path="Order Cancel Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OnBehalfOfCompID" number="115" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToCompID" number="128" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SecureDataLen" number="90" path="Order Cancel Reject/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="SecureData" number="91" path="Order Cancel Reject/Header/HeaderContent/SecureDataGroup" required="true" type="tag" visible="true"/>
+                <field name="MsgSeqNum" number="34" path="Order Cancel Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="SenderSubID" number="50" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="TargetSubID" number="57" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="OnBehalfOfSubID" number="116" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="DeliverToSubID" number="129" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossDupFlag" number="43" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="PossResend" number="97" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+                <field name="SendingTime" number="52" path="Order Cancel Reject/Header/HeaderContent" required="true" type="tag" visible="true"/>
+                <field name="OrigSendingTime" number="122" path="Order Cancel Reject/Header/HeaderContent" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="OrderCancelRejectBody">
+            <fl>
+                <field name="OrderID" number="37" path="Order Cancel Reject/OrderCancelRejectBody" required="true" type="tag" visible="true"/>
+                <field name="ClOrdID" number="11" path="Order Cancel Reject/OrderCancelRejectBody" required="true" type="tag" visible="true"/>
+                <field name="ClientID" number="109" path="Order Cancel Reject/OrderCancelRejectBody" type="tag" visible="true"/>
+                <field name="ExecBroker" number="76" path="Order Cancel Reject/OrderCancelRejectBody" type="tag" visible="true"/>
+                <field name="ListID" number="66" path="Order Cancel Reject/OrderCancelRejectBody" type="tag" visible="true"/>
+                <field name="CxlRejReason" number="102" path="Order Cancel Reject/OrderCancelRejectBody" type="tag" visible="true"/>
+                <field name="Text" number="58" path="Order Cancel Reject/OrderCancelRejectBody" type="tag" visible="true"/>
+            </fl>
+        </group>
+        <group name="Trailer">
+            <fl>
+                <field name="SignatureLength" number="93" path="Order Cancel Reject/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="Signature" number="89" path="Order Cancel Reject/Trailer/SignatureGroup" required="true" type="tag" visible="true"/>
+                <field name="CheckSum" number="10" path="Order Cancel Reject/Trailer" required="true" type="tag" visible="true"/>
+            </fl>
+        </group>
+    </mm>
+    <bm name="FeeInfoGroup">
+        <fl>
+            <field name="MiscFeeAmt" number="137" path="FeeInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="MiscFeeCurr" number="138" path="FeeInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="MiscFeeType" number="139" path="FeeInfoGroup" required="true" type="tag" visible="true"/>
+        </fl>
+    </bm>
+    <bm name="AllocationOrderInfoGroup">
+        <fl>
+            <field name="ClOrdID" number="11" path="AllocationOrderInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="OrderID" number="37" path="AllocationOrderInfoGroup" type="tag" visible="true"/>
+            <field name="ListID" number="66" path="AllocationOrderInfoGroup" type="tag" visible="true"/>
+            <field name="WaveNo" number="105" path="AllocationOrderInfoGroup" type="tag" visible="true"/>
+        </fl>
+    </bm>
+    <bm name="AllocationExecInfoGroup">
+        <fl>
+            <field name="ExecID" number="17" path="AllocationExecInfoGroup" type="tag" visible="true"/>
+            <field name="LastShares" number="32" path="AllocationExecInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="LastPx" number="31" path="AllocationExecInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="LastMkt" number="30" path="AllocationExecInfoGroup" type="tag" visible="true"/>
+        </fl>
+    </bm>
+    <bm name="FeeInfoGroup">
+        <fl>
+            <field name="MiscFeeAmt" number="137" path="FeeInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="MiscFeeCurr" number="138" path="FeeInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="MiscFeeType" number="139" path="FeeInfoGroup" required="true" type="tag" visible="true"/>
+        </fl>
+    </bm>
+    <bm name="AllocationAllocInfoGroup">
+        <fl>
+            <field name="AllocAccount" number="79" path="AllocationAllocInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="AllocShares" number="80" path="AllocationAllocInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="ProcessCode" number="81" path="AllocationAllocInfoGroup" type="tag" visible="true"/>
+            <field name="ExecBroker" number="76" path="AllocationAllocInfoGroup" type="tag" visible="true"/>
+            <field name="ClientID" number="109" path="AllocationAllocInfoGroup" type="tag" visible="true"/>
+            <field name="Commission" number="12" path="AllocationAllocInfoGroup" type="tag" visible="true"/>
+            <field name="CommType" number="13" path="AllocationAllocInfoGroup" type="tag" visible="true"/>
+            <field name="NoDlvyInst" number="85" path="AllocationAllocInfoGroup/AllocationDeliveryGroup" required="true" type="tag" visible="true"/>
+            <field name="AllocationDeliveryInfoGroup" path="AllocationAllocInfoGroup/AllocationDeliveryGroup" required="true" type="block" visible="true"/>
+        </fl>
+    </bm>
+    <bm name="ListStatusOrderGroup">
+        <fl>
+            <field name="ClOrdID" number="11" path="ListStatusOrderGroup" required="true" type="tag" visible="true"/>
+            <field name="CumQty" number="14" path="ListStatusOrderGroup" required="true" type="tag" visible="true"/>
+            <field name="CxlQty" number="84" path="ListStatusOrderGroup" required="true" type="tag" visible="true"/>
+            <field name="AvgPx" number="6" path="ListStatusOrderGroup" required="true" type="tag" visible="true"/>
+        </fl>
+    </bm>
+    <bm name="AllocationDeliveryInfoGroup">
+        <fl>
+            <field name="BrokerOfCredit" number="92" path="AllocationDeliveryInfoGroup" required="true" type="tag" visible="true"/>
+            <field name="DlvyInst" number="86" path="AllocationDeliveryInfoGroup" required="true" type="tag" visible="true"/>
+        </fl>
+    </bm>
+</dm2>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{39522ECE-0225-476E-8A9B-B0C8F985BFC4}"
 EndProject
@@ -40,6 +40,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRConsoleServer1", "SignalRConsoleServer1\SignalRConsoleServer1.csproj", "{700B8A4C-4E0B-41EE-93AF-E815FCDBA1A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRConsoleClient1", "SignalRConsoleClient1\SignalRConsoleClient1.csproj", "{C882F15F-5DDB-4D22-B18F-BB012A5F0690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixMap", "FixMap\FixMap.csproj", "{6A73874E-1BB4-4897-861C-E5871567C1FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -307,6 +309,22 @@ Global
 		{C882F15F-5DDB-4D22-B18F-BB012A5F0690}.Release|x64.Build.0 = Release|Any CPU
 		{C882F15F-5DDB-4D22-B18F-BB012A5F0690}.Release|x86.ActiveCfg = Release|Any CPU
 		{C882F15F-5DDB-4D22-B18F-BB012A5F0690}.Release|x86.Build.0 = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|ARM.Build.0 = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|x64.Build.0 = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Debug|x86.Build.0 = Debug|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|ARM.Build.0 = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|x64.ActiveCfg = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|x64.Build.0 = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{6A73874E-1BB4-4897-861C-E5871567C1FB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
