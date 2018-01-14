@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Threading;
 using System.Diagnostics;
-
+//http://www.wpftutorial.net/datagrid.html
 namespace FixMap
 {
   class FixMapViewerWindowViewModel
