@@ -502,7 +502,8 @@ namespace ConsoleApplication1
         //wcf1._Main(args);
         //RSS_news._Main(args);
         //async_Copy._Main(args);
-        json._Main(args);
+        //json._Main(args);
+        skype._Main(args);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 

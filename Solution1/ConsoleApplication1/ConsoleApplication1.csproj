@@ -71,6 +71,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RSS_news.cs" />
+    <Compile Include="skype_timestamp.cs" />
     <Compile Include="sockets1.cs" />
     <Compile Include="task1.cs" />
     <Compile Include="unhandled_exceptions.cs" />
