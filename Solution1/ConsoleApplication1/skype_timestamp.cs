@@ -78,6 +78,7 @@ class skype
   {
     try
     {
+      //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
       using (var reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
         do
         {
