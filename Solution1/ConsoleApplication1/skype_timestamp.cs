@@ -54,7 +54,7 @@ class skype
     result.Add(last);
     return result;
   }
-  static IList<string> split_fields(string line)
+  static IList<string> parse_fields(string line)
   {
     var result = new List<string>();
     var value = new System.Text.StringBuilder();
@@ -86,7 +86,7 @@ class skype
           if (line == null) break;
           line = line.Trim();
           if (string.IsNullOrWhiteSpace(line)) continue;
-          var fields = split_fields(line);
+          var fields = parse_fields(line);
           //foreach (var f in fields) WriteLine($"{f}"); WriteLine();
           if (fields.Count == 0) continue;
           if (!fields[0].Contains("_549")) continue;
