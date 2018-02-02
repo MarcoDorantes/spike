@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using static System.Console;
 
 class skype
-  {
+{
   static void timestamp()
   {
     long TimestampMs = 1515796215068;//1515796233475L; //1516851138514L;
@@ -96,5 +96,21 @@ class skype
         } while (true);
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
-    }
   }
+}
+//delete
+namespace ChatHistoryModule
+{
+  class ChatRecordParser { public ChatRecord Parse(string entry) => null; }
+  class ChatRecord
+  {
+    public string ConversationId;
+    public string ConversationName;
+    public string AuthorId;
+    public string AuthorName;
+    public string HumanTime;
+    public ulong TimestampMs;
+    public string ContentXml;
+  }
+}
+//delete
