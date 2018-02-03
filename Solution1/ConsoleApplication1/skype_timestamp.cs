@@ -71,7 +71,7 @@ class skype
       }
       else value.Append(c);
     }
-    if (count == 6) result.Add(line.Substring(k));
+    if (count == 6) result.Add(line.Substring(k).Trim('"'));
     return result;
   }
   public static void _Main(string[] args)
@@ -101,7 +101,35 @@ class skype
 //delete
 namespace ChatHistoryModule
 {
-  class ChatRecordParser { public ChatRecord Parse(string entry) => null; }
+  //class ChatRecordParser { public ChatRecord Parse(string entry) => null; }
+  class ChatRecordParser
+  {
+    public ChatRecord Parse(string entry)
+    {
+      var fields = parse_fields(entry);
+      return new ChatRecord { ContentXml = fields[6] };
+    }
+    static IList<string> parse_fields(string line)
+    {
+      var result = new List<string>();
+      var value = new System.Text.StringBuilder();
+      int count = 0;
+      int k;
+      for (k = 0; k < line.Length && count < 6; ++k)
+      {
+        char c = line[k];
+        if (c == ',')
+        {
+          result.Add($"{value}".Trim('"'));
+          value.Clear();
+          ++count;
+        }
+        else value.Append(c);
+      }
+      if (count == 6) result.Add(line.Substring(k).Trim('"'));
+      return result;
+    }
+  }
   class ChatRecord
   {
     public string ConversationId;
