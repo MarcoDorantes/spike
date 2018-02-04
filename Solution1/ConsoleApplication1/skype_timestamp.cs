@@ -98,11 +98,12 @@ class skype
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
   }
 }
-//delete
+/*delete
+using System.Collections.Generic;
+
 namespace ChatHistoryModule
 {
-  //class ChatRecordParser { public ChatRecord Parse(string entry) => null; }
-  class ChatRecordParser
+  public class ChatRecordParser
   {
     public ChatRecord Parse(string entry)
     {
@@ -112,7 +113,7 @@ namespace ChatHistoryModule
     static IList<string> parse_fields(string line)
     {
       var result = new List<string>();
-      var value = new System.Text.StringBuilder();
+      var value = neystem.Text.StringBuilder();
       int count = 0;
       int k;
       for (k = 0; k < line.Length && count < 6; ++k)
@@ -130,15 +131,5 @@ namespace ChatHistoryModule
       return result;
     }
   }
-  class ChatRecord
-  {
-    public string ConversationId;
-    public string ConversationName;
-    public string AuthorId;
-    public string AuthorName;
-    public string HumanTime;
-    public ulong TimestampMs;
-    public string ContentXml;
-  }
 }
-//delete
+delete*/
