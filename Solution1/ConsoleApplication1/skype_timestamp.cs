@@ -98,7 +98,7 @@ class skype
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
   }
 }
-/*delete
+/*delete-1
 using System.Collections.Generic;
 
 namespace ChatHistoryModule
@@ -108,12 +108,21 @@ namespace ChatHistoryModule
     public ChatRecord Parse(string entry)
     {
       var fields = parse_fields(entry);
-      return new ChatRecord { ContentXml = fields[6] };
+      return new ChatRecord
+      {
+        ConversationId = fields[0],
+        ConversationName = fields[1],
+        AuthorId = fields[2],
+        AuthorName = fields[3],
+        HumanTime = fields[4],
+        TimestampMs = ulong.Parse(fields[5]),
+        ContentXml = fields[6]
+      };
     }
     static IList<string> parse_fields(string line)
     {
       var result = new List<string>();
-      var value = neystem.Text.StringBuilder();
+      var value = new System.Text.StringBuilder();
       int count = 0;
       int k;
       for (k = 0; k < line.Length && count < 6; ++k)
@@ -132,4 +141,77 @@ namespace ChatHistoryModule
     }
   }
 }
-delete*/
+delete-1*/
+
+/*delete-2
+namespace HouseRobber
+{
+  public static class HouseRobber_I
+    {
+    public static int Algorithm1(int[] house)
+    {
+      if (house == null)
+      {
+        throw new ArgumentNullException(nameof(house));
+      }
+      if (house.Length == 0)
+      {
+        return 0;
+      }
+      if (house.Any(n => n < 0))
+      {
+        throw new ArgumentOutOfRangeException(nameof(house));
+      }
+      if (house.Length == 1) return house[0];
+      if (house.Length == 2) Math.Max(house[0], house[1]);
+      return Math.Max(algorithm1(house, 0), algorithm1(house, 1));
+    }
+    private static int algorithm1(int[] house, int start_index)
+    {
+      int skip1_sum = -1;
+      if (start_index + 2 < house.Length)
+      {
+        skip1_sum = house[start_index] + algorithm1(house, start_index + 2);
+      }
+      int skip2_sum = -1;
+      if (start_index + 3 < house.Length)
+      {
+        skip2_sum = house[start_index] + algorithm1(house, start_index + 3);
+      }
+      if (skip1_sum > skip2_sum)
+      {
+        return house[start_index] + algorithm1(house, start_index + 2);
+      }
+      else if (skip1_sum < skip2_sum)
+      {
+        return house[start_index] + algorithm1(house, start_index + 3);
+      }
+      else return house[start_index];
+    }
+    public static int Algorithm2(int[] num)
+    {
+      if (num == null)
+      {
+        throw new ArgumentNullException(nameof(num));
+      }
+      if (num.Any(n => n < 0))
+      {
+        throw new ArgumentOutOfRangeException(nameof(num));
+      }
+      int sz = num.Length;
+      if (sz == 0) return 0;
+      if (sz == 1) return num[0];
+      if (sz == 2) return Math.Max(num[0], num[1]);
+      int[] f = new int[sz];
+      Array.Copy(num, f, sz);
+      f[0] = num[0];
+      f[1] = Math.Max(num[0], num[1]);
+      for (int i = 2; i < sz; ++i)
+      {
+        f[i] = Math.Max(f[i - 2] + num[i], f[i - 1]);
+      }
+      return f[sz - 1];
+    }
+  }
+}
+delete-2*/
