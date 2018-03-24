@@ -137,16 +137,48 @@ class skype
     }
     return new XDocument(new XElement("chat", says));
   }
+  static XDocument toCleanXDocument(XDocument xml)
+  {
+    return new XDocument(new object[] { toCleanElement(xml.Root) });
+  }
+  static XElement toCleanElement(XElement node)
+  {
+    if(!node.HasElements)
+    {
+      if (node.Value?.StartsWith("<ss") == true)
+      {
+        var sub = XDocument.Parse(node.Value.Replace("\"\"", "'"));
+        return new XElement(node.Name, sub.Root.Value);
+      }
+      else
+      {
+        return new XElement(node.Name, node.Value);
+      }
+    }
+    else
+    {
+      return new XElement(node.Name, toCleanElements(node.Elements()));
+    }
+  }
+  static object[] toCleanElements(IEnumerable<XElement> nodes)
+  {
+    return nodes.Aggregate(new List<object>(), (w, n) => { w.Add(toCleanElement(n)); return w; }).ToArray();
+  }
   static void toxml()
   {
     var chat = toXDocument();
+    using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
+  }
+  static void toflatxml()
+  {
+    var chat = toCleanXDocument(toXDocument());
     using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
   }
   static void tohtml(string[] args)
   {
     string html_output_file = args.ElementAtOrDefault(0);
     if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
-    var chat = toXDocument();
+    var chat = toCleanXDocument(toXDocument());
     using (var writer = System.Xml.XmlWriter.Create("skypetohtml.html", new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
     {
       var xslt = new System.Xml.Xsl.XslCompiledTransform();
@@ -179,6 +211,7 @@ class skype
     {
       //show();
       //toxml();
+      //toflatxml();
       tohtml(args);
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
