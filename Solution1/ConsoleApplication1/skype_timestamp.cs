@@ -123,7 +123,7 @@ class skype
       WriteLine($"{who}:\n  {what}");*/
     }
   }
-  static void toxml()
+  static XDocument toXDocument()
   {
     var says = new List<object>();
     foreach (var fields in read())
@@ -135,9 +135,24 @@ class skype
       saychilds.Add(new XElement("when", $"{timestamp(ulong.Parse(fields[5])).ToString("yyyy-MM-dd HH:mm:ss")}"));
       says.Add(new XElement(new XElement("say", saychilds)));
     }
-    var chat = new XDocument(new XElement("chat", says));
-    using(var writer= System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
-    //using (var writer = System.IO.File.CreateText("skypetoxml.xml")) writer.WriteLine($"{chat}");
+    return new XDocument(new XElement("chat", says));
+  }
+  static void toxml()
+  {
+    var chat = toXDocument();
+    using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
+  }
+  static void tohtml(string[] args)
+  {
+    string html_output_file = args.ElementAtOrDefault(0);
+    if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
+    var chat = toXDocument();
+    using (var writer = System.Xml.XmlWriter.Create("skypetohtml.html", new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
+    {
+      var xslt = new System.Xml.Xsl.XslCompiledTransform();
+      xslt.Load(System.Xml.XmlReader.Create(html_output_file));
+      xslt.Transform(chat.CreateReader(), writer);
+    }
   }
   static void initial()
   {
@@ -163,7 +178,8 @@ class skype
     try
     {
       //show();
-      toxml();
+      //toxml();
+      tohtml(args);
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
   }
