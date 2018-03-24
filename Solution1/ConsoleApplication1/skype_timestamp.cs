@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using static System.Console;
 
 class skype
 {
-  static void timestamp()
+  static void calc_timestamp()
   {
     long TimestampMs = 1515796215068;//1515796233475L; //1516851138514L;
 
@@ -32,6 +34,28 @@ class skype
     var t0 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     var when = t0.Add(span).ToLocalTime();
     WriteLine(when);
+  }
+  static DateTime timestamp(ulong TimestampMs)
+  {
+
+    ulong total_s = TimestampMs / 1000UL;
+    ulong r_ms = TimestampMs % 1000UL;
+
+    ulong total_m = total_s / 60UL;
+    ulong r_s = total_s % 60UL;
+
+    ulong total_h = total_m / 60UL;
+    ulong r_m = total_m % 60UL;
+
+    ulong total_d = total_h / 24UL;
+    ulong r_h = total_h % 24UL;
+
+    var calc = (((total_d * 24UL + r_h) * 60UL + r_m) * 60UL + r_s) * 1000UL + r_ms;
+
+    var span = new TimeSpan((int)total_d, (int)r_h, (int)r_m, (int)r_s, (int)r_ms);
+    var t0 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+    var when = t0.Add(span).ToLocalTime();
+    return when;
   }
   static IList<string> split_fields_0(string line)
   {
@@ -74,31 +98,78 @@ class skype
     if (count == 6) result.Add(line.Substring(k).Trim('"'));
     return result;
   }
+  static IEnumerable<IList<string>> read()
+  {
+    //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
+    using (var reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
+      do
+      {
+        var line = reader.ReadLine();
+        if (line == null) break;
+        line = line.Trim();
+        if (string.IsNullOrWhiteSpace(line)) continue;
+        yield return parse_fields(line);
+      } while (true);
+  }
+  static void show()
+  {
+    foreach (var fields in read())
+    {
+      if (fields?.Count == 0) continue;
+      foreach (var f in fields) WriteLine($"\t{f}"); WriteLine();
+      if (!fields[0].Contains("_549")) continue;
+      /*var who = fields[3];
+      var what = fields[6];
+      WriteLine($"{who}:\n  {what}");*/
+    }
+  }
+  static void toxml()
+  {
+    var says = new List<object>();
+    foreach (var fields in read())
+    {
+      if (fields?.Count == 0) continue;
+      if (!fields[0].Contains("_549")) continue;
+      int count = 0;
+      var saychilds = fields.Aggregate(new List<object>(), (w, n) => { w.Add(new XElement($"_{count++}", n)); return w; });
+      saychilds.Add(new XElement("when", $"{timestamp(ulong.Parse(fields[5])).ToString("yyyy-MM-dd HH:mm:ss")}"));
+      says.Add(new XElement(new XElement("say", saychilds)));
+    }
+    var chat = new XDocument(new XElement("chat", says));
+    using(var writer= System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
+    //using (var writer = System.IO.File.CreateText("skypetoxml.xml")) writer.WriteLine($"{chat}");
+  }
+  static void initial()
+  {
+    //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
+    using (var reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
+      do
+      {
+        var line = reader.ReadLine();
+        if (line == null) break;
+        line = line.Trim();
+        if (string.IsNullOrWhiteSpace(line)) continue;
+        var fields = parse_fields(line);
+        foreach (var f in fields) WriteLine($"\t{f}"); WriteLine();
+        if (fields.Count == 0) continue;
+        if (!fields[0].Contains("_549")) continue;
+        /*var who = fields[3];
+        var what = fields[6];
+        WriteLine($"{who}:\n  {what}");*/
+      } while (true);
+  }
   public static void _Main(string[] args)
   {
     try
     {
-      //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
-      using (var reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
-        do
-        {
-          var line = reader.ReadLine();
-          if (line == null) break;
-          line = line.Trim();
-          if (string.IsNullOrWhiteSpace(line)) continue;
-          var fields = parse_fields(line);
-          //foreach (var f in fields) WriteLine($"{f}"); WriteLine();
-          if (fields.Count == 0) continue;
-          if (!fields[0].Contains("_549")) continue;
-          var who = fields[3];
-          var what = fields[6];
-          WriteLine($"{who}:\n  {what}");
-        } while (true);
+      //show();
+      toxml();
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
   }
 }
 /*delete-1
+using System;
 using System.Collections.Generic;
 
 namespace ChatHistoryModule
@@ -116,6 +187,7 @@ namespace ChatHistoryModule
         AuthorName = fields[3],
         HumanTime = fields[4],
         TimestampMs = ulong.Parse(fields[5]),
+        When = timestamp(ulong.Parse(fields[5])),
         ContentXml = fields[6]
       };
     }
@@ -138,6 +210,28 @@ namespace ChatHistoryModule
       }
       if (count == 6) result.Add(line.Substring(k).Trim('"'));
       return result;
+    }
+    static DateTime timestamp(ulong TimestampMs)
+    {
+
+      ulong total_s = TimestampMs / 1000UL;
+      ulong r_ms = TimestampMs % 1000UL;
+
+      ulong total_m = total_s / 60UL;
+      ulong r_s = total_s % 60UL;
+
+      ulong total_h = total_m / 60UL;
+      ulong r_m = total_m % 60UL;
+
+      ulong total_d = total_h / 24UL;
+      ulong r_h = total_h % 24UL;
+
+      var calc = (((total_d * 24UL + r_h) * 60UL + r_m) * 60UL + r_s) * 1000UL + r_ms;
+
+      var span = new TimeSpan((int)total_d, (int)r_h, (int)r_m, (int)r_s, (int)r_ms);
+      var t0 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+      var when = t0.Add(span).ToLocalTime();
+      return when;
     }
   }
 }
