@@ -1,9 +1,47 @@
 using System;
 using System.Linq;
-using System.Collections.Generic;
+using System.Text;
 using System.Xml.Linq;
+using System.Collections.Generic;
 using static System.Console;
 
+class SkypeChatReader : IDisposable
+{
+  const string NoLine = "\0x0\0x3\0x1\0x2";
+  System.IO.StreamReader reader;
+  string next_line;
+  public SkypeChatReader(System.IO.StreamReader s) { reader = s; next_line = NoLine; }
+  public string ReadLine()
+  {
+    var result = new StringBuilder();
+    next_line = next_line == NoLine ? reader.ReadLine() : next_line;
+    if (next_line == null) return null;
+    if (next_line.StartsWith("live:") == false) throw new Exception("No proper Skype chat fragment");
+    do
+    {
+      result.Append(next_line);
+      next_line = reader.ReadLine();
+      if (next_line?.StartsWith("live:") == false)
+      {
+        result.Append("\r\n");
+      }
+      else break;
+    } while (true);
+    return $"{result}";
+  }
+  public void Dispose() { }
+}
+class field : List<string>
+{
+  public field(string value)
+  {
+    Add(value);
+  }
+  public field(IList<string> values)
+  {
+    AddRange(values);
+  }
+}
 class skype
 {
   static void calc_timestamp()
@@ -78,9 +116,9 @@ class skype
     result.Add(last);
     return result;
   }
-  static IList<string> parse_fields(string line)
+  static IList<field> parse_fields(string line)
   {
-    var result = new List<string>();
+    var result = new List<field>();
     var value = new System.Text.StringBuilder();
     int count = 0;
     int k;
@@ -89,19 +127,25 @@ class skype
       char c = line[k];
       if (c == ',')
       {
-        result.Add($"{value}".Trim('"'));
+        result.Add(new field($"{value}".Trim('"')));
         value.Clear();
         ++count;
       }
       else value.Append(c);
     }
-    if (count == 6) result.Add(line.Substring(k).Trim('"'));
+    if (count == 6)
+    {
+      var ts = line.Substring(k).Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Aggregate(new List<string>(), (w, n) => { w.Add(n.Trim('"')); return w; });
+      var content_field = new field(ts);
+      result.Add(content_field);
+    }
     return result;
   }
-  static IEnumerable<IList<string>> read()
+  static IEnumerable<IList<field>> read()
   {
     //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
-    using (var reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
+    using (var text_reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
+    using (var reader = new SkypeChatReader(text_reader))
       do
       {
         var line = reader.ReadLine();
@@ -116,10 +160,10 @@ class skype
     foreach (var fields in read())
     {
       if (fields?.Count == 0) continue;
-      foreach (var f in fields) WriteLine($"\t{f}"); WriteLine();
-      if (!fields[0].Contains("_549")) continue;
-      /*var who = fields[3];
-      var what = fields[6];
+      foreach (var f in fields) WriteLine($"\t{f.Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("{0} ",n))}"); WriteLine();
+      if (!fields[0][0].Contains("_549")) continue;
+      /*var who = fields[3][0];
+      var what = fields[6].Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0} ", n));
       WriteLine($"{who}:\n  {what}");*/
     }
   }
@@ -129,10 +173,12 @@ class skype
     foreach (var fields in read())
     {
       if (fields?.Count == 0) continue;
-      if (!fields[0].Contains("_549")) continue;
+      if (!fields[0][0].Contains("_549")) continue;
       int count = 0;
-      var saychilds = fields.Aggregate(new List<object>(), (w, n) => { w.Add(new XElement($"_{count++}", n)); return w; });
-      saychilds.Add(new XElement("when", $"{timestamp(ulong.Parse(fields[5])).ToString("yyyy-MM-dd HH:mm:ss")}"));
+      var saychilds = fields.Take(6).Aggregate(new List<object>(), (w, n) => { w.Add(new XElement($"_{count++}", n)); return w; });
+      var _6childs = fields[6].Aggregate(new List<object>(), (w, n) => { w.Add(new XElement($"t", n)); return w; });
+      saychilds.Add(new XElement($"_6", _6childs));
+      saychilds.Add(new XElement("when", $"{timestamp(ulong.Parse(fields[5][0])).ToString("yyyy-MM-dd HH:mm:ss")}"));
       says.Add(new XElement(new XElement("say", saychilds)));
     }
     return new XDocument(new XElement("chat", says));

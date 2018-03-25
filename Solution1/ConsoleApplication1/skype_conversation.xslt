@@ -35,14 +35,22 @@
           </span>
         </span>
       </p>
-      <div style="margin: 8.25pt;">
-        <p class="x_MsoNormal" style="line-height: normal; margin-bottom: 0pt; -ms-text-autospace:;">
-          <span style="color: black; font-family: &quot;Segoe UI&quot;,sans-serif,serif,'EmojiFont'; font-size: 11pt;">
-            <xsl:value-of select='_6'/>
-          </span>
-        </p>
-      </div>
+      <xsl:apply-templates select="_6"/>
     </div>
+  </xsl:template>
+
+  <xsl:template match="_6">
+    <div style="margin: 8.25pt;">
+      <xsl:apply-templates select="t"/>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="t">
+    <p class="x_MsoNormal" style="line-height: normal; margin-bottom: 0pt; -ms-text-autospace:;">
+      <span style="color: black; font-family: &quot;Segoe UI&quot;,sans-serif,serif,'EmojiFont'; font-size: 11pt;">
+        <xsl:value-of select='.'/>
+      </span>
+    </p>
   </xsl:template>
 
 </xsl:stylesheet>
