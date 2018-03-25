@@ -212,6 +212,7 @@ class skype
   }
   static void toxml()
   {
+//<?xml-stylesheet type="text/xsl" href="file:///C:\design\github_spike\spike\Solution1\ConsoleApplication1\skype_conversation.xslt"?>
     var chat = toXDocument();
     using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
   }
