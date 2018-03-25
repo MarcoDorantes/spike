@@ -42,25 +42,25 @@
   </xsl:template>
 
   <xsl:template match="_6">
-    <div style="margin-left: 8px;">
-      <div style="color: rgb(33, 33, 33); font-family: &amp;quot; wf_segoe-ui_normal&amp;quot;,&amp; quot;Segoe UI&amp;quot;,&amp;quot;Segoe WP&amp;quot;,Tahoma,Arial,sans-serif,serif,&amp;quot;EmojiFont&amp;quot;; font-size: 15px;">
-        <div style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;">
-          <xsl:apply-templates select="t"/>
-        </div>
-      </div>
-    </div>
+    <xsl:apply-templates select="t"/>
   </xsl:template>
 
   <xsl:template match="t">
-    <font face="Calibri,sans-serif" size="2" style="color: rgb(33, 33, 33); font-family: Calibri,sans-serif; font-size: 13.33px;">
-      <span style="font-size: 14.66px;">
-        <font color="black" face="Segoe UI,sans-serif" size="2">
-          <span style="font-size: 13.33px;">
-            <xsl:value-of select='.'/>
-          </span>
-        </font>
-      </span>
-    </font>
+    <div style="margin-left: 8px;">
+      <div style="color: rgb(33, 33, 33); font-family: &amp;quot; wf_segoe-ui_normal&amp;quot;,&amp; quot;Segoe UI&amp;quot;,&amp;quot;Segoe WP&amp;quot;,Tahoma,Arial,sans-serif,serif,&amp;quot;EmojiFont&amp;quot;; font-size: 15px;">
+        <div style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;">
+          <font face="Calibri,sans-serif" size="2" style="color: rgb(33, 33, 33); font-family: Calibri,sans-serif; font-size: 13.33px;">
+            <span style="font-size: 14.66px;">
+              <font color="black" face="Segoe UI,sans-serif" size="2">
+                <span style="font-size: 13.33px;">
+                  <xsl:value-of select='.'/>
+                </span>
+              </font>
+            </span>
+          </font>
+        </div>
+      </div>
+    </div>
   </xsl:template>
 
 </xsl:stylesheet>
