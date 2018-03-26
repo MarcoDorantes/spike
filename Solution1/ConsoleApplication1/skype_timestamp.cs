@@ -202,7 +202,7 @@ class skype
         result[1] = new field(match.Groups["who"].Value);
         what.Add(match.Groups["what"].Value);
       }
-      else what.Add(line);
+      else what.Add(subline);
     }
     result[2] = new field(what);
     return result;
@@ -314,7 +314,7 @@ class skype
   }
   static void skype_toxml()
   {
-//<?xml-stylesheet type="text/xsl" href="file:///C:\design\github_spike\spike\Solution1\ConsoleApplication1\skype_conversation.xslt"?>
+//<?xml-stylesheet type="text/xsl" href="file:///C:\design\github_spike\spike\Solution1\ConsoleApplication1\skype_conversation_o365.xslt"?>
     var chat = skype_toXDocument();
     using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
   }
@@ -344,7 +344,7 @@ class skype
   {
     string html_output_file = args.ElementAtOrDefault(0);
     if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
-    var chat = toCleanXDocument(whatsapp_toXDocument());
+    var chat = whatsapp_toXDocument();
     using (var writer = System.Xml.XmlWriter.Create("whatsapptohtml.html", new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
     {
       var xslt = new System.Xml.Xsl.XslCompiledTransform();
@@ -380,9 +380,9 @@ class skype
       //toflatxml();
       //skype_tohtml(args);
 
-      whatsapp_show();
+      //whatsapp_show();
       //whatsapp_toxml();
-      //whatsapp_tohtml(args);
+      whatsapp_tohtml(args);
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
   }
