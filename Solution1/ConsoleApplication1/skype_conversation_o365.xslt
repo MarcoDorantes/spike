@@ -22,21 +22,23 @@
 
   <xsl:template match="say">
     <div style="background-color: transparent; color: rgb(33, 33, 33); font-family: &amp;quot; wf_segoe-ui_normal&amp;quot;,&amp; quot; Segoe UI&amp;quot;,&amp; quot; Segoe WP&amp;quot;, Tahoma,Arial,sans-serif,serif,&amp;quot; EmojiFont&amp;quot;; font-size: 15px; font-style: normal; font-variant: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-decoration: none; text-indent: 0px; text-transform: none; -webkit-text-stroke-width: 0px; white-space: normal; word-spacing: 0px;">
-      <font color="#666666" face="Segoe UI" size="1" style="color: rgb(102, 102, 102); font-family: Segoe UI; font-size: 10.06px;">
-        <span style="font-size: 11px; font-variant: normal; text-transform: none;">
-          <b>
-            <xsl:value-of select='_3'/>
-          </b>
-        </span>
-      </font>
-      <xsl:text xml:space ='preserve'>      </xsl:text>
-      <font color="#666666" face="Segoe UI" size="1" style="color: rgb(102, 102, 102); font-family: Segoe UI; font-size: 10.06px;">
-        <span style="font-size: 11px; font-variant: normal; text-transform: none;">
-          <b>
-            <xsl:value-of select='when'/>:
-          </b>
-        </span>
-      </font>
+      <div style="margin-top: 3mm;">
+        <font color="#666666" face="Segoe UI" size="1" style="color: rgb(102, 102, 102); font-family: Segoe UI; font-size: 10.06px;">
+          <span style="font-size: 11px; font-variant: normal; text-transform: none;">
+            <b>
+              <xsl:value-of select='_3'/>
+            </b>
+          </span>
+        </font>
+        <xsl:text xml:space ='preserve'>      </xsl:text>
+        <font color="#666666" face="Segoe UI" size="1" style="color: rgb(102, 102, 102); font-family: Segoe UI; font-size: 10.06px;">
+          <span style="margin-left:2mm; font-size: 11px; font-variant: normal; text-transform: none;">
+            <b>
+              <xsl:value-of select='when'/>:
+            </b>
+          </span>
+        </font>
+      </div>
       <xsl:apply-templates select="_6"/>
     </div>
   </xsl:template>

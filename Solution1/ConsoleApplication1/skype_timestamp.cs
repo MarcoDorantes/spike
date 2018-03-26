@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using static System.Console;
+using System.Text.RegularExpressions;
 
 class SkypeChatReader : IDisposable
 {
@@ -22,6 +23,52 @@ class SkypeChatReader : IDisposable
       result.Append(next_line);
       next_line = reader.ReadLine();
       if (next_line?.StartsWith("live:") == false)
+      {
+        result.Append("\r\n");
+      }
+      else break;
+    } while (true);
+    return $"{result}";
+  }
+  public void Dispose() { }
+}
+class WhatsappChatReader : IDisposable
+{
+  public const string pattern = @"(?<line>(?<head>(?<when>\d\d/\d\d/\d\d\d\d \d\d:\d\d:\d\d \w*\. \w+\.): (?<who>\w*): )(?<what>.*))";
+  const string NoLine = "\0x0\0x3\0x1\0x2";
+  System.IO.StreamReader reader;
+  string next_line;
+  Regex regex;
+  public WhatsappChatReader(System.IO.StreamReader s)
+  {
+    reader = s;
+    next_line = NoLine;
+    regex = new Regex(pattern);
+  }
+  public string ReadLine()
+  {
+    var result = new StringBuilder();
+    Match match = null;
+    do
+    {
+      next_line = next_line == NoLine ? reader.ReadLine() : next_line;
+      if (next_line == null) return null;
+      match = regex.Match(next_line);
+      if (match.Success == false) throw new Exception("No proper Whatsapp chat fragment");
+      if (string.IsNullOrWhiteSpace(match.Groups["what"].Value))
+      {
+        next_line = NoLine;
+        continue;
+      }
+      else break;
+    } while (true);
+    do
+    {
+      result.Append(next_line);
+      next_line = reader.ReadLine();
+      if (next_line == null) break;
+      match = regex.Match(next_line);
+      if (match.Success == false)
       {
         result.Append("\r\n");
       }
@@ -116,7 +163,7 @@ class skype
     result.Add(last);
     return result;
   }
-  static IList<field> parse_fields(string line)
+  static IList<field> skype_parse_fields(string line)
   {
     var result = new List<field>();
     var value = new System.Text.StringBuilder();
@@ -141,7 +188,26 @@ class skype
     }
     return result;
   }
-  static IEnumerable<IList<field>> read()
+  static IList<field> whatsapp_parse_fields(string line)
+  {
+    var result = new List<field> { null, null, null };
+    var what = new List<string>();
+    var regex = new Regex(WhatsappChatReader.pattern);
+    foreach (var subline in line.Split(new[] { "\r\n" }, StringSplitOptions.None))
+    {
+      var match = regex.Match(subline);
+      if (match.Success)
+      {
+        result[0] = new field(match.Groups["when"].Value);
+        result[1] = new field(match.Groups["who"].Value);
+        what.Add(match.Groups["what"].Value);
+      }
+      else what.Add(line);
+    }
+    result[2] = new field(what);
+    return result;
+  }
+  static IEnumerable<IList<field>> read_skype()
   {
     //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
     using (var text_reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
@@ -152,12 +218,26 @@ class skype
         if (line == null) break;
         line = line.Trim();
         if (string.IsNullOrWhiteSpace(line)) continue;
-        yield return parse_fields(line);
+        yield return skype_parse_fields(line);
       } while (true);
   }
-  static void show()
+  static IEnumerable<IList<field>> read_whatsapp()
   {
-    foreach (var fields in read())
+    //when,who,what
+    using (var text_reader = System.IO.File.OpenText("WhatsAppChat.txt"))
+    using (var reader = new WhatsappChatReader(text_reader))
+      do
+      {
+        var line = reader.ReadLine();
+        if (line == null) break;
+        line = line.Trim();
+        if (string.IsNullOrWhiteSpace(line)) continue;
+        yield return whatsapp_parse_fields(line);
+      } while (true);
+  }
+  static void skype_show()
+  {
+    foreach (var fields in read_skype())
     {
       if (fields?.Count == 0) continue;
       foreach (var f in fields) WriteLine($"\t{f.Aggregate(new StringBuilder(),(w,n)=>w.AppendFormat("{0} ",n))}"); WriteLine();
@@ -167,10 +247,18 @@ class skype
       WriteLine($"{who}:\n  {what}");*/
     }
   }
-  static XDocument toXDocument()
+  static void whatsapp_show()
+  {
+    foreach (var fields in read_whatsapp())
+    {
+      if (fields?.Count == 0) continue;
+      foreach (var f in fields) WriteLine($"\t{f.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0} ", n))}"); WriteLine();
+    }
+  }
+  static XDocument skype_toXDocument()
   {
     var says = new List<object>();
-    foreach (var fields in read())
+    foreach (var fields in read_skype())
     {
       if (fields?.Count == 0) continue;
       if (!fields[0][0].Contains("_549")) continue;
@@ -179,6 +267,20 @@ class skype
       var _6childs = fields[6].Aggregate(new List<object>(), (w, n) => { w.Add(new XElement($"t", n)); return w; });
       saychilds.Add(new XElement($"_6", _6childs));
       saychilds.Add(new XElement("when", $"{timestamp(ulong.Parse(fields[5][0])).ToString("yyyy-MM-dd HH:mm:ss")}"));
+      says.Add(new XElement(new XElement("say", saychilds)));
+    }
+    return new XDocument(new XElement("chat", says));
+  }
+  static XDocument whatsapp_toXDocument()
+  {
+    var says = new List<object>();
+    foreach (var fields in read_whatsapp())
+    {
+      if (fields?.Count == 0) continue;
+      var saychilds = new List<object> { new XElement($"_0", fields[0][0]), new XElement($"_3", fields[1][0]) };
+      var _6childs = fields[2].Aggregate(new List<object>(), (w, n) => { w.Add(new XElement($"t", n)); return w; });
+      saychilds.Add(new XElement($"_6", _6childs));
+      saychilds.Add(new XElement("when", $"{DateTime.ParseExact(fields[0][0].Replace("a. m.", "am").Replace("p. m.", "pm"), "dd/MM/yyyy hh:mm:ss tt", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss")}"));
       says.Add(new XElement(new XElement("say", saychilds)));
     }
     return new XDocument(new XElement("chat", says));
@@ -210,23 +312,40 @@ class skype
   {
     return nodes.Aggregate(new List<object>(), (w, n) => { w.Add(toCleanElement(n)); return w; }).ToArray();
   }
-  static void toxml()
+  static void skype_toxml()
   {
 //<?xml-stylesheet type="text/xsl" href="file:///C:\design\github_spike\spike\Solution1\ConsoleApplication1\skype_conversation.xslt"?>
-    var chat = toXDocument();
+    var chat = skype_toXDocument();
     using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
+  }
+  static void whatsapp_toxml()
+  {
+    var chat = whatsapp_toXDocument();
+    using (var writer = System.Xml.XmlWriter.Create("whatsapptoxml.xml")) chat.Save(writer);
   }
   static void toflatxml()
   {
-    var chat = toCleanXDocument(toXDocument());
+    var chat = toCleanXDocument(skype_toXDocument());
     using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
   }
-  static void tohtml(string[] args)
+  static void skype_tohtml(string[] args)
   {
     string html_output_file = args.ElementAtOrDefault(0);
     if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
-    var chat = toCleanXDocument(toXDocument());
+    var chat = toCleanXDocument(skype_toXDocument());
     using (var writer = System.Xml.XmlWriter.Create("skypetohtml.html", new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
+    {
+      var xslt = new System.Xml.Xsl.XslCompiledTransform();
+      xslt.Load(System.Xml.XmlReader.Create(html_output_file));
+      xslt.Transform(chat.CreateReader(), writer);
+    }
+  }
+  static void whatsapp_tohtml(string[] args)
+  {
+    string html_output_file = args.ElementAtOrDefault(0);
+    if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
+    var chat = toCleanXDocument(whatsapp_toXDocument());
+    using (var writer = System.Xml.XmlWriter.Create("whatsapptohtml.html", new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
     {
       var xslt = new System.Xml.Xsl.XslCompiledTransform();
       xslt.Load(System.Xml.XmlReader.Create(html_output_file));
@@ -243,7 +362,7 @@ class skype
         if (line == null) break;
         line = line.Trim();
         if (string.IsNullOrWhiteSpace(line)) continue;
-        var fields = parse_fields(line);
+        var fields = skype_parse_fields(line);
         foreach (var f in fields) WriteLine($"\t{f}"); WriteLine();
         if (fields.Count == 0) continue;
         if (!fields[0].Contains("_549")) continue;
@@ -256,10 +375,14 @@ class skype
   {
     try
     {
-      //show();
-      //toxml();
+      //skype_show();
+      //skype_toxml();
       //toflatxml();
-      tohtml(args);
+      //skype_tohtml(args);
+
+      whatsapp_show();
+      //whatsapp_toxml();
+      //whatsapp_tohtml(args);
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
   }
