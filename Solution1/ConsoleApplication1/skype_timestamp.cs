@@ -277,10 +277,9 @@ class skype
     foreach (var fields in read_whatsapp())
     {
       if (fields?.Count == 0) continue;
-      var saychilds = new List<object> { new XElement($"_0", fields[0][0]), new XElement($"_3", fields[1][0]) };
+      var saychilds = new List<object> { new XElement($"when", fields[0][0]), new XElement($"_3", fields[1][0]) };
       var _6childs = fields[2].Aggregate(new List<object>(), (w, n) => { w.Add(new XElement($"t", n)); return w; });
       saychilds.Add(new XElement($"_6", _6childs));
-      saychilds.Add(new XElement("when", $"{DateTime.ParseExact(fields[0][0].Replace("a. m.", "am").Replace("p. m.", "pm"), "dd/MM/yyyy hh:mm:ss tt", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss")}"));
       says.Add(new XElement(new XElement("say", saychilds)));
     }
     return new XDocument(new XElement("chat", says));
@@ -322,6 +321,19 @@ class skype
   {
     var chat = whatsapp_toXDocument();
     using (var writer = System.Xml.XmlWriter.Create("whatsapptoxml.xml")) chat.Save(writer);
+  }
+  static void whatsapp_backtochat()
+  {
+    var xml = XDocument.Load("whatsapptoxml.xml");
+    using (var writer = System.IO.File.CreateText("achat.txt"))
+    {
+      foreach (var say in xml.Root.Elements("say"))
+      {
+        var ts = $"{say.Element("_6").Elements("t").Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}\r\n", n.Value))}";
+        var _6 = ts.TrimEnd('\r', '\n');
+        writer.WriteLine($"{say.Element("when").Value}: {say.Element("_3").Value}: {_6}");
+      }
+    }
   }
   static void toflatxml()
   {
@@ -383,6 +395,7 @@ class skype
       //whatsapp_show();
       //whatsapp_toxml();
       whatsapp_tohtml(args);
+      //whatsapp_backtochat();
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
   }
