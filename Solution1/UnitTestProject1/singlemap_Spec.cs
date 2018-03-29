@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -66,6 +67,51 @@ namespace UnitTestProject1
       updated = new Suffix { Nick = "5", LastUpdated = DateTime.Now };
       @this = map.AddOrUpdate("name5", updated, (key, found) => found.LastUpdated < updated.LastUpdated ? updated : found);
       Assert.AreSame(@updated, @this);
+    }
+  }
+}
+
+namespace InstantiationSituation
+{
+  class TypeA { }
+  class TypeB { }
+  class TypeN { }
+  [TestClass]
+  public class ApplicationInitializationSpec
+  {
+    TypeA ExternalInstantiationOfTypeA() => new TypeA();
+    TypeB ExternalInstantiationOfTypeB() => new TypeB();
+    TypeN ExternalInstantiationOfTypeN() => new TypeN();
+
+    dynamic MyMagicalMethod(string typename)
+    {
+      switch (typename)
+      {
+        case "TypeA": return ExternalInstantiationOfTypeA();
+        case "TypeB": return ExternalInstantiationOfTypeB();
+        case "TypeN": return ExternalInstantiationOfTypeN();
+        default: throw new Exception($"Unknown type: {typename}");
+      }
+    }
+    [TestMethod]
+    public void app_init()
+    {
+      // Arrange
+      var type_list = new List<string> { "TypeA", "TypeB", "TypeN" };
+
+      // Act
+      var instance = type_list.Aggregate(new List<dynamic>(), (whole, next) => { whole.Add(MyMagicalMethod(next)); return whole; });
+      TypeA a = instance.ElementAtOrDefault(0);
+      TypeB b = instance.ElementAtOrDefault(1);
+      TypeN n = instance.ElementAtOrDefault(2);
+
+      // Assert
+      Assert.IsNotNull(a);
+      Assert.IsNotNull(b);
+      Assert.IsNotNull(n);
+      Assert.IsInstanceOfType(a, typeof(TypeA));
+      Assert.IsInstanceOfType(b, typeof(TypeB));
+      Assert.IsInstanceOfType(n, typeof(TypeN));
     }
   }
 }
