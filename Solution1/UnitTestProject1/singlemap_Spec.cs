@@ -83,24 +83,29 @@ namespace InstantiationSituation
     TypeB ExternalInstantiationOfTypeB() => new TypeB();
     TypeN ExternalInstantiationOfTypeN() => new TypeN();
 
-    dynamic MyMagicalMethod(string typename)
+    dynamic MyMagicalMethod(string typename, IServiceProvider typemap)
     {
-      switch (typename)
-      {
-        case "TypeA": return ExternalInstantiationOfTypeA();
-        case "TypeB": return ExternalInstantiationOfTypeB();
-        case "TypeN": return ExternalInstantiationOfTypeN();
-        default: throw new Exception($"Unknown type: {typename}");
-      }
+      Type expected_type = Type.GetType(typename);
+      return typemap.GetService(expected_type);
     }
     [TestMethod]
     public void app_init()
     {
       // Arrange
-      var type_list = new List<string> { "TypeA", "TypeB", "TypeN" };
+      var type_list = new [] { "InstantiationSituation.TypeA", "InstantiationSituation.TypeB", "InstantiationSituation.TypeN" };
+      var typemap = new nutility.TypeClassMapper
+      (
+        new Dictionary<Type, Type>(),
+        new Dictionary<Type, Func<object>>
+        {
+          { typeof(TypeA), new Func<TypeA>(() => ExternalInstantiationOfTypeA()) },
+          { typeof(TypeB), new Func<TypeB>(() => ExternalInstantiationOfTypeB()) },
+          { typeof(TypeN), new Func<TypeN>(() => ExternalInstantiationOfTypeN()) }
+        }
+      );
 
       // Act
-      var instance = type_list.Aggregate(new List<dynamic>(), (whole, next) => { whole.Add(MyMagicalMethod(next)); return whole; });
+      var instance = type_list.Aggregate(new List<dynamic>(), (whole, next) => { whole.Add(MyMagicalMethod(next, typemap)); return whole; });
       TypeA a = instance.ElementAtOrDefault(0);
       TypeB b = instance.ElementAtOrDefault(1);
       TypeN n = instance.ElementAtOrDefault(2);
