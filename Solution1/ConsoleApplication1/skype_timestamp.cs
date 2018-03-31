@@ -235,7 +235,7 @@ class skype
         yield return whatsapp_parse_fields(line);
       } while (true);
   }
-  static void skype_show()
+  public void skype_show()
   {
     foreach (var fields in read_skype())
     {
@@ -247,7 +247,7 @@ class skype
       WriteLine($"{who}:\n  {what}");*/
     }
   }
-  static void whatsapp_show()
+  public void whatsapp_show()
   {
     foreach (var fields in read_whatsapp())
     {
@@ -311,7 +311,7 @@ class skype
   {
     return nodes.Aggregate(new List<object>(), (w, n) => { w.Add(toCleanElement(n)); return w; }).ToArray();
   }
-  static void skype_toxml()
+  public void skype_toxml()
   {
 //<?xml-stylesheet type="text/xsl" href="file:///C:\design\github_spike\spike\Solution1\ConsoleApplication1\skype_conversation_o365.xslt"?>
     var chat = skype_toXDocument();
@@ -335,12 +335,12 @@ class skype
       }
     }
   }
-  static void toflatxml()
+  public void toflatxml()
   {
     var chat = toCleanXDocument(skype_toXDocument());
     using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
   }
-  static void skype_tohtml(string[] args)
+  public void skype_tohtml(string[] args)
   {
     string html_output_file = args.ElementAtOrDefault(0);
     if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
@@ -352,7 +352,7 @@ class skype
       xslt.Transform(chat.CreateReader(), writer);
     }
   }
-  static void whatsapp_tohtml(string[] args)
+  public void whatsapp_tohtml(string[] args)
   {
     string html_output_file = args.ElementAtOrDefault(0);
     if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
@@ -387,6 +387,7 @@ class skype
   {
     try
     {
+      nutility.Switch.AsType<skype>(args);
       //skype_show();
       //skype_toxml();
       //toflatxml();
@@ -394,7 +395,7 @@ class skype
 
       //whatsapp_show();
       //whatsapp_toxml();
-      whatsapp_tohtml(args);
+      //whatsapp_tohtml(args);
       //whatsapp_backtochat();
     }
     catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
