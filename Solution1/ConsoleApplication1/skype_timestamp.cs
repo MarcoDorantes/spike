@@ -221,10 +221,11 @@ class skype
         yield return skype_parse_fields(line);
       } while (true);
   }
+  const string WhatsAppChatFile = "WhatsAppChat.txt";
   static IEnumerable<IList<field>> read_whatsapp()
   {
     //when,who,what
-    using (var text_reader = System.IO.File.OpenText("WhatsAppChat.txt"))
+    using (var text_reader = System.IO.File.OpenText(WhatsAppChatFile))
     using (var reader = new WhatsappChatReader(text_reader))
       do
       {
@@ -352,15 +353,24 @@ class skype
       xslt.Transform(chat.CreateReader(), writer);
     }
   }
-  public void whatsapp_tohtml(string[] args)
+  public System.IO.FileInfo xslt;
+  public void whatsapp_tohtml()
   {
-    string html_output_file = args.ElementAtOrDefault(0);
-    if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
+    //Array.ForEach(System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceNames(), r => WriteLine(r));return;
+
+    const string outfile = "whatsapptohtml.html", default_xslt = "ConsoleApplication1.skype_conversation_o365.xslt";
+    string template_file = xslt?.Exists == true ? xslt.FullName : default_xslt;
+    var inputok = System.IO.File.Exists(WhatsAppChatFile);
+    WriteLine($"{nameof(WhatsAppChatFile)}: {WhatsAppChatFile} {(inputok ? "OK" : "Not found.")}");
+    WriteLine($"XSLT: {template_file} -> {outfile}");
+    if (!inputok) return;
     var chat = whatsapp_toXDocument();
-    using (var writer = System.Xml.XmlWriter.Create("whatsapptohtml.html", new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
+    using (var stream = xslt?.Exists == true ? xslt.OpenRead() : System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(default_xslt))
+    using (var reader = new System.IO.StreamReader(stream))
+    using (var writer = System.Xml.XmlWriter.Create(outfile, new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
     {
       var xslt = new System.Xml.Xsl.XslCompiledTransform();
-      xslt.Load(System.Xml.XmlReader.Create(html_output_file));
+      xslt.Load(System.Xml.XmlReader.Create(reader));
       xslt.Transform(chat.CreateReader(), writer);
     }
   }
@@ -398,7 +408,7 @@ class skype
       //whatsapp_tohtml(args);
       //whatsapp_backtochat();
     }
-    catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
+    catch (Exception ex) { int level = 0; for (var e = ex; e != null; e = e.InnerException) WriteLine($"\n[Level {level++}] {e.GetType().FullName}: {e.Message}\n{e.StackTrace}"); }
   }
 }
 /*delete-1
