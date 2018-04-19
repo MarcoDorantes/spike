@@ -503,11 +503,41 @@ namespace ConsoleApplication1
         //RSS_news._Main(args);
         //async_Copy._Main(args);
         //json._Main(args);
-        skype._Main(args);
+        //skype._Main(args);
+        tracer._Main(args);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 
 //      unhandled_exceptions._Main(args);
     }
   }
+  #region tracer
+  class tracer
+  {
+    public static void _Main(string[] args)
+    {
+      if (args.Length == 1) watch(args[0]);
+      else trace();
+    }
+    static void watch(string filename)
+    {
+      var file = new System.IO.FileInfo(filename);
+      WriteLine($"watching: {file.FullName}");
+      using (var reader = new System.IO.FileStream(file.FullName, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read))
+      {
+        WriteLine("Open");
+        WriteLine("Enter to close & exit"); ReadLine();
+      }
+    }
+    static void trace()
+    {
+      do
+      {
+        System.Diagnostics.Trace.WriteLine($"{DateTime.Now.ToString("s")}");
+        WriteLine("Press SPACE to add trace or ENTER to stop");
+        if (ReadKey().Key == ConsoleKey.Spacebar) continue; else break;
+      } while (true);
+    }
+  }
+  #endregion
 }
