@@ -503,8 +503,8 @@ namespace ConsoleApplication1
         //RSS_news._Main(args);
         //async_Copy._Main(args);
         //json._Main(args);
-        //skype._Main(args);
-        tracer._Main(args);
+        skype._Main(args);
+        //tracer._Main(args);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 
