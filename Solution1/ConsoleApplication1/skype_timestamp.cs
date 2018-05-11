@@ -210,7 +210,7 @@ class skype
   static IEnumerable<IList<field>> read_skype()
   {
     //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
-    using (var text_reader = System.IO.File.OpenText("SkypeChatHistory.csv"))
+    using (var text_reader = System.IO.File.OpenText(SkypeChatHistoryFile))
     using (var reader = new SkypeChatReader(text_reader))
       do
       {
@@ -222,6 +222,7 @@ class skype
       } while (true);
   }
   const string WhatsAppChatFile = "WhatsAppChat.txt";
+  const string SkypeChatHistoryFile = "SkypeChatHistory.csv";
   static IEnumerable<IList<field>> read_whatsapp()
   {
     //when,who,what
@@ -341,29 +342,38 @@ class skype
     var chat = toCleanXDocument(skype_toXDocument());
     using (var writer = System.Xml.XmlWriter.Create("skypetoxml.xml")) chat.Save(writer);
   }
-  public void skype_tohtml(string[] args)
+  public void skype_tohtml()
   {
-    string html_output_file = args.ElementAtOrDefault(0);
-    if (string.IsNullOrWhiteSpace(html_output_file)) throw new ArgumentNullException($"{nameof(html_output_file)}");
+    const string outfile = "skypetohtml.html";
+    string template_file = xslt?.Exists == true ? xslt.FullName : default_xslt;
+    var inputok = System.IO.File.Exists(SkypeChatHistoryFile);
+    WriteLine($"{nameof(SkypeChatHistoryFile)}: {SkypeChatHistoryFile} {(inputok ? "OK" : "Not found.")}");
+    WriteLine($"XSLT: {template_file} -> {outfile}");
+    if (!inputok) return;
+
     var chat = toCleanXDocument(skype_toXDocument());
-    using (var writer = System.Xml.XmlWriter.Create("skypetohtml.html", new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
+    using (var stream = xslt?.Exists == true ? xslt.OpenRead() : System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(default_xslt))
+    using (var reader = new System.IO.StreamReader(stream))
+    using (var writer = System.Xml.XmlWriter.Create(outfile, new System.Xml.XmlWriterSettings { OmitXmlDeclaration = true }))
     {
       var xslt = new System.Xml.Xsl.XslCompiledTransform();
-      xslt.Load(System.Xml.XmlReader.Create(html_output_file));
+      xslt.Load(System.Xml.XmlReader.Create(reader));
       xslt.Transform(chat.CreateReader(), writer);
     }
   }
+  const string default_xslt = "ConsoleApplication1.skype_conversation_o365.xslt";
   public System.IO.FileInfo xslt;
   public void whatsapp_tohtml()
   {
     //Array.ForEach(System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceNames(), r => WriteLine(r));return;
 
-    const string outfile = "whatsapptohtml.html", default_xslt = "ConsoleApplication1.skype_conversation_o365.xslt";
+    const string outfile = "whatsapptohtml.html";
     string template_file = xslt?.Exists == true ? xslt.FullName : default_xslt;
     var inputok = System.IO.File.Exists(WhatsAppChatFile);
     WriteLine($"{nameof(WhatsAppChatFile)}: {WhatsAppChatFile} {(inputok ? "OK" : "Not found.")}");
     WriteLine($"XSLT: {template_file} -> {outfile}");
     if (!inputok) return;
+
     var chat = whatsapp_toXDocument();
     using (var stream = xslt?.Exists == true ? xslt.OpenRead() : System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(default_xslt))
     using (var reader = new System.IO.StreamReader(stream))
