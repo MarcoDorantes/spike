@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -485,6 +486,13 @@ namespace ConsoleApplication1
     #endregion
   }
 
+  class windowsTask
+  {
+    public static void _Main(string[] args)
+    {
+      foreach (var t in Microsoft.Win32.TaskScheduler.TaskService.Instance.AllTasks) WriteLine(t.Name);
+    }
+  }
   class Program
   {
     //[STAThread]
@@ -503,8 +511,9 @@ namespace ConsoleApplication1
         //RSS_news._Main(args);
         //async_Copy._Main(args);
         //json._Main(args);
-        skype._Main(args);
+        //skype._Main(args);
         //tracer._Main(args);
+        windowsTask._Main(args);
       }
       catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 
