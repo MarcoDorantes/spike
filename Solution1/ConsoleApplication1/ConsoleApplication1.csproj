@@ -84,6 +84,7 @@
     <Compile Include="task1.cs" />
     <Compile Include="unhandled_exceptions.cs" />
     <Compile Include="wcf1.cs" />
+    <Compile Include="windowsScheduledTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

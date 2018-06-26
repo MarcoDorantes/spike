@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
@@ -486,13 +485,6 @@ namespace ConsoleApplication1
     #endregion
   }
 
-  class windowsTask
-  {
-    public static void _Main(string[] args)
-    {
-      foreach (var t in Microsoft.Win32.TaskScheduler.TaskService.Instance.AllTasks) WriteLine(t.Name);
-    }
-  }
   class Program
   {
     //[STAThread]
