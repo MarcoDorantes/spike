@@ -22,12 +22,12 @@ namespace ConsoleApplication1
             using (tr)
             {
               WriteLine($"\t{tr.Id} | {tr.Enabled} | {tr.StartBoundary}");
-              task.Enabled = true;
               tr.Enabled = true;
               var prev = tr.StartBoundary;
               var today = DateTime.Today.AddDays(10D);
               var start = new DateTime(today.Year, today.Month, today.Day, prev.Hour, prev.Minute, prev.Second);
               tr.StartBoundary = start;
+              task.Definition.Settings.Enabled = true;
               task.RegisterChanges();
               WriteLine($"{task?.Enabled} | {task?.Name} | {task?.Path} | Folder {task?.Folder.Name} {task.Folder.Path}");
               WriteLine($"\t{tr.Id} | {tr.Enabled} | {tr.StartBoundary}");
