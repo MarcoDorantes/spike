@@ -210,7 +210,7 @@ class skype
   static IEnumerable<IList<field>> read_skype()
   {
     //ConversationId,ConversationName,AuthorId,AuthorName,HumanTime,TimestampMs,ContentXml
-    using (var text_reader = System.IO.File.OpenText(SkypeChatHistoryFile))
+    using (var text_reader = new System.IO.StreamReader(SkypeChatHistoryFile, Encoding.UTF7))
     using (var reader = new SkypeChatReader(text_reader))
       do
       {
@@ -344,6 +344,19 @@ class skype
   }
   public void skype_tohtml()
   {
+/*    using (var text_reader = new System.IO.StreamReader(SkypeChatHistoryFile,Encoding.UTF7))
+    using (var writer = System.IO.File.CreateText("file111.txt"))
+      do
+      {
+        var line = text_reader.ReadLine();
+        if (line == null) break;
+        line = line.Trim();
+        if (string.IsNullOrWhiteSpace(line)) continue;
+        if (line.Contains("Cuál")) { WriteLine(line); }
+        writer.WriteLine(line);
+      } while (true); return;
+*/
+
     const string outfile = "skypetohtml.html";
     string template_file = xslt?.Exists == true ? xslt.FullName : default_xslt;
     var inputok = System.IO.File.Exists(SkypeChatHistoryFile);
