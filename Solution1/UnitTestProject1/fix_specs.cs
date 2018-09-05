@@ -205,6 +205,38 @@ namespace UnitTestProject1
         file.Delete();
       }
     }
+
+    [TestMethod]
+    public void opel()
+    {
+      var g = new Func<DateTime, DateTime>(d => new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, d.Hour, d.Minute, d.Second, d.Millisecond));
+      var f = new Func<string, string>(J=>
+      {
+        var map = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(J);
+        map["52"] = g(DateTime.ParseExact($"{map["52"]}", "yyyyMMdd-HH:mm:ss.ffffff", System.Globalization.CultureInfo.InvariantCulture)).ToString("yyyy-MM-dd HH:mm:ss.fff");
+        map["60"] = g(DateTime.ParseExact($"{map["60"]}", "yyyyMMdd-HH:mm:ss.ffffff", System.Globalization.CultureInfo.InvariantCulture)).ToString("yyyy-MM-dd HH:mm:ss.fff");
+        map["22"] = "M";
+        map["75"] = DateTime.Now.ToString("yyyyMMdd");
+        map["64"] = DateTime.Now.AddDays(2).ToString("yyyyMMdd");
+        return Newtonsoft.Json.JsonConvert.SerializeObject(map);
+      });
+      using (var reader = (new System.IO.FileInfo(@"C:\temp\MensajesOPEL.txt").OpenText()))
+      {
+        do
+        {
+          var line = reader.ReadLine();
+          if (line == null) break;
+          var jstart_index = line.IndexOf(": {");
+          if (jstart_index < 0)
+          {
+            Trace.WriteLine(line);continue;
+          }
+          var destination = line.Substring(0, jstart_index + 2);
+          var json = line.Substring(jstart_index + 2);
+          Trace.WriteLine($"{destination}{f(json)}");
+        } while (true);
+      }
+    }
   }
 }
 
