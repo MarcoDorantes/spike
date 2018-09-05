@@ -218,6 +218,7 @@ namespace UnitTestProject1
         map["22"] = "M";
         map["75"] = DateTime.Now.ToString("yyyyMMdd");
         map["64"] = DateTime.Now.AddDays(2).ToString("yyyyMMdd");
+        map["57"] = "-check current BIVADispathWriter config-";//DEV: "P751TR03";
         return Newtonsoft.Json.JsonConvert.SerializeObject(map);
       });
       using (var reader = (new System.IO.FileInfo(@"C:\temp\MensajesOPEL.txt").OpenText()))
