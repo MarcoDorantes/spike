@@ -209,6 +209,9 @@ namespace UnitTestProject1
     [TestMethod]
     public void opel()
     {
+      int run_id = 2;
+      int batch_size = 11;
+      int sequence_number = (run_id - 1) * batch_size + 1;
       var g = new Func<DateTime, DateTime>(d => new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, d.Hour, d.Minute, d.Second, d.Millisecond));
       var f = new Func<string, string>(J=>
       {
@@ -218,7 +221,8 @@ namespace UnitTestProject1
         map["22"] = "M";
         map["75"] = DateTime.Now.ToString("yyyyMMdd");
         map["64"] = DateTime.Now.AddDays(2).ToString("yyyyMMdd");
-        map["57"] = "-check current BIVADispathWriter config-";//DEV: "P751TR03";
+        map["57"] = "P751TR03";//DEV: "P751TR03";
+        map["34"] = sequence_number++;
         return Newtonsoft.Json.JsonConvert.SerializeObject(map);
       });
       using (var reader = (new System.IO.FileInfo(@"C:\temp\MensajesOPEL.txt").OpenText()))
