@@ -1,18 +1,27 @@
-//csc /r:Microsoft.Exchange.WebServices.dll gbmmail.cs
 using System;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Text;
 using static System.Console;
-
+/*
+Exchange Online and Exchange development
+https://docs.microsoft.com/en-us/exchange/client-developer/exchange-server-development
+ */
 static class orgmail
 {
   class Input
   {
-    bool excep_only, needs;
-    int count;
+    const string To = "to";
+    const string Bcc = "bcc";
+
+    public bool excep_only, needs, html;
+    public int count;
+    public string subject, body;
+    public FileInfo file;
+
     public void latest()
     {
-      WriteLine($"{System.Reflection.MethodInfo.GetCurrentMethod().Name}");
-
       var exchange = GetExchangeService();
 
       var view = new Microsoft.Exchange.WebServices.Data.ItemView(10);
@@ -46,8 +55,6 @@ static class orgmail
     }
     public void excep()
     {
-      WriteLine($"{System.Reflection.MethodInfo.GetCurrentMethod().Name}");
-
       var exchange = GetExchangeService();
 
       var folder = listfolders(exchange, "Clutter");
@@ -96,8 +103,6 @@ static class orgmail
     }
     public void clean()
     {
-      WriteLine($"{System.Reflection.MethodInfo.GetCurrentMethod().Name}");
-
       var exchange = GetExchangeService();
 
       string subject = "needs help";
@@ -144,10 +149,34 @@ static class orgmail
       WriteLine("Done.");
     }
 
+    public void send()
+    {
+      if (string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings[To])) throw new ArgumentException("There is no configured recipients.");
+      var msg = new Microsoft.Exchange.WebServices.Data.EmailMessage(GetExchangeService());
+      msg.Subject = subject;
+      msg.Body = GetBody();
+      SetRecipients(msg);
+      msg.Send();
+    }
+    Microsoft.Exchange.WebServices.Data.MessageBody GetBody()
+    {
+      var result = new Microsoft.Exchange.WebServices.Data.MessageBody();
+      result.BodyType = html ? Microsoft.Exchange.WebServices.Data.BodyType.HTML : Microsoft.Exchange.WebServices.Data.BodyType.Text;
+      var payload = new StringBuilder();
+      if (!string.IsNullOrWhiteSpace(body)) payload.Append(body);
+      if (file != null) payload.Append(File.ReadAllText(file.FullName));
+      result.Text = $"{payload}";
+      return result;
+    }
+    void SetRecipients(Microsoft.Exchange.WebServices.Data.EmailMessage msg)
+    {
+      ConfigurationManager.AppSettings[To]?.Trim().Split('|').ToList().ForEach(t => msg.ToRecipients.Add(t.Trim()));
+      ConfigurationManager.AppSettings[Bcc]?.Trim().Split('|').ToList().ForEach(t => msg.BccRecipients.Add(t.Trim()));
+    }
     Microsoft.Exchange.WebServices.Data.ExchangeService GetExchangeService()
     {
-      var ews_url = System.Configuration.ConfigurationManager.AppSettings["EWS"];
-      var address = System.Configuration.ConfigurationManager.AppSettings["emailaddress"];
+      var ews_url = ConfigurationManager.AppSettings["EWS"];
+      var address = ConfigurationManager.AppSettings["emailaddress"];
       var access = GetAccess();
       var exchange = new Microsoft.Exchange.WebServices.Data.ExchangeService(Microsoft.Exchange.WebServices.Data.ExchangeVersion.Exchange2013);
       exchange.Credentials = new Microsoft.Exchange.WebServices.Data.WebCredentials(address, access);
