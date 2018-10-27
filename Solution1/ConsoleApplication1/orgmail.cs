@@ -15,10 +15,10 @@ static class orgmail
     const string To = "to";
     const string Bcc = "bcc";
 
-    public bool excep_only, needs, html;
+    public bool excep_only, needs, text;
     public int count;
     public string subject, body;
-    public FileInfo file;
+    public FileInfo file, subjectfile, pack;
 
     public void latest()
     {
@@ -149,24 +149,82 @@ static class orgmail
       WriteLine("Done.");
     }
 
+    //.\tools\mail\orgmail.exe -send -subject="the here4" -file="doc111.htm"
+    //.\tools\mail\orgmail.exe -send -subject="the here5" -pack="doc111.htm"
     public void send()
     {
       if (string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings[To])) throw new ArgumentException("There is no configured recipients.");
       var msg = new Microsoft.Exchange.WebServices.Data.EmailMessage(GetExchangeService());
-      msg.Subject = subject;
+      msg.Subject = GetSubject();
+      WriteLine($"Subject: [{msg.Subject}]");
       msg.Body = GetBody();
       SetRecipients(msg);
       msg.Send();
+      WriteLine($"Send(): Done.");
+    }
+    string GetSubject()
+    {
+      var subjectline = new StringBuilder();
+      if (!string.IsNullOrWhiteSpace(subject)) subjectline.Append($"{subject}");
+      if (pack?.Exists == true)
+      {
+        if (subjectline.Length > 0) subjectline.Append(" ");
+        subjectline.Append($"{GetSubjectFromPackFile()}");
+      }
+      if (subjectfile?.Exists == true)
+      {
+        if (subjectline.Length > 0) subjectline.Append(" ");
+        subjectline.Append($"{File.ReadAllText(subjectfile.FullName)}");
+      }
+      return $"{subjectline}";
     }
     Microsoft.Exchange.WebServices.Data.MessageBody GetBody()
     {
       var result = new Microsoft.Exchange.WebServices.Data.MessageBody();
-      result.BodyType = html ? Microsoft.Exchange.WebServices.Data.BodyType.HTML : Microsoft.Exchange.WebServices.Data.BodyType.Text;
+      result.BodyType = text ? Microsoft.Exchange.WebServices.Data.BodyType.Text : Microsoft.Exchange.WebServices.Data.BodyType.HTML;
+      WriteLine($"BodyType: {result.BodyType}");
       var payload = new StringBuilder();
-      if (!string.IsNullOrWhiteSpace(body)) payload.Append(body);
-      if (file != null) payload.Append(File.ReadAllText(file.FullName));
+      if (!string.IsNullOrWhiteSpace(body)) payload.AppendLine(body);
+      if (pack?.Exists == true) payload.Append($"{GetBodyFromPackFile()}");
+      if (file?.Exists == true) payload.Append(File.ReadAllText(file.FullName));
       result.Text = $"{payload}";
+      WriteLine($"Payload length: {result.Text.Length}");
       return result;
+    }
+    string GetSubjectFromPackFile()
+    {
+      if (pack?.Exists == false) return string.Empty;
+      var subjectpack = new StringBuilder();
+      var after_first_line = false;
+      using (var reader = pack.OpenText())
+        do
+        {
+          var line = reader.ReadLine();
+          if (line == null) break;
+          line = line.Trim();
+          if (string.IsNullOrWhiteSpace(line)) break;
+          if (after_first_line) subjectpack.AppendLine();
+          subjectpack.Append(line);
+          after_first_line = true;
+        } while (true);
+      return $"{subjectpack}";
+    }
+    string GetBodyFromPackFile()
+    {
+      if (pack?.Exists == false) return string.Empty;
+      var bodypack = new StringBuilder();
+      var isBody = false;
+      using (var reader = pack.OpenText())
+        do
+        {
+          var line = reader.ReadLine();
+          if (line == null) break;
+          line = line.Trim();
+          if (!(isBody || string.IsNullOrWhiteSpace(line))) continue;
+          if (!isBody && string.IsNullOrWhiteSpace(line)) { isBody = true; continue; };
+          bodypack.AppendLine(line);
+        } while (true);
+      return $"{bodypack}";
     }
     void SetRecipients(Microsoft.Exchange.WebServices.Data.EmailMessage msg)
     {
