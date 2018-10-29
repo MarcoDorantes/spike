@@ -38,7 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -58,6 +58,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="sencod">
+      <HintPath>..\..\lib\sencod.dll</HintPath>
+    </Reference>
     <Reference Include="Switch, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\nSwitch.3.6.0\lib\net40\Switch.dll</HintPath>
     </Reference>

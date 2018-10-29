@@ -256,7 +256,13 @@ static class orgmail
       return
       //ReadLine();
       //System.Configuration.ConfigurationManager.AppSettings["access"];
-      StringCipher.Decrypt(System.Configuration.ConfigurationManager.AppSettings["access"], System.Configuration.ConfigurationManager.AppSettings["key"]);
+      //StringCipher.Decrypt(System.Configuration.ConfigurationManager.AppSettings["access"], System.Configuration.ConfigurationManager.AppSettings["key"]);
+      GetSecret();
+    }
+    string GetSecret()
+    {
+      var x = new encod.sencod();
+      return x.Open(System.Configuration.ConfigurationManager.AppSettings["access"]);
     }
     Microsoft.Exchange.WebServices.Data.Folder listfolders(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string target_folder)
     {
@@ -291,6 +297,11 @@ static class orgmail
     #endregion
   }
 
+  /*
+https://stackoverflow.com/questions/10168240/encrypting-decrypting-a-string-in-c-sharp
+https://tekeye.uk/visual_studio/encrypt-decrypt-c-sharp-string
+https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a-cryptographic-application
+  */
   public static class StringCipher
   {
     // This constant is used to determine the keysize of the encryption algorithm in bits.
