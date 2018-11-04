@@ -1,14 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using static System.Console;
+
 /*
 Exchange Online and Exchange development
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-server-development
- */
+*/
 static class orgmail
 {
   class Input
@@ -20,6 +22,7 @@ static class orgmail
     public int count;
     public string subject, body;
     public FileInfo file, subjectfile, pack;
+    public List<FileInfo> attachs;
 
     public void latest()
     {
@@ -160,7 +163,8 @@ static class orgmail
       WriteLine($"Subject: [{msg.Subject}]");
       msg.Body = GetBody();
       SetRecipients(msg);
-      if(confirm)
+      SetAttachments(msg);
+      if (confirm)
       {
         Write("Type 'YES' to Send: ");
         if (ReadLine() != "YES")
@@ -221,6 +225,8 @@ static class orgmail
     }
     string GetBodyFromPackFile()
     {
+      const string attach_directive = "+attach:";
+
       if (pack?.Exists == false) return string.Empty;
       var bodypack = new StringBuilder();
       var isBody = false;
@@ -232,7 +238,17 @@ static class orgmail
           line = line.Trim();
           if (!(isBody || string.IsNullOrWhiteSpace(line))) continue;
           if (!isBody && string.IsNullOrWhiteSpace(line)) { isBody = true; continue; };
-          bodypack.AppendLine(line);
+          if (line.StartsWith(attach_directive))
+          {
+            var attach_file = new FileInfo(line.Substring(attach_directive.Length));
+            if (attach_file.Exists)
+            {
+              if (attachs == null) attachs = new List<FileInfo>();
+              attachs.Add(attach_file);
+            }
+            else bodypack.AppendLine($"[not found] {line}");
+          }
+          else bodypack.AppendLine(line);
         } while (true);
       return $"{bodypack}";
     }
@@ -240,6 +256,16 @@ static class orgmail
     {
       ConfigurationManager.AppSettings[To]?.Trim().Split('|').ToList().ForEach(t => msg.ToRecipients.Add(t.Trim()));
       ConfigurationManager.AppSettings[Bcc]?.Trim().Split('|').ToList().ForEach(t => msg.BccRecipients.Add(t.Trim()));
+    }
+    void SetAttachments(Microsoft.Exchange.WebServices.Data.EmailMessage msg)
+    {
+      if (attachs?.Count > 0) attachs.ForEach(attach =>
+      {
+        Write($"\tAttaching {attach.FullName}...");
+        msg.Attachments.AddFileAttachment(attach.FullName);
+        WriteLine($"Done.");
+      });
+      WriteLine($"Attachments count: {msg.Attachments.Count}");
     }
     Microsoft.Exchange.WebServices.Data.ExchangeService GetExchangeService()
     {
