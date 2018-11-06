@@ -18,7 +18,7 @@ static class orgmail
     const string To = "to";
     const string Bcc = "bcc";
 
-    public bool excep_only, needs, text, confirm;
+    public bool excep_only, needs, html, confirm;
     public int count;
     public string subject, body;
     public FileInfo file, subjectfile, pack;
@@ -195,7 +195,7 @@ static class orgmail
     Microsoft.Exchange.WebServices.Data.MessageBody GetBody()
     {
       var result = new Microsoft.Exchange.WebServices.Data.MessageBody();
-      result.BodyType = text ? Microsoft.Exchange.WebServices.Data.BodyType.Text : Microsoft.Exchange.WebServices.Data.BodyType.HTML;
+      result.BodyType = html ? Microsoft.Exchange.WebServices.Data.BodyType.HTML : Microsoft.Exchange.WebServices.Data.BodyType.Text;
       WriteLine($"BodyType: {result.BodyType}");
       var payload = new StringBuilder();
       if (!string.IsNullOrWhiteSpace(body)) payload.AppendLine(body);
