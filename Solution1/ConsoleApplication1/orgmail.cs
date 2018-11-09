@@ -23,7 +23,7 @@ static class orgmail
     public string subject, body;
     public FileInfo file, subjectfile, pack;
     public List<FileInfo> attachs;
-    public bool ascii, utf7, utf8, utf32, unicode;
+    public bool ascii, utf7, utf8, utf32, unicode, latin1;
 
     public void latest()
     {
@@ -162,6 +162,7 @@ static class orgmail
       if (string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings[To])) throw new ArgumentException("There is no configured recipients.");
       var msg = new Microsoft.Exchange.WebServices.Data.EmailMessage(GetExchangeService());
       SetEncoding();
+      WriteLine($"Encoding: {encoding}");
       msg.Subject = GetSubject();
       WriteLine($"Subject: [{msg.Subject}]");
       msg.Body = GetBody();
@@ -190,6 +191,7 @@ static class orgmail
       else if (utf8) encoding = Encoding.UTF8;
       else if (utf32) encoding = Encoding.UTF32;
       else if (unicode) encoding = Encoding.Unicode;
+      else if (latin1) encoding = Encoding.GetEncoding("ISO-8859-1");
       else encoding = Encoding.UTF7;
     }
     string GetSubject()
