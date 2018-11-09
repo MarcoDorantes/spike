@@ -218,7 +218,7 @@ static class orgmail
       var payload = new StringBuilder();
       if (!string.IsNullOrWhiteSpace(body)) payload.AppendLine(body);
       if (pack?.Exists == true) payload.Append($"{GetBodyFromPackFile()}");
-      if (file?.Exists == true) payload.Append(File.ReadAllText(file.FullName));
+      if (file?.Exists == true) payload.Append(File.ReadAllText(file.FullName, encoding));
       result.Text = $"{payload}";
       WriteLine($"Payload length: {result.Text.Length}");
       return result;
@@ -243,7 +243,7 @@ static class orgmail
     }
     string GetBodyFromPackFile()
     {
-      const string attach_directive = "+attach:";
+      const string attach_directive = "@attach=";
 
       if (pack?.Exists == false) return string.Empty;
       var bodypack = new StringBuilder();
