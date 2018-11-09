@@ -18,11 +18,12 @@ static class orgmail
     const string To = "to";
     const string Bcc = "bcc";
 
-    public bool excep_only, needs, html, confirm;
+    public bool excep_only, needs, html, confirm, expand;
     public int count;
     public string subject, body;
     public FileInfo file, subjectfile, pack;
     public List<FileInfo> attachs;
+    public bool ascii, utf7, utf8, utf32, unicode;
 
     public void latest()
     {
@@ -155,13 +156,19 @@ static class orgmail
 
     //.\tools\mail\orgmail.exe -send -subject="the here4" -file="doc111.htm"
     //.\tools\mail\orgmail.exe -send -subject="the here5" -pack="doc111.htm"
+    private Encoding encoding;
     public void send()
     {
       if (string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings[To])) throw new ArgumentException("There is no configured recipients.");
       var msg = new Microsoft.Exchange.WebServices.Data.EmailMessage(GetExchangeService());
+      SetEncoding();
       msg.Subject = GetSubject();
       WriteLine($"Subject: [{msg.Subject}]");
       msg.Body = GetBody();
+      if (expand)
+      {
+        WriteLine($"Body: [{msg.Body}]");
+      }
       SetRecipients(msg);
       SetAttachments(msg);
       if (confirm)
@@ -175,6 +182,15 @@ static class orgmail
       }
       msg.Send();
       WriteLine($"Send(): Done.");
+    }
+    void SetEncoding()
+    {
+      if(ascii) encoding = Encoding.ASCII;
+      else if (utf7) encoding = Encoding.UTF7;
+      else if (utf8) encoding = Encoding.UTF8;
+      else if (utf32) encoding = Encoding.UTF32;
+      else if (unicode) encoding = Encoding.Unicode;
+      else encoding = Encoding.UTF7;
     }
     string GetSubject()
     {
@@ -210,7 +226,7 @@ static class orgmail
       if (pack?.Exists == false) return string.Empty;
       var subjectpack = new StringBuilder();
       var after_first_line = false;
-      using (var reader = pack.OpenText())
+      using (var reader = new StreamReader(pack.FullName, encoding))
         do
         {
           var line = reader.ReadLine();
@@ -230,7 +246,7 @@ static class orgmail
       if (pack?.Exists == false) return string.Empty;
       var bodypack = new StringBuilder();
       var isBody = false;
-      using (var reader = pack.OpenText())
+      using (var reader = new StreamReader(pack.FullName, encoding))
         do
         {
           var line = reader.ReadLine();
