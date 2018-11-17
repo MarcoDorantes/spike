@@ -54,13 +54,15 @@ static class orgmail
         foreach (Microsoft.Exchange.WebServices.Data.EmailMessage item in found.OrderBy(i => i.DateTimeReceived))
         {
           ++count;
-          var body = "";
           if (count == read)
           {
             item.Load();
-            body = item.Body.Text;
+            WriteLine(item.Body.Text); return;
           }
-          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{count}\nBody:\t{body}");
+          else if (read == 0)
+          {
+            WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{count}");
+          }
         }
       }
     }
