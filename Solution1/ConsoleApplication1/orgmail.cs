@@ -19,17 +19,22 @@ static class orgmail
     const string Bcc = "bcc";
 
     public bool excep_only, needs, html, confirm, expand;
-    public int count;
+    public int count, pageSize, offset;
+    public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body;
     public FileInfo file, subjectfile, pack;
     public List<FileInfo> attachs;
-    public bool ascii, utf7, utf8, utf32, unicode, latin1;
+    public bool ascii, utf7, utf8, utf32, unicode, latin1, allPages;
 
     public void latest()
     {
+      if (pageSize == 0) pageSize = 10;
+      bool moreItems = true;
+      int count = 0;
+
       var exchange = GetExchangeService();
 
-      var view = new Microsoft.Exchange.WebServices.Data.ItemView(10);
+      var view = new Microsoft.Exchange.WebServices.Data.ItemView(pageSize, offset, offsetBasePoint);
       view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
           Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Id,
           Microsoft.Exchange.WebServices.Data.EmailMessageSchema.From,
@@ -38,10 +43,6 @@ static class orgmail
           Microsoft.Exchange.WebServices.Data.EmailMessageSchema.IsRead);
       view.OrderBy.Add(Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived, Microsoft.Exchange.WebServices.Data.SortDirection.Descending);
 
-      int pageSize = 10;
-      bool allPages = false;
-      bool moreItems = true;
-      int count = 0;
       while (moreItems)
       {
         var found = exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.Inbox, view);
