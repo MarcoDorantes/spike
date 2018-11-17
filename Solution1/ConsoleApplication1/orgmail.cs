@@ -19,7 +19,7 @@ static class orgmail
     const string Bcc = "bcc";
 
     public bool excep_only, needs, html, confirm, expand;
-    public int count, pageSize, offset;
+    public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body;
     public FileInfo file, subjectfile, pack;
@@ -53,9 +53,14 @@ static class orgmail
         }
         foreach (Microsoft.Exchange.WebServices.Data.EmailMessage item in found.OrderBy(i => i.DateTimeReceived))
         {
-          //item.Load(new Microsoft.Exchange.WebServices.Data.PropertySet(Microsoft.Exchange.WebServices.Data.BasePropertySet.FirstClassProperties));
-          var body = "";//item.Body.Text;
-          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nBody:\t{body}\nCount:\t{++count}");
+          ++count;
+          var body = "";
+          if (count == read)
+          {
+            item.Load();
+            body = item.Body.Text;
+          }
+          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{count}\nBody:\t{body}");
         }
       }
     }
