@@ -18,7 +18,7 @@ static class orgmail
     const string To = "to";
     const string Bcc = "bcc";
 
-    public bool excep_only, needs, html, confirm, expand;
+    public bool excep_only, needs, html, confirm, expand, restart;
     public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body;
@@ -114,17 +114,15 @@ static class orgmail
         }
       }
     }
-    public void clean()
+    public void clean()// -clean [-pageSize=200] [-restart]
     {
       var exchange = GetExchangeService();
 
       string subject = "needs help";
-      int pageSize = count <= 0 ? 10 : count;
-      bool allPages = true;
-      bool expand = false;
-      count = 20;//00;
+      if (pageSize == 0) pageSize = 10;
+      allPages = true;
+      expand = false;
 
-      int offset = 0;
       var view = new Microsoft.Exchange.WebServices.Data.ItemView(pageSize, offset);
       view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
       Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Id,
@@ -158,7 +156,7 @@ static class orgmail
           }
           continue;
         }
-      } while (true);
+      } while (restart);
       WriteLine("Done.");
     }
 
