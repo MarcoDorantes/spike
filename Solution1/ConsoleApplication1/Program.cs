@@ -510,7 +510,6 @@ namespace ConsoleApplication1
       }
       catch (Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"\n\n[{level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 
-
 //      unhandled_exceptions._Main(args);
     }
   }
