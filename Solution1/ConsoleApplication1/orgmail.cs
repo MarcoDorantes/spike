@@ -36,7 +36,7 @@ static class orgmail
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, folder);
       SetView();
-      SetSubjectFilter();
+      SetFilter();
 
       bool moreItems = true;
       int count = 0;
@@ -94,9 +94,10 @@ static class orgmail
     {
       if (pageSize == 0) pageSize = 10;
       allPages = true;
+      if (string.IsNullOrWhiteSpace(folder)) folder = "Clutter";
 
       var exchange = GetExchangeService();
-      var target_folder = GetTargetFolder(exchange, "Clutter");
+      var target_folder = GetTargetFolder(exchange, folder);
       SetView();
       SetFilter();
 
@@ -325,26 +326,27 @@ static class orgmail
     }
     void SetFilter()
     {
-      var exception_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "Exception", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
-      var needs_help_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "needs help", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
-      var both = new Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection
-      (
-              Microsoft.Exchange.WebServices.Data.LogicalOperator.Or,
-              exception_filter,
-              needs_help_filter
-      );
-      filter = null;
-      if (excep_only && !needs) filter = exception_filter;
-      else if (!excep_only && needs) filter = needs_help_filter;
-      else filter = both;
+      if (string.IsNullOrWhiteSpace(subject) == false)
+      {
+        var subject_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, subject, Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+        filter = subject_filter;
+      }
+      else
+      {
+        var exception_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "Exception", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+        var needs_help_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "needs help", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+        var both = new Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection
+        (
+                Microsoft.Exchange.WebServices.Data.LogicalOperator.Or,
+                exception_filter,
+                needs_help_filter
+        );
+        filter = null;
+        if (excep_only && !needs) filter = exception_filter;
+        else if (!excep_only && needs) filter = needs_help_filter;
+        else filter = both;
+      }
     }
-    void SetSubjectFilter()
-    {
-      if (string.IsNullOrWhiteSpace(subject)) return;
-      var subject_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, subject, Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
-      filter = subject_filter;
-    }
-
 
     #region call StringCipher
     public string plain, secret, key;
