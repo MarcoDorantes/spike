@@ -18,13 +18,16 @@ static class orgmail
     const string To = "to";
     const string Bcc = "bcc";
 
-    public bool excep_only, needs, html, confirm, expand, restart;
+    public bool excep_only, needs, html, confirm, expand, restart, fallback;
     public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body;
     public FileInfo file, subjectfile, pack;
     public List<FileInfo> attachs;
     public bool ascii, utf7, utf8, utf32, unicode, latin1, allPages;
+
+    Microsoft.Exchange.WebServices.Data.ItemView view;
+    Microsoft.Exchange.WebServices.Data.SearchFilter filter;
 
     public void latest()
     {
@@ -68,40 +71,18 @@ static class orgmail
     }
     public void excep()
     {
+      if (pageSize == 0) pageSize = 10;
+      allPages = false;
+
       var exchange = GetExchangeService();
+      var target_folder = GetTargetFolder(exchange, "Clutter");
+      SetViewAndFilter();
 
-      var folder = listfolders(exchange, "Clutter");
-      WriteLine($"Located folder: {folder.DisplayName}");
-
-      var view = new Microsoft.Exchange.WebServices.Data.ItemView(10);
-      view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
-          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Id,
-          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.From,
-          Microsoft.Exchange.WebServices.Data.ItemSchema.Subject,
-          Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived,
-          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.IsRead);
-
-      view.OrderBy.Add(Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived, Microsoft.Exchange.WebServices.Data.SortDirection.Descending);
-      var exception_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "Exception", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
-      var needs_help_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "needs help", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
-      var both = new Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection
-      (
-              Microsoft.Exchange.WebServices.Data.LogicalOperator.Or,
-              exception_filter,
-              needs_help_filter
-      );
-      Microsoft.Exchange.WebServices.Data.SearchFilter filter = null;
-      if (excep_only && !needs) filter = exception_filter;
-      else if (!excep_only && needs) filter = needs_help_filter;
-      else filter = both;
-
-      int pageSize = 10;
-      bool allPages = false;
-      bool moreItems = true;
       int count = 0;
+      bool moreItems = true;
       while (moreItems)
       {
-        var found = exchange.FindItems(folder.Id, filter, view);
+        var found = target_folder != null ? exchange.FindItems(target_folder.Id, filter, view) : exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.DeletedItems, filter, view);
         moreItems = found.MoreAvailable && allPages;
         if (moreItems)
         {
@@ -109,39 +90,25 @@ static class orgmail
         }
         foreach (Microsoft.Exchange.WebServices.Data.EmailMessage item in found.OrderBy(i => i.DateTimeReceived))
         {
-          string body = "";
-          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nBody:\t{body}\nCount:\t{++count}");
+          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{++count}");
         }
       }
     }
     public void clean()// -clean [-pageSize=200] [-restart]
     {
-      var exchange = GetExchangeService();
-
-      string subject = "needs help";
       if (pageSize == 0) pageSize = 10;
       allPages = true;
-      expand = false;
 
-      var view = new Microsoft.Exchange.WebServices.Data.ItemView(pageSize, offset);
-      view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
-      Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Id,
-      Microsoft.Exchange.WebServices.Data.EmailMessageSchema.From,
-      Microsoft.Exchange.WebServices.Data.ItemSchema.Subject,
-      Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived,
-      Microsoft.Exchange.WebServices.Data.EmailMessageSchema.IsRead);
-      view.OrderBy.Add(Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived, Microsoft.Exchange.WebServices.Data.SortDirection.Descending);
-      var filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, subject);
+      var exchange = GetExchangeService();
+      var target_folder = GetTargetFolder(exchange, "Clutter");
+      SetViewAndFilter();
 
-      var foldername = "Clutter";
-      var target_folder = expand == false ? listfolders(exchange, foldername) : null;
-      WriteLine($"Target folder: {(target_folder != null ? target_folder.DisplayName : "Deleted Items")}");
       do
       {
         bool moreItems = true;
         while (moreItems)
         {
-          var found = expand ? exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.DeletedItems, filter, view) : exchange.FindItems(target_folder.Id, filter, view);
+          var found = target_folder != null ? exchange.FindItems(target_folder.Id, filter, view) : exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.DeletedItems, filter, view);
           if (found.Any() == false) break;
           moreItems = found.MoreAvailable && allPages;
           if (moreItems)
@@ -314,6 +281,17 @@ static class orgmail
       var x = new encod.sencod();
       return x.Open(System.Configuration.ConfigurationManager.AppSettings["access"]);
     }
+    Microsoft.Exchange.WebServices.Data.Folder GetTargetFolder(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername)
+    {
+      var target_folder = listfolders(exchange, foldername);
+      if (target_folder == null)
+      {
+        if(fallback) WriteLine($"{foldername} not found. ***** Fallback to Deleted Items. *****");
+        else throw new Exception($"Folder '{foldername}' not found.");
+      }
+      WriteLine($"Target folder: {(target_folder != null ? target_folder.DisplayName : "Deleted Items")}");
+      return target_folder;
+    }
     Microsoft.Exchange.WebServices.Data.Folder listfolders(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string target_folder)
     {
       WriteLine($"\n{nameof(listfolders)}:");
@@ -331,8 +309,32 @@ static class orgmail
         WriteLine($"[{f.DisplayName,-30}]");//\t{f.Id}
         if (f.DisplayName == target_folder) return f;
       }
-      throw new Exception($"{target_folder} not found.");
+      return null;
     }
+    void SetViewAndFilter()
+    {
+      view = new Microsoft.Exchange.WebServices.Data.ItemView(pageSize, offset);
+      view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
+          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Id,
+          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.From,
+          Microsoft.Exchange.WebServices.Data.ItemSchema.Subject,
+          Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived,
+          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.IsRead);
+      view.OrderBy.Add(Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived, Microsoft.Exchange.WebServices.Data.SortDirection.Descending);
+      var exception_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "Exception", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+      var needs_help_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "needs help", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+      var both = new Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection
+      (
+              Microsoft.Exchange.WebServices.Data.LogicalOperator.Or,
+              exception_filter,
+              needs_help_filter
+      );
+      filter = null;
+      if (excep_only && !needs) filter = exception_filter;
+      else if (!excep_only && needs) filter = needs_help_filter;
+      else filter = both;
+    }
+
 
     #region call StringCipher
     public string plain, secret, key;
