@@ -21,7 +21,7 @@ static class orgmail
     public bool excep_only, needs, html, confirm, expand, restart, fallback;
     public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
-    public string subject, body;
+    public string subject, body, folder;
     public FileInfo file, subjectfile, pack;
     public List<FileInfo> attachs;
     public bool ascii, utf7, utf8, utf32, unicode, latin1, allPages;
@@ -32,23 +32,17 @@ static class orgmail
     public void latest()
     {
       if (pageSize == 0) pageSize = 10;
-      bool moreItems = true;
-      int count = 0;
 
       var exchange = GetExchangeService();
+      var target_folder = GetTargetFolder(exchange, folder);
+      SetView();
+      SetSubjectFilter();
 
-      var view = new Microsoft.Exchange.WebServices.Data.ItemView(pageSize, offset, offsetBasePoint);
-      view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
-          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Id,
-          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.From,
-          Microsoft.Exchange.WebServices.Data.ItemSchema.Subject,
-          Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived,
-          Microsoft.Exchange.WebServices.Data.EmailMessageSchema.IsRead);
-      view.OrderBy.Add(Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived, Microsoft.Exchange.WebServices.Data.SortDirection.Descending);
-
+      bool moreItems = true;
+      int count = 0;
       while (moreItems)
       {
-        var found = exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.Inbox, view);
+        var found = target_folder != null ? exchange.FindItems(target_folder.Id, filter, view) : exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.Inbox, view);
         moreItems = found.MoreAvailable && allPages;
         if (moreItems)
         {
@@ -60,7 +54,8 @@ static class orgmail
           if (count == read)
           {
             item.Load();
-            WriteLine(item.Body.Text); return;
+            WriteLine(item.Body.Text);
+            return;
           }
           else if (read == 0)
           {
@@ -76,7 +71,8 @@ static class orgmail
 
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, "Clutter");
-      SetViewAndFilter();
+      SetView();
+      SetFilter();
 
       int count = 0;
       bool moreItems = true;
@@ -101,7 +97,8 @@ static class orgmail
 
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, "Clutter");
-      SetViewAndFilter();
+      SetView();
+      SetFilter();
 
       do
       {
@@ -283,13 +280,17 @@ static class orgmail
     }
     Microsoft.Exchange.WebServices.Data.Folder GetTargetFolder(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername)
     {
-      var target_folder = listfolders(exchange, foldername);
-      if (target_folder == null)
+      Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
+      if (string.IsNullOrWhiteSpace(foldername) == false)
       {
-        if(fallback) WriteLine($"{foldername} not found. ***** Fallback to Deleted Items. *****");
-        else throw new Exception($"Folder '{foldername}' not found.");
+        target_folder = listfolders(exchange, foldername);
+        if (target_folder == null)
+        {
+          if (fallback) WriteLine($"{foldername} not found. ***** Fallback to Deleted Items. *****");
+          else throw new Exception($"Folder '{foldername}' not found.");
+        }
+        WriteLine($"Target folder: {(target_folder != null ? target_folder.DisplayName : "Deleted Items")}");
       }
-      WriteLine($"Target folder: {(target_folder != null ? target_folder.DisplayName : "Deleted Items")}");
       return target_folder;
     }
     Microsoft.Exchange.WebServices.Data.Folder listfolders(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string target_folder)
@@ -311,9 +312,9 @@ static class orgmail
       }
       return null;
     }
-    void SetViewAndFilter()
+    void SetView()
     {
-      view = new Microsoft.Exchange.WebServices.Data.ItemView(pageSize, offset);
+      view = new Microsoft.Exchange.WebServices.Data.ItemView(pageSize, offset, offsetBasePoint);
       view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
           Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Id,
           Microsoft.Exchange.WebServices.Data.EmailMessageSchema.From,
@@ -321,6 +322,9 @@ static class orgmail
           Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived,
           Microsoft.Exchange.WebServices.Data.EmailMessageSchema.IsRead);
       view.OrderBy.Add(Microsoft.Exchange.WebServices.Data.ItemSchema.DateTimeReceived, Microsoft.Exchange.WebServices.Data.SortDirection.Descending);
+    }
+    void SetFilter()
+    {
       var exception_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "Exception", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
       var needs_help_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "needs help", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
       var both = new Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection
@@ -333,6 +337,12 @@ static class orgmail
       if (excep_only && !needs) filter = exception_filter;
       else if (!excep_only && needs) filter = needs_help_filter;
       else filter = both;
+    }
+    void SetSubjectFilter()
+    {
+      if (string.IsNullOrWhiteSpace(subject)) return;
+      var subject_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, subject, Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+      filter = subject_filter;
     }
 
 
