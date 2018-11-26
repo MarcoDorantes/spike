@@ -29,6 +29,21 @@ static class orgmail
     Microsoft.Exchange.WebServices.Data.ItemView view;
     Microsoft.Exchange.WebServices.Data.SearchFilter filter;
 
+    public void tep()//to new GetTargetFolder version
+    {
+      var exchange = GetExchangeService();
+      //var target_folder = GetTargetFolder(exchange, folder);
+      var target_folder = listfolders(exchange, folder);
+      if (target_folder == null) WriteLine($"{folder} not found.");
+      else
+      {
+        WriteLine($"Target folder: {target_folder.DisplayName} subfolders: {target_folder.ChildFolderCount}");
+        target_folder = listfolders(exchange, subject, target_folder.Id);
+        if (target_folder == null) WriteLine($"{folder} not found.");
+        else WriteLine($"Target subfolder: {target_folder.DisplayName} subfolders: {target_folder.ChildFolderCount}");
+      }
+
+    }
     public void latest()
     {
       if (pageSize == 0) pageSize = 10;
@@ -294,22 +309,23 @@ static class orgmail
       }
       return target_folder;
     }
-    Microsoft.Exchange.WebServices.Data.Folder listfolders(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string target_folder)
+    Microsoft.Exchange.WebServices.Data.Folder listfolders(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername, Microsoft.Exchange.WebServices.Data.FolderId parentfolder = null)
     {
       WriteLine($"\n{nameof(listfolders)}:");
 
       var view = new Microsoft.Exchange.WebServices.Data.FolderView(50);
       view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
           Microsoft.Exchange.WebServices.Data.FolderSchema.Id,
+          Microsoft.Exchange.WebServices.Data.FolderSchema.ChildFolderCount,
           Microsoft.Exchange.WebServices.Data.FolderSchema.DisplayName);
 
-      var filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.IsEqualTo(Microsoft.Exchange.WebServices.Data.FolderSchema.DisplayName, target_folder);
+      var filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.IsEqualTo(Microsoft.Exchange.WebServices.Data.FolderSchema.DisplayName, foldername);
 
-      var found = exchange.FindFolders(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.MsgFolderRoot, filter, view);
+      var found = parentfolder == null ? exchange.FindFolders(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.MsgFolderRoot, filter, view) : exchange.FindFolders(parentfolder, filter, view);
       foreach (Microsoft.Exchange.WebServices.Data.Folder f in found.Folders)
       {
         WriteLine($"[{f.DisplayName,-30}]");//\t{f.Id}
-        if (f.DisplayName == target_folder) return f;
+        if (f.DisplayName == foldername) return f;
       }
       return null;
     }
