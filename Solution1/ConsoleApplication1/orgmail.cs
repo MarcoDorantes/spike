@@ -33,7 +33,30 @@ static class orgmail
     {
       var exchange = GetExchangeService();
       //var target_folder = GetTargetFolder(exchange, folder);
-      var target_folder = listfolders(exchange, folder);
+
+      var foldername = folder;
+
+      Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
+      if (string.IsNullOrWhiteSpace(foldername) == false)
+      {
+        var treeline = foldername.Split('\\').Select(n => n.Trim()).Where(fname => string.IsNullOrWhiteSpace(fname) == false);
+        Microsoft.Exchange.WebServices.Data.FolderId parentfolder = null;
+        foreach (var step in treeline)
+        {
+          target_folder = listfolders(exchange, step, parentfolder);
+          if (target_folder == null)
+          {
+            if (fallback) WriteLine($"{foldername} not found. ***** Fallback to Deleted Items. *****");
+            else throw new Exception($"Folder '{foldername}' not found.");
+          }
+          WriteLine($"Target folder: {(target_folder != null ? target_folder.DisplayName : "Deleted Items")}");
+          parentfolder = target_folder.Id;
+        }
+      }
+      //return target_folder;
+
+
+      /*target_folder = listfolders(exchange, folder);
       if (target_folder == null) WriteLine($"{folder} not found.");
       else
       {
@@ -41,7 +64,7 @@ static class orgmail
         target_folder = listfolders(exchange, subject, target_folder.Id);
         if (target_folder == null) WriteLine($"{folder} not found.");
         else WriteLine($"Target subfolder: {target_folder.DisplayName} subfolders: {target_folder.ChildFolderCount}");
-      }
+      }*/
 
     }
     public void latest()
