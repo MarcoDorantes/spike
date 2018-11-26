@@ -32,16 +32,31 @@ static class orgmail
     public void tep()//to new GetTargetFolder version
     {
       var exchange = GetExchangeService();
-      //var target_folder = GetTargetFolder(exchange, folder);
-
-      var foldername = folder;
-
+      var target_folder = GetTargetFolder2(exchange, folder);
+    }
+    Microsoft.Exchange.WebServices.Data.Folder GetTargetFolder2(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername)
+    {
       Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
       if (string.IsNullOrWhiteSpace(foldername) == false)
       {
-        var treeline = foldername.Split('\\').Select(n => n.Trim()).Where(fname => string.IsNullOrWhiteSpace(fname) == false);
+        target_folder = listfolders(exchange, foldername);
+        if (target_folder == null)
+        {
+          if (fallback) WriteLine($"{foldername} not found. ***** Fallback to Deleted Items. *****");
+          else throw new Exception($"Folder '{foldername}' not found.");
+        }
+        WriteLine($"Target folder: {(target_folder != null ? target_folder.DisplayName : "Deleted Items")}");
+      }
+      return target_folder;
+    }
+    Microsoft.Exchange.WebServices.Data.Folder tep_GetTargetFolder(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername)
+    {
+      Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
+      if (string.IsNullOrWhiteSpace(foldername) == false)
+      {
+        var stepline = foldername.Split('\\','/').Select(n => n.Trim()).Where(fname => string.IsNullOrWhiteSpace(fname) == false);
         Microsoft.Exchange.WebServices.Data.FolderId parentfolder = null;
-        foreach (var step in treeline)
+        foreach (var step in stepline)
         {
           target_folder = listfolders(exchange, step, parentfolder);
           if (target_folder == null)
@@ -53,7 +68,7 @@ static class orgmail
           parentfolder = target_folder.Id;
         }
       }
-      //return target_folder;
+      return target_folder;
 
 
       /*target_folder = listfolders(exchange, folder);
