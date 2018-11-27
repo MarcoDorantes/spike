@@ -54,7 +54,7 @@ static class orgmail
       Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
       if (string.IsNullOrWhiteSpace(foldername) == false)
       {
-        var stepline = foldername.Split('\\','/').Select(n => n.Trim()).Where(fname => string.IsNullOrWhiteSpace(fname) == false);
+        var stepline = foldername.Split('\\', '/', '|').Select(n => n.Trim()).Where(fname => string.IsNullOrWhiteSpace(fname) == false);
         Microsoft.Exchange.WebServices.Data.FolderId parentfolder = null;
         foreach (var step in stepline)
         {
@@ -89,7 +89,7 @@ static class orgmail
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, folder);
       SetView();
-      SetFilter();
+      SetFilter();//folder and subject
 
       bool moreItems = true;
       int count = 0;
@@ -121,9 +121,10 @@ static class orgmail
     {
       if (pageSize == 0) pageSize = 10;
       allPages = false;
+      if (string.IsNullOrWhiteSpace(folder)) folder = "Clutter";
 
       var exchange = GetExchangeService();
-      var target_folder = GetTargetFolder(exchange, "Clutter");
+      var target_folder = GetTargetFolder(exchange, folder);
       SetView();
       SetFilter();
 
