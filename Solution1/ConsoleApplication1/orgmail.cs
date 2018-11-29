@@ -18,7 +18,7 @@ static class orgmail
     const string To = "to";
     const string Bcc = "bcc";
 
-    public bool excep_only, needs, html, confirm, expand, restart;
+    public bool excep_only, needs, html, confirm, expand, restart, soft, deleteditems;
     public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body, folder;
@@ -28,6 +28,7 @@ static class orgmail
 
     Microsoft.Exchange.WebServices.Data.ItemView view;
     Microsoft.Exchange.WebServices.Data.SearchFilter filter;
+    Microsoft.Exchange.WebServices.Data.DeleteMode delete_mode;
 
     public void latest()
     {
@@ -92,16 +93,33 @@ static class orgmail
         }
       }
     }
-    public void clean()// -clean [-pageSize=200] [-restart]
+    public void clean()// -clean [-pageSize=200] [-restart] [-soft|-deleteditems]
     {
       if (pageSize == 0) pageSize = 10;
       allPages = true;
       if (string.IsNullOrWhiteSpace(folder)) folder = "Clutter";
 
+      if (soft) delete_mode = Microsoft.Exchange.WebServices.Data.DeleteMode.SoftDelete;
+      else if (deleteditems) delete_mode = Microsoft.Exchange.WebServices.Data.DeleteMode.MoveToDeletedItems;
+      else delete_mode = Microsoft.Exchange.WebServices.Data.DeleteMode.HardDelete;
+
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, folder);
       SetView();
       SetFilter();
+
+      WriteLine($"Folder: [{folder}]");
+      WriteLine($"subject: [{subject}]");
+      WriteLine($"DeleteMode: {delete_mode}");
+      if (confirm)
+      {
+        Write("Type 'YES' to DeleteItems: ");
+        if (ReadLine() != "YES")
+        {
+          WriteLine("\nCancelled by the user: DeleteItems was not executed.");
+          return;
+        }
+      }
 
       do
       {
@@ -116,7 +134,7 @@ static class orgmail
             view.Offset += pageSize;
           }
 
-          var responses = exchange.DeleteItems(found.Select(msg => msg.Id), Microsoft.Exchange.WebServices.Data.DeleteMode.HardDelete, Microsoft.Exchange.WebServices.Data.SendCancellationsMode.SendToNone, Microsoft.Exchange.WebServices.Data.AffectedTaskOccurrence.AllOccurrences);
+          var responses = exchange.DeleteItems(found.Select(msg => msg.Id), delete_mode, Microsoft.Exchange.WebServices.Data.SendCancellationsMode.SendToNone, Microsoft.Exchange.WebServices.Data.AffectedTaskOccurrence.AllOccurrences);
           foreach (var g in responses.GroupBy(resp => resp.Result))
           {
             WriteLine($"{g.Key}: {g.Count()}");
