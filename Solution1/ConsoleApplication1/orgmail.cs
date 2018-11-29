@@ -18,7 +18,7 @@ static class orgmail
     const string To = "to";
     const string Bcc = "bcc";
 
-    public bool excep_only, needs, html, confirm, expand, restart, fallback;
+    public bool excep_only, needs, html, confirm, expand, restart;
     public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body, folder;
@@ -29,45 +29,21 @@ static class orgmail
     Microsoft.Exchange.WebServices.Data.ItemView view;
     Microsoft.Exchange.WebServices.Data.SearchFilter filter;
 
-    public void tep()//to new GetTargetFolder version
-    {
-      var exchange = GetExchangeService();
-      var target_folder = GetTargetFolder2(exchange, folder);
-      WriteLine(target_folder != null ? $"Found: {target_folder.DisplayName}" : $"{nameof(folder)} '{folder}' not found.");
-    }
-    Microsoft.Exchange.WebServices.Data.Folder GetTargetFolder2(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername)
-    {
-      Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
-      if (string.IsNullOrWhiteSpace(foldername) == false)
-      {
-        if (string.IsNullOrWhiteSpace(foldername) == false)
-        {
-          var stepline = foldername.Split('\\', '/', '|').Select(n => n.Trim()).Where(fname => string.IsNullOrWhiteSpace(fname) == false);
-          Microsoft.Exchange.WebServices.Data.FolderId parentfolder = null;
-          foreach (var step in stepline)
-          {
-            target_folder = listfolders(exchange, step, parentfolder);
-            if (target_folder == null) throw new Exception($"Folder '{foldername}' not found.");
-            parentfolder = target_folder.Id;
-          }
-        }
-      }
-      return target_folder;
-    }
     public void latest()
     {
       if (pageSize == 0) pageSize = 10;
+      if (string.IsNullOrWhiteSpace(folder)) folder = "Inbox";
 
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, folder);
       SetView();
-      SetFilter();//folder and subject
+      SetFilter();//f(folder,subject)
 
       bool moreItems = true;
       int count = 0;
       while (moreItems)
       {
-        var found = target_folder != null ? exchange.FindItems(target_folder.Id, filter, view) : exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.Inbox, view);
+        var found = string.IsNullOrWhiteSpace(subject) ? exchange.FindItems(target_folder.Id, view) : exchange.FindItems(target_folder.Id, filter, view);
         moreItems = found.MoreAvailable && allPages;
         if (moreItems)
         {
@@ -104,7 +80,7 @@ static class orgmail
       bool moreItems = true;
       while (moreItems)
       {
-        var found = target_folder != null ? exchange.FindItems(target_folder.Id, filter, view) : exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.DeletedItems, filter, view);
+        var found = exchange.FindItems(target_folder.Id, filter, view);
         moreItems = found.MoreAvailable && allPages;
         if (moreItems)
         {
@@ -132,7 +108,7 @@ static class orgmail
         bool moreItems = true;
         while (moreItems)
         {
-          var found = target_folder != null ? exchange.FindItems(target_folder.Id, filter, view) : exchange.FindItems(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.DeletedItems, filter, view);
+          var found = exchange.FindItems(target_folder.Id, filter, view);
           if (found.Any() == false) break;
           moreItems = found.MoreAvailable && allPages;
           if (moreItems)
@@ -307,16 +283,18 @@ static class orgmail
     }
     Microsoft.Exchange.WebServices.Data.Folder GetTargetFolder(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername)
     {
-      Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
-      if (string.IsNullOrWhiteSpace(foldername) == false)
+      if (string.IsNullOrWhiteSpace(foldername))
       {
-        target_folder = listfolders(exchange, foldername);
-        if (target_folder == null)
-        {
-          if (fallback) WriteLine($"{foldername} not found. ***** Fallback to Deleted Items. *****");
-          else throw new Exception($"Folder '{foldername}' not found.");
-        }
-        WriteLine($"Target folder: {(target_folder != null ? target_folder.DisplayName : "Deleted Items")}");
+        throw new ArgumentNullException($"{nameof(foldername)}", "Folder name cannot be null or empty.");
+      }
+      Microsoft.Exchange.WebServices.Data.Folder target_folder = null;
+      var stepline = foldername.Split('\\', '/', '|').Select(n => n.Trim()).Where(fname => string.IsNullOrWhiteSpace(fname) == false);
+      Microsoft.Exchange.WebServices.Data.FolderId parentfolder = null;
+      foreach (var step in stepline)
+      {
+        target_folder = listfolders(exchange, step, parentfolder);
+        if (target_folder == null) throw new Exception($"Folder '{foldername}' not found.");
+        parentfolder = target_folder.Id;
       }
       return target_folder;
     }
