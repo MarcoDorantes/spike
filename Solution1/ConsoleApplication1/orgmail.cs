@@ -105,24 +105,25 @@ static class orgmail
 
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, folder);
-      SetView();
-      SetFilter();
-
-      WriteLine($"Folder: [{folder}]");
-      WriteLine($"subject: [{subject}]");
-      WriteLine($"DeleteMode: {delete_mode}");
-      if (confirm)
-      {
-        Write("Type 'YES' to DeleteItems: ");
-        if (ReadLine() != "YES")
-        {
-          WriteLine("\nCancelled by the user: DeleteItems was not executed.");
-          return;
-        }
-      }
-
       do
       {
+        SetView();
+        SetFilter();
+        var rand = new Random();
+
+        WriteLine($"Folder: [{folder}]");
+        WriteLine($"subject: [{subject}]");
+        WriteLine($"DeleteMode: {delete_mode}");
+        if (confirm)
+        {
+          Write("Type 'YES' to DeleteItems: ");
+          if (ReadLine() != "YES")
+          {
+            WriteLine("\nCancelled by the user: DeleteItems was not executed.");
+            return;
+          }
+        }
+
         bool moreItems = true;
         while (moreItems)
         {
@@ -140,6 +141,13 @@ static class orgmail
             WriteLine($"{g.Key}: {g.Count()}");
           }
           continue;
+        }
+        if (restart)
+        {
+          var sleep = rand.Next(30000, 60000);
+          Write($"Waiting for {sleep / 1000:N0}s...");
+          System.Threading.Thread.Sleep(sleep);
+          WriteLine($"\nRestarting...");
         }
       } while (restart);
       WriteLine("Done.");
