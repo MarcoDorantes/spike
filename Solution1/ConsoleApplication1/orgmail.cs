@@ -24,7 +24,8 @@ static class orgmail
     public string subject, body, folder;
     public FileInfo file, subjectfile, pack;
     public List<FileInfo> attachs;
-    public bool ascii, utf7, utf8, utf32, unicode, latin1, allPages;
+    public bool ascii, utf7, utf8, utf32, unicode, latin1;
+    public bool? allPages;
 
     Microsoft.Exchange.WebServices.Data.ItemView view;
     Microsoft.Exchange.WebServices.Data.SearchFilter filter;
@@ -33,6 +34,7 @@ static class orgmail
     public void latest()
     {
       if (pageSize == 0) pageSize = 10;
+      var _allpages = allPages ?? false;
       if (string.IsNullOrWhiteSpace(folder)) folder = "Inbox";
 
       var exchange = GetExchangeService();
@@ -45,7 +47,8 @@ static class orgmail
       while (moreItems)
       {
         var found = string.IsNullOrWhiteSpace(subject) ? exchange.FindItems(target_folder.Id, view) : exchange.FindItems(target_folder.Id, filter, view);
-        moreItems = found.MoreAvailable && allPages;
+        if (found.Any() == false) break;
+        moreItems = found.MoreAvailable && _allpages;
         if (moreItems)
         {
           view.Offset += pageSize;
@@ -69,7 +72,7 @@ static class orgmail
     public void excep()
     {
       if (pageSize == 0) pageSize = 10;
-      allPages = false;
+      var _allpages = allPages ?? false;
       if (string.IsNullOrWhiteSpace(folder)) folder = "Clutter";
 
       var exchange = GetExchangeService();
@@ -82,7 +85,8 @@ static class orgmail
       while (moreItems)
       {
         var found = exchange.FindItems(target_folder.Id, filter, view);
-        moreItems = found.MoreAvailable && allPages;
+        if (found.Any() == false) break;
+        moreItems = found.MoreAvailable && _allpages;
         if (moreItems)
         {
           view.Offset += pageSize;
@@ -96,7 +100,7 @@ static class orgmail
     public void clean()// -clean [-pageSize=200] [-restart] [-soft|-deleteditems]
     {
       if (pageSize == 0) pageSize = 10;
-      allPages = true;
+      var _allpages = allPages ?? true;
       if (string.IsNullOrWhiteSpace(folder)) folder = "Clutter";
 
       if (soft) delete_mode = Microsoft.Exchange.WebServices.Data.DeleteMode.SoftDelete;
@@ -129,7 +133,7 @@ static class orgmail
         {
           var found = exchange.FindItems(target_folder.Id, filter, view);
           if (found.Any() == false) break;
-          moreItems = found.MoreAvailable && allPages;
+          moreItems = found.MoreAvailable && _allpages;
           if (moreItems)
           {
             view.Offset += pageSize;
