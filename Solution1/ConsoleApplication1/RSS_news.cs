@@ -1,4 +1,4 @@
-﻿//tools\getWebfile.exe http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews vsnews_03Oct2016.xml
+//tools\getWebfile.exe http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews vsnews_03Oct2016.xml
 //tools\getWebfile.exe https://vsstartpage.blob.core.windows.net/news/vs vsnews_27Jan2017.xml
 //csc /r:"\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\PresentationCore.dll" vsnews_merge.cs
 using System;
@@ -29,7 +29,7 @@ namespace ConsoleApplication1
   class RSS_news
   {
     static void add(string sourceURL, string targetfile)
-    {
+    {try{
       var source = XDocument.Load(sourceURL);
       WriteLine($"\nSource received: {source.Root.Element("channel").Element("title").Value} ({source.Root.Element("channel").Descendants("item").Count()} items)");
       if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
@@ -39,6 +39,7 @@ namespace ConsoleApplication1
       var merged = m.merge(source, target);
       merged.Save(targetfile);
       WriteLine("merged.");
+}catch(Exception ex){WriteLine($"Not merged: {ex.GetType().FullName}: {ex.Message} on URL:\n{sourceURL}");}
     }
     public static void _Main(string[] args)
     {
