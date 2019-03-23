@@ -10,6 +10,33 @@ namespace ConsoleApplication1
 {
   class cfdi_summary
   {
+    /*
+http://www.sat.gob.mx/cfd/3
+http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd
+
+http://www.sat.gob.mx/nomina12
+http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
+    */
+    public static IEnumerable<XAttribute> read_attr(XElement e)
+    {
+      if (e.HasAttributes) foreach (var a in e.Attributes()) yield return a;
+      if (e.HasElements) foreach (var s in e.Elements()) foreach (var x in read_attr(s)) yield return x;
+    }
+    public static void attr(XElement e, Action<XAttribute> visit)
+    {
+      if (e.HasAttributes) foreach (var a in e.Attributes()) visit(a);
+      if (e.HasElements) foreach (var s in e.Elements()) attr(s, visit);
+    }
+    public static void comp()
+    {
+      var cfdi = new FileInfo(@"C:\dir\file.xml");
+      //var xml = new System.Xml.XmlDocument();
+      //xml.Load(cfdi.FullName);
+
+      var xml = XDocument.Load(cfdi.FullName);
+      //attr(xml.Root, a => WriteLine($"{a.Name}={a?.Value}"));
+      foreach (var a in read_attr(xml.Root).OrderBy(x => x.Name.LocalName)) WriteLine($"{a.Name}={a?.Value}");
+    }
     public static void sat()
     {
       var getconcept = new Func<string, string>(n =>
@@ -20,7 +47,7 @@ namespace ConsoleApplication1
         return $"{result}";
       });
       //WriteLine(getconcept("1414-3143-BON-2018-12-41477"));return;
-      var folder = new DirectoryInfo(@"C:\path");
+      var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2018\SAT");
       int count = 0;
       XNamespace cfdi_ns = "http://www.sat.gob.mx/cfd/3";
       XNamespace nomina12_ns = "http://www.sat.gob.mx/nomina12";
@@ -57,7 +84,11 @@ namespace ConsoleApplication1
         WriteLine($"{++count},{Fecha},{Folio},=\"{FechaPago}\",{NumDiasPagados},{TotalPercepciones},{TotalDeducciones},{TotalSueldos},{TotalGravado},{TotalExento},{PercepcionesConceptos},={PercepcionesImportesExentos},={PercepcionesImportesGravados},{DeduccionesConceptos},={DeduccionesImportes},{SubTotal},{Descuento},{Total},{Concepto},{CFDI}");
       }
     }
-    public static void _Main(string[] args) { sat(); }
+    public static void _Main(string[] args)
+    {
+      comp();
+      //sat();
+    }
   }
 }
 /*class exe

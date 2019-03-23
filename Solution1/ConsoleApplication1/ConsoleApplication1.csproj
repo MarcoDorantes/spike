@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="async_Copy.cs" />
-    <Compile Include="cfdi_summary.cs" />
+    <Compile Include="cfdi\cfdi_summary.cs" />
     <Compile Include="ExploreFeatureCS6_exe.cs" />
     <Compile Include="fix_util.cs" />
     <Compile Include="nutility\ExcelDoc.cs" />
@@ -99,6 +99,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cfdi\cfdv33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cfdi\nomina12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cfdi\TimbreFiscalDigitalv11.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
