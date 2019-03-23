@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="async_Copy.cs" />
+    <Compile Include="cfdi_summary.cs" />
     <Compile Include="ExploreFeatureCS6_exe.cs" />
     <Compile Include="fix_util.cs" />
     <Compile Include="nutility\ExcelDoc.cs" />
