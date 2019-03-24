@@ -29,37 +29,52 @@ http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
     }
     public static void comp()
     {
-      var cfdi1 = new FileInfo(@"C:\Users\Marco\Documents\DEC_2018\gbm_2018\1414-3143-MES-2018-1-41477.xml");
-      var cfdi2 = new FileInfo(@"C:\Users\Marco\Documents\DEC_2018\SAT_2018\ComprobanteCFDI.60aa3232-29c0-403c-8839-306a2cc7ea91.xml");
+      XNamespace cfdi_ns = "http://www.sat.gob.mx/cfd/3";
+      XNamespace nomina12_ns = "http://www.sat.gob.mx/nomina12";
 
-      var xml1 = XDocument.Load(cfdi1.FullName);
-      var xml2 = XDocument.Load(cfdi2.FullName);
-
-      //attr(xml.Root, a => WriteLine($"{a.Name}={a?.Value}"));
-      //foreach (var a in read_attr(xml1.Root).OrderBy(x => x.Name.LocalName)) WriteLine($"{a.Name}={a?.Value}");
-      var seq1 = read_attr(xml1.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
-      var seq2 = read_attr(xml2.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
-      seq1.Aggregate(Out,(w,n)=>{ w.WriteLine(n); return w; });
-      WriteLine("\t\n*****\n");
-      seq2.Aggregate(Out, (w, n) => { w.WriteLine(n); return w; });
-
-      /*WriteLine($"{seq1.Count()}\t{seq2.Count()}");
-      for (int k = 0; k < seq1.Count(); ++k)
+      var add_cfdi = new Func<Dictionary<string, XDocument>, FileInfo, Dictionary<string, XDocument>>((w, n) =>
       {
-        if (string.Compare(seq1.ElementAt(k), seq2.ElementAt(k), false) != 0)
-        {
-          WriteLine($"{k}\n{seq1.ElementAt(k)}\n{seq2.ElementAt(k)}\n");
-          var b1 = Encoding.ASCII.GetBytes(seq1.ElementAt(k));
-          var b2 = Encoding.ASCII.GetBytes(seq2.ElementAt(k));
-          WriteLine($"\n{b1.Count()}\t{b2.Count()}");
-          for (int j = 0; j < b1.Length; ++j)
-          {
-            if(b1[j]!=b2[j]) WriteLine($"{j}\n{b1[j]}\n{b2[j]}\n");
-          }
-        }
-      }*/
+        var xml = XDocument.Load(n.FullName);
+        var key = $"{xml.Root.Attribute("Folio").Value}|{Math.Abs(double.Parse(xml.Root.Element(cfdi_ns + "Complemento").Element(nomina12_ns + "Nomina").Attribute("NumDiasPagados").Value))}";
+        w.Add(key, xml);
+        return w;
+      });
 
-      WriteLine(seq1.SequenceEqual(seq2));
+      var cfdi1_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2018\GBM_2018")).EnumerateFiles("*.xml");
+      var cfdi2_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2018\SAT_2018")).EnumerateFiles("*.xml");
+      if (cfdi1_file.Count() != cfdi2_file.Count()) throw new ArgumentOutOfRangeException($"CFDI file number must be the same ({cfdi1_file.Count()} != {cfdi2_file.Count()})");
+      var cfdi_set1 = cfdi1_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
+      var cfdi_set2 = cfdi2_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
+
+      foreach (var key in cfdi_set1.Keys)
+      {
+        var xml1 = cfdi_set1[key];
+        var xml2 = cfdi_set2[key];
+
+        var seq1 = read_attr(xml1.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
+        var seq2 = read_attr(xml2.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
+        //seq1.Aggregate(Out,(w,n)=>{ w.WriteLine(n); return w; });
+        //WriteLine("\t\n*****\n");
+        //seq2.Aggregate(Out, (w, n) => { w.WriteLine(n); return w; });
+
+        /*WriteLine($"{seq1.Count()}\t{seq2.Count()}");
+        for (int k = 0; k < seq1.Count(); ++k)
+        {
+          if (string.Compare(seq1.ElementAt(k), seq2.ElementAt(k), false) != 0)
+          {
+            WriteLine($"{k}\n{seq1.ElementAt(k)}\n{seq2.ElementAt(k)}\n");
+            var b1 = Encoding.ASCII.GetBytes(seq1.ElementAt(k));
+            var b2 = Encoding.ASCII.GetBytes(seq2.ElementAt(k));
+            WriteLine($"\n{b1.Count()}\t{b2.Count()}");
+            for (int j = 0; j < b1.Length; ++j)
+            {
+              if(b1[j]!=b2[j]) WriteLine($"{j}\n{b1[j]}\n{b2[j]}\n");
+            }
+          }
+        }*/
+
+        WriteLine($"{key} {seq1.SequenceEqual(seq2)}");
+      }
     }
     public static void sat()
     {
