@@ -29,13 +29,37 @@ http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
     }
     public static void comp()
     {
-      var cfdi = new FileInfo(@"C:\dir\file.xml");
-      //var xml = new System.Xml.XmlDocument();
-      //xml.Load(cfdi.FullName);
+      var cfdi1 = new FileInfo(@"C:\Users\Marco\Documents\DEC_2018\gbm_2018\1414-3143-MES-2018-1-41477.xml");
+      var cfdi2 = new FileInfo(@"C:\Users\Marco\Documents\DEC_2018\SAT_2018\ComprobanteCFDI.60aa3232-29c0-403c-8839-306a2cc7ea91.xml");
 
-      var xml = XDocument.Load(cfdi.FullName);
+      var xml1 = XDocument.Load(cfdi1.FullName);
+      var xml2 = XDocument.Load(cfdi2.FullName);
+
       //attr(xml.Root, a => WriteLine($"{a.Name}={a?.Value}"));
-      foreach (var a in read_attr(xml.Root).OrderBy(x => x.Name.LocalName)) WriteLine($"{a.Name}={a?.Value}");
+      //foreach (var a in read_attr(xml1.Root).OrderBy(x => x.Name.LocalName)) WriteLine($"{a.Name}={a?.Value}");
+      var seq1 = read_attr(xml1.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
+      var seq2 = read_attr(xml2.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
+      seq1.Aggregate(Out,(w,n)=>{ w.WriteLine(n); return w; });
+      WriteLine("\t\n*****\n");
+      seq2.Aggregate(Out, (w, n) => { w.WriteLine(n); return w; });
+
+      /*WriteLine($"{seq1.Count()}\t{seq2.Count()}");
+      for (int k = 0; k < seq1.Count(); ++k)
+      {
+        if (string.Compare(seq1.ElementAt(k), seq2.ElementAt(k), false) != 0)
+        {
+          WriteLine($"{k}\n{seq1.ElementAt(k)}\n{seq2.ElementAt(k)}\n");
+          var b1 = Encoding.ASCII.GetBytes(seq1.ElementAt(k));
+          var b2 = Encoding.ASCII.GetBytes(seq2.ElementAt(k));
+          WriteLine($"\n{b1.Count()}\t{b2.Count()}");
+          for (int j = 0; j < b1.Length; ++j)
+          {
+            if(b1[j]!=b2[j]) WriteLine($"{j}\n{b1[j]}\n{b2[j]}\n");
+          }
+        }
+      }*/
+
+      WriteLine(seq1.SequenceEqual(seq2));
     }
     public static void sat()
     {
