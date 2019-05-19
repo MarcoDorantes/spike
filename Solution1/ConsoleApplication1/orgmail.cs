@@ -282,9 +282,16 @@ static class orgmail
     {
       if (attachs?.Count > 0) attachs.ForEach(attach =>
       {
-        Write($"\tAttaching {attach.FullName}...");
-        msg.Attachments.AddFileAttachment(attach.FullName);
-        WriteLine($"Done.");
+        if (attach.Exists)
+        {
+          Write($"\tAttaching {attach.FullName}...");
+          msg.Attachments.AddFileAttachment(attach.FullName);
+          WriteLine($"Done.");
+        }
+        else
+        {
+          WriteLine($"\tAttach not found: {attach.FullName}");
+        }
       });
       WriteLine($"Attachments count: {msg.Attachments.Count}");
     }

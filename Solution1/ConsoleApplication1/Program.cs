@@ -506,8 +506,8 @@ namespace ConsoleApplication1
         //skype._Main(args);
         //tracer._Main(args);
         //windowsTask._Main(args);
-        //orgmail._Main(args);
-        cfdi_summary._Main(args);
+        orgmail._Main(args);
+        //cfdi_summary._Main(args);
       }
       catch (Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"\n\n[{level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 
