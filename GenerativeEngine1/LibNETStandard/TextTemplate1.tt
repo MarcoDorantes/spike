@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(SolutionDir)ModelGenerator\bin\$(Configuration)\ModelGenerator.dll" #>
 
@@ -15,7 +15,7 @@ gen.Setup();
 namespace Generated
 {
 <# if(gen.OK) { #>
-	public class Derived : LibNETStandard.Class1
+	public class Derived : LibNETStandard.Class1 // <#=gen.GetClassFile(this.Host.ResolvePath("Class1.cs")) #>
 	{
 		private SharedLibNETStandard.CrossClass1 cross;
 

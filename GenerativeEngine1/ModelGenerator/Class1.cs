@@ -17,6 +17,8 @@ namespace ModelGenerator
     }
     public bool OK { get; private set; }
 
+    public string GetClassFile(string filename) => System.IO.Path.GetFileName(filename);
+
     public void Setup()
     {
       con = new System.Data.SqlClient.SqlConnection("");

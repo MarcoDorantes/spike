@@ -3,7 +3,7 @@
 
 namespace Generated
 {
-	public class Derived : LibNETStandard.Class1
+	public class Derived : LibNETStandard.Class1 // Class1.cs
 	{
 		private SharedLibNETStandard.CrossClass1 cross;
 
