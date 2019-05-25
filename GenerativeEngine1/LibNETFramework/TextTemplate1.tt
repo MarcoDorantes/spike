@@ -1,0 +1,38 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)ModelGenerator\bin\$(Configuration)\ModelGenerator.dll" #>
+
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+<#
+var gen = new ModelGenerator.Class1();
+gen.Setup();
+#>
+
+namespace Generated
+{
+<# if(gen.OK) { #>
+	public class Derived : LibNETFramework.Class1
+	{
+		private SharedLibNETStandard.CrossClass1 cross;
+
+		public Derived()
+		{
+			cross = new SharedLibNETStandard.CrossClass1();
+		}
+
+		public string Execute()
+		{
+			var result = new System.Text.StringBuilder();
+			cross.Setup();
+			result.AppendLine($"cross OK: {cross.OK}");
+			result.AppendLine($"cross ExecutionSummary: {cross.GetExecutionSummary()}");
+			return $"{result}";
+		}
+	}
+<# } #>
+<#=gen.GetGeneratedSummary() #>
+}
