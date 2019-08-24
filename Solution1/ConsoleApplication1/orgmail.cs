@@ -1,3 +1,5 @@
+// xcopy /v C:\design\github_spike\spike\Solution1\ConsoleApplication1\bin\Release\ConsoleApplication1.exe tools\mail\orgmail.exe
+// xcopy /v C:\design\github_spike\spike\Solution1\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb tools\mail\orgmail.pdb
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -195,7 +197,7 @@ static class orgmail
       else if (utf32) encoding = Encoding.UTF32;
       else if (unicode) encoding = Encoding.Unicode;
       else if (latin1) encoding = Encoding.GetEncoding("ISO-8859-1");
-      else encoding = Encoding.UTF7;
+      else encoding = Encoding.UTF8;
     }
     string GetSubject()
     {
