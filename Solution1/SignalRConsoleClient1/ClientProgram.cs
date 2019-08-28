@@ -8,6 +8,8 @@ using Microsoft.AspNet.SignalR.Client;
 using static System.Console;
 using System.Net.Http;
 
+//https://docs.microsoft.com/en-us/aspnet/core/signalr/introduction?view=aspnetcore-2.2
+
 namespace SignalRConsoleClient1
 {
     class ClientProgram

@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,16 +53,16 @@
       <Version>1.6.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNet.SignalR">
-      <Version>2.2.2</Version>
+      <Version>2.4.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNet.SignalR.Core">
-      <Version>2.2.2</Version>
+      <Version>2.4.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNet.SignalR.JS">
-      <Version>2.2.2</Version>
+      <Version>2.4.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNet.SignalR.SystemWeb">
-      <Version>2.2.2</Version>
+      <Version>2.4.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Owin">
       <Version>2.1.0</Version>
@@ -86,6 +88,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
