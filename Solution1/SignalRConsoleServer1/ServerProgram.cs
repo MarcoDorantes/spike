@@ -33,11 +33,12 @@ namespace SignalRConsoleServer1
             try
             {
                 start(args);
-                WriteLine("Press ENTER to exit"); ReadLine();
+                WriteLine($"{getcontext()}Press ENTER to exit"); ReadLine();
                 stop();
             }
-            catch (Exception ex) { WriteLine($"{ex.GetType().FullName}: {ex.Message}"); }
+            catch (Exception ex) { WriteLine($"{getcontext()}{ex.GetType().FullName}: {ex.Message}"); }
         }
+        public static string getcontext() => $"[{System.Diagnostics.Process.GetCurrentProcess().Id}, {System.Threading.Thread.CurrentThread.ManagedThreadId}] ";
     }
 
     /// <summary> 
@@ -53,12 +54,12 @@ namespace SignalRConsoleServer1
         }
         public override Task OnConnected()
         {
-            WriteLine("Client connected: " + Context.ConnectionId);
+            WriteLine($"{ServerProgram.getcontext()}Client connected: " + Context.ConnectionId);
             return base.OnConnected();
         }
         public override Task OnDisconnected(bool stopCalled)
         {
-            WriteLine("Client disconnected: " + Context.ConnectionId);
+            WriteLine($"{ServerProgram.getcontext()}Client disconnected: " + Context.ConnectionId);
             return base.OnDisconnected(stopCalled);
         }
     }
