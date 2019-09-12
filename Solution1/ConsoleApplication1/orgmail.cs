@@ -377,18 +377,35 @@ static class orgmail
       }
       else
       {
-        var exception_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "Exception", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
-        var needs_help_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, "needs help", Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+        var exceptionText_in_subject = "Exception";
+        var needsText_in_subject = "needs help";
+        var exception_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, exceptionText_in_subject, Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+        var needs_help_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, needsText_in_subject, Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
         var both = new Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection
         (
-                Microsoft.Exchange.WebServices.Data.LogicalOperator.Or,
-                exception_filter,
-                needs_help_filter
+          Microsoft.Exchange.WebServices.Data.LogicalOperator.Or,
+          exception_filter,
+          needs_help_filter
         );
         filter = null;
-        if (excep_only && !needs) filter = exception_filter;
-        else if (!excep_only && needs) filter = needs_help_filter;
-        else filter = both;
+        var visible_subject_exceptionFilter = $"'{exceptionText_in_subject}'";
+        var visible_subject_needsFilter = $"'{needsText_in_subject}'";
+        var default_subject_filter_label = "Default subject filter";
+        if (excep_only && !needs)
+        {
+          filter = exception_filter;
+          subject = $"({default_subject_filter_label}: {visible_subject_exceptionFilter})";
+        }
+        else if (!excep_only && needs)
+        {
+          filter = needs_help_filter;
+          subject = $"({default_subject_filter_label}): {visible_subject_needsFilter})";
+        }
+        else
+        {
+          filter = both;
+          subject = $"({default_subject_filter_label}: {visible_subject_exceptionFilter} OR {visible_subject_needsFilter})";
+        }
       }
     }
 
