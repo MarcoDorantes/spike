@@ -17,8 +17,8 @@ static class orgmail
 {
   class Input
   {
-    const string To = "to";
-    const string Bcc = "bcc";
+    private const string To = "to";
+    private const string Bcc = "bcc";
 
     public bool excep_only, needs, html, confirm, expand, restart, soft, deleteditems;
     public int count, pageSize, offset, read;
@@ -29,9 +29,10 @@ static class orgmail
     public bool ascii, utf7, utf8, utf32, unicode, latin1;
     public bool? allPages;
 
-    Microsoft.Exchange.WebServices.Data.ItemView view;
-    Microsoft.Exchange.WebServices.Data.SearchFilter filter;
-    Microsoft.Exchange.WebServices.Data.DeleteMode delete_mode;
+    private Microsoft.Exchange.WebServices.Data.ItemView view;
+    private Microsoft.Exchange.WebServices.Data.SearchFilter filter;
+    private Microsoft.Exchange.WebServices.Data.DeleteMode delete_mode;
+    private string informative_subject;
 
     public void latest()
     {
@@ -43,6 +44,9 @@ static class orgmail
       var target_folder = GetTargetFolder(exchange, folder);
       SetView();
       SetFilter();//f(folder,subject)
+
+      WriteLine($"Folder: [{folder}]");
+      WriteLine($"subject: [{subject}]");
 
       bool moreItems = true;
       int count = 0;
@@ -82,6 +86,16 @@ static class orgmail
       SetView();
       SetFilter();
 
+      WriteLine($"Folder: [{folder}]");
+      if (subject != null)
+      {
+        WriteLine($"subject: [{subject}]");
+      }
+      if (informative_subject != null)
+      {
+        WriteLine($"informative subject: [{informative_subject}]");
+      }
+
       int count = 0;
       bool moreItems = true;
       while (moreItems)
@@ -118,7 +132,14 @@ static class orgmail
         var rand = new Random();
 
         WriteLine($"Folder: [{folder}]");
-        WriteLine($"subject: [{subject}]");
+        if (subject != null)
+        {
+          WriteLine($"subject: [{subject}]");
+        }
+        if (informative_subject != null)
+        {
+          WriteLine($"informative subject: [{informative_subject}]");
+        }
         WriteLine($"DeleteMode: {delete_mode}");
         if (confirm)
         {
@@ -370,6 +391,7 @@ static class orgmail
     }
     void SetFilter()
     {
+      informative_subject = null;
       if (string.IsNullOrWhiteSpace(subject) == false)
       {
         var subject_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, subject, Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
@@ -394,17 +416,17 @@ static class orgmail
         if (excep_only && !needs)
         {
           filter = exception_filter;
-          subject = $"({default_subject_filter_label}: {visible_subject_exceptionFilter})";
+          informative_subject = $"({default_subject_filter_label}: {visible_subject_exceptionFilter})";
         }
         else if (!excep_only && needs)
         {
           filter = needs_help_filter;
-          subject = $"({default_subject_filter_label}): {visible_subject_needsFilter})";
+          informative_subject = $"({default_subject_filter_label}): {visible_subject_needsFilter})";
         }
         else
         {
           filter = both;
-          subject = $"({default_subject_filter_label}: {visible_subject_exceptionFilter} OR {visible_subject_needsFilter})";
+          informative_subject = $"({default_subject_filter_label}: {visible_subject_exceptionFilter} OR {visible_subject_needsFilter})";
         }
       }
     }
