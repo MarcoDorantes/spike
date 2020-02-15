@@ -14459,5 +14459,29 @@ The post A new experiment: Call .NET gRPC services from the browser with gRPC-W
       <pubDate>Wed, 05 Feb 2020 18:11:45 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Announcing TypeScript 3.8 RC</title>
+      <description>Today we’re announcing the Release Candidate for TypeScript 3.8! Between this RC and our final release, we expect no changes apart from critical bug fixes.
+The post Announcing TypeScript 3.8 RC appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7alta/</link>
+      <pubDate>Tue, 11 Feb 2020 18:25:39 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>MSVC Backend Updates in Visual Studio 2019 Versions 16.3 and 16.4</title>
+      <description>Versions 16.3 and 16.4 of Visual Studio 2019 brought many new improvements in code generation quality, build throughput, and security. If you still haven’t downloaded your copy, here is a brief overview of what you’ve been missing out on.
+The post MSVC Backend Updates in Visual Studio 2019 Versions 16.3 and 16.4 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7asnz/</link>
+      <pubDate>Tue, 11 Feb 2020 18:23:57 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>CMake, Linux targeting, and IntelliSense improvements in Visual Studio 2019 version 16.5 Preview 2</title>
+      <description>Visual Studio’s native support for CMake allows you to target both Windows and Linux from the comfort of a single IDE. Visual Studio 2019 version 16.5 Preview 2 introduces several new features specific to cross-platform development, including:
+The post CMake, Linux targeting, and IntelliSense improvements in Visual Studio 2019 version 16.5 Preview 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7alt7/</link>
+      <pubDate>Tue, 11 Feb 2020 18:22:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
