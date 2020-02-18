@@ -12,6 +12,10 @@ using static System.Console;
 /*
 Exchange Online and Exchange development
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-server-development
+
+https://techcommunity.microsoft.com/t5/exchange-team-blog/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/ba-p/608055#
+https://stackoverflow.com/questions/32735584/o365-ews-managed-api-and-exchangeversion
+https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/ews-schema-versions-in-exchange?redirectedfrom=MSDN
 */
 static class orgmail
 {
