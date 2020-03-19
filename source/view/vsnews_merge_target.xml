@@ -14483,5 +14483,247 @@ The post CMake, Linux targeting, and IntelliSense improvements in Visual Studio
       <pubDate>Tue, 11 Feb 2020 18:22:33 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>.NET Framework February 2020 Security and Quality Rollup</title>
+      <description>Today, we are releasing the February 2020 Security and Quality Rollup Updates for .NET Framework.
+The post .NET Framework February 2020 Security and Quality Rollup appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7e8l9/</link>
+      <pubDate>Thu, 20 Feb 2020 23:13:37 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Using .NET for Apache® Spark™ to Analyze Log Data</title>
+      <description>At Spark + AI Summit in May 2019, we released .NET for Apache Spark. .NET for Apache Spark is aimed at making Apache® Spark™, and thus the exciting world of big data analytics, accessible to .NET developers.
+The post Using .NET for Apache® Spark™ to Analyze Log Data appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7e8l8/</link>
+      <pubDate>Thu, 20 Feb 2020 23:12:43 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Interactive is here! | .NET Notebooks Preview 2</title>
+      <description>In November 2019, we announced .NET support for Jupyter notebooks with both C# and F# support. Today we are excited to announce Preview 2 of the .NET Notebook experience.
+The post .NET Interactive is here! | .NET Notebooks Preview 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7e8l6/</link>
+      <pubDate>Thu, 20 Feb 2020 23:11:44 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET Conf: Focus on Xamarin</title>
+      <description>We are pleased to announce .NET Conf: Focus on Xamarin on Monday, March 23rd, 2020 beginning at 08:00 PST! This is a free, one-day livestream event that features speakers from the community and product teams that are working on building native mobile apps with Xamarin technology!
+The post Announcing .NET Conf: Focus on Xamarin appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7cmk3/</link>
+      <pubDate>Thu, 20 Feb 2020 23:10:46 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>UIWebView Deprecation and Xamarin.Forms</title>
+      <description>A little while ago, Apple started sending out warning messages about the UIWebView deprecation. This has not gone unnoticed by our Xamarin.Forms users, who directly created an issue for it. Today we have some great news to share: we have a solution for you!
+The post UIWebView Deprecation and Xamarin.Forms appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7bt37/</link>
+      <pubDate>Thu, 20 Feb 2020 23:09:49 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing Experimental Mobile Blazor Bindings February update</title>
+      <description>I’m delighted to share an update of Experimental Mobile Blazor Bindings with several new features and fixes. On January 14th we announced the first experimental release of Mobile Blazor Bindings, which enables developers to use familiar web programming patterns to build native mobile apps using C# and .NET for iOS and Android.
+The post Announcing Experimental Mobile Blazor Bindings February update appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7b3dp/</link>
+      <pubDate>Tue, 18 Feb 2020 21:01:21 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Toggling Tabs with Triggers (Xamarin)</title>
+      <description>Xamarin.Forms makes setting Tabs Icons super easy! All there is to do is set the Icon property to the path of an image and you are done.
+The post Toggling Tabs with Triggers (Xamarin) appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7bawv/</link>
+      <pubDate>Tue, 18 Feb 2020 21:00:11 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Azure DevOps Roadmap update for 2020 Q1</title>
+      <description>Last week we updated the Features Timeline to provide visibility to several of our key investments for this quarter. I am happy to share a few highlights on some of the features for Q1. Note that each feature links to our public roadmap project where you can find more details about each item and see its status.
+The post Azure DevOps Roadmap update for 2020 Q1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7bawo/</link>
+      <pubDate>Tue, 18 Feb 2020 20:58:57 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Improve Parallelism in MSBuild (C++)</title>
+      <description>Starting in Visual Studio 2019 16.3 we have been adding features to improve build parallelism. These features are still experimental, so they are off by default. When developing tools for Android, we introduced clang/gcc to the MSBuild platform. Clang/gcc relied on the parallelism model of the build system but MSBuild only parallelizes at the project level.
+The post Improve Parallelism in MSBuild (C++) appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7bawn/</link>
+      <pubDate>Tue, 18 Feb 2020 20:57:47 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>C++ Modules conformance improvements with MSVC in Visual Studio 2019 16.5</title>
+      <description>C++20 is right around the corner. Along with the new standard comes the much anticipated Modules feature! The compiler team initially announced that we were working on the Modules TS back in 2017 and since then we have been hard at work improving the feature and improving compiler conformance around this feature.
+The post C++ Modules conformance improvements with MSVC in Visual Studio 2019 16.5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7b3dj/</link>
+      <pubDate>Tue, 18 Feb 2020 20:56:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>The Spring 2020 Roadmap for Visual Studio published</title>
+      <description>The Visual Studio roadmap has been updated to provide a peek into the work planned for Visual Studio through June 2020. It captures significant capabilities that we plan to add, but it’s not a comprehensive feature list. Our goal is to clarify what’s coming so you can plan for upgrades and provide feedback on which features would make Visual Studio a more productive development environment for you and your team.
+The post The Spring 2020 Roadmap for Visual Studio published appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7kgrx/</link>
+      <pubDate>Thu, 05 Mar 2020 18:52:22 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Framework February 2020 Preview of Quality Rollup</title>
+      <description>Today, we are releasing the February 2020 Preview of Quality Rollup Updates for .NET Framework.
+The post .NET Framework February 2020 Preview of Quality Rollup appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7jv28/</link>
+      <pubDate>Thu, 05 Mar 2020 18:44:36 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>AVX-512 Auto-Vectorization in MSVC</title>
+      <description>In Visual Studio 2019 version 16.3 we added AVX-512 support to the auto-vectorizer of the MSVC compiler. This post will show some examples and help you enable it in your projects.
+The post AVX-512 Auto-Vectorization in MSVC appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k2st/</link>
+      <pubDate>Thu, 05 Mar 2020 18:43:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>What’s New in Visual Studio Online</title>
+      <description>Last November, we unveiled the public preview of Visual Studio Online, which provides managed, on-demand development environments that can be accessed from anywhere using either Visual Studio Code, Visual Studio IDE (in private preview), or the included browser-based editor. Since then,
+The post What’s New in Visual Studio Online appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k96t/</link>
+      <pubDate>Thu, 05 Mar 2020 18:41:36 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Qt to support Visual Studio Linux projects</title>
+      <description>Qt is a popular cross-platform framework for application development and user interface design. Its various libraries and toolsets can be used to create, test, and deploy applications that target multiple platforms and operating systems including Linux, Windows, macOS and embedded/microcontroller systems.
+The post Qt to support Visual Studio Linux projects appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k2sp/</link>
+      <pubDate>Thu, 05 Mar 2020 18:40:22 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing TypeScript 3.8</title>
+      <description>Today we’re proud to release TypeScript 3.8!
+For those unfamiliar with TypeScript, it’s a language that adds syntax for types on top of JavaScript which can be analyzed through a process called static type-checking. This type-checking can tell us about errors like typos and values that are potentially null and undefined before we even run our code.
+The post Announcing TypeScript 3.8 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k2sn/</link>
+      <pubDate>Tue, 03 Mar 2020 19:03:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>TraceProcessor 1.0.0</title>
+      <description>TraceProcessor version 1.0.0 is now available on NuGet with the following package ID:
+Microsoft.Windows.EventTracing.Processing.All
+The post TraceProcessor 1.0.0 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k2sm/</link>
+      <pubDate>Tue, 03 Mar 2020 19:02:45 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Core February 2020 Updates – 2.1.16, 3.0.3, and 3.1.2</title>
+      <description>Today, we are releasing the .NET Core February 2020 Update. These updates only contain non-security fixes. See the individual release notes for details on updated packages.
+The post .NET Core February 2020 Updates – 2.1.16, 3.0.3, and 3.1.2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k2sl/</link>
+      <pubDate>Tue, 03 Mar 2020 19:01:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Xamarin.Forms &amp; Xamarin.Essentials Go AndroidX</title>
+      <description>Last week we released our official stable NuGet packages for AndroidX, which are an exciting replacement for the Android Support Libraries. AndroidX streamlines components into smaller and easier to update libraries for developers to consume. In the post last week, we also outlined several ways to start migrating your Android applications to take advantage of them.
+The post Xamarin.Forms  Xamarin.Essentials Go AndroidX appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7jv1x/</link>
+      <pubDate>Tue, 03 Mar 2020 19:00:02 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Easily Add, Remove, and Rename Files and Targets in CMake Projects</title>
+      <description>It’s easier than ever to work with CMake projects in Visual Studio 2019 16.5 Preview 2. Now you can add, remove, and rename source files and targets in your CMake projects from the IDE without manually editing your CMake scripts. When you add or remove files with the Solution Explorer,
+The post Easily Add, Remove, and Rename Files and Targets in CMake Projects appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k2sj/</link>
+      <pubDate>Tue, 03 Mar 2020 18:58:39 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing the .NET Core Uninstall Tool 1.0!</title>
+      <description>Today we are releasing the .NET Core Uninstall Tool for Windows and Mac!
+The post Announcing the .NET Core Uninstall Tool 1.0! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7r33e/</link>
+      <pubDate>Tue, 17 Mar 2020 16:57:05 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Blazor WebAssembly 3.2.0 Preview 2 release now available</title>
+      <description>A new preview update of Blazor WebAssembly is now available! Here’s what’s new in this release:
+The post Blazor WebAssembly 3.2.0 Preview 2 release now available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7pkzt/</link>
+      <pubDate>Tue, 17 Mar 2020 16:55:51 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Microsoft Emulator and Windows 10X Emulator Image (Preview) build 19578 available now!</title>
+      <description>Today we released new versions of both the Microsoft Emulator and the Windows 10X Emulator Image (Preview) to the Microsoft Store. The updated Microsoft Emulator is version 1.1.54.0 and the updated Windows 10X Emulator Image is version 10.0.19578. This refresh includes many updates to Windows 10X including the Win32 Container.
+The post Microsoft Emulator and Windows 10X Emulator Image (Preview) build 19578 available now! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7pkzr/</link>
+      <pubDate>Tue, 17 Mar 2020 16:54:02 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Binding Android Kotlin Libraries</title>
+      <description>The Android platform, along with its native languages and tooling, is constantly evolving and there are plenty of 3rd party libraries that have been developed using the latest offerings. Maximizing code and component reuse is one of the key goals of cross-platform development.
+The post Binding Android Kotlin Libraries appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7pkzq/</link>
+      <pubDate>Tue, 17 Mar 2020 16:52:36 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Analyze your builds programmatically with the C++ Build Insights SDK</title>
+      <description>We’re happy to announce today the release of the C++ Build Insights SDK, a framework that gives you access to MSVC build time information via C and C++ APIs. To accompany this release, we are making vcperf open source on GitHub.
+The post Analyze your builds programmatically with the C++ Build Insights SDK appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7pd72/</link>
+      <pubDate>Tue, 17 Mar 2020 16:51:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Every Xamarin.Forms Layout is a Repeater Control</title>
+      <description>When you need to display a lot of data Xamarin.Forms has you covered with awesome controls such as ListView, CollectionView, or CarouselView. These controls are great as they have built in support for scrolling, advanced layouts, and pull-to-refresh. Sometimes, you don’t need the full power of these controls and just want to repeat a control bound to a list of data.
+The post Every Xamarin.Forms Layout is a Repeater Control appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7pkzo/</link>
+      <pubDate>Thu, 12 Mar 2020 18:14:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>How to write a Roslyn Analyzer</title>
+      <description>Roslyn analyzers inspect your code for style, quality, maintainability, design and other issues. Because they are powered by the .NET Compiler Platform, they can produce warnings in your code as you type even before you’ve finished the line.
+The post How to write a Roslyn Analyzer appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7pkzm/</link>
+      <pubDate>Thu, 12 Mar 2020 18:13:22 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Binding iOS Swift Libraries (Xamarin)</title>
+      <description>The iOS platform, along with its native languages and tooling, is constantly evolving. There are plenty of 3rd-party libraries that have been developed using the latest offerings. Maximizing code and component reuse is one of the key goals of cross-platform development.
+The post Binding iOS Swift Libraries (Xamarin) appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7q00g/</link>
+      <pubDate>Thu, 12 Mar 2020 18:11:54 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>The Performance Benefits of Final Classes</title>
+      <description>Marking your classes or member functions as final can improve the performance of your code by giving the compiler more opportunities to resolve virtual calls at compile time. 
+The post The Performance Benefits of Final Classes appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7q00e/</link>
+      <pubDate>Thu, 12 Mar 2020 18:10:22 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Garbage Collection Provisional Mode</title>
+      <description>PM stands for Provisional Mode which means after a GC starts, it can change its mind about the kind of GC it’s doing. But what does that mean exactly?
+The post .NET Garbage Collection Provisional Mode appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7k2sw/</link>
+      <pubDate>Thu, 12 Mar 2020 18:09:11 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
