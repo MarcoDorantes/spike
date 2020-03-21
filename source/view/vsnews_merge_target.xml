@@ -14725,5 +14725,45 @@ The post .NET Garbage Collection Provisional Mode appeared first on Visual Studi
       <pubDate>Thu, 12 Mar 2020 18:09:11 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Visual Studio 2019 version 16.5 is now available</title>
+      <description>The Visual Studio 2019 team here in Redmond has been living under a perpetually grey, wet winter sky since our last minor release. Thankfully, we are beginning to see the sun making regular appearances.  It is our hope this newest release will also brighten your day.
+The post Visual Studio 2019 version 16.5 is now available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7s8t7/</link>
+      <pubDate>Thu, 19 Mar 2020 19:18:30 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>What’s New for Xamarin Developers in Visual Studio 2019 version 16.5</title>
+      <description>This week, Visual Studio 2019 version 16.5 was released, bringing new features and improvements for mobile developers in Visual Studio to help you build better mobile apps, faster.
+The post What’s New for Xamarin Developers in Visual Studio 2019 version 16.5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7sgcd/</link>
+      <pubDate>Thu, 19 Mar 2020 19:15:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5 Preview 1</title>
+      <description>At the end of last year, we shipped .NET Core 3.0 and 3.1. These versions added the desktop app models Windows Forms (WinForms) and WPF, ASP.NET Blazor for building single page applications and gRPC for cross-platform, contract-based messaging. We also added templates for building services,
+The post Announcing .NET 5 Preview 1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7sgca/</link>
+      <pubDate>Thu, 19 Mar 2020 18:15:50 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Conf: Focus On Xamarin is Next Week!</title>
+      <description>We are just one week away from the largest Xamarin digital event of the year, .NET Conf: Focus on Xamarin! It all starts at 8 AM PT, 16:00 UTC, Monday, March 23rd with a stellar keynote from Amanda Silver, Microsoft Corporate Vice President of Program Manager,
+The post .NET Conf: Focus On Xamarin is Next Week! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7s8t1/</link>
+      <pubDate>Thu, 19 Mar 2020 18:05:44 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>What do you want to see next in ML.NET?</title>
+      <description>ML.NET is an open source and cross-platform machine learning framework made for .NET developers.
+The post What do you want to see next in ML.NET? appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa7s8sy/</link>
+      <pubDate>Thu, 19 Mar 2020 18:02:55 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
