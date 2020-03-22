@@ -5,19 +5,23 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tic.spec", "source\tic.spec\tic.spec.csproj", "{30B80DA4-7E02-401B-80D4-B16D40AC113B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fractal.spec", "source\fractal.spec\fractal.spec.csproj", "{4042130E-5454-4C73-8BCE-D17897CF4CEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fractal.spec", "source\fractal.spec\fractal.spec.csproj", "{4042130E-5454-4C73-8BCE-D17897CF4CEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fractal.view", "source\fractal.view\fractal.view.csproj", "{073AD043-2D16-4B0F-A52E-E6C0624589EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fractal.view", "source\fractal.view\fractal.view.csproj", "{073AD043-2D16-4B0F-A52E-E6C0624589EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fractal", "fractal", "{10BBBA3B-1976-47DF-959F-DB8E9BB17C9E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tic", "tic", "{09070A6E-69DB-4EED-9908-29BB25CAD280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fractal.form", "source\fractal.form\fractal.form.csproj", "{12C35D14-DFFF-4147-A736-98FF050982D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fractal.form", "source\fractal.form\fractal.form.csproj", "{12C35D14-DFFF-4147-A736-98FF050982D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-spec", "1-spec", "{06822546-723B-4BC5-8063-E6C8BA5D95B9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-app", "2-app", "{92CCB27B-FB9D-4470-91AC-B488BF382054}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-app", "3-app", "{92CCB27B-FB9D-4470-91AC-B488BF382054}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-lib", "2-lib", "{66464329-E6A4-44B0-8B6C-91329405C517}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fractal.lib", "source\fractal.lib\fractal.lib.csproj", "{126A8383-CA49-49A2-8F6C-1C1F0A825A37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{12C35D14-DFFF-4147-A736-98FF050982D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12C35D14-DFFF-4147-A736-98FF050982D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12C35D14-DFFF-4147-A736-98FF050982D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126A8383-CA49-49A2-8F6C-1C1F0A825A37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126A8383-CA49-49A2-8F6C-1C1F0A825A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126A8383-CA49-49A2-8F6C-1C1F0A825A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126A8383-CA49-49A2-8F6C-1C1F0A825A37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,8 @@ Global
 		{12C35D14-DFFF-4147-A736-98FF050982D1} = {92CCB27B-FB9D-4470-91AC-B488BF382054}
 		{06822546-723B-4BC5-8063-E6C8BA5D95B9} = {10BBBA3B-1976-47DF-959F-DB8E9BB17C9E}
 		{92CCB27B-FB9D-4470-91AC-B488BF382054} = {10BBBA3B-1976-47DF-959F-DB8E9BB17C9E}
+		{66464329-E6A4-44B0-8B6C-91329405C517} = {10BBBA3B-1976-47DF-959F-DB8E9BB17C9E}
+		{126A8383-CA49-49A2-8F6C-1C1F0A825A37} = {66464329-E6A4-44B0-8B6C-91329405C517}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {571CA6D7-18E0-42A5-852A-226774A523EA}

@@ -6,4 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\fractal.lib\fractal.lib.csproj" />
+  </ItemGroup>
+
 </Project>
