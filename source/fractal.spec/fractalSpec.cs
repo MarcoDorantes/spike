@@ -331,4 +331,21 @@ namespace fractal.spec
             Assert.AreEqual(100F, d.Y);
         }
     }
+
+    [TestClass]
+    public class visualSpec
+    {
+        [TestMethod]
+        public void create_image()
+        {
+            //Arrange
+            IEnumerable<Segment> line = Fractal.make_line(0F, 0F, 0F, -100F, 4);
+
+            //Act
+            using var image = Draw.CreateImage(line, 200, 200);
+
+            //Assert
+            Assert.IsNotNull(image);
+        }
+    }
 }

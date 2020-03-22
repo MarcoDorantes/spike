@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Collections.Generic;
+using static System.Console;
 
 namespace fractal.lib
 {
@@ -186,8 +189,83 @@ namespace fractal.lib
         public PointUnitType Width, Height;
         public Point Origin_API;
 
+        //https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/types-of-coordinate-systems
         public Point ToAPI(Point a) => new Point { X = Origin_API.X + a.X, Y = Origin_API.Y - a.Y };
         public (T X, T Y) ToAPI<T>(Point a) => ((T)Convert.ChangeType(Origin_API.X + a.X, typeof(T)), (T)Convert.ChangeType(Origin_API.Y - a.Y, typeof(T)));
 
+    }
+    public class Draw
+    {
+        //https://devblogs.microsoft.com/dotnet/net-core-image-processing/
+        public static System.Drawing.Image CreateImage(IEnumerable<Segment> line, int width, int height)
+        {
+            var result = new System.Drawing.Bitmap((int)width, (int)height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            var g = System.Drawing.Graphics.FromImage(result);
+            var plane = new Plane(width, height);
+            foreach (var segment in line)
+            {
+                var a = plane.ToAPI<float>(segment.A);
+                var b = plane.ToAPI<float>(segment.B);
+                g.DrawLine(System.Drawing.Pens.Blue, a.X, a.Y, b.X, b.Y);
+            }
+            return result;
+        }
+    }
+
+    public class Input
+    {
+        public FileInfo file;
+        public void fractal()
+        {
+            IEnumerable<Segment> line = Fractal.make_line(0F, 0F, 0F, -100F, 4);
+            using var image = Draw.CreateImage(line, 200, 200);
+            image.Save(file?.FullName, System.Drawing.Imaging.ImageFormat.Jpeg);
+        }
+    }
+    public class CLI
+    {
+        public static void MainEntryPoint(string[] args, string runtime_name)
+        {
+            try
+            {
+                var runtime = $"{runtime_name}/{System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}";
+                if (isThereUI())
+                {
+                    WriteLine($"Hello, {Environment.UserDomainName}\\{Environment.UserName} !!!");
+                    WriteLine($"PID: {System.Diagnostics.Process.GetCurrentProcess().Id} | Thread: {System.Threading.Thread.CurrentThread.ManagedThreadId} | Runtime: {runtime} | Culture: {System.Threading.Thread.CurrentThread?.CurrentUICulture?.Name}, {System.Threading.Thread.CurrentThread?.CurrentCulture?.Name}\n");
+                }
+                if (!(args?.Any() == true) || args?.First().Contains("?") == true)
+                {
+                    WriteLine($"Working with {GetHostProcessName()}:");
+                    nutility.Switch.ShowUsage(typeof(Input));
+                }
+                else
+                {
+                    nutility.Switch.AsType<Input>(args);
+                }
+            }
+            catch (Exception ex)
+            {
+                for (int level = 0; ex != null; ex = ex.InnerException, ++level)
+                {
+                    WriteLine($"\r\n[Level {level}] {ex.GetType().FullName}: {ex.Message} {ex.StackTrace}");
+                }
+            }
+
+            string GetHostProcessName()
+            {
+                var result = Environment.GetCommandLineArgs()?.FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    result = System.IO.Path.GetFileNameWithoutExtension(result);
+                }
+                return result;
+            }
+            bool isThereUI() =>
+                !Console.IsInputRedirected;
+            //Console.OpenStandardInput(1) != System.IO.Stream.Null;
+            //Console.In != System.IO.StreamReader.Null;
+            //TODO required further test design on Environment.UserInteractive;
+        }
     }
 }
