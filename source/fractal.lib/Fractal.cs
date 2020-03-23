@@ -262,20 +262,27 @@ namespace fractal.lib
   public class Input
   {
     public FileInfo file;
-    public int? level;
+    public int? level, size;
     public void fractal()
     {
       if (!level.HasValue)
       {
         level = 1;
       }
-      IEnumerable<Segment> line1 = Fractal.make_line(-50F, 50F, 50F, 50F, level.Value);
-      IEnumerable<Segment> line2 = Fractal.make_line(50F, 50F, 50F, -50F, level.Value);
-      IEnumerable<Segment> line3 = Fractal.make_line(50F, -50F, -50F, -50F, level.Value);
-      IEnumerable<Segment> line4 = Fractal.make_line(-50F, -50F, -50F, 50F, level.Value);
+      if (!size.HasValue)
+      {
+        size = 1;
+      }
+
+      IEnumerable<Segment> line1 = Fractal.make_line(S(-50F), S(50F), S(50F), S(50F), level.Value);
+      IEnumerable<Segment> line2 = Fractal.make_line(S(50F), S(50F), S(50F), S(-50F), level.Value);
+      IEnumerable<Segment> line3 = Fractal.make_line(S(50F), S(-50F), S(-50F), S(-50F), level.Value);
+      IEnumerable<Segment> line4 = Fractal.make_line(S(-50F), S(-50F), S(-50F), S(50F), level.Value);
       var shape = Fractal.make_shape(line1, line2, line3, line4);
-      using var image = Draw.CreateImage(shape, 400, 400);
+      using var image = Draw.CreateImage(shape, 1200, 1200);
       image.Save(file?.FullName, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+      float S(float v) => v * size.Value;
     }
   }
   public class CLI
