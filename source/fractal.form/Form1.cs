@@ -28,7 +28,7 @@ namespace fractal.form
     private void OnPaint(object sender, PaintEventArgs e)
     {
       var plane = new fractal.lib.Plane(box.Width, box.Height);
-      IEnumerable<fractal.lib.Segment> line = fractal.lib.Fractal.make_line(0F, 0F, 100F, 0F, 1);
+      IEnumerable<fractal.lib.Segment> line = fractal.lib.Fractal.make_line(0F, 0F, 100F, 0F);
       foreach (var segment in line)
       {
         var a = plane.ToAPI<float>(segment.A);

@@ -44,7 +44,7 @@ namespace fractal.view
       Title = $"{Width} {Height}";
 
       var plane = new fractal.lib.Plane(Width, Height);
-      IEnumerable<fractal.lib.Segment> line = fractal.lib.Fractal.make_line(0F, 0F, 100F, 0F, 1);
+      IEnumerable<fractal.lib.Segment> line = fractal.lib.Fractal.make_line(0F, 0F, 100F, 0F);
       foreach (var segment in line)
       {
         var a = plane.ToAPI(segment.A);

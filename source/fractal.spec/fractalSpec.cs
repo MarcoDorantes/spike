@@ -366,9 +366,10 @@ namespace fractal.spec
     {
       //Arrange
       IEnumerable<Segment> line = Fractal.make_line(0F, 0F, 0F, -100F);
+      var shape = new[] { line };
 
       //Act
-      using var image = Draw.CreateImage(line, 200, 200);
+      using var image = Draw.CreateImage(shape, 200, 200);
 
       //Assert
       Assert.IsNotNull(image);

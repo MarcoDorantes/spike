@@ -21,48 +21,65 @@ namespace fractal.lib
     }
     public PointUnit X, Y;
   }
-  public class Segment { public Point A, B; }
+  public abstract class Segment { public Point A, B; public abstract void Draw(Action<Point, Point> draw); }
+  public class SingleSegment : Segment { public override void Draw(Action<Point, Point> draw) => draw?.Invoke(A, B); }
+  public class RecursiveSegment : Segment
+  {
+    public IEnumerable<Segment> Line;
+    public override void Draw(Action<Point, Point> draw)
+    {
+      if (Line?.Count() > 0)
+      {
+        foreach (var segment in Line)
+        {
+          segment.Draw(draw);
+        }
+      }
+      else draw?.Invoke(A, B);
+    }
+  }
   public enum SlopeCase { Unsupported, HorizontalRight, VerticalUp, HorizontalLeft, VerticalDown }
   public class Fractal
   {
     public static IEnumerable<Segment> make_line(PointUnit x1, PointUnit y1, PointUnit x2, PointUnit y2, int level = 1)
     {
+      if (level == 0) return new List<Segment> { new SingleSegment { A = new Point { X = x1, Y = y1 }, B = new Point { X = x2, Y = y2 } } };
+
       var result = new List<Segment>();
       var whole_distance = Math.Sqrt(Math.Pow(x1 - x2, 2D) + Math.Pow(y1 - y2, 2D));
       var segment_unit_size = whole_distance / 4D;
       var slope = Plane.GetSlopeCase(x1, y1, x2, y2);
-      if (level == 0) return new List<Segment> { new Segment { A = new Point { X = x1, Y = y1 }, B = new Point { X = x2, Y = y2 } } };
       switch (slope.Case)
       {
         case SlopeCase.HorizontalRight:
         {
           var a = new Point { X = x1, Y = y1 };
           var b = new Point { X = x1 + segment_unit_size, Y = y1 };
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y -= segment_unit_size * 2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X = x2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           return result;
         }
@@ -70,31 +87,31 @@ namespace fractal.lib
         {
           var a = new Point { X = x1, Y = y1 };
           var b = new Point { X = x1, Y = y1 + segment_unit_size };
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X += segment_unit_size * 2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y = y2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           return result;
         }
@@ -102,31 +119,31 @@ namespace fractal.lib
         {
           var a = new Point { X = x1, Y = y1 };
           var b = new Point { X = x1 - segment_unit_size, Y = y1 };
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y += segment_unit_size * 2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X = x2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           return result;
         }
@@ -134,36 +151,40 @@ namespace fractal.lib
         {
           var a = new Point { X = x1, Y = y1 };
           var b = new Point { X = x1, Y = y1 - segment_unit_size };
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X -= segment_unit_size * 2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y -= segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.X += segment_unit_size;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           a = new Point(b);
           b.Y = y2;
-          result.Add(new Segment { A = new Point(a), B = new Point(b) });
+          result.Add(new RecursiveSegment { A = new Point(a), B = new Point(b), Line = make_line(a.X, a.Y, b.X, b.Y, level - 1) });
 
           return result;
         }
         default: throw new Exception($"unsupported {slope}");
       }
+    }
+    public static IEnumerable<IEnumerable<Segment>> make_shape(params IEnumerable<Segment>[] lines)
+    {
+      return lines?.Aggregate(new List<IEnumerable<Segment>>(), (whole, next) => { if (next != null) whole.Add(next); return whole; });
     }
   }
   public class Plane
@@ -214,29 +235,46 @@ namespace fractal.lib
   public class Draw
   {
     //https://devblogs.microsoft.com/dotnet/net-core-image-processing/
-    public static System.Drawing.Image CreateImage(IEnumerable<Segment> line, int width, int height, System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format64bppArgb)
+    public static System.Drawing.Image CreateImage(IEnumerable<IEnumerable<Segment>> shape, int width, int height, System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format64bppArgb)
     {
       var result = new System.Drawing.Bitmap((int)width, (int)height, format);
       var g = System.Drawing.Graphics.FromImage(result);
       g.FillRectangle(System.Drawing.Brushes.White, 0, 0, width, height);
       var plane = new Plane(width, height);
-      foreach (var segment in line)
+      foreach (var line in shape)
       {
-        var a = plane.ToAPI<float>(segment.A);
-        var b = plane.ToAPI<float>(segment.B);
-        g.DrawLine(System.Drawing.Pens.Blue, a.X, a.Y, b.X, b.Y);
+        foreach (var segment in line)
+        {
+          segment.Draw(draw);
+        }
       }
       return result;
+
+      void draw(Point a, Point b)
+      {
+        var _a = plane.ToAPI<float>(a);
+        var _b = plane.ToAPI<float>(b);
+        g.DrawLine(System.Drawing.Pens.Blue, _a.X, _a.Y, _b.X, _b.Y);
+      }
     }
   }
 
   public class Input
   {
     public FileInfo file;
+    public int? level;
     public void fractal()
     {
-      IEnumerable<Segment> line = Fractal.make_line(0F, 0F, 100F, 0F, 1);
-      using var image = Draw.CreateImage(line, 400, 400);
+      if (!level.HasValue)
+      {
+        level = 1;
+      }
+      IEnumerable<Segment> line1 = Fractal.make_line(-50F, 50F, 50F, 50F, level.Value);
+      IEnumerable<Segment> line2 = Fractal.make_line(50F, 50F, 50F, -50F, level.Value);
+      IEnumerable<Segment> line3 = Fractal.make_line(50F, -50F, -50F, -50F, level.Value);
+      IEnumerable<Segment> line4 = Fractal.make_line(-50F, -50F, -50F, 50F, level.Value);
+      var shape = Fractal.make_shape(line1, line2, line3, line4);
+      using var image = Draw.CreateImage(shape, 400, 400);
       image.Save(file?.FullName, System.Drawing.Imaging.ImageFormat.Jpeg);
     }
   }
