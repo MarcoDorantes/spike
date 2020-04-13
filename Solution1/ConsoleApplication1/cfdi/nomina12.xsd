@@ -526,7 +526,7 @@
                   <xs:sequence>
                     <xs:element name="SubsidioAlEmpleo" minOccurs="0">
                       <xs:annotation>
-                        <xs:documentation>Nodo requerido para expresar la información referente al subsidio al empleo del trabajador.</xs:documentation>
+                        <xs:documentation>Nodo condicional para expresar la información referente al subsidio al empleo del trabajador.</xs:documentation>
                       </xs:annotation>
                       <xs:complexType>
                         <xs:attribute name="SubsidioCausado" type="tdCFDI:t_ImporteMXN" use="required">
