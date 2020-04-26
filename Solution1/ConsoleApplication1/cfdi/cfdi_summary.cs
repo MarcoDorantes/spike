@@ -40,8 +40,8 @@ http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
         return w;
       });
 
-      var cfdi1_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2018\GBM_2018")).EnumerateFiles("*.xml");
-      var cfdi2_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2018\SAT_2018")).EnumerateFiles("*.xml");
+      var cfdi1_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2019\GBM")).EnumerateFiles("*.xml");
+      var cfdi2_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2019\SAT")).EnumerateFiles("*.xml");
       if (cfdi1_file.Count() != cfdi2_file.Count()) throw new ArgumentOutOfRangeException($"CFDI file number must be the same ({cfdi1_file.Count()} != {cfdi2_file.Count()})");
       var cfdi_set1 = cfdi1_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
       var cfdi_set2 = cfdi2_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
@@ -86,7 +86,8 @@ http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
         return $"{result}";
       });
       //WriteLine(getconcept("1414-3143-BON-2018-12-41477"));return;
-      var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2018\SAT");
+      var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2019\SAT");
+
       int count = 0;
       XNamespace cfdi_ns = "http://www.sat.gob.mx/cfd/3";
       XNamespace nomina12_ns = "http://www.sat.gob.mx/nomina12";
@@ -125,8 +126,8 @@ http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
     }
     public static void _Main(string[] args)
     {
-      comp();
-      //sat();
+      //comp();
+      sat();
     }
   }
 }

@@ -14966,5 +14966,165 @@ The post .NET Core March 2020 Updates – 2.1.17 and 3.1.3 appeared first on Vi
       <pubDate>Thu, 02 Apr 2020 16:58:35 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>A guide to remote development with Live Share</title>
+      <description>Working in a fully distributed, remote team requires sophisticated collaboration technology, which needs to be both supercharged and frictionless. Visual Studio Live Share was built on the bold principle of making remote developer collaboration as powerful and natural as in-person collaboration.
+The post A guide to remote development with Live Share appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa860ko/</link>
+      <pubDate>Tue, 14 Apr 2020 17:36:36 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing Entity Framework Core 5.0 Preview 2</title>
+      <description>Today we are excited to announce the second preview release of EF Core 5.0.
+The post Announcing Entity Framework Core 5.0 Preview 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa860kl/</link>
+      <pubDate>Tue, 14 Apr 2020 17:35:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Thank you, Visual Studio docs contributors (March 2020)</title>
+      <description>We want to say a big thank you to everyone who contributed to the docs in March of 2020! You are helping make the Visual Studio docs clearer, more complete, and more understandable for everyone. We love that our community takes the time to get involved and share their knowledge.
+The post Thank you, Visual Studio docs contributors (March 2020) appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa860kj/</link>
+      <pubDate>Tue, 14 Apr 2020 17:34:57 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 5 Preview 2</title>
+      <description>.NET 5 Preview2 is now available and is ready for evaluation! .NET 5 will be a current release.
+The post ASP.NET Core updates in .NET 5 Preview 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa860ki/</link>
+      <pubDate>Tue, 14 Apr 2020 17:34:21 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Remoting into DevOps</title>
+      <description>The impacts of the COVID-19 global health pandemic on our lives and work will ripple out for years. With almost no notice, nearly the entire world has been thrust into remote work. As we adjust to this new normal, DevOps can help.
+The post Remoting into DevOps appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa85sxv/</link>
+      <pubDate>Tue, 14 Apr 2020 17:33:44 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET for Apache® Spark™ In-Memory DataFrame Support</title>
+      <description>.NET for Apache Spark is aimed at making Apache® Spark™, and thus the exciting world of big data analytics, accessible to .NET developers. .NET for Spark can be used for processing batches of data, real-time streams, machine learning, and ad-hoc query.
+The post .NET for Apache® Spark™ In-Memory DataFrame Support appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa84j2y/</link>
+      <pubDate>Thu, 09 Apr 2020 18:59:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Social Authentication with Xamarin.Essentials and ASP.NET Core</title>
+      <description>Many apps require adding user authentication. This often means enabling users to sign into existing Microsoft, Facebook, Google, and (now) Apple Sign-In accounts.
+The post Social Authentication with Xamarin.Essentials and ASP.NET Core appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa84j2v/</link>
+      <pubDate>Thu, 09 Apr 2020 18:58:43 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Regex Performance Improvements in .NET 5</title>
+      <description>The System.Text.RegularExpressions namespace has been in .NET for years, all the way back to .NET Framework 1.1. It’s used in hundreds of places within the .NET implementation itself, and directly by thousands upon thousands of applications. Across all of that, it represents a significant source of CPU consumption.
+The post Regex Performance Improvements in .NET 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa84qxh/</link>
+      <pubDate>Thu, 09 Apr 2020 18:57:54 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Helping Customers Effectively</title>
+      <description>I have to put a disclaimer here since this is not the usual type of blog posts I write. I’m by no means a master at communication. This is just what I thought that seemed to work well. YMMV of course.
+The post Helping Customers Effectively appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8257d/</link>
+      <pubDate>Thu, 09 Apr 2020 18:57:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Doxygen and XML Doc Comment support</title>
+      <description>Whether you’re using Doxygen or XML Doc Comments, Visual Studio version 16.6 Preview 2 provides automatic comment stub generation as well as Quick Info, Parameter Help, and Member List tooltip support.
+The post Doxygen and XML Doc Comment support appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa81xk5/</link>
+      <pubDate>Thu, 09 Apr 2020 18:56:32 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Work flow of diagnosing memory performance issues – Part 1</title>
+      <description>In this blog post I’ll talk a bit about contributing to PerfView and then continue with the GCStats analysis. You can skip to the analysis part directly if you like.
+The post Work flow of diagnosing memory performance issues – Part 1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa884uh/</link>
+      <pubDate>Tue, 21 Apr 2020 19:14:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Sync Mobile Apps with the Cloud via Change Tracking API</title>
+      <description>If you are creating a mobile app that will work sending data back and forth from the cloud (I guess that 99% of the apps fall into this use case), you will have at some point the need to sync data between the app and the cloud itself.
+The post Sync Mobile Apps with the Cloud via Change Tracking API appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa884ud/</link>
+      <pubDate>Tue, 21 Apr 2020 19:13:39 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>See What’s New in Visual Studio 2019 v16.6 Preview 3!</title>
+      <description>Today we are excited to reveal some new features in Visual Studio 2019 version 16.6 Preview 3. Despite our challenges of learning how to work from home such as interruptions by kids, pets and internet blips, we continue to deliver new features to you.
+The post See What’s New in Visual Studio 2019 v16.6 Preview 3! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa88cid/</link>
+      <pubDate>Tue, 21 Apr 2020 19:13:00 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Porting a C++/CLI Project to .NET Core</title>
+      <description>One of the new features of Visual Studio 2019 (beginning with version 16.4) and .NET Core 3.1 is the ability to build C++/CLI projects targeting .NET Core. This can be done either directly with cl.exe and link.exe (using the new /clr:netcore option) or via MSBuild (using CLRSupportNetCore/CLRSupport).
+The post Porting a C++/CLI Project to .NET Core appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa81xk8/</link>
+      <pubDate>Tue, 21 Apr 2020 19:12:12 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Balancing work on GC threads (.NET)</title>
+      <description>In Server GC, each GC thread will work on its heap in parallel (that’s a simplistic view and is not necessarily true for all phases but on the high level it’s exact the idea of a parallel GC). So that alone means work is already split between GC threads.
+The post Balancing work on GC threads (.NET) appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa81is7/</link>
+      <pubDate>Tue, 21 Apr 2020 19:11:24 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>MSVC Backend Updates in Visual Studio 2019 Version 16.5</title>
+      <description>In Visual Studio 2019 version 16.5 we have continued to improve the C++ backend with new features, new and improved optimizations, build throughput improvements, and better security. Here is a brief list of improvements for you to review.
+The post MSVC Backend Updates in Visual Studio 2019 Version 16.5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa860kz/</link>
+      <pubDate>Thu, 16 Apr 2020 17:51:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Depending on the right PowerShell NuGet package in your .NET project</title>
+      <description>Alongside the pwsh executable packages published with each PowerShell release, the PowerShell team also maintain several NuGet packages that are available on NuGet to allow targeting PowerShell as an API platform in .NET.
+The post Depending on the right PowerShell NuGet package in your .NET project appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa860kv/</link>
+      <pubDate>Thu, 16 Apr 2020 17:50:06 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Work flow of diagnosing memory performance issues – Part 0</title>
+      <description>I wanted to describe what I do to diagnose memory perf issues, or rather the common part of various work flows of doing such diagnostics. Diagnosing performance issues can take many forms because there’s no fixed steps you follow. But I’ll try to break it down into basic blocks that get invoked for a variety of diagnostics.
+The post Work flow of diagnosing memory performance issues – Part 0 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa85sy8/</link>
+      <pubDate>Thu, 16 Apr 2020 17:49:31 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Bring your own machine to Visual Studio Online</title>
+      <description>Today Visual Studio Online provides fully-managed, on-demand, ready-to-code development environments in the cloud, but did you know you can also register your own machines and access them remotely from Visual Studio Code or our web editor? This is a great option for developers that want to cloud-connect an already configured work or home machine for anywhere access,
+The post Bring your own machine to Visual Studio Online appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa85sy6/</link>
+      <pubDate>Thu, 16 Apr 2020 17:48:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>New templates for debugging CMake projects on remote systems and WSL in Visual Studio 2019</title>
+      <description>We heard your feedback that it can be difficult to configure debugging sessions on remote Linux systems or the Windows Subsystem for Linux (WSL). In Visual Studio 2019 version 16.6 Preview 2 we introduced a new debugging template to simplify debugging with gdb.
+The post New templates for debugging CMake projects on remote systems and WSL in Visual Studio 2019 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa860kq/</link>
+      <pubDate>Thu, 16 Apr 2020 17:48:01 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
