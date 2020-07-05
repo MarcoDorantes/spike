@@ -15126,5 +15126,445 @@ The post New templates for debugging CMake projects on remote systems and WSL in
       <pubDate>Thu, 16 Apr 2020 17:48:01 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Introducing Visual Studio Codespaces: cloud-hosted development for wherever you’re working</title>
+      <description>As we’ve all been adopting practices like social distancing and remote working, development teams have become more distributed. Our own team has been facing some of the challenges that are part of this transition, and it has motivated us to double down on our priority to help developers stay productive from anywhere.
+The post Introducing Visual Studio Codespaces: cloud-hosted development for wherever you’re working appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8blki/</link>
+      <pubDate>Tue, 05 May 2020 23:18:25 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Blazor WebAssembly 3.2.0 Release Candidate now available</title>
+      <description>The Blazor WebAssembly Release Candidate is here! This release contains all of the features and improvements that we expect to release for the upcoming Blazor WebAssembly release. There are no more breaking changes planned at this point. Please give the Blazor WebAssembly Release Candidate a try and let us know what you think!
+The post Blazor WebAssembly 3.2.0 Release Candidate now available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8be8x/</link>
+      <pubDate>Tue, 05 May 2020 23:14:41 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Rust/WinRT Public Preview</title>
+      <description>We are excited to announce that the Rust/WinRT project finally has a permanent and public home on GitHub:
+The post Rust/WinRT Public Preview appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8blkd/</link>
+      <pubDate>Tue, 05 May 2020 23:13:50 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing C# Source Generators</title>
+      <description>We’re pleased to introduce the first preview of Source Generators, a new C# compiler feature that lets C# developers inspect user code and generate new C# source files that can be added to a compilation. This is done via a new kind of component that we’re calling a Source Generator.
+The post Introducing C# Source Generators appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8blkb/</link>
+      <pubDate>Tue, 05 May 2020 23:13:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Xamarin.Forms 4.6: Material Components, Shell, and the Future</title>
+      <description>Today, we are shipping Xamarin.Forms 4.6 with a host of quality improvements, including several new feature previews. With more controls available “in the box” than ever before, it has never been easier to quickly build quality mobile apps.
+The post Xamarin.Forms 4.6: Material Components, Shell, and the Future appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8be8o/</link>
+      <pubDate>Tue, 05 May 2020 23:12:28 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing TypeScript 3.9 RC</title>
+      <description>Today we’re announcing the availability of TypeScript 3.9 RC, the release candidate of TypeScript 3.9. Between now and the final release, we expect no further changes apart from critical bug fixes.
+The post Announcing TypeScript 3.9 RC appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8b1z5/</link>
+      <pubDate>Thu, 30 Apr 2020 18:06:11 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing General Availability of YAML CD features in Azure Pipelines</title>
+      <description>We’re excited to announce the general availability of the Azure Pipelines YAML CD features. We now offer a unified YAML experience to configure each of your pipelines to do CI, CD, or CI and CD together.
+The post Announcing General Availability of YAML CD features in Azure Pipelines appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8b1z4/</link>
+      <pubDate>Thu, 30 Apr 2020 18:05:25 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Exception Helper – Rethrown Exceptions</title>
+      <description>Ever had a bug in an async method that caused an exception? Been frustrated that the debugger doesn’t show you where that exception happened? Or been frustrated when looking at an exception that has an inner exception, but the debugger doesn’t easily show you where that exception was from?
+The post Exception Helper – Rethrown Exceptions appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8b1z3/</link>
+      <pubDate>Thu, 30 Apr 2020 18:04:32 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Work flow of diagnosing memory performance issues – Part 2</title>
+      <description>In this blog post I’ll talk a bit about how to spend time wisely and then continue with the analysis. Originally I was going to delve deeper into the GCStats view but I actually just debugged a long suspension issue that I wanted to share cause it shows some general ideas of what to do when you hit problems during an analysis.
+The post Work flow of diagnosing memory performance issues – Part 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8b1z0/</link>
+      <pubDate>Thu, 30 Apr 2020 18:03:24 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing Entity Framework Core 5.0 Preview 3</title>
+      <description>Today we are excited to announce the third preview release of EF Core 5.0.
+The post Announcing Entity Framework Core 5.0 Preview 3 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa89ng1/</link>
+      <pubDate>Thu, 30 Apr 2020 18:02:34 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Faster builds with PCH suggestions from C++ Build Insights</title>
+      <description>The creation of a precompiled header (PCH) is a proven strategy for improving build times. A PCH eliminates the need to repeatedly parse a frequently included header by processing it only once at the beginning of a build. The selection of headers to precompile has traditionally been viewed as a guessing game,
+The post Faster builds with PCH suggestions from C++ Build Insights appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8dxa4/</link>
+      <pubDate>Tue, 12 May 2020 19:19:59 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Top Stories from the Microsoft DevOps Community – 2020.05.08</title>
+      <description>Happy Friday! This weekend in the United States we celebrate Mother’s Day. Growing up, my mom was definitely the project manager of the house. I think she may appreciate this weeks posts about work item and iteration management. All our tasks were assigned weekly,
+The post Top Stories from the Microsoft DevOps Community – 2020.05.08 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8dq64/</link>
+      <pubDate>Tue, 12 May 2020 19:19:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>PowerShell 7 Video Series</title>
+      <description>Enterprises, partners, and IT professionals store business-critical data in Azure Blob Storage. We are committed to providing the best-in-class data protection and recovery capabilities to keep your applications running. Today, we are announcing the general availability of Geo-Zone-Redundant Storage (GZRS)—providing protection against regional disasters and Account failover—allowing you to determine when to initiate a failover instead.
+The post PowerShell 7 Video Series appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8dq63/</link>
+      <pubDate>Tue, 12 May 2020 19:17:31 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Azure Blob Storage enhancing data protection and recovery capabilities</title>
+      <description>Enterprises, partners, and IT professionals store business-critical data in Azure Blob Storage. We are committed to providing the best-in-class data protection and recovery capabilities to keep your applications running. Today, we are announcing the general availability of Geo-Zone-Redundant Storage (GZRS)—providing protection against regional disasters and Account failover—allowing you to determine when to initiate a failover instead.
+The post Azure Blob Storage enhancing data protection and recovery capabilities appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8dx9y/</link>
+      <pubDate>Tue, 12 May 2020 19:14:53 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Azure Virtual Machine Scale Sets now provide simpler management during scale-in</title>
+      <description>We recently announced the general availability of three features for Azure Virtual Machine Scale Sets. Instance protection, custom scale-in policy, and terminate notification provide new capabilities to simplify management of virtual machine instances during scale-in.
+The post Azure Virtual Machine Scale Sets now provide simpler management during scale-in appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8dq60/</link>
+      <pubDate>Tue, 12 May 2020 19:14:07 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Using ML.NET for deep learning on images in Azure</title>
+      <description>In March 2020, ML.NET added support for training Image Classification models in Azure. Although the image classification scenario was released in late 2019, users were limited by the resources on their local compute environments. Training in Azure enables users to scale image classification scenarios by using GPU optimized Linux virtual machines.
+The post Using ML.NET for deep learning on images in Azure appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8c655/</link>
+      <pubDate>Thu, 07 May 2020 18:09:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Exposure Notification API Support for Xamarin Apps</title>
+      <description>Last month, Apple and Google announced plans for creating Exposure Notification APIs. By leveraging Bluetooth Low Energy, this help developers implement contact tracing for both iOS and Android. Our team has been tracking the releases of these APIs to ready them for Xamarin developers.
+The post Exposure Notification API Support for Xamarin Apps appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8cl5a/</link>
+      <pubDate>Thu, 07 May 2020 18:08:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Pure Virtual C++ Conference 2020 Videos and Survey Available</title>
+      <description>The videos of all Pure Virtual C++ 2020 sessions are now available on YouTube.
+The post Pure Virtual C++ Conference 2020 Videos and Survey Available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8c653/</link>
+      <pubDate>Thu, 07 May 2020 18:07:47 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Configuring Azure Services and emulators using Visual Studio</title>
+      <description>Starting with Visual Studio 16.6 Preview 2 the Connected Services tab offers a new experience called Service Dependencies. You can use it to connect your app to Azure services such as Azure SQL, Storage, Key Vault and many others. Wherever possible local emulation options are also available and more are planned for the future.
+The post Configuring Azure Services and emulators using Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8cl57/</link>
+      <pubDate>Thu, 07 May 2020 18:07:11 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Vcpkg 2020.04 Update and Product Roadmap</title>
+      <description>This is the April 2020 blog post on vcpkg, the cross-platform, open source C/C++ library manager. In this post, we will share some information on the 2020.04 release of vcpkg and discuss the vcpkg product roadmap, which we are publishing and will keep up to date over time.
+The post Vcpkg 2020.04 Update and Product Roadmap appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8be8z/</link>
+      <pubDate>Thu, 07 May 2020 18:06:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Developer Velocity: Empowering developers to fuel business performance</title>
+      <description>Developers have been drivers of innovation and transformation for decades. They have pioneered innovation across countless industries and helped businesses weather tough conditions. Now, we are living in unprecedented times where organizations in every industry and sector are working to adjust to a new normal,
+The post Developer Velocity: Empowering developers to fuel business performance appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8grpb/</link>
+      <pubDate>Tue, 19 May 2020 20:30:39 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Code, collaborate, and ship your apps from anywhere</title>
+      <description>Welcome to Microsoft Build 2020! This all-new 48-hour digital experience is designed to help you and other developers around the world come together to solve challenges, share knowledge, and stay connected. Here we’ll cover some of our latest innovations in developer tools and cloud platform technologies—to help you code,
+The post Code, collaborate, and ship your apps from anywhere appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8hm4b/</link>
+      <pubDate>Tue, 19 May 2020 20:29:38 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Expanding Visual Studio 2019 support for Visual Studio Codespaces</title>
+      <description>Now more than ever, developers are juggling multiple projects at work and at home. New features, bug fixes, PR reviews,  prototypes all compete for time and attention on limited resources. Visual Studio Codespaces provides hosted development environments that allow you to develop entirely in the cloud.
+The post Expanding Visual Studio 2019 support for Visual Studio Codespaces appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8grpa/</link>
+      <pubDate>Tue, 19 May 2020 20:27:10 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Developing for all 1 billion Windows 10 devices and beyond</title>
+      <description>This year, Microsoft Build 2020 is a digital-only event that we all get to experience from the comfort of our homes. We hope you enjoy learning about the new features and technologies that matter most to you. Today, I will have the privilege of sharing how developers can build apps for modern work using Microsoft 365 and Windows platforms.
+The post Developing for all 1 billion Windows 10 devices and beyond appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8grp8/</link>
+      <pubDate>Tue, 19 May 2020 20:25:08 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5 Preview 4 and our journey to one .NET</title>
+      <description>.NET 5 is the next version and future of .NET. We are continuing the journey of unifying the .NET platform, with a single framework that extends from cloud to desktop to mobile and beyond. Looking back, we took the best of .NET Framework and put that into .NET Core 3,
+The post Announcing .NET 5 Preview 4 and our journey to one .NET appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8hm47/</link>
+      <pubDate>Tue, 19 May 2020 20:24:20 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing TypeScript 3.9</title>
+      <description>Today we’re excited to announce the release of TypeScript 3.9!
+The post Announcing TypeScript 3.9 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8fr87/</link>
+      <pubDate>Fri, 15 May 2020 17:59:06 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Start Developing on Windows 10, version 2004 Today</title>
+      <description>The Windows 10 SDK for Windows 10, version 2004 is now available with a go-live license. Build 19041, also known as the Windows 10 May 2020 Update, is now in the Release Preview Windows Insider ring.
+The post Start Developing on Windows 10, version 2004 Today appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8flbs/</link>
+      <pubDate>Fri, 15 May 2020 17:57:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Building a Progressive Web App with Blazor</title>
+      <description>A Progressive Web Application (PWA) is a Single Page Application (SPA) that uses modern browser APIs and capabilities to behave like a desktop app. Blazor WebAssembly (now in preview) includes support for Progressive Web Applications. Today, I want to show you how to build your first Blazor PWA.
+The post Building a Progressive Web App with Blazor appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8flb7/</link>
+      <pubDate>Fri, 15 May 2020 17:56:26 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Core May 2020 Updates – 2.1.18 and 3.1.4</title>
+      <description>Today, we are releasing the .NET Core May 2020 Update. These updates contain security and reliability fixes. See the individual release notes for details on updated packages.
+The post .NET Core May 2020 Updates – 2.1.18 and 3.1.4 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8fr7n/</link>
+      <pubDate>Fri, 15 May 2020 17:49:46 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Framework May 2020 Security and Quality Rollup Updates</title>
+      <description>Today, we are releasing the May 2020 Security and Quality Rollup Updates for .NET Framework.
+The post .NET Framework May 2020 Security and Quality Rollup Updates appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8flb5/</link>
+      <pubDate>Fri, 15 May 2020 17:48:51 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio Subscriptions administrator feature updates</title>
+      <description>Over the past few months, we’ve interviewed a number of our Visual Studio Subscriptions administrators, and had a couple different surveys running in the administration portal to better understand what you like, don’t like, and absolutely hate about the current admin experience (yes the surveys are read by the PM team;
+The post Visual Studio Subscriptions administrator feature updates appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8kmh1/</link>
+      <pubDate>Thu, 04 Jun 2020 18:34:19 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing YARP Preview 1</title>
+      <description>YARP is a project to create a reverse proxy server. It started when we noticed a pattern of questions from internal teams at Microsoft who were either building a reverse proxy for their service or had been asking about APIs and technology for building one,
+The post Introducing YARP Preview 1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8kmh0/</link>
+      <pubDate>Thu, 04 Jun 2020 18:33:05 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Save money and improve agility and scale by modernizing your SQL Server to Azure SQL</title>
+      <description>We’re all adapting to uncertain times. As employees shift to more remote ways of working and consumer behavior changes to meet the new normal, businesses are faced with a challenging choice: slow down operations to operate more cost-effectively, lean into new opportunities that may not have otherwise existed,
+The post Save money and improve agility and scale by modernizing your SQL Server to Azure SQL appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8kueb/</link>
+      <pubDate>Thu, 04 Jun 2020 18:32:19 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>“The Azure SQL family: Innovation and value in the cloud “</title>
+      <description>How businesses respond in times of uncertainty is as varied as the businesses themselves. Many slow down operations to operate more cost-effectively, while others lean into new opportunities that didn’t exist before. Regardless of how you respond, ensuring your organization can cost-effectively adapt and scale to rapidly changing conditions is key.
+The post The Azure SQL family: Innovation and value in the cloud  appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8kue7/</link>
+      <pubDate>Thu, 04 Jun 2020 18:31:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Azure Maps Creator now available in preview</title>
+      <description>As enterprises continue to evolve in their digital transformation journey, there is a need for augmenting Azure Maps content with project-specific and private business knowledge of places. Today were launching Azure Maps Creator in preview to extend location intelligence to indoor spaces.
+The post Azure Maps Creator now available in preview appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8kue5/</link>
+      <pubDate>Thu, 04 Jun 2020 18:29:42 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Microsoft and Docker collaborate on new ways to deploy containers on Azure</title>
+      <description>Now more than ever, developers need agility to meet rapidly increasing demands from customers. Containerization is one key way to increase agility. Containerized applications are built in a more consistent and repeatable way, by way of defining desired infrastructure, dependencies, and configuration as code for all stages of the lifecycle.
+The post Microsoft and Docker collaborate on new ways to deploy containers on Azure appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8ktgi/</link>
+      <pubDate>Tue, 02 Jun 2020 18:10:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Top Stories from the Microsoft DevOps Community – 2020.05.29</title>
+      <description>Happy Friday! This is the last post for this month – and it’s been a good month. I hope you’ve had time to check out some of the sessions from build via the Microsoft Build page. If you haven’t, it’s not too late to find something to watch.
+The post Top Stories from the Microsoft DevOps Community – 2020.05.29 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8klkx/</link>
+      <pubDate>Tue, 02 Jun 2020 18:09:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Help us improve WPF and UWP XAML designer</title>
+      <description>We would like to make your experience developing WPF and UWP applications in Visual Studio better!
+The post Help us improve WPF and UWP XAML designer appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8klkw/</link>
+      <pubDate>Tue, 02 Jun 2020 18:08:41 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Profiling template metaprograms with C++ Build Insights</title>
+      <description>The use of templates in C++ programs can sometimes lead to longer builds. C++ Build Insights puts tools at your disposal for analyzing template usage patterns and their associated impact on build time. In this article, we show you how to use the vcperf analysis tool and the C++ Build Insights SDK to understand and fix problematic template patterns.
+The post Profiling template metaprograms with C++ Build Insights appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8ktgg/</link>
+      <pubDate>Tue, 02 Jun 2020 18:07:45 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>F# 5 and F# tools update</title>
+      <description>We’re excited to announce some updates to F# 5 today! We shipped a lot of preview features since F# 5 preview 1, and they have all been stabilizing since that release. Today, we’re happy to announce some minor additions to F# 5 and talk about some pretty cool performance work we’ve been doing.
+The post F# 5 and F# tools update appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8ktge/</link>
+      <pubDate>Tue, 02 Jun 2020 18:07:03 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5.0 Preview 5</title>
+      <description>Today, we’re releasing .NET 5.0 Preview 5. It contains a small set of new features and performance improvements. The .NET 5.0 Preview 4 post covers what we are planning to deliver with .NET 5.0. Most of the features are now in the product,
+The post Announcing .NET 5.0 Preview 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8nq28/</link>
+      <pubDate>Thu, 11 Jun 2020 22:18:32 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 5 Preview 5</title>
+      <description>.NET 5 Preview 5 is now available and is ready for evaluation! .NET 5 will be a current release.
+The post ASP.NET Core updates in .NET 5 Preview 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8nxml/</link>
+      <pubDate>Thu, 11 Jun 2020 22:17:47 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing Entity Framework Core 5.0 Preview 5</title>
+      <description>Today we are announcing the fifth preview release of EF Core 5.0.
+The post Announcing Entity Framework Core 5.0 Preview 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8nq25/</link>
+      <pubDate>Thu, 11 Jun 2020 22:16:53 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Core June 2020 Updates – 2.1.19 and 3.1.5</title>
+      <description>Today, we are releasing the .NET Core June 2020 Update. These updates contain security and reliability fixes. See the individual release notes for details on updated packages.
+The post .NET Core June 2020 Updates – 2.1.19 and 3.1.5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8nxmh/</link>
+      <pubDate>Thu, 11 Jun 2020 22:15:59 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>June patches for Azure DevOps Server and Team Foundation Server</title>
+      <description>This month, we are releasing fixes for security vulnerabilities that impact our self-hosted product, Azure DevOps Server 2019, as well as the following older Team Foundation Server releases: TFS 2017 and TFS 2018. The following vulnerabilities will be fixed with this patch:
+The post June patches for Azure DevOps Server and Team Foundation Server appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8nxmg/</link>
+      <pubDate>Thu, 11 Jun 2020 22:15:03 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>gRPC-Web for .NET now available</title>
+      <description>gRPC-Web for .NET is now officially released. We announced experimental support in January and since then we’ve been making improvements based on feedback from early adopters.
+The post gRPC-Web for .NET now available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8qsau/</link>
+      <pubDate>Thu, 18 Jun 2020 19:17:29 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Xamarin.Forms 4.7: Grid Column &amp; Row Definitions, Multi-Bindings, Shapes &amp; Paths, and More!</title>
+      <description>Today, the Xamarin.Forms team is releasing Xamarin.Forms 4.7 with a collection of feature additions and improvements. These new features will let you unleash your full creative abilities when developing Xamarin.Forms applications.
+The post Xamarin.Forms 4.7: Grid Column  Row Definitions, Multi-Bindings, Shapes  Paths, and More! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8rez2/</link>
+      <pubDate>Thu, 18 Jun 2020 19:16:39 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Resolving PowerShell Module Assembly Dependency Conflicts</title>
+      <description>When writing a PowerShell module, especially a binary module (i.e. one written in a language like C# and loaded into PowerShell as an assembly/DLL), it’s natural to take dependencies on other packages or libraries to provide functionality.
+The post Resolving PowerShell Module Assembly Dependency Conflicts appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8rez0/</link>
+      <pubDate>Thu, 18 Jun 2020 19:15:32 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>GPU accelerated ML training inside the Windows Subsystem for Linux</title>
+      <description>The Windows Subsystem for Linux (WSL) enables Windows users to run native, unmodified Linux command-line tools directly on Windows. WSL usage has grown a lot since it was first announced 4 years ago, at Microsoft Build 2016, and now runs on more than 3.5 million monthly active devices!
+The post GPU accelerated ML training inside the Windows Subsystem for Linux appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8reyv/</link>
+      <pubDate>Thu, 18 Jun 2020 19:14:34 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Azure responds to COVID-19</title>
+      <description>The global health pandemic continues to impact every organization—large or small—their employees, and the customers they serve. Over the last several months, we have seen firsthand the role that cloud computing plays in sustaining operations across the board that helps us live,
+The post Azure responds to COVID-19 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8reyu/</link>
+      <pubDate>Thu, 18 Jun 2020 19:12:12 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing “Web Live Preview”</title>
+      <description>If you work on any type of app that has a user interface (UI) you probably have experienced that inner-loop development cycle of making a change, compile and run the app, see the change wasn’t what you wanted, stop debugging, then re-run the cycle again.
+The post Introducing “Web Live Preview” appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8opjk/</link>
+      <pubDate>Tue, 16 Jun 2020 18:54:48 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing Local Process with Kubernetes for Visual Studio 2019</title>
+      <description>Today, we’re proud to announce the Local Process with Kubernetes preview feature in Visual Studio 2019 16.7 Preview 2.   
+The post Introducing Local Process with Kubernetes for Visual Studio 2019 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8opjj/</link>
+      <pubDate>Tue, 16 Jun 2020 18:53:59 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Core June 2020 Updates – 2.1.19 and 3.1.5</title>
+      <description>Today, we are releasing the .NET Core June 2020 Update. These updates contain security and reliability fixes. See the individual release notes for details on updated packages.
+The post .NET Core June 2020 Updates – 2.1.19 and 3.1.5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8opji/</link>
+      <pubDate>Tue, 16 Jun 2020 18:53:03 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Be prepared for what’s next: Accelerate cloud migration</title>
+      <description>We are in the midst of unprecedented times with far-reaching implications of the global health crisis to healthcare, public policy, and the economy. Organizations are fundamentally changing how they run their businesses, ensure the safety of their workforce, and keep their IT operations running.
+The post Be prepared for what’s next: Accelerate cloud migration appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8opjh/</link>
+      <pubDate>Tue, 16 Jun 2020 18:52:08 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>How Do I Debug Async Code in Visual Studio?</title>
+      <description>In a recent post, we explored the basics of asynchronous code, why it’s important, and how to write it in C#.  However, while it can improve your program’s overall throughput, async code is still not exempt from bugs!  Writing async code makes debugging more difficult when potential deadlocks,
+The post How Do I Debug Async Code in Visual Studio? appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8oxbh/</link>
+      <pubDate>Tue, 16 Jun 2020 18:51:00 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>

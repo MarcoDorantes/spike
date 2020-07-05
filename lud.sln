@@ -25,7 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fractal.lib", "source\fract
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-cli", "3-cli", "{6BD6ECBE-E7F5-45B2-82EA-509A9105C38A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fractal.cli", "source\fractal.cli\fractal.cli.csproj", "{51DC65E7-52DA-441F-B4AB-249B72E26ECB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fractal.cli", "source\fractal.cli\fractal.cli.csproj", "{51DC65E7-52DA-441F-B4AB-249B72E26ECB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sudoku", "sudoku", "{0100BD0A-D6B6-437A-9844-038BC7C5D644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sudoku.spec", "source\sudoku.spec\sudoku.spec.csproj", "{19B946DE-F9C1-4509-997C-91660518042F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,10 @@ Global
 		{51DC65E7-52DA-441F-B4AB-249B72E26ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51DC65E7-52DA-441F-B4AB-249B72E26ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51DC65E7-52DA-441F-B4AB-249B72E26ECB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19B946DE-F9C1-4509-997C-91660518042F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B946DE-F9C1-4509-997C-91660518042F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B946DE-F9C1-4509-997C-91660518042F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B946DE-F9C1-4509-997C-91660518042F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +80,7 @@ Global
 		{126A8383-CA49-49A2-8F6C-1C1F0A825A37} = {66464329-E6A4-44B0-8B6C-91329405C517}
 		{6BD6ECBE-E7F5-45B2-82EA-509A9105C38A} = {10BBBA3B-1976-47DF-959F-DB8E9BB17C9E}
 		{51DC65E7-52DA-441F-B4AB-249B72E26ECB} = {6BD6ECBE-E7F5-45B2-82EA-509A9105C38A}
+		{19B946DE-F9C1-4509-997C-91660518042F} = {0100BD0A-D6B6-437A-9844-038BC7C5D644}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {571CA6D7-18E0-42A5-852A-226774A523EA}
