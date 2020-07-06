@@ -7,76 +7,60 @@ using System.Collections.Generic;
 namespace sudoku.spec
 {
   #region SUT
-  interface IDigitStore
-  {
-    int Count { get; }
-    bool Contains(int x);
-    int this[int index] { get; set; }
-    void Add(int x);
-  }
-  class ListDigitStore : IDigitStore
-  {
-    private List<int> store;
-    public ListDigitStore()
-    {
-      store = new List<int>();
-    }
-    #region IDigitStore
-    public int Count { get => store.Count; }
-    public bool Contains(int x)=>store.Any(n => n == x);
-    public int this[int index] { get => store[index]; set => store[index] = value; }
-    public void Add(int x) => store.Add(x);
-    #endregion
-  }
   class DigitSet
   {
     public const int MaxDigitCount = 9;
 
-    private IDigitStore Digits;
-
-    public DigitSet(IDigitStore store, int[] digits = null)
+    public DigitSet(IEnumerable<Cell> cells)
     {
-      /*if (digits == null)
+      if (cells == null)
       {
-        throw new ArgumentNullException(nameof(digits), "Null is invalid.");
-      }*/
-      Digits = store;// new List<int>(Enumerable.Repeat(0, MaxDigitCount));
-      if (digits != null)
-        foreach (var n in digits)
-        {
-          Add(n);
-        }
+        throw new ArgumentNullException(nameof(cells), "Null is invalid.");
+      }
+      Cells = cells;
     }
 
-    public int this[int index] { get => Digits[index]; }
-    public int Count { get => Digits.Count; }
-    public bool In(int x) => Digits.Contains(x);//Any(n => n == x);
-    public void Add(int n)
+    public IEnumerable<Cell> Cells { get; private set; }
+
+    public int? this[int index]
     {
-      CheckDigitValue(n);
-      CheckDigitDuplicate(Digits, n);
-      //CheckOverSize(Digits, n);
-      Digits.Add(n);
+      get
+      {
+        int? result = null;
+        if (index >= Cells.Count())
+        {
+          throw new IndexOutOfRangeException($"Cell {nameof(index)} ({index}) is out of range.");
+        }
+        result = Cells.ElementAt(index).Digit;
+        return result;
+      }
+      set
+      {
+        CheckDigitValue(value);
+        CheckDigitDuplicate(value);
+        //CheckOverSize(Digits, n);
+        if (index >= Cells.Count())
+        {
+          throw new IndexOutOfRangeException($"Cell {nameof(index)} ({index}) is out of range.");
+        }
+        Cells.ElementAt(index).Digit = value;
+      }
     }
-    public void Add(int n, int index)
-    {
-      CheckDigitValue(n);
-      CheckDigitDuplicate(Digits, n);
-      //CheckOverSize(Digits, n);
-      Digits[index] = n;
-    }
+    public int Count { get => Cells.Count(c => c.Digit.HasValue); }
+    public bool In(int x) => Cells.Any(c => c.Digit.HasValue && c.Digit.Value == x);
+
     public static bool IsValidDigit(int n) => n > 0 && n < 10;
 
-    private static void CheckDigitDuplicate(IDigitStore digitset, int n)
+    private void CheckDigitDuplicate(int? n)
     {
-      if (digitset.Contains(n))//Any(x => x == n)
+      if (n.HasValue == false || In(n.Value))//Any(x => x == n)
       {
         throw new ArgumentOutOfRangeException($"Invalid duplicate digit ({n}).", (Exception)null);
       }
     }
-    private static void CheckDigitValue(int n)
+    private static void CheckDigitValue(int? n)
     {
-      if (!IsValidDigit(n))
+      if (n.HasValue == false || !IsValidDigit(n.Value))
       {
         throw new ArgumentOutOfRangeException($"{n}", "Digit out of valid range (1-9).");
       }
@@ -115,47 +99,11 @@ namespace sudoku.spec
       (Digit?.GetHashCode() ?? 0);
     #endregion
   }
-  class SubGrid : IDigitStore
+  class SubGrid : DigitSet
   {
     public const int MaxSubGridCellCount = DigitSet.MaxDigitCount;
 
-    private DigitSet digiset;
-
-    public SubGrid(IEnumerable<Cell> cells)
-    {
-      Cells = cells;
-      digiset = new DigitSet(this);
-    }
-
-    #region IDigitStore
-    int IDigitStore.Count { get => Cells.Count(c => c.Digit.HasValue); }
-    bool IDigitStore.Contains(int x) => Cells.Any(c => c.Digit.HasValue && c.Digit.Value == x);
-    int IDigitStore.this[int index] { get => this[index].Value; set { }/* => this[index].Value = value;*/ }
-    void IDigitStore.Add(int x) { Cells.ElementAt(Count + 1).Digit = x; }// => store.Add(x);
-    #endregion
-
-    public int Count { get => ((IDigitStore)this).Count; }
-    public void Add(int n)
-    {
-      digiset.Add(n);
-    }
-    public int? this[int index]
-    {
-      get
-      {
-        int? result = null;
-        if (index >= Cells.Count())
-        {
-          throw new IndexOutOfRangeException($"Cell {nameof(index)} ({index}) is out of range.");
-        }
-        if (index < Count)//if (index < ((IDigitStore)this).Count)
-        {
-          result = digiset[index];
-        }
-        return result;
-      }
-    }
-    public IEnumerable<Cell> Cells { get; private set; }
+    public SubGrid(IEnumerable<Cell> cells) : base(cells) { }
   }
   class Row : SubGrid
   {
@@ -225,7 +173,8 @@ namespace sudoku.spec
     [Fact]
     public void Empty()
     {
-      var @set = new DigitSet(new ListDigitStore());
+      var grid = new Grid();
+      var @set = grid.Rows.First();
       Assert.False(@set.In(0));
       Assert.False(@set.In(1));
       Assert.False(@set.In(2));
@@ -235,7 +184,11 @@ namespace sudoku.spec
     [Fact]
     public void In()
     {
-      var @set = new DigitSet(new ListDigitStore(), new[] { 1, 2, 3 });
+      var grid = new Grid();
+      var @set = grid.Rows.First();
+      @set[0] = 1;
+      @set[1] = 2;
+      @set[2] = 3;
       Assert.False(@set.In(0));
       Assert.True(@set.In(1));
       Assert.True(@set.In(2));
@@ -255,15 +208,17 @@ namespace sudoku.spec
         expected = exception;
       }
       Assert.NotNull(expected);
-      Assert.Equal("Null is invalid. (Parameter 'digits')", expected.Message);
+      Assert.Equal("Null is invalid. (Parameter 'cells')", expected.Message);
     }
     [Fact]
     public void InvalidLowerDigit()
     {
       ArgumentOutOfRangeException expected = null;
+      var grid = new Grid();
+      var @set = grid.Rows.First();
       try
       {
-        new DigitSet(new ListDigitStore(), Enumerable.Range(0, 9).ToArray());
+        @set[0] = 0;
       }
       catch (ArgumentOutOfRangeException exception)
       {
@@ -276,9 +231,11 @@ namespace sudoku.spec
     public void InvalidUpperNumber()
     {
       ArgumentOutOfRangeException expected = null;
+      var grid = new Grid();
+      var @set = grid.Rows.First();
       try
       {
-        new DigitSet(new ListDigitStore(), Enumerable.Range(1, 10).ToArray());
+        @set[0] = 10;
       }
       catch (ArgumentOutOfRangeException exception)
       {
@@ -290,28 +247,30 @@ namespace sudoku.spec
     [Fact]
     public void Count()
     {
-      var @set = new DigitSet(new ListDigitStore());
+      var grid = new Grid();
+      var @set = grid.Rows.First();
       Assert.Equal(0, @set.Count);
-      @set.Add(1);
+      @set[0] = 1;
       Assert.Equal(1, @set.Count);
     }
     [Fact]
     public void Add()
     {
-      var @set = new DigitSet(new ListDigitStore());
+      var grid = new Grid();
+      var @set = grid.Rows.First();
       Assert.Equal(0, @set.Count);
       Assert.False(@set.In(1));
-      @set.Add(1);
+      @set[0] = 1;
       Assert.Equal(1, @set.Count);
       Assert.True(@set.In(1));
     }
-    [Fact]
+    [Fact(Skip ="unscope")]
     public void DuplicateAtCtor()
     {
       ArgumentOutOfRangeException expected = null;
       try
       {
-        new DigitSet(new ListDigitStore(), new[] { 1, 2, 1 });
+        new DigitSet(new[] { new Cell(0, 0, 0, null) { Digit = 1 }, new Cell(0, 0, 0, null) { Digit = 2 }, new Cell(0, 0, 0, null) { Digit = 1 } });
       }
       catch (ArgumentOutOfRangeException exception)
       {
@@ -323,37 +282,41 @@ namespace sudoku.spec
     [Fact]
     public void DuplicateAtAdd()
     {
-      var @set = new DigitSet(new ListDigitStore());
+      var grid = new Grid();
+      var @set = grid.Rows.First();
       Assert.Equal(0, @set.Count);
       Assert.False(@set.In(1));
-      @set.Add(1);
+      @set[0] = 1;
       Assert.Equal(1, @set.Count);
       Assert.True(@set.In(1));
-      Assert.Throws<ArgumentOutOfRangeException>(() => @set.Add(1));
+      Assert.Throws<ArgumentOutOfRangeException>(() => @set[0] = 1);
     }
     [Fact]
     public void DuplicateAtIndexAdd()
     {
-      var @set = new DigitSet(new ListDigitStore());
+      var grid = new Grid();
+      var @set = grid.Rows.First();
       Assert.Equal(0, @set.Count);
       Assert.False(@set.In(1));
-      @set.Add(1, 3);
+      @set[3] = 1;
       Assert.Equal(1, @set.Count);
       Assert.True(@set.In(1));
-      Assert.Throws<ArgumentOutOfRangeException>(() => @set.Add(1, 3));
+      Assert.Throws<ArgumentOutOfRangeException>(() => @set[3] = 1);
     }
     [Fact]
     public void Index()
     {
-      var @set = new DigitSet(new ListDigitStore());
-      @set.Add(8);
-      Assert.Equal(8, @set[0]);
+      var grid = new Grid();
+      var @set = grid.Rows.First();
+      @set[0] = 8;
+      Assert.Equal(8, @set[0].Value);
     }
     [Fact]
     public void NoIndex()
     {
-      var @set = new DigitSet(new ListDigitStore());
-      Assert.Throws<ArgumentOutOfRangeException>(() => @set[1]);
+      var grid = new Grid();
+      var @set = grid.Rows.First();
+      Assert.Throws<IndexOutOfRangeException>(() => @set[10]);
     }
   }
   public class CellSpec
@@ -374,16 +337,17 @@ namespace sudoku.spec
     {
       var grid = new Grid();
       var row = grid.Rows.First();
-      row.Add(3);
+      row[0] = 3;
       Assert.Equal(1, row.Count);
-      Assert.Equal(3, row[0]);
+      Assert.True(row[0].HasValue);
+      Assert.Equal(3, row[0].Value);
     }
     [Fact]
     public void RowIndexedCell()
     {
       var grid = new Grid();
       var row = grid.Rows.First();
-      Assert.Equal((int?)null, row[2]);
+      Assert.False(row[2].HasValue);
     }
     [Fact]
     public void RowNonIndexedCell()
@@ -415,7 +379,7 @@ namespace sudoku.spec
     {
       var grid = new Grid();
       var column = grid.Columns.First();
-      column.Add(3);
+      column[0] = 3;
       var digit = column[0];
       Assert.Equal(1, column.Count);
       Assert.True(digit.HasValue);
