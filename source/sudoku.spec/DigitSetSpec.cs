@@ -1,6 +1,7 @@
 using Xunit;
 using System;
 using System.Linq;
+using System.Text;
 using System.Collections.Generic;
 
 namespace sudoku.spec
@@ -62,22 +63,33 @@ namespace sudoku.spec
 
   class Cell
   {
-    public int DigitIndex;
-  }
-  class SubGrid
-  {
-    public const int MaxCellCount = 9;
-    public SubGrid()
+    public Cell(int row, int column, int square)
     {
-      Digits = new DigitSet();
-      var cells = new List<Cell>();
-      for (int k = 0; k < MaxCellCount; ++k)
-      {
-        cells.Add(new Cell { DigitIndex = k });
-      }
+      Row = row;
+      Column = column;
+      Square = square;
+    }
+    public int Row { get; private set; }
+    public int Column { get; private set; }
+    public int Square { get; private set; }
+    //public int DigitIndex;
+    //public int? DigitValue { get => Digits[Cells.ElementAt(index).DigitIndex]; }
+  }
+  class SubGrid : DigitSet
+  {
+    public const int MaxSubGridCellCount = 9;
+
+    public SubGrid(IEnumerable<Cell> cells)
+    {
+      //Digits = new DigitSet();
+      //var cells = new List<Cell>();
+      //for (int k = 0; k < MaxSubGridCellCount; ++k)
+      //{
+      //  cells.Add(new Cell()/*{ DigitIndex = k }*/);
+      //}
       Cells = cells;
     }
-    public int? this[int index]
+    public int? this[int index, int digit_index]
     {
       get
       {
@@ -86,28 +98,59 @@ namespace sudoku.spec
         {
           throw new IndexOutOfRangeException($"Cell {nameof(index)} ({index}) is out of range.");
         }
-        if (index < Digits.Count)
+        if (index < Count)
         {
-          result = Digits[Cells.ElementAt(index).DigitIndex];
+          result = base[digit_index];
+          //result = base[Cells.ElementAt(index).DigitIndex];
         }
         return result;
       }
     }
     public IEnumerable<Cell> Cells { get; private set; }
-    public DigitSet Digits { get; private set; }
+    //public DigitSet Digits { get; private set; }
   }
-  class Row : SubGrid { }
-  class Column : SubGrid { }
-  class Square : SubGrid { }
-  class Grid
+  class Row : SubGrid
   {
+    public Row(IEnumerable<Cell> cells) : base(cells) { }
+  }
+  class Column : SubGrid
+  {
+    public Column(IEnumerable<Cell> cells) : base(cells) { }
+  }
+  class Square : SubGrid
+  {
+    public Square(IEnumerable<Cell> cells) : base(cells) { }
+  }
+  class Grid : List<Cell>
+  {
+    public const int MaxCellCount = SubGrid.MaxSubGridCellCount * SubGrid.MaxSubGridCellCount;
+    public const int MaxRowCount = SubGrid.MaxSubGridCellCount;
+    public const int MaxColumnCount = SubGrid.MaxSubGridCellCount;
+    public const int MaxSquareCount = SubGrid.MaxSubGridCellCount;
+
     public Grid()
     {
-      Rows = Enumerable.Range(0, SubGrid.MaxCellCount).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new SubGrid()); return w; });
-      Columns = Enumerable.Range(0, SubGrid.MaxCellCount).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new SubGrid()); return w; });
-      Squares = Enumerable.Range(0, SubGrid.MaxCellCount).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new SubGrid()); return w; });
+      var rows = new List<SubGrid>();
+      int square_side = MaxSquareCount / 3;
+      for (int r = 0; r < MaxRowCount; ++r)
+      {
+        var row = new List<Cell>();
+        for (int c = 0; c < MaxColumnCount; ++c)
+        {
+          var sindex = square_side * (r / square_side) + (c / square_side);
+          var cell = new Cell(r, c,sindex);
+          Add(cell);
+          row.Add(cell);
+        }
+        rows.Add(new SubGrid(row));
+      }
+      Rows = rows;
+      Columns = this.GroupBy(c => c.Column).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new SubGrid(n)); return w; });
+      Squares = this.GroupBy(c => c.Square).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new SubGrid(n)); return w; });
     }
-    public IEnumerable<SubGrid> Rows, Columns, Squares;
+    public IEnumerable<SubGrid> Rows { get; private set; }
+    public IEnumerable<SubGrid> Columns { get; private set; }
+    public IEnumerable<SubGrid> Squares { get; private set; }
   }
   #endregion
 
@@ -251,33 +294,40 @@ namespace sudoku.spec
       Assert.Throws<ArgumentOutOfRangeException>(() => @set[1]);
     }
   }
+  public class CellSpec
+  {
+  }
   public class GridSpec
   {
     [Fact]
     public void Row()
     {
-      var row = new Row();
+      var grid = new Grid();
+      var row = grid.Rows.First();
       Assert.Equal(9, row.Cells.Count());
-      Assert.Equal(0, row.Digits.Count);
+      Assert.Equal(0, row.Count);
     }
     [Fact]
     public void RowIndexedDigit()
     {
-      var row = new Row();
-      row.Digits.Add(3);
-      Assert.Equal(1, row.Digits.Count);
+      var grid = new Grid();
+      var row = grid.Rows.First();
+      row.Add(3);
+      Assert.Equal(1, row.Count);
       Assert.Equal(3, row[0]);
     }
     [Fact]
     public void RowIndexedCell()
     {
-      var row = new Row();
+      var grid = new Grid();
+      var row = grid.Rows.First();
       Assert.Equal((int?)null, row[2]);
     }
     [Fact]
     public void RowNonIndexedCell()
     {
-      var row = new Row();
+      var grid = new Grid();
+      var row = grid.Rows.First();
       IndexOutOfRangeException expected = null;
       try
       {
@@ -293,16 +343,18 @@ namespace sudoku.spec
     [Fact]
     public void Column()
     {
-      var column = new Column();
+      var grid = new Grid();
+      var column = grid.Columns.First();
       Assert.Equal(9, column.Cells.Count());
-      Assert.Equal(0, column.Digits.Count);
+      Assert.Equal(0, column.Count);
     }
     [Fact]
     public void Square()
     {
-      var square = new Square();
+      var grid = new Grid();
+      var square = grid.Squares.First();
       Assert.Equal(9, square.Cells.Count());
-      Assert.Equal(0, square.Digits.Count);
+      Assert.Equal(0, square.Count);
     }
     [Fact]
     public void Grid()
@@ -311,12 +363,20 @@ namespace sudoku.spec
       Assert.Equal(9, grid.Rows.Count());
       Assert.Equal(9, grid.Columns.Count());
       Assert.Equal(9, grid.Squares.Count());
+      var squares = grid.Select(c => c.Square);
+      Assert.Equal(spec.Grid.MaxCellCount, squares.Count());
+      Assert.Equal("0|1|2|3|4|5|6|7|8|", $"{squares.Distinct().Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+      Assert.Equal(9, squares.Distinct().Count());
+      //Assert.True(grid.All(c => c.Digit.HasValue == false));
     }
   }
-  /*public class ContentSpec
+  public class ContentSpec
   {
-    [Fact]
-    public void _()
-    { }
-  }*/
+    [Fact(Skip ="wip")]
+    public void Grid1()
+    {
+      var g = new Grid();
+      
+    }
+  }
 }
