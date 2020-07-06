@@ -15566,5 +15566,85 @@ The post How Do I Debug Async Code in Visual Studio? appeared first on Visual St
       <pubDate>Tue, 16 Jun 2020 18:51:00 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Announcing Entity Framework Core EFCore 5.0 Preview 6</title>
+      <description>Today, the Entity Framework Core team announces the sixth preview release of EF Core 5.0. This release includes split queries for related collections, a new “index” attribute, improved exceptions related to query translations, IP address mapping, exposing transaction id for correlation,
+The post Announcing Entity Framework Core EFCore 5.0 Preview 6 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8whea/</link>
+      <pubDate>Fri, 03 Jul 2020 03:35:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>C++20 Features and Fixes in VS 2019 16.1 through 16.6</title>
+      <description>We’ve been busy implementing C++20 features in MSVC’s compiler and Standard Library, and migrating the latter to microsoft/STL on GitHub – in fact, we’ve been so busy that we haven’t posted a C++ toolset changelog since the VS 2019 16.0 toolset changelog.
+The post C++20 Features and Fixes in VS 2019 16.1 through 16.6 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8whe9/</link>
+      <pubDate>Fri, 03 Jul 2020 03:33:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Virtual Events in July</title>
+      <description>With life gone virtual, there are tons of new ways to take your development skills to the next level! Below are just a few of the amazing online events, streams, and videos to tune into this July. Stay active with your developer communities through upcoming .NET and Xamarin events.
+The post .NET Virtual Events in July appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8whe5/</link>
+      <pubDate>Fri, 03 Jul 2020 03:32:28 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing dotnet-monitor, an experimental tool</title>
+      <description>dotnet-monitor is an experimental tool that makes it easier to get access to diagnostics information in a dotnet process.
+The post Introducing dotnet-monitor, an experimental tool appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8wnln/</link>
+      <pubDate>Fri, 03 Jul 2020 03:31:34 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Orchard Core Release Candidate 2 now available</title>
+      <description>We are thrilled to announce that Orchard Core RC2 is now available.
+The post Orchard Core Release Candidate 2 now available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8wnll/</link>
+      <pubDate>Fri, 03 Jul 2020 03:30:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5.0 Preview 6</title>
+      <description>Today, we’re releasing .NET 5.0 Preview 6. It contains a small set of new features and performance improvements. The .NET 5.0 Preview 4 post covers what we are planning to deliver with .NET 5.0. Most of the features are now in the product,
+The post Announcing .NET 5.0 Preview 6 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8vma3/</link>
+      <pubDate>Wed, 01 Jul 2020 20:09:00 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 5 Preview 6</title>
+      <description>.NET 5 Preview 6 is now available and is ready for evaluation. Here’s what’s new in this release:
+The post ASP.NET Core updates in .NET 5 Preview 6 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8vu0z/</link>
+      <pubDate>Wed, 01 Jul 2020 20:08:18 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing TypeScript 4.0 Beta</title>
+      <description>Today we’re excited to release the beta of the next major milestone in the TypeScript programming language: TypeScript 4.0.
+The post Announcing TypeScript 4.0 Beta appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8vu0y/</link>
+      <pubDate>Wed, 01 Jul 2020 20:07:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>F# 5 and F# tools update for June</title>
+      <description>We’re excited to announce more updates to F# 5 today! We shipped an initial set of features with F# 5 preview 1, and they have all been stabilizing since that release including a updates from last month. Today, we’re happy to announce some new language features,
+The post F# 5 and F# tools update for June appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8vu0x/</link>
+      <pubDate>Wed, 01 Jul 2020 20:06:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>3 Ways to Customize Your Windows Terminal</title>
+      <description>Windows Terminal is here! From the buzz of the announcement at Microsoft Build 2019 to the release of 1.0 at Build 2020, it’s generated excitement and interest from the dev community. Get started by downloading the Preview here.
+The post 3 Ways to Customize Your Windows Terminal appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8vma0/</link>
+      <pubDate>Wed, 01 Jul 2020 20:05:30 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>

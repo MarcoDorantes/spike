@@ -150,6 +150,20 @@ namespace sudoku.spec
     public IEnumerable<SubGrid> Rows { get; private set; }
     public IEnumerable<SubGrid> Columns { get; private set; }
     public IEnumerable<SubGrid> Squares { get; private set; }
+
+    public override string ToString()
+    {
+      var result = new StringBuilder();
+      foreach (var row in Rows)
+      {
+        foreach (var cell in row.Cells)
+        {
+          result.Append("\t" + (cell.Digit.HasValue ? $"{cell.Digit.Value}" : "."));
+        }
+        result.AppendLine();
+      }
+      return $"{result}";
+    }
   }
   #endregion
 
@@ -411,16 +425,37 @@ namespace sudoku.spec
   public class ContentSpec
   {
     [Fact]
-    public void RowSquareOverlap()
+    public void Overlap()
     {
       var grid = new Grid();
+
       var column = grid.Columns.First();
       for (int k = 0; k < Grid.MaxRowCount; ++k)
       {
         column[k] = k + 1;
       }
+      Enumerable.Range(1, Grid.MaxSquareCount).ToList().ForEach(n => Assert.True(column.In(n)));
+
       var square = grid.Squares.First();
+      Assert.True(square.In(1));
       Assert.True(square.In(2));
+      Assert.True(square.In(3));
+      Enumerable.Range(4, Grid.MaxSquareCount - 4).ToList().ForEach(n => Assert.False(square.In(n)));
+
+      var row = grid.Rows.First();
+      Assert.True(row.In(1));
+      Enumerable.Range(2, Grid.MaxSquareCount - 2).ToList().ForEach(n => Assert.False(row.In(n)));
+
+      Assert.Equal(
+"\t1\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t2\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t3\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t4\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t5\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t6\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t7\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t8\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t9\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
     }
   }
 }
