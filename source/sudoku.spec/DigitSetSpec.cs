@@ -410,11 +410,17 @@ namespace sudoku.spec
   }
   public class ContentSpec
   {
-    [Fact(Skip ="wip")]
-    public void Grid1()
+    [Fact]
+    public void RowSquareOverlap()
     {
-      var g = new Grid();
-      
+      var grid = new Grid();
+      var column = grid.Columns.First();
+      for (int k = 0; k < Grid.MaxRowCount; ++k)
+      {
+        column[k] = k + 1;
+      }
+      var square = grid.Squares.First();
+      Assert.True(square.In(2));
     }
   }
 }
