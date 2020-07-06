@@ -17,6 +17,13 @@ namespace sudoku.spec
       {
         throw new ArgumentNullException(nameof(cells), "Null is invalid.");
       }
+      foreach (var cell in cells)
+      {
+        if (!cell.Digit.HasValue) continue;
+        CheckDigitValue(cell.Digit.Value);
+        CheckDigitDuplicate(cell.Digit.Value);
+        //CheckOverSize(Digits, n);
+      }
       Cells = cells;
     }
 
@@ -49,11 +56,11 @@ namespace sudoku.spec
     public int Count { get => Cells.Count(c => c.Digit.HasValue); }
     public bool In(int x) => Cells.Any(c => c.Digit.HasValue && c.Digit.Value == x);
 
-    public static bool IsValidDigit(int n) => n > 0 && n < 10;
+    public static bool IsValidDigit(int n) => n > 0 && n <= MaxDigitCount;
 
     private void CheckDigitDuplicate(int? n)
     {
-      if (n.HasValue == false || In(n.Value))//Any(x => x == n)
+      if (n.HasValue == false || In(n.Value))
       {
         throw new ArgumentOutOfRangeException($"Invalid duplicate digit ({n}).", (Exception)null);
       }
@@ -277,21 +284,6 @@ namespace sudoku.spec
       @set[0] = 1;
       Assert.Equal(1, @set.Count);
       Assert.True(@set.In(1));
-    }
-    [Fact(Skip ="unscope")]
-    public void DuplicateAtCtor()
-    {
-      ArgumentOutOfRangeException expected = null;
-      try
-      {
-        new DigitSet(new[] { new Cell(0, 0, 0, null) { Digit = 1 }, new Cell(0, 0, 0, null) { Digit = 2 }, new Cell(0, 0, 0, null) { Digit = 1 } });
-      }
-      catch (ArgumentOutOfRangeException exception)
-      {
-        expected = exception;
-      }
-      Assert.NotNull(expected);
-      Assert.Equal("Invalid duplicate digit (1).", expected.Message);
     }
     [Fact]
     public void DuplicateAtAdd()
