@@ -22,7 +22,6 @@ namespace sudoku.spec
         if (!cell.Digit.HasValue) continue;
         CheckDigitValue(cell.Digit.Value);
         CheckDigitDuplicate(cell.Digit.Value);
-        //CheckOverSize(Digits, n);
       }
       Cells = cells;
     }
@@ -33,24 +32,23 @@ namespace sudoku.spec
     {
       get
       {
-        int? result = null;
         if (index >= Cells.Count())
         {
           throw new IndexOutOfRangeException($"Cell {nameof(index)} ({index}) is out of range.");
         }
-        result = Cells.ElementAt(index).Digit;
-        return result;
+        return Cells.ElementAt(index).Digit;
       }
       set
       {
-        CheckDigitValue(value);
-        CheckDigitDuplicate(value);
-        //CheckOverSize(Digits, n);
         if (index >= Cells.Count())
         {
           throw new IndexOutOfRangeException($"Cell {nameof(index)} ({index}) is out of range.");
         }
-        Cells.ElementAt(index).Digit = value;
+        CheckDigitValue(value);
+        CheckDigitDuplicate(value);
+        var cell = Cells.ElementAt(index);
+        CheckDigitDuplicate(cell, value);
+        cell.Digit = value;
       }
     }
     public int Count { get => Cells.Count(c => c.Digit.HasValue); }
@@ -65,6 +63,19 @@ namespace sudoku.spec
         throw new ArgumentOutOfRangeException($"Invalid duplicate digit ({n}).", (Exception)null);
       }
     }
+    private static void CheckDigitDuplicate(Cell cell, int? value)
+    {
+      if (value.HasValue &&
+        (
+        cell.Grid.Rows.ElementAt(cell.Row).In(value.Value) ||
+        cell.Grid.Columns.ElementAt(cell.Column).In(value.Value) ||
+        cell.Grid.Squares.ElementAt(cell.Square).In(value.Value)
+        )
+      )
+      {
+        throw new ArgumentOutOfRangeException($"Cell {nameof(value)} ({value.Value}) is already taken.", (Exception)null);
+      }
+    }
     private static void CheckDigitValue(int? n)
     {
       if (n.HasValue == false || !IsValidDigit(n.Value))
@@ -72,13 +83,6 @@ namespace sudoku.spec
         throw new ArgumentOutOfRangeException($"{n}", "Digit out of valid range (1-9).");
       }
     }
-    /*private static void CheckOverSize(IEnumerable<int> digitset, int n)
-    {
-      if (digitset.Count() == MaxDigitCount)
-      {
-        throw new ArgumentOutOfRangeException($"Invalid digit count ({digitset.Count() + 1}) while adding '{n}'.", (Exception)null);
-      }
-    }*/
   }
 
   class Cell
@@ -413,6 +417,33 @@ namespace sudoku.spec
       Assert.Equal(9, squares.Distinct().Count());
       Assert.True(grid.All(c => c.Digit.HasValue == false));
     }
+    [Fact]
+    public void OneDigit()
+    {
+      var grid = new Grid();
+      Assert.True(grid.All(c => c.Digit.HasValue == false));
+      grid.Rows.First()[0] = 9;
+      Assert.Equal(1, grid.Count(c => c.Digit.HasValue == true));
+    }
+    [Fact]
+    public void OneDigitTwice()
+    {
+      ArgumentOutOfRangeException expected = null;
+      var grid = new Grid();
+      Assert.True(grid.All(c => c.Digit.HasValue == false));
+      grid.Rows.First()[0] = 9;
+      Assert.Equal(1, grid.Count(c => c.Digit.HasValue == true));
+      try
+      {
+        grid.Rows.Last()[0] = 9;
+      }
+      catch (ArgumentOutOfRangeException exception)
+      {
+        expected = exception;
+      }
+      Assert.NotNull(expected);
+      Assert.Equal("Cell value (9) is already taken.", expected.Message);
+    }
   }
   public class ContentSpec
   {
@@ -426,17 +457,17 @@ namespace sudoku.spec
       {
         column[k] = k + 1;
       }
-      Enumerable.Range(1, Grid.MaxSquareCount).ToList().ForEach(n => Assert.True(column.In(n)));
+      Enumerable.Range(1, SubGrid.MaxSubGridCellCount).ToList().ForEach(n => Assert.True(column.In(n)));
 
       var square = grid.Squares.First();
       Assert.True(square.In(1));
       Assert.True(square.In(2));
       Assert.True(square.In(3));
-      Enumerable.Range(4, Grid.MaxSquareCount - 4).ToList().ForEach(n => Assert.False(square.In(n)));
+      Enumerable.Range(4, SubGrid.MaxSubGridCellCount - 4).ToList().ForEach(n => Assert.False(square.In(n)));
 
       var row = grid.Rows.First();
       Assert.True(row.In(1));
-      Enumerable.Range(2, Grid.MaxSquareCount - 2).ToList().ForEach(n => Assert.False(row.In(n)));
+      Enumerable.Range(2, SubGrid.MaxSubGridCellCount - 2).ToList().ForEach(n => Assert.False(row.In(n)));
 
       Assert.Equal(
 "\t1\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
@@ -448,6 +479,29 @@ namespace sudoku.spec
 "\t7\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
 "\t8\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
 "\t9\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
+    }
+    [Fact]
+    public void Complete_a()
+    {
+      var grid = new Grid();
+      var square = grid.Squares.ElementAt(grid.Squares.Count() / 2);
+      for (int k = 0; k < SubGrid.MaxSubGridCellCount; ++k)
+      {
+        square[k] = k + 1;
+      }
+      Enumerable.Range(1, SubGrid.MaxSubGridCellCount).ToList().ForEach(n => Assert.True(square.In(n)));
+
+      Assert.Equal(
+"\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t.\t.\t.\t1\t2\t3\t.\t.\t.\r\n" +
+"\t.\t.\t.\t4\t5\t6\t.\t.\t.\r\n" +
+"\t.\t.\t.\t7\t8\t9\t.\t.\t.\r\n" +
+"\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
+
     }
   }
 }
