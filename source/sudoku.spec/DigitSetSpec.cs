@@ -58,7 +58,7 @@ namespace sudoku.spec
 
     private void CheckDigitDuplicate(int? n)
     {
-      if (n.HasValue == false || In(n.Value))
+      if (n.HasValue == true && In(n.Value))
       {
         throw new ArgumentOutOfRangeException($"Invalid duplicate digit ({n}).", (Exception)null);
       }
@@ -78,7 +78,7 @@ namespace sudoku.spec
     }
     private static void CheckDigitValue(int? n)
     {
-      if (n.HasValue == false || !IsValidDigit(n.Value))
+      if (n.HasValue == true && !IsValidDigit(n.Value))
       {
         throw new ArgumentOutOfRangeException($"{n}", "Digit out of valid range (1-9).");
       }
@@ -328,10 +328,20 @@ namespace sudoku.spec
       var @set = grid.Rows.First();
       Assert.Throws<IndexOutOfRangeException>(() => @set[10]);
     }
+    [Fact]
+    public void FullRow()
+    {
+      var d = Enumerable.Range(1, 9);
+      var grid = new Grid();
+      var row = grid.Rows.First();
+      for (int k = 0; k < SubGrid.MaxSubGridCellCount; ++k)
+      {
+        row[k] = d.ElementAt(k);
+      }
+      Assert.Equal(SubGrid.MaxSubGridCellCount, row.Count);
+    }
   }
-  public class CellSpec
-  {
-  }
+public class CellSpec{}
   public class GridSpec
   {
     [Fact]
@@ -444,6 +454,18 @@ namespace sudoku.spec
       Assert.NotNull(expected);
       Assert.Equal("Cell value (9) is already taken.", expected.Message);
     }
+    [Fact]
+    public void OneUndo()
+    {
+      var grid = new Grid();
+      Assert.True(grid.All(c => c.Digit.HasValue == false));
+      grid.Rows.First()[0] = 9;
+      Assert.False(grid.All(c => c.Digit.HasValue == false));
+      Assert.Equal(1, grid.Count(c => c.Digit.HasValue == true));
+      grid.Rows.First()[0] = null;
+      Assert.True(grid.All(c => c.Digit.HasValue == false));
+      Assert.Equal(0, grid.Count(c => c.Digit.HasValue == true));
+    }
   }
   public class ContentSpec
   {
@@ -501,7 +523,19 @@ namespace sudoku.spec
 "\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
 "\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
 "\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
+    }
+    [Fact(Skip ="WIP")]
+    public void Complete_b()
+    {
+      var d = Enumerable.Range(1, 9);
+      var grid = new Grid();
+      //grid[]
 
+      var row = grid.Rows.First();
+      for (int k = 0; k < SubGrid.MaxSubGridCellCount; ++k)
+      {
+        row[k] = d.ElementAt(k);
+      }
     }
   }
 }
