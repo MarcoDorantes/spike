@@ -524,17 +524,69 @@ public class CellSpec{}
 "\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
 "\t.\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
     }
-    [Fact(Skip ="WIP")]
+    [Fact]
     public void Complete_b()
     {
       var d = Enumerable.Range(1, 9);
       var grid = new Grid();
       //grid[]
+      IEnumerator<SubGrid> rows = null;
+      IEnumerator<SubGrid> columns = null;
+      IEnumerator<SubGrid> squares = null;
 
-      var row = grid.Rows.First();
+      var row = next(grid.Rows, ref rows);
       for (int k = 0; k < SubGrid.MaxSubGridCellCount; ++k)
       {
         row[k] = d.ElementAt(k);
+      }
+      var column = next(grid.Columns, ref columns);
+      var r = d.Reverse();
+      for (int k = 1; k < SubGrid.MaxSubGridCellCount; ++k)
+      {
+        column[k] = r.ElementAt(k - 1);
+      }
+      var square = next(grid.Squares, ref squares);
+      square[4] = 4;
+      square[5] = 5;
+      square[7] = 6;
+      square[8] = 7;
+
+      //column[k] =
+      //Assert.True(column[0].HasValue);
+      //Assert.Equal(1, column[0].Value);
+      //Assert.False(column[1].HasValue);
+
+      //do
+      //{
+      //  break;
+      //} while (true);
+      //Assert.Equal(SubGrid.MaxSubGridCellCount, grid.Count(c => c.Digit.HasValue == true));
+      Assert.Equal(SubGrid.MaxSubGridCellCount * 2 +3, grid.Count(c => c.Digit.HasValue == true));
+      //Assert.Equal(SubGrid.MaxSubGridCellCount+1, grid.Count(c => c.Digit.HasValue == true));
+
+      Assert.Equal(
+"\t1\t2\t3\t4\t5\t6\t7\t8\t9\r\n" +
+"\t9\t4\t5\t.\t.\t.\t.\t.\t.\r\n" +
+"\t8\t6\t7\t.\t.\t.\t.\t.\t.\r\n" +
+"\t7\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t6\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t5\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t4\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t3\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t2\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
+
+      static SubGrid next(IEnumerable<SubGrid> all, ref IEnumerator<SubGrid> itr)
+      {
+        if (itr?.MoveNext() == true)
+        {
+          return itr.Current;
+        }
+        else
+        {
+          itr = all.GetEnumerator();
+          itr.MoveNext();
+          return itr.Current;
+        }
       }
     }
   }
