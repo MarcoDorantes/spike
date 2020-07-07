@@ -26,6 +26,7 @@ namespace sudoku.spec
       Cells = cells;
     }
 
+    public Grid Grid { get => Cells.First().Grid; }
     public IEnumerable<Cell> Cells { get; private set; }
 
     public int? this[int index]
@@ -53,6 +54,36 @@ namespace sudoku.spec
     }
     public int Count { get => Cells.Count(c => c.Digit.HasValue); }
     public bool In(int x) => Cells.Any(c => c.Digit.HasValue && c.Digit.Value == x);
+
+    public void Fill()
+    {
+      if (Grid.All(c => c.Digit.HasValue == false))
+      {
+        var d = Enumerable.Range(1, 9);
+        for (int k = 0; k < MaxDigitCount; ++k)
+        {
+          this[k] = d.ElementAt(k);
+        }
+      }
+      else if (Cells.Count(c => c.Digit.HasValue) == 1)
+      {
+        var r = Enumerable.Range(1, 9).Reverse();
+        for (int k = 1; k < MaxDigitCount; ++k)
+        {
+          this[k] = r.ElementAt(k - 1);
+        }
+      }
+      else
+      {
+        var remain_index = Cells.Select((c, index) => c.Digit.HasValue ? -1 : index).Where(i => i != -1).OrderBy(i => i).ToArray();
+        var remain_digit = Enumerable.Range(1, MaxDigitCount).Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value)).OrderBy(i => i).ToArray();
+        if (remain_index.Count() != remain_digit.Count()) throw new Exception($"{nameof(remain_index)} ({remain_index.Count()}) != {nameof(remain_digit)} ({remain_digit.Count()})");
+        for (int k = 0; k < remain_index.Length; ++k)
+        {
+          this[remain_index[k]] = remain_digit[k];
+        }
+      }
+    }
 
     public static bool IsValidDigit(int n) => n > 0 && n <= MaxDigitCount;
 
@@ -149,11 +180,11 @@ namespace sudoku.spec
           Add(cell);
           row.Add(cell);
         }
-        rows.Add(new SubGrid(row));
+        rows.Add(new Row(row));
       }
       Rows = rows;
-      Columns = this.GroupBy(c => c.Column).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new SubGrid(n)); return w; });
-      Squares = this.GroupBy(c => c.Square).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new SubGrid(n)); return w; });
+      Columns = this.GroupBy(c => c.Column).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new Column(n)); return w; });
+      Squares = this.GroupBy(c => c.Square).Aggregate(new List<SubGrid>(), (w, n) => { w.Add(new Square(n)); return w; });
     }
 
     public int? this[int row, int column] { get => Rows.ElementAt(row)[column]; }
@@ -329,7 +360,7 @@ namespace sudoku.spec
       Assert.Throws<IndexOutOfRangeException>(() => @set[10]);
     }
     [Fact]
-    public void FullRow()
+    public void FillRow()
     {
       var d = Enumerable.Range(1, 9);
       var grid = new Grid();
@@ -341,7 +372,26 @@ namespace sudoku.spec
       Assert.Equal(SubGrid.MaxSubGridCellCount, row.Count);
     }
   }
-public class CellSpec{}
+  public class CellSpec
+  {
+    [Fact]
+    public void Index()
+    {
+      var grid = new Grid();
+      foreach (var row in grid.Rows)
+      {
+        Assert.True(row.Cells.Select((c, index) => index).SequenceEqual(Enumerable.Range(0, DigitSet.MaxDigitCount)));
+      }
+      foreach (var column in grid.Columns)
+      {
+        Assert.True(column.Cells.Select((c, index) => index).SequenceEqual(Enumerable.Range(0, DigitSet.MaxDigitCount)));
+      }
+      foreach (var square in grid.Squares)
+      {
+        Assert.True(square.Cells.Select((c, index) => index).SequenceEqual(Enumerable.Range(0, DigitSet.MaxDigitCount)));
+      }
+    }
+  }
   public class GridSpec
   {
     [Fact]
@@ -466,6 +516,17 @@ public class CellSpec{}
       Assert.True(grid.All(c => c.Digit.HasValue == false));
       Assert.Equal(0, grid.Count(c => c.Digit.HasValue == true));
     }
+    [Fact]
+    public void RemainIndexes()
+    {
+      var grid = new Grid();
+      grid.Rows.First().Fill();
+      grid.Columns.First().Fill();
+      var s = grid.Squares.First();
+      var remain_index = s.Cells.Select((c, index) => c.Digit.HasValue ? -1 : index).Where(i => i != -1).OrderBy(i => i);
+      Assert.Equal("4|5|7|8|",$"{remain_index.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+      Assert.True(new[] { 4, 5, 7, 8 }.SequenceEqual(remain_index));
+    }
   }
   public class ContentSpec
   {
@@ -535,21 +596,11 @@ public class CellSpec{}
       IEnumerator<SubGrid> squares = null;
 
       var row = next(grid.Rows, ref rows);
-      for (int k = 0; k < SubGrid.MaxSubGridCellCount; ++k)
-      {
-        row[k] = d.ElementAt(k);
-      }
+      row.Fill();
       var column = next(grid.Columns, ref columns);
-      var r = d.Reverse();
-      for (int k = 1; k < SubGrid.MaxSubGridCellCount; ++k)
-      {
-        column[k] = r.ElementAt(k - 1);
-      }
+      column.Fill();
       var square = next(grid.Squares, ref squares);
-      square[4] = 4;
-      square[5] = 5;
-      square[7] = 6;
-      square[8] = 7;
+      square.Fill();
 
       //column[k] =
       //Assert.True(column[0].HasValue);
@@ -561,7 +612,7 @@ public class CellSpec{}
       //  break;
       //} while (true);
       //Assert.Equal(SubGrid.MaxSubGridCellCount, grid.Count(c => c.Digit.HasValue == true));
-      Assert.Equal(SubGrid.MaxSubGridCellCount * 2 +3, grid.Count(c => c.Digit.HasValue == true));
+      Assert.Equal(SubGrid.MaxSubGridCellCount * 2 + 3, grid.Count(c => c.Digit.HasValue == true));
       //Assert.Equal(SubGrid.MaxSubGridCellCount+1, grid.Count(c => c.Digit.HasValue == true));
 
       Assert.Equal(
