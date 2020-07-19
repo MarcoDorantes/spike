@@ -588,9 +588,8 @@ namespace sudoku.spec
     [Fact]
     public void Complete_b()
     {
-      var d = Enumerable.Range(1, 9);
       var grid = new Grid();
-      //grid[]
+
       IEnumerator<SubGrid> rows = null;
       IEnumerator<SubGrid> columns = null;
       IEnumerator<SubGrid> squares = null;
@@ -602,18 +601,7 @@ namespace sudoku.spec
       var square = next(grid.Squares, ref squares);
       square.Fill();
 
-      //column[k] =
-      //Assert.True(column[0].HasValue);
-      //Assert.Equal(1, column[0].Value);
-      //Assert.False(column[1].HasValue);
-
-      //do
-      //{
-      //  break;
-      //} while (true);
-      //Assert.Equal(SubGrid.MaxSubGridCellCount, grid.Count(c => c.Digit.HasValue == true));
       Assert.Equal(SubGrid.MaxSubGridCellCount * 2 + 3, grid.Count(c => c.Digit.HasValue == true));
-      //Assert.Equal(SubGrid.MaxSubGridCellCount+1, grid.Count(c => c.Digit.HasValue == true));
 
       Assert.Equal(
 "\t1\t2\t3\t4\t5\t6\t7\t8\t9\r\n" +
@@ -639,6 +627,12 @@ namespace sudoku.spec
           return itr.Current;
         }
       }
+    }
+    [Fact]
+    public void random()
+    {
+      var rnd = new Random(1);
+      Assert.Equal("2|1|4|7|6|4|3|8|1|6|", $"{Enumerable.Range(1, 10).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", rnd.Next(1,9)))}");
     }
   }
 }

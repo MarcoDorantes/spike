@@ -15646,5 +15646,45 @@ The post 3 Ways to Customize Your Windows Terminal appeared first on Visual Stud
       <pubDate>Wed, 01 Jul 2020 20:05:30 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Performance Improvements in .NET 5</title>
+      <description>.NET 5 has already seen a wealth of performance improvements, and even though it’s not scheduled for final release until this fall and there’s very likely to be a lot more improvements that find their way in by then. learn about a bunch of the improvements that are already available now
+The post Performance Improvements in .NET 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8xwyh/</link>
+      <pubDate>Tue, 14 Jul 2020 06:02:37 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>C++ Linux development with Visual Studio: incremental build improvements and expanded shell support</title>
+      <description>Visual Studio 2019 allows C++ developers to target both Windows and Linux (including the Windows Subsystem for Linux) from the comfort of a single IDE. Visual Studio 2019 version 16.7 Preview 3 introduces two features specific to Linux development: improved build incrementality for MSBuild-based Linux projects,
+The post C++ Linux development with Visual Studio: incremental build improvements and expanded shell support appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8ybs0/</link>
+      <pubDate>Tue, 14 Jul 2020 05:58:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Improving the authentication experience for enterprises leveraging Conditional Access policies</title>
+      <description>As part of the Visual Studio 2019 16.6 update, we’ve introduced a set of new capabilities to improve your overall authentication experience. While these changes benefit all Visual Studio users, they are especially helpful if you need to work across Azure AD tenants that have enabled multi-factor authentication (MFA) policies.
+The post Improving the authentication experience for enterprises leveraging Conditional Access policies appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8ybru/</link>
+      <pubDate>Tue, 14 Jul 2020 05:55:25 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>A deep-dive into WinUI 3 in desktop apps</title>
+      <description>Learn about WinUI 3 in desktop apps
+The post A deep-dive into WinUI 3 in desktop apps appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8xwxo/</link>
+      <pubDate>Tue, 14 Jul 2020 05:50:49 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Exciting new updates to the Git experience in Visual Studio</title>
+      <description>We’re excited to share new updates to the Git experience in Visual Studio
+The post Exciting new updates to the Git experience in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa8xwwj/</link>
+      <pubDate>Tue, 14 Jul 2020 05:36:03 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
