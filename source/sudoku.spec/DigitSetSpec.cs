@@ -88,7 +88,7 @@ namespace sudoku.spec
     }
 
     public static bool IsValidDigit(int n) => n > 0 && n <= MaxDigitCount;
-    public static IEnumerable<int> GetSeries(int rowtype)
+    public static IEnumerable<int> GetSeries(int rowtype, int maxcount = MaxDigitCount)
     {
       var tries = new[] { (1, 25), (2, 30), (3,25), (4, 30), (5, 30), (6, 25), (7, 35), (8, 25), (9, 30) };
       var try_count = tries.FirstOrDefault(t => t.Item1 == rowtype).Item2;
@@ -97,12 +97,55 @@ namespace sudoku.spec
       var set = new List<int>();
       for (int k = 0; k < try_count; ++k)
       {
-        if (set.Count == 9) break;
-        var n = rnd.Next(1, 10);
+        if (set.Count == maxcount) break;
+        var n = rnd.Next(1, maxcount + 1);
         if (set.Contains(n)) continue;
         set.Add(n);
       }
       return set;
+    }
+    public static IEnumerable<int> Shuffle(IEnumerable<int> n, int maxtries = 10)
+    {
+      IEnumerable<int> result = null;
+      if (n != null)
+      {
+        int trycount = 0;
+        while (result == null && trycount < maxtries)
+        {
+          var tryresult = try_shuffle(n);
+          if (!n.SequenceEqual(tryresult))
+          {
+            result = tryresult;
+          }
+          else ++trycount;
+        }
+        if (result != null && trycount == maxtries)
+        {
+          throw new ApplicationException($"Unable to shuffle after {maxtries} retries.");
+        }
+      }
+      return result;
+
+      IEnumerable<int> try_shuffle(IEnumerable<int> _n)
+      {
+        var _result = _n.ToArray();
+        int length = _result.Count();
+        var rowtype = (new Random()).Next(1, 10);
+        var serie = GetSeries(rowtype, length);
+        for (int k = 0; k < length; ++k)
+        {
+          swap(_result, k, serie.ElementAt(k) - 1);
+        }
+        return _result;
+      }
+      void swap(int[] _array, int _a, int _b)
+      {
+        if (_a < 0 || _a >= _array.Length) throw new ArgumentOutOfRangeException(nameof(_a), $"{_a}");
+        if (_b < 0 || _b >= _array.Length) throw new ArgumentOutOfRangeException(nameof(_b), $"{_b}");
+        int t = _array[_a];
+        _array[_a] = _array[_b];
+        _array[_b] = t;
+      }
     }
 
     private void CheckDigitDuplicate(int? n)
@@ -433,6 +476,15 @@ namespace sudoku.spec
       Assert.Equal("9|2|4|3|8|5|7|6|1|", $"{DigitSet.GetSeries(8).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
       Assert.Equal("4|5|1|3|9|6|8|2|7|", $"{DigitSet.GetSeries(9).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
     }
+    [Fact]
+    public void shuffle()
+    {
+      var n = new[] { 1, 2, 3, 4 };
+      var s = DigitSet.Shuffle(n);
+      Assert.Equal(s.Count(), n.Count());
+      Assert.False(s.SequenceEqual(n));
+      Assert.False(s.SequenceEqual(n.Reverse()));
+    }
   }
   public class CellSpec
   {
@@ -662,6 +714,9 @@ namespace sudoku.spec
       column.Fill();
       var square = next(grid.Squares, ref squares);
       square.Fill();
+
+      //row = next(grid.Rows, ref rows);
+      //row.Fill();
 
       Assert.Equal(SubGrid.MaxSubGridCellCount * 2 + 3, grid.Count(c => c.Digit.HasValue == true));
 
