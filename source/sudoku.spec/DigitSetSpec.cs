@@ -59,7 +59,7 @@ namespace sudoku.spec
     {
       if (Grid.All(c => c.Digit.HasValue == false))
       {
-        var d = Enumerable.Range(1, 9);
+        var d = GetSeries(1);
         for (int k = 0; k < MaxDigitCount; ++k)
         {
           this[k] = d.ElementAt(k);
@@ -67,16 +67,18 @@ namespace sudoku.spec
       }
       else if (Cells.Count(c => c.Digit.HasValue) == 1)
       {
-        var r = Enumerable.Range(1, 9).Reverse();
-        for (int k = 1; k < MaxDigitCount; ++k)
+        var d = GetSeries(2);
+        var r = d.Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value));
+        int index = 1;
+        foreach (var n in r)
         {
-          this[k] = r.ElementAt(k - 1);
+          this[index++] = n;
         }
       }
       else
       {
         var remain_index = Cells.Select((c, index) => c.Digit.HasValue ? -1 : index).Where(i => i != -1).OrderBy(i => i).ToArray();
-        var remain_digit = Enumerable.Range(1, MaxDigitCount).Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value)).OrderBy(i => i).ToArray();
+        var remain_digit = GetSeries(3).Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value)).OrderBy(i => i).ToArray();
         if (remain_index.Count() != remain_digit.Count()) throw new Exception($"{nameof(remain_index)} ({remain_index.Count()}) != {nameof(remain_digit)} ({remain_digit.Count()})");
         for (int k = 0; k < remain_index.Length; ++k)
         {
@@ -86,6 +88,22 @@ namespace sudoku.spec
     }
 
     public static bool IsValidDigit(int n) => n > 0 && n <= MaxDigitCount;
+    public static IEnumerable<int> GetSeries(int rowtype)
+    {
+      var tries = new[] { (1, 25), (2, 30), (3,25), (4, 30), (5, 30), (6, 25), (7, 35), (8, 25), (9, 30) };
+      var try_count = tries.FirstOrDefault(t => t.Item1 == rowtype).Item2;
+      if (try_count <= 0) throw new ArgumentOutOfRangeException(nameof(rowtype), $"Unsupported {nameof(rowtype)} ({rowtype}).");
+      var rnd = new Random(rowtype);
+      var set = new List<int>();
+      for (int k = 0; k < try_count; ++k)
+      {
+        if (set.Count == 9) break;
+        var n = rnd.Next(1, 10);
+        if (set.Contains(n)) continue;
+        set.Add(n);
+      }
+      return set;
+    }
 
     private void CheckDigitDuplicate(int? n)
     {
@@ -371,6 +389,50 @@ namespace sudoku.spec
       }
       Assert.Equal(SubGrid.MaxSubGridCellCount, row.Count);
     }
+    [Fact]
+    public void same_random_sequence()
+    {
+      var rnd = new Random(1);
+      Assert.Equal("3|1|5|7|6|4|4|9|1|6|", $"{Enumerable.Range(1, 10).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", rnd.Next(1, 10)))}");
+    }
+    [Fact]
+    public void semi_row_series1()
+    {
+      var set = DigitSet.GetSeries(1);
+      Assert.Equal("3|1|5|7|6|4|9|2|8|", $"{set.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+    }
+    [Fact]
+    public void semi_row_series2()
+    {
+      var set = DigitSet.GetSeries(2);
+      Assert.Equal("7|4|2|9|1|3|8|5|6|", $"{set.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+    }
+    [Fact]
+    public void semi_row_series3()
+    {
+      var set = DigitSet.GetSeries(3);
+      Assert.Equal("3|7|8|2|6|9|4|5|1|", $"{set.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+    }
+    [Fact]
+    public void semi_row_series4()
+    {
+      var set = DigitSet.GetSeries(4);
+      Assert.Equal("8|9|6|4|1|7|5|3|2|", $"{set.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+    }
+    [Fact]
+    public void semi_row_series5()
+    {
+      var set = DigitSet.GetSeries(5);
+      Assert.Equal("4|3|6|5|9|2|1|8|7|", $"{set.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+    }
+    [Fact]
+    public void semi_row_series6_9()
+    {
+      Assert.Equal("8|6|9|5|7|2|4|3|1|", $"{DigitSet.GetSeries(6).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+      Assert.Equal("4|8|6|1|7|9|5|2|3|", $"{DigitSet.GetSeries(7).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+      Assert.Equal("9|2|4|3|8|5|7|6|1|", $"{DigitSet.GetSeries(8).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+      Assert.Equal("4|5|1|3|9|6|8|2|7|", $"{DigitSet.GetSeries(9).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
+    }
   }
   public class CellSpec
   {
@@ -604,15 +666,15 @@ namespace sudoku.spec
       Assert.Equal(SubGrid.MaxSubGridCellCount * 2 + 3, grid.Count(c => c.Digit.HasValue == true));
 
       Assert.Equal(
-"\t1\t2\t3\t4\t5\t6\t7\t8\t9\r\n" +
-"\t9\t4\t5\t.\t.\t.\t.\t.\t.\r\n" +
-"\t8\t6\t7\t.\t.\t.\t.\t.\t.\r\n" +
-"\t7\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
-"\t6\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t3\t1\t5\t7\t6\t4\t9\t2\t8\r\n" +
+"\t7\t2\t6\t.\t.\t.\t.\t.\t.\r\n" +
+"\t4\t8\t9\t.\t.\t.\t.\t.\t.\r\n" +
+"\t2\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t9\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t1\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
+"\t8\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
 "\t5\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
-"\t4\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
-"\t3\t.\t.\t.\t.\t.\t.\t.\t.\r\n" +
-"\t2\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
+"\t6\t.\t.\t.\t.\t.\t.\t.\t.\r\n", $"{grid}");
 
       static SubGrid next(IEnumerable<SubGrid> all, ref IEnumerator<SubGrid> itr)
       {
@@ -627,12 +689,6 @@ namespace sudoku.spec
           return itr.Current;
         }
       }
-    }
-    [Fact]
-    public void random()
-    {
-      var rnd = new Random(1);
-      Assert.Equal("2|1|4|7|6|4|3|8|1|6|", $"{Enumerable.Range(1, 10).Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", rnd.Next(1,9)))}");
     }
   }
 }
