@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace sudoku.spec
 {
   #region SUT
-  class DigitSet
+  abstract class DigitSet
   {
     public const int MaxDigitCount = 9;
 
@@ -78,14 +78,19 @@ namespace sudoku.spec
       else
       {
         var remain_index = Cells.Select((c, index) => c.Digit.HasValue ? -1 : index).Where(i => i != -1).OrderBy(i => i).ToArray();
-        var remain_digit = GetSeries(3).Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value)).OrderBy(i => i).ToArray();
+        var remain_digit = GetSeries(3).Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value)).OrderBy(i => i);//.ToArray();
         if (remain_index.Count() != remain_digit.Count()) throw new Exception($"{nameof(remain_index)} ({remain_index.Count()}) != {nameof(remain_digit)} ({remain_digit.Count()})");
+        //TODO Backtracking? to fill into remain_index the remain_digit.
         for (int k = 0; k < remain_index.Length; ++k)
         {
-          this[remain_index[k]] = remain_digit[k];
+          var cell = Cells.ElementAt(k);
+          var possible = GetPossible(cell, remain_digit);
+          this[remain_index[k]] = possible.First();
+          //this[remain_index[k]] = remain_digit[k];
         }
       }
     }
+    public abstract IEnumerable<int> GetPossible(Cell cell, IEnumerable<int> remain_digit);
 
     public static bool IsValidDigit(int n) => n > 0 && n <= MaxDigitCount;
     public static IEnumerable<int> GetSeries(int rowtype, int maxcount = MaxDigitCount)
@@ -207,18 +212,29 @@ namespace sudoku.spec
     public const int MaxSubGridCellCount = DigitSet.MaxDigitCount;
 
     public SubGrid(IEnumerable<Cell> cells) : base(cells) { }
+
+    public override IEnumerable<int> GetPossible(Cell cell, IEnumerable<int> remain_digit) => throw new NotImplementedException();
   }
   class Row : SubGrid
   {
     public Row(IEnumerable<Cell> cells) : base(cells) { }
+    public override IEnumerable<int> GetPossible(Cell cell, IEnumerable<int> remain_digit) => remain_digit
+      .Except(Grid.Columns.ElementAt(cell.Column).Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value))
+      .Except(Grid.Squares.ElementAt(cell.Square).Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value));
   }
   class Column : SubGrid
   {
     public Column(IEnumerable<Cell> cells) : base(cells) { }
+    public override IEnumerable<int> GetPossible(Cell cell, IEnumerable<int> remain_digit) => remain_digit
+      .Except(Grid.Columns.ElementAt(cell.Row).Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value))
+      .Except(Grid.Squares.ElementAt(cell.Square).Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value));
   }
   class Square : SubGrid
   {
     public Square(IEnumerable<Cell> cells) : base(cells) { }
+    public override IEnumerable<int> GetPossible(Cell cell, IEnumerable<int> remain_digit) => remain_digit
+      .Except(Grid.Columns.ElementAt(cell.Row).Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value))
+      .Except(Grid.Squares.ElementAt(cell.Column).Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value));
   }
   class Grid : List<Cell>
   {
@@ -318,7 +334,7 @@ namespace sudoku.spec
       ArgumentNullException expected = null;
       try
       {
-        new DigitSet(null);
+        new SubGrid(null);
       }
       catch (ArgumentNullException exception)
       {
