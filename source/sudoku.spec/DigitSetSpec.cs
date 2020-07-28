@@ -77,8 +77,8 @@ namespace sudoku.spec
       }
       else
       {
-        var remain_index = Cells.Select((c, index) => c.Digit.HasValue ? -1 : index).Where(i => i != -1).OrderBy(i => i).ToArray();
-        var remain_digit = GetSeries(3).Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value)).OrderBy(i => i);//.ToArray();
+        var remain_index = GetRemainIndex();
+        var remain_digit = GetRemainDigitFrom(GetSeries(3));
         if (remain_index.Count() != remain_digit.Count()) throw new Exception($"{nameof(remain_index)} ({remain_index.Count()}) != {nameof(remain_digit)} ({remain_digit.Count()})");
         //TODO Backtracking? to fill into remain_index the remain_digit.
         for (int k = 0; k < remain_index.Length; ++k)
@@ -90,6 +90,8 @@ namespace sudoku.spec
         }
       }
     }
+    public int[] GetRemainIndex() => Cells.Select((c, index) => c.Digit.HasValue ? -1 : index).Where(i => i != -1).OrderBy(i => i).ToArray();
+    public IEnumerable<int> GetRemainDigitFrom(IEnumerable<int> these) => these.Except(Cells.Where(c => c.Digit.HasValue).Select(c => c.Digit.Value)).OrderBy(i => i);//.ToArray();
     public abstract IEnumerable<int> GetPossible(Cell cell, IEnumerable<int> remain_digit);
 
     public static bool IsValidDigit(int n) => n > 0 && n <= MaxDigitCount;
@@ -447,6 +449,20 @@ namespace sudoku.spec
         row[k] = d.ElementAt(k);
       }
       Assert.Equal(SubGrid.MaxSubGridCellCount, row.Count);
+    }
+    [Fact]
+    public void Possible1()
+    {
+      var d = Enumerable.Range(1, 9);
+      var grid = new Grid();
+      var row = grid.Rows.First();
+      row[0] = 1;
+      var square = grid.Squares.ElementAt(2);
+      square[3] = 2;
+      var column = grid.Columns.Last();
+      var next = column.GetPossible(column.Cells.First(), column.GetRemainDigitFrom(DigitSet.GetSeries(3)));
+      Assert.Equal(7, next.Count());
+      Assert.Equal("3|4|5|6|7|8|9|", $"{next.Aggregate(new StringBuilder(), (w, n) => w.AppendFormat("{0}|", n))}");
     }
     [Fact]
     public void same_random_sequence()
