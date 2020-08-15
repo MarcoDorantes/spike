@@ -1,5 +1,5 @@
-// xcopy /v C:\design\github_spike\spike\Solution1\ConsoleApplication1\bin\Release\ConsoleApplication1.exe tools\mail\orgmail.exe
-// xcopy /v C:\design\github_spike\spike\Solution1\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb tools\mail\orgmail.pdb
+// xcopy /v C:\design\github_spike\spike\Solution1\ConsoleApplication1\bin\Release\ConsoleApplication1.exe \tools\mail\orgmail.exe
+// xcopy /v C:\design\github_spike\spike\Solution1\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb \tools\mail\orgmail.pdb
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -213,6 +213,56 @@ static class orgmail
       }
       msg.Send();
       WriteLine($"Send(): Done.");
+    }
+    public DirectoryInfo outdir;
+    public void download()
+    {
+      if (outdir == null) outdir = new DirectoryInfo(Environment.CurrentDirectory);
+      if (pageSize == 0) pageSize = 10;
+      var _allpages = allPages ?? false;
+      if (string.IsNullOrWhiteSpace(folder)) folder = "Inbox";
+
+      var exchange = GetExchangeService();
+      var target_folder = GetTargetFolder(exchange, folder);
+      SetView();
+      SetFilter();
+
+      WriteLine($"Folder: [{folder}]");
+      WriteLine($"subject: [{subject}]");
+      WriteLine($"outdir: [{outdir.FullName}]");
+
+      bool moreItems = true;
+      int count = 0;
+      while (moreItems)
+      {
+        var found = string.IsNullOrWhiteSpace(subject) ? exchange.FindItems(target_folder.Id, view) : exchange.FindItems(target_folder.Id, filter, view);
+        if (found.Any() == false) break;
+        moreItems = found.MoreAvailable && _allpages;
+        if (moreItems)
+        {
+          view.Offset += pageSize;
+        }
+        foreach (Microsoft.Exchange.WebServices.Data.EmailMessage item in found.OrderBy(i => i.DateTimeReceived))
+        {
+          ++count;
+          item.Load();
+          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{count}");
+          WriteLine($"Attachments:\t{item.Attachments.Count}");
+          foreach (var _attach in item.Attachments)
+          {
+            var attach = _attach as Microsoft.Exchange.WebServices.Data.FileAttachment;
+            if (attach == null)
+            {
+              WriteLine($"Not supported attachment type ({_attach.GetType().FullName}");
+              continue;
+            }
+            var downfile = Path.Combine(outdir.FullName, attach.Name);
+            Write($"Download to {downfile}");
+            attach.Load(downfile);
+            WriteLine();
+          }
+        }
+      }
     }
     void SetEncoding()
     {
