@@ -17,6 +17,7 @@ namespace UnitTestProject1
 
 http://reactivex.io
 http://reactivex.io/intro.html
+http://reactivex.io/documentation/operators.html
 
 https://github.com/Reactive-Extensions/Rx.NET
 https://msdn.microsoft.com/en-us/library/hh242985(v=vs.103).aspx

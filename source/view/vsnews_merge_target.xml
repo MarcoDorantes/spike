@@ -15801,5 +15801,37 @@ The post Visual Studio Remote Office Hours  Being a Program Manager for .NET  Vi
       <pubDate>Thu, 06 Aug 2020 01:54:44 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Announcing TypeScript 4.0</title>
+      <description>Today we are thrilled to announce the availability of TypeScript 4.0! This version of the language represents our next generation of TypeScript releases, as we dive deeper into expressivity, productivity, and scalability.
+The post Announcing TypeScript 4.0 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9bww5/</link>
+      <pubDate>Thu, 20 Aug 2020 19:30:35 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Productivity Tips and Tricks</title>
+      <description>The .NET Productivity team (a.k.a. Roslyn) is constantly thinking of new ways to make .NET developers more productive. Roslyn PM Mika Dumont shows a number of the latest features that make your coding life better, including her favorite (IntelliSense completion in DateTime and TimeSpan string literals).
+The post .NET Productivity Tips and Tricks appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9bwvv/</link>
+      <pubDate>Thu, 20 Aug 2020 19:27:29 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Detect First Run with Xamarin.Essentials</title>
+      <description>One common scenario that developers often need to integrate into an app, is showing a prompt when an app is launched for the first time. This could be to display a disclaimer or to walk users through the functionality of the app.
+The post Detect First Run with Xamarin.Essentials appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9az5w/</link>
+      <pubDate>Wed, 19 Aug 2020 19:04:36 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Bring the best of the Web to your .NET desktop applications with WebView2</title>
+      <description>Today, we are happy to announce the release of the WebView2 preview for .NET applications! WebView2 is available for both .NET Core and .NET Framework. It can be used inside of WPF, Windows Forms and WinUI 3.0 applications all the way down to Windows 7
+The post Bring the best of the Web to your .NET desktop applications with WebView2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9arek/</link>
+      <pubDate>Wed, 19 Aug 2020 19:02:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
