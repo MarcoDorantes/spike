@@ -15833,5 +15833,45 @@ The post Bring the best of the Web to your .NET desktop applications with WebVie
       <pubDate>Wed, 19 Aug 2020 19:02:56 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Running WordPress on .NET Core</title>
+      <description>Did you know you can actually run WordPress on .NET Core? In this episode, Benjamin and Jakub from the Peachier project show us how they enable developers to run WordPress on .NET Core.
+The post Running WordPress on .NET Core appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9i3e5/</link>
+      <pubDate>Fri, 28 Aug 2020 21:44:44 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Automatically find latent bugs in your code with .NET 5</title>
+      <description>It’s an exciting time to be writing code! Especially for .NET developers as the platform keeps getting smarter. We now include rich diagnostics and code suggestions in the .NET SDK by default. Before you would need to install NuGet packages or other stand-alone tools to get more code analysis.
+The post Automatically find latent bugs in your code with .NET 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9i3dm/</link>
+      <pubDate>Fri, 28 Aug 2020 18:32:37 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2019 v16.8 Preview 2 Releases New Features Today!</title>
+      <description>New features in Git Integration, .NET Productivity, Web Tools, and Xamarin are releasing in Visual Studio 2019 v16.8 Preview 2. Each of our teams continue to work hard to delight our developers. For this reason, Preview releases are some of the most exciting for us as we wait to hear how our newest features impact your work.
+The post Visual Studio 2019 v16.8 Preview 2 Releases New Features Today! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9d9u0/</link>
+      <pubDate>Wed, 26 Aug 2020 06:00:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5.0 Preview 8</title>
+      <description>Today, we are releasing .NET 5.0 Preview 8. The .NET 5.0 release is now “feature complete”, meaning that very nearly all features are in their final form (with the exception of bug fixes still to come). Preview 8 is, appropriately, the last preview.
+The post Announcing .NET 5.0 Preview 8 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9dhex/</link>
+      <pubDate>Wed, 26 Aug 2020 05:58:20 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 5 Preview 8</title>
+      <description>.NET 5 Preview 8 is now available and is ready for evaluation. Checkout whats new in this release
+The post ASP.NET Core updates in .NET 5 Preview 8 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9d9tp/</link>
+      <pubDate>Wed, 26 Aug 2020 05:56:17 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
