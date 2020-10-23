@@ -15873,5 +15873,245 @@ The post ASP.NET Core updates in .NET 5 Preview 8 appeared first on Visual Studi
       <pubDate>Wed, 26 Aug 2020 05:56:17 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>.NET CLI Templates in Visual Studio</title>
+      <description>Visual Studio has had templates for a long time and .NET Core’s command-line interface (CLI) has also had the ability to install templates and use them via `dotnet new` commands. Starting in Visual Studio 16.8 Preview 2 we’ve enabled a preview feature that you can turn on that enables all templates that are installed via CLI to now show as options in Visual Studio as well.
+The post .NET CLI Templates in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9j51i/</link>
+      <pubDate>Thu, 03 Sep 2020 16:24:22 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>A Multitude of Updates in Visual Studio 2019 version 16.8 Preview 3</title>
+      <description>Visual Studio 2019 version 16.8 Preview 3 comes with a huge collection of updates for C++ programmers. Download today to try out new additions in conformance, performance, and productivity.
+The post A Multitude of Updates in Visual Studio 2019 version 16.8 Preview 3 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ome8/</link>
+      <pubDate>Tue, 15 Sep 2020 04:05:05 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>C++ Coroutines in Visual Studio 2019 Version 16.8</title>
+      <description>With the adoption of coroutines into the C++ standard in 2019, we are now pleased to announce feature completion of C++20 coroutines in Visual Studio 2019 version 16.8.
+The post C++ Coroutines in Visual Studio 2019 Version 16.8 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9omel/</link>
+      <pubDate>Tue, 15 Sep 2020 04:00:59 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing Entity Framework Core (EFCore) 5.0 RC1</title>
+      <description>Today, the Entity Framework Core team announces the first release candidate (RC1) of EF Core 5.0. This is a feature complete release candidate of EF Core 5.0 and ships with a go live license. You are supported using it in production.
+The post Announcing Entity Framework Core (EFCore) 5.0 RC1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9o14n/</link>
+      <pubDate>Tue, 15 Sep 2020 04:00:49 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Standard C++20 Modules support with MSVC in Visual Studio 2019 version 16.8</title>
+      <description>We are excited to announce Standard C++20 Modules support with MSVC in Visual Studio 2019 version 16.8. The toolset, project system, and IDE teams have been hard at work to create a first class C++ Modules experience in Visual Studio 2019.
+The post Standard C++20 Modules support with MSVC in Visual Studio 2019 version 16.8 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9o7n9/</link>
+      <pubDate>Tue, 15 Sep 2020 04:00:14 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>C11 and C17 Standard Support Arriving in MSVC</title>
+      <description>Our team is happy to announce that C11 and C17 are becoming supported language versions in the MSVC compiler toolset starting with Visual Studio 2019 version 16.8 Preview 3!
+The post C11 and C17 Standard Support Arriving in MSVC appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ome9/</link>
+      <pubDate>Tue, 15 Sep 2020 04:00:12 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5.0 RC 1</title>
+      <description>Today, we are shipping .NET 5.0 Release Candidate 1 (RC1). It is a near-final release of .NET 5.0, and the first of two RCs before the official release in November. RC1 is a “go live” release; you are supported using it in production.
+The post Announcing .NET 5.0 RC 1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9oe14/</link>
+      <pubDate>Mon, 14 Sep 2020 04:00:22 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>A developer’s guide to Ignite 2020</title>
+      <description>Microsoft Ignite will take place online, kicking off on the morning of September 22nd, at 8:00 AM in the Pacific Time Zone. The event programming will include live segments, digital breakout sessions, and QA, available across multiple time zones. Be sure to visit the Ignite home page to view the event agenda and additional details.
+The post A developers guide to Ignite 2020 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ppst/</link>
+      <pubDate>Mon, 21 Sep 2020 20:23:59 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing TypeScript 4.1 Beta</title>
+      <description>Today we’re announcing the availability of TypeScript 4.1 Beta!
+The post Announcing TypeScript 4.1 Beta appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ptvv/</link>
+      <pubDate>Sat, 19 Sep 2020 02:42:06 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio IntelliCode Team Completions</title>
+      <description>With IntelliCode, you can train a custom model just for your codebase, based on your usages of those types. Learn more.
+The post Visual Studio IntelliCode Team Completions appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9po6g/</link>
+      <pubDate>Sat, 19 Sep 2020 02:33:13 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Debug Your .NET Core Apps in WSL 2 with Visual Studio</title>
+      <description>Are you a .NET Core developer who loves working in Windows and Visual Studio, but needs to test your app in Linux? Are you a cross-platform developer that needs an easy way to test more of your target environments? The .NET Core Debugging with WSL 2 – Preview extension gives you the ability to run and debug your .NET Core apps in WSL 2 without leaving Visual Studio.
+The post Debug Your .NET Core Apps in WSL 2 with Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ptvm/</link>
+      <pubDate>Fri, 18 Sep 2020 02:39:10 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Achieving business resilience with cloud application development</title>
+      <description>Learn about new capabilities in Visual Studio, GitHub, and Azure to help your team move to remote development, increase velocity with confidence, and drive cost savings.
+The post Achieving business resilience with cloud application development appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9qwqa/</link>
+      <pubDate>Thu, 24 Sep 2020 05:28:42 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Azure Static Web Apps with .NET and Blazor</title>
+      <description>As of today, Azure Static Web Apps now has first-class support for Blazor WebAssembly and .NET Functions in preview, available in all supported regions. This was one of the top user requests since Static Web Apps was announced at Build. You can develop and deploy a frontend and a serverless API written entirely in .NET.
+The post Azure Static Web Apps with .NET and Blazor appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9qjh5/</link>
+      <pubDate>Wed, 23 Sep 2020 05:11:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Using GitHub Codespaces with .NET Core</title>
+      <description>In May of this year we announced Visual Studio Codespaces and early support for .NET Core developers.  Since then we’ve had some early adopters try it out and they gave us great feedback.  We’ve made a bunch of progress on enabling more in the Codespaces capabilities as well. 
+The post Using GitHub Codespaces with .NET Core appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9pxul/</link>
+      <pubDate>Tue, 22 Sep 2020 18:16:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Using GitHub Actions in Visual Studio is as easy as right-click and Publish</title>
+      <description>. The publish experience in Visual Studio now has an option to generate a GitHub Actions workflow for CI/CD to your preferred Azure resources, by using deployment secrets configured in your GitHub repository.
+The post Using GitHub Actions in Visual Studio is as easy as right-click and Publish appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ps7i/</link>
+      <pubDate>Tue, 22 Sep 2020 17:58:17 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Welcome C++ developers to GitHub Codespaces!</title>
+      <description>In May we announced Visual Studio Codespaces and its early support for C++ developers. Over the last several months we interviewed early adopters, and based on their feedback we continued to add new functionality and to improve the Codespaces experience.
+The post Welcome C++ developers to GitHub Codespaces! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9pxst/</link>
+      <pubDate>Tue, 22 Sep 2020 17:54:02 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>New Features in Visual Studio 2019 v16.8 Preview 3.1</title>
+      <description>We are releasing Visual Studio 2019 v16.8 Preview 3.1. In this release, we are giving you access to improvements in Git Integration, C++20 conformance, .NET Productivity, Web Tools, and XAML . 
+The post New Features in Visual Studio 2019 v16.8 Preview 3.1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ps6z/</link>
+      <pubDate>Tue, 22 Sep 2020 17:51:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Enabling resilient DevOps practices with code to cloud automation</title>
+      <description>Learn how you can enable resilient DevOps practices with GitHub and Azure and ship faster while maintaining governance, security, and compliance standards while working remotely.
+The post Enabling resilient DevOps practices with code to cloud automation appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9vf7d/</link>
+      <pubDate>Mon, 05 Oct 2020 22:32:54 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Simplify Microservice Development with Bridge to Kubernetes in Visual Studio</title>
+      <description>Setting up and running a microservice application locally can be time-consuming and complex. Visual Studio PM Nick Greenfield shows how Bridge to Kubernetes enables you to connect to a Kubernetes cluster without needing to manually source, configure and compile external dependencies on your development workstation
+The post Simplify Microservice Development with Bridge to Kubernetes in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9va2q/</link>
+      <pubDate>Mon, 05 Oct 2020 22:20:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Cross Platform Managed Memory Dump Debugging</title>
+      <description>I am really happy to announce that with the release of Visual Studio 16.8 Preview 3 you now have the ability to open and analyze managed dumps collected on Linux and use the best in class debugging tools available in Visual Studio.
+The post Cross Platform Managed Memory Dump Debugging appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9yao7/</link>
+      <pubDate>Sun, 11 Oct 2020 02:41:12 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Xamarin.Essentials 1.6 preview: macOS, media, and more!</title>
+      <description>Xamarin.Essentials has been a staple for developers building iOS, Android, and Windows apps with Xamarin and .NET since it was first released last year. Now, we are introducing Xamarin.Essentials 1.6, which adds new APIs ncluding MediaPicker, AppActions, Contacts, and more
+The post Xamarin.Essentials 1.6 preview: macOS, media, and more! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9y3ah/</link>
+      <pubDate>Sun, 11 Oct 2020 02:37:10 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Game Development with .NET</title>
+      <description>We’ve launched a new Game Development with .NET section on our site. It’s designed for current .NET developers to explore all the choices available to them when developing games. It’s also designed for new developers trying to learn how to use .NET by making games.
+The post Game Development with .NET appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9vxqr/</link>
+      <pubDate>Wed, 07 Oct 2020 20:44:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Build and debug Qt projects on Linux with Qt Visual Studio Tools</title>
+      <description>Qt is a popular cross-platform framework for application development and user interface design. Qt recently released a new version of the Qt Visual Studio Tools extension that integrates with Visual Studio’s Linux development with C++ workload. This extension allows you to build and debug MSBuild-based Qt projects on both Windows and Linux directly from Visual Studio.
+The post Build and debug Qt projects on Linux with Qt Visual Studio Tools appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9vxqe/</link>
+      <pubDate>Wed, 07 Oct 2020 20:42:06 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>C++ Core Check in Visual Studio</title>
+      <description>The C++ team has been expanding C++ Core Check’s coverage over the last five years. We have added more rules into the existing Type, Bounds, and Lifetimes profiles and have expanded into other areas of the C++ Core Guidelines
+The post C++ Core Check in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9vxpw/</link>
+      <pubDate>Wed, 07 Oct 2020 20:38:58 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core Series: PWA’s with Blazor</title>
+      <description>Progressive Web Applications (PWA) use modern browser APIs and capabilities to behave like a desktop app. Since Blazor WebAssembly is a standards-based client-side web app platform,  developers have the ability to leverage these browser APIs and create PWAs using .NET.
+The post ASP.NET Core Series: PWAs with Blazor appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa0avn/</link>
+      <pubDate>Fri, 16 Oct 2020 00:07:52 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing .NET Live TV – Daily Developer Live Streams</title>
+      <description>Today, we are launching .NET Live TV, your one stop shop for all .NET and Visual Studio live streams across Twitch and YouTube. We are always looking for new ways to bring great content to the developer community and innovate in ways to interact with you in real-time.
+The post Introducing .NET Live TV – Daily Developer Live Streams appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa04af/</link>
+      <pubDate>Fri, 16 Oct 2020 00:02:03 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing advanced Azure Machine Learning nanodegree program with Udacity</title>
+      <description>Earlier this year, we empowered over 10,000 students from all over the world to learn the basics of machine learning over the course of four months. We are excited to announce the next stage of skilling with the availability of an advanced machine learning nanodegree on Udacity.
+The post Announcing advanced Azure Machine Learning nanodegree program with Udacity appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9yw8a/</link>
+      <pubDate>Wed, 14 Oct 2020 05:43:42 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 5 Release Candidate 2</title>
+      <description>.NET 5 Release Candidate 2 (RC2) is now available and is ready for evaluation. ASP.NET Core in .NET 5 contains lots of great new functionality and improvements in this release.
+The post ASP.NET Core updates in .NET 5 Release Candidate 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ypdu/</link>
+      <pubDate>Wed, 14 Oct 2020 05:40:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5.0 RC 2</title>
+      <description>Today, we are shipping .NET 5.0 Release Candidate 2 (RC2). It is a near-final release of .NET 5.0, and the last of two RCs before the official release in November. RC2 is a “go live” release; you are supported using it in production.
+The post Announcing .NET 5.0 RC 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9yi2l/</link>
+      <pubDate>Wed, 14 Oct 2020 05:36:08 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing the new Azure SDK for C++ Beta</title>
+      <description>The Azure SDK team is pleased to announce their first beta release of the new Azure SDK for C++. Unlike the previous Azure Storage specific SDK, the new Azure SDK for C++ is idiomatic to the C++ language and ensures consistency in behavior and API surface when communicating with multiple Azure services.
+The post Introducing the new Azure SDK for C++ Beta appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aa9ypdi/</link>
+      <pubDate>Wed, 14 Oct 2020 05:32:40 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>

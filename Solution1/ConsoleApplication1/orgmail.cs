@@ -15,10 +15,22 @@ https://docs.microsoft.com/en-us/exchange/client-developer/exchange-server-devel
 
 Overview of Microsoft Graph
 https://docs.microsoft.com/en-us/graph/overview
+https://graph.microsoft.com
+https://graph.microsoft.com/v1.0/me/messages
 
-https://techcommunity.microsoft.com/t5/exchange-team-blog/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/ba-p/608055#
+https://techcommunity.microsoft.com/t5/exchange-team-blog/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/ba-p/608055
+https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-april-2020-update/ba-p/1275508
+https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-july-update/ba-p/1530163
+
 https://stackoverflow.com/questions/32735584/o365-ews-managed-api-and-exchangeversion
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/ews-schema-versions-in-exchange?redirectedfrom=MSDN
+
+EWS Managed API reference
+https://docs.microsoft.com/en-us/exchange/client-developer/web-service-reference/ews-managed-api-reference-for-exchange
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data?view=exchange-ews-api
+
+Office 365 Management APIs overview
+https://docs.microsoft.com/en-us/office/office-365-management-api/office-365-management-apis-overview
 */
 static class orgmail
 {
