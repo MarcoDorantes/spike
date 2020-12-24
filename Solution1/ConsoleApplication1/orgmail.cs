@@ -17,6 +17,12 @@ Overview of Microsoft Graph
 https://docs.microsoft.com/en-us/graph/overview
 https://graph.microsoft.com
 https://graph.microsoft.com/v1.0/me/messages
+http://aka.ms/graph
+https://developer.microsoft.com/en-us/graph
+
+Introduction to GraphQL
+aka.ms/graphql
+https://graphql.org/learn/
 
 https://techcommunity.microsoft.com/t5/exchange-team-blog/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/ba-p/608055
 https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-april-2020-update/ba-p/1275508
@@ -89,7 +95,7 @@ static class orgmail
           }
           else if (read == 0)
           {
-            WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{count}");
+            WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived:s}\nCount:\t{count}");
           }
         }
       }
@@ -128,7 +134,7 @@ static class orgmail
         }
         foreach (Microsoft.Exchange.WebServices.Data.EmailMessage item in found.OrderBy(i => i.DateTimeReceived))
         {
-          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{++count}");
+          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived:s}\nCount:\t{++count}");
         }
       }
     }
@@ -261,7 +267,7 @@ static class orgmail
         {
           ++count;
           item.Load();
-          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived.ToString("MMMdd-HHmmss-fff")}\nCount:\t{count}");
+          WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived:s}\nCount:\t{count}");
           WriteLine($"Attachments:\t{item.Attachments.Count}");
           foreach (var _attach in item.Attachments)
           {

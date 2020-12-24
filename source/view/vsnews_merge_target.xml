@@ -16113,5 +16113,189 @@ The post Introducing the new Azure SDK for C++ Beta appeared first on Visual Stu
       <pubDate>Wed, 14 Oct 2020 05:32:40 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>.NET 5.0 Launches at .NET Conf, November 10-12</title>
+      <description>.NET Conf is a free, three-day, virtual developer event co-organized by the .NET community and Microsoft. This year .NET 5.0 will launch at .NET Conf 2020. Come celebrate and learn about the new release.
+The post .NET 5.0 Launches at .NET Conf, November 10-12 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa5nu0/</link>
+      <pubDate>Mon, 02 Nov 2020 20:10:15 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>GitHub Codespaces in Visual Studio</title>
+      <description>Want to see Microsofts vision for cloud-powered development environments that enable developers to get up and running quickly and work from anywhere on any platform? Visual Studio PM Vix Ryan shows the ease of power of GitHub Codespaces.
+The post GitHub Codespaces in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa52yx/</link>
+      <pubDate>Mon, 02 Nov 2020 16:25:02 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>A Tour of C++ Modules in Visual Studio</title>
+      <description>C++ module support has arrived in Visual Studio! Grab the latest Visual Studio Preview if you want to try it out. C++ modules can help you compartmentalize your code, speed up build times, and they work seamlessly, side-by-side with your existing code.
+The post A Tour of C++ Modules in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa52ys/</link>
+      <pubDate>Mon, 02 Nov 2020 16:23:15 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>The Future of Visual Studio Extensions</title>
+      <description>With new improvements and additions such as GitHub Codespaces, Git Integrations, and IntelliCode Team Completions, Visual Studio has expanded to make development easier, more customizable, and accessible from any machine.  As we continue evolving Visual Studio, what about extensions?!  While still early in the design phase,
+The post The Future of Visual Studio Extensions appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa4mi3/</link>
+      <pubDate>Thu, 29 Oct 2020 14:12:02 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing Version 1.0 of .NET for Apache Spark</title>
+      <description>Today, we announce the release of version 1.0 of .NET for Apache® Spark™, an open source package that brings .NET development to the Apache® Spark™ platform. This release is possible due to the combined efforts of Microsoft and the open source community.
+The post Announcing Version 1.0 of .NET for Apache Spark appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa3lke/</link>
+      <pubDate>Wed, 28 Oct 2020 11:15:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>gRPC performance improvements in .NET 5</title>
+      <description>gRPC is a modern open source remote procedure call framework. There are many exciting features in gRPC: real-time streaming, end-to-end code generation, and great cross-platform support to name a few. The most exciting to me, and consistently mentioned by developers who are interested in gRPC,
+The post gRPC performance improvements in .NET 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa3yzu/</link>
+      <pubDate>Wed, 28 Oct 2020 11:14:04 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Get more done with search in Visual Studio</title>
+      <description>Over the years, the Search feature in Visual Studio has gotten faster and more capable. You might have missed some of the things it can do to help you be more productive and get the most out of Visual Studio. So,
+The post Get more done with search in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaa3dus/</link>
+      <pubDate>Wed, 28 Oct 2020 11:11:24 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2019 v16.8 and v16.9 Preview 1 Release</title>
+      <description>Visual Studio team is proud to announce the release of Visual Studio 2019 v16.8 and v16.9 Preview 1. These releases have several notable features from the teams improving Git Productivity, C++, IntelliCode, .NET, XAML, and Web Tools. In addition, we hope you have been able to sign-up for our Preview of GitHub Codespaces as there is so much excitement about this new development environment!
+The post Visual Studio 2019 v16.8 and v16.9 Preview 1 Release appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaabc5c/</link>
+      <pubDate>Thu, 12 Nov 2020 21:17:11 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing the Release of the Git Experience in Visual Studio</title>
+      <description>We’re excited to announce that our new Git tooling is now the default source control experience in Visual Studio 2019, beginning with version 16.8. We’ve been working on this experience over the last year, iterating based on your feedback to build out key features,
+The post Announcing the Release of the Git Experience in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaabits/</link>
+      <pubDate>Thu, 12 Nov 2020 21:15:24 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 5.0</title>
+      <description>We’re excited to release .NET 5.0 today and for you to start using it. It’s a major release — including C# 9 and F# 5 — with a broad set of new features and compelling improvements. It’s already in active use by teams at Microsoft and other companies,
+The post Announcing .NET 5.0 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaabc55/</link>
+      <pubDate>Thu, 12 Nov 2020 21:13:24 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing ASP.NET Core in .NET 5</title>
+      <description>.NET 5 is now released! .NET 5 is the next version of .NET Core and the future of the .NET platform. With .NET 5 you have everything you need to build rich, interactive front-end web UI and powerful backend services. ASP.NET Core in .NET 5 is loaded with lots of great new features and improvements
+The post Announcing ASP.NET Core in .NET 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaabpbr/</link>
+      <pubDate>Thu, 12 Nov 2020 21:11:34 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>The Coalition Sees 27.9X Iteration Build Improvement with Visual Studio 2019</title>
+      <description>Visual Studio 2019 v16.8 Preview 3.2 introduces significant build and link time improvements. In this blog post, we detail how the team in The Coalition building Gears 5 tested the compile and link times in three different versions of Visual Studio.
+The post The Coalition Sees 27.9X Iteration Build Improvement with Visual Studio 2019 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaacz2n/</link>
+      <pubDate>Tue, 17 Nov 2020 18:52:57 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Getting Started With NuGet 5.8</title>
+      <description>NuGet 5.8 is included in Visual Studio 16.8 and .NET 5.0 out of the box. You can also download NuGet 5.8 for Windows, macOS, and Linux as a standalone executable.
+The post Getting Started With NuGet 5.8 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaactpy/</link>
+      <pubDate>Tue, 17 Nov 2020 17:45:41 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>What’s new in .NET Productivity</title>
+      <description>The .NET Productivity team (a.k.a. Roslyn) wants to help you be more productive! We’ve seen a lot of excitement in the past few months over our latest features which automate and reduce editing tasks to a single click and help save you time.
+The post What’s new in .NET Productivity appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaacxv9/</link>
+      <pubDate>Thu, 19 Nov 2020 07:52:08 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>C++20 Features in Visual Studio 2019 versions 16.7 and 16.8</title>
+      <description>We have continued our efforts to implement C++20 in the MSVC toolset, with noteworthy progress being made in VS (Visual Studio) 2019 v16.7 and VS 2019 v16.8. This blog post lists the features implemented since the C++20 Features and Fixes in VS 2019 16.1 through 16.6 blog post.
+The post C++20 Features in Visual Studio 2019 versions 16.7 and 16.8 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaae2im/</link>
+      <pubDate>Fri, 20 Nov 2020 06:16:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>GitHub accounts are now integrated into Visual Studio 2019</title>
+      <description>Starting with version 16.8, you’ll be able to add both GitHub and GitHub Enterprise accounts directly from Visual Studio. The new functionality allows you to add and leverage them just as you do with Microsoft accounts, which means that you’ll have an easier time accessing your GitHub resources across Visual Studio.
+The post GitHub accounts are now integrated into Visual Studio 2019 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaadk2w/</link>
+      <pubDate>Fri, 20 Nov 2020 06:10:02 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Improving Debug-time Productivity with Source Link</title>
+      <description>Learn how you can improve debug-time with Source Link. With Source Link-enabled libraries, the debugger can download the underlying source files as you step in, and you can set breakpoints/tracepoints like you would with any other source. Source Link-enabled debugging makes it easier to understand the full flow of your code from your code down to the runtime.
+The post Improving Debug-time Productivity with Source Link appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaagy9q/</link>
+      <pubDate>Thu, 03 Dec 2020 01:28:07 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Learn C# with Visual Studio, Visual Studio for Mac, and Unity (and win a free book!)</title>
+      <description>Learn C# with a fun beginner programming challenge, and enter to win a free copy of Head First C#! Ends December 9, so get started now!
+The post Learn C# with Visual Studio, Visual Studio for Mac, and Unity (and win a free book!) appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaagy88/</link>
+      <pubDate>Thu, 03 Dec 2020 01:12:19 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>gRPC Web with .NET</title>
+      <description>gRPC-Web allows browser-based applications to call into gRPC services via a special proxy. .NET developers are now able to build and consume services that use gRPC-Web using the Grpc.AspNetCore.Web NuGet package. In this episode, James Newton-King joins Cecil to explain how gRPC-Web works and show us what the code looks like to support this feature
+The post gRPC Web with .NET appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaalw8v/</link>
+      <pubDate>Tue, 15 Dec 2020 00:58:31 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>What’s new in Windows Forms runtime in .NET 5.0</title>
+      <description>Since Windows Forms was open sourced in late 2018, and ported to .NET Core, both the team and our external contributors have been busy fixing old bugs and adding new features. In this post we are going to talk about what’s new in Windows Forms runtime in .NET 5.0
+The post What’s new in Windows Forms runtime in .NET 5.0 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaalw8p/</link>
+      <pubDate>Tue, 15 Dec 2020 00:57:00 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2019 v16.9 Preview 2 and New Year Wishes Coming to You!</title>
+      <description>As we quickly move towards the end of this unpredictable year, our team is delivering at least one more set of features your way in Visual Studio 2019 v16.9 Preview 2! Our C++, .NET, and Xamarin Forms teams have been hard at work to deliver some great new functionality.
+The post Visual Studio 2019 v16.9 Preview 2 and New Year Wishes Coming to You! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaamdmd/</link>
+      <pubDate>Tue, 15 Dec 2020 00:56:03 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>What’s next for System.Text.Json?</title>
+      <description>.NET 5.0 was released recently and has come with many new features and performance improvements. System.Text.Json is no exception. We have improved performance, reliability, and made it easier to adopt for people who are familiar with Newtonsoft.Json. In this post, we are going to talk about the progress that has been made with System.Text.Json,
+The post What’s next for System.Text.Json? appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaamvms/</link>
+      <pubDate>Thu, 17 Dec 2020 00:10:05 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>PowerShell 7.2 Preview 2 release</title>
+      <description>Today we are proud to announce the second preview release of PowerShell 7.2. This preview is still based on .NET 5 as we wait for the first preview of .NET 6 which we expect PowerShell 7.2 to be based upon.
+The post PowerShell 7.2 Preview 2 release appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaamvmn/</link>
+      <pubDate>Thu, 17 Dec 2020 00:08:19 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
