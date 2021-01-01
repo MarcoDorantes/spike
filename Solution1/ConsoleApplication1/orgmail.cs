@@ -354,7 +354,6 @@ static class orgmail
         {
           var line = reader.ReadLine();
           if (line == null) break;
-          line = line.Trim();
           if (!(isBody || string.IsNullOrWhiteSpace(line))) continue;
           if (!isBody && string.IsNullOrWhiteSpace(line)) { isBody = true; continue; };
           if (line.StartsWith(attach_directive))
