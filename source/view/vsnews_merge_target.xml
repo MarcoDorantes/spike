@@ -16297,5 +16297,93 @@ The post PowerShell 7.2 Preview 2 release appeared first on Visual Studio news f
       <pubDate>Thu, 17 Dec 2020 00:08:19 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Software development in 2021 and beyond</title>
+      <description>Software development in 2021 and beyond  An article by Amanda Silver on how we can come together to grow and support developer talent amid unprecedented demand, improve developer inclusivity and velocity, and help engineering teams scale-out through open source and low-code tools.
+The post Software development in 2021 and beyond appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaatzql/</link>
+      <pubDate>Thu, 14 Jan 2021 22:27:00 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Azure Active Directory’s gateway is on .NET Core 3.1!</title>
+      <description>Check out this blog to learn how the Azure Active Directory team got massive perf gains by moving from .NET Framework to .NET Core 3.1. 
+The post Azure Active Directory’s gateway is on .NET Core 3.1! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaatfwn/</link>
+      <pubDate>Thu, 14 Jan 2021 22:12:49 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Inspecting application metrics with dotnet-monitor</title>
+      <description>dotnet-monitor is a command line tool that makes it easier to get access to diagnostics information in a dotnet process. In the episode, Rich is joined by Sourabh who explains to us the importance of gathering application diagnostics and also gives us a demo of how to run dotnet-monitor in Kubernetes
+The post Inspecting application metrics with dotnet-monitor appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaatfwl/</link>
+      <pubDate>Thu, 14 Jan 2021 22:07:57 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Diagnostics improvements in .NET 5</title>
+      <description>Building upon the diagnostics improvements we introduced in .NET Core 3.0, we’ve been hard at work further improving this space. We are excited to introduce the next wave of diagnostics improvements.
+The post Diagnostics improvements in .NET 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaatt6r/</link>
+      <pubDate>Thu, 14 Jan 2021 22:05:35 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing TypeScript 4.2 Beta</title>
+      <description>We’re excited to hear your thoughts on TypeScript 4.2! With the beta we’re still in relatively early stages, but we’re counting on your feedback to help make this an excellent release
+The post Announcing TypeScript 4.2 Beta appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaatzom/</link>
+      <pubDate>Thu, 14 Jan 2021 22:03:59 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>A more integrated terminal experience</title>
+      <description>As part of the new additions of the Visual Studio 2019 v16.8 release, and thanks to your feedback, we have added a couple new tricks to the integrated terminal! It now allows you to open a new terminal to a location based on your Solution Explorer selection and provides customizable commands for copy and paste.
+The post A more integrated terminal experience appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaatzoe/</link>
+      <pubDate>Thu, 14 Jan 2021 22:00:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Generate a GitHub Actions workflow with Visual Studio or the dotnet CLI</title>
+      <description>Learn how you can generate a GitHub Actions workflow with Visual Studio or the dotnet CLI
+The post Generate a GitHub Actions workflow with Visual Studio or the dotnet CLI appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaatzo2/</link>
+      <pubDate>Thu, 14 Jan 2021 21:58:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Blizzard Diablo IV debugs Linux core dumps from Visual Studio</title>
+      <description>Blizzard is using Visual Studio 2019 to debug Linux core dumps on WSL. The following blog post is written by Bill Randolph, a Senior Software Engineer at Blizzard working on the development of Diablo IV.
+The post Blizzard Diablo IV debugs Linux core dumps from Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaaz1g5/</link>
+      <pubDate>Thu, 28 Jan 2021 06:43:42 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Improvements to the new Razor editor in Visual Studio</title>
+      <description>It’s been six months since we announced the first preview of a new experimental Razor editor for Visual Studio based on a common Razor language server and it’s time to give an update on our progress. The team has been hard at work bringing the new Razor editor up to parity with the old one,
+The post Improvements to the new Razor editor in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaaymsc/</link>
+      <pubDate>Thu, 28 Jan 2021 06:41:37 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Windows ARM64 support for CMake projects in Visual Studio</title>
+      <description>In Visual Studio 2019 version 16.9 Preview 3 we added support for deploying CMake projects to a remote Windows machine and debugging them with the Visual Studio remote tools. CMake developers targeting ARM64 Windows can now cross-compile (with cl or clang-cl),
+The post Windows ARM64 support for CMake projects in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaayms7/</link>
+      <pubDate>Thu, 28 Jan 2021 06:40:02 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>MSVC Backend Updates in Visual Studio 2019 version 16.9 Preview 3</title>
+      <description>In Visual Studio 2019 version 16.9 Preview 3 we have continued to improve the C++ backend with new features, new and improved optimizations, build throughput improvements, and better security. Here is a brief list of improvements for you to review.
+The post MSVC Backend Updates in Visual Studio 2019 version 16.9 Preview 3 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaayu4r/</link>
+      <pubDate>Thu, 28 Jan 2021 06:38:27 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
