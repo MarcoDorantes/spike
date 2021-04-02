@@ -16385,5 +16385,157 @@ The post MSVC Backend Updates in Visual Studio 2019 version 16.9 Preview 3 appea
       <pubDate>Thu, 28 Jan 2021 06:38:27 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Announcing TypeScript 4.2 RC</title>
+      <description>Today we’re excited to announce our Release Candidate of TypeScript 4.2! Between now and the stable release of TypeScript 4.2, we expect no further changes apart from critical bug fixes
+The post Announcing TypeScript 4.2 RC appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aab4g2i/</link>
+      <pubDate>Fri, 12 Feb 2021 18:53:50 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Open-source HTTP API packages and tools</title>
+      <description>We’re continuing our series on building HTTP APIs with .NET 5. In the previous post, we covered Creating Discoverable HTTP APIs with ASP.NET Core 5 Web API. In this post, we’ll go further with a look at using open-source HTTP API packages and tools.
+The post Open-source HTTP API packages and tools appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aab4g2d/</link>
+      <pubDate>Fri, 12 Feb 2021 18:52:38 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Analyzing Code with Infer#</title>
+      <description>Want to detect reliability and security bugs before they ship? Matthew Jin and Xiaoyu Liu show Infer#, a static analysis tool you can use to validate the correctness of source code without needing to execute it.
+The post Analyzing Code with Infer# appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aab4uat/</link>
+      <pubDate>Fri, 12 Feb 2021 18:50:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 6 Preview 1</title>
+      <description>Today, we are happy to deliver the first preview of .NET 6 and share what you can expect from the new release. We have been defining the overall shape of the release for the last few months, including a large set of new experiences and capabilities.
+The post Announcing .NET 6 Preview 1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aab70o3/</link>
+      <pubDate>Thu, 18 Feb 2021 07:55:20 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 6 Preview 1</title>
+      <description>.NET 6 Preview 1 is now available and ready for evaluation. This is the first preview of .NET 6, the next major update to the .NET platform. .NET 6 is expected to ship in November of this year, and will be a Long Term Support (LTS) release.
+The post ASP.NET Core updates in .NET 6 Preview 1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aab5vbs/</link>
+      <pubDate>Thu, 18 Feb 2021 07:51:32 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing the .NET Upgrade Assistant Preview</title>
+      <description>Today we’re excited to introduce a tool we’ve been working on to help you upgrade your .NET Framework-based applications to .NET 5 called the .NET Upgrade Assistant. The .NET Upgrade Assistant is a .NET global command-line tool that gives you a guided experience for incrementally upgrading your applications.
+The post Introducing the .NET Upgrade Assistant Preview appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabdtn7/</link>
+      <pubDate>Wed, 03 Mar 2021 17:58:51 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>New Dynamic Instrumentation Profiling for .NET in Visual Studio 2019</title>
+      <description>With the release of version 16.9 of Visual Studio, instrumentation profiling in Visual Studio just got better. Introducing our new dynamic instrumentation tool. This tool shows the exact number of times your functions are called and is faster than our previous static instrumentation tool.
+The post New Dynamic Instrumentation Profiling for .NET in Visual Studio 2019 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabddjp/</link>
+      <pubDate>Wed, 03 Mar 2021 17:52:55 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>F# and F# tools update for Visual Studio 16.9</title>
+      <description>We’re excited to announce updates to the F# tools for Visual Studio 16.9. Since the F# 5 release last November, we’ve been hard at work to improve the F# tools experience in Visual Studio.
+The post F# and F# tools update for Visual Studio 16.9 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabdtmj/</link>
+      <pubDate>Wed, 03 Mar 2021 17:50:47 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Frictionless repeated edits: IntelliCode suggestions in completion list</title>
+      <description>Now, in Visual Studio 16.9 you can easily apply suggestions in a frictionless way all without breaking your editing flow. You can find IntelliCode suggestions right in your IntelliSense completion list, and can find and apply the same change at other locations
+The post Frictionless repeated edits: IntelliCode suggestions in completion list appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabdtmf/</link>
+      <pubDate>Wed, 03 Mar 2021 17:49:24 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2019 v16.9 and v16.10 Preview 1 are Available Today!</title>
+      <description>Visual Studio team is eager to release Visual Studio 2019 v16.9 and v16.10 Preview 1. We hope you enjoy the new features highlighted from some of teams such as C++, .NET Productivity, Address Sanitizer, XAML Tooling, and IntelliCode teams.  In addition,
+The post Visual Studio 2019 v16.9 and v16.10 Preview 1 are Available Today! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabdb6c/</link>
+      <pubDate>Tue, 02 Mar 2021 21:49:40 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Tune in for .NET Conf: Focus on Windows, February 25th</title>
+      <description>The .NET Conf team is bringing you another “.NET Conf: Focus” event Thursday, February 25 all about building Windows desktop apps. We have finalized the agenda, speakers, and hosts that will make the day educational and fun. We have .NET and Windows team members along with community speakers and MVPs to show you some amazing things you can do.
+The post Tune in for .NET Conf: Focus on Windows, February 25th appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabaial/</link>
+      <pubDate>Wed, 24 Feb 2021 21:55:51 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Generating HTTP API clients using Visual Studio Connected Services</title>
+      <description>We’re continuing our series on building HTTP APIs with .NET 5. In the first post in this series we talked about building well-described APIs using OpenAPI, and then followed that up taking a deeper dive into some of the open-source tools and packages you can use to make your HTTP API development easier.
+The post Generating HTTP API clients using Visual Studio Connected Services appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabag5i/</link>
+      <pubDate>Wed, 24 Feb 2021 06:03:50 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>What’s new with GitHub Actions tooling in Visual Studio</title>
+      <description>Our Publish experience today enables many different ways for developers to get their development, staging, or production apps to various endpoints in their local/network environments and directly to their cloud resources in Azure.
+The post What’s new with GitHub Actions tooling in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabgam6/</link>
+      <pubDate>Tue, 09 Mar 2021 20:10:26 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing the New TypeScript Handbook</title>
+      <description>Hey folks, we’re happy to announce that a fresh re-write of the TypeScript Handbook is out of beta and is now our website’s primary resource for learning TypeScript!
+The post Announcing the New TypeScript Handbook appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabgalg/</link>
+      <pubDate>Tue, 09 Mar 2021 20:06:38 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Address Sanitizer for MSVC Now Generally Available</title>
+      <description>We’re thrilled to announce that as of Visual Studio 2019 version 16.9, the C++ Address Sanitizer (ASan) for MSVC experience is fully supported. Thanks to all who tried it out while it was experimental in earlier versions of the IDE and filed issues to help make this release all-the-better!
+The post Address Sanitizer for MSVC Now Generally Available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabgv5i/</link>
+      <pubDate>Tue, 09 Mar 2021 19:58:44 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET Core 2.1 will reach End of Support on August 21, 2021</title>
+      <description>.NET Core 2.1 will be reaching end of support on August 21, 2021. After this date, Microsoft will no longer provide updates (which includes security fixes) or technical support for this version. You’ll need to update the version of .NET Core you’re using to a supported version (.NET Core 3.1 or .NET 5.0) before this date in order to continue to receive updates
+The post .NET Core 2.1 will reach End of Support on August 21, 2021 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabgv5d/</link>
+      <pubDate>Tue, 09 Mar 2021 19:57:20 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 6 Preview 2</title>
+      <description>Today, we are glad to release .NET 6 Preview 2. It includes new APIs, runtime performance improvements, and early builds of .NET MAUI. It also includes builds for Apple Silicon, which were missing for Preview 1.
+The post Announcing .NET 6 Preview 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabix5v/</link>
+      <pubDate>Mon, 15 Mar 2021 19:20:49 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 6 Preview 2</title>
+      <description>.NET 6 Preview 2 is now available and includes many great new improvements to ASP.NET Core.
+The post ASP.NET Core updates in .NET 6 Preview 2 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabix5m/</link>
+      <pubDate>Mon, 15 Mar 2021 17:47:10 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Monitoring and Observability in Cloud-Native ASP.NET Core apps</title>
+      <description>Distributed applications are complex and bring in their own set of challenges for developers to debug and fix production issues. Though the microservices architecture helps maintain a smaller team that works autonomously and focuses on separate business domains, it introduces newer challenges due to its distributed nature.
+The post Monitoring and Observability in Cloud-Native ASP.NET Core apps appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabr4lm/</link>
+      <pubDate>Wed, 31 Mar 2021 22:25:46 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>

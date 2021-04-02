@@ -16,6 +16,16 @@ http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd
 
 http://www.sat.gob.mx/nomina12
 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
+
+$ns = @{cfdi = "http://www.sat.gob.mx/cfd/3"; xsi = "http://www.w3.org/2001/XMLSchema-instance"; nomina12 = "http://www.sat.gob.mx/nomina12"}
+
+dir -path C:\Users\Marco\Documents\DEC_2020\SAT -filter *.xml -recurse| %{select-xml -Path $_.FullName -Namespace $ns -XPath '/cfdi:Comprobante/@Version'}|select -ExpandProperty Node
+dir -path C:\Users\Marco\Documents\DEC_2020\SAT -filter *.xml -recurse| %{select-xml -Path $_.FullName -Namespace $ns -XPath '/cfdi:Comprobante/@xsi:schemaLocation'}|select -ExpandProperty Node
+|%{$_.value} | out-file -FilePath C:\temp\xdslocs2020.txt
+dir -path C:\Users\Marco\Documents\DEC_2020\SAT -filter *.xml -recurse| %{select-xml -Path $_.FullName -Namespace $ns -XPath '/cfdi:Comprobante/@Fecha'}|select -ExpandProperty Node
+|%{[datetime]$_.value} | sort | %{"{0:s}" -f $_}
+			      | %{"{0:MM}" -f $_}
+dir -path C:\Users\Marco\Documents\DEC_2020\SAT -filter *.xml -recurse| %{select-xml -Path $_.FullName -Namespace $ns -XPath '/cfdi:Comprobante/@Folio'}|select -ExpandProperty Node|%{$_.value}|sort
     */
     public static IEnumerable<XAttribute> read_attr(XElement e)
     {
@@ -35,13 +45,13 @@ http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
       var add_cfdi = new Func<Dictionary<string, XDocument>, FileInfo, Dictionary<string, XDocument>>((w, n) =>
       {
         var xml = XDocument.Load(n.FullName);
-        var key = $"{xml.Root.Attribute("Folio").Value}|{Math.Abs(double.Parse(xml.Root.Element(cfdi_ns + "Complemento").Element(nomina12_ns + "Nomina").Attribute("NumDiasPagados").Value))}";
+        var key = $"{xml.Root.Attribute("Folio").Value}|{Math.Abs(double.Parse(xml.Root.Element(cfdi_ns + "Complemento").Element(nomina12_ns + "Nomina").Attribute("NumDiasPagados").Value))}|{xml.Root.Attribute("Sello").Value}";
         w.Add(key, xml);
         return w;
       });
 
-      var cfdi1_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2019\GBM")).EnumerateFiles("*.xml");
-      var cfdi2_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2019\SAT")).EnumerateFiles("*.xml");
+      var cfdi1_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\GBM")).EnumerateFiles("*.xml");
+      var cfdi2_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\SAT")).EnumerateFiles("*.xml");
       if (cfdi1_file.Count() != cfdi2_file.Count()) throw new ArgumentOutOfRangeException($"CFDI file number must be the same ({cfdi1_file.Count()} != {cfdi2_file.Count()})");
       var cfdi_set1 = cfdi1_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
       var cfdi_set2 = cfdi2_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
@@ -53,49 +63,28 @@ http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd
 
         var seq1 = read_attr(xml1.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
         var seq2 = read_attr(xml2.Root).OrderBy(x => x.Name.LocalName).Where(n => n.Name.LocalName != "schemaLocation").Select(y => $"[{y.Name}]=[{y?.Value}]");
-        //seq1.Aggregate(Out,(w,n)=>{ w.WriteLine(n); return w; });
-        //WriteLine("\t\n*****\n");
-        //seq2.Aggregate(Out, (w, n) => { w.WriteLine(n); return w; });
 
-        /*WriteLine($"{seq1.Count()}\t{seq2.Count()}");
-        for (int k = 0; k < seq1.Count(); ++k)
-        {
-          if (string.Compare(seq1.ElementAt(k), seq2.ElementAt(k), false) != 0)
-          {
-            WriteLine($"{k}\n{seq1.ElementAt(k)}\n{seq2.ElementAt(k)}\n");
-            var b1 = Encoding.ASCII.GetBytes(seq1.ElementAt(k));
-            var b2 = Encoding.ASCII.GetBytes(seq2.ElementAt(k));
-            WriteLine($"\n{b1.Count()}\t{b2.Count()}");
-            for (int j = 0; j < b1.Length; ++j)
-            {
-              if(b1[j]!=b2[j]) WriteLine($"{j}\n{b1[j]}\n{b2[j]}\n");
-            }
-          }
-        }*/
-
-        WriteLine($"{key} {seq1.SequenceEqual(seq2)}");
+        WriteLine($"{key.Substring(0, 30)} {seq1.SequenceEqual(seq2)}");
       }
     }
     public static void sat()
     {
       var getconcept = new Func<string, string>(n =>
       {
-        System.Text.RegularExpressions.Match match = System.Text.RegularExpressions.Regex.Match(n, "[a-zA-Z]");
+        var match = System.Text.RegularExpressions.Regex.Match(n, "[a-zA-Z]");
         var result = new StringBuilder();
-        for (; match.Success; match = match.NextMatch()) { result.Append(match.Value); }
+        for (; match.Success; match = match.NextMatch()) result.Append(match.Value);
         return $"{result}";
       });
-      //WriteLine(getconcept("1414-3143-BON-2018-12-41477"));return;
-      var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2019\SAT");
+      var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\SAT");
+      //var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\GBM");
 
       int count = 0;
       XNamespace cfdi_ns = "http://www.sat.gob.mx/cfd/3";
       XNamespace nomina12_ns = "http://www.sat.gob.mx/nomina12";
       WriteLine("#,Fecha,Folio,FechaPago,Días,TotalPercepciones,TotalDeducciones,TotalSueldos,TotalGravado,TotalExento,PercepcionesConceptos,PercepcionesImportesExentos,PercepcionesImportesGravados,DeduccionesConceptos,DeduccionesImportes,SubTotal,Descuento,Total,Concepto,CFDI");
-      //foreach (var cfdi in folder.EnumerateFiles("*.xml").Where(x => x.FullName.Contains("MES-2018")).OrderByDescending(y => y.LastWriteTime))
       foreach (var cfdi in folder.EnumerateFiles("*.xml").OrderByDescending(y => y.LastWriteTime))
       {
-        //WriteLine(cfdi.FullName);
         var xml = XDocument.Load(cfdi.FullName);
         var Nomina = xml.Root.Element(cfdi_ns + "Complemento")?.Element(nomina12_ns + "Nomina");
         var Percepciones = Nomina?.Element(nomina12_ns + "Percepciones");
