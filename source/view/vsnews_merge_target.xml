@@ -16537,5 +16537,189 @@ The post Monitoring and Observability in Cloud-Native ASP.NET Core apps appeared
       <pubDate>Wed, 31 Mar 2021 22:25:46 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Announcing Visual Studio 2022</title>
+      <description>Read all about the vision for the recently-announced Visual Studio 2022. It will be feature-rich and full of improvements that make you a happier developer. And did we mention its 64-bit?
+The post Announcing Visual Studio 2022 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabzsau/</link>
+      <pubDate>Mon, 19 Apr 2021 17:00:15 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Enhanced Productivity with Git in Visual Studio</title>
+      <description>We continue to enhance the Git experience in Visual Studio and are excited to announce some long-awaited updates in version 16.10 Preview 2. You can download the latest Preview and run it right alongside your main release, leaving your production installation undisturbed.
+The post Enhanced Productivity with Git in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabywgp/</link>
+      <pubDate>Thu, 15 Apr 2021 20:30:23 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2019 v16.10 Preview 2 Releases Today</title>
+      <description>We are excited to announce the release of Visual Studio v16.10 preview 2. This release continues a theme of developer productivity and convenience. We’ve added C++20 ranges, IntelliSense completions, and new features for testing, Docker tooling enhancements, and Git integration!
+The post Visual Studio 2019 v16.10 Preview 2 Releases Today appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabywgs/</link>
+      <pubDate>Thu, 15 Apr 2021 20:29:15 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 6 Preview 3</title>
+      <description>Today, we are delighted to release .NET 6 Preview 3. This release is dedicated almost entirely to low-level performance features. These are the types of improvements that many folks don’t necessarily always fully appreciate, but they help a lot for many apps.
+The post Announcing .NET 6 Preview 3 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabwoj7/</link>
+      <pubDate>Fri, 09 Apr 2021 21:01:11 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 6 Preview 3</title>
+      <description>.NET 6 Preview 3 is now available and includes many great new improvements to ASP.NET Core. Check out this post to see what’s new in this preview release.
+The post ASP.NET Core updates in .NET 6 Preview 3 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabw89j/</link>
+      <pubDate>Fri, 09 Apr 2021 20:58:53 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET Multi-platform App UI Preview 3</title>
+      <description>With .NET 6 Preview 3 we are shipping the latest progress for mobile and desktop development with .NET Multi-platform App UI. This release adds the Windows platform with WinUI 3, improves the base application and startup builder, adds native lifecycle events, 
+The post Announcing .NET Multi-platform App UI Preview 3 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabwoin/</link>
+      <pubDate>Fri, 09 Apr 2021 20:54:45 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing Open Source C# standardization</title>
+      <description>The C# compilers have been open source since 2014, now in the dotnet/roslyn repository. The dotnet/csharplang split off to provide a dedicate public space for the innovation and evolution of the C# language. Now, dotnet/csharpstandard completes the group, providing a public space for the ongoing work to document the standard for the latest C# language versions.
+The post Announcing Open Source C# standardization appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabv7er/</link>
+      <pubDate>Wed, 07 Apr 2021 04:44:20 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>.NET 5 NuGet Restore Failures on Linux distributions using NSS or ca-certificates</title>
+      <description>We will be releasing updated builds of NuGet this week to accommodate NuGet restore failures on Linux distributions. The failures are observed when updated versions of the NSS or ca-certificates packages are installed. Users of .NET 5 and .NET 6 must upgrade to the latest .NET SDK builds in order to ensure continued functional use of the .NET SDK on Linux
+The post .NET 5 NuGet Restore Failures on Linux distributions using NSS or ca-certificates appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aabv6fx/</link>
+      <pubDate>Tue, 06 Apr 2021 21:00:44 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Finding Bugs with AddressSanitizer: Patterns from Open Source Projects</title>
+      <description>AddressSanitizer (ASan) was officially released in Visual Studio 2019 version 16.9. We recently used this feature to find and fix a bug in the MSVC compiler itself. To further validate the usefulness of our ASan implementation, we also used it on a collection of widely used open-source projects where it found bugs in Boost,
+The post Finding Bugs with AddressSanitizer: Patterns from Open Source Projects appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacfpbe/</link>
+      <pubDate>Tue, 11 May 2021 03:40:07 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>The Visual Studio family welcomes you at Microsoft Build 2021</title>
+      <description>Come join us at Microsoft Build, our largest developer conference, to explore what’s new in tech. This year, Build will be kicking off at 8:00 AM Pacific Time on Tuesday, May 25, 2021 (see in your time zone).You can expect an event packed with exciting product announcements,
+The post The Visual Studio family welcomes you at Microsoft Build 2021 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aackz63/</link>
+      <pubDate>Tue, 18 May 2021 19:23:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2019 v16.10 and v16.11 Preview 1 are Available Today</title>
+      <description>We are excited to announce the release of Visual Studio 2019 v16.10 GA and v16.11 preview 1. This release makes our theme of developer productivity and convenience Generally Available to Visual Studio users! We’ve added C++20 features, improved Git integration, improved profiling tools,
+The post Visual Studio 2019 v16.10 and v16.11 Preview 1 are Available Today appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaco9xk/</link>
+      <pubDate>Tue, 25 May 2021 16:01:16 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Introducing the .NET Hot Reload experience for editing code at runtime</title>
+      <description>Today, we are excited to introduce you to the availability of the .NET Hot Reload experience in Visual Studio 2019 version 16.11 (Preview 1) and through the dotnet watch command-line tooling in .NET 6 (Preview 4). In the rest of this blog post,
+The post Introducing the .NET Hot Reload experience for editing code at runtime appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacoh19/</link>
+      <pubDate>Tue, 25 May 2021 15:59:53 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET MAUI Preview 4</title>
+      <description>Today we are pleased to announce the availability of .NET Multi-platform App UI (.NET MAUI) Preview 4. Each preview introduces more controls and features to this multi-platform toolkit on our way to general availability this November at .NET Conf. .NET MAUI now has enough building blocks to build functional applications for all supported platforms,
+The post Announcing .NET MAUI Preview 4 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaco9x2/</link>
+      <pubDate>Tue, 25 May 2021 15:58:35 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 6 Preview 4</title>
+      <description>.NET 6 Preview 4 is now available and includes many great new improvements to ASP.NET Core.
+The post ASP.NET Core updates in .NET 6 Preview 4 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacoh0z/</link>
+      <pubDate>Tue, 25 May 2021 15:56:56 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 6 Preview 4</title>
+      <description>We are delighted to release .NET 6 Preview 4. We’re now about half-way through the .NET 6 release. It’s a good moment to look again at the full scope of .NET 6, much like the first preview post. Many features are in close-to-final form and others will come soon now that the foundational building blocks are in place for the release.
+The post Announcing .NET 6 Preview 4 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaco9wu/</link>
+      <pubDate>Tue, 25 May 2021 15:55:20 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>All vcpkg enterprise features now generally available</title>
+      <description>We are announcing the general availability of vcpkg versioning and registries, which, combined with our earlier release of manifests and binary caching, comprise our solution for vcpkg in the enterprise space. These features are free and are now on by default in the tool,
+The post All vcpkg enterprise features now generally available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacn7ws/</link>
+      <pubDate>Sat, 22 May 2021 00:55:41 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Learn What’s New in .NET Productivity</title>
+      <description>The .NET Productivity team (aka. Roslyn) continues to enhance your developer productivity with the latest tooling updates in Visual Studio 2019. In the last release, we listened to your feedback and have been hard at work improving the .NET developer experience. 
+The post Learn What’s New in .NET Productivity appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacxjc8/</link>
+      <pubDate>Mon, 14 Jun 2021 21:28:52 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Build apps for Microsoft Teams with .NET in Visual Studio</title>
+      <description>We recently announced updates to the Teams Toolkit – a streamlined way to create, debug, and deploy apps to Microsoft Teams. In this post, we’re taking a closer look at how to get started developing a new Microsoft Teams app with .NET and Blazor using the Teams Toolkit extension for Visual Studio 2019 that’s in early Preview.
+The post Build apps for Microsoft Teams with .NET in Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacx644/</link>
+      <pubDate>Mon, 14 Jun 2021 21:27:06 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 Preview 1 now available</title>
+      <description>We’re excited to announce that the first preview release of Visual Studio 2022 is ready to install! This is the first release of a 64-bit Visual Studio and we’d love for you to download it, try it out, and join us in shaping the next major release of Visual Studio with your feedback.
+The post Visual Studio 2022 Preview 1 now available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/vs2022p1/</link>
+      <pubDate>Fri, 18 Jun 2021 01:08:12 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Type less, code more with IntelliCode completions</title>
+      <description>IntelliCode now predicts the next chunk of code based on your current context, and presents it as an inline suggestion to the right of your cursor. If you like it, just hit tab-tab to accept it; otherwise simply keep on typing to adjust the completion further.
+The post Type less, code more with IntelliCode completions appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacytsk/</link>
+      <pubDate>Fri, 18 Jun 2021 01:06:38 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 6 Preview 5</title>
+      <description>We are thrilled to release .NET 6 Preview 5. We’re now in the second-half of the .NET 6 release, and starting to see significant features coming together. A great example is .NET SDK Workloads, which is the foundation of our .NET unification vision and enables supporting more application types.
+The post Announcing .NET 6 Preview 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacyts6/</link>
+      <pubDate>Fri, 18 Jun 2021 01:01:34 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>ASP.NET Core updates in .NET 6 Preview 5</title>
+      <description>.NET 6 Preview 5 is now available and includes many great new improvements to ASP.NET Core.
+The post ASP.NET Core updates in .NET 6 Preview 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacym6t/</link>
+      <pubDate>Fri, 18 Jun 2021 01:00:06 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET MAUI Preview 5</title>
+      <description>While we are still recovering from Microsoft Build and .NET 6 Preview 4, we are here to share our continued progress with .NET Multi-platform App UI (.NET MAUI) with .NET 6 Preview 5. In this release we have enabled animations and view transformations,
+The post Announcing .NET MAUI Preview 5 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aacym6r/</link>
+      <pubDate>Fri, 18 Jun 2021 00:58:34 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>

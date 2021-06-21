@@ -15,10 +15,14 @@ https://docs.microsoft.com/en-us/exchange/client-developer/exchange-server-devel
 
 Overview of Microsoft Graph
 https://docs.microsoft.com/en-us/graph/overview
+https://docs.microsoft.com/en-us/learn/paths/m365-msgraph-fundamentals
 https://graph.microsoft.com
 https://graph.microsoft.com/v1.0/me/messages
 http://aka.ms/graph
 https://developer.microsoft.com/en-us/graph
+https://developer.microsoft.com/graph/graph-explorer
+https://docs.microsoft.com/en-us/graph/sdks/sdks-overview
+https://github.com/microsoftgraph/aspnet-snippets-sample/tree/main
 https://docs.microsoft.com/en-us/graph/api/resources/mail-api-overview?view=graph-rest-1.0
 https://docs.microsoft.com/en-us/graph/auth/auth-concepts
 
