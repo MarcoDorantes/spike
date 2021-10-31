@@ -16721,5 +16721,117 @@ The post Announcing .NET MAUI Preview 5 appeared first on Visual Studio news fee
       <pubDate>Fri, 18 Jun 2021 00:58:34 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>.NET Object Allocation Tool Performance</title>
+      <description>With the release of Visual Studio 16.10 comes a new analysis engine for the Performance Profiler, with the .NET Object Allocation Tool being the first tool to be onboarded. This provides the tool with some new features and a significant perf boost.
+The post .NET Object Allocation Tool Performance appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aad2xed/</link>
+      <pubDate>Fri, 02 Jul 2021 17:11:33 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Debugging for Unity with Visual Studio</title>
+      <description>So you’re ready to level up your debugging skills with Unity and Visual Studio? Check out our new video series in this playlist: Beginner Series: Intro to Visual Studio Tooling for Unity. This series focuses on common Unity troubleshooting scenarios and how you can use Visual Studio to find and fix them
+The post Debugging for Unity with Visual Studio appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aad28ds/</link>
+      <pubDate>Fri, 02 Jul 2021 17:09:39 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 Preview 2 is out!</title>
+      <description>We’re excited to announce the second preview release of Visual Studio 2022! Preview 1 was the first-ever 64-bit Visual Studio, delivering improved scalability. Starting with Preview 2, we’re focusing on delivering new capabilities on the themes of personal and team productivity,
+The post Visual Studio 2022 Preview 2 is out! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aad75lf/</link>
+      <pubDate>Fri, 16 Jul 2021 19:49:26 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Build and Debug C++ with WSL 2 Distributions and Visual Studio 2022</title>
+      <description>Visual Studio 2022 introduces a native WSL 2 toolset for C++ development. This toolset is available now in Visual Studio 2022 version 17.0 Preview 2. WSL 2 is the new, recommended version of the Windows Subsystem for Linux (WSL) architecture that provides better Linux file system performance,
+The post Build and Debug C++ with WSL 2 Distributions and Visual Studio 2022 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aad82d2/</link>
+      <pubDate>Fri, 16 Jul 2021 19:47:43 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Design your Web Forms apps with Web Live Preview in Visual Studio 2022</title>
+      <description>In Visual Studio 2022 Preview 2, we have introduced a new designer for WebForms projects that is powered by Web Live Preview. In this post we will go over how you can use the new Web Forms designer as well as other features provided by Web Live Preview.
+The post Design your Web Forms apps with Web Live Preview in Visual Studio 2022 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aad89zj/</link>
+      <pubDate>Fri, 16 Jul 2021 19:38:44 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Debug code with force run to cursor</title>
+      <description>Have you ever had an experience when breakpoints in your application cause some disruption in your debugging, because you may need to test your updated code or focus on another area that does not need those break conditions? Starting Visual Studio 2022 Preview 2,
+The post Debug code with force run to cursor appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aad6xx7/</link>
+      <pubDate>Fri, 16 Jul 2021 19:35:31 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Speed up your .NET and C++ development with Hot Reload in Visual Studio 2022</title>
+      <description>With the recent release of Visual Studio 2022 Preview 2 we’d like to use this blog post to dive deeper into the brand-new Hot Reload experience which works for both managed .NET and newly supported native C++ apps.
+The post Speed up your .NET and C++ development with Hot Reload in Visual Studio 2022 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aadbubw/</link>
+      <pubDate>Tue, 03 Aug 2021 00:40:50 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 Preview 3 now available!</title>
+      <description>We are excited to announce the third preview release of Visual Studio 2022! With Preview 3 there are more new capabilities on the themes of personal and team productivity, modern development, and constant innovation.
+The post Visual Studio 2022 Preview 3 now available! appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaddv4f/</link>
+      <pubDate>Tue, 10 Aug 2021 17:32:09 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2019 v16.11 is Available Now</title>
+      <description>We are excited to announce the release of Visual Studio 2019 v16.11 GA. This release improves upon the Git tooling experience in Visual Studio, enables Hot Reload for .NET applications, adds convenient links to the help menu, and upgrades LLVM tools to LLVM 12.
+The post Visual Studio 2019 v16.11 is Available Now appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aaddnpl/</link>
+      <pubDate>Tue, 10 Aug 2021 17:31:04 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 Preview 4 is now available</title>
+      <description>We are excited to announce the fourth preview release of Visual Studio 2022! With Preview 4, there are more new capabilities on the themes of personal and team productivity, modern development, and constant innovation. In this blog, we’re highlighting a few of the new capabilities of Visual Studio 2022 Preview 4.
+The post Visual Studio 2022 Preview 4 is now available appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aadu6jy/</link>
+      <pubDate>Thu, 16 Sep 2021 18:07:55 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Announcing .NET 6 Release Candidate 1</title>
+      <description>We are happy to release .NET 6 Release Candidate 1. It is the first of two “go live” release candidate releases that are supported in production. For the last month or so, the team has been focused exclusively on quality improvements that resolve functional or performance issues in new features or regressions in existing ones
+The post Announcing .NET 6 Release Candidate 1 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aadv2hl/</link>
+      <pubDate>Thu, 16 Sep 2021 17:06:54 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Boost your productivity with Productivity Power Tools Extensions in Visual Studio 2022</title>
+      <description>Visual Studio 2022 is here and is more customizable than ever. However, that experience may not be complete without the essential extensions you know and love.  As existing extensions continue to be migrated, we’re excited to announce that one of the most popular and anticipated sets of extensions is now available to download today: Productivity Power Tools for Visual Studio 2022!
+The post Boost your productivity with Productivity Power Tools Extensions in Visual Studio 2022 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aadtz56/</link>
+      <pubDate>Thu, 16 Sep 2021 17:03:40 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>The Future of Visual Studio Extensibility is Here</title>
+      <description>Visual Studio 2022 seeks to greatly improve your overall development experience, and we’re moving forward with that journey in improving VS extension writing and usage today!  We have several exciting extensibility updates that are either available now or on the horizon,
+The post The Future of Visual Studio Extensibility is Here appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aadu6dg/</link>
+      <pubDate>Thu, 16 Sep 2021 17:02:00 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
+    <item>
+      <title>Join us November 8 for the Launch of Visual Studio 2022</title>
+      <description>On behalf of our entire team, we are excited to announce the upcoming release of Visual Studio 2022 on November 8, and the immediate availability of the Visual Studio 2022 Release Candidate (RC). We invite you to explore the latest capabilities of Visual Studio 2022 at our virtual launch event on November 8.
+The post Join us November 8 for the Launch of Visual Studio 2022 appeared first on Visual Studio news feed.</description>
+      <link>https://aka.ms/aae1n2g/</link>
+      <pubDate>Tue, 12 Oct 2021 18:26:10 Z</pubDate>
+      <category>AllSKUs</category>
+    </item>
   </channel>
 </rss>
