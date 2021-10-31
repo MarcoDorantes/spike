@@ -1,0 +1,10 @@
+PS C:\> .\Create-CloudWatchLogs.ps1 .\CloudWatchLogs.yml
+
+Creating TopEngine with RetentionInDays = 5
+        LogGroup TopEngine : Creating EngineStats
+        LogGroup TopEngine : Creating InputSession
+        LogGroup TopEngine : Creating Resultset
+
+Creating MainSource with RetentionInDays = 10
+        LogGroup MainSource : Creating MessageRate
+        LogGroup MainSource : Creating Threshold

@@ -1,0 +1,43 @@
+---
+Resources:
+  TopEngine:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: TopEngine
+      RetentionInDays: 5
+  EngineStats:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogStreamName: EngineStats
+      LogGroupName:
+        Ref: TopEngine
+  InputSession:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogStreamName: InputSession
+      LogGroupName:
+        Ref: TopEngine
+  Resultset:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogStreamName: Resultset
+      LogGroupName:
+        Ref: TopEngine
+  MainSource:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: MainSource
+      RetentionInDays: 10
+  MessageRate:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogStreamName: MessageRate
+      LogGroupName:
+        Ref: MainSource
+  Threshold:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogStreamName: Threshold
+      LogGroupName:
+        Ref: MainSource
+...
