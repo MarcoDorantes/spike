@@ -15,6 +15,9 @@ https://login.microsoftonline.com/common/oauth2/nativeclient
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
 Unhandled exception. System.AggregateException: One or more errors occurred. (DeviceCodeCredential authentication failed: AADSTS50059: No tenant-identifying information found in either the request or implied by any provided credentials.
+
+Authentication and authorization basics for Microsoft Graph
+https://docs.microsoft.com/en-us/graph/auth/auth-concepts
 */
 
 using System;
