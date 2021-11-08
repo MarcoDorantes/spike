@@ -17,26 +17,26 @@ public static class yaml
     #region to XML
     public static string AsXml_1dot0(object graph)
     {
-        var xml = parse(graph);
+        var xml = transpose(graph);
 
         var root = new XDocument(new XElement("yaml"));
         root.Root.Add(xml);
         return $"{root}";
     }
-    public static object parse(object x)
+    public static object transpose(object x)
     {
         object result = default;
         switch (x)
         {
             case null: result = null; break;
             case string s: result = new XElement("value", s); break;
-            case IList<object> _l: result = parse_list(_l); break;
-            case IDictionary<object, object> d: result = parse(d); break;
+            case IList<object> _l: result = transpose_list(_l); break;
+            case IDictionary<object, object> d: result = transpose(d); break;
             default: throw new Exception($"*** unsupported default ({x},{x?.GetType().FullName}) ***");
         }
         return result;
     }
-    public static object parse(IDictionary<object, object> _m)
+    public static object transpose(IDictionary<object, object> _m)
     {
         var result = new XElement("map");
         foreach (var pair in _m)
@@ -52,14 +52,14 @@ public static class yaml
             {
                 case null: entry.Add(new XElement("value")); break;
                 case string s: entry.Add(new XElement("value", s)); break;
-                case IList<object> _l: entry.Add(new XElement("value", parse_list(_l))); break;
-                case IDictionary<object, object> _c: entry.Add(new XElement("value", parse(_c))); break;
+                case IList<object> _l: entry.Add(new XElement("value", transpose_list(_l))); break;
+                case IDictionary<object, object> _c: entry.Add(new XElement("value", transpose(_c))); break;
                 default: throw new Exception($"*** unsupported default ({pair.Value},{pair.Value?.GetType().FullName}) ***");
             }
         }
         return result;
     }
-    public static object parse_list(IList<object> _L)
+    public static object transpose_list(IList<object> _L)
     {
         var result = new XElement("list");
         foreach (var x in _L)
@@ -68,8 +68,8 @@ public static class yaml
             {
                 case null: result.Add(new XElement("entry")); break;
                 case string s: result.Add(new XElement("entry", s)); break;
-                case IList<object> _l: result.Add(new XElement("entry", parse_list(_l))); break;
-                case IDictionary<object, object> _c: result.Add(new XElement("entry", parse(_c))); break;
+                case IList<object> _l: result.Add(new XElement("entry", transpose_list(_l))); break;
+                case IDictionary<object, object> _c: result.Add(new XElement("entry", transpose(_c))); break;
                 default: throw new Exception($"*** unsupported default ({x},{x?.GetType().FullName}) ***");
             }
         }
