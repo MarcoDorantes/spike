@@ -6,14 +6,15 @@ using System.Collections.Generic;
 public static class yaml
 {
     #region Deserialization
-    public static object deserial(string yaml) => deserial(new StringReader(yaml));
-    public static object deserial(TextReader r)
+    public static object deserial(string yaml)
     {
-        using(r)
-        {
-            var d = new YamlDotNet.Serialization.Deserializer(); //Provided <PackageReference Include="YamlDotNet" Version="9.1.0" />
-            return d.Deserialize(r);
-        }
+        using var reader = new StringReader(yaml);
+        return deserial(reader);
+    }
+    public static object deserial(TextReader reader)
+    {
+        var d = new YamlDotNet.Serialization.Deserializer(); //Provided <PackageReference Include="YamlDotNet" Version="9.1.0" />
+        return d.Deserialize(reader);
     }
     #endregion
 
