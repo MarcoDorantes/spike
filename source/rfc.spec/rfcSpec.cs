@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 [TestClass]
-public class UnitTest1
+public class rfcSpec
 {
     #region SUT
     //static bool IsLetter(char c) => c is (>= 'a' and <= 'z') or (>= 'A' and <= 'Z'); //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns#positional-pattern
