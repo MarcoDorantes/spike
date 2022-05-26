@@ -25,12 +25,16 @@ https://docs.microsoft.com/en-us/graph/sdks/sdks-overview
 https://github.com/microsoftgraph/aspnet-snippets-sample/tree/main
 https://docs.microsoft.com/en-us/graph/api/resources/mail-api-overview?view=graph-rest-1.0
 https://docs.microsoft.com/en-us/graph/auth/auth-concepts
+https://docs.microsoft.com/en-us/graph/best-practices-concept
+https://docs.microsoft.com/en-us/graph/auth-v2-service
 
 https://developer.microsoft.com/en-us/graph/blogs/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/
 https://techcommunity.microsoft.com/t5/exchange-team-blog/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/ba-p/608055
 https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-april-2020-update/ba-p/1275508
 https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-july-update/ba-p/1530163
 https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-february-2021-update/ba-p/2111904
+https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-september-2021-update/ba-p/2772210
+https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-deprecation-in-exchange-online-may-2022/ba-p/3301866
 
 https://stackoverflow.com/questions/32735584/o365-ews-managed-api-and-exchangeversion
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/ews-schema-versions-in-exchange?redirectedfrom=MSDN
