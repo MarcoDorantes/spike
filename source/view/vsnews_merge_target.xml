@@ -16857,5 +16857,121 @@ The post Announcing .NET 6  The Fastest .NET Yet appeared first on Visual Studio
       <pubDate>Mon, 08 Nov 2021 19:56:34 Z</pubDate>
       <category>AllSKUs</category>
     </item>
+    <item>
+      <title>Visual Studio at Microsoft Build 2022</title>
+      <description>This week we had Microsoft Build 2022 and there were some announcements made in Amanda Silver’s Theme session and multiple breakouts that are exciting for Visual Studio users, like you. We released the .NET Multi-platform App UI (a.k.a. .NET MAUI), announced Microsoft Dev Box,
+The post Visual Studio at Microsoft Build 2022 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-at-microsoft-build-2022/</link>
+      <pubDate>Thu, 26 May 2022 17:00:08 Z</pubDate>
+      <category>Cloud</category>
+      <category>Cross-Platform</category>
+      <category>Desktop</category>
+      <category>Mobile</category>
+      <category>Team and Development</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+    </item>
+    <item>
+      <title>Introducing the private preview of port tunneling in Visual Studio for ASP.NET Core projects</title>
+      <description>In Visual Studio 2022 17.3 Preview 1.1 we added support to port tunneling (forwarding) to your ASP.NET Core web projects. Port tunneling enables connections between machines that cannot directly connect to each other. Port tunneling is also referred to as port forwarding,
+The post Introducing the private preview of port tunneling in Visual Studio for ASP.NET Core projects appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-private-preview-port-tunneling-visual-studio-for-asp-net-core-projects/</link>
+      <pubDate>Wed, 25 May 2022 15:04:16 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 for Mac is now available</title>
+      <description>Today, I’m thrilled to share the news of the general availability (GA) release of Visual Studio 2022 for Mac v17.0 and that it’s available to download now. This is the fastest Visual Studio for Mac version yet with an all new native macOS UI,
+The post Visual Studio 2022 for Mac is now available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-for-mac-is-now-available/</link>
+      <pubDate>Mon, 23 May 2022 19:31:35 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Visual Studio 2022 for Mac</category>
+      <category>Visual Studio for Mac</category>
+      <category>VSMac</category>
+    </item>
+    <item>
+      <title>All-In-One Search Is Getting Slicker</title>
+      <description>Since we first previewed a brand new way to search your code called the All-In-One Search with Visual Studio 17.2, we’ve been making updates to the UI to make it feel slicker and help you search your code faster! In 17.3,
+The post All-In-One Search Is Getting Slicker appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/all-in-one-search-is-getting-slicker/</link>
+      <pubDate>Tue, 17 May 2022 15:00:52 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 for Mac Release Candidate 2</title>
+      <description>Visual Studio 2022 for Mac 17.0 Release Candidate 2 is now available! In this release, we’ve focused on addressing top reported issues from the first release candidate. This work builds on top of earlier previews where we’ve moved the UI of the IDE to fully native macOS UI and migrated the IDE to run on top of .NET 6 (enabling native support of Apple’s M1 (arm64) processor).
+The post Visual Studio 2022 for Mac Release Candidate 2 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-for-mac-release-candidate-2/</link>
+      <pubDate>Wed, 11 May 2022 16:57:05 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Visual Studio 2022 for Mac</category>
+      <category>Visual Studio for Mac</category>
+      <category>VSMac</category>
+    </item>
+    <item>
+      <title>Just-in-time refactoring made even easier with IntelliCode auto suggested code for C#</title>
+      <description>Have you ever wondered if there was a tool to help you with routine code tasks like writing common constructors or inserting similar code to a few different spots? Maybe you even know some code actions or refactorings that can help you.
+The post Just-in-time refactoring made even easier with IntelliCode auto suggested code for C# appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/just-in-time-refactoring-intellicode-suggestions/</link>
+      <pubDate>Wed, 11 May 2022 16:00:46 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>C#</category>
+      <category>IntelliCode</category>
+      <category>IntelliCode suggestions</category>
+      <category>Machine Learning</category>
+      <category>Productivity</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.2 is now available!</title>
+      <description>Today we are pleased to release Visual Studio 2022 17.2 as generally available. We want to acknowledge and thank all developers like you that continue to provide us valuable feedback on your experiences using Visual Studio 2022 for helping shape the product and be a part of our release!
+The post Visual Studio 2022 17.2 is now available! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-2-is-now-available/</link>
+      <pubDate>Tue, 10 May 2022 17:59:17 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Update all Visual Studio installations with a single click!</title>
+      <description>We are continuously improving the Visual Studio update experience so that it’s as easy and effortless as possible. Many of you take advantage of the side-by-side support for Visual Studio and have multiple versions of Visual Studio installed simultaneously. In 17.3 Preview 1,
+The post Update all Visual Studio installations with a single click! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/update-all-visual-studio-installations-with-a-single-click/</link>
+      <pubDate>Mon, 09 May 2022 22:00:34 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Installer</category>
+      <category>Updates</category>
+    </item>
+    <item>
+      <title>Visual Studio on an ultra-wide monitor</title>
+      <description>A growing number of Visual Studio customers use ultra-wide monitors today. Ultra-wide means wider than a traditional 16:9 widescreen display – usually 34401440 or larger resolution. They seem to be gaining popularity among developers and I’m curious how Visual Studio can use all this extra space.
+The post Visual Studio on an ultra-wide monitor appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-on-an-ultra-wide-monitor/</link>
+      <pubDate>Thu, 05 May 2022 15:00:55 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Productivity</category>
+      <category>Tips and Tricks</category>
+    </item>
+    <item>
+      <title>Case Study: Double performance in under 30 minutes</title>
+      <description>Summary
+Recently I was converting some decompression code to C# so that we could use it cross platform and to aid in our team’s effort to migrate our new analysis process to .NET 6. After I got the initial implementation done with the simplest,
+The post Case Study: Double performance in under 30 minutes appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/case-study-double-performance-in-under-30-minutes/</link>
+      <pubDate>Mon, 02 May 2022 14:30:48 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>.NET Object Allocation</category>
+      <category>CPU Usage</category>
+      <category>Performance Profiler</category>
+      <category>Visual Studio Profiler</category>
+    </item>
+    <item>
+      <title>Improved doc management personalization</title>
+      <description>Visual Studio 2022 allows you to personalize your IDE so you can code the way you want. We’ve added new document management capabilities so navigating tabs and organizing your workspace has become more flexible. Take a look at our other Personalization capabilities,
+The post Improved doc management personalization appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/doc-management-personalization/</link>
+      <pubDate>Wed, 01 Jun 2022 15:12:28 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>doc management</category>
+      <category>Personalization</category>
+    </item>
   </channel>
 </rss>
