@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.Exchange.WebServices" Version="2.2.0" />
     <PackageReference Include="TaskScheduler" Version="2.8.1" />
     <PackageReference Include="sencod" Version="0.1.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.44.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

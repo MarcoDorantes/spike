@@ -6,7 +6,9 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Security.Cryptography;
+
 using static System.Console;
 
 /*
@@ -38,6 +40,9 @@ https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-d
 
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/authentication-and-ews-in-exchange
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-authenticate-an-ews-application-by-using-oauth
+https://docs.microsoft.com/en-us/azure/active-directory/develop/security-tokens
+https://aka.ms/redirectUriMismatchError
+https://github.com/gscales/EWS-BasicToOAuth-Info/blob/main/What%20to%20do%20with%20EWS%20Managed%20API%20PowerShell%20scripts%20that%20use%20Basic%20Authentication.md
 https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online
 https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-v2-libraries
 https://docs.microsoft.com/en-us/azure/active-directory/develop/console-app-quickstart?pivots=devlang-dotnet-core
@@ -415,11 +420,15 @@ static class orgmail
     {
       var ews_url = ConfigurationManager.AppSettings["EWS"];
       var address = ConfigurationManager.AppSettings["emailaddress"];
-      var access = GetAccess();
+      /*var access = GetAccess();
       var exchange = new Microsoft.Exchange.WebServices.Data.ExchangeService(Microsoft.Exchange.WebServices.Data.ExchangeVersion.Exchange2013);
       exchange.Credentials = new Microsoft.Exchange.WebServices.Data.WebCredentials(address, access);
       exchange.Url = new Uri(ews_url);
-      return exchange;
+      return exchange;*/
+
+      //Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_apponly_auth().Result;
+      Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_delegated_auth().Result;
+      return Add_an_authentication_token_to_EWS_requests(authResult, ews_url, address);
     }
     string GetAccess()
     {
@@ -433,6 +442,63 @@ static class orgmail
     {
       var x = new encod.sencod();
       return x.Open(System.Configuration.ConfigurationManager.AppSettings["access"]);
+    }
+    async Task<Microsoft.Identity.Client.AuthenticationResult> Get_a_token_with_delegated_auth()//https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-authenticate-an-ews-application-by-using-oauth#get-a-token-with-delegated-auth
+    {
+      Microsoft.Identity.Client.AuthenticationResult result=null;
+      // Using Microsoft.Identity.Client 4.22.0
+
+      // Configure the MSAL client to get tokens
+      var pcaOptions = new Microsoft.Identity.Client.PublicClientApplicationOptions
+      {
+          ClientId = ConfigurationManager.AppSettings["appId"],
+          TenantId = ConfigurationManager.AppSettings["tenantId"]
+      };
+
+      var pca = Microsoft.Identity.Client.PublicClientApplicationBuilder.CreateWithApplicationOptions(pcaOptions).Build();
+
+      // The permission scope required for EWS access
+      var ewsScopes = new string[] { "https://outlook.office365.com/EWS.AccessAsUser.All" };
+
+      // Make the interactive token request
+      var authResult = await pca.AcquireTokenInteractive(ewsScopes).ExecuteAsync();
+      result=authResult;
+      return result;
+    }
+    async Task<Microsoft.Identity.Client.AuthenticationResult> Get_a_token_with_apponly_auth()//https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-authenticate-an-ews-application-by-using-oauth#get-a-token-with-app-only-auth
+    {
+      Microsoft.Identity.Client.AuthenticationResult result=null;
+      // Using Microsoft.Identity.Client 4.22.0
+      var cca = Microsoft.Identity.Client.ConfidentialClientApplicationBuilder
+          .Create(ConfigurationManager.AppSettings["appId"])
+          .WithClientSecret(ConfigurationManager.AppSettings["clientSecret"])
+          .WithTenantId(ConfigurationManager.AppSettings["tenantId"])
+          .Build();
+
+      // The permission scope required for EWS access
+      var ewsScopes = new string[] { "https://outlook.office365.com/.default" };
+
+      //Make the token request
+      var authResult = await cca.AcquireTokenForClient(ewsScopes).ExecuteAsync();
+      result=authResult;
+      return result;
+    }
+    Microsoft.Exchange.WebServices.Data.ExchangeService Add_an_authentication_token_to_EWS_requests(Microsoft.Identity.Client.AuthenticationResult authResult, string ews_url, string emailaddress, bool impersonation = false)//https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-authenticate-an-ews-application-by-using-oauth#add-an-authentication-token-to-ews-requests
+    {
+      // Configure the ExchangeService with the access token
+      var ewsClient = new Microsoft.Exchange.WebServices.Data.ExchangeService();
+      ewsClient.Url = new Uri(ews_url);
+      ewsClient.Credentials = new Microsoft.Exchange.WebServices.Data.OAuthCredentials(authResult.AccessToken);
+
+      if(!impersonation) return ewsClient;
+
+      //Impersonate the mailbox you'd like to access.
+      ewsClient.ImpersonatedUserId = new Microsoft.Exchange.WebServices.Data.ImpersonatedUserId(Microsoft.Exchange.WebServices.Data.ConnectingIdType.SmtpAddress, emailaddress);
+
+      //Include x-anchormailbox header
+      ewsClient.HttpHeaders.Add("X-AnchorMailbox", emailaddress);
+
+      return ewsClient;
     }
     Microsoft.Exchange.WebServices.Data.Folder GetTargetFolder(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername)
     {
