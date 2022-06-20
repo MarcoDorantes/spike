@@ -426,9 +426,9 @@ static class orgmail
       exchange.Url = new Uri(ews_url);
       return exchange;*/
 
-      //Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_apponly_auth().Result;
-      Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_delegated_auth().Result;
-      return Add_an_authentication_token_to_EWS_requests(authResult, ews_url, address);
+      Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_apponly_auth().Result;
+      //Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_delegated_auth().Result;
+      return Add_an_authentication_token_to_EWS_requests(authResult, ews_url, address, true);
     }
     string GetAccess()
     {
