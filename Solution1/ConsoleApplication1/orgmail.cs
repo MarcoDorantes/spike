@@ -47,6 +47,7 @@ https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/
 https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-v2-libraries
 https://docs.microsoft.com/en-us/azure/active-directory/develop/console-app-quickstart?pivots=devlang-dotnet-core
 https://help.askcody.com/retirement-for-basic-auth-for-exchange-online
+https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-trace-requests-responses-to-troubleshoot-ews-managed-api-applications
 
 https://stackoverflow.com/questions/32735584/o365-ews-managed-api-and-exchangeversion
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/ews-schema-versions-in-exchange?redirectedfrom=MSDN
