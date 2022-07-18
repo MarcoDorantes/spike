@@ -30,6 +30,7 @@ https://docs.microsoft.com/en-us/graph/auth/auth-concepts
 https://docs.microsoft.com/en-us/graph/best-practices-concept
 https://docs.microsoft.com/en-us/graph/auth-v2-service
 
+https://aka.ms/AAgzk1b | https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online
 https://developer.microsoft.com/en-us/graph/blogs/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/
 https://techcommunity.microsoft.com/t5/exchange-team-blog/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/ba-p/608055
 https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-april-2020-update/ba-p/1275508
@@ -48,6 +49,7 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-v2-lib
 https://docs.microsoft.com/en-us/azure/active-directory/develop/console-app-quickstart?pivots=devlang-dotnet-core
 https://help.askcody.com/retirement-for-basic-auth-for-exchange-online
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-trace-requests-responses-to-troubleshoot-ews-managed-api-applications
+https://testconnectivity.microsoft.com/
 
 https://stackoverflow.com/questions/32735584/o365-ews-managed-api-and-exchangeversion
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/ews-schema-versions-in-exchange?redirectedfrom=MSDN
