@@ -49,6 +49,7 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-v2-lib
 https://docs.microsoft.com/en-us/azure/active-directory/develop/console-app-quickstart?pivots=devlang-dotnet-core
 https://help.askcody.com/retirement-for-basic-auth-for-exchange-online
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-trace-requests-responses-to-troubleshoot-ews-managed-api-applications
+https://aka.ms/msal-net-token-cache-serialization
 https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows
 https://testconnectivity.microsoft.com/
 
