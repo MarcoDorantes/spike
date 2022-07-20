@@ -50,6 +50,8 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/console-app-quic
 https://help.askcody.com/retirement-for-basic-auth-for-exchange-online
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-trace-requests-responses-to-troubleshoot-ews-managed-api-applications
 https://aka.ms/msal-net-token-cache-serialization
+https://docs.microsoft.com/en-us/exchange/troubleshoot/client-connectivity/http-clients-connect-diabled-account
+https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/High-availability#pro-active-token-renewal
 https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows
 https://testconnectivity.microsoft.com/
 
