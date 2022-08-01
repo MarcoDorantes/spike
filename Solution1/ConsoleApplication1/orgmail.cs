@@ -427,28 +427,33 @@ static class orgmail
     {
       var ews_url = ConfigurationManager.AppSettings["EWS"];
       var address = ConfigurationManager.AppSettings["emailaddress"];
+
+      var appId = GetAccess(ConfigurationManager.AppSettings["appId"]);
+      var clientSecret = GetAccess(ConfigurationManager.AppSettings["clientSecret"]);
+      var tenantId = GetAccess(ConfigurationManager.AppSettings["tenantId"]);
+
       /*var access = GetAccess();
       var exchange = new Microsoft.Exchange.WebServices.Data.ExchangeService(Microsoft.Exchange.WebServices.Data.ExchangeVersion.Exchange2013);
       exchange.Credentials = new Microsoft.Exchange.WebServices.Data.WebCredentials(address, access);
       exchange.Url = new Uri(ews_url);
       return exchange;*/
 
-      Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_apponly_auth().Result;
+      Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_apponly_auth(appId, clientSecret, tenantId).Result;
       //Microsoft.Identity.Client.AuthenticationResult authResult = Get_a_token_with_delegated_auth().Result;
       return Add_an_authentication_token_to_EWS_requests(authResult, ews_url, address, true);
     }
-    string GetAccess()
+    string GetAccess(string key)
     {
       return
       //ReadLine();
       //System.Configuration.ConfigurationManager.AppSettings["access"];
       //StringCipher.Decrypt(System.Configuration.ConfigurationManager.AppSettings["access"], System.Configuration.ConfigurationManager.AppSettings["key"]);
-      GetSecret();
+      GetSecret(key);
     }
-    string GetSecret()
+    string GetSecret(string key)
     {
       var x = new encod.sencod();
-      return x.Open(System.Configuration.ConfigurationManager.AppSettings["access"]);
+      return x.Open(key);
     }
     async Task<Microsoft.Identity.Client.AuthenticationResult> Get_a_token_with_delegated_auth()//https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-authenticate-an-ews-application-by-using-oauth#get-a-token-with-delegated-auth
     {
@@ -472,14 +477,14 @@ static class orgmail
       result=authResult;
       return result;
     }
-    async Task<Microsoft.Identity.Client.AuthenticationResult> Get_a_token_with_apponly_auth()//https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-authenticate-an-ews-application-by-using-oauth#get-a-token-with-app-only-auth
+    async Task<Microsoft.Identity.Client.AuthenticationResult> Get_a_token_with_apponly_auth(string appId, string clientSecret, string tenantId)//https://docs.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-authenticate-an-ews-application-by-using-oauth#get-a-token-with-app-only-auth
     {
       Microsoft.Identity.Client.AuthenticationResult result=null;
       // Using Microsoft.Identity.Client 4.22.0
       var cca = Microsoft.Identity.Client.ConfidentialClientApplicationBuilder
-          .Create(ConfigurationManager.AppSettings["appId"])
-          .WithClientSecret(ConfigurationManager.AppSettings["clientSecret"])
-          .WithTenantId(ConfigurationManager.AppSettings["tenantId"])
+          .Create(appId)
+          .WithClientSecret(clientSecret)
+          .WithTenantId(tenantId)
           .Build();
 
       // The permission scope required for EWS access
