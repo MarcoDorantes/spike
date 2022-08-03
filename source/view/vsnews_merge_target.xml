@@ -16973,5 +16973,110 @@ The post Improved doc management personalization appeared first on Visual Studio
       <category>doc management</category>
       <category>Personalization</category>
     </item>
+    <item>
+      <title>IEnumerable Debugger Visualizer Improvements</title>
+      <description>In Visual Studio 17.3 Preview 3, we added a few highly requested improvements in IEnumerable visualizer like Filtering, Theming, and CSV export to enhance the visualizer experience further.
+The .NET IEnumerable debugger visualizer is one of our most loved debugging features in recent times.
+The post IEnumerable Debugger Visualizer Improvements appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/ienumerable-visualizer-improvements/</link>
+      <pubDate>Thu, 14 Jul 2022 15:00:00 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Analysis Services and Reporting Services extensions for Visual Studio 2022 are here!</title>
+      <description>We’re happy to announce the popular and long-awaited Analysis Services, RDLC Report Designer, and Reporting Services extensions are available for Visual Studio 2022!  Here’s how these Microsoft extensions for SQL Server can further enhance your business intelligence solution development environment.
+SQL Server Analysis Services (SSAS)
+The Microsoft Analysis Services extension adds project templates and design tools to easily create tabular and multidimensional data models in SQL Server Analysis Services,
+The post Analysis Services and Reporting Services extensions for Visual Studio 2022 are here! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/analysis-services-and-reporting-services-extensions-for-visual-studio-2022-are-here/</link>
+      <pubDate>Tue, 12 Jul 2022 16:00:26 Z</pubDate>
+      <category>Data and Analytics</category>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Extensions</category>
+      <category>SQL</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>VS2022 Performance Enhancements: Git Branch Switching</title>
+      <description>Have you experienced delays when switching between your Git branches in Visual Studio? Did you have to wait for your solution and projects to reload after switching between branches in a Git repository? We are happy to announce performance enhancements to the branch switching experience in Visual Studio 2022.
+The post VS2022 Performance Enhancements: Git Branch Switching appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/vs2022-performance-enhancements-git-branch-switching/</link>
+      <pubDate>Mon, 11 Jul 2022 15:30:51 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Git</category>
+      <category>Performance</category>
+    </item>
+    <item>
+      <title>Sneak Peek and Edit Your Code While You Search</title>
+      <description>Throughout Visual Studio 2022 Previews, weve been releasing a series of changes to the way you go about searching code in the IDE using the new All-In-One Search:
+VS 2022 17.1 Preview 1: Indexed Find in Files
+VS 2022 17.2 Preview 3: The New All-In-One Search
+VS 2022 17.3 Preview 1: All-In-One Search UI Cleanup
+Now,
+The post Sneak Peek and Edit Your Code While You Search appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/sneak-peek-and-edit-your-code-while-you-search/</link>
+      <pubDate>Mon, 27 Jun 2022 18:31:15 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Listen Up, Visual Studio has a new feature you need to hear about!</title>
+      <description>Our accessibility journey in Visual Studio has taught us that developers love to customize their experiences to help them be productive. Some developers have been telling us that they want to use sound to help them understand what’s happening in their code.
+The post Listen Up, Visual Studio has a new feature you need to hear about! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/audio-cues-in-visual-studio-2022-17-3-preview-2/</link>
+      <pubDate>Wed, 22 Jun 2022 16:52:20 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>A11y</category>
+      <category>Accessibility</category>
+      <category>Audio</category>
+    </item>
+    <item>
+      <title>What’s New in Visual Studio: Make it Your Home</title>
+      <description>Visual Studio 2022 features an array of improvements during each major and minor release, and we know that you may not have a lot of time to find and try them after each update. We also heard from the developer community that you’d like an easy way to keep up with new Visual Studio capabilities that could be useful in your day-to-day work.
+The post What’s New in Visual Studio: Make it Your Home appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/whats-new-vs/</link>
+      <pubDate>Wed, 15 Jun 2022 15:39:49 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Arm64 Visual Studio</title>
+      <description>We are excited to announce that the release of Visual Studio 2022 17.3 Preview 2 is now available as a native Arm64 application on Windows 11! This will be the first version of Visual Studio that will natively support building and debugging Arm64 apps on Arm-based processors.
+The post Arm64 Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/arm64-visual-studio/</link>
+      <pubDate>Tue, 14 Jun 2022 19:35:12 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Arm64</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Visual Studio for Mac 17.3 Preview 2 is now available</title>
+      <description>Today we release Visual Studio for Mac v17.3 Preview 2; focused on addressing top customer feedback from the Visual Studio for Mac v17.0 release. If you’re already using the Visual Studio for Mac Preview release, use the Visual Studio  Check for Updates… menu to update.
+The post Visual Studio for Mac 17.3 Preview 2 is now available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-for-mac-17-3-preview-2-is-now-available/</link>
+      <pubDate>Tue, 14 Jun 2022 19:26:47 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Visual Studio 2022 for Mac</category>
+      <category>Visual Studio for Mac</category>
+      <category>VSMac</category>
+    </item>
+    <item>
+      <title>New Profiler feature in Visual Studio</title>
+      <description>Introducing the new File I/O tool 
+We just launched a new profiling tool in Visual Studio 17.2 that helps you understand how you can optimize your File I/O operations to improve performance in your apps. If you’re trying to investigate and diagnose slow loading times,
+The post New Profiler feature in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/new-profiler-feature-in-visual-studio/</link>
+      <pubDate>Thu, 09 Jun 2022 16:00:57 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>.NET</category>
+      <category>Diagnostics</category>
+      <category>Performance</category>
+      <category>Performance Improvements</category>
+      <category>Performance Profiler</category>
+      <category>Profiling</category>
+      <category>Visual Studio Profiler</category>
+    </item>
   </channel>
 </rss>
