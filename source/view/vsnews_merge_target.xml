@@ -17078,5 +17078,118 @@ The post New Profiler feature in Visual Studio appeared first on Visual Studio B
       <category>Profiling</category>
       <category>Visual Studio Profiler</category>
     </item>
+    <item>
+      <title>Visual Studio’s Azure Marketplace images now support Microsoft Dev Box</title>
+      <description>Over the last couple of years, we’ve expanded our Visual Studio VM image offerings for the Azure Marketplace. These images have proven to be popular not only for evaluating the latest Visual Studio releases, but also for jumpstarting developer environments in the cloud.
+The post Visual Studio’s Azure Marketplace images now support Microsoft Dev Box appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studios-azure-marketplace-images-now-support-microsoft-dev-box/</link>
+      <pubDate>Wed, 05 Oct 2022 15:00:17 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Azure</category>
+      <category>azure virtual desktop</category>
+      <category>dev box</category>
+      <category>devbox</category>
+      <category>Visual Studio 2019</category>
+      <category>Visual Studio 2022</category>
+      <category>vm</category>
+    </item>
+    <item>
+      <title>Comparing files in Visual Studio</title>
+      <description>As developers, we often need to compare two files to find the differences. Sometimes, even comparing the content of the clipboard with a file on disk. And again, sometimes comparing our local changes to previous versions from our Git commit history.
+The post Comparing files in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/comparing-files-in-visual-studio/</link>
+      <pubDate>Tue, 04 Oct 2022 15:00:18 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>diff</category>
+      <category>Experiment</category>
+    </item>
+    <item>
+      <title>Visual Studio for Mac 17.4 Preview 2.1 is now available</title>
+      <description>We are pleased to announce the second preview release of Visual Studio for Mac 17.4. This release has been focused on addressing feedback from customers and on improving the overall experience. If you are already using the Visual Studio for Mac Preview release,
+The post Visual Studio for Mac 17.4 Preview 2.1 is now available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-for-mac-17-4-preview-2-1-is-now-available/</link>
+      <pubDate>Tue, 27 Sep 2022 15:00:33 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Visual Studio for Mac</category>
+    </item>
+    <item>
+      <title>Now Introducing Arm64 Support for VS Extensions!</title>
+      <description>Back in June, we announced Arm64 Visual Studio 2022 application, the first version of Visual Studio that natively supports building and debugging Arm64 apps on Arm-based processors.  Now, we’re excited to announce the extensions you write, and use, are supported in Arm64 VS!
+The post Now Introducing Arm64 Support for VS Extensions! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/now-introducing-arm64-support-for-vs-extensions/</link>
+      <pubDate>Thu, 22 Sep 2022 16:00:23 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Extensions</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>DataTable Visualizer Improvements</title>
+      <description>Your favorite DataTable visualizer has now got a makeover with all new improvements coming in 17.4 Preview 2. The DataTable visualizers will now support sorting, filtering, exporting, and theming like IEnumerable visualizer.
+
+The DataTable Visualizer allows you to view the contents of a DataTable,
+The post DataTable Visualizer Improvements appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/datatable-visualizer-improvements/</link>
+      <pubDate>Thu, 15 Sep 2022 17:10:54 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugger</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.4 Preview 2</title>
+      <description>We have released Visual Studio 2022 17.4 Preview 2. In this post well share details about features added since Preview 1. Feedback from developers like you during our preview cycle is so important for us to deliver a final product that meets your high expectations.
+The post Visual Studio 2022 17.4 Preview 2 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-4-preview-2/</link>
+      <pubDate>Wed, 14 Sep 2022 17:23:36 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>It’s finally here. Bicep is in Visual Studio!</title>
+      <description>In less than two years, Bicep’s VS Code extension has grown from zero users to more than 15 thousand a month. In addition to the Bicep extensions success, millions of resources are now deployed with Bicep files via Azure CLI and Azure PowerShell.
+The post It’s finally here. Bicep is in Visual Studio! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/bicepforvs/</link>
+      <pubDate>Wed, 14 Sep 2022 14:30:09 Z</pubDate>
+      <category>Azure</category>
+      <category>Cloud</category>
+      <category>Open Source</category>
+      <category>Visual Studio</category>
+      <category>Bicep</category>
+      <category>Deployment</category>
+    </item>
+    <item>
+      <title>Adding color to bracket pairs</title>
+      <description>When dealing with deeply nested brackets in Visual Studio, it can be hard to figure out which brackets match and which do not. For people with color blindness or other optic maladies, the problem can be even worse. By color-coding bracket pairs,
+The post Adding color to bracket pairs appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/adding-color-to-bracket-pairs/</link>
+      <pubDate>Mon, 05 Sep 2022 15:00:18 Z</pubDate>
+      <category>Open Source</category>
+      <category>Visual Studio</category>
+      <category>Accessibility</category>
+      <category>Experiment</category>
+      <category>Extensions</category>
+    </item>
+    <item>
+      <title>Live Share: Enterprise Policies are here!</title>
+      <description>Securing your Visual Studio Live Share session has never been easier. Whether you’re looking to restrict access to only individuals in your organization or to disable read-write terminals, your organization can now configure policies for proper control and compliance.
+Today, we invite organizations to explore everything Live Share has to offer,
+The post Live Share: Enterprise Policies are here! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/ls-policies/</link>
+      <pubDate>Wed, 17 Aug 2022 15:00:30 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>group policy</category>
+      <category>Live Share</category>
+      <category>Visual Studio Live Share</category>
+    </item>
+    <item>
+      <title>What’s New in Visual Studio 2022 17.4 Preview 1</title>
+      <description>We released Visual Studio 2022 17.4 Preview 1 last week alongside the 17.3 generally available release. In this post well share details about some of the new capabilities in this preview and the focus of this release. Feedback from developers like you during our preview cycle is so important for us to deliver a final product that meets your high expectations.
+The post Whats New in Visual Studio 2022 17.4 Preview 1 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-4-preview-1/</link>
+      <pubDate>Tue, 16 Aug 2022 16:00:15 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
   </channel>
 </rss>
