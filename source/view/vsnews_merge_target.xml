@@ -17191,5 +17191,266 @@ The post Whats New in Visual Studio 2022 17.4 Preview 1 appeared first on Visual
       <pubDate>Tue, 16 Aug 2022 16:00:15 Z</pubDate>
       <category>Visual Studio</category>
     </item>
+    <item>
+      <title>Introducing Visual Studio Rollback!</title>
+      <description>Visual Studio IDE is a feature-rich program that supports many aspects of software development. Our customers can use VS to edit, debug, and build code, and then publish an app. The IDE also provides frequent updates to add additional features, make reliability improvements,
+The post Introducing Visual Studio Rollback! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-visual-studio-rollback/</link>
+      <pubDate>Thu, 10 Nov 2022 17:30:02 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Deploy Visual Studio updates to devices enrolled in Windows Update for Business</title>
+      <description>Starting in November 2022, IT Administrators can now deploy Visual Studio administrator security updates throughout their organization to cloud connected devices that are configured to use Windows Update for Business (WUfB) and are managed by mobile device management solutions such as Microsoft Endpoint Manager (also known as Intune).
+The post Deploy Visual Studio updates to devices enrolled in Windows Update for Business appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/deploy-visual-studio-updates-to-devices-enrolled-in-windows-update-for-business/</link>
+      <pubDate>Wed, 09 Nov 2022 17:00:10 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Administrator Updates</category>
+      <category>IT Admin</category>
+    </item>
+    <item>
+      <title>Arm64 Visual Studio is officially here!</title>
+      <description>We are happy to announce the first fully supported Arm64 version of Visual Studio that will natively run, allowing building, and debugging Arm64 apps on Arm-based processors.
+17.4 GA delivers a native Arm64 experience for Visual Studio that eliminates the need for emulation in most developer workflows.
+The post Arm64 Visual Studio is officially here! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/arm64-visual-studio-is-officially-here/</link>
+      <pubDate>Tue, 08 Nov 2022 20:00:30 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Arm64</category>
+    </item>
+    <item>
+      <title>Visual Studio for Mac 17.4 is now available</title>
+      <description>Visual Studio for Mac v17.4 is available today! This release includes improvements to the editor like the new Editing State margin and the return of the Class pad, and fixes for issues that users have reported. We’re also releasing our first preview of Visual Studio for Mac 17.5 for people to see what we’ve got planned. 
+The post Visual Studio for Mac 17.4 is now available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-17-4-is-now-available/</link>
+      <pubDate>Tue, 08 Nov 2022 19:00:52 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Announcement</category>
+      <category>Visual Studio 2022 for Mac</category>
+      <category>Visual Studio for Mac</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.4 is now available!</title>
+      <description>We are happy to announce that Visual Studio 2022 17.4 is now generally available. This is our first GA release to support Arm64. In addition some of the other prominent features it includes are .NET 7, enterprise support for setup including rollback,
+The post Visual Studio 2022 17.4 is now available! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-4/</link>
+      <pubDate>Tue, 08 Nov 2022 18:18:17 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>PHP in Visual Studio</title>
+      <description>PHP is one of the most popular programming languages for server-side web development. Its used in many frameworks and CSMs like WordPress, Laravel, Symfony, and others which are behind a sizable chunk of the Internet.
+Visual Studio is a powerful IDE,
+The post PHP in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/php-in-visual-studio/</link>
+      <pubDate>Thu, 03 Nov 2022 15:00:29 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>php</category>
+    </item>
+    <item>
+      <title>Cool features in Visual Studio 2022</title>
+      <description>A few weeks ago, I gave a presentation at a conference about cool new features in Visual Studio 2022. It was a pre-recorded presentation, so I was able to do final edits to the video before sending it to the conference organizers.
+The post Cool features in Visual Studio 2022 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/cool-features-in-visual-studio-2022/</link>
+      <pubDate>Mon, 31 Oct 2022 15:00:00 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>video</category>
+    </item>
+    <item>
+      <title>Learning Series: Get started with GitHub in Visual Studio</title>
+      <description>We’re introducing a new way to learn about Git, GitHub, and version control in Visual Studio – an email learning series with actionable challenges and a repository to practice your skills! We found from our Happiness Tracking Survey that 34% of our VS developers aren’t using any form of version control.
+The post Learning Series: Get started with GitHub in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/learn-github-in-visual-studio-learning-series/</link>
+      <pubDate>Thu, 27 Oct 2022 15:00:13 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Copy with proper indentation</title>
+      <description>You want to share some code you’ve written with a colleague, so you select it in the editor and hit Ctrl+C to copy it. As you paste it in Outlook/Slack/Teams, you realize that the indentation levels are inconsistent due to your original selection.
+The post Copy with proper indentation appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/copy-with-proper-indentation/</link>
+      <pubDate>Tue, 25 Oct 2022 15:00:56 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Experiment</category>
+    </item>
+    <item>
+      <title>Support reminder for older versions of Visual Studio</title>
+      <description>We want to keep you secure when using Visual Studio. If you’re using an older version of Visual Studio, we have several reminders about upcoming events in the Visual Studio support lifecycle.
+First, if you’re using the Community Edition of Visual Studio 2017 or 2019,
+The post Support reminder for older versions of Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/support-reminder-for-older-versions-of-visual-studio/</link>
+      <pubDate>Thu, 20 Oct 2022 20:59:44 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Removing out-of-support components from your Visual Studio installations</title>
+      <description>Visual Studio is a rich IDE that provides an abundant collection of tools and functionality for developers to use in every stage of software development. As we all know, technologies change over time, some faster than others; consequently, certain components that are initially included with Visual Studio may go out of support faster than the IDE itself. 
+The post Removing out-of-support components from your Visual Studio installations appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/removing-out-of-support-components-from-your-visual-studio-installations/</link>
+      <pubDate>Tue, 29 Nov 2022 17:30:03 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>IT Admin</category>
+      <category>Out of support</category>
+      <category>supported components</category>
+    </item>
+    <item>
+      <title>Improve your productivity with Web Live Preview and Telerik</title>
+      <description>This post will concentrate on everything new, cool, trendy, and useful around the integrated Web Live Preview tool in Visual Studio 2022.
+More than 17 years ago, when I started my dev career with ASP.NET Web Forms as part of an ASP.NET development team,
+The post Improve your productivity with Web Live Preview and Telerik appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/improve-your-productivity-with-web-live-preview-and-telerik/</link>
+      <pubDate>Wed, 23 Nov 2022 16:58:17 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>aspnet</category>
+      <category>webforms</category>
+    </item>
+    <item>
+      <title>.NET MAUI is now available in Visual Studio for Mac 17.4</title>
+      <description>I am excited to share the news that .NET Multi-platform App UI (.NET MAUI) is now available in Visual Studio for Mac!  .NET MAUI tooling shipped in the 17.4 preview Visual Studio for Mac release in August, and then on November 8th we shipped the general availability of .NET MAUI tooling in the 17.4 stable release.  
+The post .NET MAUI is now available in Visual Studio for Mac 17.4 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/net-maui-is-now-available-in-visual-studio-for-mac-17-4/</link>
+      <pubDate>Tue, 22 Nov 2022 16:00:12 Z</pubDate>
+      <category>Mobile</category>
+      <category>Visual Studio</category>
+      <category>.NET</category>
+      <category>.NET 7</category>
+      <category>.NET MAUI</category>
+      <category>Visual Studio 2022 for Mac</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 Performance Enhancements 17.4</title>
+      <description>Every new Visual Studio release includes new performance improvements that make the product faster and more responsive. 17.4 has some significant improvements across common scenarios like  Find in Files, Branch switching, configuration changes, unit testing, C++ indexing and file saving. We use product telemetry from our GA releases to set baselines,
+The post Visual Studio 2022 Performance Enhancements 17.4 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-performance-enhancements-17-4/</link>
+      <pubDate>Mon, 21 Nov 2022 18:05:22 Z</pubDate>
+      <category>performance</category>
+      <category>Reliability</category>
+      <category>Visual Studio</category>
+      <category>Find in Files</category>
+      <category>Git Branch Switching</category>
+      <category>Performance Improvements</category>
+      <category>Unit test performance</category>
+    </item>
+    <item>
+      <title>Enable Group Policy Settings with Visual Studio Administrative Templates (ADMX)</title>
+      <description>IT Administrators often want to control, via group policy, certain aspects of Visual Studio behavior to achieve consistency, compliance, and compatibility across their organizations.
+One challenge has been that there was no easy way to discover what global policies exist for Visual Studio.
+The post Enable Group Policy Settings with Visual Studio Administrative Templates (ADMX) appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/enable-group-policy-settings-with-visual-studio-administrative-templates-admx/</link>
+      <pubDate>Thu, 17 Nov 2022 21:30:58 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>IT Admin</category>
+      <category>Visual Studio Administrator Templates</category>
+      <category>Visual Studio ADMX</category>
+    </item>
+    <item>
+      <title>Public preview of dev tunnels in Visual Studio for ASP.NET Core projects</title>
+      <description>In a previous blog post we introduced the private preview for port forwarding in Visual Studio, this support has now been renamed to “dev tunnels” and is now in public preview. The main difference between the private preview and the public preview is that you no longer need to sign-up,
+The post Public preview of dev tunnels in Visual Studio for ASP.NET Core projects appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/public-preview-of-dev-tunnels-in-visual-studio-for-asp-net-core-projects/</link>
+      <pubDate>Tue, 15 Nov 2022 16:10:18 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Multi-repository Support Released!</title>
+      <description>As one of our most highly request features with Developer Community, we are so happy to announce the release of multi-repository support in Visual Studio 2022. Support for multiple repositories means you can have up to 10 active Git repositories at once.
+The post Multi-repository Support Released! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/multi-repository-support-released/</link>
+      <pubDate>Mon, 14 Nov 2022 16:00:44 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Write markdown without leaving Visual Studio</title>
+      <description>Markdown is a great solution when you want formatted code but don’t want to compromise easy readability. GitHub uses it for readme files, and we use it as our standard for Visual Studio documentation. If you’ve contributed to any open-source repo the odds are high that you’ve authored or edited at least one .md file in that repo somewhere.
+The post Write markdown without leaving Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/write-markdown-without-leaving-visual-studio/</link>
+      <pubDate>Wed, 21 Dec 2022 16:00:45 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>markdown</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Adding new files just got a lot faster</title>
+      <description>Have you ever felt like the New Item Dialog slows you down when you want to quickly create an empty file or a simple C# class? Browsing through a list of templates is sometimes necessary, but wouldn’t it be great if Visual Studio could figure out which template you needed based only on the file name?
+The post Adding new files just got a lot faster appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/adding-new-files-just-got-a-lot-faster/</link>
+      <pubDate>Tue, 20 Dec 2022 16:00:25 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Developer Productivity</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Sticky Scroll now in preview</title>
+      <description>When working in code with long classes and methods that stretch beyond the vertical size of your screen, it can be difficult to keep track of which scope you’re working in. You may be editing a long method or exploring an unfamiliar codebase.
+The post Sticky Scroll now in preview appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/sticky-scroll-now-in-preview/</link>
+      <pubDate>Thu, 15 Dec 2022 16:00:23 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Editor</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Dev tunnels in Visual Studio for ASP.NET Core projects</title>
+      <description>In this blog post we will discuss the updates to the dev tunnels (port forwarding) experience in Visual Studio when working with ASP.NET Core projects. If you have read the previous posts here about these features, you’ll want to read this one as well because we have a lot of big changes in Visual Studio 2022 17.5 Preview 2.
+The post Dev tunnels in Visual Studio for ASP.NET Core projects appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/dev-tunnels-in-visual-studio-for-asp-net-core-projects/</link>
+      <pubDate>Wed, 14 Dec 2022 16:00:16 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Try out Visual Studio 2022 version 17.5 Preview 2</title>
+      <description>I’m excited to share today we released Visual Studio 2022 17.5 Preview 2! Your feedback goes directly to the product team working to deliver you the best developer IDE. We welcome your feedback on Developer Community where we are always eager to hear your suggestions for new or existing features and learn about any bugs or issues via report a problem.
+The post Try out Visual Studio 2022 version 17.5 Preview 2 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/try-out-visual-studio-2022-17-5-preview-2/</link>
+      <pubDate>Tue, 13 Dec 2022 18:35:08 Z</pubDate>
+      <category>Cross-Platform</category>
+      <category>Team and Development</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+    </item>
+    <item>
+      <title>What’s new in Visual Studio productivity</title>
+      <description>We often hear feedback from users like you that request smaller quality-of-life improvements in Visual Studio. While we can’t address every piece of feedback right away, we appreciate the time you spend providing it and hope you continue to share your thoughts on how to make Visual Studio even better.
+The post What’s new in Visual Studio productivity appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/whats-new-in-visual-studio-productivity/</link>
+      <pubDate>Tue, 06 Dec 2022 16:00:54 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Editor</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Get your developer news</title>
+      <description>Staying up to date with relevant news about your tech stack and virtual events is not always easy. There are lots of different sources and seeking out the information can be time-consuming. To help get you the information you need, we’re experimenting with bringing back Developer News inside Visual Studio – this time with some refreshing updates.
+The post Get your developer news appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/get-your-developer-news/</link>
+      <pubDate>Mon, 05 Dec 2022 16:00:49 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Experiment</category>
+    </item>
+    <item>
+      <title>Building a new JavaScript linting experience in Visual Studio</title>
+      <description>Available today in the 17.4 public release, Visual Studio has revamped its ESLint support! The new linting experience includes: 
+Linting support – for not only JavaScript and TypeScript files, but also for JSX/TSX, Vue and HTML files. 
+Quick actions and fixes,
+The post Building a new JavaScript linting experience in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/building-a-new-javascript-linting-experience-in-visual-studio/</link>
+      <pubDate>Thu, 01 Dec 2022 16:00:33 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>JavaScript</category>
+      <category>TypeScript</category>
+      <category>Visual Studio 2022</category>
+    </item>
   </channel>
 </rss>
