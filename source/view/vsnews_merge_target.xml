@@ -17452,5 +17452,352 @@ The post Building a new JavaScript linting experience in Visual Studio appeared 
       <category>TypeScript</category>
       <category>Visual Studio 2022</category>
     </item>
+    <item>
+      <title>Visual Studio Spell Checker Preview Now Available</title>
+      <description>We know developers like you take pride in your code! Many of the features in Visual Studio are designed to help you write the code you want. Visual Studio helps you ensure your code compiles and can even help with code styling.
+The post Visual Studio Spell Checker Preview Now Available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-spell-checker-preview-now-available/</link>
+      <pubDate>Thu, 19 Jan 2023 16:00:11 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>C#</category>
+      <category>C++</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.5 Preview 3 is here!</title>
+      <description>Visual Studio 2022 17.5 Preview 3 is out and ready to install! This release continues to bring new productivity improvements for all developers and enhances many of the capabilities that shipped in 17.5 Preview 2.
+Several of these changes in this preview came from asks in the community and are highlighted below.
+The post Visual Studio 2022 17.5 Preview 3 is here! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-5-preview-3-is-here/</link>
+      <pubDate>Wed, 18 Jan 2023 18:15:30 Z</pubDate>
+      <category>Team and Development</category>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>New: Better search in Visual Studio</title>
+      <description>Whether you are looking for specific code files, classes, methods, or features and options in the IDE, finding them is not always easy. With multiple ways to search, how would you even know which one to choose? The new All-In-One Search combines code and feature search into the same UI and adds some extra power and productivity to the experience.
+The post New: Better search in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/new-better-search-in-visual-studio/</link>
+      <pubDate>Tue, 17 Jan 2023 15:00:52 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Search</category>
+      <category>video</category>
+    </item>
+    <item>
+      <title>Debugging Encoded Text</title>
+      <description>Validating encoded strings is a basic but important part of our debugging workflow these days. I cannot count the number of times I have found myself looking at a URL-encoded string only to be suddenly unsure how percentage signs are supposed to be represented?
+The post Debugging Encoded Text appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/debugging-encoded-text/</link>
+      <pubDate>Wed, 11 Jan 2023 18:40:26 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugging</category>
+    </item>
+    <item>
+      <title>Five shortcuts to boost your productivity</title>
+      <description>Taking full advantage of the Visual Studio editor features will make you a more productive developer. Any keyboard warrior will tell you that knowing the right shortcuts boosts that productivity even further. So, we’ve put together a short little video that demonstrates some useful shortcuts you can use while coding in Visual Studio.
+The post Five shortcuts to boost your productivity appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/the-visual-studio-editor-can-do-that/</link>
+      <pubDate>Mon, 09 Jan 2023 15:00:35 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Developer Productivity</category>
+      <category>Editor</category>
+    </item>
+    <item>
+      <title>Visual Studio AI-Assistance: A Developer’s Best Friend</title>
+      <description>The Visual Studio family leverages AI to help you stay focused on the creative tasks that get the core logic of your application built.  
+For Visual Studio and VS Code, IntelliCode is free and assists with writing, editing and understanding code in popular languages.
+The post Visual Studio AI-Assistance: A Developers Best Friend appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-ai-assistance-a-developers-best-friend/</link>
+      <pubDate>Mon, 13 Feb 2023 16:00:55 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Artificial Intelligence</category>
+      <category>C#</category>
+      <category>C++</category>
+      <category>Copilot</category>
+      <category>IntelliCode</category>
+      <category>Productivity</category>
+    </item>
+    <item>
+      <title>Introducing the Git Status Bar and Testing Improvements in Visual Studio for Mac 17.5</title>
+      <description>Last week saw the release of the third preview in the lead up to the official release of Visual Studio for Mac 17.5, and in this blog post we’re going to look at some of the changes in this release 
+The post Introducing the Git Status Bar and Testing Improvements in Visual Studio for Mac 17.5 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-the-git-status-bar-and-testing-improvements-in-visual-studio-for-mac-17-5/</link>
+      <pubDate>Wed, 25 Jan 2023 20:38:43 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Documents and tool windows unleashed</title>
+      <description>We’re continuing our video series with tips and tricks to help you get the most out of Visual Studio. This week is all about managing tool windows and documents. There are lots of options to customize how we layout the various windows,
+The post Documents and tool windows unleashed appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/documents-and-tool-windows-unleashed/</link>
+      <pubDate>Tue, 24 Jan 2023 15:00:21 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Tips and Tricks</category>
+      <category>video</category>
+    </item>
+    <item>
+      <title>Keyboard Shortcuts to Master Your Git Flow in Visual Studio</title>
+      <description>One popular way for users to optimize their efficiency is to leverage shortcuts to interact with the UI. With Git tasks, like Committing, Pulling, and Pushing being part of your daily workflow, learning how to avoid leaving the keyboard for the mouse can keep you in the zone.
+The post Keyboard Shortcuts to Master Your Git Flow in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/keyboard-shortcuts-to-master-your-git-flow-in-visual-studio/</link>
+      <pubDate>Mon, 23 Jan 2023 16:00:45 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Developer Productivity</category>
+      <category>Git</category>
+      <category>Git Integration</category>
+      <category>Keyboard Shortcuts</category>
+    </item>
+    <item>
+      <title>Build Better Extensions with VisualStudio.Extensibility Preview 3!</title>
+      <description>Today, we’re very excited to announce the third public preview of VisualStudio.Extensibility, our new SDK for creating extensions for Visual Studio!
+The VisualStudio.Extensibility SDK focuses on extensions that run out-of-process from the IDE for improved performance and reliability, and it features a modern API that has been streamlined and carefully engineered to maximize developer productivity.
+The post Build Better Extensions with VisualStudio.Extensibility Preview 3! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-preview-3/</link>
+      <pubDate>Thu, 02 Mar 2023 17:23:06 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Extensions</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>GitHub Copilot in Visual Studio 2022</title>
+      <description>GitHub Copilot uses OpenAI Codex to suggest code and entire functions in real-time right from your editor. Trained on billions of lines of public code, GitHub Copilot turns natural language prompts including comments and method names into coding suggestions across dozens of languages.
+The post GitHub Copilot in Visual Studio 2022 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/github-copilot-in-visual-studio-2022/</link>
+      <pubDate>Wed, 01 Mar 2023 15:00:02 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Artificial Intelligence</category>
+      <category>Copilot</category>
+      <category>IntelliCode</category>
+    </item>
+    <item>
+      <title>Try Visual Studio 2022 v17.6 Preview 1</title>
+      <description>The first Preview for Visual Studio 2022 17.6 is now available! This release expands on the recently released 17.5 version of Visual Studio and aims at enhancing your productivity whether you’re a .NET developer, a game developer, and/or a C++ developer.
+The post Try Visual Studio 2022 v17.6 Preview 1 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/try-visual-studio-2022-v17-6-preview-1/</link>
+      <pubDate>Tue, 28 Feb 2023 17:15:31 Z</pubDate>
+      <category>Cross-Platform</category>
+      <category>Gaming</category>
+      <category>Visual Studio</category>
+      <category>.NET</category>
+      <category>C++</category>
+      <category>CMake</category>
+      <category>Debugging</category>
+      <category>Git Integration</category>
+      <category>GitHub Issues</category>
+      <category>IntelliCode</category>
+      <category>Linux</category>
+      <category>Unreal</category>
+      <category>UnrealEngine</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>The fastest way to add files and folders</title>
+      <description>Your Visual Studio team is excited to announce the release of the highly anticipated Quick Add Files  Folders feature in Visual Studio version 17.5!
+This new feature is the fastest and most convenient way to add files and create folders within your projects.
+The post The fastest way to add files and folders appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/the-fastest-way-to-add-files-and-folders/</link>
+      <pubDate>Mon, 27 Feb 2023 15:00:21 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Developer Productivity</category>
+    </item>
+    <item>
+      <title>Reference GitHub Issues and Pull Requests in Visual Studio</title>
+      <description>We’re excited to announce the preview release of linking GitHub Issues. With Visual Studio 2022 17.6 Preview 1 you can now mention your issues in the commit message box in the Git Changes window.
+Speed up your workflow by linking your related work items directly in Visual Studio.
+The post Reference GitHub Issues and Pull Requests in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/reference-github-issues-and-pull-requests-in-visual-studio/</link>
+      <pubDate>Thu, 23 Feb 2023 16:00:33 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Git</category>
+      <category>GitHub</category>
+      <category>GitHub Issues</category>
+      <category>Work Items</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 can now Always Update on Close!</title>
+      <description>Do you want Visual Studio 2022 to always stay up to date with the latest goodness with little-to-no action from your end? Then look no further, because as of now, we support the ability to “Always Update on Close”! Starting with Visual Studio 2022 version 17.5,
+The post Visual Studio 2022 can now Always Update on Close! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-can-now-always-update-on-close/</link>
+      <pubDate>Wed, 22 Feb 2023 17:17:52 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Updates</category>
+    </item>
+    <item>
+      <title>Maximizing the value of IntelliCode with API usage examples: Real-World Code Examples at Your Fingertips</title>
+      <description>As a software developer, weve all faced the frustration of having to leave our IDE to search for documentation, code examples, Stack Overflow, blog posts or simply trying to remember how to use a certain API. What if we told you that we have a solution for you?
+The post Maximizing the value of IntelliCode with API usage examples: Real-World Code Examples at Your Fingertips appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/intellicode-api-usage-examples/</link>
+      <pubDate>Wed, 22 Feb 2023 16:00:45 Z</pubDate>
+      <category>ml</category>
+      <category>Visual Studio</category>
+      <category>Artificial Intelligence</category>
+      <category>C#</category>
+      <category>Developer Productivity</category>
+      <category>IntelliCode</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 – 17.5 Released</title>
+      <description>We’re excited to announce that Visual Studio 17.5 is now generally available. This release is full of updates that take friction out of your daily workflows making it easier for you stay in the zone while you code. Features like all-in-one search and intent-based suggestions help you move faster,
+The post Visual Studio 2022  17.5 Released appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-5-released/</link>
+      <pubDate>Tue, 21 Feb 2023 19:00:53 Z</pubDate>
+      <category>Azure</category>
+      <category>Cloud</category>
+      <category>Cross-Platform</category>
+      <category>Gaming</category>
+      <category>performance</category>
+      <category>Reliability</category>
+      <category>Team and Development</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>.NET</category>
+      <category>.NET Core</category>
+      <category>Accessibility</category>
+      <category>Announcement</category>
+      <category>ASP.NET</category>
+      <category>C#</category>
+      <category>C++</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Editor</category>
+      <category>IntelliCode</category>
+      <category>Linux</category>
+      <category>Performance</category>
+      <category>Productivity</category>
+      <category>Search</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Visual Studio for Mac 17.5 is now available</title>
+      <description>We are pleased to announce the release of Visual Studio for Mac 17.5. Along with the usual incremental improvements, we’ve focused on improving the Git experience for this release. Read along as we look at these improvements and the other big changes made.
+The post Visual Studio for Mac 17.5 is now available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-for-mac-17-5-is-now-available/</link>
+      <pubDate>Tue, 21 Feb 2023 18:54:50 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Visual Studio 2022 for Mac</category>
+      <category>Visual Studio for Mac</category>
+    </item>
+    <item>
+      <title>Visual Studio Toolbox: Integrated C++ Game Development</title>
+      <description>The Visual Studio Toolbox show helps you become a more productive developer by focusing on tooling both in and outside of Visual Studio. The show is available both on Learn and YouTube. Our latest episode features C++ program manager David Li,
+The post Visual Studio Toolbox: Integrated C++ Game Development appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-toolbox-integrated-c-game-development/</link>
+      <pubDate>Thu, 23 Mar 2023 16:00:18 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>C++</category>
+      <category>gaming</category>
+      <category>Unity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>GitHub Copilot chat for Visual Studio 2022</title>
+      <description>GitHub Copilot has become a trusted AI-assisted pair programmer helping to auto-complete comments and code more productively. That’s just the beginning though! We’ve been working to evolve Copilot to move beyond code completion and provide enhanced AI assistance that you can access throughout your development lifecycle,
+The post GitHub Copilot chat for Visual Studio 2022 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/github-copilot-chat-for-visual-studio-2022/</link>
+      <pubDate>Wed, 22 Mar 2023 15:05:17 Z</pubDate>
+      <category>Artificial Intelligence</category>
+      <category>Copilot</category>
+      <category>Visual Studio</category>
+      <category>GitHub</category>
+    </item>
+    <item>
+      <title>Streamlining your Debugging process with Breakpoint Groups</title>
+      <description>Have you ever had a situation when you are debugging a complex scenario with a huge list of breakpoints, and you find yourself scrolling and tapping in the breakpoints windows to disable/enable them individually and repetitively?
+Then the new Breakpoint Groups feature in Visual Studio may be the answer for you.
+The post Streamlining your Debugging process with Breakpoint Groups appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/streamlining-your-debugging-process-with-breakpoint-groups/</link>
+      <pubDate>Tue, 21 Mar 2023 16:25:18 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Breakpoints</category>
+      <category>Debugger</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Developer Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Upgrading from IntelliCode custom team completions models to deep learning.</title>
+      <description>TL;DR – A deep learning model will now help provide starred completions for custom methods in the IntelliSense list. All users of Visual Studio 2022 will receive this improvement automatically.
+With original IntelliCode, a custom trained model was previously useful for ranking custom methods in a user’s code.
+The post Upgrading from IntelliCode custom team completions models to deep learning. appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/upgrading-from-intellicode-custom-team-completions-models-to-deep-learning/</link>
+      <pubDate>Mon, 20 Mar 2023 19:00:35 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Help us investigate a new Welcome Experience in Visual Studio 17.6 Preview 2</title>
+      <description>A central theme across Visual Studio releases is get to code quickly. Over the years, we’ve tried many approaches to accelerate start up, project selection or creation, and restoration of previous state. In Visual Studio 2019 we created the modal start window
+The post Help us investigate a new Welcome Experience in Visual Studio 17.6 Preview 2 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/welcome-experience/</link>
+      <pubDate>Thu, 16 Mar 2023 16:00:36 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Improving the Spell Checker</title>
+      <description>Welcome to our latest blog post about the spell checker feature in Visual Studio 17.6 preview 2! Were excited to share with you the latest improvements weve made to this feature, which was first introduced in the Visual Studio 17.5 preview releases for C#,
+The post Improving the Spell Checker appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/improving-the-spell-checker/</link>
+      <pubDate>Wed, 15 Mar 2023 16:38:27 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Productivity</category>
+      <category>Tips and Tricks</category>
+      <category>Update</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 v17.6 Preview 2 is now available</title>
+      <description>Preview 2 for Visual Studio 17.6 is now available! If you are a game developer, a mobile developer, or are interested in learning new tricks to better debug your code, check out this latest release. It’s as easy as upgrading your Preview channel in the Visual Studio installer.
+The post Visual Studio 2022 v17.6 Preview 2 is now available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-6-preview-2-is-now-available/</link>
+      <pubDate>Tue, 14 Mar 2023 19:01:45 Z</pubDate>
+      <category>Cross-Platform</category>
+      <category>Gaming</category>
+      <category>Mobile</category>
+      <category>Visual Studio</category>
+      <category>.NET</category>
+      <category>Android</category>
+      <category>Breakpoints</category>
+      <category>C++</category>
+      <category>Debugging and Diagnostics</category>
+      <category>gaming</category>
+      <category>Git Integration</category>
+      <category>Instrumentation</category>
+      <category>UnrealEngine</category>
+      <category>Visual Studio Enterprise</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 – 17.5 Performance Enhancements</title>
+      <description>We are excited to announce that Visual Studio 2022 17.5 offers a range of performance enhancements that significantly improve the speed and responsiveness of the product in the following main areas: 
+Build Acceleration for .NET SDK style projects
+External Sources Decompilation
+Thread Window 
+Razor 
+The post Visual Studio 2022 – 17.5 Performance Enhancements appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-5-performance-enhancements/</link>
+      <pubDate>Thu, 09 Mar 2023 20:29:40 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Developing Accessible Apps with Visual Studio</title>
+      <description>When your application has an accessibility issue, it means that some users will find it harder or impossible to use your application. This means that a percentage of your users are having a bad experience or simply can’t use your product.
+The post Developing Accessible Apps with Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/developing-accessible-apps-with-visual-studio/</link>
+      <pubDate>Wed, 08 Mar 2023 21:00:41 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Accessibility</category>
+      <category>Visual Studio 2022</category>
+      <category>XAML</category>
+    </item>
+    <item>
+      <title>Visual Studio Toolbox: Debug Threads &amp; Tasks with Parallel Stacks</title>
+      <description>The Visual Studio Toolbox show helps you become a more productive developer by focusing on tooling in and out of Visual Studio.  Our latest episodes of VS Toolbox (available both on Learn and YouTube) feature Mark Downie and Ramkumar Ramesh from the Visual Studio Diagnostics team.
+The post Visual Studio Toolbox: Debug Threads  Tasks with Parallel Stacks appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-toolbox-debug-threads-tasks-with-parallel-stacks/</link>
+      <pubDate>Thu, 06 Apr 2023 16:00:22 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Visual Studio 2022</category>
+      <category>Visual Studio Toolbox</category>
+    </item>
   </channel>
 </rss>

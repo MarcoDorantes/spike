@@ -50,8 +50,8 @@ dir -path C:\Users\Marco\Documents\DEC_2020\SAT -filter *.xml -recurse| %{select
         return w;
       });
 
-      var cfdi1_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\GBM")).EnumerateFiles("*.xml");
-      var cfdi2_file = (new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\SAT")).EnumerateFiles("*.xml");
+      var cfdi1_file = (new DirectoryInfo(@"F:\Marco\Documents\DEC_2022\GBM")).EnumerateFiles("*.xml");
+      var cfdi2_file = (new DirectoryInfo(@"F:\Marco\Documents\DEC_2022\SAT")).EnumerateFiles("*.xml");
       if (cfdi1_file.Count() != cfdi2_file.Count()) throw new ArgumentOutOfRangeException($"CFDI file number must be the same ({cfdi1_file.Count()} != {cfdi2_file.Count()})");
       var cfdi_set1 = cfdi1_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
       var cfdi_set2 = cfdi2_file.Aggregate(new Dictionary<string, XDocument>(), (w, n) => add_cfdi(w, n));
@@ -76,8 +76,8 @@ dir -path C:\Users\Marco\Documents\DEC_2020\SAT -filter *.xml -recurse| %{select
         for (; match.Success; match = match.NextMatch()) result.Append(match.Value);
         return $"{result}";
       });
-      var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\SAT");
-      //var folder = new DirectoryInfo(@"C:\Users\Marco\Documents\DEC_2020\GBM");
+      var folder = new DirectoryInfo(@"F:\Marco\Documents\DEC_2022\SAT");
+      //var folder = new DirectoryInfo(@"F:\Marco\Documents\DEC_2022\GBM");
 
       int count = 0;
       XNamespace cfdi_ns = "http://www.sat.gob.mx/cfd/3";
