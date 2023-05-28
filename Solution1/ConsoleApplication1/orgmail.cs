@@ -70,6 +70,14 @@ https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data?
 
 Office 365 Management APIs overview
 https://docs.microsoft.com/en-us/office/office-365-management-api/office-365-management-apis-overview
+
+EWS OAuth scope given mailbox only
+https://learn.microsoft.com/en-us/answers/questions/293684/exchange-server-0auth-authorization-for-single-mai
+https://techcommunity.microsoft.com/t5/exchange-team-blog/application-access-policy-support-in-ews/ba-p/2110361
+https://stackoverflow.com/questions/64871100/how-can-i-access-a-mailbox-with-restricted-permissions-through-ews-without-inter
+
+exchange.SubscribeToPushNotifications()
+https://learn.microsoft.com/en-us/exchange/client-developer/exchange-web-services/notification-subscriptions-mailbox-events-and-ews-in-exchange
 */
 static class orgmail
 {

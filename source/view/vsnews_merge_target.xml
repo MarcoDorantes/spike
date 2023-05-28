@@ -17799,5 +17799,66 @@ The post Visual Studio Toolbox: Debug Threads  Tasks with Parallel Stacks appear
       <category>Visual Studio 2022</category>
       <category>Visual Studio Toolbox</category>
     </item>
+    <item>
+      <title>Web API development in Visual Studio 2022</title>
+      <description>In Visual Studio 2022 one of the main scenarios for web developers is creating Web APIs with ASP.NET Core. In the latest preview of Visual Studio 2022, 17.6, we have added a number of updates to be more efficient when developing APIs.
+The post Web API development in Visual Studio 2022 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/web-api-development-in-visual-studio-2022/</link>
+      <pubDate>Mon, 01 May 2023 16:53:46 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>ASP.NET Core</category>
+      <category>Web API</category>
+    </item>
+    <item>
+      <title>Exploring JavaScript and TypeScript Development in Visual Studio</title>
+      <description>Over the last 12 months, we made many improvements to the JavaScript and TypeScript developer experience in Visual Studio so that you can run both your front-end and back-end together within one click in one place. You might have seen the updates but in this blog post we will detail the new and improved features now available when working with JavaScript and TypeScript in Visual Studio.
+The post Exploring JavaScript and TypeScript Development in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/exploring-javascript-and-typescript-development-in-visual-studio/</link>
+      <pubDate>Fri, 28 Apr 2023 00:35:59 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>JavaScript</category>
+      <category>TypeScript</category>
+    </item>
+    <item>
+      <title>Improving the Syntax Highlighting of JavaScript in Visual Studio</title>
+      <description>Syntax highlighting, aka colorization, is one of Visual Studios essential features; it uses colors and styles to help guide our brains when reading code. Following this Developer Community suggestion, we decided to work on improving the JavaScript and TypeScript experience!
+Starting from 17.6 we improved existing colorization and expanded it to new areas including control keywords,
+The post Improving the Syntax Highlighting of JavaScript in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/improving-the-syntax-highlighting-of-javascript-in-visual-studio/</link>
+      <pubDate>Fri, 21 Apr 2023 16:00:34 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>JavaScript</category>
+      <category>Node.js</category>
+      <category>TypeScript</category>
+    </item>
+    <item>
+      <title>Git Tooling Preview Features to Enhance Productivity</title>
+      <description>We’re excited to share productivity and quality of life improvements available to the Git experience in Visual Studio version 17.6 Preview 2. Download the latest Visual Studio Preview and watch our recent Visual Studio Toolbox Live session to check out the following new Git features.
+The post Git Tooling Preview Features to Enhance Productivity appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/git-tooling-preview-features-to-enhance-productivity/</link>
+      <pubDate>Wed, 19 Apr 2023 15:00:28 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Git</category>
+      <category>Git Integration</category>
+      <category>GitHub</category>
+      <category>GitHub Issues</category>
+    </item>
+    <item>
+      <title>Improving Visual Studio performance with the new Instrumentation Tool</title>
+      <description>Summary
+With the release of Visual Studio 2022 version 17.6 we are shipping our new and improved Instrumentation Tool in the Performance Profiler. Unlike the CPU Usage tool, the Instrumentation tool gives exact timing and call counts which can be super useful in spotting blocked time and average function time.
+The post Improving Visual Studio performance with the new Instrumentation Tool appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/improving-visual-studio-performance-with-the-new-instrumentation-tool/</link>
+      <pubDate>Thu, 13 Apr 2023 14:09:04 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Developer Productivity</category>
+      <category>Profiling</category>
+      <category>Visual Studio 2022</category>
+      <category>Visual Studio Profiler</category>
+    </item>
   </channel>
 </rss>
