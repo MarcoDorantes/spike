@@ -17860,5 +17860,111 @@ The post Improving Visual Studio performance with the new Instrumentation Tool a
       <category>Visual Studio 2022</category>
       <category>Visual Studio Profiler</category>
     </item>
+    <item>
+      <title>Iterating on your Welcome Experience feedback</title>
+      <description>One of Visual Studio’s goals is to help you quickly ‘get to code.’ We’ve recently experimented with Welcome Experience in Preview that helps you get to the code and tasks that you care about, right within the Visual Studio shell. Take a look at the original Welcome Experience design and its motivations in the previous blog post.
+The post Iterating on your Welcome Experience feedback appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/welcome-feedback/</link>
+      <pubDate>Tue, 30 May 2023 17:00:52 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Personalization</category>
+    </item>
+    <item>
+      <title>Create a Microsoft Power App for your ASP.NET Core Web API</title>
+      <description>Boost your developer journey by easily creating front ends for your web APIs.
+Low-code tooling is becoming increasingly popular among developers because it allows them to create applications faster and with less code. In Visual Studio 2022 17.6 preview 2, you can now connect to the Microsoft Power Platform via connected services and create custom connectors based on your ASP.NET web API.
+The post Create a Microsoft Power App for your ASP.NET Core Web API appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/create-a-microsoft-power-app-for-your-asp-net-core-web-api/</link>
+      <pubDate>Tue, 30 May 2023 15:00:39 Z</pubDate>
+      <category>Cloud</category>
+      <category>Cross-Platform</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+    </item>
+    <item>
+      <title>Unified Settings: Share Your Feedback!</title>
+      <description>In a hybrid and cloud-based world, we want to make it easy for you to configure Visual Studio to your preferences whether youre working on a laptop from home, on your desktop in the office, or using a Dev Box or Azure VM.
+The post Unified Settings: Share Your Feedback! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/unifiedsettings/</link>
+      <pubDate>Thu, 25 May 2023 17:00:25 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Personalization</category>
+    </item>
+    <item>
+      <title>All-In-One Search available in 17.6</title>
+      <description>The All-In-One Search experience was first introduced in 17.2 Previews, and we’ve been refining its quality since. The new search merges code and feature search capabilities into one UI, so you can go to one place to find the things you need.
+The post All-In-One Search available in 17.6 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/all-in-one-search-available-in-17-6/</link>
+      <pubDate>Thu, 25 May 2023 15:00:56 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Editor</category>
+      <category>Search</category>
+    </item>
+    <item>
+      <title>Dev Drive for Performance Improvements in Visual Studio and Dev Boxes!</title>
+      <description>Performance has always been one of our key investment areas for developer tooling in Microsoft. We understand that it’s important for developers to have a fast workflow. That’s why we’re excited to share with you the support of Dev Drives in Visual Studio!
+The post Dev Drive for Performance Improvements in Visual Studio and Dev Boxes! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/devdrive/</link>
+      <pubDate>Wed, 24 May 2023 17:00:42 Z</pubDate>
+      <category>performance</category>
+      <category>Visual Studio</category>
+      <category>dev box</category>
+      <category>Performance</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 – 17.6 Performance Enhancements</title>
+      <description>Visual Studio 2022 17.6 introduces exciting performance enhancements in several key areas. These improvements aim to enhance the overall software development experience by boosting productivity, reducing wait times, and providing a smoother workflow.
+The performance enhancements in Visual Studio 2022 17.6 include:
+Solution Open
+Solution Close 
+Git File History 
+Git Branch Switches
+Lightbulb Improvements
+Performance Profiler stop collection.
+The post Visual Studio 2022 – 17.6 Performance Enhancements appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-6-performance-enhancements/</link>
+      <pubDate>Tue, 23 May 2023 19:05:37 Z</pubDate>
+      <category>performance</category>
+      <category>Visual Studio</category>
+      <category>Solution Open</category>
+    </item>
+    <item>
+      <title>Turbocharge your Visual Studio experience with Microsoft Dev Box</title>
+      <description>Microsoft Dev Box is a managed service that enables developers to create on-demand, high-performance, secure  ready-to-code workstations in the cloud. It gives companies the ability to pre-configure the development environment with all the tools needed to build, test, and deploy applications making developers more productive,
+The post Turbocharge your Visual Studio experience with Microsoft Dev Box appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/turbocharge-your-visual-studio-experience-with-microsoft-dev-box/</link>
+      <pubDate>Tue, 23 May 2023 15:00:23 Z</pubDate>
+      <category>Azure</category>
+      <category>dev box</category>
+      <category>Team and Development</category>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Sticky Scroll: Stay in the Right Context</title>
+      <description>When coding in a long file, it’s easy to lose track of the method or block you’re writing in. Or when scrolling through an unfamiliar codebase, it can become disorienting where you are in the code.
+Sticky Scroll can help you stay in the right context by sticking helpful scopes,
+The post Sticky Scroll: Stay in the Right Context appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/sticky-scroll-stay-in-the-right-context/</link>
+      <pubDate>Thu, 18 May 2023 15:00:12 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Editor</category>
+      <category>Productivity</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.7 Preview 1 is here!</title>
+      <description>Welcome to the Visual Studio Public Preview 1 of version 17.7! This exciting update offers a wide range of productivity enhancements tailored to the diverse needs of developers. Experience the cutting-edge improvements of Visual Studio and discover what lies ahead in this Preview release before it becomes widely available.
+The post Visual Studio 2022 17.7 Preview 1 is here! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-7-preview-1-is-here/</link>
+      <pubDate>Wed, 17 May 2023 16:00:29 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 – 17.6 Now Available</title>
+      <description>In the sprint to the BUILD 2023 conference, were thrilled to announce the general availability of Visual Studio version 17.6 today. This latest release delivers a range of powerful tools and features designed to empower you in crafting cutting-edge applications and experiences.
+The post Visual Studio 2022  17.6 Now Available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-6-now-available/</link>
+      <pubDate>Tue, 16 May 2023 17:34:34 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
   </channel>
 </rss>
