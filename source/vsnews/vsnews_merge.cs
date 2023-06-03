@@ -29,17 +29,20 @@ namespace ConsoleApplication1
   class RSS_news
   {
     static void add(string sourceURL, string targetfile)
-    {try{
-      var source = XDocument.Load(sourceURL);
-      WriteLine($"\nSource received: {source.Root.Element("channel").Element("title").Value} ({source.Root.Element("channel").Descendants("item").Count()} items)");
-      if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
-      var target = XDocument.Load(targetfile);
-      WriteLine($"Target file: {targetfile}...");
-      var m = new guid_based_comparer();
-      var merged = m.merge(source, target);
-      merged.Save(targetfile);
-      WriteLine("merged.");
-}catch(Exception ex){WriteLine($"Not merged: {ex.GetType().FullName}: {ex.Message} on URL:\n{sourceURL}");}
+    {
+        try
+        {
+            var source = XDocument.Load(sourceURL);
+            WriteLine($"\nSource received: {source.Root.Element("channel").Element("title").Value} ({source.Root.Element("channel").Descendants("item").Count()} items)");
+            if (!File.Exists(targetfile)) throw new Exception($"No target file found: {targetfile}");
+            var target = XDocument.Load(targetfile);
+            WriteLine($"Target file: {targetfile}...");
+            var m = new guid_based_comparer();
+            var merged = m.merge(source, target);
+            merged.Save(targetfile);
+            WriteLine("merged.");
+        }
+        catch (Exception ex) { WriteLine($"Not merged: {ex.GetType().FullName}: {ex.Message} on URL:\n{sourceURL}"); }
     }
     public static void _Main(string[] args)
     {
