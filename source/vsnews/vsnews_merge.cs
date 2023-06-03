@@ -21,7 +21,7 @@ namespace ConsoleApplication1
     {
       var r = source.Root.Descendants("item").Except(target.Root.Descendants("item"), this);
       var result = XDocument.Parse(target.ToString());
-      r.Aggregate(result, (w, n) => { var @new = XElement.Parse(n.ToString()); w.Root.Element("channel").Add(@new); WriteLine($"\t{@new.Element("link").Value}\t{@new.Element("title").Value}"); return w; });
+      r.Aggregate(result, (w, n) => { var @new = XElement.Parse(n.ToString()); w.Root.Element("channel").Add(@new); WriteLine($"\n{@new.Element("title").Value}\n{@new.Element("link").Value}"); return w; });
       return result;
     }
   }
