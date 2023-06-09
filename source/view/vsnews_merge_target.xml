@@ -17966,5 +17966,41 @@ The post Visual Studio 2022  17.6 Now Available appeared first on Visual Studio 
       <pubDate>Tue, 16 May 2023 17:34:34 Z</pubDate>
       <category>Visual Studio</category>
     </item>
+    <item>
+      <title>Visual Studio’s IntelliSense list can now steer GitHub Copilot code completions.</title>
+      <description>TL:DR GitHub Copilot and Visual Studio’s built-in AI assistance features are now better together. With the latest version of GitHub Copilot, changing your selection in Visual Studios IntelliSense list steers the GitHub Copilot with additional context about your code, so you can easily explore the single and multi-line code completions to get just the code you need.
+The post Visual Studios IntelliSense list can now steer GitHub Copilot code completions. appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/github-copilot-visual-studio-intellisense/</link>
+      <pubDate>Thu, 08 Jun 2023 20:15:49 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Announcing C# Dev Kit for Visual Studio Code</title>
+      <description>We are thrilled to announce the preview release of C# Dev Kit, a new Visual Studio Code extension that brings an improved editor-first C# development experience to Linux, macOS, and Windows.
+The C# Dev Kit is designed to enhance your C# productivity when you’re working in VS Code.
+The post Announcing C# Dev Kit for Visual Studio Code appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/announcing-csharp-dev-kit-for-visual-studio-code/</link>
+      <pubDate>Tue, 06 Jun 2023 20:17:00 Z</pubDate>
+      <category>Cloud</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+    </item>
+    <item>
+      <title>What’s New in SSDT 17.6: Ledger, Performance, Copilot</title>
+      <description>We are delighted to announce the new release of SQL Server Developer Tools for Visual Studio 17.6 released on May 16th, 2023. The major focus areas for this release are:
+Support for Ledger tables
+Stability improvements with Visual Studio 2022
+Performance improvements
+Github Copilot
+SQL Server Developer Tools (SSDT) is a database tool within Visual Studio that lets users develop,
+The post What’s New in SSDT 17.6: Ledger, Performance, Copilot appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/whats-new-in-ssdt-17-6-ledger-performance-copilot/</link>
+      <pubDate>Mon, 05 Jun 2023 18:36:15 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>ledger</category>
+      <category>SQL</category>
+      <category>sqlserver022</category>
+      <category>ssdt</category>
+    </item>
   </channel>
 </rss>
