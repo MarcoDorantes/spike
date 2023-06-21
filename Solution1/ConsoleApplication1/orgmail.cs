@@ -78,6 +78,19 @@ https://stackoverflow.com/questions/64871100/how-can-i-access-a-mailbox-with-res
 
 exchange.SubscribeToPushNotifications()
 https://learn.microsoft.com/en-us/exchange/client-developer/exchange-web-services/notification-subscriptions-mailbox-events-and-ews-in-exchange
+
+<Access-expired-exception NextExpires='2023-06-21 + 24 months = Saturday, June 21, 2025'>
+Microsoft.Identity.Client.MsalServiceException: A configuration issue is preventing authentication
+check the error message from the server for details.
+You can modify the configuration in the application registration portal.
+See https://aka.ms/msal-net-invalid-client for details.
+Original exception: AADSTS7000222: The provided client secret keys for app '<uuid>' are expired.
+Visit the Azure portal to create new keys for your app: https://aka.ms/NewClientSecret,
+or consider using certificate credentials for added security: https://aka.ms/certCreds.
+Trace ID: <uuid>
+Correlation ID: <uuid>
+Timestamp: 2023-06-21 13:58:16Z
+</Access-expired-exception>
 */
 static class orgmail
 {
