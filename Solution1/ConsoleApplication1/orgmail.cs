@@ -29,6 +29,7 @@ https://docs.microsoft.com/en-us/graph/api/resources/mail-api-overview?view=grap
 https://docs.microsoft.com/en-us/graph/auth/auth-concepts
 https://docs.microsoft.com/en-us/graph/best-practices-concept
 https://docs.microsoft.com/en-us/graph/auth-v2-service
+https://learn.microsoft.com/en-us/graph/tutorials/dotnet-app-only?tabs=aad
 
 https://aka.ms/AAgzk1b | https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online
 https://developer.microsoft.com/en-us/graph/blogs/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/
