@@ -104,6 +104,7 @@ static class orgmail
     public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body, folder;
+    public DateTime? received_begin, received_end;
     public FileInfo file, subjectfile, pack;
     public List<FileInfo> attachs;
     public bool ascii, utf7, utf8, utf32, unicode, latin1;
@@ -193,7 +194,7 @@ static class orgmail
         }
       }
     }
-    public void clean()// -clean [-pageSize=200] [-restart] [-soft|-deleteditems]
+    public void clean()// -clean [-pageSize=200] [-restart] [-soft|-deleteditems] ["-subject=touch DC1 monitor" -received_begin=2023-07-14T14:00:00 -received_end=2023-07-15T00:00:00]
     {
       if (pageSize == 0) pageSize = 10;
       var _allpages = allPages ?? true;
@@ -205,32 +206,37 @@ static class orgmail
 
       var exchange = GetExchangeService();
       var target_folder = GetTargetFolder(exchange, folder);
+      var rand = new Random();
+      SetView();
+      SetFilter();
+      SetReceivedFilter();
+      WriteLine($"Folder: [{folder}]");
+      if (subject != null)
+      {
+        WriteLine($"subject: [{subject}]");
+      }
+      if (informative_subject != null)
+      {
+        WriteLine($"informative subject: [{informative_subject}]");
+      }
+      WriteLine($"DeleteMode: {delete_mode}");
+      if(received_begin.HasValue && received_end.HasValue)
+      {
+        WriteLine($"{nameof(received_begin)}: {received_begin:s}");
+        WriteLine($"{nameof(received_end)}  : {received_end:s}");
+      }
+      if (confirm)
+      {
+        Write("Type 'YES' to DeleteItems: ");
+        if (ReadLine() != "YES")
+        {
+          WriteLine("\nCancelled by the user: DeleteItems was not executed.");
+          return;
+        }
+      }
+
       do
       {
-        SetView();
-        SetFilter();
-        var rand = new Random();
-
-        WriteLine($"Folder: [{folder}]");
-        if (subject != null)
-        {
-          WriteLine($"subject: [{subject}]");
-        }
-        if (informative_subject != null)
-        {
-          WriteLine($"informative subject: [{informative_subject}]");
-        }
-        WriteLine($"DeleteMode: {delete_mode}");
-        if (confirm)
-        {
-          Write("Type 'YES' to DeleteItems: ");
-          if (ReadLine() != "YES")
-          {
-            WriteLine("\nCancelled by the user: DeleteItems was not executed.");
-            return;
-          }
-        }
-
         bool moreItems = true;
         while (moreItems)
         {
@@ -623,6 +629,25 @@ static class orgmail
           filter = both;
           informative_subject = $"({default_subject_filter_label}: {visible_subject_exceptionFilter} OR {visible_subject_needsFilter})";
         }
+      }
+    }
+    void SetReceivedFilter()
+    {
+      if(!(received_begin.HasValue && received_end.HasValue)) return;
+      Microsoft.Exchange.WebServices.Data.SearchFilter.IsGreaterThanOrEqualTo received_begin_filter = new(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.DateTimeReceived, received_begin.Value);
+      Microsoft.Exchange.WebServices.Data.SearchFilter.IsLessThanOrEqualTo received_end_filter = new(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.DateTimeReceived, received_end.Value);
+      Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection received_filter = new(
+        Microsoft.Exchange.WebServices.Data.LogicalOperator.And,
+        received_begin_filter,
+        received_end_filter
+      );
+      if(filter == null)
+      {
+        filter = received_filter;
+      }
+      else
+      {
+        filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.SearchFilterCollection(Microsoft.Exchange.WebServices.Data.LogicalOperator.And, filter, received_filter);
       }
     }
 
