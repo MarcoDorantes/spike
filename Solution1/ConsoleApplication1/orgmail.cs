@@ -253,7 +253,6 @@ static class orgmail
           {
             WriteLine($"{g.Key}: {g.Count()}");
           }
-          continue;
         }
         if (restart)
         {
@@ -261,6 +260,7 @@ static class orgmail
           Write($"Waiting for {sleep / 1000:N0}s...");
           System.Threading.Thread.Sleep(sleep);
           WriteLine($"\nRestarting...");
+          SetView();
         }
       } while (restart);
       WriteLine("Done.");
