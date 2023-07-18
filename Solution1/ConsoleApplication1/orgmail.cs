@@ -100,7 +100,7 @@ static class orgmail
     private const string To = "to";
     private const string Bcc = "bcc";
 
-    public bool excep_only, needs, html, confirm, expand, restart, soft, deleteditems;
+    public bool excep_only, needs, html, confirm, expand, restart, soft, deleteditems, exact;
     public int count, pageSize, offset, read;
     public Microsoft.Exchange.WebServices.Data.OffsetBasePoint offsetBasePoint;
     public string subject, body, folder;
@@ -595,7 +595,10 @@ static class orgmail
       informative_subject = null;
       if (string.IsNullOrWhiteSpace(subject) == false)
       {
-        var subject_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, subject, Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
+        var containment_mode = exact ?
+        Microsoft.Exchange.WebServices.Data.ContainmentMode.FullString :
+        Microsoft.Exchange.WebServices.Data.ContainmentMode.Substring;
+        var subject_filter = new Microsoft.Exchange.WebServices.Data.SearchFilter.ContainsSubstring(Microsoft.Exchange.WebServices.Data.EmailMessageSchema.Subject, subject, containment_mode, Microsoft.Exchange.WebServices.Data.ComparisonMode.IgnoreCaseAndNonSpacingCharacters);
         filter = subject_filter;
       }
       else
