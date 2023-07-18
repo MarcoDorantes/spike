@@ -127,7 +127,7 @@ static class orgmail
       SetFilter();
 
       WriteLine($"Folder: [{folder}]");
-      WriteLine($"subject: [{subject}]");
+      WriteLine($"subject{(exact?" (exact)":"")}: [{subject}]");
 
       bool moreItems = true;
       int count = 0;
@@ -170,7 +170,7 @@ static class orgmail
       WriteLine($"Folder: [{folder}]");
       if (subject != null)
       {
-        WriteLine($"subject: [{subject}]");
+        WriteLine($"subject{(exact?" (exact)":"")}: [{subject}]");
       }
       if (informative_subject != null)
       {
@@ -213,7 +213,7 @@ static class orgmail
       WriteLine($"Folder: [{folder}]");
       if (subject != null)
       {
-        WriteLine($"subject: [{subject}]");
+        WriteLine($"subject{(exact?" (exact)":"")}: [{subject}]");
       }
       if (informative_subject != null)
       {
