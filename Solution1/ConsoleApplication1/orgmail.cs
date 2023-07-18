@@ -346,6 +346,37 @@ static class orgmail
         }
       }
     }
+    public void subs()
+    {
+      if (string.IsNullOrWhiteSpace(folder)) folder = "Clutter";
+
+      var exchange = GetExchangeService();
+      var target_folder = GetTargetFolder(exchange, folder);
+      //Microsoft.Exchange.WebServices.Data.FolderId[] targetfolder = new[] { new Microsoft.Exchange.WebServices.Data.FolderId(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.Inbox) };
+      Microsoft.Exchange.WebServices.Data.FolderId[] targetfolderid = new[] { target_folder.Id };
+      var StreamingSubscription = exchange.SubscribeToStreamingNotifications(targetfolderid, Microsoft.Exchange.WebServices.Data.EventType.NewMail);
+// Create a streaming connection to the service object, over which events are returned to the client.
+// Keep the streaming connection open for 30 minutes.
+      Microsoft.Exchange.WebServices.Data.StreamingSubscriptionConnection connection = new(exchange, 30);
+      connection.AddSubscription(StreamingSubscription);
+      connection.OnNotificationEvent += OnNotificationEvent;
+      connection.OnDisconnect += OnDisconnect;
+      connection.OnSubscriptionError += OnSubscriptionError;
+      connection.Open();
+      WriteLine($"{DateTime.Now:s} Press ENTER to end");ReadLine();
+      void OnNotificationEvent(object sender, Microsoft.Exchange.WebServices.Data.NotificationEventArgs e)
+      {
+        WriteLine($"{DateTime.Now:s} {nameof(OnNotificationEvent)} ({e.Events?.Count()}): {string.Join("\n\t",e.Events?.Select(x=>$"{x.TimeStamp:s} {x.EventType} ({x.GetType().FullName})"))}");
+        foreach(Microsoft.Exchange.WebServices.Data.ItemEvent item_event in e.Events.OfType<Microsoft.Exchange.WebServices.Data.ItemEvent>())
+        {
+          // WriteLine($"\n\t{item_event.ItemId.UniqueId}");
+          var msg = Microsoft.Exchange.WebServices.Data.EmailMessage.Bind(exchange, item_event.ItemId.UniqueId);
+          WriteLine($"\n\t{msg.Subject}");
+        }
+      }
+      void OnDisconnect(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnDisconnect)}");}
+      void OnSubscriptionError(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnSubscriptionError)}");}
+    }
     void SetEncoding()
     {
       if(ascii) encoding = Encoding.ASCII;
