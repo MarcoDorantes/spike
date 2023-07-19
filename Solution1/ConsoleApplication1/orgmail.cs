@@ -799,9 +799,11 @@ https://docs.microsoft.com/en-us/dotnet/standard/security/walkthrough-creating-a
     }
   }
 
-  public static void _Main(string[] args)
+  public static int _Main(string[] args)
   {
+    int result = 1;
     if (args?.Length == 0) nutility.Switch.ShowUsage(typeof(Input));
-    else nutility.Switch.AsType<Input>(args);
+    else {nutility.Switch.AsType<Input>(args); result = 0;}
+    return result;
   }
 }

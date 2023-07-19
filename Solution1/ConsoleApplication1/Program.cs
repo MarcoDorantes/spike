@@ -490,6 +490,7 @@ namespace ConsoleApplication1
     //[STAThread]
     static void Main(string[] args)
     {
+      int result = 1;
       try
       {
         //ExploreFeatureCS6_exe._Main_cs6();
@@ -506,11 +507,11 @@ namespace ConsoleApplication1
         //skype._Main(args);
         //tracer._Main(args);
         //windowsTask._Main(args);
-        orgmail._Main(args);
+        result = orgmail._Main(args);
         //cfdi_summary._Main(args);
       }
-      catch (Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"\n\n[{level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
-
+      catch (Exception ex) { result = 2; for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"\n\n[{level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
+      finally { Environment.ExitCode = result; }
 //      unhandled_exceptions._Main(args);
     }
   }
