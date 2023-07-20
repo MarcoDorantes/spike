@@ -371,12 +371,22 @@ static class orgmail
         var grouped = string.Join(" ",e.Events?.GroupBy(x=>$"[{x.EventType}|{x.GetType().FullName}]").Select(g=>$"{g.Key}:{g.Count()}"));
         var msgs = string.Join("\n\t",e.Events.OfType<Microsoft.Exchange.WebServices.Data.ItemEvent>().Select(item_event => {
             var msg = Microsoft.Exchange.WebServices.Data.EmailMessage.Bind(exchange, item_event.ItemId.UniqueId);
-            return $"({msg.Attachments.Count} attachs) {msg.Subject}";
+            var fileattachs = msg.Attachments.OfType<Microsoft.Exchange.WebServices.Data.FileAttachment>();
+            var attachs = fileattachs?.Count() > 0? "\n\t\t"+string.Join("\n\t\t", fileattachs.Select(a=>$"{a.Name} ({getcontent(a).Length},{a.Size})")) : "";
+            return $"({msg.Attachments.Count} attachs) {msg.Subject}{attachs}";
         }));
         WriteLine($"\n[{thread}/{_count}] {DateTime.Now:s} {nameof(OnNotificationEvent)} ({e.Events?.Count()}): {grouped}\n\t{msgs}");
       }
-      void OnDisconnect(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnDisconnect)}");}
-      void OnSubscriptionError(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnSubscriptionError)}");}
+      static void OnDisconnect(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnDisconnect)}");}
+      static void OnSubscriptionError(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnSubscriptionError)}");}
+      static string getcontent(Microsoft.Exchange.WebServices.Data.FileAttachment attach)
+      {
+          using MemoryStream stream = new();
+          attach.Load(stream);
+          stream.Position = 0;
+          using StreamReader reader = new(stream, System.Text.Encoding.UTF8);
+          return reader.ReadToEnd();
+      }
     }
     void SetEncoding()
     {
