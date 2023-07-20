@@ -366,13 +366,14 @@ static class orgmail
       WriteLine($"{DateTime.Now:s} Press ENTER to end");ReadLine();
       void OnNotificationEvent(object sender, Microsoft.Exchange.WebServices.Data.NotificationEventArgs e)
       {
-        WriteLine($"{DateTime.Now:s} {nameof(OnNotificationEvent)} ({e.Events?.Count()}): {string.Join("\n\t",e.Events?.Select(x=>$"{x.TimeStamp:s} {x.EventType} ({x.GetType().FullName})"))}");
-        foreach(Microsoft.Exchange.WebServices.Data.ItemEvent item_event in e.Events.OfType<Microsoft.Exchange.WebServices.Data.ItemEvent>())
-        {
-          // WriteLine($"\n\t{item_event.ItemId.UniqueId}");
-          var msg = Microsoft.Exchange.WebServices.Data.EmailMessage.Bind(exchange, item_event.ItemId.UniqueId);
-          WriteLine($"\n\t{msg.Subject}");
-        }
+        int thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
+        int _count = System.Threading.Interlocked.Increment(ref count);
+        var grouped = string.Join(" ",e.Events?.GroupBy(x=>$"[{x.EventType}|{x.GetType().FullName}]").Select(g=>$"{g.Key}:{g.Count()}"));
+        var msgs = string.Join("\n\t",e.Events.OfType<Microsoft.Exchange.WebServices.Data.ItemEvent>().Select(item_event => {
+            var msg = Microsoft.Exchange.WebServices.Data.EmailMessage.Bind(exchange, item_event.ItemId.UniqueId);
+            return $"({msg.Attachments.Count} attachs) {msg.Subject}";
+        }));
+        WriteLine($"\n[{thread}/{_count}] {DateTime.Now:s} {nameof(OnNotificationEvent)} ({e.Events?.Count()}): {grouped}\n\t{msgs}");
       }
       void OnDisconnect(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnDisconnect)}");}
       void OnSubscriptionError(object sender, Microsoft.Exchange.WebServices.Data.SubscriptionErrorEventArgs e){WriteLine($"{DateTime.Now:s} {nameof(OnSubscriptionError)}");}

@@ -18002,5 +18002,94 @@ The post What’s New in SSDT 17.6: Ledger, Performance, Copilot appeared first 
       <category>sqlserver022</category>
       <category>ssdt</category>
     </item>
+    <item>
+      <title>Introducing a powerful new Extension Manager</title>
+      <description>The Visual Studio Marketplace is filled with incredible extensions that let you customize your IDE, boost your productivity, and integrate with your other development tools. We’ve heard feedback from developers like you that it can be difficult to find important information like ratings and full-length descriptions when browsing the Marketplace with the Extension Manager.
+The post Introducing a powerful new Extension Manager appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-a-powerful-new-extension-manager/</link>
+      <pubDate>Mon, 17 Jul 2023 16:00:25 Z</pubDate>
+      <category>Extensibility</category>
+      <category>Visual Studio</category>
+      <category>Extensions</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Announcing the .NET MAUI extension for Visual Studio Code</title>
+      <description>Last month, we released the first preview of C# Dev Kit, a lightweight, editor-first experience that augments your C# development in Visual Studio Code with a Solution Explorer, native Test Explorer, AI-powered code authoring, and more.
+Today, we’re excited to announce the first preview of the .NET MAUI extension,
+The post Announcing the .NET MAUI extension for Visual Studio Code appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/announcing-the-dotnet-maui-extension-for-visual-studio-code/</link>
+      <pubDate>Tue, 11 Jul 2023 16:44:38 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Get the most from Visual Studio with Microsoft Dev Box–now generally available</title>
+      <description>Today, we’re excited to announce that Microsoft Dev Box is now generally available. Below we’ll highlight a few significant features of Dev Box for Visual Studio users. Read the announcement blog to learn more about our journey to Microsoft Dev Box and what the service means for Visual Studio subscribers.
+The post Get the most from Visual Studio with Microsoft Dev Boxnow generally available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/get-the-most-from-visual-studio-with-microsoft-dev-box-now-generally-available/</link>
+      <pubDate>Mon, 10 Jul 2023 19:09:47 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Visual Studio Toolbox: Accelerate your builds of SDK-style .NET projects</title>
+      <description>The Visual Studio Toolbox show helps you become a more productive developer by focusing on tooling in and out of Visual Studio.  Our latest episode of VS Toolbox (available both on Learn and YouTube) features Drew Noakes from the .NET team.
+The post Visual Studio Toolbox: Accelerate your builds of SDK-style .NET projects appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/vs-toolbox-accelerate-your-builds-of-sdk-style-net-projects/</link>
+      <pubDate>Thu, 22 Jun 2023 16:00:48 Z</pubDate>
+      <category>performance</category>
+      <category>Visual Studio</category>
+      <category>.NET</category>
+      <category>MSBuild</category>
+      <category>Performance</category>
+    </item>
+    <item>
+      <title>Announcing Create a Pull Request in Visual Studio</title>
+      <description>We heard from you that you can do 90% of your development workflow in Visual Studio, but then need to rely on the web to create your pull requests. Were continually bringing productivity enhancements to Visual Studio and are excited to announce that as of 17.7 preview 2 release.
+The post Announcing Create a Pull Request in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/create-a-pull-request-in-visual-studio/</link>
+      <pubDate>Mon, 19 Jun 2023 15:00:27 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Configure Visual Studio policies using Microsoft Endpoint Manager (Intune)</title>
+      <description>Visual Studio global policies are now included in the Microsoft Endpoint Manager (Intune) settings catalog! Its easier for administrators to configure their organization’s devices now that the Visual Studio software policies are readily accessible in the Device Configuration Profile UI.
+A few months ago,
+The post Configure Visual Studio policies using Microsoft Endpoint Manager (Intune) appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/configure-visual-studio-policies-using-microsoft-endpoint-manager-intune/</link>
+      <pubDate>Thu, 15 Jun 2023 16:45:58 Z</pubDate>
+      <category>Administration</category>
+      <category>Visual Studio</category>
+      <category>Configuration</category>
+      <category>group policy</category>
+      <category>Intune</category>
+      <category>Microsoft Endpoint Manager</category>
+      <category>Visual Studio ADMX</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.7 Preview 2 is here!</title>
+      <description>﻿
+Welcome to the Public Preview 2 of Visual Studio version 17.7! Hot on the heels of our recent Preview 1, were thrilled to roll out another collection of upgrades tailored to empower developers like you. Preview 2 pushes the boundaries further,
+The post Visual Studio 2022 17.7 Preview 2 is here! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-7-preview-2-is-here/</link>
+      <pubDate>Tue, 13 Jun 2023 17:33:20 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>.NET</category>
+      <category>.NET Core</category>
+      <category>Performance</category>
+    </item>
+    <item>
+      <title>Installing Visual Studio from an Internal Intranet Website</title>
+      <description>We’re happy to announce that starting with Visual Studio 2022 version 17.6, Visual Studio layouts are available to install from an internal intranet website! 
+Enterprise customers have long been able to download a particular version of Visual Studio, host it on a private network file share,
+The post Installing Visual Studio from an Internal Intranet Website appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/installing-visual-studio-from-an-internal-website/</link>
+      <pubDate>Mon, 12 Jun 2023 22:25:02 Z</pubDate>
+      <category>Installation and Updates</category>
+      <category>Install</category>
+      <category>IT Admin</category>
+      <category>Layouts</category>
+      <category>Offline</category>
+      <category>Visual Studio</category>
+    </item>
   </channel>
 </rss>
