@@ -18091,5 +18091,70 @@ The post Installing Visual Studio from an Internal Intranet Website appeared fir
       <category>Offline</category>
       <category>Visual Studio</category>
     </item>
+    <item>
+      <title>Let’s Co-Create! Your Voice Matters </title>
+      <description>We want to celebrate the suggestions you’ve made and the time you have invested in giving feedback to help build Visual Studio. Were thrilled to announce that Visual Studio 2022 17.7, which began with Preview 1 on May 16th, is now officially out of Preview and generally available!
+The post Lets Co-Create! Your Voice Matters  appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/lets-co-create-your-voice-matters/</link>
+      <pubDate>Thu, 10 Aug 2023 14:00:50 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.8 Preview 1 has arrived!</title>
+      <description>﻿
+Hot on the heels of the General Availability of Visual Studio v17.7, (Visual Studio 2022 – 17.7 Now Available) were thrilled to introduce the next set of enhancements that aim to streamline your workflow and boost your productivity.
+In this preview,
+The post Visual Studio 2022 17.8 Preview 1 has arrived! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-8-preview-1-has-arrived/</link>
+      <pubDate>Wed, 09 Aug 2023 14:00:00 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 – 17.7 Now Available</title>
+      <description>Were delighted to announce the General Availability (GA) of Visual Studio 2022 version 17.7 today. This release is a testament to our continued commitment to creating an enriched developer experience, powered by community feedback, and driven by the needs of the diverse developer landscape.
+The post Visual Studio 2022 – 17.7 Now Available appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-7-now-available/</link>
+      <pubDate>Tue, 08 Aug 2023 17:17:05 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Announcing the Unity extension for Visual Studio Code</title>
+      <description>Today we are thrilled to announce a preview of the Unity extension for Visual Studio Code.
+Remember when we launched the first preview of C# Dev Kit this past June? It delivers an editor-centric approach that elevates your C# development in Visual Studio Code with great features including a native Test Explorer,
+The post Announcing the Unity extension for Visual Studio Code appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/announcing-the-unity-extension-for-visual-studio-code/</link>
+      <pubDate>Thu, 03 Aug 2023 17:00:22 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Subscribe to the Visual Studio Blog via email</title>
+      <description>We’re excited to announce that you can now subscribe to the Visual Studio blog via email! By subscribing, you’ll get the latest updates on Visual Studio delivered straight to your inbox. And let’s be honest, who doesn’t love getting fun and exciting emails?
+The post Subscribe to the Visual Studio Blog via email appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/subscribe-to-the-visual-studio-blog-via-email/</link>
+      <pubDate>Wed, 26 Jul 2023 14:00:51 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Rock Your Debugging Game: Parallel Stack Window Tips You Need to Know!</title>
+      <description>In Visual Studio 2022 17.6 and 17.7 we added a ton of new features in Parallel Stack Window that can take your multithreaded debugging to the next level.
+But what can the Parallel Stack Window do for you? The answer is simple 
+The post Rock Your Debugging Game: Parallel Stack Window Tips You Need to Know! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/rock-your-debugging-game-parallel-stack-window-tips-you-need-to-know/</link>
+      <pubDate>Tue, 25 Jul 2023 13:30:54 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Developer Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Too many tabs open? No problem!</title>
+      <description>When you have lots of tabs open in Visual Studio, your horizontal screen resolution determines how many will fit the Tab Well. The remaining document tabs won’t be shown unless you enable multi-row tabs. But what if you don’t want to lose the coding space multi-row tabs take up,
+The post Too many tabs open? No problem! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/too-many-tabs-open-no-problem/</link>
+      <pubDate>Thu, 20 Jul 2023 14:00:43 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>document management</category>
+      <category>Experiment</category>
+    </item>
   </channel>
 </rss>
