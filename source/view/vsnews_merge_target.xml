@@ -18156,5 +18156,35 @@ The post Too many tabs open? No problem! appeared first on Visual Studio Blog.</
       <category>document management</category>
       <category>Experiment</category>
     </item>
+    <item>
+      <title>Unleashing the Power of Visual Studio 2022 for C++ Game Development</title>
+      <description>In Visual Studio 2022 v17.7, we are excited to bring you a multitude of performance tune-ups, productivity enhancements, and Unreal Engine integrations for C++ game development. In this blog post, you will learn how to take advantage of these new improvements whether you use Unreal Engine or a proprietary game engine.
+The post Unleashing the Power of Visual Studio 2022 for C++ Game Development appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/unleashing-the-power-of-visual-studio-2022-for-c-game-development/</link>
+      <pubDate>Wed, 16 Aug 2023 16:00:03 Z</pubDate>
+      <category>Gaming</category>
+      <category>Visual Studio</category>
+      <category>C++</category>
+      <category>Game Development</category>
+      <category>Unreal Engine</category>
+    </item>
+    <item>
+      <title>My favorite features in Visual Studio 17.7</title>
+      <description>Two of my favorite features in Visual Studio happen to share a similar origin story. They were both created in deep collaboration with you, the user, and went through multiple iterations before you gave your final thumbs up. This is the story of how they came to be and why they are my favorites.
+The post My favorite features in Visual Studio 17.7 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/my-favorite-features-in-visual-studio-17-7/</link>
+      <pubDate>Tue, 15 Aug 2023 14:00:37 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>diff</category>
+      <category>Editor</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 – 17.7 Performance Enhancements</title>
+      <description>Visual Studio 2022 17.7 introduces a set of exciting performance improvements that cater to key areas like F5 Speed, Enhanced Light Bulb Performance in C#, improved memory consumption in C# spell checker, C++ Unreal Engine – IntelliSense optimization, Solution Explorer, Find in Files and much more. 
+The post Visual Studio 2022 – 17.7 Performance Enhancements appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-7-performance-enhancements/</link>
+      <pubDate>Mon, 14 Aug 2023 18:00:53 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
   </channel>
 </rss>
