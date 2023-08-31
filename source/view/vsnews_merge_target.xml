@@ -18186,5 +18186,83 @@ The post Visual Studio 2022 – 17.7 Performance Enhancements appeared first on 
       <pubDate>Mon, 14 Aug 2023 18:00:53 Z</pubDate>
       <category>Visual Studio</category>
     </item>
+    <item>
+      <title>Safely use secrets in HTTP requests in Visual Studio 2022</title>
+      <description>In the 17.8 Preview 1 version of Visual Studio 2022 we have updated the HTTP file editor in to enable you to externalize variables to make testing your Web APIs across different environments easier. This update also includes support to handle secrets in a secure fashion.
+The post Safely use secrets in HTTP requests in Visual Studio 2022 appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/safely-use-secrets-in-http-requests-in-visual-studio-2022/</link>
+      <pubDate>Wed, 23 Aug 2023 15:47:02 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Simplified Code Refinement and Debugging with GitHub Copilot Chat</title>
+      <description>This March, we announced GitHub Copilot chat for Visual Studio 2022. With Chat, Copilot has moved beyond code completions, offering in-depth analysis and explanations of how code works. It supports the generation of unit tests, and even helps with proposed fixes to bugs,
+The post Simplified Code Refinement and Debugging with GitHub Copilot Chat appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/simplified-code-refinement-and-debugging-with-github-copilot-chat/</link>
+      <pubDate>Tue, 22 Aug 2023 15:00:56 Z</pubDate>
+      <category>Artificial Intelligence</category>
+      <category>Copilot</category>
+      <category>Visual Studio</category>
+      <category>Chat</category>
+    </item>
+    <item>
+      <title>New in Visual Studio: Compare Files with Solution Explorer</title>
+      <description>Comparing code in different files is a common need for developers, yet it often disrupts the flow of your work. Weve heard your feedback and are excited to introduce a new compare feature in Visual Studio. This feature enables you to compare code files directly within the Solution Explorer,
+The post New in Visual Studio: Compare Files with Solution Explorer appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/new-in-visual-studio-compare-files-with-solution-explorer/</link>
+      <pubDate>Mon, 21 Aug 2023 15:00:38 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Compare</category>
+      <category>Editor</category>
+      <category>Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Multi-Branch Graph Available for General Audiences</title>
+      <description>The power of version control comes alive when you can visualize your Git operations with the new multi-branch graph, available in 17.7 GA. In response to your feedback, we’ve delivered an improved graph experience. Track all the branches, commits, and merges that arise in your git workflows by viewing multiple branches at the same time.
+The post Multi-Branch Graph Available for General Audiences appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/multi-branch-graph-available-for-general-audiences/</link>
+      <pubDate>Thu, 17 Aug 2023 15:00:23 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Git</category>
+      <category>Git Integration</category>
+      <category>Multi-branch Graph</category>
+    </item>
+    <item>
+      <title>Visual Studio for Mac Retirement Announcement</title>
+      <description>Today we are announcing the retirement of the Visual Studio for Mac IDE. Visual Studio for Mac 17.6 will continue to be supported for another 12 months, until August 31st, 2024, with servicing updates for security issues and updated platforms from Apple.
+The post Visual Studio for Mac Retirement Announcement appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-for-mac-retirement-announcement/</link>
+      <pubDate>Wed, 30 Aug 2023 16:57:03 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Visual Studio 2022 for Mac</category>
+      <category>Visual Studio for Mac</category>
+      <category>VSMac</category>
+    </item>
+    <item>
+      <title>Learn about new and old VS tools on Visual Studio Toolbox!</title>
+      <description>Do you like watching videos to learn about new and existing Visual Studio features?  Then you should check out the Visual Studio Toolbox show!  Available on both Learn and YouTube, Visual Studio Toolbox is a show that helps you become a more productive developer in VS by highlighting tooling within the IDE and the wider Visual Studio family. 
+The post Learn about new and old VS tools on Visual Studio Toolbox! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/learn-about-new-and-old-vs-tools-on-visual-studio-toolbox/</link>
+      <pubDate>Tue, 29 Aug 2023 16:00:50 Z</pubDate>
+      <category>Gaming</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>.NET</category>
+      <category>C++</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Working with images just got easier in Visual Studio</title>
+      <description>Any web, desktop, or mobile developer works with images often. You reference them from C#, HTML, XAML, CSS, C++, TypeScript, and even in code comments. Some images are local, and some exist online or on network shares, while others only exist as base64 encoded strings.
+The post Working with images just got easier in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/working-with-images-just-got-easier-in-visual-studio/</link>
+      <pubDate>Mon, 28 Aug 2023 14:00:10 Z</pubDate>
+      <category>Desktop</category>
+      <category>Visual Studio</category>
+      <category>Web</category>
+      <category>Experiment</category>
+      <category>Preview</category>
+    </item>
   </channel>
 </rss>
