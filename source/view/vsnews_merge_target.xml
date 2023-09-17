@@ -18264,5 +18264,27 @@ The post Working with images just got easier in Visual Studio appeared first on 
       <category>Experiment</category>
       <category>Preview</category>
     </item>
+    <item>
+      <title>Elevating Debugging with Auto-decompilation and External Sources</title>
+      <description>Visual Studio has been supporting external sources debugging and decompilation for some time now. However, with the release of Visual Studio 17.7, the debugger took a significant leap forward by introducing Auto-decompilation for .NET libraries making the external code debugging in Visual Studio much more streamlined and effortless.
+The post Elevating Debugging with Auto-decompilation and External Sources appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/elevating-debugging-with-auto-decompilation-and-external-sources/</link>
+      <pubDate>Wed, 06 Sep 2023 16:42:38 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Developer Productivity</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>Keep your casing with Case-preserving Find and Replace</title>
+      <description>The Visual Studio search experience is getting a new feature that allows users to find and replace text without having to worry about different casings. For example, a method parameter `catalogItemId` and object property `CatalogItemId` have the same name but different capitalization but should both be replaced by something like ‘productId’ with their respective casings. 
+The post Keep your casing with Case-preserving Find and Replace appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/keep-your-casing-with-case-preserving-find-and-replace/</link>
+      <pubDate>Tue, 05 Sep 2023 17:00:55 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Find</category>
+      <category>Find in Files</category>
+      <category>Search</category>
+    </item>
   </channel>
 </rss>
