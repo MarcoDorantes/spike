@@ -18286,5 +18286,69 @@ The post Keep your casing with Case-preserving Find and Replace appeared first o
       <category>Find in Files</category>
       <category>Search</category>
     </item>
+    <item>
+      <title>Get a Sneak Peek: The Visual Studio ‘Tea &amp; Technology’ Miniseries</title>
+      <description>2023 Visual Studio Miniseries:
+Tea  Technology
+The Visual Studio team is full of stories and insights, and we knew it was time to share them. So, we picked up our cameras and went on a special tour of Microsoft’s iconic Redmond Campus.
+The post Get a Sneak Peek: The Visual Studio Tea  Technology Miniseries appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-tea-technology-miniseries/</link>
+      <pubDate>Wed, 27 Sep 2023 15:00:02 Z</pubDate>
+      <category>Copilot</category>
+      <category>Team and Development</category>
+      <category>Visual Studio</category>
+      <category>.NET</category>
+    </item>
+    <item>
+      <title>A unit of profiling makes the allocations go away</title>
+      <description>In Visual Studio 17.8 Preview 2 we have updated unit test profiling, allowing you to use any of the available tools in the performance profiler – not just the instrumentation tool. With this change, it’s easy to quickly profile small units of work in isolation,
+The post A unit of profiling makes the allocations go away appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/a-unit-of-profiling-makes-the-allocations-go-away/</link>
+      <pubDate>Mon, 25 Sep 2023 14:49:32 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Debugging and Diagnostics</category>
+      <category>Developer Productivity</category>
+      <category>Unit test performance</category>
+      <category>Visual Studio 2022</category>
+    </item>
+    <item>
+      <title>New React TypeScript SPA Templates and More</title>
+      <description>We have made the latest React TypeScript SPA Templates available in our latest preview. If you are developing React TypeScript Web application with ASP.NET as backend in Visual Studio, go ahead and try the new template! All the Visual Studio React and Vue templates using the JavaScript SDK are now using Vite,
+The post New React TypeScript SPA Templates and More appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/new-react-typescript-spa-templates-and-more/</link>
+      <pubDate>Thu, 21 Sep 2023 16:00:50 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>IntelliTest simplifies writing and maintaining unit tests</title>
+      <description>Writing a suite of unit tests that exhaustively exercise and validate the logic of the code is not easy. It can even be considered too expensive to do at all. Fortunately, IntelliTest addresses both concerns: it helps you achieve high code coverage at a fraction of the cost,
+The post IntelliTest simplifies writing and maintaining unit tests appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/intellitest-simplifies-writing-and-maintaining-unit-tests/</link>
+      <pubDate>Wed, 20 Sep 2023 17:00:02 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>IntelliTest</category>
+      <category>Testing</category>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.8 Preview 2 has arrived!</title>
+      <description>﻿
+We hope everyone enjoyed all the new and updated features that came with our first preview of Visual Studio’s next version, and now we’re back with more! This release brings additional tools to help you improve your productivity, debug your code,
+The post Visual Studio 2022 17.8 Preview 2 has arrived! appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-8-preview-2-has-arrived/</link>
+      <pubDate>Thu, 14 Sep 2023 17:45:19 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>Balancing User Updates with Security Best Practices</title>
+      <description>In today’s world, it is imperative for IT administrators and organizations to manage security effectively and embrace security best practices. One common best practice involves implementing appropriate permission levels to ensure that only authorized accounts can access sensitive data and functionality.
+The post Balancing User Updates with Security Best Practices appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/standard-user-update/</link>
+      <pubDate>Wed, 13 Sep 2023 16:30:11 Z</pubDate>
+      <category>Visual Studio</category>
+      <category>Administrator</category>
+      <category>Installer</category>
+      <category>security</category>
+      <category>Update</category>
+    </item>
   </channel>
 </rss>
