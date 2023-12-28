@@ -60,10 +60,13 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\VisualStudio\14.0_Config\StartPage
 https://go.microsoft.com/fwlink/?linkid=87676&clcid=%VSSPV_LCID_HEX%
 https://go.microsoft.com/fwlink/?linkid=87676&clcid=409
 https://vsstartpage.blob.core.windows.net/news/vs
+
+https://devblogs.microsoft.com/visualstudio/feed/
           */
 
           add("http://sxp.microsoft.com/feeds/msdntn/VisualStudioNews", targetfile);
           add("https://vsstartpage.blob.core.windows.net/news/vs", targetfile);
+          add("https://devblogs.microsoft.com/visualstudio/feed", targetfile);
 
           var next = @"tools\windiff vsnews_merge_target.xml afile_copy.xml";
           System.Windows.Clipboard.SetText(next);
