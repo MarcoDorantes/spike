@@ -14,6 +14,7 @@ using static System.Console;
 /*
 Exchange Online and Exchange development
 https://docs.microsoft.com/en-us/exchange/client-developer/exchange-server-development
+https://learn.microsoft.com/en-us/exchange/client-developer/migrating-to-exchange-online-and-exchange-2013-technologies
 
 Overview of Microsoft Graph
 https://docs.microsoft.com/en-us/graph/overview
@@ -30,6 +31,20 @@ https://docs.microsoft.com/en-us/graph/auth/auth-concepts
 https://docs.microsoft.com/en-us/graph/best-practices-concept
 https://docs.microsoft.com/en-us/graph/auth-v2-service
 https://learn.microsoft.com/en-us/graph/tutorials/dotnet-app-only?tabs=aad
+https://learn.microsoft.com/en-us/graph/quick-start-faq
+https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0
+https://learn.microsoft.com/en-us/graph/sdks/create-requests
+
+Azure.Identity NuGet
+https://www.nuget.org/packages/Azure.Identity
+https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.10.4/sdk/identity/Azure.Identity/README.md
+https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow
+https://learn.microsoft.com/en-us/entra/identity-platform/sample-v2-code?tabs=apptype#daemon-applications
+
+Microsoft.Identity.Web.GraphServiceClient
+https://learn.microsoft.com/en-us/entra/identity-platform/sample-v2-code?tabs=apptype#daemon-applications
+https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/tree/master/1-Call-MSGraph
+https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/blob/master/1-Call-MSGraph/daemon-console/Program.cs
 
 https://aka.ms/AAgzk1b | https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online
 https://developer.microsoft.com/en-us/graph/blogs/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/
@@ -92,6 +107,10 @@ Trace ID: <uuid>
 Correlation ID: <uuid>
 Timestamp: 2023-06-21 13:58:16Z
 </Access-expired-exception>
+
+Issues net48 vs net. MSGraph is next on Office365.
+https://github.com/OfficeDev/ews-managed-api/issues/96
+https://github.com/OfficeDev/ews-managed-api/blob/master/README.md
 */
 static class orgmail
 {
