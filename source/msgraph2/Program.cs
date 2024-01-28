@@ -1,8 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information Console.WriteLine("Hello, World!");
 
-//https://stackoverflow.com/questions/68633304/ms-graph-daemon-app-obtaining-bearer-token
-//https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/tree/master/1-Call-MSGraph
-
+/*
+https://stackoverflow.com/questions/68633304/ms-graph-daemon-app-obtaining-bearer-token
+https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/tree/master/1-Call-MSGraph
+https://stackoverflow.com/questions/59985143/sending-mail-using-a-daemon-application
+*/
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graph;
@@ -148,9 +150,10 @@ class Exe
 
             // Call Microsoft Graph using the Graph SDK
             GraphServiceClient office365client = serviceProvider.GetRequiredService<GraphServiceClient>();
-          //var users = await office365client.Users.GetAsync(r => r.Options.WithAppOnly());
-            var user_ = await office365client.Me.GetAsync(r => r.Options.WithAppOnly()); //[Level 0] Microsoft.Graph.Models.ODataErrors.ODataError: /me request is only valid with delegated authentication flow.
-            WriteLine(user_.DisplayName);
+            var users = await office365client.Users.GetAsync(r => r.Options.WithAppOnly());//[Level 0] Microsoft.Graph.Models.ODataErrors.ODataError: Insufficient privileges to complete the operation.
+            WriteLine(users.OdataCount);
+          //var user_ = await office365client.Me.GetAsync(r => r.Options.WithAppOnly()); //[Level 0] Microsoft.Graph.Models.ODataErrors.ODataError: /me request is only valid with delegated authentication flow.
+          //WriteLine(user_.DisplayName);
         }
         catch(Exception ex){for(int level=0;ex!=null;ex=ex.InnerException,++level)WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n");}
     }
@@ -176,4 +179,6 @@ $response.access_token
 
 https://graph.microsoft.com/v1.0/users/{object id}/messages?$filter=isRead ne true&$count=true
 https://graph.microsoft.com/v1.0/users/{object id}/messages?$filter=isRead ne true&$count=true
+
+https://www.youtube.com/watch?v=C0hjEja-vPA
 */
