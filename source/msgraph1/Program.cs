@@ -68,10 +68,10 @@ class Exe
         WriteLine(user_.DisplayName);
 
         // GET https://graph.microsoft.com/v1.0/me?$select=displayName,jobTitle
-        var user = await office365client.Me.GetAsync(requestConfiguration =>
+        /*var user = await office365client.Me.GetAsync(requestConfiguration =>
         {
             requestConfiguration.QueryParameters.Select = ["displayName", "jobTitle"];
-        });
+        });*/
     }
 
     static async Task GetMail(GraphServiceClient office365client)
@@ -100,9 +100,9 @@ class Exe
     {
         try
         {
-            ClientSecretCredential credential = new(Config.TenantId, Config.ClientId, Config.ClientSecret);
-            //AuthorizationCodeCredential credential = new(Config.TenantId, Config.ClientId, Config.ClientSecret, ""); //[Level 0] Azure.Identity.AuthenticationFailedException: AuthorizationCodeCredential authentication failed: AuthorizationCode can not be null or whitespace (Parameter 'AuthorizationCode')
-            
+            //ClientSecretCredential credential = new(Config.TenantId, Config.ClientId, Config.ClientSecret);
+            AuthorizationCodeCredential credential = new(Config.TenantId, Config.ClientId, Config.ClientSecret, ""); //[Level 0] Azure.Identity.AuthenticationFailedException: AuthorizationCodeCredential authentication failed: AuthorizationCode can not be null or whitespace (Parameter 'AuthorizationCode')
+
             //EnvironmentCredential credential = new();//[Level 0] Microsoft.Graph.Models.ODataErrors.ODataError: /me request is only valid with delegated authentication flow.
             //[Level 0] Azure.Identity.CredentialUnavailableException: EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
             

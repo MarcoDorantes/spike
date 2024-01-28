@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information Console.WriteLine("Hello, World!");
 
+//https://stackoverflow.com/questions/68633304/ms-graph-daemon-app-obtaining-bearer-token
 //https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/tree/master/1-Call-MSGraph
 
 using Microsoft.Extensions.Configuration;
@@ -153,4 +154,26 @@ class Exe
         }
         catch(Exception ex){for(int level=0;ex!=null;ex=ex.InnerException,++level)WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n");}
     }
-}
+}/*
+https://stackoverflow.com/questions/62697391/can-a-ms-graph-background-daemon-app-impersonate-a-user-account-without-user-int
+https://learn.microsoft.com/en-us/entra/identity-platform/sample-v2-code?tabs=apptype
+.NET Core	Call Microsoft Graph by signing in users using username/password	MSAL.NET	Resource owner password credentials
+https://github.com/azure-samples/active-directory-dotnetcore-console-up-v2
+
+send email
+https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0&tabs=csharp
+https://learn.microsoft.com/en-us/answers/questions/43724/sending-emails-from-daemon-app-using-graph-api-on
+
+https://learn.microsoft.com/en-us/answers/questions/869759/background-mail-sending-service-using-microsoft-ac
+
+https://frankchen2016.medium.com/how-to-allow-aad-app-with-application-permissions-to-access-specific-email-boxes-ce4552fb7f5c
+https://www.linkedin.com/pulse/reading-o365-emails-from-daemon-process-using-graph-bhattacharya
+
+$url = 'https://login.microsoftonline.com/$($tenantid)/oauth2/v2.0/token'
+$body = @{client_id = ''; scope = 'https://graph.microsoft.com/.default'; client_secret = ''; grant_type = 'client_credentials' }
+$response = Invoke-RestMethod $url -Method 'POST' -Body $body -SkipHttpErrorCheck -StatusCodeVariable http_code
+$response.access_token
+
+https://graph.microsoft.com/v1.0/users/{object id}/messages?$filter=isRead ne true&$count=true
+https://graph.microsoft.com/v1.0/users/{object id}/messages?$filter=isRead ne true&$count=true
+*/
