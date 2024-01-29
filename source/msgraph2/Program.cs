@@ -166,7 +166,7 @@ https://github.com/azure-samples/active-directory-dotnetcore-console-up-v2
 send email
 https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0&tabs=csharp
 https://learn.microsoft.com/en-us/answers/questions/43724/sending-emails-from-daemon-app-using-graph-api-on
-
+https://www.youtube.com/watch?v=C0hjEja-vPA
 https://learn.microsoft.com/en-us/answers/questions/869759/background-mail-sending-service-using-microsoft-ac
 
 https://frankchen2016.medium.com/how-to-allow-aad-app-with-application-permissions-to-access-specific-email-boxes-ce4552fb7f5c
@@ -180,5 +180,4 @@ $response.access_token
 https://graph.microsoft.com/v1.0/users/{object id}/messages?$filter=isRead ne true&$count=true
 https://graph.microsoft.com/v1.0/users/{object id}/messages?$filter=isRead ne true&$count=true
 
-https://www.youtube.com/watch?v=C0hjEja-vPA
 */

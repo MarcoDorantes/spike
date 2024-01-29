@@ -101,12 +101,21 @@ class Exe
         try
         {
             //ClientSecretCredential credential = new(Config.TenantId, Config.ClientId, Config.ClientSecret);
-            AuthorizationCodeCredential credential = new(Config.TenantId, Config.ClientId, Config.ClientSecret, ""); //[Level 0] Azure.Identity.AuthenticationFailedException: AuthorizationCodeCredential authentication failed: AuthorizationCode can not be null or whitespace (Parameter 'AuthorizationCode')
+            //AuthorizationCodeCredential credential = new(Config.TenantId, Config.ClientId, Config.ClientSecret, ""); //[Level 0] Azure.Identity.AuthenticationFailedException: AuthorizationCodeCredential authentication failed: AuthorizationCode can not be null or whitespace (Parameter 'AuthorizationCode')
 
             //EnvironmentCredential credential = new();//[Level 0] Microsoft.Graph.Models.ODataErrors.ODataError: /me request is only valid with delegated authentication flow.
             //[Level 0] Azure.Identity.CredentialUnavailableException: EnvironmentCredential authentication unavailable. Environment variables are not fully configured. See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/environmentcredential/troubleshoot
             
-            GraphServiceClient office365client = new(credential, ["https://graph.microsoft.com/.default"]);
+            //GraphServiceClient office365client = new(credential, ["https://graph.microsoft.com/.default"]);
+
+            string userName="",pwd="";
+            string[] scopes = ["User.Read"];
+            UsernamePasswordCredentialOptions options = new() { AuthorityHost = AzureAuthorityHosts.AzurePublicCloud };
+            UsernamePasswordCredential userNamePasswordCredential = new(userName, pwd, Config.TenantId, Config.ClientId, options);
+            GraphServiceClient office365client = new(userNamePasswordCredential, scopes);/* [Level 0] Azure.Identity.AuthenticationFailedException: UsernamePasswordCredential authentication failed: AADSTS50076: Due to a configuration change made by your administrator, or because you moved to a new location, you must use multi-factor authentication to access '00000003-0000-0000-c000-000000000000'. Trace ID: 1df4f38a-7042-4ff9-a4c5-db93257f4000 Correlation ID: 0ea242a7-d22d-4fcb-9acb-6ae7f0660c56 Timestamp: 2024-01-29 00:30:01Z
+See the troubleshooting guide for more information. https://aka.ms/azsdk/net/identity/usernamepasswordcredential/troubleshoot
+[Level 1] Microsoft.Identity.Client.MsalUiRequiredException: AADSTS50076: Due to a configuration change made by your administrator, or because you moved to a new location, you must use multi-factor authentication to access '00000003-0000-0000-c000-000000000000'. Trace ID: 1df4f38a-7042-4ff9-a4c5-db93257f4000 Correlation ID: 0ea242a7-d22d-4fcb-9acb-6ae7f0660c56 Timestamp: 2024-01-29 00:30:01Z
+            */
 
             //await GetUserInfo(office365client);//[Level 0] Microsoft.Graph.Models.ODataErrors.ODataError: Insufficient privileges to complete the operation.
             await GetCurrentUserInfo(office365client);//[Level 0] Microsoft.Graph.Models.ODataErrors.ODataError: /me request is only valid with delegated authentication flow.
