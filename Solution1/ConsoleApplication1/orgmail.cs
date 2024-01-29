@@ -35,6 +35,9 @@ https://learn.microsoft.com/en-us/graph/quick-start-faq
 https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0
 https://learn.microsoft.com/en-us/graph/sdks/create-requests
 
+Migrate Exchange Web Services (EWS) apps to Microsoft Graph
+https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-overview
+
 Azure.Identity NuGet
 https://www.nuget.org/packages/Azure.Identity
 https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.10.4/sdk/identity/Azure.Identity/README.md
