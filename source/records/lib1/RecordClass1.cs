@@ -1,6 +1,6 @@
-﻿namespace objectx;
+namespace recordx;
 
-public class Class1(string firstName, string lastName, string[] phoneNumbers)
+public record class RecordClass1(string firstName, string lastName, string[] phoneNumbers)
 {
     public string FirstName { get; } = firstName;
     public string LastName { get; } = lastName;

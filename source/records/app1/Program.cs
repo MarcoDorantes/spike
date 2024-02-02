@@ -20,7 +20,7 @@ public static class Program
     }
     static void attrs()
     {
-        objectx.Class1 x = new();
+        objectx.Class1 x = new("name1", "last1", null);
         foreach (var p in x.GetType().GetProperties())
         {
             WriteLine($"{p.Name}");
