@@ -1,1 +1,1 @@
-public record Person(string FirstName, string LastName, string[] PhoneNumbers);
+public record class Person(string FirstName, string LastName, string[] PhoneNumbers);

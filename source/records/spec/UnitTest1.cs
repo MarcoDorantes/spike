@@ -3,8 +3,37 @@ namespace spec;
 using System.Linq;
 
 [TestClass]
-public class UnitTest1
+public class RecordTypesMinimalSpec
 {
+    [TestMethod]
+    public void RecordEqual()
+    {
+        var phoneNumbers = new string[2];
+        Person person1 = new("Nancy", "Davolio", phoneNumbers);
+        Person person2 = new("Nancy", "Davolio", phoneNumbers);
+        Assert.IsTrue(person1 == person2);
+
+        person1.PhoneNumbers[0] = "555-1234";
+        Assert.IsTrue(person1 == person2);
+
+        Assert.IsFalse(ReferenceEquals(person1, person2));
+    }
+
+    [TestMethod]
+    public void RecordNotEqual()
+    {
+        var phoneNumbers1 = new string[2];
+        var phoneNumbers2 = new string[2];
+        Person person1 = new("Nancy", "Davolio", phoneNumbers1);
+        Person person2 = new("Nancy", "Davolio", phoneNumbers2);
+        Assert.IsFalse(person1 == person2);
+
+        person1.PhoneNumbers[0] = "555-1234";
+        Assert.IsFalse(person1 == person2);
+
+        Assert.IsFalse(ReferenceEquals(person1, person2));
+    }
+
     [TestMethod]
     public void record_props()
     {
