@@ -20193,5 +20193,393 @@ I was particularly interested in Dev Tunnels.</p>
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/a-year-of-cpp-improvements-in-visual-studio/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">2</slash:comments>
     </item>
+    <item>
+      <title>A Streamlined Extension Manager comes to Visual Studio 17.9</title>
+      <link>https://devblogs.microsoft.com/visualstudio/a-streamlined-extension-manager-comes-to-visual-studio-17-9/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/a-streamlined-extension-manager-comes-to-visual-studio-17-9/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Maia Kelner]]></dc:creator>
+      <pubDate>Wed, 21 Feb 2024 16:14:06 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=247294</guid>
+      <description><![CDATA[<p>Over the last year, we’ve been building a better Extension Manager for Visual Studio that makes it easier for you to find and install great extensions. Along the way, we’ve invited Visual Studio Preview users to try out the new design and share their feedback with us.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/a-streamlined-extension-manager-comes-to-visual-studio-17-9/">A Streamlined Extension Manager comes to Visual Studio 17.9</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Over the last year, we’ve been building a better Extension Manager for Visual Studio that makes it easier for you to find and install great extensions. Along the way, we’ve invited Visual Studio Preview users to <a href="https://devblogs.microsoft.com/visualstudio/updating-the-extension-manager-with-your-feedback/">try out the new design</a> and share their feedback with us. Using all that <a href="https://developercommunity.visualstudio.com/t/Modern-Extension-Manager-for-Visual-Stud/10401804">amazing feedback</a>, we added features, made improvements, and fixed bugs. With the official release of <strong>Visual Studio 17.9</strong>, we’re ready to make the new Extension Manager available to everyone as a preview feature!</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio</a></div></p>
+<p>&nbsp;</p>
+<h3 id="the-new-extension-manager-design">The new Extension Manager design</h3>
+<p>This design is all about maximizing space for the content you care about when searching for extensions. In addition to the refreshed UI for the list of extensions in your search results, we now include a large window showing the detailed description for the selected extension.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/word-image-247294-1.gif"><img decoding="async" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/word-image-247294-1.gif" alt="A GIF showing the new Extension Manager in Visual Studio." width="1682" height="1016" class="aligncenter size-full wp-image-247295" /></a></p>
+<p>&nbsp;</p>
+<h4 id="using-search-filters">Using search filters</h4>
+<p>If you want to filter the search results by category, use the filter icon in the toolbar to show the category and subcategory dropdown menus. You can use the filters to search specifically for coding tools, for example, or to only show C# templates.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/word-image-247294-2.gif"><img decoding="async" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/word-image-247294-2.gif" alt="A GIF showing use of the filter options in the Extension Manager" width="604" height="620" class="aligncenter size-full wp-image-247296" /></a></p>
+<p>&nbsp;</p>
+<h3 id="try-the-new-extension-manager-and-share-your-feedback-with-us">Try the new Extension Manager and share your feedback with us!</h3>
+<p>The new Extension Manager is available for all users starting with Visual Studio 17.9, <a href="https://visualstudio.microsoft.com/downloads/">which is available today</a>!</p>
+<p>To get access to the updated design, enable the preview feature by clicking on <strong>Tools &gt; Manage Preview Features </strong>and making sure that the box for the feature called <strong>Extension Manager UI Refresh (requires restart) </strong>is checked. After you restart Visual Studio, you’ll find the new Extension Manager at <strong>Extensions &gt; Manage Extensions</strong>.</p>
+<p>As mentioned above, we can’t bring you the best features without your help, so please share your thoughts and feedback with us on <a href="https://developercommunity.visualstudio.com/t/Modern-Extension-Manager-for-Visual-Stud/10401804">this ticket on Developer Community</a>! Also, if you try the new design for a while and decide you want or need to return to the original design, we’d love to hear from you about what’s missing or how we can improve.</p>
+<p>If you run into any bugs or issues, please <a href="https://developercommunity.visualstudio.com/VisualStudio/report">report them</a> so we can prioritize fixing them.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/a-streamlined-extension-manager-comes-to-visual-studio-17-9/">A Streamlined Extension Manager comes to Visual Studio 17.9</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/a-streamlined-extension-manager-comes-to-visual-studio-17-9/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">2</slash:comments>
+    </item>
+    <item>
+      <title>VisualStudio.Extensibility: Install extensions without restarting Visual Studio!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-9/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-9/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Maia Kelner]]></dc:creator>
+      <pubDate>Tue, 20 Feb 2024 17:20:17 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=247272</guid>
+      <description><![CDATA[<p>The new VisualStudio.Extensibility SDK helps you build extensions that run outside of the main IDE process for improved performance and reliability. With a focus on developer productivity, it features a modern, intuitive .NET Core-based API and solid, well-maintained documentation.<br />
+This public preview release builds on our previous developer previews,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-9/">VisualStudio.Extensibility: Install extensions without restarting Visual Studio!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The new VisualStudio.Extensibility SDK helps you build extensions that run outside of the main IDE process for improved performance and reliability. With a focus on developer productivity, it features a modern, intuitive .NET Core-based API and solid, well-maintained documentation.</p>
+<p>This public preview release builds on our <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-preview-3/">previous</a> developer previews, and it brings with it the highly-requested ability to publish your new extensions in the Visual Studio Marketplace and share them with customers. We’ve introduced some great new features that will make it easier to configure your extensions, query the project system, and create powerful debugger visualizers. Also with this release, we’ve strengthened our plans to keep our core API stable across releases, and we’ve explicitly marked APIs that may change to help developers create extensions with confidence.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://aka.ms/VisualStudio.Extensibility" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Get Started with VisualStudio.Extensibility Preview</a></div></p>
+<p>Please visit <a href="https://aka.ms/VisualStudio.Extensibility">https://aka.ms/VisualStudio.Extensibility</a> for up-to-date docs and installation instructions. If you’d like to report bugs or suggest features, please use the <a href="https://github.com/microsoft/VSExtensibility/issues">issue tracker</a> on our <a href="https://github.com/microsoft/VSExtensibility/">GitHub repo</a>, where you can also find extension <a href="https://github.com/microsoft/VSExtensibility/tree/main/New_Extensibility_Model/Samples">samples</a> to help you get started.</p>
+<p>&nbsp;</p>
+<h3 id="whats-new-for-visualstudio-extensibility">What’s new for VisualStudio.Extensibility?</h3>
+<p>This release of VisualStudio.Extensibility expands your ability to create powerful productivity extensions, with features including:</p>
+<ul>
+<li><a href="#post-247272-_Publish_your_extensions_1">Publish your extensions in the Visual Studio Marketplace</a></li>
+<li><a href="#post-247272-_Hot_loading:_Install">Hot loading: Install extensions without restarting Visual Studio</a></li>
+<li><a href="#post-247272-_Configure_your_extension_1">Configure your extension easily with configuration properties</a></li>
+<li><a href="#post-247272-_Create_dockable_">Create dockable custom data visualizers for better debugging</a></li>
+<li><a href="#post-247272-_Add_Language_Server">Add Language Server Protocol (LSP) support to your extension</a></li>
+<li><a href="#post-247272-_Query_the_project">Query the project system with the enhanced query API</a></li>
+</ul>
+<p>&nbsp;</p>
+<h5><a id="post-247272-_Publish_your_extensions_1"></a>Publish your extensions in the Visual Studio Marketplace</h5>
+<p>With customer downloads in the millions, the Visual Studio Marketplace is the best place to share and find amazing Visual Studio extensions. Starting with this release of VisualStudio.Extensibility, you can now <a href="https://aka.ms/VisualStudio.Extensibility/Publish">publish your extensions</a> in the Visual Studio Marketplace!</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-description-automatica.png"><img decoding="async" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-description-automatica.png" alt="A screenshot of the Visual Studio Marketplace with the &quot;Publish Extensions&quot; link surrounded by a red box." width="2027" height="456" class="aligncenter size-full wp-image-247274" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-description-automatica.png 2027w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-description-automatica-300x67.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-description-automatica-1024x230.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-description-automatica-768x173.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-description-automatica-1536x346.png 1536w" sizes="(max-width: 2027px) 100vw, 2027px" /></a></p>
+<p>Building a VisualStudio.Extensibility-based extension in Visual Studio now produces a standalone VSIX package. You can share your VSIX locally to enable others from your team or organization to install it directly, and you can also publish it in the Marketplace to reach the largest audience of Visual Studio users.</p>
+<p>We can’t wait to see your new extensions on the Marketplace!</p>
+<p>&nbsp;</p>
+<h5><a id="post-247272-_Hot_loading:_Install"></a>Hot loading: Install extensions without restarting Visual Studio</h5>
+<p>With VisualStudio.Extensibility, you can finally install new extensions without closing and restarting Visual Studio! This has been one of the most requested features by users, and we’re excited to deliver it! For example, suppose you’re having some trouble debugging a complex regular expression. You can go to the Marketplace using the Extension Manager to find and install our new VisualStudio.Extensibility-based <a href="https://marketplace.visualstudio.com/items?itemName=vsext.RegexMatchVisualizer">Regex Match Debugger Visualizer</a>, and start using it immediately to nail your regex.</p>
+<p>This streamlined installation, called hot loading, works for any out-of-process extensions written using VisualStudio.Extensibility. We’re also working to add a visual indicator to extensions in the Marketplace that support hot loading to make it easy for you to identify. We’ll share updates as we have them!</p>
+<p>Extensions are installed alongside your Visual Studio installation by the Visual Studio installer, which will be a familiar process to all of you who take advantage of our exciting new support for <a href="https://aka.ms/VisualStudio.Extensibility/vsconfig">installing extensions automatically using a .vsconfig file</a> when you set up a new machine or Visual Studio installation. Users who don’t have admin permissions can take advantage of our <a href="https://learn.microsoft.com/visualstudio/install/configure-policies-for-enterprise-deployments?view=vs-2022#controlling-installation-download-and-update-behavior">AlllowStandardUserControl policy</a> to help with extension installation.</p>
+<p>&nbsp;</p>
+<h5><a id="post-247272-_Configure_your_extension_1"></a>Configure your extension easily with configuration properties</h5>
+<p>Building on our <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-preview-3/#configure-your-extension">configuration properties</a> for extension components like commands, you can now configure your extensions directly in code. With strongly-typed classes and properties, you can use IntelliSense to quickly find and fill in the required and optional values for configuring an extension.</p>
+<p>Before, you needed to manually maintain a separate VSIX manifest file, but with the improvements in the latest release, extension configuration is done seamlessly inside your source code:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">public override ExtensionConfiguration ExtensionConfiguration =&gt; new()
+  {
+      Metadata = new(id: "MyExtension.ae8b86e5", version:this.ExtensionAssemblyVersion,
+          publisherName:"My Publisher", displayName:"My Extension")
+      {
+          Description = "A VisualStudio.Extensibility extension to demonstrate configuration properties.",
+          License = "LICENSE.txt",
+          Icon = "icon.png",
+          PreviewImage = "previewImage.png",
+          Tags = new[] {"Build", "Productivity", "C#"},
+          MoreInfo = "https://aka.ms/VisualStudio.Extensibility"
+      }
+  };
+</code></span></pre>
+<p><span style="font-size: 10pt;">Sample code for configuring an extension</span></p>
+<p>Together, configuration properties not only allow you to control how parts of your extension, like commands, behave, but also how your extension itself gets activated by Visual Studio. When you build your project, Visual Studio will use this configuration to create a VSIX for your extension, which you can share or publish to the Marketplace.</p>
+<p>&nbsp;</p>
+<h5><a id="post-247272-_Create_dockable_"></a>Create dockable custom data visualizers for better debugging</h5>
+<p>Debugger visualizers enable you to provide Visual Studio users with clear, insightful visualizations of complex data types to help improve their debugging workflows. With VisualStudio.Extensibility, you can now create non-modal/dockable debugger visualizers in tool windows that you can dock or float around the IDE.</p>
+<p>For example, here’s our Regex Match Debugger Visualizer docked with the other debugging tool windows:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-program-description-au.png"><img decoding="async" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-program-description-au.png" alt="A screenshot of the Regex Match Debugger Visualizer docked with the other debugging tool windows." width="1171" height="719" class="aligncenter size-full wp-image-247275" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-program-description-au.png 1171w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-program-description-au-300x184.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-program-description-au-1024x629.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/a-screenshot-of-a-computer-program-description-au-768x472.png 768w" sizes="(max-width: 1171px) 100vw, 1171px" /></a></p>
+<p>Together with <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-preview-3/#create-custom-data-visualizers">the modal debugger visualizers</a> from the previous release, you now have the flexibility to design powerful visualizers for any debugging scenario! To learn more about debugger visualizers, please visit <a href="https://aka.ms/VisualStudio.Extensibility/DebuggerVisualizers">the debugger visualizer documentation</a>. To find code samples, visit our <a href="https://aka.ms/VisualStudio.Extensibility/Samples">samples repo</a>.</p>
+<p>&nbsp;</p>
+<h5><a id="post-247272-_Add_Language_Server"></a>Add Language Server Protocol (LSP) support to your extension</h5>
+<p>Beginning with this version of VisualStudio.Extensibility, you’ll be able to begin integrating LSP into your extensions. With this support, you can create a language server provider, and use it to activate and interact with a language server.</p>
+<p>Language server providers also support configuration properties, which can be used to control which file types the language server applies to. For example:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">public override LanguageServerProviderConfiguration LanguageServerProviderConfiguration =&gt; new(
+      "%RustLspExtension.RustLanguageServerProvider.DisplayName%",
+      new[] 
+      { 
+          DocumentFilter.FromDocumentType(RustDocumentType) 
+      });
+</code></span></pre>
+<p><span style="font-size: 10pt;">Sample code for creating a language server provider</span></p>
+<p>We’ve added a <a href="https://github.com/microsoft/VSExtensibility/blob/main/New_Extensibility_Model/Samples/RustLanguageServerProvider/README.md">sample</a> to our <a href="https://github.com/microsoft/VSExtensibility/tree/main/New_Extensibility_Model/Samples">samples repo</a> that creates a language server provider for Rust, and uses that it to power IntelliSense and tooltips when you open a Rust file.</p>
+<p>VisualStudio.Extensibility and LSP together is a powerful integration, and we need your help. Please experiment with your own language servers and send feedback about which additional features you require for your extension.</p>
+<p>&nbsp;</p>
+<h5><a id="post-247272-_Query_the_project"></a>Query the project system with the enhanced query API</h5>
+<p>With the previous release, we added support for querying the project system, which you could use to search for projects that met certain criteria or to modify projects. This release adds many additional features, including:</p>
+<ul>
+<li>
+    New project actions:</p>
+<ul>
+<li>
+        Build
+      </li>
+<li>
+        Reload/Unload
+      </li>
+<li>
+        Rename
+      </li>
+<li>
+        Save
+      </li>
+</ul>
+</li>
+<li>
+    New solution actions:</p>
+<ul>
+<li>
+        Create/remove solution configurations
+      </li>
+</ul>
+</li>
+<li>
+    Folders and startup projects:</p>
+<ul>
+<li>
+        Query for information
+      </li>
+<li>
+        Create/remove
+      </li>
+</ul>
+</li>
+</ul>
+<p>For example, here’s how you could use the API to build a specific project:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">var result = await this.Extensibility.Workspaces().QueryProjectsAsync(
+      project =&gt; project.Where(p =&gt; p.Name == projectName),
+      cancellationToken);
+await result.First().BuildAsync(cancellationToken);
+</code></span></pre>
+<p><span style="font-size: 10pt;">Sample code for building a specific project</span></p>
+<p>  And here’s how you can create a new solution configuration programmatically:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">await this.Extensibility.Workspaces().UpdateSolutionAsync(
+      solution =&gt; solution.Where(solution =&gt; solution.BaseName == solutionName),
+      solution =&gt; solution.AddSolutionConfiguration("Foo", "Debug", false),
+      cancellationToken);
+</code></span></pre>
+<p><span style="font-size: 10pt;">Sample code for creating a new solution configuration</span></p>
+<p>  Please give these new features a try and let us know which other project system capabilities you need for your extensions!</p>
+<p>&nbsp;</p>
+<h3 id="we-cant-do-this-without-you">We can’t do this without you!</h3>
+<p>We need your help as we continue to develop VisualStudio.Extensibility! Please try out this preview release and let us know what you think. Check out the <a href="https://aka.ms/VisualStudio.Extensibility">docs</a>, browse the <a href="https://aka.ms/VisualStudio.Extensibility/Samples">code samples</a>, and build your <a href="https://aka.ms/VisualStudio.Extensibility/FirstExtension">first extension</a>. You can send feedback, report issues, or request features through our <a href="https://github.com/microsoft/VSExtensibility/issues">issue tracker</a>.</p>
+<p>We’re prioritizing the features that our extenders ask for, so please give VisualStudio.Extensibility a try and share your thoughts with us!</p>
+<p>&nbsp;</p>
+<h3 id="take-our-survey">Take Our Survey</h3>
+<p>Please help us design the best extensibility experience for Visual Studio by taking our survey here! We’re using the data to help identify what’s working and what we can improve. Whether you’re an extension author or an extension user, please let us know what you think!</p>
+<p>Take the survey <a href="https://www.research.net/r/YQDNZYR">here</a>! </p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-9/">VisualStudio.Extensibility: Install extensions without restarting Visual Studio!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-9/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">11</slash:comments>
+    </item>
+    <item>
+      <title>Last Chance: Visual Studio LIVE! – Las Vegas</title>
+      <link>https://devblogs.microsoft.com/visualstudio/last-chance-visual-studio-live-las-vegas/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/last-chance-visual-studio-live-las-vegas/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Fri, 16 Feb 2024 16:40:02 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Azure Data]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=247226</guid>
+      <description><![CDATA[<p>Less than 3 weeks to go! Join Us at Visual Studio LIVE! Las Vegas<br />
+Are you at the forefront of driving business innovation using Visual Studio? With our room block running low, decide today to secure your spot at Visual Studio LIVE!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/last-chance-visual-studio-live-las-vegas/">Last Chance: Visual Studio LIVE! &#8211; Las Vegas</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h3 id="less-than-3-weeks-to-go-join-us-at-visual-studio-live-las-vegas"><strong>Less than 3 weeks to go! Join Us at Visual Studio LIVE! Las Vegas</strong></h3>
+<p>Are you at the forefront of driving business innovation using Visual Studio? With our room block running low, decide today to secure your spot at Visual Studio LIVE! Las Vegas. This event is your prime opportunity to enhance your skills and gain insights into new technologies, including intelligent apps and the integration of generative AI into your existing platforms.</p>
+<p><strong>BONUS:</strong> Several Product Managers from Visual Studio, Azure Data, and GitHub will be attending and have set aside time for 1:1 customer meetings to meet you in person. Come to the welcome reception Tuesday night to meet the team!</p>
+<p><strong>Special Discount Offer – Act Now!</strong></p>
+<p>As we anticipate a year filled with groundbreaking developments, we&#8217;re thrilled to offer an exclusive discount to ensure you&#8217;re part of our first Visual Studio event of 2024. Use the discount code &#8220;VSLMS&#8221; to receive a $700 discount off the standard rate for the 6-day, 5-day, and 4-day packages. This additional $300 off the current discount rate is a remarkable opportunity to join us at a reduced cost. Act quickly—our room block is rapidly filling up!</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://na.eventscloud.com/766724?discountcode=VSLMS" style="text-transform: titlecase; display: inline-block; background-color: #E81123; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">REGISTER NOW &amp; SAVE</a></div></p>
+<p>Visual Studio LIVE! Las Vegas is more than just a conference; it&#8217;s a convergence of professionals dedicated to harnessing the power of Visual Studio to drive innovation within their companies. From March 3-8, 2024, at the Paris Las Vegas Hotel &amp; Casino, you&#8217;ll have the chance to engage with experts, absorb keynotes on AI and Azure, and participate in sessions aimed at elevating your capabilities and inspiring your projects. <img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f6e0.png" alt="🛠" class="wp-smiley" style="height: 1em; max-height: 1em;" /><img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f4a1.png" alt="💡" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Why attend? Here&#8217;s what you&#8217;ll gain:</p>
+<ul>
+<li>Networking opportunities with corporate developers and tech leaders dedicated to innovation.</li>
+<li>Expert knowledge on leveraging Visual Studio for the development of intelligent apps and the integration of generative AI.</li>
+<li>Insights and strategies for planning and implementing new technologies within your company.</li>
+<li>A collaborative environment that fosters professional growth and innovation.</li>
+</ul>
+<p>This event is the perfect platform to ignite your year with advanced insights and learning opportunities. Seize this chance to help your company plan for and implement emerging technologies, ensuring you stay ahead in the rapidly evolving tech landscape.</p>
+<p>Don&#8217;t miss out on this opportunity to enhance your professional journey and contribute to your company&#8217;s innovation efforts. Act now to secure your spot and join us in making 2024 a year of significant growth and transformation! <img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f31f.png" alt="🌟" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><strong>Need more reasons to attend?</strong> Visit the VS LIVE! Website: <a href="https://vslive.com/lasvegas" target="_blank" rel="noopener">https://vslive.com/lasvegas</a> or read my <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-live-2024-las-vegas/" target="_blank" rel="noopener">original blog post here</a>.</p>
+<p>Oh, and did I mention I&#8217;m bringing some exclusive Visual Studio Swag to give away? You can&#8217;t buy these goodies!</p>
+<p>#VisualStudioLIVE #TechNetworking #DeveloperConference #BusinessInnovation #LasVegas #VisualStudio</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/last-chance-visual-studio-live-las-vegas/">Last Chance: Visual Studio LIVE! &#8211; Las Vegas</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/last-chance-visual-studio-live-las-vegas/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>Introducing Visual Studio 17.10 – Preview 1 is Here!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-visual-studio-17-10-preview-1-is-here/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/introducing-visual-studio-17-10-preview-1-is-here/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mark Downie]]></dc:creator>
+      <pubDate>Wed, 14 Feb 2024 16:00:06 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Preview Release]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=247054</guid>
+      <description><![CDATA[<p>We&#8217;re excited to introduce the first preview of Visual Studio 17.10! This is where we get to show you what we&#8217;ve been working on and what we’re planning, and with feedback from the most active developer community on the planet, we get to deliver truly compelling products.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-visual-studio-17-10-preview-1-is-here/">Introducing Visual Studio 17.10 – Preview 1 is Here!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<div style="text-align: center;"><iframe title="YouTube video player" src="https://www.youtube.com/embed/-SRFyGfhgsA?si=0YkJIdjx-5XKiAK9" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
+<p>We&#8217;re excited to introduce the first preview of Visual Studio 17.10! This is where we get to show you what we&#8217;ve been working on and what we’re planning, and with feedback from the most active developer community on the planet, we get to deliver truly compelling products.</p>
+<p>During this release you’ll get to check out our latest enhancements and features designed to meet your productivity and game development needs. We’re especially eager to share the most recent updates to the GitHub Copilot Chat extension for Visual Studio. The preview is a great opportunity to dive into the exciting features we are building, and experience faster and smarter coding with GitHub Copilot.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/vs/preview/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.10 Preview 1</a></div></p>
+<p>Here are some of the major areas we’ve focused on in this release:</p>
+<table style="border-collapse: collapse; width: 99.213%; height: 536px;">
+<tbody>
+<tr style="height: 48px;">
+<td style="width: 34.0206%; height: 48px;">
+<h5 id="area">Area</h5>
+</td>
+<td style="width: 65.9794%; height: 48px;">
+<h5 id="enhancements">Enhancements</h5>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 34.0206%; height: 28px;">Productivity</td>
+<td style="width: 65.9794%; height: 28px;">
+<ul>
+<li><strong>GitHub Copilot Chat</strong> (requires the latest version of the extension)</li>
+<li>Customize settings with a new, modern experience with Unified Settings (<img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f64f-1f3fe.png" alt="🙏🏾" class="wp-smiley" style="height: 1em; max-height: 1em;" /><a href="https://developercommunity.visualstudio.com/t/Unified-Settings-feedback/10369764">Community Suggestions</a>)</li>
+<li>Updates to generated Git Commit Messages (<img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f64f-1f3fe.png" alt="🙏🏾" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://developercommunity.visualstudio.com/t/cant-create-pull-request-in-visual-studio-with-new/1017696">Community Suggestions</a>)</li>
+<li>Linking work items to pull requests (<img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f64f-1f3fe.png" alt="🙏🏾" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://developercommunity.visualstudio.com/t/cant-create-pull-request-in-visual-studio-with-new/1017696">Community Suggestions</a>)</li>
+<li>Updates will now include recommended components</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 34.0206%; height: 28px;">Debugging &amp; Diagnostics</td>
+<td style="width: 65.9794%; height: 28px;">
+<ul>
+<li>Attach to Process Dialog Revamp</li>
+<li>Enhancing Debugging with Conditional Breakpoints and Tracepoints</li>
+<li>Targeted Instrumentation for EXE</li>
+<li>Simplifying memory usage investigations with the Memory Tool</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 34.0206%; height: 28px;">C++ and Game Dev</td>
+<td style="width: 65.9794%; height: 28px;">
+<ul>
+<li>Pinning CMake Targets</li>
+<li>Build Insights Template View</li>
+<li>Additional Unreal Engine Macros for Indentation</li>
+<li>Keep Integration Tool Plugin Running in the Background</li>
+</ul>
+</td>
+</tr>
+<tr style="height: 28px;">
+<td style="width: 34.0206%; height: 28px;">Teams and Microsoft 365 Dev</td>
+<td style="width: 65.9794%; height: 28px;">
+<ul>
+<li>Build Teams Bot powered with AI</li>
+<li>Run and debug Teams Bot offline</li>
+<li>Extend Copilot for Microsoft 365</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>We are thrilled to present some of our team’s favorite features in this release. Take a moment to discover these highlights and feel free to share your feedback on this blog post to help us refine the experience before it reaches General Availability (GA). For a comprehensive overview of all the improvements, you can consult the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes-preview#17.10.0-pre.1.0">17.10 Preview 1 release notes</a>.</p>
+<h2 id="productivity-enhancements">Productivity Enhancements</h2>
+<h5 id="github-copilot-chat">GitHub Copilot Chat</h5>
+<p>Enhance your coding experience with GitHub Copilot Chat in Visual Studio! Copilot Chat, you have an AI-powered chat experience right within your IDE. Whether you need help with syntax, programming concepts, context-specific code help, test cases, or debugging, Copilot Chat is here to assist you. To get started with these features in 17.10 please update to the <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs">latest version of the Copilot Chat extension</a>.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs" style="text-transform: titlecase; display: inline-block; background-color: #107C10; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download/Update your Copilot Chat extension now</a></div></p>
+<h5 id="contextual-understanding">Contextual Understanding</h5>
+<p>Copilot Chat isn’t just a chatbot; it’s a coding companion that understands your code. Integrated with Visual Studio, it gathers useful information from your project to provide answers that make sense in your current development context.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-chat2.png"><img decoding="async" class="size-full wp-image-247163 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-chat2.png" alt="Image 17 10P1 github copilot chat2" width="621" height="592" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-chat2.png 621w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-chat2-300x286.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-chat2-24x24.png 24w" sizes="(max-width: 621px) 100vw, 621px" /></a></p>
+<h5 id="slash-commands-for-common-tasks">Slash Commands for Common Tasks</h5>
+<p>Speed up your workflow with slash commands. Set your intent quickly for common development tasks and get better answers without having to write out long questions.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-slashcommands2.png"><img decoding="async" class="size-full wp-image-247162 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-slashcommands2.png" alt="Image 17 10P1 github copilot slashcommands2" width="621" height="592" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-slashcommands2.png 621w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-slashcommands2-300x286.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-slashcommands2-24x24.png 24w" sizes="(max-width: 621px) 100vw, 621px" /></a></p>
+<h5 id="inline-chat">Inline Chat</h5>
+<p>Experience seamless coding with the inline chat feature! Interact directly with Copilot within your file, receive coding solutions, and view a diff comparison, all while staying within your flow.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-inlinechat2.png"><img decoding="async" class="size-full wp-image-247164 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-inlinechat2.png" alt="Image 17 10P1 github copilot inlinechat2" width="1166" height="517" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-inlinechat2.png 1166w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-inlinechat2-300x133.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-inlinechat2-1024x454.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-github-copilot-inlinechat2-768x341.png 768w" sizes="(max-width: 1166px) 100vw, 1166px" /></a></p>
+<p>Join the community of developers enhancing their productivity and creativity with GitHub Copilot Chat!</p>
+<p>Start your journey with GitHub Copilot Chat by reading this <a href="https://aka.ms/AAn85kr">quick guide</a>.</p>
+<h5 id="customize-settings-with-a-new-modern-experience-with-unified-settings">Customize settings with a new, modern experience with Unified Settings</h5>
+<p>We’ve been working on reimagining the experience of customizing settings in Visual Studio. Starting with today’s preview, you’ll be able to try out an early preview of a new settings experience that aims to make it easier than ever before for you to configure, share, and store your customized settings.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings.png"><img decoding="async" class="size-full wp-image-247144 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings.png" alt="Image 17 10P1 unified settings" width="624" height="366" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings-300x176.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></p>
+<p>The new experience gives you more room for configuring settings, the ability to customize them at both the user (Visual Studio install) and open solution/folder level, enhanced settings search capabilities, JSON-based storage of your settings, and more.</p>
+<p>We’ve also added a reset to default action in the gear menu for each setting along with an easy way for you to share feedback with us on settings via a &#8220;Send Feedback&#8221; feature. If you&#8217;ve ever thought a setting was confusing, didn&#8217;t work as expected, is inaccurate, or needs a description, you can quickly share feedback with us directly from the setting in question.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings-restart.png"><img decoding="async" class="size-full wp-image-247145 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings-restart.png" alt="Image 17 10P1 unified settings restart" width="624" height="527" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings-restart.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-unified-settings-restart-300x253.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></p>
+<p>To try the new settings experience, navigate to <strong>Tools &gt; Options &gt; Environment &gt; Preview Features</strong> and enable the &#8220;Unified Settings Experience&#8221; checkbox or use <strong>Tools &gt; Options</strong> <strong>Experience </strong>menu flyout to switch from &#8220;Classic&#8221; to &#8220;Preview&#8221;, then restart Visual Studio. You can also enable it from the top of this window to the right of the &#8220;A new, modern experience for managing settings&#8221; text.</p>
+<p>This feature is still in active development, and we still have a long journey ahead of us. While all settings pages haven&#8217;t been migrated from the existing experience to the Unified Settings experience, you&#8217;ll still be able to manage them as Unified Settings will link over to the old UI.</p>
+<p>Moving forward, we&#8217;ll continue refining and building the overall experience and feature set of Unified Settings alongside migrating additional settings pages. Your feedback will be invaluable in helping us prioritize which pages we migrate next. In addition to which pages you&#8217;d like to see migrated next, please share your overall impressions, how we can improve it, and any additional feedback you may have on this experience via <a href="https://developercommunity.visualstudio.com/t/Unified-Settings-feedback/10369764">Developer Community</a>!</p>
+<h5 id="updates-to-generated-git-commit-messages">Updates to generated Git Commit Messages</h5>
+<p>Based on your feedback, we&#8217;ve streamlined the output from our AI-generated Git commit message feature. Share feedback on this change on the <a href="https://developercommunity.visualstudio.com/t/Shorten-the-output-from-AI-generated-Git/10536558">ticket in Developer Community</a>.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-generated-commit-messages.png"><img decoding="async" class="size-full wp-image-247136 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-generated-commit-messages.png" alt="Image 17 10P1 git generated commit messages" width="865" height="696" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-generated-commit-messages.png 865w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-generated-commit-messages-300x241.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-generated-commit-messages-768x618.png 768w" sizes="(max-width: 865px) 100vw, 865px" /></a></p>
+<h5 id="linking-work-items-to-pull-requests">Linking work items to pull requests</h5>
+<p>The <a href="https://developercommunity.visualstudio.com/t/cant-create-pull-request-in-visual-studio-with-new/1017696">number one request</a> from Azure DevOps users when creating a pull request in Visual Studio was enabling work item linking. Now, you can use the Related Work Item section to view any work items you referenced in your pull request description <strong>and</strong> link work items to your pull request on Azure DevOps.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-linking-work-items-prs.png"><img decoding="async" class="alignnone size-full wp-image-247140" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-linking-work-items-prs.png" alt="Image 17 10P1 git linking work items prs" width="367" height="506" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-linking-work-items-prs.png 367w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-git-linking-work-items-prs-218x300.png 218w" sizes="(max-width: 367px) 100vw, 367px" /></a></p>
+<h5 id="visual-studio-updates-will-now-include-recommended-components">Visual Studio Updates will now include recommended components</h5>
+<p>Visual Studio offers a diverse array of tools and features for your coding tasks. As new technologies emerge, we integrate new components to enhance your software development experience. Some of these components will be recommended additions to the workloads you&#8217;ve already installed. So, to streamline your update experience, starting with 17.10 P1, Visual Studio will automatically install these new recommended components when you update Visual Studio.</p>
+<p>You can modify this setting in the Update Settings Dialog:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-recommended-components.png"><img decoding="async" class="size-full wp-image-247142 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-recommended-components.png" alt="Image 17 10P1 recommended components" width="1100" height="687" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-recommended-components.png 1100w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-recommended-components-300x187.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-recommended-components-1024x640.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-recommended-components-768x480.png 768w" sizes="(max-width: 1100px) 100vw, 1100px" /></a></p>
+<p>For the list of all components in Visual Studio, including recommended components, see <a href="https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools?view=vs-2022">Visual Studio Build Tools workload and component IDs | Microsoft Learn.</a></p>
+<h2 id="debugging-and-diagnostics">Debugging and Diagnostics</h2>
+<h5 id="enhancing-debugging-with-conditional-breakpoints-and-tracepoints">Enhancing Debugging with Conditional Breakpoints and Tracepoints.</h5>
+<p>This update introduces an easier way to manage your debugging workflow. With the addition of &#8220;Insert Conditional Breakpoint&#8221; and &#8220;Insert Tracepoint&#8221; options, you&#8217;re now equipped to create breakpoints and tracepoints directly from expressions. This allows for a more straightforward setup of breakpoints using property or field names alongside their values, whether from autos, locals, watch windows, or DataTips. It&#8217;s designed to simplify the debugging process, especially when dealing with complex expressions, enhancing productivity significantly.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-breakpoint-tracepoints.png"><img decoding="async" class="alignnone size-full wp-image-247134" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-breakpoint-tracepoints.png" alt="Image 17 10P1 debugging breakpoint tracepoints" width="424" height="568" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-breakpoint-tracepoints.png 424w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-breakpoint-tracepoints-224x300.png 224w" sizes="(max-width: 424px) 100vw, 424px" /></a></p>
+<h5 id="simplifying-memory-usage-investigations-with-the-memory-tool">Simplifying memory usage investigations with the Memory Tool</h5>
+<p>The new &#8220;Hot Path to Root&#8221; feature improves memory analysis by finding the most likely path to the root for calculating an object&#8217;s total size. It transforms the heap graph into a tree, using shortcuts like prioritizing the shortest path and avoiding cycling paths to actual roots.</p>
+<p>Known as the <a href="https://learn.microsoft.com/visualstudio/profiling/hot-path-to-root?view=vs-2022">&#8216;Hot Path to Root&#8217;</a>, this feature makes an excellent starting point for memory investigations within the Memory Usage tool&#8217;s reference graph.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-memory-hot-path-root.png"><img decoding="async" class="size-full wp-image-247135 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-memory-hot-path-root.png" alt="Image 17 10P1 debugging memory hot path root" width="683" height="561" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-memory-hot-path-root.png 683w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-memory-hot-path-root-300x246.png 300w" sizes="(max-width: 683px) 100vw, 683px" /></a></p>
+<h5 id="targeted-instrumentation-for-exe">Targeted Instrumentation for EXE</h5>
+<p>The Performance Profiler&#8217;s Instrumentation Tool now supports targeted profiling for any executable (exe) file. Once you select an exe file as your profiling target and initiate the instrumentation tool, a targeted instrumentation dialog appears, like what you&#8217;d encounter during startup project profiling. This enhancement facilitates a focused analysis of performance metrics for specific executables. You can also expand your profiling scope by including additional Dynamic Link Libraries (DLLs) via the &#8216;Add Item&#8217; button, enhancing the examination of application performance.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-profiling-targeted-instrumentation-exe.png"><img decoding="async" class="size-full wp-image-247141 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-profiling-targeted-instrumentation-exe.png" alt="Image 17 10P1 profiling targeted instrumentation exe" width="791" height="571" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-profiling-targeted-instrumentation-exe.png 791w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-profiling-targeted-instrumentation-exe-300x217.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-profiling-targeted-instrumentation-exe-768x554.png 768w" sizes="(max-width: 791px) 100vw, 791px" /></a></p>
+<h5 id="attach-to-process-dialog-revamp">Attach to Process Dialog Revamp</h5>
+<p>The Attach to Process dialog in Visual Studio has undergone significant enhancements to improve functionality and the user experience. These updates include seamless integration with Visual Studio themes, a more compact view that optimizes vertical space usage by employing tooltips for connection type information, and setting &#8220;Local&#8221; connection as the default option for faster access.</p>
+<p>You can now easily switch between tree and list views using tabs, organize processes more efficiently with collapsible child processes in the tree view, and select code types via a simplified combo box interface. Moreover, the &#8220;Select/Track Window&#8221; feature is now easier to use, allowing two- way tracking, selecting a process highlights its window, and clicking on a window selects its process. These enhancements collectively enhance the efficiency and usability of the Attach to Process dialog, enhancing the debugging experience within Visual Studio.</p>
+<h6 style="text-align: center;">Before:</h6>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-old.png"><img decoding="async" class="size-full wp-image-247151 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-old.png" alt="Image 17 10P1 debugging attach to process old" width="973" height="803" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-old.png 973w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-old-300x248.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-old-768x634.png 768w" sizes="(max-width: 973px) 100vw, 973px" /></a></p>
+<h6 style="text-align: center;">After:</h6>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-revamp.png"><img decoding="async" class="size-full wp-image-247150 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-revamp.png" alt="Image 17 10P1 debugging attach to process revamp" width="995" height="745" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-revamp.png 995w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-revamp-300x225.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-debugging-attach-to-process-revamp-768x575.png 768w" sizes="(max-width: 995px) 100vw, 995px" /></a></p>
+<h2 id="c-and-game-dev">C++ and Game Dev</h2>
+<h5 id="pinning-cmake-targets">Pinning CMake Targets</h5>
+<p>We have added support for pinning CMake targets. There is a top-level folder in the view now for Pinned Targets. You can pin any targets by right-clicking and selecting the <strong>Pin</strong> option in the context menu.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-C-pinning-cmake.png"><img decoding="async" class="alignnone size-full wp-image-247131" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-C-pinning-cmake.png" alt="Image 17 10P1 C pinning cmake" width="380" height="624" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-C-pinning-cmake.png 380w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-C-pinning-cmake-183x300.png 183w" sizes="(max-width: 380px) 100vw, 380px" /></a></p>
+<h5 id="build-insights-template-view">Build Insights Template View</h5>
+<p>You can now use Build Insights to view your template instantiation information. Template instantiation collection must be activated in <strong>Tools &gt; Options &gt; Build Insights</strong>.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1TemplateInstantiation.png"><img decoding="async" class="alignnone size-full wp-image-247222" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1TemplateInstantiation.png" alt="Image 17 10P1TemplateInstantiation" width="1594" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1TemplateInstantiation.png 1594w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1TemplateInstantiation-300x53.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1TemplateInstantiation-1024x181.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1TemplateInstantiation-768x135.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1TemplateInstantiation-1536x271.png 1536w" sizes="(max-width: 1594px) 100vw, 1594px" /></a></p>
+<h5 id="additional-unreal-engine-macros-for-indentation">Additional Unreal Engine Macros for Indentation</h5>
+<p>We have added additional Unreal Engine Macros to be indented in accordance with the UE Code Style.</p>
+<h5 id="keep-visual-studio-integration-tool-plugin-running-in-the-background">Keep Visual Studio Integration Tool Plugin Running in the Background</h5>
+<p>You can now keep our Unreal Engine plugin needed for Unreal Engine Test Adapter running in the background, greatly reducing startup costs. This is an opt-in feature that can be activated via <strong>Tools &gt; Options &gt; Unreal Engine</strong>.</p>
+<h2 id="teams-and-microsoft-365-dev">Teams and Microsoft 365 Dev</h2>
+<p>Teams Toolkit for Visual Studio is the best tool for you to build, test, deploy and preview Teams apps from scratch using the Microsoft Teams App project template based on C# and Blazor. Now Teams Toolkit supports developers looking to build apps for Microsoft 365 as well. To use Teams Toolkit for Visual Studio, ensure that you have selected the Microsoft Teams Development Tool component in the .NET workload from the Visual Studio installer.</p>
+<h5 id="build-teams-bot-powered-with-ai">Build Teams Bot powered with AI</h5>
+<p>If you want to build a Teams bot with intelligent capability, you can use the Teams AI Library to simplify the integration of AI services into your Teams app. For example, you can create a bot that uses OpenAI or Azure OpenAI to generate natural language responses based on the user&#8217;s input and context in an engaging way. It’s now easier to get started building these types of bots using the new AI Chat Bot template.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI.png"><img decoding="async" class="size-full wp-image-247129 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI.png" alt="Image 17 10P1 build teams bot powered with AI" width="717" height="494" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI.png 717w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI-300x207.png 300w" sizes="(max-width: 717px) 100vw, 717px" /></a></p>
+<p>Building intelligent chat bots is even simpler now using the AI Assistant Bot project template. Selecting this template creates a new project that uses the Teams AI Library to simplify connecting your Teams bot to the OpenAI Assistants API to build engaging conversational experiences – to try this new template, opt-in by selecting <strong>Tools &gt; Options &gt; Preview Features &gt; Teams Toolkit: Develop Copilot Plugin</strong>.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI2.png"><img decoding="async" class="size-full wp-image-247130 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI2.png" alt="Image 17 10P1 build teams bot powered with AI2" width="833" height="569" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI2.png 833w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI2-300x205.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-teams-bot-powered-with-AI2-768x525.png 768w" sizes="(max-width: 833px) 100vw, 833px" /></a></p>
+<h5 id="run-and-debug-teams-bot-offline">Run and debug Teams Bot offline</h5>
+<p>Building and testing bots can be challenging or impossible when uploading custom apps is disabled or you can’t create a networking tunnel to start debugging. This release includes new features that make it simpler to run and debug your bot apps in a locally hosted web tool that includes ways to test common Teams activities and interactions. Selecting the Teams App Test Tool debug target will launch your bot in a new web browser session using this tool without the need for an account or networking tunnel.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-run-debug-teams-bot-offline.png"><img decoding="async" class="size-full wp-image-247143 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-run-debug-teams-bot-offline.png" alt="Image 17 10P1 run debug teams bot offline" width="1248" height="522" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-run-debug-teams-bot-offline.png 1248w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-run-debug-teams-bot-offline-300x125.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-run-debug-teams-bot-offline-1024x428.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-run-debug-teams-bot-offline-768x321.png 768w" sizes="(max-width: 1248px) 100vw, 1248px" /></a></p>
+<h5 id="extend-copilot-for-microsoft-365">Extend Copilot for Microsoft 365</h5>
+<p>This release includes a new project template and features that help you extend Microsoft 365 Copilot. To try these features, opt-in by selecting <strong>Tools &gt; Options &gt; Preview Features &gt; Teams Toolkit: Develop Copilot Plugin</strong>.</p>
+<p>After enabling the preview features and restarting Visual Studio, create a new project and select <strong>Microsoft Teams App &gt; Custom Search Results</strong>.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-extend-copilot-for-M365-2.png"><img decoding="async" class="size-full wp-image-247127 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-extend-copilot-for-M365-2.png" alt="Image 17 10P1 build extend copilot for M365 2" width="819" height="565" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-extend-copilot-for-M365-2.png 819w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-extend-copilot-for-M365-2-300x207.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/02/17.10P1-build-extend-copilot-for-M365-2-768x530.png 768w" sizes="(max-width: 819px) 100vw, 819px" /></a></p>
+<h2 id="share-your-feedback-and-stay-connected-with-visual-studio">Share your feedback and stay connected with Visual Studio!</h2>
+<p style="text-align: center;"><iframe src="https://www.surveymonkey.com/r/PQN8CQG" width="760" height="450"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span></iframe></p>
+<p>Thank you for taking the time to share your feedback with us! We value your input and encourage you to keep providing suggestions and reporting any issues you encounter while using Visual Studio. Your insights are essential in our ongoing efforts to enhance and refine Visual Studio, making it the best possible tool for developers like you! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>From the entire Visual Studio team, thank you for reading and Happy Coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-visual-studio-17-10-preview-1-is-here/">Introducing Visual Studio 17.10 – Preview 1 is Here!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/introducing-visual-studio-17-10-preview-1-is-here/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">20</slash:comments>
+    </item>
   </channel>
 </rss>
