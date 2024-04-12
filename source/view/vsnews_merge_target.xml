@@ -21607,5 +21607,141 @@ Join us for Visual Studio LIVE! Chicago for a focused, deep dive into the latest
 ]]></content:encoded>
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/ARM64-install.mp4" length="677404" type="video/mp4" />
     </item>
+    <item>
+      <title>Introducing the new Copilot experience in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-the-new-copilot-experience-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Tue, 09 Apr 2024 18:24:33 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[#Githubcopilot]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=247314</guid>
+      <description><![CDATA[<p>GitHub Copilot your AI-powered coding companion is now seamlessly woven into your Visual Studio IDE, enhancing your everyday tasks and bringing you the latest AI-driven coding experiences. Copilot is designed to elevate your efficiency, by offering personalized code suggestions, crafting your git commit messages,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-the-new-copilot-experience-in-visual-studio/">Introducing the new Copilot experience in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>GitHub Copilot your AI-powered coding companion is now seamlessly woven into your Visual Studio IDE, enhancing your everyday tasks and bringing you the latest AI-driven coding experiences. Copilot is designed to elevate your efficiency, by offering personalized code suggestions, <a href="https://devblogs.microsoft.com/visualstudio/see-your-pull-request-comments-with-the-latest-preview/" target="_blank" rel="noopener">crafting your git commit messages</a>, answering coding-related queries, and <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-in-visual-studio-a-recap-of-2023/" target="_blank" rel="noopener">much more</a>.</p>
+<p>We’re thrilled to introduce the new, unified <strong>Copilot experience </strong>in Visual Studio 17.10, now available in <a href="https://visualstudio.microsoft.com/vs/preview/#download-preview"><strong>Preview 3</strong></a> (General availability in May). This combines the features of <strong>Copilot</strong> and <strong>Copilot Chat</strong> into one convenient package. Eliminating the need to install two separate extensions and bringing you more deeply integrated AI experiences in the future. Activate your GitHub Copilot subscription today, by <a href="https://github.com/settings/copilot" target="_blank" rel="noopener">signing in to GitHub or</a> <a href="https://github.com/settings/copilot" target="_blank" rel="noopener">start a free trial</a> for the latest AI experience.</p>
+<table style="border-collapse: collapse; width: 98.0605%; height: 156px;">
+<tbody>
+<tr style="height: 156px;">
+<td style="width: 61.2067%; height: 156px; text-align: center;">
+<h2 id="see-copilot-in-action"><strong>See Copilot in action</strong></h2>
+<p>&nbsp;</td>
+<td style="width: 95.3884%; height: 156px;"><iframe title="YouTube video player" src="https://www.youtube.com/embed/Lv5so3RCZIs?si=a1QBAVvNfKuFR6iu" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1"></iframe></td>
+</tr>
+</tbody>
+</table>
+<p><em>note: Copilot in now in the top right side of your Visual Studio</em></p>
+<h3 id="what-is-github-copilot"><strong>What is GitHub Copilot?</strong></h3>
+<p><strong>Copilot</strong> is your AI-powered coding companion designed to <a href="https://devblogs.microsoft.com/visualstudio/copilot-chat-slash-commands-and-context-variables/" target="_blank" rel="noopener">enhance your IDE experience</a>. It helps you in the following ways:</p>
+<ul>
+<li><strong>Speeding up your coding tasks</strong> with Copilot generated snippet, methods, and even entire programs.</li>
+<li><strong>Improve your code quality</strong> with Copilot’s optimization feature “/optimize” in Copilot Chat to improve your code’s performance, readability, and security.</li>
+<li><strong>Learn new coding patterns</strong><strong>, languages, and frameworks</strong> by getting explanations and documentation for the suggested code from Copilot.</li>
+<li><strong>Focus on more satisfying and creative work</strong> by allowing Copilot to handle the repetitive, boilerplate, or tedious code, and conserving your mental energy and flow.</li>
+</ul>
+<p>GitHub Copilot offers an interactive experience throughout Visual Studio, through chat both in a separate window and directly in your code, allowing you to start a conversation or simply begin typing. Copilot provides context-aware code completions, suggestions, and even entire code snippets. It’s like having a pair programmer who can help you, write commit messages, debug your code, generate your unit tests and more. GitHub Copilot serves as a valuable resource for information and answers about your code, including documentation, definitions, references, error explanations, and best practices.</p>
+<h3 id="accessing-copilot"><strong>Accessing Copilot</strong></h3>
+<p>If you are a customer in Visual Studio 17.10 Preview:</p>
+<ol>
+<li><strong>If you are using Visual Studio 17.10, GitHub Copilot is included right out of the box</strong> as a recommended component and will be installed on update or install<em>. </em>
+<ul>
+<li>If you need to install GitHub Copilot later, you can do so from the Visual Studio Installer by search for the &#8220;GitHub Copilot&#8221; component in the “Individual Component” tab. <strong>Note</strong>: If you prefer not to use Copilot installed in your Visual Studio, you have the option to hide the feature by selecting the GitHub Copilot badge and choosing “Hide Copilot”.</li>
+</ul>
+</li>
+<li>For Versions 17.8 to 17.9 you will still be able to download &#8220;GitHub Copilot Chat&#8221; and &#8220;GitHub Copilot Completions&#8221; via Extension Manager, however, to get the latest Copilot features update to 17.10.</li>
+</ol>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/vs/preview/#download-preview" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Get Visual Studio 2022 17.10 Preview</a></div></p>
+<h3 id="getting-started"><strong>Getting Started</strong></h3>
+<p>To use the new Copilot extension, you’ll need a <a href="https://github.com/features/copilot/plans" target="_blank" rel="noopener">GitHub Copilot subscription</a>. GitHub Copilot is free for verified students and for maintainers of popular open-source projects on GitHub. If you’re not a student or a maintainer of a popular open-source project, you can<strong> try GitHub Copilot for free with a one-time 30-day trial.</strong> After the free trial, a paid subscription is required for continued use.</p>
+<p>Once you have Copilot installed, you can easily sign in and manage your Copilot directly from the top right corner of the title bar in Visual Studio 17.10.</p>
+<p>&nbsp;</p>
+<h3 id="using-copilot">Using Copilot</h3>
+<h4 id="code-completions"><strong>Code Completions</strong></h4>
+<div>Start writing in the editor and Copilot will suggest code as you type.<span style="font-size: 1rem; text-align: var(--bs-body-text-align);"><img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f4a1.png" alt="💡" class="wp-smiley" style="height: 1em; max-height: 1em;" />Tip: press </span><code style="text-align: var(--bs-body-text-align);">"tab" </code><span style="font-size: 1rem; text-align: var(--bs-body-text-align);">to accept a suggestion.</span></div>
+<div>
+<p><div style="width: 640px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-247314-1" width="640" height="360" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Completions-for-blog-1.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Completions-for-blog-1.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Completions-for-blog-1.mp4</a></video></div></p>
+</div>
+<div></div>
+<div>
+<h4 id="inline-chat"><strong>Inline Chat</strong></h4>
+<p><span style="font-family: inherit; font-size: inherit; background-color: transparent; text-align: var(--bs-body-text-align);">Use Inline Chat will help you write your methods, classes, unit tests by c</span>onverting your prompts to code. Open Inline by right-clicking in your text file and selecting &#8220;Ask Copilot&#8221; or <code>Alt + /</code>`</p>
+<p><img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f4a1.png" alt="💡" class="wp-smiley" style="height: 1em; max-height: 1em;" />Tip: Use<code>"/"</code> to state your intent or <code>"#"</code> to refer to your files(s). Like <code>"/test for #filename"</code></p>
+</div>
+<p><div style="width: 640px;" class="wp-video"><video class="wp-video-shortcode" id="video-247314-2" width="640" height="360" loop="1" autoplay="1" preload="auto" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Recording-2024-01-11-072251.mp4?_=2" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Recording-2024-01-11-072251.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Recording-2024-01-11-072251.mp4</a></video></div></p>
+<h4 id="chat-window"><strong>Chat Window</strong></h4>
+<p><span style="font-family: inherit; font-size: inherit; background-color: transparent; text-align: var(--bs-body-text-align);">Ask questions about your solution or files.  O</span>pen from the Copilot Badge or <code>CTRL + /, C.</code></p>
+<p><img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f4a1.png" alt="💡" class="wp-smiley" style="height: 1em; max-height: 1em;" />Tip: Use <code style="text-align: var(--bs-body-text-align);">#solution</code> to refer to your active solution (only for C#) in Visual Studio</p>
+<p><div style="width: 640px;" class="wp-video"><video class="wp-video-shortcode" id="video-247314-3" width="640" height="360" loop="1" autoplay="1" preload="auto" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/solution-wide-view-1.mp4?_=3" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/solution-wide-view-1.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/solution-wide-view-1.mp4</a></video></div></p>
+<p>&nbsp;</p>
+<h3 id="we-value-your-feedback"><strong>We Value Your Feedback</strong></h3>
+<p>We hope you find the new Copilot experience beneficial for your development needs. Your feedback and suggestions for improvement are always welcome. You can reach out to us through <a href="https://www.surveymonkey.com/r/BQ7QDPQ"><strong>this survey</strong> </a>or submit for feature requests here: <a href="https://developercommunity.visualstudio.com/home">Developer Community (visualstudio.com)</a>.</p>
+<p>Happy coding! <img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f680.png" alt="🚀" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-the-new-copilot-experience-in-visual-studio/">Introducing the new Copilot experience in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Completions-for-blog-1.mp4" length="1851383" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Recording-2024-01-11-072251.mp4" length="554946" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/solution-wide-view-1.mp4" length="4274556" type="video/mp4" />
+    </item>
+    <item>
+      <title>How to use Comments to Prompt GitHub Copilot for Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/how-to-use-comments-to-prompt-github-copilot-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Gwyneth Peña-Siguenza]]></dc:creator>
+      <pubDate>Thu, 04 Apr 2024 10:00:24 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Copilot 2024 Series]]></category>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Gwyneth Pena-Siguenza]]></category>
+      <category><![CDATA[Install]]></category>
+      <category><![CDATA[Tips and Tricks]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=248553</guid>
+      <description><![CDATA[<p>A step-by-step guide to use comments as prompts in GitHub Copilot for Visual Studio. GitHub Copilot is a programming assistant that uses AI (Artificial Intelligence) to help you increase efficiency in your daily programming tasks. ...</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/how-to-use-comments-to-prompt-github-copilot-visual-studio/">How to use Comments to Prompt GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h2 id=""><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Comments-as-Prompts-in-GitHub-Copilot-for-Visual-Studio.png"><img fetchpriority="high" decoding="async" class="alignnone wp-image-248564" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Comments-as-Prompts-in-GitHub-Copilot-for-Visual-Studio-300x169.png" alt="Image Comments as Prompts in GitHub Copilot for Visual Studio" width="801" height="451" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Comments-as-Prompts-in-GitHub-Copilot-for-Visual-Studio-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Comments-as-Prompts-in-GitHub-Copilot-for-Visual-Studio-1024x576.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Comments-as-Prompts-in-GitHub-Copilot-for-Visual-Studio-768x432.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Comments-as-Prompts-in-GitHub-Copilot-for-Visual-Studio.png 1280w" sizes="(max-width: 801px) 100vw, 801px" /></a></h2>
+<p style="text-align: center;">A step-by-step guide to use comments as prompts in GitHub Copilot for Visual Studio</p>
+<h2 id="introduction-to-github-copilot-for-visual-studio">Introduction to GitHub Copilot for Visual Studio</h2>
+<p>GitHub Copilot is a programming assistant that uses AI (Artificial Intelligence) to help you increase efficiency in your daily programming tasks. It is compatible with various IDEs (Integrated Development Environments), text editors, and more. In this series, we will focus on demonstrating how GitHub Copilot can help you become more productive in Visual Studio.</p>
+<p><span class="TextRun SCXW191908749 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW191908749 BCX8">One way to get code suggestions from GitHub Copilot is by </span><span class="NormalTextRun SCXW191908749 BCX8">leveraging</span><span class="NormalTextRun SCXW191908749 BCX8"> code comments. </span><span class="NormalTextRun SCXW191908749 BCX8">However,</span><span class="NormalTextRun SCXW191908749 BCX8"> we know sometimes even </span><span class="NormalTextRun SCXW191908749 BCX8">coming up with</span><span class="NormalTextRun SCXW191908749 BCX8"> a comment can be a</span><span class="NormalTextRun SCXW191908749 BCX8"> little cumbersome.</span></span><span class="EOP SCXW191908749 BCX8" data-ccp-props="{&quot;201341983&quot;:0,&quot;335557856&quot;:16777215,&quot;335559739&quot;:0,&quot;335559740&quot;:240}"> </span></p>
+<p>What is great about GitHub Copilot for Visual Studio is that it is not only capable of suggesting code but can also provide completions for your comments.</p>
+<p><a href="https://youtube.com/shorts/9Vmdm6kroCs">In the second short video in this series</a>, my colleague Bruno Capuano will highlight how to use comments to prompt GitHub Copilot to produce code directly within the current file.</p>
+<p><em>Make sure to have GitHub Copilot installed, refer to the documentation to learn <a href="https://learn.microsoft.com/visualstudio/ide/visual-studio-github-copilot-chat?view=vs-2022#install-the-visual-studio-extension/?WT.mc_id=academic-129246-lbugnion">how to install GitHub Copilot for Visual Studio</a></em></p>
+<p style="text-align: center;"><iframe src="//www.youtube.com/embed/9Vmdm6kroCs?feature=oembed" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<h2 id="how-to-use-a-comment-to-prompt-github-copilot">How to use a Comment to Prompt GitHub Copilot</h2>
+<p>Let us start by writing a comment. In the example, Bruno is typing a comment that looks like this:</p>
+<pre class="prettyprint language-cs language-csharp"><code class="language-cs language-csharp">// function to get the year of birth</code></pre>
+<p>As we can see in this example, GitHub Copilot quickly springs into action, proposing to complete the comment as follows:</p>
+<pre class="prettyprint language-cs language-csharp"><code class="language-cs language-csharp"> // function to get the year of birth *from the age*</code></pre>
+<p>This feature can be particularly useful, for example, when you are writing documentation.</p>
+<p>(<strong>Note:</strong> in this example I added *stars* around the suggested code. In the Visual Studio IDE, the suggestion would appear greyed out).</p>
+<p>To accept the comment completion suggestion and incorporate it into your code, simply press the Tab key. Following that, pressing Enter prompts Copilot to offer a code suggestion based off the comment. The suggested code will appear inline and greyed out. You can also accept this suggestion by pressing the Tab key.</p>
+<p><em>Additional examples can be found here in </em><a href="https://learn.microsoft.com/visualstudio/ide/visual-studio-github-copilot-extension?view=vs-2022#using-github-copilot-for-code-completions-and-suggestions"><em>Using GitHub Copilot for code completions and suggestions</em></a></p>
+<p>&nbsp;</p>
+<h2 id="validating-the-output-of-github-copilot">Validating the output of GitHub Copilot</h2>
+<p>The key principle to remember when working with AI assistants is that you should always verify the output. You have the chance to review the Copilot output either before accepting, when the code appears greyed out inline or after you have accepted the suggestion with the Tab key. I frequently accept the suggestion first and then revisit the generated code. If I need to make any changes, I will do so before moving on.</p>
+<p><em>GitHub Copilot is not a compiler!</em></p>
+<p>This means that the code produced by GitHub Copilot can indeed fail to compile and/or be incorrect. It is your responsibility to review, resolve, and improve the suggested code, as necessary.</p>
+<h2 id="disabling-github-copilot-completions">Disabling GitHub Copilot completions</h2>
+<p>You might not always want Copilot to suggest completions in your code files. Deactivating it is straightforward, whether for all code files, or even just for specific files such as markdown or C#. Simply click on the small Copilot icon on the Visual Studio taskbar and then select the appropriate option.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Picture1.png"><img decoding="async" class="alignnone size-full wp-image-248555" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Picture1.png" alt="Image Picture1" width="300" height="139" /></a></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Picture2.png"><img decoding="async" class="alignnone size-full wp-image-248556" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/04/Picture2.png" alt="Image Picture2" width="299" height="144" /></a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now that you have successfully used a comment to GitHub Copilot in Visual Studio, you can continue to leverage this practice in all your projects. This is just one of the ways that GitHub Copilot can help you write code faster and be more productive. To learn more about GitHub Copilot and how to use it, <a href="https://learn.microsoft.com/collections/ng58uwrk6g53ox?WT.mc_id=academic-129245-abartolo">check our collection with resources here</a> or via our <a href="https://youtu.be/z1ycDvspv8U">full-length video</a>.</p>
+<h3 id="additional-resources">Additional Resources</h3>
+<ul>
+<li><a href="https://devblogs.microsoft.com/visualstudio/copilot-chat-slash-commands-and-context-variables/">Code Faster and Better with GitHub Copilot’s New Features: Slash Commands and Context Variables</a></li>
+<li><a href="https://devblogs.microsoft.com/visualstudio/announcing-the-github-extension-for-visual-studio/">Announcing the GitHub Extension for Visual Studio</a></li>
+</ul>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/how-to-use-comments-to-prompt-github-copilot-visual-studio/">How to use Comments to Prompt GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
