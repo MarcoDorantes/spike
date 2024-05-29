@@ -21743,5 +21743,584 @@ Join us for Visual Studio LIVE! Chicago for a focused, deep dive into the latest
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/how-to-use-comments-to-prompt-github-copilot-visual-studio/">How to use Comments to Prompt GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Free Pure Virtual C++ 2024 Conference</title>
+      <description>Pure Virtual C++ is our free one-day virtual conference for the whole C++ community. This year it will run on April 30th 15:00 UTC. Sign-up for free to get access to our five sessions on the day and a host of pre-conference content which will roll out in the two weeks leading up to the conference.
+The post Free Pure Virtual C++ 2024 Conference appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/pure-virtual-cpp-2024-sessions-announced/</link>
+      <pubDate>Mon, 22 Apr 2024 19:09:02 Z</pubDate>
+      <category>Visual Studio</category>
+    </item>
+    <item>
+      <title>How to use GitHub Copilot Chat in Visual Studio</title>
+      <description>GitHub Copilot serves as an AI-powered coding assistant capable of operating across various development environments, assisting you with your everyday coding challenges. In this new series of content, we will demonstrate how GitHub Copilot functions in Visual Studio especially and how it boosts your efficiency.
+The post How to use GitHub Copilot Chat in Visual Studio appeared first on Visual Studio Blog.</description>
+      <link>https://devblogs.microsoft.com/visualstudio/how-to-use-github-copilot-chat-in-visual-studio/</link>
+      <pubDate>Tue, 16 Apr 2024 10:00:38 Z</pubDate>
+      <category>Artificial Intelligence</category>
+      <category>Copilot</category>
+      <category>Copilot 2024 Series</category>
+      <category>Extensibility</category>
+      <category>Installation and Updates</category>
+      <category>Visual Studio</category>
+      <category>GitHub</category>
+      <category>GitHub Copilot</category>
+      <category>Install</category>
+      <category>Tips and Tricks</category>
+    </item>
+    <item>
+      <title>First preview of Visual Studio 2022 v17.11</title>
+      <link>https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-11/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Wed, 22 May 2024 10:12:02 +0000</pubDate>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Preview]]></category>
+      <category><![CDATA[Release]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249031</guid>
+      <description><![CDATA[<p>We are excited to announce the release of Visual Studio 2022 v17.11 Preview 1, the first preview of our next update for Visual Studio 2022. This preview focuses on quality-of-life improvements for all developers and workloads. See the release notes for full list of features.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-11/">First preview of Visual Studio 2022 v17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We are excited to announce the release of Visual Studio 2022 v17.11 Preview 1, the first preview of our next update for Visual Studio 2022. This preview focuses on <strong>quality-of-life</strong> improvements for all developers and workloads. See the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes-preview">release notes</a> for full list of features.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero.png"><img decoding="async" class="alignnone size-full wp-image-249032" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero.png" alt="Visual Studio 2022" width="1200" height="498" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero-300x125.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero-1024x425.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero-768x319.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></a></p>
+<p>When you use Visual Studio, you want to feel empowered and productive. That&#8217;s why quality-of-life features are so important: they make coding a smooth and enjoyable experience, free of unnecessary hassles and headaches.</p>
+<p>You’ll also find hundreds of user-reported bugs and issues fixed and lots of tweaks to existing features. All of it to make you more productive and the Visual Studio developer experience the best one yet.</p>
+<p>We hope you enjoy this preview of Visual Studio, and we look forward to hearing what you think. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>You can <a href="https://visualstudio.microsoft.com/vs/preview/">download the preview</a> from our website or update it from within the IDE. Please note that you should not use this preview in production environments, and some extensions or workloads may not be compatible with it.</p>
+<p>For more details on what&#8217;s new in this preview, please check out our <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes-preview">release notes</a>. Thank you for using Visual Studio and happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-11/">First preview of Visual Studio 2022 v17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Maximizing joy and minimizing toil with great developer experiences</title>
+      <link>https://devblogs.microsoft.com/visualstudio/maximizing-joy-and-minimizing-toil-with-great-developer-experiences/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Amanda Silver]]></dc:creator>
+      <pubDate>Tue, 21 May 2024 15:50:46 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[dev box]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[Announcement]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio Code]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249026</guid>
+      <description><![CDATA[<p>The future always starts with developers. They determine the speed of innovation, and never has that been more true than today, in the era of Generative AI. We’re already seeing GenAI have a profound impact on the way that we build applications and collaborate with our colleagues.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/maximizing-joy-and-minimizing-toil-with-great-developer-experiences/">Maximizing joy and minimizing toil with great developer experiences</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The future always starts with developers. They determine the speed of innovation, and never has that been more true than today, in the era of Generative AI. We’re already seeing GenAI have a profound impact on the way that we build applications and collaborate with our colleagues. More developers will be empowered to create with technology by having access to a coach to guide you through each stage of your learning journey. And user expectations are evolving quickly so that today’s end-users expect their apps already know about their context and history, and even anticipate their next step.</p>
+<p>There’s a lot of change on the horizon! But it can be hard to find the time to learn when we’re overwhelmed and bogged down with technical debt. Developers continually have to context switch between tools, which impacts their cognitive load and ability to focus. We know that even on a good day, developers <a href="https://www.microsoft.com/en-us/research/publication/today-was-a-good-day-the-daily-life-of-software-developers/">only spend about 2 hours a day coding</a>, and <a href="https://ics.uci.edu/~gmark/chi08-mark.pdf">it takes them 23 minutes to regain focus after context switching</a>. This, combined with randomizing meetings to assemble resources you need can make you feel exhausted at the end of the day and frustrated by inefficiencies. All this can take the joy out of work and make developing software feel like toil.</p>
+<p>But we know there’s a path to developer happiness—where devs can focus more on coding and less on ops; where they can innovate at the speed of their creativity; and where they can get going fast, without having to worry about managing the infrastructure their apps depend upon.</p>
+<h3 id="dev-happiness-staying-in-the-flow">Dev happiness = staying in the flow</h3>
+<p>One of our guiding principles is to bring the best tools to you where you live—in your code editing tools—so you can stay in the flow! At Build this week we’re announcing some pretty amazing developer experiences to bring more joy and less toil to your life as a developer.</p>
+<p>For starters, we’re announcing the general availability of <strong><a href="https://aka.ms/vs/v1710GA">Visual Studio 17.10</a></strong>. In this version. We’ve plugged GitHub Copilot everywhere throughout the IDE, so it changes how you write, learn, test, search, and fix code in your apps.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Copilot-in-the-IDE.png"><img decoding="async" class="aligncenter size-full wp-image-249048" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Copilot-in-the-IDE.png" alt="Image Copilot in the IDE" width="393" height="258" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Copilot-in-the-IDE.png 393w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Copilot-in-the-IDE-300x197.png 300w" sizes="(max-width: 393px) 100vw, 393px" /></a></p>
+<p>We’re also announcing the preview of <a href="https://aka.ms/azcode/copilot/announce"><strong>GitHub Copilot for Azure</strong></a>, an extension that integrates seamlessly with GitHub Copilot chat in Visual Studio Code and Visual Studio, bringing Azure expertise right to your fingertips! Using GitHub Copilot for Azure, you can learn about Azure resources and best practices; explore and manage Azure resources; and troubleshoot issues and locate relevant logs and code. GitHub Copilot for Azure is built atop <a href="https://github.blog/2024-05-21-introducing-github-copilot-extensions">a general extensibility surface area we&#8217;ve introduced into GitHub Copilot</a>. Soon you won’t have to context switch as all your favorite tools will be integrated into your code! More on that in a bit…</p>
+<p style="text-align: center;"><iframe src="//www.youtube.com/embed/a-bJvMueq2k" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<h4 id=""></h4>
+<h4 id="net-aspire-is-now-generally-available">.NET Aspire is now generally available</h4>
+<p><a href="https://aka.ms/aspirega"><strong>.NET Aspire</strong></a> codifies the best practices for cloud-native development with tools for multi-project management, built-in HTTP resiliency, health checks, OpenTelemetry, and easy multi-node deployment via Visual Studio, VS Code, and the Azure Developer CLI. .NET Aspire makes it easy to get started with templates and a set of curated components based on our opinionated stack inside Microsoft and co-developed with the .NET community.</p>
+<p style="text-align: center;"><iframe src="//www.youtube.com/embed/60eI8IHLgds" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p>Using .NET Aspire, it’s easy to build and debug using service discovery and a completely new developer dashboard to see real-time telemetry and metrics, and to get a foothold on diagnosing issues. You can run and deploy with a single command to launch and run multiple services. Being able to express app topology in C# makes cloud deployment easy to any cloud destination.</p>
+<p>Lots of great innovations to bring the best of all your tools into where you live—your favorite code editor tools—so you can stay in the flow!</p>
+<h3 id="building-intelligent-apps">Building intelligent apps</h3>
+<p>Over the past year we’ve witnessed the birth of one of the most pivotal technological innovations in history: Generative AI (GenAI). It has changed user expectations for every experience and continues to shape how businesses think of technology as an enabler for rapid growth.</p>
+<p>We refer to any app that uses artificial intelligence for all or some of its functionality as an “intelligent app.” The way intelligent apps change experiences and operations are what can become competitive differentiators. It starts by thinking about the use cases where your data can provide actionable insights that can improve your processes or your customer experience. This is a massive paradigm shift—it’s changing user expectations for how we all interact with technology. Natural language is the new user interface; we simply talk to it. I can ask it questions and it already has the context of my account or my history and it can even anticipate my needs. And these apps continually improve by learning while in production. What that means is that the traditional developer inner and outer loop also evolves to facilitate the evaluation cycle and continuous learning once deployed to production.</p>
+<p>Whether you’re using a foundational model like GPT3, Phi-3, building your own custom machine learning, or augmenting an existing model with fine-tuning, these apps go beyond an algorithm recommending content based on what you click, tap, listen to, or watch. Intelligent apps learn from the user’s inputs and data to continually get better over time, while observing responsible AI best-practices.</p>
+<p>For our developer tools and application building blocks, our goals are to…</p>
+<ul>
+<li>Make building GenAI apps more approachable</li>
+<li>Reduce the effort required to build, manage, and evolve GenAI apps</li>
+<li>Support the end-to-end app development lifecycle, including the new tasks necessary to build intelligent apps &#8212; like evaluating models and prompts and preparing data</li>
+<li>All while maintaining enterprise-grade security, scalability, compliance, and governance according to our DevOps and platform engineering best practices</li>
+</ul>
+<p>Today, we’re announcing the <a href="https://aka.ms/AIToolkit/Blog"><strong>AI Toolkit for Visual Studio Code</strong></a>. This toolkit helps AI engineers develop and deploy intelligent apps by enabling them to explore, acquire, evaluate, and integrate small and large language models within VS Code. You can use your local hardware to try, run, and evaluate state-of-the art small language models—or SLMs—like Phi-3. It takes advantage of the deep investments we’ve made in the ML stack on Windows to provide a turnkey experience to run any model seamlessly on your laptop, Dev Box, or Azure AI compute. While it runs best on Windows today, MacOS support is coming soon!</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Model-catalog.png"><img decoding="async" class="aligncenter wp-image-249038" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Model-catalog-1024x576.png" alt="Image Model catalog" width="761" height="428" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Model-catalog-1024x576.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Model-catalog-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Model-catalog-768x432.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Model-catalog-1536x864.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Model-catalog-2048x1151.png 2048w" sizes="(max-width: 761px) 100vw, 761px" /></a></p>
+<h3 id=""></h3>
+<h3 id="intelligent-apps-better-on-azure">Intelligent apps: Better on Azure</h3>
+<p>In addition to providing a platform to host your apps, the <strong>Azure App Platform</strong> provides the essential building blocks you need to accomplish the different tasks that you typically do to build and operate a GenAI application, including leveraging Azure OpenAI and hosted models in your apps; building enhanced copilots; experimenting and optimizing; and hosting custom models and fine tuning them with your data.</p>
+<p>All the capabilities are integrated with one another, and you can use them together seamlessly. For example, you can incorporate experimentation and use Vector DB add-ons for your GenAI apps running on any of our App Platform services.</p>
+<p>Here are just a few of the ways that Azure is evolving for the era of AI:</p>
+<ul>
+<li>When you start growing your application portfolio, you will likely want to track token usage across multiple applications, or to make sure that a single app doesn’t consume the whole TPM quota. <strong><a href="https://aka.ms/apim/genai/blog">Azure API Management has introduced new capabilities</a> to enhance the scalability and security of Generative AI deployments. </strong>These include the Azure OpenAI token limit policy for fair usage and optimized resource allocation, one-click import of Azure OpenAI endpoints as APIs, a load balancer for efficient traffic distribution, and a circuit breaker to protect backend services.</li>
+<li>API sprawl poses significant challenges in API governance, security, compliance, and reuse. Without a centralized inventory, APIs can become isolated, leading to poor API reuse, lack of alignment with organizational API design and organizational processes, as well as increased vulnerability to security breaches. And most GenAI apps consume LLMs via APIs – so the era of GenAI is the era of API-first development. <strong>The <a href="https://aka.ms/apic-ga">Azure API Center</a> provides centralized API inventory</strong> for seamless discovery, reuse, and governance regardless of API type, lifecycle stage, or deployment location.</li>
+<li><a href="https://techcommunity.microsoft.com/t5/apps-on-azure-blog/new-secure-sandboxes-at-scale-with-azure-container-apps-dynamic/ba-p/4142148"><strong>Azure Container Apps now include secure sandboxes at scale</strong></a>: When you build applications that run code or commands from untrusted sources, you have to ensure that the code runs in its own isolated environment. If an LLM is generating the code you need to evaluate, what is the best way to execute that code? Dynamic sessions provide secure, ephemeral sandboxes called &#8220;sessions&#8221; for running potentially malicious code. Each session runs in its own Hyper-V virtualization boundary — ensuring complete isolation from other sessions and resources.</li>
+</ul>
+<p>You can read about all these Azure announcements and more in the <a href="https://news.microsoft.com/build-2024-book-of-news/">Build Book of News</a>.</p>
+<h3 id="developer-productivity-comes-from-team-agility">Developer productivity comes from team agility</h3>
+<p>So, we’ve covered new tools and experiences that help you stay in the flow and get into building intelligent applications. Now let’s talk about how <a href="https://aka.ms/plat-eng-announce">the practice of platform engineering</a> can help organizations stay secure and compliant and developers focus on their code.</p>
+<p>Developers want to be able to self-serve environments, workflows, and infrastructure with the confidence they’re adhering to the best practices and requirements of their organization. It’s just one more aspect of staying in the flow.</p>
+<p>Last November we launched our <a href="https://learn.microsoft.com/en-us/platform-engineering/">guidance on platform engineering</a>. On a very basic level, platform engineering is a set of patterns and practices helping to modernize enterprise software delivery. These patterns and practices, if executed right, can become the glue between development and operations teams—creating more cohesion and flow amongst teams throughout the product-making lifecycle.</p>
+<p>At its best, Platform Engineering empowers teams to achieve scale and reduce the time it takes to deliver business value—all while eliminating toil, promoting self-sufficiency, and reducing the cognitive load required to meet broader operational and organizational standards.</p>
+<p>With policy enforcement, security monitoring, and observability, organizations can govern their app estate to get better cost control and reduce risk while delivering a great developer experience.</p>
+<p>And GitHub Copilot is now the perfect platform to deliver an unparalleled developer experience for platform engineering. With the new extensibility capabilities, GitHub Copilot can be augmented and grounded with your product catalog that you define in GitHub repos with Templates, Workflows, APIs, and samples that provide start-right automation and policy enforcement to your developers who can discover and deploy them with natural language user interfaces in Copilot Chat.</p>
+<h4 id="new-features-in-microsoft-dev-box-and-azure-deployment-environments">New features in Microsoft Dev Box and Azure Deployment Environments</h4>
+<p><a href="https://azure.microsoft.com/en-us/products/dev-box/">Microsoft Dev Box</a>, an Azure service that gives developers self-service access to preconfigured, project-specific developer workstations, has been a key part of our approach to platform engineering. Used by companies like <a href="https://customers.microsoft.com/en-us/story/1650265213028177234-gm-cloud-based-developer-services-from-microsoft">GM</a> and <a href="https://customers.microsoft.com/en-us/story/1744161994415964462-siemens-healthineers-china-microsoft-dev-box-other-en-china">Siemens Healthineers China</a> (and by over 25k Microsoft developers), Dev Boxes reduce environment setup from days to minutes, encouraging collaboration and experimentation. With pre-installed tools and source code, developers can onboard and start coding quickly.</p>
+<p>For development teams, we’ve recently added <a href="https://aka.ms/Build24/DevBox">standardized templates with project-level catalogs specific to each project</a>. We also have a new Dev Box imaging service where teams can create and maintain custom image using config-as-code to make sure their entire team has a consistent environment.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal.png"><img decoding="async" class="aligncenter size-full wp-image-249062" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal.png" alt="Image Microsoft developer portal" width="624" height="389" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal-300x187.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></p>
+<p>And <strong><a href="http://aka.ms/build24/ade-blog">Azure Deployment Environments</a></strong> now delivers more seamless experiences to customers, enabling them to leverage popular Infrastructure-as-Code (IaC) frameworks quickly and easily with its new extensibility model and to perform or customize deployments based on their organizational needs.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal-deployment.png"><img decoding="async" class="aligncenter size-large wp-image-249063" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal-deployment-1024x676.png" alt="Image Microsoft developer portal 8211 deployment" width="640" height="423" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal-deployment-1024x676.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal-deployment-300x198.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal-deployment-768x507.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-developer-portal-deployment.png 1430w" sizes="(max-width: 640px) 100vw, 640px" /></a></p>
+<p>These capabilities give development teams more control to customize environment templates for their team-specific needs and provide platform engineers with additional ways to build templates in their preferred IaC format.</p>
+<p>But consistent environments across teams doesn’t mean that the experience can’t be personalized to developers.</p>
+<p>The new Dev Home capabilities in Windows make it easy to create a personalized, consistent environment that works beautifully with Microsoft Dev Box. It’s simple to create, connect, and customize Dev Boxes, pin frequently used Dev Boxes to your taskbar or start menu, and add tools onto your config or the one you’re building for the team.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Dev-Home-3.png"><img decoding="async" class="aligncenter wp-image-249050" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Dev-Home-3.png" alt="Image Dev Home 3" width="737" height="456" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Dev-Home-3.png 931w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Dev-Home-3-300x186.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Dev-Home-3-768x475.png 768w" sizes="(max-width: 737px) 100vw, 737px" /></a></p>
+<h3 id=""></h3>
+<h3 id="close">Close</h3>
+<p>Our mission is to empower developers to achieve more. Our vision is to enable them to set up a complete engineering system in seconds, contribute from any device, build for any platform, collaborate with anybody, and scale with confidence. In the era of AI, developers and their teams can get into the zone, learn about new technology more quickly than ever before, explore what’s possible at the speed of their creativity, and share their expertise to accelerate the impact of their entire team.</p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/maximizing-joy-and-minimizing-toil-with-great-developer-experiences/">Maximizing joy and minimizing toil with great developer experiences</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Visual Studio 2022 17.10 and GitHub Copilot: Your Coding Partner for Faster and Smarter Development</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-10-now-available/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mark Downie]]></dc:creator>
+      <pubDate>Tue, 21 May 2024 15:30:16 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Release]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=248994</guid>
+      <description><![CDATA[<p>Today, as we kick off the //BUILD 2024 conference, we&#8217;re thrilled to share the general availability of Visual Studio 2022 17.10! This release features a new, single GitHub Copilot extension, marking a significant leap forward in AI-assisted development by embedding the power of advanced AI directly into strategic parts of your Integrated Development Environment (IDE). </p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-10-now-available/">Visual Studio 2022 17.10 and GitHub Copilot: Your Coding Partner for Faster and Smarter Development</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Today, as we kick off the //BUILD 2024 conference, we&#8217;re thrilled to share the general availability of Visual Studio 2022 17.10! This release features <a href="https://devblogs.microsoft.com/visualstudio/introducing-the-new-copilot-experience-in-visual-studio/">a new, single GitHub Copilot extension</a>, marking a significant leap forward in AI-assisted development by embedding the power of advanced AI directly into strategic parts of your Integrated Development Environment (IDE). </p>
+<p>With the integration of GitHub Copilot directly into Visual Studio, we’re offering you a coding partner with improved context, providing smart suggestions and code completions that help you stay focused and productive. While GitHub Copilot is implemented as an extension, it’s not acquired through the Visual Studio Marketplace or Extension Manager. Instead, it’s available directly from the Visual Studio installer as a recommended component—meaning it&#8217;s installed by default, though you can choose not to install it if preferred. We’ve updated the familiar features to use the latest AI models with the goal of keeping you in the creative flow for longer. To enable these AI experiences, activate your GitHub Copilot subscription today by <a href="https://github.com/settings/copilot" target="_blank" rel="noopener">signing in to GitHub and starting a free trial.</a></p>
+<p>Today’s post will focus on GitHub Copilot, but over the next few weeks we will continue to provide additional details on the improvements in the 17.10 release, which includes the General Availability of .NET Aspire, further expanding Visual Studio&#8217;s capabilities into cloud-native application development. For a complete list of our latest enhancements check out the <a href="https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes">Release Notes</a>. We invite you to try out Visual Studio 2022 17.10 GA and discover these new features and improvements for yourself.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio</a></div></p>
+<h3 id="accelerating-your-coding-experiences-with-github-copilot">Accelerating your coding experiences with GitHub Copilot</h3>
+<p>GitHub Copilot&#8217;s latest experience is integrated into Visual Studio and combines the features of GitHub Copilot’s code completion capabilities and GitHub Copilot Chat into one convenient package, eliminating the need to install two separate extensions.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Copilot-Badge-1.png"><img decoding="async" class="alignnone size-full wp-image-248442" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Copilot-Badge-1.png" alt="Image Copilot Badge" width="394" height="259" data-wp-editing="1" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Copilot-Badge-1.png 394w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/03/Copilot-Badge-1-300x197.png 300w" sizes="(max-width: 394px) 100vw, 394px" /></a></p>
+<p>This AI-driven inline companion understands your code, offering real-time suggestions and intelligent code completions. Additionally, GitHub Copilot chat presents the opportunity for a sustained, threaded conversation in which you build context and background for the problems you are investigating. It&#8217;s like having a coding partner that speeds up your development process, allowing you to focus on innovation rather than getting bogged down by the basics.</p>
+<p><iframe title="GitHub Copilot – Code completions and suggestions" src="https://www.youtube.com/embed/I_0zr9wCZ8s" width="935" height="526" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>Onboarding developers to new teams and projects comes with the challenge of knowledge sharing, but when code commits are moving faster than documentation the most important source of truth becomes the code itself. GitHub Copilot Chat provides convenient <a href="https://learn.microsoft.com/visualstudio/ide/copilot-chat-context?view=vs-2022#slash-commands">slash commands</a> and <a href="https://learn.microsoft.com/visualstudio/ide/copilot-chat-context?view=vs-2022#reference">references</a> to get better answers that are scoped to your specific solution and projects.</p>
+<p>In the following example we ask GitHub Copilot to explain (/explain) a method from a specific class by including a reference to the class file using the # symbol:</p>
+<pre>/explain the AddItemToBasket method in #file:BasketService.cs </pre>
+<p>Or in this example we ask it to fix a problem in a method:</p>
+<pre>/fix the HashThisData method in #file:StringExtentions.cs</pre>
+<p>Slash commands allow you to quickly set the intent for many common development tasks (e.g. /doc, /explain, /fix, /optimize, /generate, etc.). While references allow you to be more specific about the information you want GitHub Copilot to consider when answering your question (e.g. #solution, #locals, #file.cs, etc.).</p>
+<p><iframe title="GitHub Copilot - Ask VS + Solution search" src="//www.youtube.com/embed/sv4b6Ip0xqc" width="935" height="526" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<h3 id="debugging-faster">Debugging faster</h3>
+<p>With GitHub Copilot debugging and validating code in Visual Studio becomes a less daunting task. For example, one of the most common bugs developers are forced to investigate comes from exceptions. Now when an error is caught the AI-powered Exception Helper can assist you through the troubleshooting process. The Exception Helper uses a combination of the exception type and call stacks to help form a context rich question from diagnostics data available to Visual Studio’s best in class debugger.</p>
+<p>We are also supporting rubber ducking techniques where we invite you to articulate the problem in your natural written language while the debugger is paused. By including the local’s reference (#locals) you can ask direct questions about the state of a variable. For example, I might ask:</p>
+<pre>Why is the value of InterestRate NaN? #locals</pre>
+<p>Our newest set of debugging features include a deadlock detection helper that identifies blocking states in your running application, and more importantly, it can also suggest solutions for the underlying code. We have also integrated GitHub Copilot into our breakpoint workflows, allowing you to easily define your break point conditions, giving you the opportunity to strategically pause the debugger at key moments of an investigation.</p>
+<p><iframe title="GitHub Copilot – Debugging and Diagnostics" src="//www.youtube.com/embed/88M5VH_FJVg" width="935" height="526" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<h3 id="scaffold-tests-and-summarize-code-commits">Scaffold tests and summarize code commits</h3>
+<p>GitHub Copilot can also assist you in both the generation and resolution of unit tests, helping teams conserve code coverage and health. While scaffolding these kinds of tests is necessary work, it can also be a time consuming and repetitive task. In this example we create a set of tests for a selected class:</p>
+<pre>/tests #file:StringExtentions.cs</pre>
+<p>The outcome of GitHub Copilot assistance is a more productive development process, where time spent on crafting unit tests and error resolution is minimized, and code quality is consistently high.</p>
+<p><iframe title="GitHub Copilot – Generating tests" src="//www.youtube.com/embed/5qBqcqVP3aY" width="935" height="526" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>We know that you can grow frustrated with the time you spend maintaining a healthy code base. It can be hard to recall and condense the hours of design and development into notes and documentation that communicate the appropriate intent to your team. GitHub Copilot enables smart PR and commit suggestions, it&#8217;s easier than ever to maintain clarity and consistency across your developer projects.</p>
+<p><iframe title="GitHub Copilot – Improving your Git workflows" src="//www.youtube.com/embed/4rLfc0mlB6I" width="935" height="526" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>We found that 80% of developers find the generated PR description suggestion helpful enough to use. In all, <a href="https://github.blog/2022-09-07-research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/">GitHub Copilot helps developers</a> complete their code faster, reduce their mental effort, while allowing them to focus on more enjoyable work.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio</a></div></p>
+<p>As we wrap up our exploration of Visual Studio&#8217;s latest enhancements with GitHub Copilot, it&#8217;s clear that this integration creates an important opportunity to help you achieve more. Whether you&#8217;re a seasoned developer or just starting out, the latest updates to Visual Studio are designed to help you be more productive. We invite you to download the latest version of Visual Studio, activate your GitHub Copilot subscription today <a href="https://github.com/settings/copilot">and start a free trial</a> to enjoy the latest AI experiences.</p>
+<h3 id="share-your-feedback-and-stay-connected-with-visual-studio">Share your feedback and stay connected with Visual Studio!</h3>
+<p>We appreciate the time you’ve spent reporting issues and submitting suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/en-us/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.visualstudio.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>On behalf of the entire Visual Studio team, thanks for reading and Happy Coding!</p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-10-now-available/">Visual Studio 2022 17.10 and GitHub Copilot: Your Coding Partner for Faster and Smarter Development</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Improve your code quality with GitHub Copilot in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/improve-your-code-quality-with-github-copilot-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Cynthia Zanoni]]></dc:creator>
+      <pubDate>Thu, 16 May 2024 12:01:13 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Copilot 2024 Series]]></category>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Cynthia Zanoni]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Install]]></category>
+      <category><![CDATA[Laurent Bugnion]]></category>
+      <category><![CDATA[Tips and Tricks]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=248901</guid>
+      <description><![CDATA[<p>In our previous post, we discussed GitHub Copilot’s Slash Commands, which allow you to trigger specific actions within Visual Studio with simple text-based inputs. Now, let&#8217;s explore the /optimize command and its potential to improve code quality in Visual Studio.<br />
+Refactoring with /optimize<br />
+In a recent exploration by Bruno Capuano,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/improve-your-code-quality-with-github-copilot-in-visual-studio/">Improve your code quality with GitHub Copilot in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>In <a href="https://devblogs.microsoft.com/visualstudio/mastering-slash-commands-with-github-copilot-in-visual-studio/">our previous post,</a> we discussed <a href="https://devblogs.microsoft.com/visualstudio/mastering-slash-commands-with-github-copilot-in-visual-studio/">GitHub Copilot’s Slash Commands</a>, which allow you to trigger specific actions within Visual Studio with simple text-based inputs. Now, let&#8217;s explore the <code>/optimize</code> command and its potential to improve code quality in Visual Studio.</p>
+<h2 id="refactoring-with-optimize"><strong>Refactoring with /optimize</strong></h2>
+<p>In a recent exploration by Bruno Capuano, we see the transformative capabilities of GitHub Copilot&#8217;s <code>/optimize</code> command. Bruno demonstrates its prowess by refactoring a code snippet, showcasing how simple text-based inputs can yield significant improvements in code structure and performance.</p>
+<p><iframe title="Optimizing your code with GitHub Copilot for Visual Studio #githubcopilot #visualstudio" width="640" height="360" src="https://www.youtube.com/embed/4rvM33NjIDI?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p>One of the prime examples showcased by Bruno involves the conversion of a traditional for loop utilizing numerical indices into a more readable and intuitive foreach loop. While foreach loops in .NET might seem more verbose, they often offer better readability, a crucial aspect in maintaining code quality and ease of understanding.</p>
+<p>Here&#8217;s a glimpse of the original for loop snippet:</p>
+<pre class="lia-code-sample line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> chatHistory<span class="token punctuation">.</span>Count<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">var</span></span> message <span class="token operator">=</span> chatHistory<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">var</span></span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ChatMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    msg<span class="token punctuation">.</span>role <span class="token operator">=</span> message<span class="token punctuation">.</span>Role<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToLower</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    msg<span class="token punctuation">.</span>content <span class="token operator">=</span> message<span class="token punctuation">.</span>Content<span class="token punctuation">;</span>
+    root<span class="token punctuation">.</span>messages<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>To provide context to Copilot, Bruno selects the entire loop. He then initiates the inline chat dialog by typing “<code>Alt-/</code>”.</p>
+<p><img decoding="async" class="alignnone" src="https://techcommunity.microsoft.com/t5/image/serverpage/image-id/569327i008F3A2D30C7AF33/image-size/medium?v=v2&amp;px=400" alt="GitHub Copilot Chat dialog showing selected code with instructions to enhance code quality using the /optimize command in Visual Studio's chat interface" width="400" height="219" /></p>
+<p>To guide Copilot in refactoring the code, Bruno types a Slash ‘<code>/</code>’, which opens the previously discussed dialog. He chooses the Optimize command from the menu and sends the command to Copilot.</p>
+<p>Copilot responds with several optimization suggestions:</p>
+<ul>
+<li>The <code>ChatMessage</code> instance can be initialized during construction, enhancing efficiency.</li>
+<li>A <code>foreach</code> loop is utilized.</li>
+</ul>
+<p>The refactored code appears as follows:</p>
+<pre class="lia-code-sample line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> message <span class="token keyword">in</span> chatHistory<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">var</span></span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ChatMessage</span>
+    <span class="token punctuation">{</span>
+        role <span class="token operator">=</span> message<span class="token punctuation">.</span>Role<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToLower</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        content <span class="token operator">=</span> message<span class="token punctuation">.</span>Content
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    root<span class="token punctuation">.</span>messages<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="learn-from-copilot-give-it-a-try"><strong>Learn from Copilot: Give it a Try!</strong></h3>
+<p>The most effective way to comprehend a tool’s functionality is to use it firsthand. I find it fascinating to apply the <code>/optimize</code> command to my production projects. At times, the modifications are minor, affirming the quality of my original code. However, there are instances when Copilot suggests ingenious alterations, often introducing me to new syntaxes.</p>
+<p>Validating the output of GitHub Copilot is also crucial to ensure it hasn&#8217;t introduced any errors or regressions. Unit tests can serve as a safety net for these changes, just as they do during the refactoring of any piece of code.</p>
+<h3 id="additional-resources"><strong>Additional Resources</strong></h3>
+<p>We offer a wealth of resources to further your understanding of GitHub Copilot for Visual Studio. We encourage you to explore <a href="https://learn.microsoft.com/collections/ng58uwrk6g53ox?WT.mc_id=academic-132376-lbugnion">this collection</a>, you can watch the <a href="https://youtu.be/z1ycDvspv8U" target="_blank" rel="noopener">full video here</a> and regularly visit this blog for more content.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/improve-your-code-quality-with-github-copilot-in-visual-studio/">Improve your code quality with GitHub Copilot in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Get Ready for Visual Studio at Build 2024: Join Thousands Online!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-at-build-2024/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Wed, 15 May 2024 14:48:22 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Tips and Tricks]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=248932</guid>
+      <description><![CDATA[<p>MICROSOFT BUILD 2024<br />
+Watch it Live! or On-Demand – Starting Next Tuesday!<br />
+Next week, from May 21st, I’ll be diving into Microsoft Build 2024, and I invite you to come along for the ride—virtually! We’ll explore cutting-edge developments in Visual Studio,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-at-build-2024/">Get Ready for Visual Studio at Build 2024: Join Thousands Online!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h1 style="text-align: center;" style="text-align: center;" id="microsoft-build-2024">MICROSOFT BUILD 2024</h1>
+<p style="text-align: center;"><strong>Watch it Live! or On-Demand – Starting Next Tuesday!</strong></p>
+<p>Next week, from May 21st, I’ll be diving into Microsoft Build 2024, and I invite you to come along for the ride—virtually! We’ll explore cutting-edge developments in Visual Studio, Azure, and AI development from wherever we are, no travel required. It’s your chance to join live discussions and connect with tech enthusiasts from around the world, all from your home or office.</p>
+<p>This year, I’m particularly excited about charting new paths with AI and copilots. Whether you&#8217;re looking to boost your efficiency, secure your projects, or simply expand your tech horizons, the keynotes and breakout sessions are set to deliver. And if you have questions, the experts—yes, the real wizards behind Microsoft’s innovations—will be there to answer them in the session chat rooms.</p>
+<p>To give you a head start, I’ve shared a few of the sessions I plan to attend below. Hopefully, they’ll inspire your own choices as you start building your <strong>&#8216;Session Planner&#8217;</strong> today.</p>
+<p style="text-align: center;"><div style="text-align:center"><a class="cta_button_link" href="https://build.microsoft.com" style="text-transform: titlecase; display: inline-block; background-color: #0078D4; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">REGISTER &amp; LOGIN TODAY...IT'S FREE!</a></div></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner.png"><img decoding="async" class="aligncenter size-full wp-image-248939" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner.png" alt="Banner for Microsoft Build 2024" width="2500" height="343" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner.png 2500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner-300x41.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner-1024x140.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner-768x105.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner-1536x211.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/banner-2048x281.png 2048w" sizes="(max-width: 2500px) 100vw, 2500px" /></a></p>
+<h2 id="must-see-sessions-at-build-2024">Must See Sessions at Build 2024:</h2>
+<ul>
+<li><a href="https://build.microsoft.com/en-US/sessions/b49feb31-afcd-4217-a538-d3ca1d171198?source=sessions" target="_blank" rel="noopener"><strong>Microsoft Build Opening Keynote:</strong> </a>Join Satya Nadella, Rajesh Jha, and Kevin Scott on Tuesday, May 21, from 9:00 AM to 11:00 AM PDT. Learn how this era of AI will unlock new opportunities, transform how developers work, and drive business productivity across industries.</li>
+<li><a href="https://build.microsoft.com/en-US/sessions/226c764e-ab30-4ec3-b8ce-53eb230dcfe0?source=sessions" target="_blank" rel="noopener"><strong>Next Generation AI for Developers with the Microsoft Cloud:</strong></a> Join Scott Guthrie and leaders across Microsoft on Wednesday, May 22, from 8:30 AM to 10:00 AM PDT. Learn how to build secure and responsible AI solutions with the foundation of the Microsoft Cloud. Featuring a fireside chat with John Lambert and Julia Liuson to learn what you can do to create secure solutions in today&#8217;s threat landscape.</li>
+<li><a style="color: #006f94; text-decoration-line: underline; outline-width: 0px;" href="https://build.microsoft.com/en-US/sessions/80558a0c-7ea0-4949-8c50-e7bead5ea8cc?source=sessions" target="_blank" rel="noopener"><strong>Maximize Joy, Minimize Toil with Great Developer Experiences:</strong> </a>Join Amanda Silver and friends on Tuesday, May 21, from 1:00 PM to 1:45 PM PDT. At Microsoft, enhancing the developer experience is central to our mission. In this session, delve into the latest advancements in developer tools and learn about our collaborative efforts across the technology spectrum. Discover how these innovations are shaping the development of modern, intelligent apps.</li>
+</ul>
+<h2 id="visual-studio-at-build-2024">Visual Studio at Build 2024:</h2>
+<p>Browse all the Build sessions online, but here’s a sampling of some of the Visual Studio sessions that will offer an in-depth look into what we’re currently developing and enhancing, with a strong technical focus:</p>
+<ul>
+<li><a href="https://build.microsoft.com/en-US/sessions/a9f1f330-a966-47f4-89f1-624b65aa85d6?source=sessions" target="_blank" rel="noopener"><strong>What’s New in GitHub Copilot and Visual Studio:</strong></a> Explore enhancements in AI-assisted coding with Damian Brady and Filisha Shah on Wednesday, May 22, from 6:00 PM to 6:45 PM PDT. GitHub Copilot is your AI coding assistant, and when paired with Visual Studio, so much more! We&#8217;ll take you through tips and tricks, special integrations, and other recent enhancements to make sure you&#8217;re getting the most out of GitHub Copilot, including things that you can only do with Visual Studio.</li>
+<li><a href="https://build.microsoft.com/en-US/sessions/3259196a-64f0-4457-9442-3ed269af2cf9?source=sessions" target="_blank" rel="noopener"><strong>Build Apps from the Cloud with Microsoft Dev Box, Visual Studio &amp; More:</strong></a> Dive into cloud-native development with Anthony Cangialosi and Denizhan Yigitbas on Tuesday, May 21, from 2:15 PM to 3:00 PM PDT. Learn how to unify ready-to-code development environments with best-in-class dev tools to deliver an unparalleled coding experience for building intelligent applications and more. Give developers the flexibility to use the tools they want within IT guardrails and enable self-service by integrating Microsoft Dev Box with top-tier developer tools like Visual Studio and GitHub Copilot. Plus, streamline test environment provisioning with Azure Deployment Environments.</li>
+<li><a href="https://build.microsoft.com/en-US/sessions/1879189b-070b-4dfa-8c3b-8681e5442863?source=sessions" target="_blank" rel="noopener"><strong>Demystify Cloud-Native Development with .NET Aspire: </strong></a>Damian Edwards and David Fowler will introduce you to .NET Aspire on Wednesday, May 22, from 1:00 PM to 1:45 PM PDT, focusing on tools and components for building intelligent cloud services. Explore the groundbreaking .NET Aspire technology stack designed for cloud-native development. We&#8217;ll explore the Orchestration, Components, Tooling and more. We&#8217;ll even show you how to integrate the Azure Open AI component to add intelligent functionality to your distributed services.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/9b201e14-f060-49ff-8462-91fb35d9c763?source=sessions" target="_blank" rel="noopener">.NET Aspire Development on Any OS with the Visual Studio Family</a>: </strong>Discover the flexibility of .NET Aspire with Wendy Breiding and Brady Gaster on Wednesday, May 22, from 2:15 PM to 3:00 PM PDT, including seamless Azure integration. Explore the core features of .NET Aspire and how it enhances the developer experience for building cloud-native applications. This session will demonstrate building .NET Aspire apps with Visual Studio and VS Code, so you can choose the best tool for your workflow. We&#8217;ll then cover Azure Developer CLI (AZD) integration and the &#8220;azd up&#8221; experience, showcasing how .NET Aspire and AZD work together to seamlessly move your locally-running app to the cloud!</li>
+<li><a href="https://build.microsoft.com/en-US/sessions/689e5104-72e9-4d02-bb52-77676d1ec5bc?source=sessions" target="_blank" rel="noopener"><strong>What’s New in C# 13:</strong></a> Mads Torgersen and Dustin Campbell will reveal the latest features in C# 13 on Thursday, May 23, from 8:30 AM to 9:15 AM PDT. Join Mads and Dustin as they show off a long list of features and improvements coming in C# 13. This year brings long-awaited new features like extensions and field access in auto-properties, as well as a revamped approach to breaking changes to ensure cleaner language evolution in years to come. Additionally, we take collection expressions to the next level by facilitating dictionary creation and opening params to new collection types.</li>
+<li><a href="https://build.microsoft.com/en-US/sessions/4bf46250-6959-4df4-957f-b355e723c5c6?source=sessions" target="_blank" rel="noopener"><strong>Infusing Your .NET Apps with AI: Practical Tools and Techniques:</strong></a> Join Vin Kamat, Luis Quintanilla, and Stephen Toub on Thursday, May 23, from 11:00 AM to 11:45 AM PDT. Learn how to incorporate AI into your .NET applications using tools, libraries, and best practices. This session will demonstrate practical examples of leveraging Azure AI services and the .NET AI ecosystem to create &#8220;intelligent apps.&#8221; Ideal for developers looking to enhance their apps with advanced AI capabilities.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/eec1dbb9-6493-4e52-b484-596962d20402?source=/speakers/6e12762f-ffdd-4b29-bb80-3101414e392b">Diagnostic Techniques for .NET Running on Linux and Within Containers:</a></strong> Join Mark Downie and Sam Spencer for a pre-recorded session available on Monday, May 21, from 8:30 AM PDT. Learn the essential tips and tricks for diagnosing .NET applications running on Linux and within container environments such as Kubernetes. From local diagnostics in WSL to debug sidecars, this session will unveil how .NET has tools designed to help you tackle the trickiest diagnostic challenges. Discover diagnostic techniques that enhance your ability to maintain robust, efficient applications across diverse environments.</li>
+</ul>
+<p><img decoding="async" class="alignleft" src="https://cmscdn.event.microsoft.com/ignite23/registrant/photo/bb5507cf-e476-4b47-8344-af1507de6c41/f656b647-5dda-49fd-9bea-bec77a1682be/s150/Scott%20Hanselman%20Bio%20Photo.jpg?sv=2018-03-28&amp;sr=b&amp;sig=ILPh80PiWeVLt5%2FJbE4v5wUgAVLEeKYcMveiYXBtL5c%3D&amp;st=2024-04-23T21%3A13%3A06Z&amp;se=2025-04-23T21%3A14%3A06Z&amp;sp=r" alt="Profile picture of Scott Hanselman" width="150" height="150" /></p>
+<h2 id="for-hanselman-fans">For Hanselman Fans</h2>
+<ul>
+<li><a href="https://build.microsoft.com/en-US/sessions/10424a54-b809-48fc-9c8e-b8d4e3d0823a?source=sessions" target="_blank" rel="noopener"><strong>Scott and Mark Learn AI: </strong></a>Join Scott Hanselman and Mark Russinovich on Wednesday, May 22, from 3:30 PM to 4:15 PM PDT. Learn how to use AI tools to make smarter apps on Windows. You will learn how to use AI in your app, consume models both local and in the cloud, and how to use LLMs to make your apps even more awesome for users. They may even clean up Scott&#8217;s messy desktop that has been bothering Mark for some time now.</li>
+<li><a style="color: #006f94; text-decoration-line: underline; outline-width: 0px;" href="https://build.microsoft.com/en-US/sessions/620e1d0f-666d-46d7-9e42-3ae196c84911?source=sessions" target="_blank" rel="noopener"><strong>&#8220;Highly Technical Talk&#8221; with Hanselman and Toub:</strong></a> Don’t miss Scott Hanselman and Stephen Toub for a 100% LIVE demo session on Thursday, May 23, from 12:30 PM to 1:15 PM PDT. With zero slides and just code, they&#8217;ll dive deep into the internals of .NET, tackling performance issues and optimizations live on stage. This session is perfect for advanced developers looking to level up their debugging and performance skills using Microsoft&#8217;s own tools.</li>
+<li><a style="color: #006f94; text-decoration-line: underline; outline-width: 0px;" href="https://build.microsoft.com/en-US/sessions/f797ab16-55cb-485d-a616-56ee848991b3?source=sessions" target="_blank" rel="noopener"><strong>Level Up Your Dev Box, How Devs at Microsoft are Productive on Windows:</strong></a> Join Scott Hanselman, Vicky Harp, and Maddy Montaquila on Wednesday, May 22, from 6:00 PM to 6:45 PM PDT. Discover how Microsoft developers enhance their productivity through custom setups and tools. This session will showcase a variety of tips, including using aliases, the best VS Code extensions, customizing the Windows Terminal, and efficient ways to set up new computers. Learn valuable shortcuts, apps, and systems to optimize your development workflow.</li>
+</ul>
+<h2 id="in-person-only-demos-these-demos-are-available-only-in-seattle-and-will-not-be-recorded">In-Person Only Demos &#8211; These demos are available only in Seattle and will not be recorded.</h2>
+<p>For those of you joining us in Seattle, you&#8217;ll want to catch these live demos in the Demo Theaters on Level 5.</p>
+<ul>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/48d873b8-e233-4c3f-ba7e-f8943debdac7?source=sessions">Tips &amp; Tricks for Visual Studio and GitHub</a>:</strong> Join Harshada Hole and Jessie Houghton for an exclusive demo session on Tuesday, May 21, from 4:45 PM to 5:00 PM PDT. Discover how to unlock the full potential of Visual Studio with expert tips and tricks. Learn to enhance your workflow by integrating powerful community extensions for peak efficiency.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/1134891a-914e-4af6-ba87-bd7b2a52f872?source=sessions">What&#8217;s New for Copilot in Visual Studio 17.10</a>:</strong> Catch Rhea Patel on Thursday, May 23, from 9:00 AM to 9:15 AM PDT for a demo on enhancing your Copilot chat experience in Visual Studio. This session will showcase cutting-edge generative AI applications, including a new interaction model and context improvements in Copilot Chat. Note:</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/de939513-64b4-45f8-b566-4cf6639e04e6?source=sessions">VisualStudio.Com &#8211; Unlocking Your Benefits &amp; Diamond</a>:</strong>  Jacqueline Widdis will show you the power of using <a href="https://my.visualstudio.com" target="_blank" rel="noopener">My.VisualStudio.com</a> to unlock free benefits for Visual Studio developers on Wednesday, May 22, from 5:45 PM to 6:00 PM PDT. Learn about all the benefits included in your Visual Studio Subscription through a demo-filled tour. Discover how to easily access Azure credits, software downloads, training resources, and support to maximize your development potential.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/6dac49ce-9b4e-4727-817e-97e92d33a35c?source=sessions">Customize Dev Box for You and Your Team</a>:</strong> Join Dhruv Muttaraju and David Obando on Wednesday, May 22, from 3:30 PM to 3:45 PM PDT. Learn how to configure and deploy customized Dev Boxes, tailored to the specific needs of individual teams, at scale using config-as-code templates and leveraging package management.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/d021b03c-3130-423d-b7bc-61d700c68b0d?source=sessions">Microsoft Dev Box for Accessibility</a>:</strong> On Wednesday, May 22, from 5:00 PM to 5:15 PM PDT, explore how to build Dev Boxes that cater to accessibility needs. This session will introduce the new config-as-code customization starters that showcase all the accessibility options available, ensuring your Dev Box is as comfortable and familiar as your local environment.</li>
+</ul>
+<p>Ready to join thousands of developers at Build 2024? Don’t miss out on these exciting sessions and more! Click the link below to register today and secure your spot to experience Build 2024 virtually, alongside a global community of developers. Embrace the opportunity to learn, connect, and grow at this incredible event!</p>
+<p><a href="https://register.build.microsoft.com/" target="_blank" rel="noopener">Register for Build 2024 and Join Us Online for Free!</a></p>
+<h2 id="follow-us-at-microsoft-build-on-tiktok">Follow Us at Microsoft Build on TikTok!</h2>
+<p>The Visual Studio TikTok team will be going Live! from Build. <a href="https://www.tiktok.com/@visualstudio" target="_blank" rel="noopener">Check out @VisualStudio on TikTok</a></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-at-build-2024/">Get Ready for Visual Studio at Build 2024: Join Thousands Online!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Mastering Slash Commands with GitHub Copilot in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/mastering-slash-commands-with-github-copilot-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Cynthia Zanoni]]></dc:creator>
+      <pubDate>Tue, 14 May 2024 08:00:25 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Copilot 2024 Series]]></category>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Cynthia Zanoni]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Install]]></category>
+      <category><![CDATA[Laurent Bugnion]]></category>
+      <category><![CDATA[Tips and Tricks]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=248869</guid>
+      <description><![CDATA[<p>GitHub Copilot, the AI-powered coding assistant, revolutionizes coding in Visual Studio with its advanced features. In this series, we delve into the efficiency and convenience offered by Slash Commands, elevating your coding workflow.<br />
+Introducing Slash Commands<br />
+Slash Commands are predefined actions within GitHub Copilot,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/mastering-slash-commands-with-github-copilot-in-visual-studio/">Mastering Slash Commands with GitHub Copilot in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>GitHub Copilot, the AI-powered coding assistant, revolutionizes coding in Visual Studio with its advanced features. In this series, we delve into the efficiency and convenience offered by Slash Commands, elevating your coding workflow.</p>
+<h2 id="introducing-slash-commands"><strong>Introducing Slash Commands</strong></h2>
+<p>Slash Commands are predefined actions within GitHub Copilot, accessible through the prompt interface. Bruno Capuano, in his latest video, elucidates these commands, accessible via the Slash button in the Copilot Chat window or by typing a forward slash in the message box.</p>
+<p><img decoding="async" class="alignnone" src="https://techcommunity.microsoft.com/t5/image/serverpage/image-id/567954i470C29931AD979C5/image-size/medium?v=v2&amp;px=400" alt="Slash Commands menu by clicking the Slash button in the Copilot Chat window" width="400" height="85" /></p>
+<p>Alternatively, you can also access the Slash Commands by typing a forward slash in the message box.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_1-1712226760337.png"><img decoding="async" class="alignnone size-medium wp-image-248964" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_1-1712226760337-300x122.png" alt="Image LBugnion 1 1712226760337" width="300" height="122" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_1-1712226760337-300x122.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_1-1712226760337.png 374w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>Key commands include:</strong></p>
+<ul>
+<li><strong>doc</strong>: Insert a documentation comment in the current cursor position.</li>
+<li><strong>exp</strong>: Start a new conversation thread with a fresh context.</li>
+<li><strong>explain</strong>: Provide an explanation for the selected code.</li>
+<li><strong>fix</strong>: Suggest fixes for code errors and typos.</li>
+<li><strong>generate</strong>: Generate new code snippets based on your input.</li>
+<li><strong>optimize</strong>: Recommend code optimizations to improve performance.</li>
+<li><strong>tests</strong>: Create a unit test for the current code selection.</li>
+<li><strong>help</strong>: Access help and support for GitHub Copilot.</li>
+</ul>
+<p>&nbsp;</p>
+<h3 id="a-practical-example-with-fix"><strong>A Practical Example with /fix</strong></h3>
+<p>Demonstrating the power of Slash Commands, the <strong>/fix</strong> command automatically suggests corrections for typos and errors, enhancing code quality and efficiency.</p>
+<p>In the video, Bruno demonstrates how GitHub Copilot can automatically suggest corrections for typos and other issues. This command can be used in the main chat window, and it’s also accessible in the inline chat by pressing <strong>Alt-Slash (Alt-/)</strong> or through the right-click context menu.</p>
+<p><iframe title="Using Slash Commands in GitHub Copilot for Visual Studio #visualstudio #githubcopilot #slashcommands" width="640" height="360" src="https://www.youtube.com/embed/vZSf9F-S_aA?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p>As you can see, these Slash Commands can significantly improve your productivity in Visual Studio. Learn <a href="https://devblogs.microsoft.com/visualstudio/how-to-install-github-copilot-in-visual-studio/">how to Install GitHub Copilot in Visual Studio</a>.</p>
+<h3 id="additional-resources"><strong>Additional Resources</strong></h3>
+<p>To learn more about GitHub Copilot and Slash Commands, <a href="https://learn.microsoft.com/collections/ng58uwrk6g53ox?WT.mc_id=academic-132376-lbugnion">check out our resource collection here.</a> You can watch the <a href="https://youtu.be/z1ycDvspv8U">full video here</a>. For ongoing updates, stay tuned to this blog and consider <a href="https://www.youtube.com/@VisualStudio">subscribing to our YouTube channel</a> for more insights and tutorials.</p>
+<ul>
+<li><a class="LinkSuggestion__Link-sc-1gewdgc-4 cLBplk" href="https://devblogs.microsoft.com/visualstudio/copilot-chat-slash-commands-and-context-variables/" target="_blank" rel="noopener">Code Faster and Better with GitHub Copilot’s New Features: Slash Commands and Context Variables</a></li>
+<li><a class="LinkSuggestion__Link-sc-1gewdgc-4 cLBplk" href="https://devblogs.microsoft.com/visualstudio/announcing-the-github-extension-for-visual-studio/" target="_blank" rel="noopener">Announcing the GitHub Extension for Visual Studio</a></li>
+</ul>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/mastering-slash-commands-with-github-copilot-in-visual-studio/">Mastering Slash Commands with GitHub Copilot in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Using GitHub Copilot as your Coding GPS</title>
+      <link>https://devblogs.microsoft.com/visualstudio/using-github-copilot-as-your-coding-gps/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Cynthia Zanoni]]></dc:creator>
+      <pubDate>Tue, 07 May 2024 10:00:15 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Copilot 2024 Series]]></category>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Cynthia Zanoni]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Install]]></category>
+      <category><![CDATA[Laurent Bugnion]]></category>
+      <category><![CDATA[Tips and Tricks]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=248858</guid>
+      <description><![CDATA[<p>In this series, we delve into GitHub Copilot in Visual Studio, showcasing how it aids coding. GitHub Copilot functions as a coding GPS, guiding you through software development in Visual Studio. In our new short video, Bruno Capuano shows how this smart coding assistant boosts coding efficiency and quality.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/using-github-copilot-as-your-coding-gps/">Using GitHub Copilot as your Coding GPS</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>In this series, we delve into GitHub Copilot in Visual Studio, showcasing how it aids coding. GitHub Copilot functions as a coding GPS, guiding you through software development in Visual Studio. In our new short video, Bruno Capuano shows how this smart coding assistant boosts coding efficiency and quality.</p>
+<p><iframe title="Harnessing GitHub Copilot as your Coding GPS  #visualstudio #githubcopilot  #coding" width="640" height="360" src="https://www.youtube.com/embed/kq8JNPgajAU?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h2 id="github-copilot-an-assistant-not-a-replacement"><strong>GitHub Copilot: an assistant, not a replacement</strong></h2>
+<p>Bruno says GitHub Copilot improves your coding in Visual Studio, not replaces developers. Microsoft agrees, saying AI should help humans, not replace them. CEO Satya Nadella says AI should boost productivity without replacing people.</p>
+<p>Developers should check the code GitHub Copilot suggests. Sometimes it may suggest wrong code, called &#8220;hallucinations.&#8221; Though GitHub Copilot is usually accurate, however, reviewing its suggestions is important to be sure.</p>
+<p>First, install GitHub Copilot. You can find setup help in <a href="https://docs.github.com/en/copilot">GitHub Copilot documentation</a> or our <a href="https://learn.microsoft.com/visualstudio/ide/visual-studio-github-copilot-chat?view=vs-2022#install-the-visual-studio-extension/?WT.mc_id=academic-129246-lbugnion">Microsoft Learn tutorial for installing GitHub Copilot Chat</a> in Visual Studio.</p>
+<h3 id="using-llms-for-a-new-way-of-interaction"><strong>Using LLMs for a new way of interaction</strong></h3>
+<p>GitHub Copilot uses Large Language Models (LLMs) for its core. LLMs bring a new way to interact with computers. They use probabilities and lots of data to generate responses from natural-language prompts, making coding feel like a conversation. This interaction covers more than text; it includes images and videos as well.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_0-1712085121745.png"><img decoding="async" class="aligncenter wp-image-248861 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_0-1712085121745.png" alt="Illustration with an overview of AI capabilities, including computer vision, voice recognition, image recognition, and more." width="400" height="363" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_0-1712085121745.png 400w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/LBugnion_0-1712085121745-300x272.png 300w" sizes="(max-width: 400px) 100vw, 400px" /></a></p>
+<div class="flex flex-grow flex-col max-w-full">
+<div class="min-h-[20px] text-message flex flex-col items-start whitespace-pre-wrap break-words [.text-message+&amp;]:mt-5 juice:w-full juice:items-end overflow-x-auto gap-2" dir="auto" data-message-author-role="assistant" data-message-id="ddc6442d-1780-4c9f-9c12-125c364ba164">
+<div class="flex w-full flex-col gap-1 juice:empty:hidden juice:first:pt-[3px]">
+<div class="markdown prose w-full break-words dark:prose-invert light">
+<p>Because LLMs can vary, developers need to oversee this, ensuring consistency in their results.</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="embracing-the-future-with-github-copilot"><strong>Embracing the Future with GitHub Copilot</strong></h3>
+<p>As AI becomes more common in industries, developers should adapt. Tools like GitHub Copilot can help by making coding more efficient and adaptable. To keep up, it&#8217;s important to learn about AI tools, their strengths, and their limits. Check out our <a href="https://learn.microsoft.com/collections/ng58uwrk6g53ox?WT.mc_id=academic-129245-abartolo">resources</a> and <a href="https://youtu.be/z1ycDvspv8U" target="_blank" rel="noopener">full-length video</a> tutorial for more about GitHub Copilot and how to use it in your projects!</p>
+<p><strong>Additional Resources:</strong></p>
+<ul>
+<li><a class="LinkSuggestion__Link-sc-1gewdgc-4 cLBplk" href="https://devblogs.microsoft.com/visualstudio/copilot-chat-slash-commands-and-context-variables/" target="_blank" rel="noopener">Code Faster and Better with GitHub Copilot’s New Features</a></li>
+<li><a class="LinkSuggestion__Link-sc-1gewdgc-4 cLBplk" href="https://devblogs.microsoft.com/visualstudio/announcing-the-github-extension-for-visual-studio/" target="_blank" rel="noopener">Announcing the GitHub Extension for Visual Studio</a></li>
+</ul>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/using-github-copilot-as-your-coding-gps/">Using GitHub Copilot as your Coding GPS</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>VisualStudio.Extensibility 17.10: Debug your extensions with the Diagnostics Explorer</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-10/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Maia Kelner]]></dc:creator>
+      <pubDate>Tue, 28 May 2024 18:10:05 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249167</guid>
+      <description><![CDATA[<p>Imagine creating extensions that run faster and smoother than ever before! If you haven&#8217;t been following along lately, we&#8217;ve been working on improving the VisualStudio.Extensibility SDK. VisualStudio.Extensibility helps you build extensions that run outside the main IDE process for improved performance and reliability.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-10/">VisualStudio.Extensibility 17.10: Debug your extensions with the Diagnostics Explorer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Imagine creating extensions that run faster and smoother than ever before! If you haven&#8217;t been following along lately, we&#8217;ve been working on improving the VisualStudio.Extensibility SDK. VisualStudio.Extensibility helps you build extensions that run outside the main IDE process for improved performance and reliability. With it comes a sleek and intuitive .NET 8-based API and comprehensive, well-maintained documentation to help you develop awesome extensions.</p>
+<p>This 17.10 release builds on our <a href="https://aka.ms/VisualStudio.Extensibility/Blog/17.9">previous</a> releases, and it brings with it a brand-new debugging experience to make it easier for you to get your extensions running just the way you&#8217;d expect. We’ve also enhanced our remote UI features, added a new way to prompt users, and continued to add features to our project query API.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://aka.ms/VisualStudio.Extensibility" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Get Started with VisualStudio.Extensibility</a></div></p>
+<p>Please visit <a href="https://aka.ms/VisualStudio.Extensibility">https://aka.ms/VisualStudio.Extensibility</a> for the latest up-to-date docs and installation instructions. We encourage you to report bugs and suggest features via the <a href="https://aka.ms/VisualStudio.Extensibility/Issues">issue tracker</a> on our <a href="https://aka.ms/VisualStudio.Extensibility/Repo">GitHub repo</a>, where you can also find extension <a href="https://aka.ms/VisualStudio.Extensibility/Samples">samples</a> to help you get started.</p>
+<p>&nbsp;</p>
+<h3 id="whats-new-for-visualstudio-extensibility">What’s new for VisualStudio.Extensibility?</h3>
+<p>Do you want to develop and debug your extensions more quickly and more easily than before? Our 17.10 release adds the following features to help you do just that:</p>
+<ul>
+<li><a href="#post-249167-_Debug_your_extension">Debug your extension using our new Diagnostics Explorer</a></li>
+<li><a href="#post-249167-_Leverage_XAML_Resources">Leverage XAML Resources in your UI</a></li>
+<li><a href="#post-249167-_Let_your_extension">Let your extension users pick files or directories</a></li>
+<li><a href="#post-249167-_Track_project_changes">Track project changes with an improved query API</a></li>
+</ul>
+<p>&nbsp;</p>
+<h4><a id="post-249167-_Debug_your_extension"></a>Debug your extension using our new Diagnostics Explorer</h4>
+<p>We’ve created a powerful new tool for debugging your extensions called the VisualStudio.Extensibility Diagnostics Explorer, available <a href="https://aka.ms/VisualStudio.Extensibility/DiagnosticsExplorer">here</a> in the Visual Studio Marketplace. With it, you’ll be able to see extensions the way that Visual Studio sees them to help ensure that you’ve configured yours correctly. </p>
+<p>This tool, which itself was written as an <a href="https://aka.ms/VisualStudio.Extensibility/VSSDKCompatability">in-process VisualStudio.Extensibility extension</a>, can help you answer questions like “why isn’t my command showing up where I expect it to be in the IDE?” or “why isn’t my extension being activated when I expect it to be?”</p>
+<h5 id="inspect-configuration">Inspect configuration</h5>
+<p>VisualStudio.Extensibility has already made it easier for you to configure your extensions by eliminating the need for you to manually maintain separate metadata files. Now, we’re building on that with the Diagnostics Explorer, which lets you see exactly which extensions and components were discovered by Visual Studio, along with the configuration of each discovered item.</p>
+<p>For example, if you weren’t seeing your command in the IDE, you could use the Command tab Diagnostics Explorer to view any commands that have been contributed to Visual Studio. If it’s not present in the list, that’s a hint to double check your configuration to make sure it gets discovered. If it’s present, but not enabled or visible, you may want to check your <a href="#post-249167-_Create_better_activation">activation constraints</a>. And if it’s marked as enabled and visible, you could use the dropdown menu to view <em>command placements</em> to make sure you’ve placed it correctly.</p>
+<p><img decoding="async" width="2222" height="445" alt="A screenshot of the Commands tab of the VisualStudio.Extensibility Diagnostics Explorer. It shows one command associated with the ToolWindowSampleExtension, along with the metadata for that command." src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-white-text-description-automa.png" class="wp-image-249169" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-white-text-description-automa.png 2222w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-white-text-description-automa-300x60.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-white-text-description-automa-1024x205.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-white-text-description-automa-768x154.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-white-text-description-automa-1536x308.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-white-text-description-automa-2048x410.png 2048w" sizes="(max-width: 2222px) 100vw, 2222px" /></p>
+<p>Using the Commands tab, you can inspect <em>commands</em>, <em>command sets</em>, <em>groups</em>, <em>menus and toolbars</em>, <em>command placements</em>, and <em>dynamic command anchors</em>. Other tabs let you inspect components for other feature areas including tool windows, document types, text views, and more. As we add features in future releases, you’ll be able to inspect any new components alongside these in the Diagnostics Explorer.</p>
+<h5 id="view-live-event-log">View live event log</h5>
+<p>We know that extension developers like you sometimes develop extensions that may need to handle events throughout the IDE, such as a command being executed, a tool window being opened, or a TextView being created, so we’ve added a live event viewer to enable you to observe these events and their properties in real time:</p>
+<p><img decoding="async" width="2222" height="444" alt="A screenshot of the Events tab of the VisualStudio.Extensibility Diagnostics Explorer, which shows several events related to executing a command and hiding/showing tool windows." src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-many-small-colored-lines-desc.png" class="wp-image-249170" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-many-small-colored-lines-desc.png 2222w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-many-small-colored-lines-desc-300x60.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-many-small-colored-lines-desc-1024x205.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-many-small-colored-lines-desc-768x153.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-many-small-colored-lines-desc-1536x307.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-black-screen-with-many-small-colored-lines-desc-2048x409.png 2048w" sizes="(max-width: 2222px) 100vw, 2222px" /></p>
+<h5><a id="post-249167-_Create_better_activation"></a>Create better activation constraints</h5>
+<p>The Activation Constraints tab in the Diagnostics Explorer gives you the current state for each of the values available to you when creating an <a href="https://aka.ms/VisualStudio.Extensibility/ActivationConstraints">activation constraint</a>. Using this tab, you can get the IDE into the state that you want to use for your activation (such as building a project or opening a markdown file), and then you can inspect the values for each of the available expressions to help you create your constraint.</p>
+<p><img decoding="async" width="2388" height="562" alt="A screenshot of the Activation Constraints tab of the VisualStudio.Extensibility Diagnostics Explorer, which shows current information about the state of the IDE." src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica.png" class="wp-image-249171" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica.png 2388w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-300x71.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1024x241.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-768x181.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1536x361.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-2048x482.png 2048w" sizes="(max-width: 2388px) 100vw, 2388px" /></p>
+<p>For example, suppose you wanted a command to be visible only if there’s a C# file open in the editor. With the Diagnostics Explorer, you could open a C# file and use the Activation Constraints tab to help you to determine which of the expressions you’ll need to craft your constraint:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">EnabledWhen = ActivationConstraint.ClientContext(ClientContextKey.Shell.ActiveEditorContentType, "CSharp").
+</code></span></pre>
+<p>&nbsp;</p>
+<h4><a id="post-249167-_Leverage_XAML_Resources">Leverage XAML Resources in your UI</h4>
+<p>XAML resources accelerate your UI development by letting you define objects like colors, brushes, or styles that you can leverage throughout your project. With this release of VisualStudio.Extensibility, we’re adding support for XAML resources to help you develop great UIs for your extensions!</p>
+<p>Consistent with our other remote UI features such as UI controls, you’ll define any XAML files with ResourceDictionaries as embedded resources in your .csproj file:</p>
+<pre class="prettyprint language-xml" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-xml">&lt;ItemGroup&gt;
+    &lt;EmbeddedResource Include="\XamlResources.*xaml" /&gt;
+    &lt;Page Remove="XamlResources.*xaml" /&gt;
+&lt;/ItemGroup&gt;
+</code></span></pre>
+</p>
+<p>Once defined, it’s easy to include your resources in other components so that they can be referenced in your XAML throughout your project:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">ResourceDictionaries.AddEmbeddedResource("XamlResources.xaml")
+</code></span></pre>
+</p>
+<p>You can even localize your resources: see the <a href="https://github.com/microsoft/VSExtensibility/tree/main/New_Extensibility_Model/Samples/FeatureGallery/ModalDialog">Modal Dialog sample</a> for more information and let us know what you think! </p>
+<p>&nbsp;</p>
+<h4><a id="post-249167-_Let_your_extension"></a>Let your extension users pick files or directories</h4>
+<p>Building on our previous support for <a href="https://learn.microsoft.com/visualstudio/extensibility/visualstudio.extensibility/user-prompt/user-prompts">user prompts</a> and <a href="https://learn.microsoft.com/visualstudio/extensibility/visualstudio.extensibility/dialog/dialog">custom dialogs</a>, we’ve added the ability to display file and directory picker prompts from your extensions. For example, you can use the <code>ShowOpenFileDialogAsync()</code> method to prompt users to select a single file to open:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">VisualStudioExtensibility.Shell().ShowOpenFileDialogAsync(options, cancellationToken);
+</code></span></pre>
+</p>
+<p>Using the new APIs, you can prompt users to:</p>
+<ul>
+<li>
+    Select a single file to open
+  </li>
+<li>
+    Select one or more files to open
+  </li>
+<li>
+    Select a single file to Save As
+  </li>
+<li>
+    Select a directory to open
+  </li>
+</ul>
+<p>  As always, if there are other types of user prompts that are important for your extensions, please let us know through our <a href="https://github.com/microsoft/VSExtensibility/issues">Issues Tracker</a>.</p>
+<p>&nbsp;</p>
+<h4><a id="post-249167-_Track_project_changes"></a>Track project changes with an improved query API</h4>
+<p>Our 17.10 release adds three new features to the project query API.</p>
+<h5 id="track-changes-to-query-results">Track changes to query results</h5>
+<p>The TrackUpdatesAsync() method can be used in your project system queries to create an <a href="https://learn.microsoft.com/dotnet/api/system.iobserver-1">IObserver</a> object to track changes to the state of the projects or solutions in your query. For example, if you want to track when updates made to the files in a project, you could use:</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">var query = await myProject
+    .Files
+    .With(f =&gt; f.FileName)
+    .TrackUpdatesAsync(new TrackerObserver(), CancellationToken.None);
+</code></span></pre>
+</p>
+<p>In this example, the TrackerObserver implements <code>IObserver&lt;IQueryTrackUpdates&lt;IFileSnapshot&gt;&gt;</code>, so you can use your own custom logic to handle the update events.</p>
+<h5 id="query-project-rules">Query project rules</h5>
+<p>Each project in the project query API now contains a RulesResults attribute, which includes a rule name and a list of items. You can access these rules by calling <code>RuleResultsByName()</code> for a given configuration.</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">var results = await querySpace
+    .Projects
+    .With(p =&gt; p.Path)
+    .With(p =&gt; p.ActiveConfigurations
+        .With(c =&gt; c.RuleResultsByRuleName("CompilerCommandLineArgs")
+            .With(r =&gt; r.RuleName)
+            .With(r =&gt; r.Items
+                .With(i =&gt; i.Name))))
+        .ExecuteQueryAsync();
+</code></span></pre>
+</p>
+<h5 id="skip-results-in-a-query">Skip results in a query</h5>
+<p>We’ve added the <code>Skip()</code> method to enable you to skip results in your query.</p>
+<pre class="prettyprint language-cs language-csharp" style="padding-bottom: 0px; margin-bottom: 0px;"><span style="font-size: 8.5pt;"><code class="language-cs language-csharp">var projects = await queryableSpace.Projects
+    .With(proj =&gt; proj.Name)
+    .Skip(1)
+    .ExecuteQueryAsync();
+</code></span></pre>
+</p>
+<p>Here, the first project is skipped, and the remaining projects are returned.</p>
+<p>&nbsp;</p>
+<h3 id="we-cant-do-this-without-you">We can’t do this without you!</h3>
+<p>We need your help as we continue to develop VisualStudio.Extensibility! Please try out this preview release and let us know what you think. Check out the <a href="https://aka.ms/VisualStudio.Extensibility">docs</a>, browse the <a href="https://aka.ms/VisualStudio.Extensibility/Samples">code samples</a>, and build your <a href="https://aka.ms/VisualStudio.Extensibility/FirstExtension">first extension</a>. You can send feedback, report issues, or request features through our <a href="https://github.com/microsoft/VSExtensibility/issues">issue tracker</a>.</p>
+<p>We’re prioritizing the features that our extenders ask for, so please give VisualStudio.Extensibility a try and share your thoughts with us!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-10/">VisualStudio.Extensibility 17.10: Debug your extensions with the Diagnostics Explorer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Developing cloud-native apps with .NET Aspire and Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/developing-cloud-native-apps-with-aspire/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mark Downie]]></dc:creator>
+      <pubDate>Thu, 23 May 2024 17:53:17 +0000</pubDate>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[Cloud]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[Aspire]]></category>
+      <category><![CDATA[cloud development]]></category>
+      <category><![CDATA[cloud native]]></category>
+      <category><![CDATA[Containers]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=248996</guid>
+      <description><![CDATA[<p>We&#8217;re excited to introduce the general availability of .NET Aspire, a comprehensive stack aimed at simplifying the way .NET cloud-native apps are built and managed. .NET Aspire offers developers like you an improved, opinionated framework for constructing distributed applications, ensuring a seamless and consistent development experience.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/developing-cloud-native-apps-with-aspire/">Developing cloud-native apps with .NET Aspire and Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We&#8217;re excited to introduce the general availability of <a href="https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview">.NET Aspire</a>, a comprehensive stack aimed at simplifying the way .NET cloud-native apps are built and managed. .NET Aspire offers developers like you an improved, opinionated framework for constructing distributed applications, ensuring a seamless and consistent development experience.</p>
+<p>This new stack brings together a collection of tools, patterns, and special NuGet packages known as <a href="https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling?tabs=windows&amp;pivots=visual-studio#visual-studio-tooling">.NET Aspire Components designed specifically for the orchestration, component integration</a>, and tooling required in modern cloud-native development. Whether you are on day-zero or well into your cloud native journey, <a href="https://learn.microsoft.com/dotnet/aspire/deployment/azure/aca-deployment-visual-studio">Visual Studio provides the most natural way to deliver projects to Azure</a>.</p>
+<p>If you’re a distributed application developer .NET Aspire brings something you’ve always wanted: &#8211;</p>
+<ul>
+<li>The ability to select <strong>F5</strong> and have all the dependencies start up or be provisioned.</li>
+<li>Your projects are automatically configured between significant, distributed changes in the app.</li>
+<li>Deployment of these multi-node apps into a live development or test environment are a one-click gesture.</li>
+<li>.NET Aspire’s built-in service discovery capabilities enable your front-end apps to find your back-end APIs with less friction and almost zero configuration.</li>
+</ul>
+<h3 id="getting-started-with-net-aspire">Getting started with .NET Aspire</h3>
+<p><a href="https://visualstudio.microsoft.com/downloads/">Download the latest Visual Studio build today</a> to get started. If you don’t already have .NET Aspire installed, open the Visual Studio Installer, select <strong>Modify</strong>, and choose the <strong>ASP.NET and web development</strong> workload, and then select <strong>.NET Aspire SDK</strong>. Alternatively, you can run dotnet workload install aspire from a command line. Then, you’ll start to see new .NET Aspire project templates in Visual Studio and at the .NET CLI. Once you see the templates, try creating your first cloud-native .NET Aspire app by selecting the <strong>.NET Aspire Starter Application</strong> template.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-create-new-project.png"><img decoding="async" class="alignnone size-full wp-image-249115" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-create-new-project.png" alt="Image 17 10 aspire create new project" width="1173" height="659" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-create-new-project.png 1173w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-create-new-project-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-create-new-project-1024x575.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-create-new-project-768x431.png 768w" sizes="(max-width: 1173px) 100vw, 1173px" /></a></p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio</a></div></p>
+<p>If you’ve ever had to build a front-end app that accessed a REST API back end and needed caching to enhance the app’s performance, you’ll recognize the topology of the app right away. Once you select <strong>F5</strong> to start the debugger, the familiarity will end and the excitement will start – without needing to configure anything in your project or set startup order, the whole application will start up.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard.png"><img decoding="async" class="alignnone size-full wp-image-249116" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard.png" alt="Image 17 10 aspire dashboard" width="2640" height="943" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard.png 2640w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-300x107.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-1024x366.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-768x274.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-1536x549.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-2048x732.png 2048w" sizes="(max-width: 2640px) 100vw, 2640px" /></a></p>
+<p>The <a href="https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling?tabs=windows&amp;pivots=visual-studio#net-aspire-dashboard">.NET Aspire Dashboard</a> opens and from there you’ll have access to deep telemetry, metrics, and distributed traces where you can see how the entire app is working end-to-end.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces.png"><img decoding="async" class="alignnone size-full wp-image-249117" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces.png" alt="Image 17 10 aspire dashboard traces" width="2640" height="943" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces.png 2640w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces-300x107.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces-1024x366.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces-768x274.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces-1536x549.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-dashboard-traces-2048x732.png 2048w" sizes="(max-width: 2640px) 100vw, 2640px" /></a></p>
+<h3 id="deploying-to-azure-container-apps">Deploying to Azure Container Apps</h3>
+<p>If you’re an Azure customer, you’ll be happy to know we’ve applied this same sort of one-click joy to our publishing experience, too. From within Visual Studio, you can right-click-publish an entire multi-node app to Azure Container Apps in one click. With “whole-app provision-and-publish” capabilities provided by the Azure Developer CLI (<em>azd</em>), from right within Visual Studio you can create new development environments in Azure Container Apps with one click.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-publish-to-aca.png"><img decoding="async" class="alignnone size-full wp-image-249119" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-publish-to-aca.png" alt="Image 17 10 aspire publish to aca" width="804" height="564" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-publish-to-aca.png 804w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-publish-to-aca-300x210.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-publish-to-aca-768x539.png 768w" sizes="(max-width: 804px) 100vw, 804px" /></a></p>
+<p>This makes it easier than ever to spin up – and down – whole new copies of your application in isolated environments in your Azure subscription. Within minutes, your projects – and the dependencies they require to run – are all deployed successfully to Azure Container Apps.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-deployment-succeeded.png"><img decoding="async" class="alignnone size-full wp-image-249118" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-deployment-succeeded.png" alt="Image 17 10 aspire deployment succeeded" width="1465" height="827" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-deployment-succeeded.png 1465w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-deployment-succeeded-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-deployment-succeeded-1024x578.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/17.10-aspire-deployment-succeeded-768x434.png 768w" sizes="(max-width: 1465px) 100vw, 1465px" /></a></p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio</a></div></p>
+<p>We&#8217;re happy to <a href="https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/">announce the general availability of .NET Aspire</a>, which extends Visual Studio&#8217;s capabilities for cloud-native application development. .NET Aspire provides a framework and tools that have an opinionated approach, making distributed .NET applications easier to build, deploy, and manage. This integration aims to make the development of cloud-native apps more straightforward and productive.</p>
+<p>We are hearing great things from our .NET Aspire customers! They appreciate how Aspire simplifies deployment and refactoring, and how it provides a rich telemetry dashboard that gives them valuable insights in any environment. With the help of .NET Aspire, developers are improving their workflow, spending more time on innovation and less time on the complexities of operations.</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.  </p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>. </p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/developing-cloud-native-apps-with-aspire/">Developing cloud-native apps with .NET Aspire and Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
