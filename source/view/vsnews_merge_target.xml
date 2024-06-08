@@ -22322,5 +22322,359 @@ Slash Commands are predefined actions within GitHub Copilot,</p>
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/developing-cloud-native-apps-with-aspire/">Developing cloud-native apps with .NET Aspire and Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Giving our Azure marketplace images a makeover</title>
+      <link>https://devblogs.microsoft.com/visualstudio/giving-our-visual-studio-azure-marketplace-images-a-makeover/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Ruben Rios]]></dc:creator>
+      <pubDate>Wed, 05 Jun 2024 14:00:02 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249104</guid>
+      <description><![CDATA[<p>We previously announced the addition of new, optimized Azure VM image offers to help you create and test your applications faster and more easily on Azure VMs and the Microsoft Dev Box service. As we continue to evolve and optimize our offers,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/giving-our-visual-studio-azure-marketplace-images-a-makeover/">Giving our Azure marketplace images a makeover</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We <a href="https://devblogs.microsoft.com/visualstudio/visual-studios-azure-marketplace-images-now-support-microsoft-dev-box/">previously announced</a> the addition of new, optimized Azure VM image offers to help you create and test your applications faster and more easily on Azure VMs and the <a href="https://azure.microsoft.com/en-us/products/dev-box/">Microsoft Dev Box</a> service. As we continue to evolve and optimize our <a href="https://azuremarketplace.microsoft.com/en-US/marketplace/apps?filters=virtual-machine-images%3Bwindows%3Bmicrosoft&amp;page=1&amp;search=visual%20studio">offers</a>, we&#8217;re introducing more developer-optimized VM images and deprecating our older non-optimized offers. In this blog post, we’ll provide details and timelines for the additions and depreciations that will take place over the next couple of months.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/large_imageretirmentblog-picture.png"><img decoding="async" class="alignnone size-full wp-image-249133" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/large_imageretirmentblog-picture.png" alt="Image large imageretirmentblog picture" width="895" height="469" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/large_imageretirmentblog-picture.png 895w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/large_imageretirmentblog-picture-300x157.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/large_imageretirmentblog-picture-768x402.png 768w" sizes="(max-width: 895px) 100vw, 895px" /></a></p>
+<h2 id="boost-your-productivity-with-new-azure-marketplace-images">Boost your productivity with new Azure marketplace images</h2>
+<p>We&#8217;re committed to giving you the best, most productive starting point for your Azure VMs and <a href="https://learn.microsoft.com/en-us/azure/dev-box/concept-dev-box-concepts#dev-box-definition">Dev Box definitions</a>. That&#8217;s why our <a href="https://devblogs.microsoft.com/visualstudio/visual-studios-azure-marketplace-images-now-support-microsoft-dev-box/#visual-studio-images-optimized-for-developers">developer optimized</a> images are tailored to meet your development needs and include the latest OS’s, tools, and developer settings. They also provide a consistent and reliable development environment that can be easily replicated and shared across teams and projects.</p>
+<p>Today we are happy to announce two new additions to our Azure marketplace presence. First, we just added a VS 2022 Community image to the existing <a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.visualstudioplustools?exp=ubp8&amp;tab=Overview">Visual Studio 2022 (Microsoft Dev Box compatible)</a> VM offer.</p>
+<p>For the second addition, which will happen later this year, we&#8217;ll create a new Azure VM offer that focuses on the latest Windows Server release.</p>
+<p>This new offer will include images of the following Visual Studio releases:</p>
+<ul>
+<li>VS 2019 Professional</li>
+<li>VS 2019 Enterprise</li>
+<li>VS 2022 Community</li>
+<li>VS 2022 Professional</li>
+<li>VS 2022 Enterprise</li>
+</ul>
+<h2 id="what-are-we-deprecating">What are we deprecating?</h2>
+<p>Over the years we have published several VM images in the Azure marketplace. Although we believe this has made it easier for you to develop on your Azure VMs, many of our older VM images have either reached their end-of-life, contain unsupported components, duplicate more recent marketplace releases, or don’t offer developer optimizations.</p>
+<p>Today we are announcing our plan to deprecate the following offers:</p>
+<table style="border-collapse: collapse;">
+<tbody>
+<tr>
+<td><strong>Offer to be deprecated</strong></td>
+<td><strong>Replaced by offer</strong></td>
+</tr>
+<tr>
+<td><strong><a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.windows?exp=ubp8&amp;tab=PlansAndPrice">Windows Client</a></strong></td>
+<td>
+<ul>
+<li><a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.windowsplustools?exp=ubp8&amp;tab=Overview">Windows 11</a></li>
+<li><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoftwindowsdesktop.windows-10?exp=ubp8&amp;tab=Overview">Windows 10</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td><strong><a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.visualstudio2019latest?exp=ubp8&amp;tab=Overview">Visual Studio 2019</a></strong></td>
+<td>
+<ul>
+<li><a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.visualstudio2019plustools?exp=ubp8&amp;tab=Overview">Visual Studio 2019 (Microsoft Dev Box compatible)</a></li>
+<li><a style="font-family: inherit; font-size: inherit; text-align: var(--bs-body-text-align);" href="#_New_Azure_marketplace_1">new Windows Server offer</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td><strong><a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.visualstudio2022?exp=ubp8&amp;tab=Overview">Visual Studio 2022</a></strong></td>
+<td>
+<ul>
+<li><a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.visualstudioplustools?exp=ubp8&amp;tab=Overview">Visual Studio 2022 (Microsoft Dev Box compatible)</a></li>
+<li>new Windows Server offer</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>We also plan to deprecate the VS 2015 images from the <a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.visualstudio?exp=ubp8&amp;tab=Overview">Visual Studio 2015 &amp; 2017</a> offer. There will be no changes to the VS 2017 images at this point, and the offer will be renamed to “Visual Studio 2017” to reflect these changes.</p>
+<p>&nbsp;</p>
+<h2 id="whats-the-timeline-for-these-changes">What’s the timeline for these changes?</h2>
+<p>We know some of you may rely on the images that we are planning to deprecate. Because we want to make the right choices and provide you with ample time to make changes and provide feedback, we&#8217;ll make these changes gradually. We hope to gather and address your feedback along the way.</p>
+<table style="border-collapse: collapse;">
+<tbody>
+<tr>
+<td><strong>Phase</strong></td>
+<td><strong>Date</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>Starts:</strong> June 28, 2024</p>
+<p><strong>Completes:</strong> ~90 days after (Sept 26, 2024)</td>
+<td>
+<ul>
+<li>Deprecation of VS 2015 images in offer <a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.visualstudio?exp=ubp8&amp;tab=Overview">Visual Studio 2015 &amp; 2017</a></li>
+<li>Deprecation of offer <a href="https://azuremarketplace.microsoft.com/marketplace/apps/microsoftvisualstudio.windows?exp=ubp8&amp;tab=PlansAndPrice">Windows Client</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Starts:</strong> November 8, 2024</p>
+<p><strong>Completes:</strong> ~90 days after (Feb 6, 2025).</td>
+<td>
+<ul>
+<li>Deprecation of offers: <a href="https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Fazuremarketplace.microsoft.com%2Fen-us%2Fmarketplace%2Fapps%2Fmicrosoftvisualstudio.visualstudio2022%3Fexp%3Dubp8%26tab%3DOverview&amp;data=05%7C02%7CRuben.Rios%40microsoft.com%7Cd6e0d3c3869647e4878408dc5a824d2b%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C638484762898466152%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=V4SwWa9WA0ILRigR28ymiu4wFlaojehMQQTTi5%2BUq5c%3D&amp;reserved=0">VS 2022</a> &amp; <a href="https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Fazuremarketplace.microsoft.com%2Fen-us%2Fmarketplace%2Fapps%2Fmicrosoftvisualstudio.visualstudio2019latest%3Fexp%3Dubp8%26tab%3DOverview&amp;data=05%7C02%7CRuben.Rios%40microsoft.com%7Cd6e0d3c3869647e4878408dc5a824d2b%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C638484762898472002%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=ZVbh0YT87rgzUhV9Is2xHyo3Ny3ckSiNUCGOGvQ6uEI%3D&amp;reserved=0">VS 2019</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>~December, 2024</td>
+<td>
+<ul>
+<li>New Windows Server offer is published.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>At the <strong>start</strong> date for each deprecation phase, impacted offers (Dev Box compatible plans are not impacted) will:</p>
+<ul>
+<li>No longer be searchable in the marketplace.</li>
+<li>Remain available for deployment to new VMs or scale set instances up until the deprecation date.</li>
+</ul>
+<p>Here’s what will happen after the deprecation <strong>completes:</strong></p>
+<ul>
+<li>You won’t be able to deploy any additional virtual machine (VM) using any images within these respective offers.</li>
+<li>Active VM instances won’t be affected following the deprecation date.</li>
+</ul>
+<p>See the full <a href="https://learn.microsoft.com/azure/virtual-machines/deprecated-images#i-received-an-email-that-my-workloads-are-running-on-images-that-are-scheduled-for-deprecation--what-does-this-mean-and-does-deprecation-impact-my-existing-workloads">Deprecated images FAQ</a> to learn more.</p>
+<p>&nbsp;</p>
+<p>Finally, don&#8217;t forget that you can make your own custom images using our <a href="https://visualstudio.microsoft.com/vs/older-downloads/">older downloads</a> page.</p>
+<p>&nbsp;</p>
+<h2 id="let-us-know-what-you-think">Let us know what you think!</h2>
+<p>We know that these kinds of changes might impact some in a way that we’ve not accounted for, or that the process may be too arduous to react to. Therefore, we ask you to please share your thoughts about the deprecation plan via <a href="https://developercommunity.visualstudio.com/t/Feedback-for-the-deprecation-of-Azure-Ma/10664630">this Developer Community ticket</a>.</p>
+<p>If you have feedback about the new additions, requests or suggestions to improve our Azure VM offerings, please share it via <a href="https://developercommunity.visualstudio.com/t/General-feedback-for-the-Azure-Marketpla/10664628">this Developer Community ticket</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/giving-our-visual-studio-azure-marketplace-images-a-makeover/">Giving our Azure marketplace images a makeover</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Get Hands-On with Visual Studio and Azure: Live at Microsoft HQ this August!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/get-hands-on-with-visual-studio-and-azure-live-at-microsoft-hq-this-august/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Tue, 04 Jun 2024 11:00:21 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <category><![CDATA[VS Live! Event]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249254</guid>
+      <description><![CDATA[<p>Visual Studio LIVE! Microsoft HQ 2024<br />
+August 5-9 &#124; Microsoft Conference Center, Redmond, WA<br />
+Join the Ultimate Developer Celebration!<br />
+Who&#8217;s ready to connect with fellow developers and Visual Studio Product Managers this August at the Microsoft Campus in Redmond? Visual Studio Live!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/get-hands-on-with-visual-studio-and-azure-live-at-microsoft-hq-this-august/">Get Hands-On with Visual Studio and Azure: Live at Microsoft HQ this August!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h1 id="visual-studio-live-microsoft-hq-2024"><strong>Visual Studio LIVE! Microsoft HQ 2024</strong></h1>
+<h2 id="august-5-9-microsoft-conference-center-redmond-wa"><strong>August 5-9 | Microsoft Conference Center, Redmond, WA</strong></h2>
+<h2 id="join-the-ultimate-developer-celebration"><strong>Join the Ultimate Developer Celebration!</strong></h2>
+<p>Who&#8217;s ready to connect with fellow developers and Visual Studio Product Managers this August at the Microsoft Campus in Redmond? <a href="https://vslive.com/events/microsofthq-2024/home.aspx">Visual Studio Live! @ Microsoft HQ</a> celebrates the bright days of the Pacific Northwest—offering the perfect opportunity to immerse yourself in everything Visual Studio, Azure, GitHub, and the marvels of GitHub Copilot. This isn&#8217;t just a conference; it&#8217;s a celebration of innovation, learning, and community! With 35 speakers, including 20 from Microsoft, and 71 sessions spread over 13 tracks, there&#8217;s something for every developer. Dive deep into new capabilities across Visual Studio, Azure, and GitHub, and bring back cutting-edge knowledge to give your business a competitive edge.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-Sign-for-Wordpress.png"><img decoding="async" class="aligncenter size-full wp-image-249265" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-Sign-for-Wordpress.png" alt="Image Microsoft Sign for WordPress" width="800" height="220" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-Sign-for-Wordpress.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-Sign-for-Wordpress-300x83.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/Microsoft-Sign-for-Wordpress-768x211.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></a></p>
+<h3 id="why-august-is-the-perfect-time-to-visit-us"><strong>Why August is the Perfect Time to Visit Us:</strong></h3>
+<p>Not only will you have access to our dynamic lineup of sessions, but you can also enjoy VIP access to the Microsoft Commons—a bustling hub of retail, dining, and entertainment exclusive to Microsoft employees. Sample a variety of cuisines, shop for the latest gadgets and souvenirs, or unwind in the outdoor plaza with live music and games. As a special bonus, we&#8217;ll provide passes to the Microsoft Employee Store where you can score exclusive deals on the latest Microsoft products.</p>
+<h3 id="exclusive-networking-opportunity"><strong>Exclusive Networking Opportunity:</strong></h3>
+<p>Unlike larger conferences, <a href="https://vslive.com/events/microsofthq-2024/home.aspx">Visual Studio Live! 2024 at Microsoft HQ</a> is intentionally designed to be more intimate, with attendance capped at just 500. This unique setup provides you with unparalleled access to mingle directly with our speakers and product managers from Visual Studio, Azure, and GitHub. It’s a rare opportunity to connect personally with industry leaders, gaining insights and sharing your feedback on the tools you use every day. When we say you&#8217;ll &#8220;meet the Tool Makers,&#8221; we truly mean it—this is your chance to interact, learn from, and influence the experts behind the technologies driving today&#8217;s innovations!</p>
+<h3 id="why-attend-visual-studio-live"><strong>Why Attend Visual Studio LIVE!</strong></h3>
+<p>Take a break from your coding routine and join us at Visual Studio Live! 2024, where you can rapidly accelerate your understanding of the latest in Visual Studio, Azure, and GitHub amidst the camaraderie of fellow developers. It&#8217;s the perfect opportunity to catch up on Microsoft’s innovations in a collaborative setting, ensuring you stay ahead of the curve without falling behind on your projects.  Plus, check out these other reasons to sign-up before it is sold out:</p>
+<ul>
+<li><strong>Inspirational Keynotes:</strong> Don’t miss keynotes from Microsoft leaders like Scott Hunter on building cloud-native applications on Azure (08/06), and Asad Khan with Bob Ward on leveraging AI and Microsoft Fabric for modern SQL applications (08/07).</li>
+<li><strong>Comprehensive Learning:</strong> Tailored for developers, architects, and technical managers, this event offers both introductory and advanced topics to deepen your expertise.</li>
+<li><strong>Interactive Experience:</strong> Engage directly with Microsoft product leaders and industry experts through several planned networking events.</li>
+<li><strong>Networking Opportunities:</strong> Connect with Microsoft Speakers, MVPs, and Product Managers across the Visual Studio IDE and Azure services.</li>
+<li><strong>Spotlight on AI:</strong> Discover the latest in AI technology with GitHub Copilot integrated with Visual Studio and more.</li>
+</ul>
+<h3 id=""></h3>
+<h3 id="exclusive-discounts"><strong>Exclusive Discounts</strong></h3>
+<p>Visual Studio Professional &amp; Enterprise Subscribers can unlock <strong>exclusive discounts</strong> for the event by exploring your discount benefit on <a href="https://my.visualstudio.com/">My.VisualStudio.com.</a> Not a subscriber? No problem—grab the EARLY BIRD Discount on the <a href="https://na.eventscloud.com/ereg/index.php?eventid=770846">Visual Studio Live!</a> Event Pagehttps://na.eventscloud.com/ereg/index.php?eventid=770846 before it&#8217;s gone! Only 500 spots are available to this exclusive event, we expect it to sell out, don&#8217;t delay.</p>
+<p><a href="https://my.visualstudio.com" target="_blank" rel="noopener"><img decoding="async" class="aligncenter size-full wp-image-249277" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/MyVisualStudio-VS-LIve-3.png" alt="Image MyVisualStudio VS LIve 3" width="800" height="220" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/MyVisualStudio-VS-LIve-3.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/MyVisualStudio-VS-LIve-3-300x83.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/MyVisualStudio-VS-LIve-3-768x211.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></a></p>
+<h3 id="dont-miss-out"><strong>Don&#8217;t Miss Out!</strong></h3>
+<p>This event is expected to sell out—secure your spot now for an unforgettable week of learning, networking, and technological innovation.</p>
+<p>We&#8217;re excited to collaborate with Visual Studio LIVE! to bring you this comprehensive event, designed to empower the developer community&#8217;s growth and success. Join us in Redmond this August for a memorable week of learning, networking, and tech innovation.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://vslive.com/events/microsofthq-2024/home.aspx" style="text-transform: titlecase; display: inline-block; background-color: #0078D4; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">LEARN MORE</a></div></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/get-hands-on-with-visual-studio-and-azure-live-at-microsoft-hq-this-august/">Get Hands-On with Visual Studio and Azure: Live at Microsoft HQ this August!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Introducing the Revamped Visual Studio Resource Explorer</title>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-the-revamped-visual-studio-resource-explorer/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[McKenna Barlow]]></dc:creator>
+      <pubDate>Mon, 03 Jun 2024 16:00:52 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[Announcement]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Tips and Tricks]]></category>
+      <category><![CDATA[Update]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249201</guid>
+      <description><![CDATA[<p>With the recent revamp of Visual Studio’s Resource Explorer, developers are in for a treat! We’re thrilled to unveil the reimagined Visual Studio Resource Explorer, and trust us, it’s a game-changer.<br />
+Developers who manage resources in Visual Studio will be delighted to learn that we have finally updated our out-of-the-box resource management experience to better accommodate the needs of the modern .NET developer.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-the-revamped-visual-studio-resource-explorer/">Introducing the Revamped Visual Studio Resource Explorer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>With the recent revamp of Visual Studio’s Resource Explorer, developers are in for a treat! We’re thrilled to unveil the reimagined Visual Studio Resource Explorer, and trust us, it’s a game-changer.</p>
+<p>Developers who manage resources in Visual Studio will be delighted to learn that we have finally updated our out-of-the-box resource management experience to better accommodate the needs of the modern .NET developer. This update will make it easier and faster for developers to manage resources in their .NET applications. Here’s the lowdown:</p>
+<p>&nbsp;</p>
+<h4 id="the-pain-points-we-crushed">The Pain Points We Crushed:</h4>
+<p>Let’s rewind. The old Resource Editor had its quirks – no search, no filters, and a data grid that felt like a maze. If you manage sprawling solutions with gazillions of resources, you know the struggle. And don’t get us started on the one-file-at-a-time limitation – a real buzzkill for multilingual apps. Plus, that window? Not zoom-able. Not theme-friendly. Not cool.</p>
+<p>In the new Resource Explorer design, we have tackled these common issues and introduced several new features that will make your resource management workflows in Visual Studio much more productive. As you can see when we compare the two experiences, we’ve bridged the gaps in the old experience and sprinkled in delightful new features to boost your productivity. Get ready for a more modern and convenient resource management journey.</p>
+<p>&nbsp;</p>
+<h4 id="feature-comparison">Feature Comparison:</h4>
+<table style="width: 57.3311%; border-style: solid; height: 421px;" width="49.9645%">
+<tbody>
+<tr>
+<td style="width: 302.542px;">
+<h6><span style="font-size: 14pt;">Feature</span></h6>
+</td>
+<td style="width: 82.5625px;">
+<h6><span style="font-size: 14pt;">NEW Resource Explorer</span></h6>
+</td>
+<td style="width: 82.5625px;">
+<h6><span style="font-size: 14pt;">LEGACY Resource Editor</span></h6>
+</td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Grid View of Resources</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Add/edit/delete resources</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Search</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Single view for resources across solution</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Edit multiple resource files at once</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Edit multiple locales at once</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Dark mode and VS theme support</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">string.Format pattern validation</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Warnings and validation of resource data</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Combined view for string and media resources</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td style="width: 302.542px;">Datagrid zoom-ability</td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+<td style="width: 82.5625px;"><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/274c.png" alt="❌" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 id="whats-new-in-the-update">What’s new in the update?</h2>
+<p>&nbsp;</p>
+<h4 id="loading-multiple-files">Loading multiple files:</h4>
+<p>The cornerstone of this update is the ability to load multiple files and view all localizations at once within the same view. When you open the new Resource Explorer, you’ll find a comprehensive overview of all the resources you’ve stored alongside the locales for each file. You can even configure which locales are visible in the datagrid. This streamlined interface allows you to compare translations side by side and even edit them in place. No more toggling between different screens or hunting for specific files—the new design brings everything together, making localization management a breeze.</p>
+<p>&nbsp;</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view.png"><img decoding="async" class="alignnone wp-image-249207 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view.png" alt="Screenshot of VS showing the updated grid view for the resource explorer with multiple translations loaded" width="2245" height="1150" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view.png 2245w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view-300x154.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view-1024x525.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view-768x393.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view-1536x787.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/grid-view-2048x1049.png 2048w" sizes="(max-width: 2245px) 100vw, 2245px" /></a></p>
+<p>&nbsp;</p>
+<h4 id="search-and-filter">Search and Filter:</h4>
+<p>One of the most highly requested features we are delighted to deliver on is search. Our search isn’t confined to a single file, either. It dances across different .resx files, highlighting every occurrence of your search term. Need that elusive translation string? Found! Want to track down a specific locale? Done! It’s like having a resource detective at your service.</p>
+<p>You also have the option of selecting a subset of files to search. Whether it’s specific locales, resource groups, or just a corner of your project, you can ensure your search precision.</p>
+<p>&nbsp;</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/search-gif.gif"><img decoding="async" class="alignnone wp-image-249206 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/search-gif.gif" alt="GIF demonstrating resources search functionality " width="1736" height="1082" /></a></p>
+<p>&nbsp;</p>
+<h4 id="comments">Comments:</h4>
+<p>Each translation of a resource now has its own comment, all visible at once in the datagrid. Imagine this: You’re working on an app that supports multiple languages, and you stumble upon a quirky phrase that needs tweaking. With individual translation comments, you can provide context, backstory, or even a friendly reminder to your future self.</p>
+<p>It&#8217;s also common that the translator isn’t the same person managing the app’s resources. Maybe it’s a third-party service or a colleague from another team. No need to worry about misunderstandings of translation context because comments bridge the gap. The translator can leave notes, explanations, or caveats right alongside the translations. It’s like having a virtual sticky note attached to each string, making collaboration seamless. Keep an eye out for familiar UI &#8211; we’ve borrowed a leaf from the UX playbook of other beloved apps (hello, Excel!). When you explore translations, be on the lookout for the small icon in the corner of each cell.</p>
+<p>&nbsp;</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/comment-ui.png"><img decoding="async" class="alignnone wp-image-249203 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/comment-ui.png" alt="Screenshot of the comment functionality and iconography in the resource manager UI" width="444" height="136" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/comment-ui.png 444w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/comment-ui-300x92.png 300w" sizes="(max-width: 444px) 100vw, 444px" /></a></p>
+<p>&nbsp;</p>
+<h4 id="validation-and-warnings">Validation and Warnings:</h4>
+<p>The new Resource Explorer now warns you if you are missing translations or have issues with your placeholder values.</p>
+<p><strong>Missing Translation warnings</strong>: Localization just got smarter.  If your app supports multiple languages, missing translations can be a headache. Our revamped Resource Explorer now detects those gaps and issues targeted warnings. Whether it’s a label, button, or tooltip, we’ve got your back.</p>
+<p><strong>Placeholder Validation</strong>: Ever accidentally left a resource field blank or mis-formatted, only to discover it during deployment? Fear not! Our new placeholder validation feature ensures that you never miss a beat. As you create or modify resources, we’ll nudge you to fill in those essential details. No more surprises during runtime – placeholders keep you on track!</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/missing-translation.png"><img decoding="async" class="alignnone wp-image-249204 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/missing-translation.png" alt="Screenshot of error UI for when a resource is missing a translation." width="688" height="64" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/missing-translation.png 688w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/missing-translation-300x28.png 300w" sizes="(max-width: 688px) 100vw, 688px" /></a></p>
+<p>&nbsp;</p>
+<h4 id="accessibility-and-ui-changes">Accessibility and UI changes:</h4>
+<p>At Microsoft we understand technology – that’s why we continue to innovate, create, and design in a way that <a href="https://www.microsoft.com/en-us/accessibility/approach?rtc=1">gives everyone the ability to achieve more</a>. As part of this redesign we have made a handful of accessibility and UI changes that will be appreciated by developers of all abilities.</p>
+<p><strong>Accessibility and Assistive Technologies</strong>: We’ve fine-tuned every pixel to ensure compatibility with screen readers and assistive technologies. Everyone deserves an inclusive coding experience!</p>
+<p><strong>Zoom</strong>: No more squinting at the tiny grid view trying to decipher resource details. Our new grid view provides precision at your fingertips with the built-in zoom capabilities – simply use your mouse wheel or keyboard shortcuts to zoom in and out.</p>
+<p><strong>Dark Mode</strong>: Say goodbye to eye strain! Our revamped Resource Explorer now boasts a sleek dark mode that’s easy on the eyes. Whether you’re all-too familiar with late-night coding sessions or you simply prefer a more stylish interface, the dark theme sets the stage for focused productivity. Dive into your resource management tasks with confidence, knowing that your eyes are well taken care of.</p>
+<p>&nbsp;</p>
+<h3 id="what-this-version-doesnt-include">What this version doesn&#8217;t include:</h3>
+<p>This first release of the revamped Resource Explorer does not include CSV import and export functionality, automatic translations, or a way to integrate your own translation engines directly into the designer. For these, and many more advanced features, we recommend <a href="https://github.com/dotnet/ResXResourceManager">ResXResourceManager</a>. This Visual Studio extension, created and managed by a key developer community contributor, will always be the best-in-class resource management experience and includes many state of the art features outside of the scope of what we offer out-of-the-box in Visual Studio. If you already use this extension for your resource management in Visual Studio, no need to change anything &#8211; it will still work as usual with the new update.</p>
+<p>&nbsp;</p>
+<h3 id="where-to-find-it">Where to find it:</h3>
+<p>The revamped Resource Explorer is now on by default in the 17.11 Preview 2 and later versions of Visual Studio. You can open the designer either by double clicking on your Resources folder in the Solution Explorer, or by navigating to View &gt; Other Windows &gt; Resource Explorer.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-the-revamped-visual-studio-resource-explorer/">Introducing the Revamped Visual Studio Resource Explorer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>A modern Extension Manager has arrived with Visual Studio 17.10</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-extension-manager-17-10/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Maia Kelner]]></dc:creator>
+      <pubDate>Wed, 29 May 2024 14:55:51 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249229</guid>
+      <description><![CDATA[<p>We’re bringing our updated Extension Manager to all users! Over the last year, we’ve made our updated Extension Manager available as an optional preview feature and have been asking you to let us know what you think. Based on your incredible feedback,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-extension-manager-17-10/">A modern Extension Manager has arrived with Visual Studio 17.10</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We’re bringing our updated Extension Manager to all users! Over the last year, we’ve made our updated Extension Manager available as an optional preview feature and have been asking you to let us know what you think. Based on your incredible feedback, we’re now ready to offer the new Extension Manager as an on-by-default preview feature starting with <strong>Visual Studio 17.10</strong>. We’ve streamlined the essential features into a modern UI to help you discover great new extensions and manage your installed extensions. </p>
+<p>With this release, we still want to hear from you! As you use the Extension Manager in this last preview phase, please share your thoughts so we can bring you the best possible experience in our upcoming official release.</p>
+<p>&nbsp;</p>
+<h3 id="meet-the-new-extension-manager">Meet the new Extension Manager</h3>
+<p>Gone are the days of leaving Visual Studio to find additional information on extensions! We created the new Extension Manager to spotlight the most important content when searching for extensions, including a large pane for viewing detailed descriptions.</p>
+<p style="text-align: center"><img decoding="async" width="1644" height="1023" alt="A screenshot of the new Extension Manager in Visual Studio opened to the Browse tab." src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1.png" class="wp-image-249230" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1.png 1644w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1-300x187.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1-1024x637.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1-768x478.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-1-1536x956.png 1536w" sizes="(max-width: 1644px) 100vw, 1644px" /></p>
+<p>The left sidebar has lets you choose between primary views:</p>
+<ul>
+<li><strong>Browse</strong> the Visual Studio Marketplace for new extensions</li>
+<li>View and manage your <strong>Installed</strong> extensions</li>
+<li>Discover and install any available <strong>Updates</strong> for your extensions</li>
+<li>Install any extensions for which you have <strong>Roaming</strong> enabled</li>
+</ul>
+<p style="text-align: center"><img decoding="async" width="600" height="162" alt="A screenshot of the primary toolbars in the new Extension Manager." src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-2.png" class="wp-image-249231" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-2.png 600w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-2-300x81.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></p>
+<p>&nbsp;</p>
+<h5 id="filter-your-searches">Filter your searches</h5>
+<p>You can click the filter icon to the right of the search box to show the category and subcategory menus, which you can use to filter the search results. For example, you can search for tools to help with documentation or for ASP.NET controls.</p>
+<p style="text-align: center"><img decoding="async" width="593" height="123" alt="A screenshot of the category filter dropdown menus in the new Extension Manager." src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-3.png" class="wp-image-249232" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-3.png 593w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/a-screenshot-of-a-computer-description-automatica-3-300x62.png 300w" sizes="(max-width: 593px) 100vw, 593px" /></p>
+<p>&nbsp;</p>
+<h3 id="let-us-know-what-you-think">Let us know what you think!</h3>
+<p>The new Extension Manager is available to all Visual Studio 17.10 users and is on-by-default.</p>
+<p>If for any reason you want to return to the previous Extension Manager, you can disable the preview feature by navigating to <strong>Tools &gt; Manage Preview Features </strong>and unchecking the box for the feature called <strong>Extension Manager UI Refresh</strong>. To reenable the new Extension Manager, check the box for the preview feature and restart Visual Studio.</p>
+<p>As you use the new Extension Manager, please use <a href="https://developercommunity.visualstudio.com/t/Modern-Extension-Manager-for-Visual-Stud/10665461">this ticket on Developer Community</a> to share your thoughts and feedback.  We want to hear from you about anything that might be missing or that could be improved.</p>
+<p>If you run into any bugs or issues, please <a href="https://developercommunity.visualstudio.com/VisualStudio/report">report them</a> so we can prioritize fixing them.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-extension-manager-17-10/">A modern Extension Manager has arrived with Visual Studio 17.10</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
