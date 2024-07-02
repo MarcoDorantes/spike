@@ -352,6 +352,7 @@ static class orgmail
           item.Load();
           WriteLine($"\nIsRead:\t{item.IsRead}\nFrom:\t{item.From.Name}\nSubject:\t{item.Subject}\nReceived:\t{item.DateTimeReceived:s}\nCount:\t{count}");
           WriteLine($"Attachments:\t{item.Attachments.Count}");
+          Dictionary<string, int> attach_names = [];
           foreach (var _attach in item.Attachments)
           {
             var attach = _attach as Microsoft.Exchange.WebServices.Data.FileAttachment;
@@ -360,10 +361,13 @@ static class orgmail
               WriteLine($"Not supported attachment type ({_attach.GetType().FullName}");
               continue;
             }
-            var downfile = Path.Combine(outdir.FullName, attach.Name);
+            int attach_number = attach_names.Count + 1;
+            var attach_name = attach_names.ContainsKey(attach.Name) ? $"{Path.GetFileNameWithoutExtension(attach.Name)}_{attach_number}{Path.GetExtension(attach.Name)}" : attach.Name;
+            var downfile = Path.Combine(outdir.FullName, attach_name);
             Write($"DownloadTo: {downfile}");
             attach.Load(downfile);
             WriteLine();
+            attach_names[attach_name] = 1;
           }
         }
       }
