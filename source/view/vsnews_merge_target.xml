@@ -23061,5 +23061,547 @@ Developers who manage resources in Visual Studio will be delighted to learn that
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/automatically-install-visual-studio-security-updates-through-microsoft-update/">Keep Visual Studio automatically updated and secure through Microsoft Update</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>New GitHub Copilot features in Visual Studio 2022 17.11</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-github-copilot-features-in-visual-studio-2022-17-11/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Amy Nguyen]]></dc:creator>
+      <pubDate>Thu, 29 Aug 2024 16:20:38 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250390</guid>
+      <description><![CDATA[<p>Visual Studio 2022 17.11 now brings exciting advancements from GitHub Copilot! This release significantly improves how GitHub Copilot integrates into your development workflow, offering smarter and more intuitive coding assistance.<br />
+Discover the new GitHub Copilot features in Visual Studio, such as enhanced context understanding,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-github-copilot-features-in-visual-studio-2022-17-11/">New GitHub Copilot features in Visual Studio 2022 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 17.11 now brings exciting advancements from GitHub Copilot! This release significantly improves how GitHub Copilot integrates into your development workflow, offering smarter and more intuitive coding assistance.</p>
+<p>Discover the new GitHub Copilot features in Visual Studio, such as enhanced context understanding, improved code completions, and AI insights for debugging and naming. These updates aim to boost your productivity and efficiency in coding. To try these new features, <a href="https://visualstudio.microsoft.com/downloads/">download the update,</a> make sure to <a href="https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-install-and-states?view=vs-2022#manage-your-copilot-state">activate your GitHub Copilot account</a> and check out the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes#githubcopilot">release notes</a> for more detailed information.</p>
+<h2 id="github-copilot-is-getting-smarter">GitHub Copilot is getting smarter</h2>
+<p>GitHub Copilot Chat now enables you to reference your complete solution, which allows you to gain an even deeper, holistic understanding of your solution to get better results! To reference your solution, simply use <strong>@workspace</strong>, and Copilot will respond to high-level questions regarding your solution, files, and their interactions.</p>
+<p><img decoding="async" class="alignnone wp-image-250391" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-1.png" alt="To reference your solution, simply use @workspace," width="936" height="168" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-1.png 936w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-1-300x54.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-1-768x138.png 768w" sizes="(max-width: 936px) 100vw, 936px" /></p>
+<p>Additionally, <a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/github-copilot-enterprise/overview/about-github-copilot-enterprise">GitHub Copilot Enterprise</a> users in Visual Studio can now use <strong>@GitHub</strong> to get answers enriched with context from their entire repository and Bing search results.</p>
+<p><img decoding="async" class="alignnone wp-image-250392" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-2.png" alt="GitHub Copilot Enterprise users in Visual Studio can now use @GitHub to get answers enriched with context from their entire repository and Bing search results." width="650" height="459" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-2.png 650w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-2-300x212.png 300w" sizes="(max-width: 650px) 100vw, 650px" /></p>
+<h2 id="naming-things-made-easy">Naming things made easy</h2>
+<p>GitHub Copilot can now generate naming suggestions for your C++ identifiers (variables, methods, or classes) based on how your identifier is being used and the style of your code.</p>
+<p><img decoding="async" class="alignnone wp-image-250393" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-3.png" alt="Picture showing other naming options for &quot;property&quot;" width="700" height="346" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-3.png 700w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-3-300x148.png 300w" sizes="(max-width: 700px) 100vw, 700px" /></p>
+<p>To try it out, you&#8217;ll need an active <a href="https://visualstudio.microsoft.com/github-copilot/">GitHub Copilot subscription</a>. Navigate to any variable you wish to rename, right-click -&gt; <strong>Rename</strong> (Keyboard: Ctrl+R, Ctrl+R). You&#8217;ll notice a GitHub Copilot sparkle icon that you can click or toggle to generate naming suggestions.</p>
+<h2 id="ai-generated-breakpoint-expressions">AI-generated breakpoint expressions</h2>
+<p>AI-generated expressions for conditional breakpoints and tracepoints are <strong>now supported in C++</strong>. GitHub Copilot analyzes your code and offers insightful breakpoint expressions, streamlining your debugging process.</p>
+<p><img decoding="async" class="alignnone wp-image-250394" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-4.png" alt="AI-generated breakpoint expressions" width="1024" height="314" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-4.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-4-300x92.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-4-768x236.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>When you place the cursor in the condition text for a conditional breakpoint/tracepoint in the breakpoint settings window, GitHub Copilot will instantly generate AI-based expression suggestions tailored to your code. You can choose the condition that best suits your needs.</p>
+<h2 id="understand-your-symbols-with-github-copilot">Understand your symbols with GitHub Copilot</h2>
+<p>We’ve integrated GitHub Copilot into the tooltip on hover over symbols to provide AI-generated summaries of the selected symbol. This is available for both C# and C++ developers.</p>
+<p><img decoding="async" class="alignnone wp-image-250395" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-5.png" alt="tooltip on hover over symbols to provide AI-generated summaries of the selected symbol." width="1176" height="370" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-5.png 1176w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-5-300x94.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-5-1024x322.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-5-768x242.png 768w" sizes="(max-width: 1176px) 100vw, 1176px" /></p>
+<p>This feature assists developers in understanding descriptions of various symbols at different invocations within their codebase. By hovering over a symbol and selecting the ‘<strong>Tell me more’</strong> option, GitHub Copilot can generate documentation for the selected symbol.</p>
+<h2 id="refine-your-github-copilot-suggestions">Refine your GitHub Copilot suggestions</h2>
+<p>In Visual Studio 17.11, you can now refine code completions by adding context or asking questions without accepting them first. This update allows you to modify and retry GitHub Copilot’s suggestions before having to accept, saving you the hassle to accepting and refining again! Just press Alt+/ to modify, or if you’re happy with the suggestion, press tab to accept.</p>
+<p><img decoding="async" class="alignnone wp-image-250396" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/image-completions-to-inline.png" alt="Image completions to inline" width="624" height="156" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/image-completions-to-inline.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/image-completions-to-inline-300x75.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></p>
+<h2 id="github-copilot-is-even-more-secure">GitHub Copilot is even more secure</h2>
+<p>Introducing <a href="https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/configuring-content-exclusions-for-github-copilot">GitHub Copilot Content Exclusion,</a> a new feature that allows admins to Copilot to ignore specific files in a repository or organization, ensuring sensitive information is protected while using AI for efficient coding. This applies to Completions, Inline, Chat, for GitHub Copilot for Business and Enterprise users. Additionally, exclusions also apply to other non-chat features, like rename suggestions and hover text. Additionally, content exclusion works with repos on platforms other than GitHub, including Azure DevOps.</p>
+<p><img decoding="async" class="alignnone wp-image-250397" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-7.png" alt="exclusions also apply to other non-chat features, like rename suggestions and hover text" width="1240" height="687" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-7.png 1240w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-7-300x166.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-7-1024x567.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250390-7-768x425.png 768w" sizes="(max-width: 1240px) 100vw, 1240px" /></p>
+<p>We hope you enjoy this update to Visual Studio and all the new developments happening within GitHub Copilot, and we look forward to hearing what you think. You can share feedback with us by using the thumbs up or down within the Chat, via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding!</strong></p>
+<p><div style="text-align:center"><a class="cta_button_link" href=" https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.11</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-github-copilot-features-in-visual-studio-2022-17-11/">New GitHub Copilot features in Visual Studio 2022 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>C++ Gaming Productivity Update for Visual Studio 2022 version 17.11</title>
+      <link>https://devblogs.microsoft.com/visualstudio/c-gaming-productivity-update-for-visual-studio-2022-version-17-11/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[David Li]]></dc:creator>
+      <pubDate>Wed, 28 Aug 2024 10:00:20 +0000</pubDate>
+      <category><![CDATA[Cross-Platform]]></category>
+      <category><![CDATA[Gaming]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Game Development]]></category>
+      <category><![CDATA[Unreal Engine]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250354</guid>
+      <description><![CDATA[<p>Introduction<br />
+In Visual Studio 2022 version 17.11, you will find brand new productivity enhancements for your game development workflows. From faster conditional breakpoints to a swath of Unreal Engine enhancements, we have added various productivity boosters based on your feedback. Once again,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/c-gaming-productivity-update-for-visual-studio-2022-version-17-11/">C++ Gaming Productivity Update for Visual Studio 2022 version 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>In Visual Studio 2022 version 17.11, you will find brand new productivity enhancements for your game development workflows. From faster conditional breakpoints to a swath of Unreal Engine enhancements, we have added various productivity boosters based on your feedback. Once again, thank you for sharing Developer Community feedback and answering our surveys. Your valuable feedback continues to drive the direction of the Visual Studio gaming team.</p>
+<h2 id="general-c-game-development">General C++ Game Development</h2>
+<h3 id="supercharge-your-intellisense-performance">Supercharge Your IntelliSense Performance</h3>
+<p>We have received feedback from AAA developers about IntelliSense performance. While we have improved performance over the <a href="https://devblogs.microsoft.com/cppblog/category/performance/">past releases</a>, we understand that these performance improvements may be less impactful for large C++ projects.</p>
+<p>Here are some helpful tips to further boost the power for Visual Studio’s IntelliSense for developers with powerful hardware:</p>
+<ul>
+<li>Ensure 64-bit IntelliSense is activated.
+<ul>
+<li><img decoding="async" class="alignnone wp-image-250355" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-1.png" alt="Enable 64-bit IntelliSense is activated." width="1080" height="420" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-1.png 1080w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-1-300x117.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-1-1024x398.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-1-768x299.png 768w" sizes="(max-width: 1080px) 100vw, 1080px" /></li>
+</ul>
+</li>
+<li>Adjust your memory limits (in MB) to reflect your hardware.
+<ul>
+<li><img decoding="async" class="alignnone wp-image-250356" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-2.png" alt="Adjust your memory limits (in MB) to reflect your hardware." width="1073" height="347" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-2.png 1073w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-2-300x97.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-2-1024x331.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-2-768x248.png 768w" sizes="(max-width: 1073px) 100vw, 1073px" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="faster-conditional-breakpoints">Faster Conditional Breakpoints</h3>
+<p>In version 17.11, you will see a significant improvement in performance for conditional break points. Our initial assessment found that execution time is almost four times as fast, reducing execution time from 80 seconds to 21 seconds over 80,000 iterations.</p>
+<h3 id="build-insights-quality-of-life-improvements">Build Insights Quality of Life Improvements</h3>
+<p>We have added several quality-of-life enhancements to Build Insights. Starting in version 17.11, you can now group your results by project, view the relative path and file name in place of the full path, and see a better grouping of results in the Included Files view.</p>
+<p><img decoding="async" class="alignnone wp-image-250357" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-3.png" alt="path and file name in place of the full path" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-3.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-3-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-3-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<h2 id="unreal-engine-integration">Unreal Engine Integration</h2>
+<h3 id="adding-unreal-engine-classes-modules-and-plugins">Adding Unreal Engine Classes, Modules, and Plugins</h3>
+<p>In Visual Studio 2022 version 17.11, you can now add Unreal Engine class templates, modules, and plugins. These new productivity features are available for <a href="https://aka.ms/DirectUnrealSupport">both vcxproj and uproject</a>.</p>
+<p>To get started, right-click on your project in Solution Explorer and select <strong>Add &gt; Unreal Engine Item</strong>.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-4.png"><img decoding="async" class="alignnone wp-image-250358 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-4.png" alt="right-click on your project in Solution Explorer and select Add - Unreal Engine Item" width="981" height="550" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-4.png 981w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-4-300x168.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/word-image-250354-4-768x431.png 768w" sizes="(max-width: 981px) 100vw, 981px" /></a></p>
+<p>In the revamped <strong>Add New Item</strong> dialog, you can select several new choices.</p>
+<p><img decoding="async" class="alignnone wp-image-250359" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-5.png" alt="Add New Item dialog, you can select several new choices." width="1436" height="1000" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-5.png 1436w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-5-300x209.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-5-1024x713.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-5-768x535.png 768w" sizes="(max-width: 1436px) 100vw, 1436px" /></p>
+<h4 id="unreal-engine-classes">Unreal Engine Classes</h4>
+<p>Based on your feedback, we have added additional Unreal Engine class templates. You can now find the common class templates in Visual Studio’s <strong>Add New Item</strong> dialog just as you would find in the Unreal Engine Editor. The new dialog provides a list of common Unreal Engine class templates that you can add to your project. You can also now add your class to a module of your choice.</p>
+<p><img decoding="async" class="alignnone wp-image-250360" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-6.png" alt="You can now find the common class templates in Visual Studio’s Add New Item dialog just as you would find in the Unreal Engine Editor." width="924" height="1023" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-6.png 924w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-6-271x300.png 271w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-6-768x850.png 768w" sizes="(max-width: 924px) 100vw, 924px" /></p>
+<h4 id="unreal-engine-module">Unreal Engine Module</h4>
+<p>You can now also add an Empty Unreal Engine Module using the <strong>Add New Item</strong> dialog.</p>
+<p><img decoding="async" width="964" height="852" class="wp-image-250361" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-7.png" alt="A screenshot of a computer Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-7.png 964w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-7-300x265.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-7-768x679.png 768w" sizes="(max-width: 964px) 100vw, 964px" /></p>
+<h4 id="unreal-engine-plugin">Unreal Engine Plugin</h4>
+<p>Lastly, you can now add an Unreal Engine Plugin to your project through the <strong>Add New Item</strong> dialog.</p>
+<p><img decoding="async" width="927" height="1070" class="wp-image-250362" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-8.png" alt="A screenshot of a computer Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-8.png 927w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-8-260x300.png 260w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-8-887x1024.png 887w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-8-768x886.png 768w" sizes="(max-width: 927px) 100vw, 927px" /></p>
+<h3 id="unreal-engine-toolbar">Unreal Engine Toolbar</h3>
+<p>To further streamline our integration with Unreal Engine, we have added the Unreal Engine toolbar in Visual Studio 2022 version 17.11. The toolbar contains new productivity features and shortcuts to existing integration.</p>
+<p><img decoding="async" width="1304" height="413" class="wp-image-250363" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-9.png" alt="A screenshot of a computer Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-9.png 1304w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-9-300x95.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-9-1024x324.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-9-768x243.png 768w" sizes="(max-width: 1304px) 100vw, 1304px" /></p>
+<ul>
+<li>The play icon and the dropdown work in tandem to quickly attach to processes while debugging. With the Unreal Editor running, you will see Unreal Engine related processes. Selecting one of the choices will allow you to easily attach to the process to start a debugging session. Additionally, you can type any process name to quickly attach to that process.
+<ul>
+<li><img decoding="async" width="516" height="150" class="wp-image-250364" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-10.png" alt="A screenshot of a computer Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-10.png 516w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-10-300x87.png 300w" sizes="(max-width: 516px) 100vw, 516px" /></li>
+</ul>
+</li>
+<li>The start and stop button will control the Unreal Engine integration server, used for the Unreal Engine Test Adapter. The server runs as a background process that automatically updates your test information. If you have the Unreal Engine Test Adapter option active, the server will automatically start upon opening your UE project.</li>
+<li>The Rescan Blueprints button will refresh your Unreal Engine Blueprint references.</li>
+<li>The Unreal Engine Log button is a shortcut to open the Unreal Engine Log window, in case you close it accidentally.</li>
+<li>The Configure Tools for Unreal Engine button is a shortcut to launch the <strong>Unreal Engine Integration Configuration</strong> window. The configuration page gives you an overview of the Unreal Engine Integration status and gives you help if certain integrations were not configured properly.</li>
+</ul>
+<h3 id="blueprints-update">Blueprints Update</h3>
+<p>We received feedback asking to improve the process of setting up Blueprint references in Unreal Projects. Starting in Visual Studio v17.10, <strong>you will no longer need the Unreal Engine Plugin “Visual Studio Integration Tool” </strong>to view Blueprint references. Blueprint references will automatically show up if you have the “Visual Studio Tools for Unreal Engine” component installed.</p>
+<h2 id="send-us-your-feedback">Send us your feedback</h2>
+<p>We hope you enjoy this update to Visual Studio, and we look forward to hearing what you think. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home" target="_blank" rel="noopener">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.youtube.com/user/VisualStudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding!</strong></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/c-gaming-productivity-update-for-visual-studio-2022-version-17-11/">C++ Gaming Productivity Update for Visual Studio 2022 version 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>New IDE features in Visual Studio v17.11</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-ide-features-in-visual-studio-v17-11/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Mon, 26 Aug 2024 15:53:30 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Team and Development]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[code search]]></category>
+      <category><![CDATA[Keyboard Shortcuts]]></category>
+      <category><![CDATA[vsconfig]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250326</guid>
+      <description><![CDATA[<p>In Visual Studio 2022 v17.11, you&#8217;ll discover several new features that address specific issues developers have reported. These updates don&#8217;t belong to a distinct category, but we&#8217;re dedicated to sharing them with you in this blog post. You can download the update and view the comprehensive release notes for full details.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-ide-features-in-visual-studio-v17-11/">New IDE features in Visual Studio v17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>In Visual Studio 2022 v17.11, you&#8217;ll discover several new features that address specific issues developers have reported. These updates don&#8217;t belong to a distinct category, but we&#8217;re dedicated to sharing them with you in this blog post. You can <a href="https://visualstudio.microsoft.com/downloads/">download the update</a> and view the comprehensive <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes#githubcopilot">release notes</a> for full details.</p>
+<h2 id="find-the-code-youre-looking-for">Find the code you&#8217;re looking for</h2>
+<p>Do you ever feel like you&#8217;re seeing too many results in code search? Narrow down your focus with the newly added scoping options in <strong>Code Search</strong>.</p>
+<p><img decoding="async" class="alignnone wp-image-250327" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica.png" alt="A screenshot of a computer" width="1062" height="709" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica.png 1062w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-300x200.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-1024x684.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-768x513.png 768w" sizes="(max-width: 1062px) 100vw, 1062px" /></p>
+<p>For the default code search experience and each filter, you can now set the scope to <em>Entire solution</em>, <em>Current project</em>, or <em>Current document</em> and toggle inclusion of external files.</p>
+<p>You can set different scopes for different filters. For example, the default experience can be set to look through <em>Entire solution</em> and <strong>members</strong> can be set to look through only current document. Your selections will be preserved past the current session.</p>
+<h2 id="familiar-keyboard-shortcuts">Familiar keyboard shortcuts</h2>
+<p>When moving between different IDEs and editors, it can be frustrating to have to relearn keyboard shortcuts. We&#8217;ve made some changes to some default keyboard shortcuts to make them more familiar and to preserve your muscle memory.</p>
+<h3 id="toggle-line-comments">Toggle line comments</h3>
+<p>You&#8217;ve been able to toggle line comments in Visual Studio for a long time, but the default keyboard shortcut was Ctrl+K, Ctrl+/. We&#8217;ve now added Ctrl+/ as an alternative shortcut, which is the default in many other IDEs and editors.</p>
+<p><img decoding="async" width="611" height="343" class="wp-image-250328" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-text-description-automa.png" alt="A computer screen shot of text
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-text-description-automa.png 611w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-text-description-automa-300x168.png 300w" sizes="(max-width: 611px) 100vw, 611px" /></p>
+<h3 id="open-command-palette">Open Command Palette</h3>
+<p>Or <strong>Feature Search</strong> as it&#8217;s called in Visual Studio. The default keyboard shortcut for this feature is now Ctrl+Shift+P, which should be familiar to VS Code users for opening the Command Palette.</p>
+<p><img decoding="async" width="826" height="469" class="wp-image-250329" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-1.png" alt="A screenshot of a computer
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-1.png 826w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-1-300x170.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-1-768x436.png 768w" sizes="(max-width: 826px) 100vw, 826px" /></p>
+<h2 id="never-miss-installing-a-component">Never miss installing a component</h2>
+<p>Many teams use <strong>*.vsconfig</strong> files to standardize their teams&#8217; Visual Studio installations. <a href="https://learn.microsoft.com/visualstudio/install/import-export-installation-configurations?view=vs-2022#use-a-configuration-file-to-automatically-install-missing-components">The *.vsconfig files can be placed in a repo or a project&#8217;s solution directory</a>, and Visual Studio will automatically detect if components specified in the *.vsconfig file are missing.</p>
+<p><img decoding="async" width="709" height="223" class="wp-image-250330" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screen-shot-of-a-computer-program-description-a.png" alt="A screen shot of a computer program
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screen-shot-of-a-computer-program-description-a.png 709w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screen-shot-of-a-computer-program-description-a-300x94.png 300w" sizes="(max-width: 709px) 100vw, 709px" /></p>
+<p>If any are missing, then a notification such as the one pictured below will appear.</p>
+<p><img decoding="async" width="354" height="273" class="wp-image-250331" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-2.png" alt="A screenshot of a computer
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-2.png 354w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-2-300x231.png 300w" sizes="(max-width: 354px) 100vw, 354px" /></p>
+<p>We&#8217;ve made two improvements to this experience in Visual Studio 2022 version 17.11 Preview 1.</p>
+<ol>
+<li>First, <a href="https://developercommunity.visualstudio.com/t/VS-solution-load-should-detect-and-promp/10607414">Visual Studio can now detect if any local or network hosted extensions are missing from the installation</a>, and if so, it&#8217;ll prompt you to install them. Previously, with respect to extensions, Visual Studio was only able to recognize if marketplace extensions were missing.</li>
+<li>Secondly, Visual Studio will now re-prompt the notification in certain situations, such as if the *.vsconfig file has changed because new components or extensions get added to it. Previously, the notification would only pop until you acted upon it, at which point it would be suppressed <em>forever</em>.</li>
+</ol>
+<h2 id="improved-user-authentication">Improved user authentication</h2>
+<p>Visual Studio now uses the Web Account Manager (WAM) as its main authentication mechanism. This integration not only streamlines the authentication experience for Visual Studio, but it also enhances the security of your credentials.</p>
+<p>Here&#8217;s how the new WAM experience looks like:</p>
+<p><img decoding="async" width="456" height="515" class="wp-image-250332" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-3.png" alt="A screenshot of a computer
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-3.png 456w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-3-266x300.png 266w" sizes="(max-width: 456px) 100vw, 456px" /></p>
+<p><strong>How does this impact your experience?</strong></p>
+<p>Using WAM as the default authentication experience has many benefits, including:</p>
+<ul>
+<li><strong>Windows integration</strong>: In addition to reducing the overall number of authentication prompts, you can now select existing Windows accounts instead of repeatedly entering credentials.</li>
+<li><strong>Better token protection</strong>: Refresh tokens are better secured as they are now device bound.</li>
+<li><strong>Support for the latest security features</strong>:
+<ul>
+<li>Leverage rich OS capabilities such as Windows Hello &amp; FIDO keys.</li>
+<li>Access the latest and greatest Microsoft Entra ID capabilities and conditional access policies.</li>
+</ul>
+</li>
+</ul>
+<h2 id="new-teams-toolkit-templates">New Teams Toolkit templates</h2>
+<p>Teams Toolkit now offers an empty Teams template for you to connect with your existing projects or use it as a starting point for new Teams apps.</p>
+<ul>
+<li>Start with this empty template to create a Teams app.</li>
+<li>If you want to add Teams capability to your existing project, add <em>Empty Teams App</em> to your project and then connect two projects by making simple edits follow <a href="https://aka.ms/Config-Teams-app">https://aka.ms/Config-Teams-app</a>.</li>
+</ul>
+<p><img decoding="async" width="1024" height="680" class="wp-image-250333" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-4.png" alt="A screenshot of a computer
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-4.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-4-300x199.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-computer-description-automatica-4-768x510.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>Teams Toolkit supports authentication for <em>Search Results from API</em> Message Extensions app.</p>
+<p><img decoding="async" width="800" height="550" class="wp-image-250334" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-black-computer-description-auto.png" alt="A screenshot of a black computer
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-black-computer-description-auto.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-black-computer-description-auto-300x206.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-screenshot-of-a-black-computer-description-auto-768x528.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></p>
+<p>We hope you enjoy this update to Visual Studio, and we look forward to hearing what you think. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home" target="_blank" rel="noopener">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding!</strong></p>
+<p><div style="text-align:center"><a class="cta_button_link" href=" https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.11</a></div></p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-ide-features-in-visual-studio-v17-11/">New IDE features in Visual Studio v17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Enhancing Code Comprehension: GitHub Copilot’s Features in Visual Studio 2022 17.11</title>
+      <link>https://devblogs.microsoft.com/visualstudio/enhancing-code-comprehension-github-copilots-features-in-visual-studio-2022-17-11/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Thu, 22 Aug 2024 10:00:28 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Context]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249711</guid>
+      <description><![CDATA[<p>GitHub Copilot in Visual Studio 2022 17.11 now offers an improved experience you to refer to their methods, classes, functions, and entire solution directly within the chat. By using the # symbol followed by the name of a method, class, or function,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhancing-code-comprehension-github-copilots-features-in-visual-studio-2022-17-11/">Enhancing Code Comprehension: GitHub Copilot’s Features in Visual Studio 2022 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>GitHub Copilot in Visual Studio 2022 17.11 now offers an improved experience you to refer to their methods, classes, functions, and entire solution directly within the chat. By using the # symbol followed by the name of a method, class, or function, or by referring to your solution with @workspace, you can provide specific context that helps GitHub Copilot better understand their code and the problem at hand.<em><code></code></em></p>
+<h3 id="githubcopilotsymbols" class="heading-anchor">Refer to your solution</h3>
+<p><em>GitHub Copilot Chat now allows you to refer to your entire solution. This feature helps provide an even deeper understanding of your solution to get the best results. To refer to your solution, simply use the </em><strong>@workspace</strong><em> and Copilot will answer high level questions about your solution, files and how they work together.</em></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/workspace.png"><img decoding="async" class="alignnone size-full wp-image-250257" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/workspace.png" alt="Image workspace" width="936" height="168" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/workspace.png 936w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/workspace-300x54.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/workspace-768x138.png 768w" sizes="(max-width: 936px) 100vw, 936px" /></a></p>
+<p><strong>Try asking GitHub Copilot Chat questions like:</strong></p>
+<ol>
+<li>@workspace What project can I run in my solution?</li>
+<li>@workspace In my workspace, where is <em>#methodname</em> referenced?</li>
+<li>@workspace Where does serialization occur in my solution?</li>
+</ol>
+<p>&nbsp;</p>
+<div class="heading-wrapper" data-heading-level="h4">
+<h3 id="reference-your-methods-classes-functions">Reference your methods, classes, functions</h3>
+<p>GitHub Copilot Chat now allows you to refer to your methods, classes, and functions inline. By referring to methods, classes, and functions directly within the chat, you can provide specific context that helps GitHub Copilot better comprehend your code and the problem at hand. This feature empowers you to provide richer context to GitHub Copilot, enabling it to deliver more precise responses by gaining a deeper understanding of your codebase.</p>
+</div>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/copilot-symbols-.png"><img decoding="async" class="alignnone wp-image-249912 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/copilot-symbols--e1721660148934.png" alt="Image copilot symbols" width="1054" height="435" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/copilot-symbols--e1721660148934.png 1054w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/copilot-symbols--e1721660148934-300x124.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/copilot-symbols--e1721660148934-1024x423.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/copilot-symbols--e1721660148934-768x317.png 768w" sizes="(max-width: 1054px) 100vw, 1054px" /></a></p>
+<div class="heading-wrapper" data-heading-level="h5">
+<h5 id="how-to-refer-to-your-symbols-in-github-copilot-chat" class="heading-anchor"><span style="font-size: 12pt;"><strong>Try asking GitHub Copilot Chat questions like:</strong></span></h5>
+</div>
+<ol>
+<li>I have a test method named #methodName. How can I ensure that it&#8217;s being executed correctly?</li>
+<li><em>What are some optimizations that could be applied to #methodName?</em></li>
+<li><em>How does #methodName1 use #methodName2 and what issues should I look out for?</em></li>
+<li><em>/explain #methodName</em></li>
+</ol>
+<p>&nbsp;</p>
+<div class="heading-wrapper" data-heading-level="h4">
+<h3 id="search-the-web-in-copilot-chat">Search the web in Copilot Chat</h3>
+</div>
+<p><em>GitHub Copilot now includes context from your entire repository &amp; can search the web.</em></p>
+<p><a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/github-copilot-enterprise/overview/about-github-copilot-enterprise" data-linktype="external">GitHub Copilot Enterprise</a> subscribers in Visual Studio can now use GitHub Copilot Chat to get answers enriched with context from their entire repository and Bing search results.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/githubagent-1.png"><img decoding="async" class="alignnone size-full wp-image-250252" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/githubagent-1.png" alt="Image githubagent" width="1075" height="226" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/githubagent-1.png 1075w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/githubagent-1-300x63.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/githubagent-1-1024x215.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/githubagent-1-768x161.png 768w" sizes="(max-width: 1075px) 100vw, 1075px" /></a></p>
+<div class="heading-wrapper" data-heading-level="h5">
+<h5 id="get-answers-from-across-your-entire-codebase" class="heading-anchor">Get answers from across your entire codebase</h5>
+</div>
+<p>GitHub Copilot Chat can now answer questions with understanding of your full repository, not just the tabs you have open. <a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/github-copilot-chat/copilot-chat-in-github/using-github-copilot-chat-in-githubcom#repo-indexing-note" data-linktype="external">Index your repository on GitHub.com</a>, and then ask a question mentioning <strong>@github</strong>. You can ask questions like <strong>@github where is rate limiting implemented?</strong></p>
+<div class="heading-wrapper" data-heading-level="h5">
+<h5 id="search-with-the-context-of-the-web" class="heading-anchor">Search with the context of the web</h5>
+</div>
+<p>GitHub Copilot chat can also search Bing to find information outside of its general knowledge or your codebase. When you mention <strong>@github</strong>, GitHub Copilot will intelligently decide when to use Bing. You can ask questions like <strong>@github what is the latest LTS version of .NET?</strong></p>
+<p>Bing search is only available if enabled by an administrator &#8211; for more details, see <a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/github-copilot-enterprise/overview/enabling-github-copilot-enterprise-features" data-linktype="external">Enabling GitHub Copilot Enterprise features</a> or read <a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/github-copilot-chat/copilot-chat-in-ides/about-github-copilot-chat-in-your-ide?tool=visualstudio" data-linktype="external">the docs</a>.</p>
+<p>Try it out today!</p>
+<p>We hope you enjoy this new feature in GitHub Copilot for Visual Studio! Your feedback is important to us, so please share your thoughts using the thumbs up or down in the Chat, or by visiting the <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>. We look forward to hearing from you!</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback.png"><img decoding="async" class="wp-image-249918 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback.png" alt="Image send us feedback" width="520" height="448" /></a></p>
+<p>Happy coding!</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using GitHub Copilot in Visual Studio on what you like and what we can improve. Your feedback is critical to help us make GitHub Copilot  the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank" target="_blank" rel="noopener">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<div class="row justify-content-center"></div>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhancing-code-comprehension-github-copilots-features-in-visual-studio-2022-17-11/">Enhancing Code Comprehension: GitHub Copilot’s Features in Visual Studio 2022 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>New C++ features in Visual Studio v17.11</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-c-features-in-visual-studio-v17-11/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sy Brand]]></dc:creator>
+      <pubDate>Wed, 21 Aug 2024 10:00:31 +0000</pubDate>
+      <category><![CDATA[Cross-Platform]]></category>
+      <category><![CDATA[Gaming]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[C++]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250237</guid>
+      <description><![CDATA[<p>Visual Studio 2022 version 17.11 is here and comes with a host of new features for C++ developers. We’ve made improvements across our toolchain, Unreal Engine support, Build Insights, CMake debugger, and more. This post gives a quick overview of what’s available;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-c-features-in-visual-studio-v17-11/">New C++ features in Visual Studio v17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 version 17.11 is here and comes with a host of new features for C++ developers. We’ve made improvements across our toolchain, Unreal Engine support, Build Insights, CMake debugger, and more. This post gives a quick overview of what’s available; for all the details, see <a href="https://devblogs.microsoft.com/cppblog/whats-new-for-cpp-developers-in-visual-studio-2022-17-11/">What&#8217;s New for C++ Developers in Visual Studio 2022 17.11</a> on the C++ blog.</p>
+<h1 id="standard-library">Standard Library</h1>
+<p>The three main areas of improvement in this release are in formatted output, vectorization, and diagnostics. For formatted output, we’ve implemented parts of <a href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2286r8.html">Formatting Ranges</a> and all of <a href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2024/p3142r0.pdf">Printing Blank Lines with println</a>. Our vectorization improvements hit over a dozen of the standard algorithms, and we’ve improved the diagnostics of common misuses of std::ranges::to and std::get(std::tuple). See the <a href="https://github.com/microsoft/STL/wiki/Changelog">STL changelog</a> for all the details.</p>
+<h1 id="cmake-debugger">CMake Debugger</h1>
+<p>We have added support for the CMake debugger in CMake projects targeting Linux via WSL or SSH. The CMake debugger allows you to debug your CMake scripts and <em>CMakeLists.txt</em> files through the Visual Studio debugger.</p>
+<p>To start a CMake debugging session, set a breakpoint in your <em>CMakeLists.txt</em> file and then navigate to <strong>Project &gt; Configure Cache with CMake Debugging</strong>.</p>
+<p><img decoding="async" width="610" height="343" class="wp-image-250239" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/cmake-debugger-linux.png" alt="CMake debugger Linux" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/cmake-debugger-linux.png 610w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/cmake-debugger-linux-300x169.png 300w" sizes="(max-width: 610px) 100vw, 610px" /></p>
+<h1 id="unreal-engine-support">Unreal Engine Support</h1>
+<p>We’ve added several new features for Unreal Engine developers:</p>
+<ul>
+<li>An Unreal Engine toolbar that provides quick access to Unreal Engine actions such as attaching to UE processes and accessing the UE log</li>
+<li>An Add Class dialog for adding common UE class templates to your project</li>
+<li>An Add Module dialog for adding UE modules to your project</li>
+</ul>
+<p><img decoding="async" width="1024" height="576" class="wp-image-250240" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/unreal-engine-add-class.png" alt="Unreal Engine Add Class" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/unreal-engine-add-class.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/unreal-engine-add-class-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/unreal-engine-add-class-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<h1 id="build-insights">Build Insights</h1>
+<p>In this update, we added quality of life changes to C++ Build Insights integration. You can now filter your Build Insights trace results by project. For results in each row, you will now see the relative path and file name instead of the full path. We have also improved the grouping of results in the Included Files view.</p>
+<p><img decoding="async" width="1024" height="576" class="wp-image-250241" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/build-insights-qol-update.png" alt="Build Insights QoL Update" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/build-insights-qol-update.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/build-insights-qol-update-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/build-insights-qol-update-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<h1 id="breakpoint-performance">Breakpoint Performance</h1>
+<p>We have significantly enhanced the performance of conditional breakpoints in C++ through a reworked implementation.</p>
+<p>Beginning with version 17.11, our initial assessment finds that execution time is almost four times as fast, reducing execution time from 80 seconds to 21 seconds over 80,000 iterations.</p>
+<h1 id="summary">Summary</h1>
+<p>We hope this has given you a taste of what’s new. For all the details, see <a href="https://devblogs.microsoft.com/cppblog/whats-new-for-cpp-developers-in-visual-studio-2022-17-11/">What&#8217;s New for C++ Developers in Visual Studio 2022 17.11</a> on the C++ blog.</p>
+<p>We are very much interested in your feedback. The comments below are open. Feedback can also be shared through <a href="https://developercommunity.visualstudio.com/cpp">Visual Studio Developer Community</a>. You can also reach us on Twitter (<a href="https://twitter.com/visualc">@VisualC</a>), or via email at <a href="mailto:visualcpp@microsoft.com">visualcpp@microsoft.com</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-c-features-in-visual-studio-v17-11/">New C++ features in Visual Studio v17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>New debugging and diagnostic features</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-debugging-and-diagnostic-features/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Tue, 20 Aug 2024 10:00:11 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugger]]></category>
+      <category><![CDATA[Debugging]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250236</guid>
+      <description><![CDATA[<p>Debugging and diagnostics are vital skills for any developer, but they can also be difficult and time-consuming to get proficient . That&#8217;s why we&#8217;ve added some fantastic new features and enhancements to Visual Studio 2022 v17.11 that will help you find and resolve bugs faster and easier than ever before.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-debugging-and-diagnostic-features/">New debugging and diagnostic features</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Debugging and diagnostics are vital skills for any developer, but they can also be difficult and time-consuming to get proficient . That&#8217;s why we&#8217;ve added some fantastic new features and enhancements to Visual Studio 2022 v17.11 that will help you find and resolve bugs faster and easier than ever before. Here are some of the highlights. <a href="https://visualstudio.microsoft.com/downloads/">Download this update</a> and see the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes#debuggingdiagnostics">release notes</a> for all the details.</p>
+<p><iframe title="YouTube video player" src="https://www.youtube.com/embed/y0xiqlG0vfA?si=C5A9GMqPeBC_ykKU" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="break-on-async-method-exceptions">Break on async method exceptions</h3>
+<p>Debugging asynchronous code, especially in frameworks like ASP.NET, can be tricky due to the potential for exceptions to be thrown across asynchronous boundaries.</p>
+<p>Now, with Visual Studio Debugger it automatically breaks when an <em>async Task</em> method throws an exception back to framework code.</p>
+<h3 id="ai-generated-breakpoint-expressions">AI-generated breakpoint expressions</h3>
+<p>AI-generated expressions for conditional breakpoints and tracepoints are now supported in C++. GitHub Copilot analyzes your code and offers insightful breakpoint expressions, streamlining your debugging process.</p>
+<h3 id="debug-anycpu-applications-manifested-to-run-as-arm64">Debug AnyCPU applications manifested to run as arm64</h3>
+<p>Visual Studio natively supports building and debugging Arm64 apps on Arm-based processors. Unfortunately, applications built with the AnyCPU setting running on an Arm64 machine will default to using x64 emulation. While the capabilities of the x64 emulator have expanded, the most efficient Arm CPU scenarios are supported when applications are running natively.</p>
+<p>To better support the intended native behavior the Windows 24H2 update introduces a new &lt;supportedArchitectures&gt; setting for your App manifest files. .NET developers can include a list of supported architectures (amd64 or arm64), explicitly signaling that an application built with the AnyCPU setting should run natively using the Arm64 CLR on Arm64 devices.</p>
+<h3 id="blazor-webassembly-debugging">Blazor WebAssembly debugging</h3>
+<p>This release features a preview of the improved debugging experience for Blazor WebAssembly apps targeting .NET 9 or later.</p>
+<h3 id="organize-your-breakpoints-with-default-breakpoint-groups">Organize your breakpoints with default breakpoint groups</h3>
+<p>Breakpoint groups allow you to customize and toggle breakpoints for faster and more effective debugging.</p>
+<p>You can now mark the selected breakpoint group as the default, ensuring all newly added breakpoints are automatically included in that group.</p>
+<h3 id="edit-and-visualize-linq-expressions-in-the-ienumerable-visualizer">Edit and visualize LINQ expressions in the IEnumerable visualizer</h3>
+<p>The Visual Studio debugger now offers an editable expression feature in the IEnumerable visualizer, a powerful enhancement for developers working with collections.</p>
+<h3 id="improved-performance-of-conditional-breakpoints-in-c">Improved performance of conditional breakpoints in C++</h3>
+<p>We have significantly enhanced the performance of conditional breakpoints in C++ through a reworked implementation.</p>
+<p>Our initial assessment shows a performance improvement of at least 35% in version 17.10 and 70% in version 17.11, reducing execution time from 80 seconds to 21 seconds over 80,000 iterations.</p>
+<h2 id="profiling">Profiling</h2>
+<h3 id="keep-your-target-selection-in-the-instrumentation-tool-between-runs">Keep your target selection in the instrumentation tool between runs</h3>
+<p>The instrumentation tool now persists the target selection between runs offering a significant benefit by enhancing the continuity of profiling sessions.</p>
+<p>With this improvement, you can maintain your specified target across multiple instrumentation runs, removing the need for repetitive selection tasks.</p>
+<h3 id="decompile-net-assemblies">Decompile .NET assemblies</h3>
+<p>Visual Studio profiler now offers auto-decompilation for .NET libraries in scenarios where source code is unavailable. By automatically decompiling code during source lookup, even without loaded symbols or exact file locations, you can gain insights into the code&#8217;s structure and performance issues.</p>
+<p>With this new feature, while visualizing a collection or dataset, you can directly edit the expressions textbox on the top of the dialog with your desired LINQ expressions. The visualizer updates in real-time, reflecting the data change resulting from your query.</p>
+<p>We hope you enjoy this update to Visual Studio, and we look forward to hearing what you think. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding!</strong></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-debugging-and-diagnostic-features/">New debugging and diagnostic features</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>New git tooling features</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-git-tooling-features/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Mon, 19 Aug 2024 10:00:33 +0000</pubDate>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250212</guid>
+      <description><![CDATA[<p>Visual Studio 2022 v17.11 includes fantastic updates to everyone working with Git. They bring the richness of both GitHub and Azure DevOps into Visual Studio and part of your natural workflow. This greatly simplifies your inner loop, making you even more productive than before.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-git-tooling-features/">New git tooling features</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 v17.11 includes fantastic updates to everyone working with Git. They bring the richness of both GitHub and Azure DevOps into Visual Studio and part of your natural workflow. This greatly simplifies your inner loop, making you even more productive than before. <a href="https://visualstudio.microsoft.com/downloads/" target="_blank" rel="noopener">Download this update</a> and see the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes" target="_blank" rel="noopener">release notes</a> for all the details.</p>
+<p><img decoding="async" width="1059" height="596" class="wp-image-250213" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-a-program-description-a.png" alt="A computer screen shot of a program
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-a-program-description-a.png 1059w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-a-program-description-a-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-a-program-description-a-1024x576.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-computer-screen-shot-of-a-program-description-a-768x432.png 768w" sizes="(max-width: 1059px) 100vw, 1059px" /></p>
+<h2 id="more-meaningful-code-reviews">More meaningful code reviews</h2>
+<p>We&#8217;ve made it easier to view your GitHub and Azure DevOps pull request comments directly in your working file in Visual Studio. You can now stay in your context, make necessary code changes, and interact with your colleagues&#8217; suggestions without switching contexts to the browser.</p>
+<h2 id="fix-for-codelens-timeline">Fix for CodeLens timeline</h2>
+<p>CodeLens timeline now respects the configuration of your timeline to show the correct information. This fix addresses an issue where the timeline was not honoring the months set in the file changes hover preview.</p>
+<h2 id="updates-to-pull-request-creation">Updates to pull request creation</h2>
+<p>We&#8217;ve improved on the create a pull request experience with target branch selection, commit counts, and other stabilization fixes. Additionally, we now automatically create links to work items that have been mentioned in commits that are part of the pull request. We also draft pull requests which was one of the top requests.</p>
+<p>We hope you enjoy this update to Visual Studio, and we look forward to hearing what you think. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home" target="_blank" rel="noopener">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger" target="_blank" rel="noopener">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter @VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio" target="_blank" rel="noopener">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding!</strong></p>
+<p><div style="text-align:center"><a class="cta_button_link" href=" https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.11</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-git-tooling-features/">New git tooling features</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Copilot Content Exclusion Now Available in Visual Studio 2022 17.11</title>
+      <link>https://devblogs.microsoft.com/visualstudio/copilot-content-exclusion-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Thu, 15 Aug 2024 17:15:25 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Administrator]]></category>
+      <category><![CDATA[Content Exclusion]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[security]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249433</guid>
+      <description><![CDATA[<p>We are excited to announce that Copilot Content Exclusion is now available in Visual Studio 2022 17.11. This feature allows your admins to configure Copilot to ignore certain files in a repository or organization, giving you enterprise control that ensures sensitive information is protected while seamlessly integrating trusted AI for efficient coding.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/copilot-content-exclusion-in-visual-studio/">Copilot Content Exclusion Now Available in Visual Studio 2022 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We are excited to announce that <a href="https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization/setting-policies-for-copilot-in-your-organization/excluding-content-from-github-copilot">Copilot Content Exclusion</a> is now available in Visual Studio 2022 17.11. This feature allows your admins to configure Copilot to ignore certain files in a repository or organization, giving you enterprise control that ensures sensitive information is protected while seamlessly integrating trusted AI for efficient coding.</p>
+<p>This will now be available for Completions, Inline, Chat, for GitHub Copilot for Business and GitHub Copilot for Enterprise customers. Content Exclusion is not limited to repos hosted on GitHub but also available for repositories hosted on other platforms, such as Azure DevOps.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/github-copilot/?utm_source=vscom-homepage&amp;utm_medium=web-hero&amp;utm_id=landing-page&amp;utm_campaign=vscom-hp-hero-to-copilot-lp-build-2024" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Get Visual Studio 2022 17.11</a></div></p>
+<h4 id="how-to-exclude-content"><strong>How to Exclude Content</strong></h4>
+<p>Organization administrators or repository owners can choose which files or paths are excluded. This will prevent Copilot from accessing excluded files. Learn how to enable this feature <a href="https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization/setting-policies-for-copilot-in-your-organization/configuring-content-exclusions-for-github-copilot">here.</a></p>
+<h4 id="how-to-check-if-your-content-is-excluded">How to Check if Your Content is Excluded</h4>
+<p>Copilot experiences where exclusions apply:</p>
+<table style="border-collapse: collapse; width: 100%;">
+<tbody>
+<tr>
+<td style="width: 50%;">Copilot experiences</td>
+<td style="width: 50%;"></td>
+</tr>
+<tr>
+<td style="width: 50%;">Completions</td>
+<td style="width: 50%;"><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-completions-.png"><img decoding="async" class="alignnone size-full wp-image-249908" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-completions-.png" alt="Image Content Exclusion blogs completions" width="1740" height="805" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-completions-.png 1740w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-completions--300x139.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-completions--1024x474.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-completions--768x355.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-completions--1536x711.png 1536w" sizes="(max-width: 1740px) 100vw, 1740px" /></a></p>
+<p>Verify if Content Exclusion is enabled on your file by checking the left side for the “Excluded” label.</td>
+</tr>
+<tr>
+<td style="width: 50%;">Inline Chat</td>
+<td style="width: 50%;"><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-inline.png"><img decoding="async" class="alignnone size-full wp-image-249909" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-inline.png" alt="Image Content Exclusion blogs inline" width="1240" height="687" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-inline.png 1240w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-inline-300x166.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-inline-1024x567.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-inline-768x425.png 768w" sizes="(max-width: 1240px) 100vw, 1240px" /></a>Verify if Content Exclusion is enabled in Inline Chat below the prompt box.</td>
+</tr>
+<tr>
+<td style="width: 50%;">Chat Window</td>
+<td style="width: 50%;"><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-chat-.png"><img decoding="async" class="alignnone size-full wp-image-249910" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-chat-.png" alt="Image Content Exclusion blogs chat" width="849" height="343" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-chat-.png 849w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-chat--300x121.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/Content-Exclusion-blogs-chat--768x310.png 768w" sizes="(max-width: 849px) 100vw, 849px" /></a></p>
+<p>Verify if Content Exclusion is enabled for the specific file you referenced by checking the tip at the top of your prompt box in the Chat Window.</td>
+</tr>
+</tbody>
+</table>
+<p>Please note that certain GitHub Copilot features in Visual Studio may be fully disabled if any file is excluded. We hope this new feature enhances your experience with GitHub Copilot in Visual Studio</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using GitHub Copilot in Visual Studio on what you like and what we can improve. Your feedback is critical to help us make GitHub Copilot  the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/copilot-content-exclusion-in-visual-studio/">Copilot Content Exclusion Now Available in Visual Studio 2022 17.11</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>First preview of Visual Studio 2022 v17.12 with .NET 9</title>
+      <link>https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-12-with-net-9/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Wed, 14 Aug 2024 10:00:23 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Announcement]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250131</guid>
+      <description><![CDATA[<p>We’re excited to announce the availability of Visual Studio 2022 v17.12 Preview 1 – the first preview of our next update to Visual Studio. This update focuses on providing fantastic developer experiences for working with .NET 9 projects and new AI productivity features,</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-12-with-net-9/">First preview of Visual Studio 2022 v17.12 with .NET 9</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We’re excited to announce the availability of Visual Studio 2022 v17.12 Preview 1 – the first preview of our next update to Visual Studio. This update focuses on providing fantastic developer experiences for working with <strong>.NET 9 </strong>projects and new <strong>AI productivity features</strong>, along with continues improvements all-around<strong>.</strong> <a href="https://visualstudio.microsoft.com/vs/preview/">Download the preview</a> and see the full list of enhancements in the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes-preview">release notes</a>.</p>
+<p><img decoding="async" width="980" height="403" class="wp-image-250132" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-close-up-of-a-purple-band-description-automatic.png" alt="A close-up of a purple band Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-close-up-of-a-purple-band-description-automatic.png 980w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-close-up-of-a-purple-band-description-automatic-300x123.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/08/a-close-up-of-a-purple-band-description-automatic-768x316.png 768w" sizes="(max-width: 980px) 100vw, 980px" /></p>
+<h2 id="net-9-aspire">.NET 9 + Aspire</h2>
+<p>.NET 9 elevates cloud-native and intelligent app development, focusing on productivity enhancements, streamlined deployments, and accelerated AI integration, ensuring superior performance for developers across various applications. And Visual Studio 17.12 fully supports .NET 9 development making it easy for you to take full advantage of all the improvements it has to offer.</p>
+<p>Additionally, you’ll find updates to features around the IDE that make working with .NET and ASP.NET more delightful than ever.</p>
+<h2 id="ai-productivity">AI productivity</h2>
+<p>With our ongoing commitment to radically increase developer productivity using AI, this update brings new improvements to GitHub Copilot that are unique to Visual Studio. By providing more context from the IDE, you’ll find more accurate suggestions using a more comprehensive knowledge of your solution. Combine that extra context with more fine-tuned code generation and you’ll find this update elevates your coding experience significantly.</p>
+<p><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr"><div style="text-align:center"><a class="cta_button_link" href=" https://visualstudio.microsoft.com/vs/preview/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio v17.12</a></div></span></p>
+<p>We hope you enjoy this preview of Visual Studio, and we look forward to hearing what you think. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home" target="_blank" rel="noopener">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>You can <a href="https://visualstudio.microsoft.com/vs/preview/" target="_blank" rel="noopener">download the preview</a> from our website or update it from within the IDE. Please note that you should not use this preview in production environments, and some extensions or workloads may not be compatible with it.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding</strong>!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-12-with-net-9/">First preview of Visual Studio 2022 v17.12 with .NET 9</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Visual Studio 2022 v17.11 – Your feedback in action</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-11-your-feedback-in-action/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 13 Aug 2024 17:30:45 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Announcement]]></category>
+      <category><![CDATA[Release]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250160</guid>
+      <description><![CDATA[<p>We are thrilled to announce the General Availability (GA) of Visual Studio 2022 version 17.11. This release is a testament to our commitment to listening to you, our developer community. Every enhancement, every fix, and every new feature in this release has been shaped by your feedback.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-11-your-feedback-in-action/">Visual Studio 2022 v17.11 – Your feedback in action</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We are thrilled to announce the General Availability (GA) of Visual Studio 2022 version 17.11. This release is a testament to our commitment to listening to you, our developer community. Every enhancement, every fix, and every new feature in this release has been shaped by your feedback. Whether you&#8217;re building web, desktop, cloud, or gaming applications, Visual Studio 2022 v17.11 is designed to make your development experience smoother, faster, and more intuitive.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero.png"><img decoding="async" class="alignnone size-full wp-image-249032" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero.png" alt="Visual Studio 2022" width="1200" height="498" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero-300x125.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero-1024x425.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/05/hero-768x319.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></a></p>
+<p>We heard you &#8211; loud and clear. From the most upvoted issues on our Developer Community Forum to the suggestions that came through in our feedback channels, this release is a direct response to your needs and priorities.</p>
+<p><strong><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 2022 v17.11</a></div></strong></p>
+<p>Alongside this release, we’ve also made significant improvements to our <a href="https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview">release notes</a>. We’ve categorized the feature enhancements to make it easier for you to find exactly what’s new and relevant to your work. What’s more, we’ve linked each enhancement back to the original Feedback Ticket that inspired it, so you can see firsthand how your input directly shaped this release. This is part of our ongoing commitment to transparency and collaboration, ensuring that every update to Visual Studio reflects the needs and priorities of our developer community.</p>
+<h2 id="productivity-enhancements">Productivity Enhancements</h2>
+<p>Your time is valuable, and with Visual Studio 2022 v17.11, we’ve made sure that every second counts. Here are some of the key productivity features that have been influenced by your feedback:</p>
+<ul>
+<li><strong>Find the Code You&#8217;re Looking For:</strong> Enhanced search capabilities to help you quickly locate the code you need, even in the largest projects.</li>
+<li><strong>More Meaningful Code Reviews:</strong> Improvements to code review workflows, making it easier to spot potential issues and collaborate with your team.</li>
+<li><strong>Updates to pull request creation:</strong> Continual improvements to the pull request creation experience.</li>
+<li><strong>Familiar keyboard shortcuts</strong>: Some common keyboard shortcuts now match those in other popular IDEs.</li>
+</ul>
+<h2 id="github-copilot-smarter-and-more-secure">GitHub Copilot – Smarter and More Secure</h2>
+<p>GitHub Copilot has quickly become an indispensable tool for many developers, and with this release, it’s getting even better. Thanks to your input, Copilot now offers:</p>
+<ul>
+<li><strong>AI-Generated Breakpoint Expressions:</strong> Automatically suggest breakpoints based on your code, helping you debug more efficiently.</li>
+<li><strong>Understand Your Symbols:</strong> Improved symbol recognition to ensure you get the most accurate suggestions.</li>
+<li><strong>Refined Suggestions:</strong> More precise and context-aware code completions, reducing the need for manual edits.</li>
+<li><strong>GitHub Copilot is even more secure:</strong> GitHub Copilot Business customers to prevent specified files or repositories from being used to inform code completion suggestions made by GitHub Copilot.</li>
+</ul>
+<h2 id="debugging-diagnostics">Debugging &amp; Diagnostics</h2>
+<p>We know that efficient debugging is crucial to your workflow. With v17.11, we’ve made several community-driven improvements:</p>
+<ul>
+<li><strong>Easier to Fix Async Exceptions:</strong> Improved handling and diagnostics for asynchronous code, helping you resolve issues faster.</li>
+<li><strong>Profile External Code with Ease:</strong> Enhanced profiling tools for better performance analysis, even with external code.</li>
+<li><strong>Improved Debugging on Arm64:</strong> Expanded support and optimizations for Arm64, ensuring a smooth experience on a wider range of devices.</li>
+<li><strong>Blazor WebAssembly debugging:</strong> A preview of the improved debugging experience for Blazor WebAssembly apps targeting .NET 9 or later.</li>
+<li><strong>Expressive IEnumerable Visualizer:</strong> The editable expression feature in the IEnumerable visualizer allows direct editing and visualization of LINQ expression in the Visual Studio debugger.</li>
+</ul>
+<h2 id="ide-workflow-enhancements">IDE &amp; Workflow Enhancements</h2>
+<p>Your development environment should work for you, not against you. That’s why we’ve focused on making Visual Studio even more intuitive and responsive:</p>
+<ul>
+<li><strong>Never Miss Installing a Component:</strong> Streamlined component installation processes to ensure you always have the tools you need.</li>
+<li><strong>Stay Updated and Secure:</strong> New features to help you stay on the cutting edge, while keeping your environment secure and stable.</li>
+<li><strong>New Teams Toolkit templates:</strong> Teams Toolkit added new Teams app templates for a better Teams development experience.</li>
+<li><strong>Improved user authentication:</strong> Visual Studio now uses the Windows authentication broker otherwise known as WAM as the default authentication mechanism.</li>
+</ul>
+<h2 id="web-gaming-development-tools">Web &amp; Gaming Development Tools</h2>
+<p>For our web and game developers, we’ve introduced several updates to make your work easier and more efficient:</p>
+<ul>
+<li><strong>NPM Packages in Solution Explorer:</strong> Seamlessly manage your NPM dependencies directly within Visual Studio.</li>
+<li><strong>Discover dynamic Web API routes:</strong> The Endpoints Explorer has been updated to discover endpoints at runtime.</li>
+<li><strong>Unreal Engine Add Class Templates:</strong> Simplified template management to speed up your Unreal Engine development.</li>
+</ul>
+<h2 id="net-c-development">.NET &amp; C++ Development</h2>
+<p>Our focus on .NET and C++ remains strong, with new tools and improvements to enhance your coding experience:</p>
+<ul>
+<li><strong>Revamped Resource Explorer:</strong> A more powerful and intuitive resource management tool for .NET developers.</li>
+<li><strong>Debug Your CMake Projects on Linux:</strong> Expanded support for C++ developers working in cross-platform environments.</li>
+<li><strong>Build Insights QoL Update:</strong> Adds various quality of life improvements to C++ Build Insights.</li>
+</ul>
+<h2 id="share-your-feedback-and-stay-connected">SHARE YOUR FEEDBACK AND STAY CONNECTED</h2>
+<p>As you use Visual Studio, let us know what you love, what you like, and where you’d like us to improve. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>: report any bugs or issues via <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio">report a problem</a> and <a href="https://developercommunity.visualstudio.com/report?space=8&amp;entry=suggestion">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>As always, we appreciate the time you’ve spent reporting issues and hope you continue to give us feedback on how we’re doing and what we can improve.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-11-your-feedback-in-action/">Visual Studio 2022 v17.11 – Your feedback in action</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
