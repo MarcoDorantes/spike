@@ -23603,5 +23603,332 @@ Description automatically generated" srcset="https://devblogs.microsoft.com/visu
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-11-your-feedback-in-action/">Visual Studio 2022 v17.11 – Your feedback in action</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>VisualStudio.Extensibility 17.11: Settings and more Remote UI support</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-11-settings-and-more-remote-ui-support/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Dominic Nahous]]></dc:creator>
+      <pubDate>Thu, 12 Sep 2024 10:00:43 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250567</guid>
+      <description><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow users like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance and reliability. Additional benefits include a sleek and intuitive .NET 8-based API and comprehensive, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-11-settings-and-more-remote-ui-support/">VisualStudio.Extensibility 17.11: Settings and more Remote UI support</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow users like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance and reliability. Additional benefits include a sleek and intuitive .NET 8-based API and comprehensive, well-maintained documentation to help you develop amazing extensions faster than ever before.</p>
+<p>This 17.11 release builds on our <a href="https://aka.ms/VisualStudio.Extensibility/Blog/17.10">previous</a> releases, bringing support for defining user-configurable settings for your extensions to allow your users to customize their experience along with even more enhancements to remote UI features. We’ve also made substantial updates to our project query API documentation.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; font-size: 14px; border-radius: 6px; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Get started with VisualStudio.Extensibility</a></div></p>
+<p>For the latest up-to-date docs and installation instructions, visit <a href="https://aka.ms/VisualStudio.Extensibility" target="_blank" rel="noopener">https://aka.ms/VisualStudio.Extensibility</a>. We encourage you to report bugs and suggest features via the <a href="https://aka.ms/VisualStudio.Extensibility/Issues" target="_blank" rel="noopener">issue tracker</a> on our <a href="https://aka.ms/VisualStudio.Extensibility/Repo" target="_blank" rel="noopener">GitHub repo</a>, where you can also find extension <a href="https://aka.ms/VisualStudio.Extensibility/Samples" target="_blank" rel="noopener">samples</a> to help you get started.</p>
+<h1>What’s new for VisualStudio.Extensibility?</h1>
+<p>Our 17.11 release of VisualStudio.Extensibility includes the following features:</p>
+<ul>
+<li>Customize your extensions further with settings support</li>
+<li>Show images and use context menus in Remote UI</li>
+<li>Enhance your tool windows with toolbars</li>
+</ul>
+<p>We’ve also refreshed and updated the project query API documentation based on feedback from extension developers like you!</p>
+<h2>Customize your extensions further with settings support</h2>
+<p>With this release of VisualStudio.Extensibility, we’ve enabled a handful of APIs that allow you to define settings for your extensions. This allows your end users to alter the behavior of the extension by adjusting values you’ve elected to define as settings.</p>
+<p>To support this scenario, you’ll now find APIs specific to defining, accessing, and writing settings in your extension. To add settings to your extension, you’ll start by adding a definition for your setting in a class in the extension.</p>
+<p>To learn more about how to define and leverage settings in your apps, refer to the <a href="https://learn.microsoft.com/visualstudio/extensibility/visualstudio.extensibility/settings/settings">VisualStudio.Extensibility settings article</a>. You’ll find more details along with samples to get you coding quickly!</p>
+<p>Note that the settings API, like VisualStudio.Extensibility, supports Hot Loading of settings, allowing your extension’s settings to be discovered without requiring your users to restart Visual Studio.</p>
+<h2>Show images and use context menus in Remote UI</h2>
+<p>As the VisualStudio.Extensibility model prioritizes extensions running outside of the Visual Studio process, it introduces a challenge when adding UI support to extensions as most UI frameworks are in-process. To get around this, there is a set of classes called Remote UI that allow you to define WPF controls in an out-of-process extension and then show them as part of the Visual Studio UI.</p>
+<p>With this release, you can now add a context menu to a Remote UI control from XAML, a familiar experience if you’ve ever added a context menu in standard WPF. You’ll also be able to use Remote UI XAML to show either custom images or images that already exist in the Visual Studio catalog. This gives you additional options for providing users with useful information in a visual format and can help you increase your extension’s UI appeal!</p>
+<p>Visit the <a href="https://learn.microsoft.com/visualstudio/extensibility/visualstudio.extensibility/inside-the-sdk/other-remote-ui">Other Remote UI concepts documentation</a> for code samples and more information.</p>
+<h2>Enhance your tool windows with toolbars</h2>
+<p>You can now use VisualStudio.Extensibility to add toolbars to your extension’s tool windows to give your users a quick and easy way to access or leverage features in your extension.</p>
+<p>See the <a href="https://learn.microsoft.com/visualstudio/extensibility/visualstudio.extensibility/tool-window/tool-window#add-a-toolbar-to-a-tool-window">Add a toolbar to a tool window section</a> in the tool window overview doc to learn more about creating, adding content to, showing, and controlling the visibility of tool windows – and of course to learn more about adding toolbars to those tool windows.</p>
+<h2>Project Query API documentation updates</h2>
+<p>In response to your valuable feedback, we have revamped our documentation to better serve your needs. As we transition to a new model, our project query documentation is evolving to leverage VisualStudio.Extensibility project query wrappers for accessing and modifying solutions/projects. To explore the updated documentation, please refer to <a href="https://learn.microsoft.com/visualstudio/extensibility/visualstudio.extensibility/project/project?view=vs-2022">Query the Project API (VisualStudio.Extensibility)</a>. For details specific to project query using Visual Studio SDK, you can visit <a href="https://learn.microsoft.com/visualstudio/extensibility/project-visual-studio-sdk?view=vs-2022">Query the Project API (Visual Studio SDK)</a>.</p>
+<h2>About experimental APIs, breaking changes, and how we make decisions about VisualStudio.Extensibility</h2>
+<p>In reviewing feedback from our <a href="https://github.com/microsoft/VSExtensibility/issues">issue tracker</a>, we realized it would be useful to outline information about some of the decisions we’ve made around VisualStudio.Extensibility. With this new extensibility model, we carefully consider exactly what should and should not be supported based on two major criteria: your feedback and the design goals of the project. One recent example: we decided not to support the ability to programmatically invoke VSCT (Visual Studio Command Table)-based commands via VisualStudio.Extensibility. This decision aligned with established principles for VisualStudio.Extensibility for a few reasons:</p>
+<ul>
+<li>VSCT based commands are synchronous. VisualStudio.Extensibility extensions operate asynchronously in a separate process.</li>
+<li>As there’s no guarantee that UI state will remain coherent due to the asynchronous nature of the invocation from another process or thread, allowing invocation could lead to unpredictable user experiences.</li>
+<li>VSCT-based commands allow input and output of any type. VisualStudio.Extensibility extensions can run out of process, which imposes limitations around the types of input and output data that can be serialized.</li>
+<li>Direct command invocation breaks our commitment to having consistent, easy-to-use APIs as it would essentially introduce another set of APIs that are more macro/script-like.</li>
+</ul>
+<p>As we continue increasing the surface area of the VisualStudio.Extensibility SDK, we’ll rely on this framework to inform decisions on API coverage and availability. As the API grows and changes, we’re working to minimize breaking changes and ensure stability and a consistent experience for you, our extension developers. When we make changes because of customer feedback or internal changes, we will communicate it formally and with plenty of notice on the <a href="https://github.com/microsoft/VSExtensibility/blob/main/docs/breaking_changes.md">VisualStudio.Extensibility breaking changes page</a>. We’ll use the following guidelines for breaking changes to experimental APIs:</p>
+<ul>
+<li>Breaking changes can be made as part of LTSC minor version releases of Visual Studio.
+<ul>
+<li>A list of breaking changes for the release will be shared by Preview 2 of that release.</li>
+<li>The list will be shared in the breaking changes doc linked above.</li>
+</ul>
+</li>
+<li>Removal of APIs may be formally deprecated by marking the type or by using the [Obsolete] attribute.
+<ul>
+<li>This will also happen by Preview 2 of the release in which they’ll be removed.</li>
+</ul>
+</li>
+</ul>
+<p>Most APIs in VisualStudio.Extensibility are stable, which means we do not plan to make any breaking changes to them. For these, we want to replicate the stability expectations associated with the existing VS SDK:</p>
+<ul>
+<li>Breaking changes to VisualStudio.Extensibility APIs and RPC contracts can only be made as part of a major version release of Visual Studio.
+<ul>
+<li>The list of breaking changes will be made available by Preview 1 of the release.</li>
+</ul>
+</li>
+<li>Any API removal will be done formally by marking the type or by using the [Obsolete] attribute.</li>
+<li>Demotion of stable APIs to experimental is considered a breaking change and will be formally announced.</li>
+</ul>
+<h2>We can’t do this without you!</h2>
+<p>The time and effort you’ve spent reporting issues and sharing suggestions so far has been instrumental in our We need your help as we continue to develop VisualStudio.Extensibility! Please try out this preview release and let us know what you think. Check out the <a href="https://aka.ms/VisualStudio.Extensibility">docs</a>, browse the <a href="https://aka.ms/VisualStudio.Extensibility/Samples">code samples</a>, and build your <a href="https://aka.ms/VisualStudio.Extensibility/FirstExtension">first extension</a>. You can send feedback and report issues through our <a href="https://github.com/microsoft/VSExtensibility/issues">issue tracker</a>.</p>
+<p>To request features, please look at <a href="https://developercommunity.visualstudio.com/VisualStudio?q=%5BVisualStudio.Extensibility%5D&amp;ftype=idea">Developer Community</a> to see if someone else made a similar request first before creating a new request. Your upvotes and comments on these items help us prioritize the features extenders like you need, so please give VisualStudio.Extensibility a try and share your thoughts with us.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-17-11-settings-and-more-remote-ui-support/">VisualStudio.Extensibility 17.11: Settings and more Remote UI support</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Search scoping helps you find what you’re looking for</title>
+      <link>https://devblogs.microsoft.com/visualstudio/search-scoping-helps-you-find-what-youre-looking-for/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Leah Tran]]></dc:creator>
+      <pubDate>Wed, 11 Sep 2024 10:00:38 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[code search]]></category>
+      <category><![CDATA[Search]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250542</guid>
+      <description><![CDATA[<p>If you&#8217;re working on a large and complex solution, you might find yourself overwhelmed by the number of results when you use code search in Visual Studio. You might be looking for a specific class, method, or variable, but end up scrolling through pages of irrelevant matches. Wouldn&#8217;t it be nice if you could narrow [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/search-scoping-helps-you-find-what-youre-looking-for/">Search scoping helps you find what you’re looking for</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>If you&#8217;re working on a large and complex solution, you might find yourself overwhelmed by the number of results when you use code search in Visual Studio. You might be looking for a specific class, method, or variable, but end up scrolling through pages of irrelevant matches. Wouldn&#8217;t it be nice if you could narrow down your search scope to only the parts of the solution that you care about?</p>
+<p>In the latest update of Visual Studio, you can now use the new scoping options in code search to filter your results by the entire solution, the current project, or the current document. You can also toggle the inclusion of external files in your search.</p>
+<p>This way, you can quickly and easily find what you need without getting lost in the noise.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-250543" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250542-1.png" alt="Image shows search scoping BuyerId item" width="900" height="599" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250542-1.png 900w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250542-1-300x200.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250542-1-768x511.png 768w" sizes="(max-width: 900px) 100vw, 900px" /></p>
+<h2>How to Use Scoping in Code Search</h2>
+<p>To access the new scoping options, open the Code Search window by pressing <strong>Ctrl+T</strong> or clicking on the Search button (magnifying glass icon) at the top of the <a id="post-250542-_Int_7UD2dJ3l"></a>IDE. You&#8217;ll see a drop-down menu at the far right of the search box that lets you choose between different scopes.</p>
+<p>You can select one of the following options:</p>
+<ul>
+<li><strong>Entire solution</strong></li>
+<li><strong>Current project</strong></li>
+<li><strong>Current document</strong></li>
+</ul>
+<p><img decoding="async" class="alignnone wp-image-250544" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250542-2.png" alt="Zoomed in image of the search scoping options (Entire solution, Current project, Current document, Search in external items)" width="500" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250542-2.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250542-2-300x169.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>You can also click on the checkbox next to <strong>Search in external items</strong> to toggle the inclusion of code files that are not part of your solution.</p>
+<p>You can set different scopes for different filters, and your selections will be remembered across sessions. For example, you can set the default filter to search through the entire solution, and the member filter to search through the current document. This way, you can switch between various levels of granularity depending on what you&#8217;re looking for.</p>
+<p>Here&#8217;s an example of how code search scoping can help you find what you need faster. Suppose you want to find a method called <em>GetProducts </em>in your solution. If you use the default filter and scope, you might get hundreds of results from various projects. But if you use the member filter and scope it to the current project, you will get a narrower set of results that are relevant to your current context.</p>
+<h2>We Hope You Enjoy This Feature</h2>
+<p>We hope that code search scoping will make your coding experience more productive and enjoyable. We&#8217;d love to hear your feedback on this feature and any other suggestions you have for improving code search in Visual Studio 2022. You can leave a comment below, use the <em>Report a Problem</em> tool in Visual Studio, or head over to the <a href="https://developercommunity.visualstudio.com/">Developer Community</a> website.</p>
+<p>Thank you for your continuous feedback and support, which helps us make Visual Studio better every day.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/search-scoping-helps-you-find-what-youre-looking-for/">Search scoping helps you find what you’re looking for</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Break for Async User-Unhandled exceptions in the Visual Studio Debugger</title>
+      <link>https://devblogs.microsoft.com/visualstudio/break-for-async-user-unhandled-exceptions-in-the-visual-studio-debugger/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Anders Sundheim]]></dc:creator>
+      <pubDate>Tue, 10 Sep 2024 10:00:16 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugger]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250536</guid>
+      <description><![CDATA[<p>Before .NET 9, the debugger was unable to track exceptions thrown from user-code async methods into non-user code framework methods, such as ASP.NET middleware. We are pleased to announce that you will now start seeing the debugger stop for these user-unhandled exceptions in your ASP.NET applications, as well as anywhere else this might happen! Summary [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/break-for-async-user-unhandled-exceptions-in-the-visual-studio-debugger/">Break for Async User-Unhandled exceptions in the Visual Studio Debugger</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Before .NET 9, the debugger was unable to track exceptions thrown from user-code async methods into non-user code framework methods, such as ASP.NET middleware. We are pleased to announce that you will now start seeing the debugger stop for these user-unhandled exceptions in your ASP.NET applications, as well as anywhere else this might happen!</p>
+<p><img decoding="async" class="alignnone wp-image-250537" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250536-1.png" alt="Image of Exception User-Unhandled screen with the &quot;Break when this exception type is user-unhandled&quot; option checked" width="950" height="531" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250536-1.png 950w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250536-1-300x168.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250536-1-768x429.png 768w" sizes="(max-width: 950px) 100vw, 950px" /></p>
+<h1>Summary</h1>
+<p>Debugging asynchronous code, especially in frameworks like ASP.NET Core, can be tricky due to the potential for exceptions to be thrown across asynchronous boundaries.</p>
+<p>Now, the Visual Studio Debugger will automatically break when an async Task method throws an exception back to framework code. This will allow you to easily identify and diagnose issues in your ASP.NET applications, leading to faster debugging cycles and improved productivity. Read below for more details about how user-unhandled exceptions work and how the debugger handles async methods.</p>
+<p><strong>Please note that this is for .NET 9 and newer projects only</strong>.</p>
+<h3>Details</h3>
+<p>The Visual Studio Debugger will enter a break state when exceptions are thrown under three different conditions:</p>
+<ul>
+<li>First chance exceptions, where exception settings indicate that the debugger should break whenever exceptions of the specified type are thrown.</li>
+<li>Unhandled exceptions, where the exception is unhandled and no catch handler is found.</li>
+<li>User-unhandled exceptions, where Just My Code is enabled, and an exception was found to have traveled through user code before a catch handler was found in non-user code.</li>
+</ul>
+<p>User-unhandled exceptions are the target of the change to account for async user-unhandled scenarios.</p>
+<p>All <code>async Task&lt;T&gt;</code> functions in C# compile to a state machine with an implicit <code>catch</code> handler that catches all exceptions thrown in the <code>Task</code>, sets <code>IsFaulted</code>, and adds the Exception to the <code>AggregateException</code> in <code>Task.Exception</code>.</p>
+<p>When a <code>Task</code> is &#8220;unwrapped&#8221;, typically either via the preferred <code>await</code> or <code>.Result</code>, the stored exception is rethrown to the caller as would happen in a synchronous method and the implicit catch handling is not typically important or observed.</p>
+<p>To a debugger, on the other hand, this looks like exceptions are being handled! An exception was thrown, it was caught in &#8220;user code&#8221; (the compiled result of <code>async Task&lt;T&gt; DoSomethingAsync(...)</code>), and any non-user code awaiting that Task will throw the exception again from non-user code. It is important to note that when Just My Code is enabled, the runtime will avoid sending the debugger events for exceptions that were not thrown in user code, significantly improving performance.</p>
+<p>Now consider this behavior in a typical ASP.NET MVC Controller, when Just My Code is enabled:</p>
+<p><code>[HttpPost]</code></p>
+<p><code>public async Task&lt;ActionResult&lt;TodoItem&gt;&gt; PostTodoItem(TodoItem todoItem)</code></p>
+<p><code>{</code></p>
+<p style="padding-left: 40px;"><code>_context.TodoItems.Add(todoItem);</code></p>
+<p style="padding-left: 40px;"><code>await _context.SaveChangesAsync(); // imagine this throws some Exception</code></p>
+<p style="padding-left: 40px;"><code>return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);</code></p>
+<p><code>}</code></p>
+<p>If <code>SaveChangesAsync()</code> throws an unhandled Exception, it will:</p>
+<p>1. Immediately catch it and fault the Task. The debugger is notified, but its user code throwing and catching, so the process continues.</p>
+<p>2. <code>async Task&lt;ActionResult&lt;TodoItem&gt;&gt; PostTodoItem</code> will unwrap the faulted Task, rethrow the Exception, and catch it again. Again, the debugger is notified, but nothing is amiss here (and there might be user code that might eventually await it to catch the exception, we cannot see into the future!)</p>
+<p>3. Whatever non-user library/framework middleware that is awaiting <code>PostTodoItem</code> will unwrap that Task and rethrow the exception, but since Just My Code is enabled, the debugger is oblivious &#8211; that exception was not thrown from user code and caught in non-user code, it was thrown from non-user code.</p>
+<p>Thus, changes were required in the runtime to allow the debugger to indicate that we&#8217;d like to keep an eye on a particular exception object, so that if the compiled <code>catch</code> handler of a user-code <code>async Task&lt;T&gt;</code> method catches an exception, we continue to be notified about that exception object in case it is rethrown in non-user code. That way, if an exception is thrown through an ASP.NET MVC Controller, the debugger can break for user-unhandled.</p>
+<p>Limitations</p>
+<p>There are some limitations with this approach, notably the fact that the debugger is not actually stopped on the <code>PostTodoItem</code> frame in the example above, it is stopped at the frame <strong>below</strong> it, where the exception was rethrown and caught in non-user code:</p>
+<p><code>App!MyMVCApp.DbContextOptions&lt;TodoContext&gt;.SaveChangesAsync() Line 10</code></p>
+<p><code>App!MyMVCApp.TodoController.PostTodoItem(TodoItem todoItem) Line 5</code></p>
+<p><code>[External Code] &lt;- The debugger will stop here</code></p>
+<p>This means the frames the exception was thrown from have been unwound past and are not necessarily valid to do variable evaluations on. A GC (Garbage Collection) may have occurred, variables may have been changed, and so on. The debugger will create fake <code>[Exception]</code> frames to represent the context in which the exception was originally thrown, and will attempt to save information from the async state machine to evaluate variables as best as it can, but certain things get <code>nulled</code> out by the compiler as part of async Task exception handling, notably:</p>
+<ol>
+<li>Local reference type variables</li>
+<li>Local value types with reference fields, or value types that reference other value types with reference fields.</li>
+</ol>
+<p>Parameters and class fields/properties will stay intact, as will the exception itself.</p>
+<p>For more information, see the original feature request in the public dotnet runtime repository here: <a href="https://github.com/dotnet/runtime/issues/12488">https://github.com/dotnet/runtime/issues/12488.</a></p>
+<p>To disable entering break state for async user-unhandled, you can run (in the associated Visual Studio Developer Command Prompt)</p>
+<p><code>vsregedit set local hklm Debugger\EngineSwitches DisableBreakForAsyncUserUnhandled dword 1</code></p>
+<p>or otherwise set the indicated key for the target installation of Visual Studio.</p>
+<p>Library authors who do not want the debugger to stop on expected exceptions thrown into their functions can use the <code>[DebuggerDisableUserUnhandledExceptions]</code> attribute introduced in .NET 9 Preview 7, and either rethrow the exception or call the new <code>Debugger.BreakForUserUnhandledException(Exception e)</code> function when the exception is unexpected. You can find the API proposal and discussion for this pair of APIs here: <a href="https://github.com/dotnet/runtime/issues/103105">https://github.com/dotnet/runtime/issues/103105.</a></p>
+<h2>Thank you!</h2>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/break-for-async-user-unhandled-exceptions-in-the-visual-studio-debugger/">Break for Async User-Unhandled exceptions in the Visual Studio Debugger</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Supercharge C++ Debugging with AI-Generated breakpoint expressions</title>
+      <link>https://devblogs.microsoft.com/visualstudio/supercharge-c-debugging-with-ai-generated-breakpoint-expressions/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Mon, 09 Sep 2024 13:39:25 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Team and Development]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Breakpoints]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250522</guid>
+      <description><![CDATA[<p>Have you ever spent hours debugging your C++ code, struggling to set up the right conditional breakpoint or tracepoint? Or wished for a smarter way to obtain detailed runtime information without manually crafting complex expressions? You&#8217;re in luck! With Visual Studio 2022, the latest GitHub Copilot feature now offers AI-generated expressions for both conditional breakpoints [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/supercharge-c-debugging-with-ai-generated-breakpoint-expressions/">Supercharge C++ Debugging with AI-Generated breakpoint expressions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Have you ever spent hours debugging your C++ code, struggling to set up the right<a href="https://learn.microsoft.com/en-us/visualstudio/debugger/using-breakpoints?view=vs-2022"> conditional breakpoint or tracepoint</a>? Or wished for a smarter way to obtain detailed runtime information without manually crafting complex expressions? You&#8217;re in luck! With Visual Studio 2022, the latest GitHub Copilot feature now offers AI-generated expressions for both conditional breakpoints and tracepoints, available from C# 17.10 and now extended to C++. With these AI-generated conditional breakpoints and tracepoints, you can now automate the creation of intelligent expressions tailored to your specific debugging needs, significantly speeding up the process and enhancing your ability to diagnose and resolve issues.</p>
+<p><img decoding="async" class="alignnone wp-image-250523" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250522-1.png" alt="Image of a conditional expression being set on the breakpoint" width="1175" height="306" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250522-1.png 1175w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250522-1-300x78.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250522-1-1024x267.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250522-1-768x200.png 768w" sizes="(max-width: 1175px) 100vw, 1175px" /></p>
+<h3>What are conditional breakpoints and tracepoints?</h3>
+<p>Conditional breakpoints and tracepoints are powerful debugging tools that enhance your ability to control and monitor code execution. A conditional breakpoint pauses execution only when a specified condition is true, making it ideal for targeting specific scenarios. For example, you can halt code only when a variable exceeds a certain value or a function is called with particular parameters, while a Tracepoints enable logging of messages to the output window or a file without interrupting code execution and replaces traditional &#8216;printf&#8217; statements, offering detailed runtime insights without the need for code recompilation.</p>
+<p>These tools are invaluable for identifying bugs, testing various scenarios, and tracking variables and expression values without manually stepping through each line of code. However, crafting the correct expressions for conditional breakpoints or tracepoints can be challenging and time-consuming, especially when remembering the correct syntax in complex codebases.</p>
+<p>Fortunately, with GitHub Copilot you have the flexibility to choose from predefined conditions that suit your needs or to define custom conditions for precise and efficient debugging.</p>
+<h3>How can AI-generated expressions help you debug faster?</h3>
+<p>Visual Studio 2022 integrates with GitHub Copilot, AI-powered code completion tool that suggests lines of code or entire functions, effectively acting as a pair programmer that enhances coding efficiency. When you position the cursor in the textbox for a conditional breakpoint or tracepoint, GitHub Copilot promptly provides three AI-generated expression suggestions based on your codebase. You can choose the most suitable condition or create your own custom conditions as needed.</p>
+<p>With AI-generated expressions, you can save time and effort by letting GitHub Copilot do the hard work for you. You can also discover new ways of writing expressions that you might not have thought of before. AI-generated expressions can help you debug your code faster and more effectively and learn from the suggestions along the way.</p>
+<h3>How to use AI-generated expressions in Visual Studio 2022?</h3>
+<p>To use AI-generated expressions for conditional breakpoints and tracepoints in Visual Studio 2022, you need to have a GitHub account and sign in with GitHub in Visual Studio. You also need to make sure <strong>Tools &gt; Options &gt; Debugging &gt;</strong> <strong>enable AI suggestions for breakpoint expressions</strong>” is enabled.</p>
+<p>Once you have enabled GitHub Copilot, you can start using AI-generated expressions for conditional breakpoints and tracepoints in your C++ code.</p>
+<p><img decoding="async" class="alignnone wp-image-250524" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250522-2.gif" alt="Gif of a conditional expression break point being set and then edited via settings" width="1515" height="809" /></p>
+<p>You can also use keyboard shortcuts to navigate and select the suggestions. Use <em>Ctrl+Space </em>to invoke the suggestion list, use the up and down arrow keys to move through the list, and use <em>Enter </em>to select a suggestion.</p>
+<h3>Try it and let us know what you think</h3>
+<p>We hope you enjoy using AI-generated expressions for conditional breakpoints and tracepoints in Visual Studio 2022. This feature aims to make debugging your C++ code faster and easier. We&#8217;d love your feedback and suggestions for improvement. Please leave a comment below or use the Send Feedback button in Visual Studio.</p>
+<p>Learn more about other Copilot assisted features in Visual Studio by checking out additional resources <a href="https://learn.microsoft.com/en-us/visualstudio/debugger/debug-with-copilot?view=vs-2022">Debug with GitHub Copilot &#8211; Visual Studio (Windows) | Microsoft Learn</a></p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://x.com/VisualC">Twitter @VisualC</a> <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn.</a></p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; font-size: 14px; border-radius: 6px; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.11</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/supercharge-c-debugging-with-ai-generated-breakpoint-expressions/">Supercharge C++ Debugging with AI-Generated breakpoint expressions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Easily dock and float tool windows</title>
+      <link>https://devblogs.microsoft.com/visualstudio/easily-dock-and-float-tool-windows/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Thu, 05 Sep 2024 10:00:26 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Keyboard Shortcuts]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250474</guid>
+      <description><![CDATA[<p>You’re in the middle of a debugging session, attempting to chase down that one issue that is causing you trouble. In the heat of the moment, you grab a tool window and drag it out of its docked position – purely by accident. You didn’t mean to drag it, but sometimes when you move the [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/easily-dock-and-float-tool-windows/">Easily dock and float tool windows</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>You’re in the middle of a debugging session, attempting to chase down that one issue that is causing you trouble. In the heat of the moment, you grab a tool window and drag it out of its docked position – purely by accident. You didn’t mean to drag it, but sometimes when you move the mouse around, things like that happen. Your full attention now shifts from debugging to trying to get the tool window back to where it was.</p>
+<p>Sounds familiar? Here’s something that will help.</p>
+<p><img decoding="async" width="940" height="260" class="wp-image-250475" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-1.png" alt="A screenshot of a computer Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-1.png 940w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-1-300x83.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-1-768x212.png 768w" sizes="(max-width: 940px) 100vw, 940px" /></p>
+<p>There is a little-known feature that will move a tool window between its last known docked location and last known floating location. Holding the <strong>Ctrl</strong> key while double-clicking the tool window header toggles the location back and forth.</p>
+<p><iframe title="YouTube video player" src="https://www.youtube.com/embed/-c7rGZTZRxE?si=6oUv2kDjRJehEIPz" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>This is useful for more than just accidental dragging, and I find that it comes in handy on a weekly basis myself.</p>
+<p>I hope this will both lessen some frustration and make you more productive.</p>
+<p>Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/easily-dock-and-float-tool-windows/">Easily dock and float tool windows</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Incorporate GitHub Copilot into your daily flow</title>
+      <link>https://devblogs.microsoft.com/visualstudio/incorporate-github-copilot-into-your-daily-flow/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Wed, 04 Sep 2024 16:44:52 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=249601</guid>
+      <description><![CDATA[<p>Streamlining Workflow with GitHub Copilot  Have you ever received code completions that are too large to manage or ones that need slight tweaks, but you must accept all the code to make those changes? To address these pain points, in Visual Studio 17.11 we’ve introduced a new feature that allows you to refine your completions [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/incorporate-github-copilot-into-your-daily-flow/">Incorporate GitHub Copilot into your daily flow</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h2><strong>Streamlining Workflow with GitHub Copilot </strong></h2>
+<p>Have you ever received code completions that are too large to manage or ones that need slight tweaks, but you must accept all the code to make those changes? To address these pain points, in Visual Studio 17.11 we’ve introduced a new feature that allows you to refine your completions by adding extra context or asking clarifying questions. Now, you can move directly into Inline Chat and view the suggested code in a more accessible way, without having to accept and modify everything in the editor.</p>
+<h3><strong>Refining GitHub Copilot Completions with Inline Chat</strong></h3>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/completionstoinline.png"><img decoding="async" class="alignnone wp-image-250446" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/completionstoinline.png" alt="Image completionstoinline" width="951" height="384" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/completionstoinline.png 867w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/completionstoinline-300x121.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/completionstoinline-768x310.png 768w" sizes="(max-width: 951px) 100vw, 951px" /></a></p>
+<p>You now have more control over the suggestions provided by GitHub Copilot. Instead of merely accepting or ignoring a suggestion, you can now modify and retry! This feature allows you to fine-tune the suggestions given by GitHub Copilot, by adding context or tweaking the suggestion.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/newinlinerefinement.png"><img decoding="async" class="alignnone size-full wp-image-250447" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/newinlinerefinement.png" alt="Image newinlinerefinement" width="915" height="385" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/newinlinerefinement.png 915w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/newinlinerefinement-300x126.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/newinlinerefinement-768x323.png 768w" sizes="(max-width: 915px) 100vw, 915px" /></a></p>
+<h3><strong>Promoting Inline Chat to the Chat Window for More Context</strong></h3>
+<p>Preserve the history of your Inline Chat by promoting it to the Chat Window. This feature enables you to maintain a record of the conversation and continue the Chat Window at your convenience on a larger screen. To do this, simply select ‘Continue in chat window…’.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/continuetochat.png"><img decoding="async" class="alignnone size-full wp-image-250448" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/continuetochat.png" alt="Image continuetochat" width="922" height="423" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/continuetochat.png 922w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/continuetochat-300x138.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/continuetochat-768x352.png 768w" sizes="(max-width: 922px) 100vw, 922px" /></a></p>
+<p>We’ve adjusted the length of responses from Copilot to ensure they are easily accessible and readable in Inline Chat. When you want to learn more or expand, you can switch to the Chat Window for a larger screen real estate. This will easily enable you to refer back to things later and chat outside of the context of your file.</p>
+<div class="heading-wrapper" data-heading-level="h4">
+<h2 id="ontheflydocumentation" class="heading-anchor">Understand your symbols right from your editor</h2>
+</div>
+<p>GitHub Copilot can now help you understanding descriptions of various symbols at different invocations within their codebase right from your editor. and select <strong>Generate Copilot summary</strong> to get provide AI-generated summaries of the selection. This is available for both C# and C++ developers.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/ontheflydocs.png"><img decoding="async" class="alignnone size-full wp-image-250449" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/ontheflydocs.png" alt="Image ontheflydocs" width="1924" height="709" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/ontheflydocs.png 1924w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/ontheflydocs-300x111.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/ontheflydocs-1024x377.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/ontheflydocs-768x283.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/ontheflydocs-1536x566.png 1536w" sizes="(max-width: 1924px) 100vw, 1924px" /></a></p>
+<h2><strong>Fix code with GitHub Copilot</strong></h2>
+<p>Now integrated into the lightbulb and error list, GitHub Copilot provides fixes and explanations for code issues in both C# and C++ development. This feature helps developers understand and resolve various code issues within their codebase. By invoking the lightbulb and selecting <strong>Fix with Copilot</strong>, GitHub Copilot will open inline chat with an explanation and available fix. Additionally, selecting the Copilot icon from the error list will take you to the chat panel with an explanation and available fix.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/lightbulbtofix.png"><img decoding="async" class="alignnone size-full wp-image-250453" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/lightbulbtofix.png" alt="Image lightbulbtofix" width="936" height="236" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/lightbulbtofix.png 936w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/lightbulbtofix-300x76.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/lightbulbtofix-768x194.png 768w" sizes="(max-width: 936px) 100vw, 936px" /></a></p>
+<div class="content">
+<div class="content-scroller">
+<div class="message">
+<div class="content user-select-text" tabindex="0" aria-description="" aria-label="Sent by Copilot: **Streamlining Workflow with GitHub Copilot** With GitHub Copilot integrated into Visual Studio, we are enhancing experiences across Completions and Chat to streamline your workflow. This makes it easier to refine Completions suggestions and transition conversations across different interfaces. ### Refining GitHub Copilot Completions with Inline Chat Have you ever received code completions that are too large to manage or need slight tweaks, but you have to accept all the code to make those changes? To address these pain points, we’ve introduced a new feature that allows you to refine your completions by adding extra context or asking clarifying questions. Now, you can move directly into Inline Chat and view the suggested code in a more accessible way, without having to accept and modify everything in the editor. ### More Control with Retry Feature You now have more control over the suggestions provided by GitHub Copilot. Instead of merely accepting or ignoring a suggestion, you can now retry! This feature allows you to modify and curate the proactive suggestions given by GitHub Copilot by adding context or tweaking the suggestion. ### Promoting Inline Chat to the Chat Window for More Context Preserve the history of your Inline Chat by promoting it to the Chat Window. This feature enables you to maintain a record of the conversation and continue the Chat Window at your convenience on a larger screen. To do this, simply select ‘Continue in chat window…’. ### Improved Accessibility and Readability We've adjusted the length of responses from Copilot to ensure they are easily accessible and readable in Inline Chat. When you want to learn more or expand, you can switch to the Chat Window for a larger screen real estate. ### Enhanced User Experience These changes make it easier to refer back to previous conversations and continue discussions outside of your file. We hope this new feature enhances your experience with GitHub Copilot in Visual Studio. As always, we value your feedback and look forward to hearing your thoughts. Please use the thumbs up and down in chat to provide feedback.">
+<div class="ac-container ac-adaptiveCard has-image">
+<div class="ac-textBlock">
+<p>These changes make it easier to refer back to previous conversations and continue discussions outside of your file. We hope this new feature enhances your experience with GitHub Copilot in Visual Studio. As always, we value your feedback and look forward to hearing your thoughts. Please use the thumbs up and down in chat to provide feedback.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback.png" data-featherlight="image"><img decoding="async" class="lazyloaded wp-image-249918 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback.png" sizes="(max-width: 520px) 100vw, 520px" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback.png 952w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback-300x258.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback-768x662.png 768w" alt="Image send us feedback" width="520" height="448" data-src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/07/send-us-feedback.png" /></a></p>
+<p>We hope you enjoy this update to Visual Studio and all the new developments happening within GitHub Copilot, and we look forward to hearing what you think. You can share feedback with us by using the thumbs up or down within the Chat, via <a href="https://developercommunity.visualstudio.com/home" target="_blank" rel="noopener">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.youtube.com/user/VisualStudio" target="_blank" rel="noopener">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding!</strong></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/incorporate-github-copilot-into-your-daily-flow/">Incorporate GitHub Copilot into your daily flow</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Enhancing your Visual Studio authentication experience</title>
+      <link>https://devblogs.microsoft.com/visualstudio/enhancing-your-visual-studio-authentication-experience/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Ruben Rios]]></dc:creator>
+      <pubDate>Tue, 03 Sep 2024 14:17:03 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Reliability]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[security]]></category>
+      <category><![CDATA[WAM]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250438</guid>
+      <description><![CDATA[<p>The current cyber security climate demands that applications not only provide outstanding features but also prioritize the security of user data. Applications like Visual Studio rely on token-based authentication to access resources on your behalf. While effective, token-based authentication can be susceptible to attacks if not properly protected. Today, we are happy to announce that [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhancing-your-visual-studio-authentication-experience/">Enhancing your Visual Studio authentication experience</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The current cyber security climate demands that applications not only provide outstanding features but also prioritize the security of user data. Applications like Visual Studio rely on token-based authentication to access resources on your behalf. While effective, token-based authentication can be susceptible to attacks if not properly protected. Today, we are happy to announce that starting with <a href="https://devblogs.microsoft.com/visualstudio/new-ide-features-in-visual-studio-v17-11/">the Visual Studio 17.11 update</a>, we are helping better protect your credentials by making the Windows authentication broker, also known as WAM (Web Access Manager), the default authentication method for Visual Studio 2022.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; font-size: 14px; border-radius: 6px; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.11</a></div></p>
+<p><img decoding="async" width="456" height="515" class="wp-image-250439" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica.png" alt="A screenshot of a computer
+
+Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica.png 456w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-266x300.png 266w" sizes="(max-width: 456px) 100vw, 456px" /></p>
+<h2>Benefits of Using WAM</h2>
+<h3>Enhanced Security</h3>
+<p>One of the most significant advantages of WAM is the enhanced security it offers you. By supporting <a href="https://learn.microsoft.com/entra/identity/conditional-access/concept-token-protection">conditional access policies</a> that create a cryptographically secure tie between the token and your device, WAM helps mitigate common vulnerabilities associated with token-based authentication. In addition, WAM can leverage rich OS capabilities such as Windows Hello &amp; FIDO (Fast ID Online) keys to streamline your experience while helping ensure your credentials are better protected against bad actors.</p>
+<h3>Simplified User Experience</h3>
+<p>Beyond enhancing your security, WAM seamlessly integrates with the Windows account infrastructure, helping to provide you with a consistent and reliable authentication experience across your applications.</p>
+<p>This integration helps reduce the overall number of authentications prompts you see inside Visual Studio and allows you to leverage your accounts without having to remember and constantly re-enter your credentials.</p>
+<h2>Getting started with WAM</h2>
+<p>To begin leveraging the benefits of WAM, ensure that your <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio is updated to version 17.11</a> or later. Once updated, WAM will be enabled by default, and you can start experiencing the enhanced security and productivity it offers.</p>
+<p>You can validate that WAM is enabled by opening the Accounts settings under Tools &gt; Options:</p>
+<p><img decoding="async" width="900" height="286" class="wp-image-250440" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/select-web-authentication-broker-from-the-dropdown.png" alt="Select web authentication broker from the dropdown." srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/select-web-authentication-broker-from-the-dropdown.png 900w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/select-web-authentication-broker-from-the-dropdown-300x95.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/select-web-authentication-broker-from-the-dropdown-768x244.png 768w" sizes="(max-width: 900px) 100vw, 900px" /></p>
+<p>Check our docs for additional details regarding <a href="https://learn.microsoft.com/visualstudio/ide/work-with-multi-factor-authentication?view=vs-2022#using-visual-studio-with-mfa-policies">using WAM inside Visual Studio 2022</a>.</p>
+<h2>Let us know about your experience</h2>
+<p>We continue to prioritize the security and usability of Visual Studio and are committed to providing the tools and resources you need to build secure, high-performing applications.</p>
+<p>We look forward to sharing more about what’s next for security. In the meantime, we hope that you enjoy the new WAM authentication experience in Visual Studio and that it makes your development workflow more productive.</p>
+<p>If you experience any issues or have feedback, please let us know by using the <em>Report a Problem</em> tool in Visual Studio or by posting on the <a href="https://developercommunity.visualstudio.com/">Developer Community</a> or in the comments below. We value your input, and we are always working to improve Visual Studio based on your needs and suggestions.</p>
+<p>Thank you for using Visual Studio and happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhancing-your-visual-studio-authentication-experience/">Enhancing your Visual Studio authentication experience</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
