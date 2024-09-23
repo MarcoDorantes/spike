@@ -1,4 +1,4 @@
-param([switch]$startmode, [uint]$trylimit = 9)
+param([switch]$startmode, [switch]$separator, [uint]$trylimit = 12)
 
 $MASTERMIND_VERSION = New-Object -TypeName System.Version -ArgumentList '1.0.0'
 
@@ -22,10 +22,12 @@ function Get-GameCode
     return $result
 }
 
-function Get-Guess($guess_input)
+function Get-Guess($guess_input, [switch]$separator)
 {
     $result = $null
-    if($guess_input -match '(?<digit1>\d)\W+(?<digit2>\d)\W+(?<digit3>\d)\W+(?<digit4>\d)')
+    if($separator.IsPresent) { $guess_text = $guess_input }
+    else { $guess_text = "$($guess_input)".GetEnumerator() | Join-String -Separator ' ' }
+    if($guess_text -match '(?<digit1>\d)\W+(?<digit2>\d)\W+(?<digit3>\d)\W+(?<digit4>\d)')
     {
         $items = @($Matches.digit1, $Matches.digit2, $Matches.digit3, $Matches.digit4)
         $x = $null
@@ -52,25 +54,23 @@ function Get-Hint($guess, $toguess)
 
 function TopEntryPoint
 {
+#    "`n"
     $toguess = Get-GameCode
-#$toguesspattern = $toguess -join '|'
 #$toguess -join ' '
+    $askguess = 'Which are the four numbers?'
+    $askguesslength = New-Object -TypeName System.String -ArgumentList @(' ', $askguess.Length)
     [int]$trycount = 0
     do {
+        if($trycount -ge $trylimit) { "`nYou reached the attempts limit of $($trylimit): The game won!!!`nThe numbers were $($toguess -join ' ')`n"; break;  }
+        $guess_input = Read-Host -Prompt $askguess
+        $guess = Get-Guess $guess_input $separator
         ++$trycount
-        $guess_input = Read-Host -Prompt "[Your try count: $($trycount)] Which are the four numbers?"
-        $guess = Get-Guess $guess_input
         if(!$guess) { continue }
-        if([System.Linq.Enumerable]::SequenceEqual([object[]]$guess,[object[]]$toguess)) { "`nYou won in $trycount tries!!!`n"; break; }
-        if($trycount -eq $trylimit) { "`nYou reached the try limit of $($trylimit): The game won!!!`nThe number were $($toguess -join ' ')`n"; break;  }
+        if([System.Linq.Enumerable]::SequenceEqual([object[]]$guess,[object[]]$toguess)) { "`nYou won in $trycount attempts!!!`n"; break; }
+        $trylabel = "Attempt #$('{0,2:}' -f $trycount)>"
         $hint = Get-Hint $guess $toguess
-        "`nHint> Whites: $($hint.Whites) Reds: $($hint.Reds)`n"
-<#
-        [System.Linq.Enumerable]::Intersect([object[]]$guess,[object[]]$toguess)
-
-        $guesspattern = $guess -join '|'
-        $comp = [System.Text.RegularExpressions.Regex]::Matches($guesspattern, $toguesspattern)
-#>
+#        "`n$($trylabel) Misplaced: $($hint.Whites) Exact: $($hint.Reds)`n"
+        "$($askguesslength)  $('{0,-9}' -f $guess_input) $($trylabel) Misplaced: $($hint.Whites) Exact: $($hint.Reds)"
     }while($true)
 }
 
