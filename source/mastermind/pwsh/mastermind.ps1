@@ -54,7 +54,7 @@ function Get-Hint($guess, $toguess)
 
 function TopEntryPoint
 {
-#    "`n"
+    "`n"
     $toguess = Get-GameCode
 #$toguess -join ' '
     $askguess = 'Which are the four numbers?'
@@ -69,7 +69,6 @@ function TopEntryPoint
         if([System.Linq.Enumerable]::SequenceEqual([object[]]$guess,[object[]]$toguess)) { "`nYou won in $trycount attempts!!!`n"; break; }
         $trylabel = "Attempt #$('{0,2:}' -f $trycount)>"
         $hint = Get-Hint $guess $toguess
-#        "`n$($trylabel) Misplaced: $($hint.Whites) Exact: $($hint.Reds)`n"
         "$($askguesslength)  $('{0,-9}' -f $guess_input) $($trylabel) Misplaced: $($hint.Whites) Exact: $($hint.Reds)"
     }while($true)
 }
