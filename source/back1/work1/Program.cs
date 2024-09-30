@@ -17,13 +17,17 @@ class Exe
         var host = builder.Build();
         host.Run();
     }
-    static Worker CreateSimilarAsFound(System.IServiceProvider factory) 
+    static Worker CreateSimilarAsFound(System.IServiceProvider factory)
     {
+        System.Console.WriteLine($"{nameof(factory)}: {factory?.GetType().FullName}");
         using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddConsole());
         ILogger<Worker> logger = logfactory.CreateLogger<Worker>();
         Worker result = new(logger);
         return result;
     }
 }/*
+https://learn.microsoft.com/en-us/dotnet/core/extensions/logging
 logger.LogInformation("Hello World! Logging is {Description}.", "fun");
+
+https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance
 */
