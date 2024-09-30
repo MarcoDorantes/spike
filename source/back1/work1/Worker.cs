@@ -15,6 +15,23 @@ public class Worker : BackgroundService
         _logger = logger;
     }
 
+    ~Worker()
+    {
+        _logger?.LogInformation("finalized at: {time}", DateTimeOffset.Now);
+        Dispose(false);
+    }
+    public override void Dispose()
+    {
+        _logger.LogInformation("disposed at: {time}", DateTimeOffset.Now);
+        Dispose(true);
+        base.Dispose();
+      //GC.SuppressFinalize(this);
+    }
+    protected virtual void Dispose(bool disposing)
+    {
+        _logger.LogInformation("disposing({disposing}) at: {time}", disposing, DateTimeOffset.Now);
+    }
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("started at: {time}", DateTimeOffset.Now);
