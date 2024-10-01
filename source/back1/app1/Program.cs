@@ -29,6 +29,7 @@ abstract class Base
     }
     public virtual async Task StopAsync(CancellationToken cancellationToken)
     {
+        WriteLine($"{nameof(StopAsync)} started.");
         // Stop called without start
         if (_executeTask == null)
         {
@@ -39,6 +40,7 @@ abstract class Base
         {
             // Signal cancellation to the executing method
             cancel?.Cancel();
+            WriteLine($"{nameof(StopAsync)} cancelled.");
         }
         finally
         {
@@ -52,6 +54,7 @@ abstract class Base
                 await Task.WhenAny(_executeTask, tcs.Task).ConfigureAwait(false);
 #endif
         }
+        WriteLine($"{nameof(StopAsync)} ended.");
     }
 }
 
@@ -74,11 +77,11 @@ class A : Base
 
 class Program
 {
+    public static A worker;
     public static void _Main(CancellationToken cancel)
     {
-        A a = new();
-        Task t = a.StartAsync(cancel);
-        t.Wait();
+        worker = new();
+        worker.StartAsync(cancel);
     }
 }
 
@@ -92,9 +95,10 @@ class Exe
             await x.Start(args);
 
             CancellationTokenSource cancel = new();
-            Task t = Task.Run(() => { Thread.Sleep(3000); cancel.Cancel(); });
             Program._Main(cancel.Token);
-            t.Wait();
+            await Task.Delay(3000);
+            cancel.Cancel();
+            await Program.worker.StopAsync(cancel.Token);
         }
         catch (Exception ex)
         {
