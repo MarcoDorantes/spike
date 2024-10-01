@@ -32,6 +32,9 @@ public class Worker : BackgroundService
         _logger.LogInformation("disposing({disposing}) at: {time}", disposing, DateTimeOffset.Now);
     }
 
+    //https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.backgroundservice.executeasync?view=net-8.0
+    //https://github.com/dotnet/runtime/blob/c4d7f7c6f2e2f34f07e64c6caa3bf9b2ce915cc1/src/libraries/Microsoft.Extensions.Hosting.Abstractions/src/BackgroundService.cs
+    //https://learn.microsoft.com/en-us/dotnet/core/extensions/workers
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("started at: {time}", DateTimeOffset.Now);
