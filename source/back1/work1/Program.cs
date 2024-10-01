@@ -28,6 +28,7 @@ class Exe
 }/*
 https://learn.microsoft.com/en-us/dotnet/core/extensions/logging
 logger.LogInformation("Hello World! Logging is {Description}.", "fun");
+https://stackoverflow.com/questions/40073743/how-to-log-to-a-file-without-using-third-party-logger-in-net-core
 
 https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance
 */
