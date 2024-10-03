@@ -9,10 +9,12 @@ using Microsoft.Extensions.Hosting;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
+    private readonly IDisposable _logger_owner;
 
-    public Worker(ILogger<Worker> logger)
+    public Worker(ILogger<Worker> logger, IDisposable logger_owner)
     {
         _logger = logger;
+        _logger_owner = logger_owner;
     }
 
     ~Worker()
@@ -25,11 +27,15 @@ public class Worker : BackgroundService
         _logger.LogInformation("disposed at: {time}", DateTimeOffset.Now);
         Dispose(true);
         base.Dispose();
-      //GC.SuppressFinalize(this);
+        GC.SuppressFinalize(this);
     }
     protected virtual void Dispose(bool disposing)
     {
         _logger.LogInformation("disposing({disposing}) at: {time}", disposing, DateTimeOffset.Now);
+        IDisposable disposable = _logger as IDisposable;
+        if (disposable != null) _logger.LogInformation("disposing logger ({disposing}) at: {time}", disposing, DateTimeOffset.Now);
+        disposable?.Dispose();
+        _logger_owner.Dispose();
     }
 
     //https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.backgroundservice.executeasync?view=net-8.0
