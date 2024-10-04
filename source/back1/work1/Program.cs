@@ -123,7 +123,7 @@ class Exe
 {
     static void Main(string[] args)
     {
-        System.Func<System.IServiceProvider, Worker> implementationFactory = CreateSimilarAsFound;
+        System.Func<System.IServiceProvider, Worker> implementationFactory = CreateWithFileLogger;
 
         var builder = Host.CreateApplicationBuilder(args);
         //builder.Services.AddHostedService<Worker>();
@@ -132,12 +132,19 @@ class Exe
         var host = builder.Build();
         host.Run();
     }
-    static Worker CreateSimilarAsFound(System.IServiceProvider factory)
+    /*static Worker CreateSimilarAsFound(System.IServiceProvider factory)
+    {
+        WriteLine($"{nameof(factory)}: {factory?.GetType().FullName}");
+        using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddConsole());
+        ILogger<Worker> logger = logfactory.CreateLogger<Worker>();
+        Worker result = new(logger);
+        return result;
+    }*/
+    static Worker CreateWithFileLogger(System.IServiceProvider factory)
     {
         var logfile = System.IO.Path.Combine(System.Environment.CurrentDirectory, $"worker_{System.DateTime.Now:yyyyMMdd-HHmmss}.log");
         WriteLine($"{nameof(factory)}: {factory?.GetType().FullName}");
         WriteLine($"{nameof(logfile)}: {logfile}");
-        //using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddConsole());
         FileLoggerProvider<Worker> filelogger_provider = new() { LogFile = logfile };
         using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddProvider(filelogger_provider));
         ILogger<Worker> logger = logfactory.CreateLogger<Worker>();
