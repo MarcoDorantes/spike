@@ -93,7 +93,7 @@ class App1
         try
         {
             var logfile = System.IO.Path.Combine(Environment.CurrentDirectory, $"{nameof(App1)}_{DateTime.Now:yyyyMMdd-HHmmss}.log");
-            flog1.FileLoggerProvider<App1> filelogger_provider = new(logfile);
+            nutility.FileLoggerProvider<App1> filelogger_provider = new(logfile);
             using Microsoft.Extensions.Logging.ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => {builder.AddConsole(); builder.AddProvider(filelogger_provider);});
             Microsoft.Extensions.Logging.ILogger<App1> logger = logfactory.CreateLogger<App1>();
 
