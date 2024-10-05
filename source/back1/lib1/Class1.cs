@@ -1,44 +1,21 @@
 ﻿namespace lib1;
 
 using System;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-
-using static System.Console;
-
-public class Class2
-{
-    public async Task Start(string[] args)
-    {
-        WriteLine($"{nameof(Class2)}.{nameof(Start)} begin");
-        var file = args.FirstOrDefault();
-        if (File.Exists(file))
-        {
-            uint count = 0U;
-            string input = "";
-            do
-            {
-                ++count;
-                if (string.Compare(input, "END", true) == 0) break;
-                if (string.Compare(input, "err", true) == 0) throw new Exception($"Exception at {count}");
-                WriteLine($"[{System.Threading.Thread.CurrentThread.ManagedThreadId,2}] {DateTime.Now:s} Begin {count}");
-                input = await File.ReadAllTextAsync(file);
-                await Task.Delay(1000);
-                WriteLine($"[{System.Threading.Thread.CurrentThread.ManagedThreadId,2}] {DateTime.Now:s} End   {count}");
-            } while (true);
-        }
-        else await Task.Delay(100);
-        WriteLine($"{nameof(Class2)}.{nameof(Start)} end");
-    }
-}
 
 public class Class1
 {
+    private Microsoft.Extensions.Logging.ILogger logger;
+
+    public Class1(Microsoft.Extensions.Logging.ILogger logger)
+    {
+        this.logger = logger;
+    }
+
     public async Task Start(string[] args)
     {
-        WriteLine($"{nameof(Class1)}.{nameof(Start)} begin");
-        Class2 y = new();
+        logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, 1, $"{nameof(Class1)}.{nameof(Start)} begin", null, LogFormatter.Format);
+        Class2 y = new(logger);
         do
         {
             try
@@ -48,9 +25,9 @@ public class Class1
             }
             catch (Exception ex)
             {
-                WriteLine($"{ex.GetType().FullName}: {ex.Message}");
+                logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, 2, $"{ex.GetType().FullName}: {ex.Message}", null, LogFormatter.Format);
             }
         } while (true);
-        WriteLine($"{nameof(Class1)}.{nameof(Start)} end");
+        logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, 3, $"{nameof(Class1)}.{nameof(Start)} end", null, LogFormatter.Format);
     }
 }

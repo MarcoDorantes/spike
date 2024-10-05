@@ -3,6 +3,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 using static System.Console;
 
@@ -85,13 +86,18 @@ class Program
     }
 }
 
-class Exe
+class App1
 {
     static async Task Main(string[] args)
     {
         try
         {
-            lib1.Class1 x = new();
+            var logfile = System.IO.Path.Combine(Environment.CurrentDirectory, $"{nameof(App1)}_{DateTime.Now:yyyyMMdd-HHmmss}.log");
+            flog1.FileLoggerProvider<App1> filelogger_provider = new(logfile);
+            using Microsoft.Extensions.Logging.ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => {builder.AddConsole(); builder.AddProvider(filelogger_provider);});
+            Microsoft.Extensions.Logging.ILogger<App1> logger = logfactory.CreateLogger<App1>();
+
+            lib1.Class1 x = new(logger);
             await x.Start(args);
 
             CancellationTokenSource cancel = new();
@@ -99,6 +105,10 @@ class Exe
             await Task.Delay(3000);
             cancel.Cancel();
             await Program.worker.StopAsync(cancel.Token);
+            IDisposable disposable = logger as IDisposable;
+            if (disposable != null) logger.LogInformation("disposing logger at: {time}", DateTimeOffset.Now);
+            disposable?.Dispose();
+            filelogger_provider.Dispose();
         }
         catch (Exception ex)
         {
