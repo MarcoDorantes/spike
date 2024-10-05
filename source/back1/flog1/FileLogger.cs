@@ -14,7 +14,7 @@ public class FileLogger<T> : ILogger<T>, System.IDisposable
     {
         sync = new();
     }
-    
+
     public FileLogger(string file)
     {
         logfile = file;

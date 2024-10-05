@@ -105,6 +105,7 @@ class App1
             await Task.Delay(3000);
             cancel.Cancel();
             await Program.worker.StopAsync(cancel.Token);
+            
             IDisposable disposable = logger as IDisposable;
             if (disposable != null) logger.LogInformation("disposing logger at: {time}", DateTimeOffset.Now);
             disposable?.Dispose();
