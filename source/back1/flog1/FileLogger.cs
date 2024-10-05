@@ -5,11 +5,16 @@ using Microsoft.Extensions.Logging;
 public class FileLogger<T> : ILogger<T>, System.IDisposable
 {
     private string logfile;
-    private static readonly object sync = new();
+    private static readonly object sync;
 
     private System.Diagnostics.TextWriterTraceListener listener;
     private System.IO.StreamWriter listenerWriter;
 
+    static FileLogger()
+    {
+        sync = new();
+    }
+    
     public FileLogger(string file)
     {
         logfile = file;
@@ -18,7 +23,7 @@ public class FileLogger<T> : ILogger<T>, System.IDisposable
         System.Diagnostics.Trace.Listeners.Clear();
         System.IO.FileInfo listenerFile = new(logname);
         listenerWriter = listenerFile.CreateText();
-        System.Diagnostics.TextWriterTraceListener listener = new(listenerWriter);
+        listener = new(listenerWriter);
         System.Diagnostics.Trace.Listeners.Add(listener);
         System.Diagnostics.Trace.AutoFlush = true;
         System.Diagnostics.Trace.WriteLine($"Underlying logger type: {nameof(System.Diagnostics.TextWriterTraceListener)}");

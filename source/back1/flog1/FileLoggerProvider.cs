@@ -7,12 +7,13 @@ public class FileLoggerProvider<T> : ILoggerProvider
 {
     private List<FileLogger<T>> loggers;
 
-    public FileLoggerProvider()
+    public FileLoggerProvider(string logfile)
     {
         loggers = [];
+        LogFile = logfile;
     }
 
-    public string LogFile { get; set; }
+    public string LogFile { get; private set; }
 
     #region ILoggerProvider
     public ILogger CreateLogger(string categoryName)

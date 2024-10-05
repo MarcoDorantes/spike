@@ -10,7 +10,7 @@ class Exe
 {
     static void Main(string[] args)
     {
-        System.Func<System.IServiceProvider, Worker> implementationFactory = CreateWithFileLogger;
+        System.Func<System.IServiceProvider, Worker> implementationFactory = CreateWithInternalFileLogger;
 
         var builder = Host.CreateApplicationBuilder(args);
         //builder.Services.AddHostedService<Worker>();
@@ -27,12 +27,12 @@ class Exe
         Worker result = new(logger);
         return result;
     }*/
-    static Worker CreateWithFileLogger(System.IServiceProvider factory)
+    static Worker CreateWithInternalFileLogger(System.IServiceProvider factory)
     {
         var logfile = System.IO.Path.Combine(System.Environment.CurrentDirectory, $"worker_{System.DateTime.Now:yyyyMMdd-HHmmss}.log");
         WriteLine($"{nameof(factory)}: {factory?.GetType().FullName}");
         WriteLine($"{nameof(logfile)}: {logfile}");
-        flog1.FileLoggerProvider<Worker> filelogger_provider = new() { LogFile = logfile };
+        flog1.FileLoggerProvider<Worker> filelogger_provider = new(logfile);
         using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddProvider(filelogger_provider));
         ILogger<Worker> logger = logfactory.CreateLogger<Worker>();
         Worker result = new(logger, filelogger_provider);
