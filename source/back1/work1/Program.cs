@@ -32,7 +32,7 @@ class Exe
         var logfile = System.IO.Path.Combine(System.Environment.CurrentDirectory, $"worker_{System.DateTime.Now:yyyyMMdd-HHmmss}.log");
         WriteLine($"{nameof(factory)}: {factory?.GetType().FullName}");
         WriteLine($"{nameof(logfile)}: {logfile}");
-        flog1.FileLoggerProvider<Worker> filelogger_provider = new(logfile);
+        nutility.FileLoggerProvider<Worker> filelogger_provider = new(logfile);
         using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddProvider(filelogger_provider));
         ILogger<Worker> logger = logfactory.CreateLogger<Worker>();
         Worker result = new(logger, filelogger_provider);
