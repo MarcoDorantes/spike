@@ -15,7 +15,7 @@ public class FileLogger<T> : ILogger<T>, System.IDisposable
         sync = new();
     }
 
-    public FileLogger(string file)
+    public FileLogger(string file, string categoryName)
     {
         logfile = file;
 #if TRACE
@@ -24,9 +24,11 @@ public class FileLogger<T> : ILogger<T>, System.IDisposable
         System.IO.FileInfo listenerFile = new(logname);
         listenerWriter = listenerFile.CreateText();
         listener = new(listenerWriter);
+        //listener.WriteLine(
         System.Diagnostics.Trace.Listeners.Add(listener);
         System.Diagnostics.Trace.AutoFlush = true;
         System.Diagnostics.Trace.WriteLine($"Underlying logger type: {nameof(System.Diagnostics.TextWriterTraceListener)}");
+        System.Diagnostics.Trace.WriteLine($"{nameof(categoryName)}: [{categoryName}]");//[work1.Worker]
 #else
         WriteLogline(logfile, $"Underlying logger type: {nameof(System.IO.File)}.{nameof(System.IO.File.AppendAllText)}");
 #endif

@@ -19,6 +19,7 @@ class Exe
         var host = builder.Build();
         host.Run();
     }
+
     /*static Worker CreateSimilarAsFound(System.IServiceProvider factory)
     {
         WriteLine($"{nameof(factory)}: {factory?.GetType().FullName}");
@@ -27,15 +28,17 @@ class Exe
         Worker result = new(logger);
         return result;
     }*/
+    static string logname_formatter(string categoryName) => System.IO.Path.Combine(System.Environment.CurrentDirectory, $"worker_{categoryName.Replace('.','_')}_{System.DateTime.Now:yyyyMMdd-HHmmss}.log");
     static Worker CreateWithInternalFileLogger(System.IServiceProvider factory)
     {
-        var logfile = System.IO.Path.Combine(System.Environment.CurrentDirectory, $"worker_{System.DateTime.Now:yyyyMMdd-HHmmss}.log");
         WriteLine($"{nameof(factory)}: {factory?.GetType().FullName}");
-        WriteLine($"{nameof(logfile)}: {logfile}");
-        nutility.FileLoggerProvider<Worker> filelogger_provider = new(logfile);
-        using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddProvider(filelogger_provider));
-        ILogger<Worker> logger = logfactory.CreateLogger<Worker>();
-        Worker result = new(logger, filelogger_provider);
+        //WriteLine($"{nameof(logfile)}: {logfile}");
+        flog1.FileLoggerProvider<Worker> filelogger_provider = new(logname_formatter);
+        flog1.FileLoggerProvider<Engine> filelogger_provide2 = new(logname_formatter);
+        //nutility.FileLoggerProvider<Worker> filelogger_provider = new(logfile);
+        ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddProvider(filelogger_provider).AddProvider(filelogger_provide2));
+        ILogger<Worker> hostlogger = logfactory.CreateLogger<Worker>();
+        Worker result = new(hostlogger, filelogger_provider, filelogger_provide2, logfactory);
         return result;
     }
 }/*

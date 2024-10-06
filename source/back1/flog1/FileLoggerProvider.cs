@@ -1,24 +1,27 @@
 ﻿namespace flog1;
 
+using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
 public class FileLoggerProvider<T> : ILoggerProvider
 {
     private List<FileLogger<T>> loggers;
-
-    public FileLoggerProvider(string logfile)
+    private Func<string, string> logfilenameformatter;
+    public FileLoggerProvider(Func<string, string> nameformatter)
     {
         loggers = [];
-        LogFile = logfile;
+        //LogFile = logfile;
+        logfilenameformatter = nameformatter;
     }
 
-    public string LogFile { get; private set; }
+    //public string LogFile { get; private set; }
 
     #region ILoggerProvider
     public ILogger CreateLogger(string categoryName)
     {
-        FileLogger<T> result = new(LogFile);
+        var LogFile = logfilenameformatter($"{categoryName}{Math.Abs(GetHashCode())}");
+        FileLogger<T> result = new(LogFile, categoryName);
         loggers.Add(result);
         return result;
     }
