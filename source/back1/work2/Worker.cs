@@ -48,6 +48,7 @@ public class Worker : BackgroundService
             }
             //https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-basics
             //https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-guidelines
+            //https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_preventing-dirty-writes
 
             IClass1 c2 = _services.GetRequiredService<IClass1>();
             var same = object.ReferenceEquals(_c,c2);
