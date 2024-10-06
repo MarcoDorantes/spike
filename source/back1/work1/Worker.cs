@@ -49,7 +49,7 @@ public class Worker : BackgroundService
     //https://learn.microsoft.com/en-us/dotnet/core/extensions/workers
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("{what} started at: {time}", nameof(Worker), DateTimeOffset.Now);
+        _logger.LogInformation("{what} executed at: {time}", nameof(Worker), DateTimeOffset.Now);
         _logger.LogInformation(_logger.GetType().FullName);
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -65,6 +65,20 @@ public class Worker : BackgroundService
             await Task.Delay(4000, stoppingToken);
             _logger.LogInformation("next: {time}", DateTimeOffset.Now);
         }
+        await Task.Delay(4000, stoppingToken);
         _logger.LogInformation("{what} ended at: {time}", nameof(Worker), DateTimeOffset.Now);
+        await Task.Delay(4000);
+    }
+
+    public override async Task StartAsync(CancellationToken stoppingToken)
+    {
+        _logger.LogInformation("started at: {time}", DateTimeOffset.Now);
+        await base.StartAsync(stoppingToken);
+    }
+
+    public override async Task StopAsync(CancellationToken stoppingToken)
+    {
+        _logger.LogInformation("stopped at: {time}", DateTimeOffset.Now);
+        await base.StopAsync(stoppingToken);
     }
 }
