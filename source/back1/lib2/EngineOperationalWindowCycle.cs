@@ -1,14 +1,26 @@
 namespace lib2;
 
+using System;
+using Microsoft.Extensions.Logging;
+
 public class EngineOperationalWindowCycle : IEngineOperationalWindowCycle
 {
+    protected readonly ILogger<EngineOperationalWindowCycle> _logger;
+
+    public EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> logger)
+    {
+        _logger = logger;
+    }
+
     public async System.Threading.Tasks.Task Start(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
+        _logger.LogInformation("{what} started at {time}", GetType().Name, DateTimeOffset.Now);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
     }
 
     public async System.Threading.Tasks.Task Stop(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
+        _logger.LogInformation("{what} stopped at {time}", GetType().Name, DateTimeOffset.Now);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
     }
 
@@ -16,6 +28,7 @@ public class EngineOperationalWindowCycle : IEngineOperationalWindowCycle
     private bool disposedValue;
     protected virtual void Dispose(bool disposing)
     {
+        _logger.LogInformation("{what} disposed({disposing}) at {time}", GetType().Name, disposing, DateTimeOffset.Now);
         if (!disposedValue)
         {
             if (disposing)

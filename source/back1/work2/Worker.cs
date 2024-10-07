@@ -12,8 +12,7 @@ public class Worker : BackgroundService
     protected readonly ILogger<Worker> _logger;
     protected readonly IClass1 _c;
     protected readonly System.IServiceProvider _services;
-  //protected lib2.IServiceProcessor service_instance;
-
+ 
     public Worker(ILogger<Worker> logger, IClass1 c, System.IServiceProvider services)
     {
         _logger = logger;

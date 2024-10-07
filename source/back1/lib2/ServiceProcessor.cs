@@ -1,12 +1,22 @@
 ﻿namespace lib2;
 
+using System;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
 public class ServiceProcessor : IServiceProcessor
 {
+    protected readonly ILogger<ServiceProcessor> _logger;
+
+    public ServiceProcessor(ILogger<ServiceProcessor> logger)
+    {
+        _logger = logger;
+    }
+    
     public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
         using IEngineProcessor engine = services.GetRequiredService<IEngineProcessor>();
+        _logger.LogInformation("{what} executed at {time}", GetType().Name, DateTimeOffset.Now);
         await engine.Execute(services, stoppingToken);
     }
 
@@ -16,6 +26,7 @@ public class ServiceProcessor : IServiceProcessor
     {
         if (!disposedValue)
         {
+            _logger.LogInformation("{what} disposed({disposing}) at {time}", GetType().Name, disposing, DateTimeOffset.Now);
             if (disposing)
             {
                 // TODO: dispose managed state (managed objects)

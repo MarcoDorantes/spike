@@ -1,11 +1,21 @@
 namespace lib2;
 
+using System;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
 public class EngineProcessor : IEngineProcessor
 {
+    protected readonly ILogger<EngineProcessor> _logger;
+
+    public EngineProcessor(ILogger<EngineProcessor> logger)
+    {
+        _logger = logger;
+    }
+
     public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
+        _logger.LogInformation("{what} executed at {time}", GetType().Name, DateTimeOffset.Now);
         using IEngineOperationalWindowCycle cycle = services.GetRequiredService<IEngineOperationalWindowCycle>();
         await cycle.Start(services, stoppingToken);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
@@ -16,6 +26,7 @@ public class EngineProcessor : IEngineProcessor
     private bool disposedValue;
     protected virtual void Dispose(bool disposing)
     {
+        _logger.LogInformation("{what} disposed({disposing}) at {time}", GetType().Name, disposing, DateTimeOffset.Now);
         if (!disposedValue)
         {
             if (disposing)

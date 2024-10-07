@@ -2,6 +2,7 @@ namespace work2;
 
 using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -49,11 +50,13 @@ class Program
             //ildasm(typeof(Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions));
             //ildasm(typeof(Microsoft.Extensions.DependencyInjection.ObjectFactory));
             //return;
+
+            using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddConsole());
             //builder.Services.AddHostedService<Worker2>();
             builder.Services.AddSingleton<IClass1>(_=>new Class1());
-            builder.Services.AddTransient<lib2.IServiceProcessor>(_=>new lib2.ServiceProcessor());
-            builder.Services.AddTransient<lib2.IEngineProcessor>(_=>new lib2.EngineProcessor());
-            builder.Services.AddTransient<lib2.IEngineOperationalWindowCycle>(_=>new lib2.EngineOperationalWindowCycle());
+            builder.Services.AddTransient<lib2.IServiceProcessor>(provider => new lib2.ServiceProcessor(logfactory.CreateLogger<lib2.ServiceProcessor>()));
+            builder.Services.AddTransient<lib2.IEngineProcessor>(provider => new lib2.EngineProcessor(logfactory.CreateLogger<lib2.EngineProcessor>()));
+            builder.Services.AddTransient<lib2.IEngineOperationalWindowCycle>(provider => new lib2.EngineOperationalWindowCycle(logfactory.CreateLogger<lib2.EngineOperationalWindowCycle>()));
 
             var host = builder.Build();
             host.Run();
