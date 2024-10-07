@@ -22,8 +22,13 @@ public class app1spec
         flog1.FileLoggerProvider<app1spec> filelogger_provider = null;
         try
         {
-            FileInfo logfile = new(Path.Combine(folder, $"{nameof(app1spec)}_{DateTime.Now:yyyyMMdd-HHmmss}.log"));
-            filelogger_provider = new(logfile.FullName);
+            FileInfo logfile = null;
+            string filename_formatter(string category)
+            {
+                logfile = new(Path.Combine(folder, $"{nameof(app1spec)}_{DateTime.Now:yyyyMMdd-HHmmss}.log"));
+                return logfile.FullName;
+            }
+            filelogger_provider = new(filename_formatter);
             using Microsoft.Extensions.Logging.ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddProvider(filelogger_provider));
             logger = logfactory.CreateLogger<app1spec>();
 
