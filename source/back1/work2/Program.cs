@@ -51,6 +51,8 @@ class Program
             //return;
             //builder.Services.AddHostedService<Worker2>();
             builder.Services.AddSingleton<IClass1>(_=>new Class1());
+            builder.Services.AddTransient<lib2.IServiceProcessor>(_=>new lib2.ServiceProcessor());
+            builder.Services.AddTransient<lib2.IEngineProcessor>(_=>new lib2.EngineProcessor());
 
             var host = builder.Build();
             host.Run();

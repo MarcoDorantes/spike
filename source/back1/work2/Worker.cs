@@ -12,6 +12,7 @@ public class Worker : BackgroundService
     protected readonly ILogger<Worker> _logger;
     protected readonly IClass1 _c;
     protected readonly System.IServiceProvider _services;
+    protected lib2.IServiceProcessor service_instance;
 
     public Worker(ILogger<Worker> logger, IClass1 c, System.IServiceProvider services)
     {
@@ -54,7 +55,8 @@ public class Worker : BackgroundService
             var same = object.ReferenceEquals(_c,c2);
             _logger.LogInformation("{what} same: {same}", GetType().Name, same);
             
-            await Task.Delay(1000, stoppingToken);
+            service_instance = _services.GetRequiredService<lib2.IServiceProcessor>();
+            await service_instance.Execute(_services, stoppingToken);
         }
         await Task.Delay(4000, stoppingToken);
         _logger.LogInformation("{what} ended at: {time}", GetType().Name, DateTimeOffset.Now);
