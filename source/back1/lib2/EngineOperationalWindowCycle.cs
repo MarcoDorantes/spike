@@ -1,15 +1,15 @@
 namespace lib2;
 
-using Microsoft.Extensions.DependencyInjection;
-
-public class EngineProcessor : IEngineProcessor
+public class EngineOperationalWindowCycle : IEngineOperationalWindowCycle
 {
-    public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
+    public async System.Threading.Tasks.Task Start(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
-        using IEngineOperationalWindowCycle cycle = services.GetRequiredService<IEngineOperationalWindowCycle>();
-        await cycle.Start(services, stoppingToken);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
-        await cycle.Stop(services, stoppingToken);
+    }
+
+    public async System.Threading.Tasks.Task Stop(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
+    {
+        await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
     }
 
     #region Disposable support
@@ -31,7 +31,7 @@ public class EngineProcessor : IEngineProcessor
     }
 
     // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-    ~EngineProcessor()
+    ~EngineOperationalWindowCycle()
     {
         // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
         Dispose(disposing: false);

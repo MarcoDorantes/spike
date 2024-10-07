@@ -53,6 +53,7 @@ class Program
             builder.Services.AddSingleton<IClass1>(_=>new Class1());
             builder.Services.AddTransient<lib2.IServiceProcessor>(_=>new lib2.ServiceProcessor());
             builder.Services.AddTransient<lib2.IEngineProcessor>(_=>new lib2.EngineProcessor());
+            builder.Services.AddTransient<lib2.IEngineOperationalWindowCycle>(_=>new lib2.EngineOperationalWindowCycle());
 
             var host = builder.Build();
             host.Run();
