@@ -12,13 +12,13 @@ public class EngineOperationalWindowCycle : IEngineOperationalWindowCycle
         _logger = logger;
     }
 
-    public async System.Threading.Tasks.Task Start(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
+    public async System.Threading.Tasks.Task Open(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
         _logger.LogInformation("{what} started at {time}", GetType().Name, DateTimeOffset.Now);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
     }
 
-    public async System.Threading.Tasks.Task Stop(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
+    public async System.Threading.Tasks.Task Close(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
         _logger.LogInformation("{what} stopped at {time}", GetType().Name, DateTimeOffset.Now);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
