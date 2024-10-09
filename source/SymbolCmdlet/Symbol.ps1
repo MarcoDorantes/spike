@@ -1,39 +1,43 @@
-class ToSymbolConverter
+class SymbolObject
 {
-    [PSCustomObject]$asread
+    [PSCustomObject]$AsImported
+    [string]$ID
+    [string]$StockSeries
+    [string]$Emisora
+    [string]$Serie
+    [string]$Market
+    [System.UInt32]$Counted
 
-    ToSymbolConverter($asread)
+    SymbolObject([PSCustomObject]$asread)
     {
-        $this.asread = $asread
-    }
-
-    [string] ReadAsSymbolID($asread)
-    {
-        return $asread.Replace('~','*')
-    }
-
-    [string] ReadAsPlainSymbol($asread)
-    {
-        $c = $this.ReadAsSymbolID($asread)
-        <# $p = $c -split '/'
-        return .Replace('~','*') #>
-        return $c
-    }
-
-
-    [PSCustomObject] GetSymbolObject()
-    {
-        return [PSCustomObject]@{SymbolID=$this.ReadAsSymbolID($this.asread.Symbol); Count=[System.UInt32]::Parse($this.asread.Count); Symbol=$this.ReadAsPlainSymbol($this.asread.Symbol)}
+        $this.AsImported = $asread
+        $this.ID = $this.AsImported.Symbol -replace '~$','*'
+        $parts = Select-String -InputObject $this.ID -Pattern '^(?<market>\w+)/(?<emisora>.+) (?<serie>.+)$'
+        if(!$parts) { throw "Invalid symbol format ($($this.AsImported.Symbol))." }
+        $this.StockSeries = @($parts.Matches[0].Groups['emisora'].Value, $parts.Matches[0].Groups['serie'].Value) -join ' '
+        $this.Emisora = $parts.Matches[0].Groups['emisora'].Value
+        $this.Serie = $parts.Matches[0].Groups['serie'].Value
+        $this.Market = $parts.Matches[0].Groups['market'].Value
+        $this.Counted = [System.UInt32]::Parse($this.AsImported.Count)
     }
 }
 
-function ConvertTo-SymbolObject($asread)
+function ConvertTo-SymbolObject
 {
-    $converter = [ToSymbolConverter]::new($asread)
-    return $converter.GetSymbolObject()
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [PSCustomObject]$AsImported
+    )
+    
+    process
+    {
+        $result = [SymbolObject]::new($AsImported)
+        $result
+    }
 }
 
 function Read-SymbolTrace($file)
 {
-    Import-Csv $file | %{ ConvertTo-SymbolObject $_ }
+    Import-Csv $file | ConvertTo-SymbolObject
 }
