@@ -41,3 +41,7 @@ function Read-SymbolTrace($file)
 {
     Import-Csv $file | ConvertTo-SymbolObject
 }
+<#
+$ss = Read-SymbolTrace .\source\SymbolCmdlet\Symbols-20241007-171300.csv
+$ss | sort -desc Counted -Stable| ? {$_.Market -eq 'NAC' -and $_.Emisora.StartsWith('O')}|select ID,Counted|measure -Sum Counted
+#>
