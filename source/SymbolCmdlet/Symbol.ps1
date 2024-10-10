@@ -7,6 +7,7 @@ class SymbolObject
     [string]$Serie
     [string]$Market
     [System.UInt32]$Counted
+    [string]$ConfigurableTopicSuffix
 
     SymbolObject([PSCustomObject]$asread)
     {
@@ -19,6 +20,7 @@ class SymbolObject
         $this.Serie = $parts.Matches[0].Groups['serie'].Value
         $this.Market = $parts.Matches[0].Groups['market'].Value
         $this.Counted = [System.UInt32]::Parse($this.AsImported.Count)
+        $this.ConfigurableTopicSuffix = $this.AsImported.Symbol
     }
 }
 
