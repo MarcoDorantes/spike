@@ -24054,5 +24054,965 @@ Description automatically generated" srcset="https://devblogs.microsoft.com/visu
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/understanding-the-behavior-of-the-xaml-designer-with-abstract-base-classes/">Understanding the behavior of the XAML Designer with abstract base classes</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Easier localization with the new resource (.resx) manager</title>
+      <link>https://devblogs.microsoft.com/visualstudio/easier-localization-with-the-new-resource-resx-manager/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[McKenna Barlow]]></dc:creator>
+      <pubDate>Wed, 09 Oct 2024 15:28:45 +0000</pubDate>
+      <category><![CDATA[Cross-Platform]]></category>
+      <category><![CDATA[Team and Development]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Resources]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250942</guid>
+      <description><![CDATA[<p>If you&#8217;re developing applications that target multiple languages and cultures, you probably know how challenging it can be to manage the resources for each localization. You need to keep track of all the strings, images, icons, and other assets that are specific to each culture, and make sure they are consistent and up to date [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/easier-localization-with-the-new-resource-resx-manager/">Easier localization with the new resource (.resx) manager</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>If you&#8217;re developing applications that target multiple languages and cultures, you probably know how challenging it can be to manage the resources for each localization. You need to keep track of all the strings, images, icons, and other assets that are specific to each culture, and make sure they are consistent and up to date across your project.</p>
+<p>Fortunately, Visual Studio has a solution for you: the revamped Resource Explorer. This new feature lets you view, edit, and manage all your resources in one place, with a sleek and intuitive interface that is designed for the modern .NET developer.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-250943" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-1.png" alt="Image of the resource explorer with many items displayed" width="1024" height="525" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-1.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-1-300x154.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-1-768x394.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>In this blog post, we&#8217;ll show you how to use the Resource Explorer UI to improve your productivity and quality when working with resources in .NET apps. We&#8217;ll cover how to:</p>
+<ul>
+<li>Load multiple files and view all localizations at once</li>
+<li>Search and filter resources by name, value, or comment</li>
+<li>Add comments to each translation of a resource</li>
+<li>Validate placeholders and detect missing translations</li>
+<li>Customize the accessibility and settings</li>
+</ul>
+<p>Ready to explore? Let&#8217;s get started!</p>
+<h2>Load multiple files and view all localizations at once</h2>
+<p>One of the main advantages of the new Resource Explorer is that it allows you to load multiple files and view all the localizations for each resource in the same view. This makes it easy to compare and edit resources across <a id="post-250942-_Int_S6hajNpw"></a>different cultures, without having to switch between tabs or windows.</p>
+<p>To use the new Resource Explorer, you need to have a .NET project that <a id="post-250942-_Int_gzN8iCXy"></a>contains one or more resource files (.resx). To open a resource file with the Resource Explorer, right-click on any resource file in the Solution Explorer and select <strong>Open With &gt; Resource Explorer</strong>. Resource files in the Solution Explorer can also be opened with a double click. Alternatively, you can navigate to the Resource Explorer and view any number of resource files included in the solution by navigating the Visual Studio toolbar via <strong>View &gt; Other Windows &gt; Resource Explorer.</strong></p>
+<p><img decoding="async" class="alignnone wp-image-250944" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-2.png" alt="Screenshot of the new Resource Explorer data grid UI" width="1431" height="740" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-2.png 1431w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-2-300x155.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-2-1024x530.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-2-768x397.png 768w" sizes="(max-width: 1431px) 100vw, 1431px" /></p>
+<p>Once you open the Resource Explorer, you&#8217;ll see a data grid that shows all the resources in the selected file(s), along with their values for the default culture and other cultures. The localizations in the default culture, usually the language used by the developer in Visual Studio, are displayed as <em>neutral values.</em> To add more resources, click on the <strong>Create Resource</strong> button on the toolbar and configure the resource you want to include.</p>
+<p>You can use the checkbox selections on the left side of the screen to configure which of the solution’s resource files will be visible in the data grid.</p>
+<p><img decoding="async" class="alignnone wp-image-250945" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-3.png" alt="screenshot of file selection UI" width="663" height="761" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-3.png 663w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-3-261x300.png 261w" sizes="(max-width: 663px) 100vw, 663px" /></p>
+<p>For resources localized in multiple languages, you can change which translation columns are visible in the grid by configuring the columns in the <strong>Columns</strong> button in the Resource Explorer toolbar.</p>
+<p><img decoding="async" class="alignnone wp-image-250946" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-4.png" alt="Screenshot of column configuration via toolbar" width="917" height="1057" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-4.png 917w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-4-260x300.png 260w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-4-888x1024.png 888w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-4-768x885.png 768w" sizes="(max-width: 917px) 100vw, 917px" /></p>
+<p>You can now see all the resources and their translations in a single view, with each column <a id="post-250942-_Int_JBtFMLH4"></a>representing a different file or culture. You can resize, reorder, or hide columns as you wish, and use the horizontal scroll bar to navigate through the grid.</p>
+<h2>Search resources by name, value, or comment</h2>
+<p>If you have a large solution with many resources, you might want to search for a specific resource or filter out the ones you don&#8217;t need. The new Resource Explorer makes this easy with the search and filter functionality.</p>
+<p>To search for a resource, type in the search box on the toolbar and press Enter. The data grid will show only the resources that match your query in their name, value, or comment.</p>
+<p><img decoding="async" class="alignnone wp-image-250947" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-5.png" alt="Screenshot of search results for search term “button”" width="1662" height="880" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-5.png 1662w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-5-300x159.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-5-1024x542.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-5-768x407.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-5-1536x813.png 1536w" sizes="(max-width: 1662px) 100vw, 1662px" /></p>
+<p>Note that the search functionality will only search the files and resource groups that have been selected to be visible in the data grid. To include more files in your search, you must select the checkboxes for the corresponding resource groups in the left pane of the UI before searching. This selection can be used to filter for specific files or resource groups, helpful for when you want to only view resources in a particular resource group, or you don’t want certain resources to be visible in the grid.</p>
+<h2>Add comments to each translation of a resource</h2>
+<p>Comments are a useful way to provide more information or context for a resource, such as the meaning, usage, or tone of a string. In the Resource Explorer UI, you can add comments to each translation of a resource and view them all at once in the data grid.</p>
+<p>To add a comment to a resource, right click on the cell that corresponds to the translation you want to comment on and click on the <strong>&#8220;Edit Comment&#8221;</strong> button on the dropdown. A comment box will appear beside the cell, where you can type in your comment. Press <strong>Enter</strong> to save the comment or navigate away from the comment box without hitting enter to discard it.</p>
+<p>You can also edit or <a id="post-250942-_Int_0FLWJz5o"></a>delete existing comments by right clicking on the comment box. To view all the comments for a resource, look for the small comment icon in the corner of each cell that has a comment. You can hover over the icon to see a tooltip with the comment text or click on it to open the comment box.</p>
+<p><img decoding="async" class="alignnone wp-image-250948" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-6.png" alt="Screenshot of comment icon on a resource cell" width="521" height="136" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-6.png 521w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-6-300x78.png 300w" sizes="(max-width: 521px) 100vw, 521px" /></p>
+<h2>Validate placeholders and detect missing translations</h2>
+<p>Another benefit of the Resource Explorer UI is that it helps you ensure the quality and consistency of your resources, by <a id="post-250942-_Int_9b9SipBg"></a>validating placeholders and detecting missing translations.</p>
+<p>Placeholders are special tokens that are replaced by dynamic values at runtime, such as {0}, {1}, or {name}. If you use placeholders in your resources, you need to make sure they are consistent across all localizations, otherwise you might see errors or unexpected behavior in your app.</p>
+<p>The new Resource Explorer automatically <a id="post-250942-_Int_GujJUv8q"></a>validates placeholders for each resource and shows a warning icon if there is a mismatch between the default culture and any other localization. For example, if the default value of a resource is &#8220;Hello {0}, how are you {1}?&#8221; and the Spanish value is &#8220;Hola {0}!&#8221;, you&#8217;ll see a warning icon because the {1} placeholder is missing in the Spanish value. You can hover over the icon to see a tooltip with the details of the mismatch.</p>
+<p><img decoding="async" class="alignnone wp-image-250949" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-7.png" alt="Screenshot of placeholder validation warning" width="1126" height="134" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-7.png 1126w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-7-300x36.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-7-1024x122.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-7-768x91.png 768w" sizes="(max-width: 1126px) 100vw, 1126px" /></p>
+<p>Missing translations are another common issue that can affect the user experience of your app. If you don&#8217;t provide a translation for a resource in a certain culture, the app will fall back to the default culture, which might not be proper or desirable for some users.</p>
+<p>The Resource Explorer UI helps you avoid this problem by showing a warning icon if there is no value for a resource in a certain culture. For example, if you have a resource with a default value of <em>Main text viewer</em> and no value for the Czech culture, you&#8217;ll see a warning icon showing that the translation is missing. You can hover over the icon to see a tooltip with the message <em>&#8220;Missing resource in cultures: [all cultures for which you are missing a translation]”. </em>In future versions of the Resource Explorer, these warnings will be configurable.</p>
+<p><img decoding="async" class="alignnone wp-image-250950" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-8.png" alt="Screenshot of missing resource translation warning" width="1381" height="188" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-8.png 1381w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-8-300x41.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-8-1024x139.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250942-8-768x105.png 768w" sizes="(max-width: 1381px) 100vw, 1381px" /></p>
+<h2>Customize the accessibility and settings</h2>
+<p>The last feature we want to highlight is the accessibility of the UI and the ability to customize the UI settings of the Resource Explorer to suit your preferences and needs.</p>
+<p>We have improved the compatibility of the Resource Explorer UI with screen readers and assistive technology, to make it more accessible for developers with visual impairments or disabilities. You can use keyboard shortcuts to navigate through the data grid, edit values and comments, and perform common actions. You can also use the narrator to read each cell&#8217;s contents, as well as the tooltips and warnings.</p>
+<p>We also have several supported keyboard shortcuts for the new Resource Explorer as follows:</p>
+<table>
+<tbody>
+<tr>
+<td><strong>Shortcut</strong></td>
+<td><strong>Action</strong></td>
+<td><strong>Supported</strong></td>
+</tr>
+<tr>
+<td>Control + A</td>
+<td>Selects all cells</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + right arrow</td>
+<td>Extends selection one cell to the right</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + left arrow</td>
+<td>Extends selection one cell to the left</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + down arrow</td>
+<td>Extends selection one cell down</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + up arrow</td>
+<td>Extends selection one cell up</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>F2</td>
+<td>Places focus on text inside a cell (enter edit mode)</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td></td>
+<td>A subsequent press of F2 restores focus to the cell and restores grid navigation functions (exit edit mode)</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Shift + R</td>
+<td>Add a resource</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Del</td>
+<td>Delete a resource*</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + D</td>
+<td>Duplicate a resource*</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Shift + M</td>
+<td>Move resource to a different file*</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + X</td>
+<td>Cut*</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + C</td>
+<td>Copy*</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + P</td>
+<td>Paste*</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + F2</td>
+<td>Add or edit a comment</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + Alt + F2</td>
+<td>Delete a comment</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Shift + V</td>
+<td>Replace file</p>
+<p>This applies for non-string resources, like an image</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Shift + L</td>
+<td>Open visible Columns menu</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Shift + C</td>
+<td>Toggle neutral comment column</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>Moves focus to the next cell below</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>Moves focus to the next cell to the right or the first one in the next row</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + Tab</td>
+<td>Moves focus to the next cell to the left or the last one in the row above</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Shift + Space</td>
+<td>Select the row that contains focus</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + I</td>
+<td>Go to search bar</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Alt + left arrow</td>
+<td>Move focus from grid to tree view</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f528.png" alt="🔨" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+<tr>
+<td>Control + Alt + right arrow</td>
+<td>Move focus from tree view to grid</td>
+<td><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f528.png" alt="🔨" class="wp-smiley" style="height: 1em; max-height: 1em;" /></td>
+</tr>
+</tbody>
+</table>
+<p>*Indicates that the operation is currently only supported when you have an entire row selected</p>
+<p>We have also added zoom functionality to the data grid to allow you to adjust the size of the text and icons according to your liking. Use Ctrl + your mouse wheel to zoom the grid and make the text size bigger.</p>
+<p>Finally, we have enabled theming for the Resource Explorer UI to make it consistent with the rest of the Visual Studio environment. The Resource Explorer will now pick up your theme and font styling from the rest of the IDE. You can choose between light, dark, or blue Visual Studio themes via <strong>Tools &gt; Theme</strong> and the Resource Explorer UI will adapt accordingly, just like you expect for the rest of Visual Studio. You can also change the font and colors of the data grid, by using the <strong>Tools &gt; Options &gt; Environment &gt; Fonts and Colors</strong> dialog.</p>
+<h2>Conclusion</h2>
+<p>We hope this blog post has given you a good overview of the new features and improvements of the Resource Explorer UI in Visual Studio. We think this feature will make your life easier and more productive when working with resources in .NET apps, and we&#8217;d love to hear your feedback and suggestions.</p>
+<p><div style="text-align:center"><a class="cta_button_link" href="https://www.surveymonkey.com/r/PR6QMYJ" style="text-transform: titlecase; font-size: 14px; border-radius: 6px; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Provide feedback on the new resource manager</a></div></p>
+<p>We want to thank you for your continuous feedback and support, which helps us make Visual Studio better and better. Please keep it coming by using the <em>Report a Problem</em> tool in Visual Studio, or by sharing your ideas on the <a href="https://developercommunity.visualstudio.com/">Developer Community</a> website.</p>
+<p>Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/easier-localization-with-the-new-resource-resx-manager/">Easier localization with the new resource (.resx) manager</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Accelerate C++ Debugging with Enhanced Conditional Breakpoints</title>
+      <link>https://devblogs.microsoft.com/visualstudio/accelerate-c-debugging-with-enhanced-conditional-breakpoints/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Mon, 07 Oct 2024 15:10:12 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[performance]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Breakpoints]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250898</guid>
+      <description><![CDATA[<p>Are you tired of waiting for your conditional breakpoints to hit in C++? Do you wish there was a way to speed up the debugging process and get to the root of the problem faster? If so, you&#8217;re in luck! We have some exciting news for you: Visual Studio 2022 has significantly improved the performance [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/accelerate-c-debugging-with-enhanced-conditional-breakpoints/">Accelerate C++ Debugging with Enhanced Conditional Breakpoints</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Are you tired of waiting for your conditional breakpoints to hit in C++? Do you wish there was a way to speed up the debugging process and get to the root of the problem faster? If so, you&#8217;re in luck!</p>
+<p>We have some exciting news for you: Visual Studio 2022 has significantly improved the performance of conditional breakpoints in C++ through a reworked implementation. This means you can now debug your C++ code faster and more efficiently than ever before.</p>
+<p><img decoding="async" class="alignnone wp-image-250899" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250898-1.png" alt="Image showing a conditional breakpoint" width="1428" height="406" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250898-1.png 1428w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250898-1-300x85.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250898-1-1024x291.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250898-1-768x218.png 768w" sizes="(max-width: 1428px) 100vw, 1428px" /></p>
+<h2>What are conditional breakpoints?</h2>
+<p>Conditional breakpoints are a powerful debugging tool that only triggers when a specified condition is met. For instance, you can set a conditional breakpoint to pause your program&#8217;s execution when a variable reaches a certain value or when an expression evaluates to true.</p>
+<p>These breakpoints are particularly useful for debugging complex scenarios, allowing you to concentrate on specific cases or situations. They help you avoid unnecessary steps and iterations, making your debugging process more efficient and focused.</p>
+<h2>How did we improve them?</h2>
+<p>We revisited the implementation and looked for potential improvements that could be made around the hot path for conditional breakpoints. Since the implementation can be very specific to the target language, we started by focusing on the C++ experience.</p>
+<p>We realized that a lot of the expensive fetch operations made to the process memory and CPU registers can be cached while on the same break state. This improvement also impacts the regular debugging experience and is not limited to the conditional breakpoints.</p>
+<p>We also revisited how we notify the debugger that a break has happened. Most of these operations can be delayed after the condition is evaluated or skipped altogether when the breakpoint condition is false, for example.</p>
+<p>We also reduced the overall processing such that we only fetch the minimal information needed for evaluating the breakpoint condition, such as when retrieving the call stack information or when retrieving the necessary registers from the CPU.</p>
+<h2>How much faster are they now?</h2>
+<p>Our initial assessment indicates a performance improvement of at least 35% in version 17.10 and 70% in version 17.11 Preview 2. The benchmark application consists of a while loop that iterates 80,000 times before hitting the breakpoint, once the condition is met. We reduced the execution time from 80 seconds to 21 seconds.</p>
+<p>You can see the difference in performance in the video below. The left side shows the conditional breakpoints performance in version 17.9, while the right side shows the performance in version 17.11 Preview 2 onwards.</p>
+<p><img decoding="async" class="alignnone wp-image-250900" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250898-2.gif" alt="Gif showing a sidexside comparison of conditional break points in 17.9 vs 17.11" width="900" height="424" /></p>
+<h2>How can you try it out?</h2>
+<p>If you want to try out the enhanced conditional breakpoints performance in C++, you need to have Visual Studio 2022 version 17.11 or higher installed on your machine.</p>
+<p>Once you have installed Visual Studio 2022, you can set conditional breakpoints in C++ as usual. To set a conditional breakpoint, right-click on the breakpoint icon in the editor and select &#8220;Conditions&#8221;. Then, enter the condition you want to apply to the breakpoint and click OK.</p>
+<p>You can also edit or remove the condition of an existing breakpoint by right-clicking on the breakpoint icon and selecting <strong>Edit Conditions</strong> or <strong>Delete Condition</strong>.</p>
+<h2>We want to hear from you!</h2>
+<p>We hope you find the enhanced performance of conditional breakpoints in C++ beneficial for your debugging needs. Our commitment to making Visual Studio better and faster for you drives us to continuously seek your feedback and suggestions.</p>
+<p>If you have any comments, questions, or issues regarding conditional breakpoints in C++ or any other feature of Visual Studio, please let us know via the<a href="https://learn.microsoft.com/en-us/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022"> Report a Problem tool</a> in Visual Studio.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn.</a></p>
+<p>Thank you for using Visual Studio, and happy debugging!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/accelerate-c-debugging-with-enhanced-conditional-breakpoints/">Accelerate C++ Debugging with Enhanced Conditional Breakpoints</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Discover Hidden Insights with Profiler’s External Code Decompilation</title>
+      <link>https://devblogs.microsoft.com/visualstudio/discover-hidden-insights-with-profilers-external-code-decompilation/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Wed, 02 Oct 2024 10:00:09 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Developer Productivity]]></category>
+      <category><![CDATA[Performance]]></category>
+      <category><![CDATA[Visual Studio Profiler]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250838</guid>
+      <description><![CDATA[<p>Have you ever wondered what&#8217;s happening under the hood of your .NET application? Do you want to quickly and easily identify and fix performance bottlenecks? If so, Visual Studio has the perfect tool for you: the profiler. The profiler allows you to analyze your code&#8217;s performance, pinpoint hot paths, detect memory leaks, address thread contention, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/discover-hidden-insights-with-profilers-external-code-decompilation/">Discover Hidden Insights with Profiler&#8217;s External Code Decompilation</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Have you ever wondered what&#8217;s happening under the hood of your .NET application? Do you want to quickly and easily identify and fix performance bottlenecks? If so, Visual Studio has the perfect tool for you: the profiler.</p>
+<p>The profiler allows you to analyze your code&#8217;s performance, pinpoint hot paths, detect memory leaks, address thread contention, and more. It helps you measure CPU usage, memory consumption, and file activity, and lets you drill down into specific methods and lines of code.</p>
+<p>But what if the code you need to profile isn&#8217;t yours? What if it&#8217;s a third-party library, a NuGet package, or a framework component without source code access? How can you uncover what&#8217;s happening inside those black boxes?</p>
+<p>That&#8217;s where the new auto-decompilation feature comes in handy.</p>
+<p><img decoding="async" class="alignnone wp-image-250842" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250838-1.png" alt="image showing the hot path" width="1024" height="575" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250838-1.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250838-1-300x168.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250838-1-768x431.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>With Visual Studio 2022, the profiler can automatically decompile the .NET code that you don&#8217;t have the source code for and show you the decompiled C# or Visual Basic code in the source view. This way, you can gain insights into the code&#8217;s structure and performance issues, even without loaded symbols or exact file locations.</p>
+<p>This feature is particularly helpful when dealing with non-user external code, empowering you to analyze and optimize your application&#8217;s performance effectively, thus enhancing your development workflow.</p>
+<h2>How to Use Auto-Decompilation in Visual Studio Profiler</h2>
+<p>To use this feature, make sure <strong><em>Automatically decompile code during source lookup</em></strong> in the <strong>Tools &gt; Options &gt; Debugging &gt; General</strong> settings is enabled. Then, you can launch the profiler from the <strong>Debug &gt; Performance Profiler</strong> menu, or by pressing <strong>Alt+F2</strong>.</p>
+<p>Once the profiler is running, you can select the type of analysis you want to perform, such as CPU Sampling, Memory Usage, or .NET Object Allocation Tracking. The profiler will collect the data and display it in various views, such as Call Tree, Functions, Modules, or Caller/Callee. You can also use filters, search, and grouping options to narrow down the results.</p>
+<p><img decoding="async" class="alignnone wp-image-250843" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-250838-2.gif" alt="Gif getting to the decomp experience in the .NET Alloc tool, showing data collection then showing the external code decompilation from Go To Source" width="1920" height="1080" /></p>
+<p>To view the source code of a function, simply double-click on it in any of the views, or right-click and select &#8220;Go To Source.&#8221; If the source code is available, the profiler will open it in the editor. If not, the profiler will attempt to decompile the code and display it in a read-only window. This allows you to inspect the code, view line numbers, and navigate to the callers and callees.</p>
+<p>Additionally, you can compare snapshots of the same function taken at different times to see how the code has changed. This helps you identify performance regressions or improvements and understand the impact of your code changes.</p>
+<p>Keep in mind that decompiled code may not be identical to the original, as some information can be lost during compilation. However, the decompiled code should be close enough to provide a good understanding of what the code does and how it impacts your app&#8217;s performance</p>
+<h2>We Want to Hear from You</h2>
+<p>We hope you find this feature useful in improving the performance of your .NET applications. We are committed to enhancing Visual Studio and greatly value your feedback. Please share your thoughts on this feature and any suggestions or issues by using the Help &gt; Send Feedback &gt; Report a Problem or Provide a Suggestion options in Visual Studio, or by leaving a comment below. Thank you for your continuous support!</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn.</a></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/discover-hidden-insights-with-profilers-external-code-decompilation/">Discover Hidden Insights with Profiler&#8217;s External Code Decompilation</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Visual Studio 2022 – Recent performance enhancements </title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-recent-performance-enhancements/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 01 Oct 2024 14:32:23 +0000</pubDate>
+      <category><![CDATA[performance]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Breakpoints]]></category>
+      <category><![CDATA[roslyn]]></category>
+      <category><![CDATA[Search]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250827</guid>
+      <description><![CDATA[<p>Visual Studio 2022 continues to be faster with each version. In this blog post we will highlight a couple of the more significant enhancements you’ll experience in 17.11, such as a more efficient C# language service, faster conditional breakpoints and symbol searches in C++. Reduced CPU usage by C# language service Code Indexing In 17.10 [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-recent-performance-enhancements/">Visual Studio 2022 &#8211; Recent performance enhancements </a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 continues to be faster with each version. In this blog post we will highlight a couple of the more significant enhancements you’ll experience in 17.11, such as a more efficient C# language service, faster conditional breakpoints and symbol searches in C++.</p>
+<h2>Reduced CPU usage by C# language service</h2>
+<h2>Code Indexing</h2>
+<p>In 17.10 we revamped the code indexing system in the C# language service (Roslyn). It used to be both aggressive and highly intermittent.  This would lead to high spikes of CPU usage, taking resources away from the operations users were performing, especially during times like solution load.  After opening a solution, users who wanted to wait for VS to settle would have to wait up to minutes watching a progress bar titled “Running low priority background processes”.</p>
+<p>Now, we no longer preemptively run all the indexers.  Instead, individual ones are run on demand.  In 17.11, these indexers were further streamlined, and made much more incremental, allowing them to consume far less resources when absorbing any change into the index. In addition, there were memory allocation optimizations throughout the editor and managed language services. The net effect of this is a more responsive VS that is ready to go at a much sooner time, with much lower CPU consumption.</p>
+<h2>Source Generators</h2>
+<p>As part of our continued work to break VS into isolated, high performance, services, Roslyn&#8217;s Source Generator execution host was moved out of the main VS process to a high-performance .NET 8 host.  This helps make VS more resilient to bugs in source generators and allows them to execute much more efficiently.  As part of this work, we also changed the execution model for source generators to no longer run automatically, due to the heavy impact that some generators can still have on the system.  Instead, by default, generators will now run when a document is saved, or a project is built, greatly cutting down on the impact of all generators (especially very expensive ones).  This behavior can be controlled here:</p>
+<p>Tools &gt; Options &gt; Text Editor &gt; C# &gt; Advanced &gt; Source Generators</p>
+<p><img decoding="async" width="1051" height="165" class="wp-image-250828" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-5.png" alt="A screenshot of a computer Description automatically generated" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-5.png 1051w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-5-300x47.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-5-1024x161.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-5-768x121.png 768w" sizes="(max-width: 1051px) 100vw, 1051px" /></p>
+<p>With the above changes in place, our data shows improved metrics in 17.11. CPU usage is down by 16% percent or more in sessions that had heaviest CPU usage. The C# completion list now appears sooner; looking at the slowest sessions the number of times the list takes longer than 0.5 seconds to appear has been cut by about 40%.</p>
+<h2>Improved conditional breakpoint performance</h2>
+<p>In 17.11 we made several changes to improve the performance of conditional breakpoints in C++. The improvements were primarily in two categories:</p>
+<ul>
+<li>Avoiding expensive Windows debugging API calls. Windows calls to get and set information about the debugged process can be expensive, so the data was cached to reduce the number of calls to these APIs. Additionally, some of the information was already available through other sources, allowing some calls to be eliminated entirely.</li>
+<li>Reducing data fetched from the debugged process. When a breakpoint is hit, the debugger must fetch a lot of information about the state of the debugged process. This is needed to populate things such as the locals tool window, the Diagnostics Tools window etc. However, to evaluate whether a conditional breakpoint’s conditions have been met, we need only a subset of that information. Now we fetch only the necessary pieces of information.</li>
+</ul>
+<p>With these optimizations in place, we measured up to ~67% reduction in debugger overhead in a test application compared to 17.10.</p>
+<h2>Optimized Symbol Search for C++ language service</h2>
+<p>In 17.11 we reimplemented the text indexing system for C++ symbols. Before this change, C++ language service processed the symbol text directly to answer <a href="https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-search?view=vs-2022#search-in-visual-studio-2022-version-176-or-later">All-in-one-Search</a> (AIOS) queries. We would load all the text into memory and traverse it to find matching candidates. This approach was relatively fast, but not optimal; not to mention having to keep the text cached in memory. In 17.11 we started using SQLite’s <a href="https://sqlite.org/fts5.html">FTS5</a> search extension. The index is computed when the solution is parsed after it is opened, and then the language service can perform Symbol Search without any additional loading of text into memory. All the results are available faster and with less memory usage: we’ve seen the slower AIOS symbol searches up to 65% faster in 17.11. We hope you’re experiencing this improvement in your larger codebases.</p>
+<h2>Share your feedback and stay connected with Visual Studio!</h2>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home" target="_blank" rel="noopener">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>On behalf of the entire Visual Studio team, thanks for reading and Happy Coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-recent-performance-enhancements/">Visual Studio 2022 &#8211; Recent performance enhancements </a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Effortless Instrumentation profiling with Persistent Target Selection</title>
+      <link>https://devblogs.microsoft.com/visualstudio/effortless-instrumentation-profiling-with-persistent-target-selection/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Mon, 30 Sep 2024 10:00:37 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[performance]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Profiling]]></category>
+      <category><![CDATA[Visual Studio Profiler]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250808</guid>
+      <description><![CDATA[<p>Ever wished to assess your code&#8217;s performance without repeatedly choosing the target process or executable for each instrumentation profiling session? If so, you&#8217;re among many developers who find this task cumbersome and prone to errors, especially when profiling the same target repeatedly. We understand your frustration and have a solution: Visual Studio 2022 introduces a [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/effortless-instrumentation-profiling-with-persistent-target-selection/">Effortless Instrumentation profiling with Persistent Target Selection</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Ever wished to assess your code&#8217;s performance without repeatedly choosing the target process or executable for each instrumentation profiling session? If so, you&#8217;re among many developers who find this task cumbersome and prone to errors, especially when profiling the same target repeatedly.</p>
+<p>We understand your frustration and have a solution: Visual Studio 2022 introduces a new feature that addresses this issue. The instrumentation tool now remembers your target selection across runs, providing a seamless experience and enhancing the continuity of your profiling sessions.</p>
+<p><img decoding="async" class="wp-image-250809 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/decorative-image.jpeg" alt="Image of a speedometer" width="770" height="433" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/decorative-image.jpeg 1920w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/decorative-image-300x169.jpeg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/decorative-image-1024x576.jpeg 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/decorative-image-768x432.jpeg 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/decorative-image-1536x864.jpeg 1536w" sizes="(max-width: 770px) 100vw, 770px" /></p>
+<p>With this improvement, you can maintain your specified target across multiple instrumentation runs, eliminating the need for repetitive selection tasks. This means you can focus more on analyzing the performance data and optimizing your code, rather than wasting time and effort on setting up the profiling session.</p>
+<h2>How does it work?</h2>
+<p>To use this feature, you need to have Visual Studio installed and the Performance Profiler (ALT+F2) enabled. Then, follow these simple steps:</p>
+<ol>
+<li>Launch the Performance Profiler and select <strong>Instrumentation </strong>as the profiling method.</li>
+<li>Click the <strong>Target </strong>button and choose the process or executable you want to profile.</li>
+<li>Click <strong>Start </strong>to begin the profiling session. Visual Studio will collect and display the performance data in the Diagnostic Tools window.</li>
+<li>When you&#8217;re done, click <strong>Stop </strong>to end the profiling session. Visual Studio will show you a summary of the results and allow you to drill down into the details.</li>
+<li>Click <strong>cancel </strong>in the dialog box to reset the persisted selection.</li>
+</ol>
+<p>If you want to run another instrumentation profiling session on the same target, you don&#8217;t need to select it again. Just click <strong>Start </strong>and Visual Studio will remember your last choice and use it as the default target. When you add a new method, class, or project, these new targets are automatically selected based on whether their parent was previously selected. This proactive approach ensures that no new additions are missed and helps maintain comprehensive profiling coverage.
+You can still change the target if you want to, but you don&#8217;t have to.</p>
+<p><img decoding="async" class="alignnone wp-image-250810" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250808-2.png" alt="Image showing items to instrument in Visual Studio" width="955" height="534" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250808-2.png 955w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250808-2-300x168.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250808-2-768x429.png 768w" sizes="(max-width: 955px) 100vw, 955px" /></p>
+<p>Enjoy the convenience and efficiency of persistent target selection!</p>
+<h2>Why should you use it?</h2>
+<p>This feature is designed to help you streamline your workflow and improve your productivity when using the instrumentation tool. By persisting the target selection between runs, you can:</p>
+<p><strong>Save time and avoid frustration</strong> by reducing the number of clicks and interactions needed to set up a profiling session.</p>
+<p><strong>Minimize the risk</strong> of selecting the wrong target or forgetting to select one, which could lead to inaccurate or missing performance data.</p>
+<p><strong>Maintain consistency</strong> and comparability of the performance data across multiple profiling sessions on the same target.</p>
+<p>Focus more on the performance <strong>analysis and optimization</strong> of your code, rather than the configuration and management of the profiling session.</p>
+<h2>Concluding thoughts</h2>
+<p>We hope you find this feature valuable for your development journey. Your feedback and suggestions are invaluable to us as we strive to enhance it further. Please share your thoughts through the <a href="https://developercommunity.visualstudio.com/">Visual Studio Developer Community</a> or the Report a Problem tool in Visual Studio.</p>
+<p>Thank you for choosing Visual Studio and for your continuous feedback that helps us make it better every day.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn.</a></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/effortless-instrumentation-profiling-with-persistent-target-selection/">Effortless Instrumentation profiling with Persistent Target Selection</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Creating a React TODO app in Visual Studio 2022</title>
+      <link>https://devblogs.microsoft.com/visualstudio/creating-a-react-todo-app-in-visual-studio-2022/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sayed Ibrahim Hashimi]]></dc:creator>
+      <pubDate>Thu, 26 Sep 2024 10:00:23 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250718</guid>
+      <description><![CDATA[<p>In this tutorial we will create a React front-end, with JavaScript, of a TODO web app using a Visual Studio 2022. To get started install Visual Studio with the Node.js development workload. This will include the JavaScript/TypeScript (JSTS) projects and the associated support. The code for this app can be found at sayedihashimi/todojswebapp (github.com). Create [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/creating-a-react-todo-app-in-visual-studio-2022/">Creating a React TODO app in Visual Studio 2022</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>In this tutorial we will create a React front-end, with JavaScript, of a TODO web app using a Visual Studio 2022. To get started <a href="https://learn.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2022">install Visual Studio</a> with the Node.js development workload. This will include the <a href="https://learn.microsoft.com/en-us/visualstudio/javascript/javascript-in-visual-studio?view=vs-2022">JavaScript/TypeScript (JSTS) projects</a> and the associated support. The code for this app can be found at <a href="https://github.com/sayedihashimi/todojswebapp">sayedihashimi/todojswebapp (github.com)</a>. Create a new React project using the New Project Dialog in Visual Studio 2022. Use <em>File &gt; New &gt; Project …</em> to open that dialog. For this tutorial select the React App JavaScript template which is shown below.</p>
+<p><img decoding="async" class="alignnone wp-image-250719" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-program-description-au.png" alt="Image of React App in Visual Studio start screen" width="1014" height="727" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-program-description-au.png 1014w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-program-description-au-300x215.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-program-description-au-768x551.png 768w" sizes="(max-width: 1014px) 100vw, 1014px" /></p>
+<p>After clicking Next, give the project the name <em>TodoWebApp</em> and click Create. This will create the JavaScript project using the <a href="https://vitejs.dev/">vite command line tool</a>. Now create a new component to encapsulate the todo list functionality. First create a new folder named <code>components</code> under the <code>src</code> folder. This is the folder where all components will go. It’s a common convention to place components in a <em>components</em> folder, but this is not required. Right click on this new folder and select <em>Add &gt; React JSX Component File</em>, give it the name <em>TodoList</em> as shown in the following image.</p>
+<p><img decoding="async" class="alignnone wp-image-250720" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-2.png" alt="Image selecting the React JSX Component file" width="941" height="653" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-2.png 941w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-2-300x208.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-2-768x533.png 768w" sizes="(max-width: 941px) 100vw, 941px" /></p>
+<p>This will create a new jsx file in the components folder. For now, replace the Hello World content with the h2 as shown in the snippet below.</p>
+<pre class="prettyprint language-js"><code class="language-js">function TodoList() {
+    return (
+        &lt;h2&gt;TODO app contents&lt;/h2&gt;
+    );
+}</code></pre>
+<p>This component displays a header for now. We will replace this soon. Let’s wire up this component in the app and then later replace the contents with the desired functionality. Let’s add this component to the app and remove the boilerplate content that is no longer needed.</p>
+<p>Open the App.jsx file. This is the main component that is loaded which represents the todo application. This is used in the main.jsx file. In App.jsx, remove all the imports from the top and clear out the contents of the return statement. The file should look like the snippet below.</p>
+<pre class="prettyprint language-js"><code class="language-js">function App() {
+    return (
+
+    )
+}
+
+export default App</code></pre>
+<p>To add the TodoList component, place your cursor inside the fragment and then type &lt;TodoL RETURN. This will add the component and the import statement. You can see this in the below animation.</p>
+<p><img decoding="async" class="alignnone wp-image-250721" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-3.gif" alt="Gif showing the return TodoList in function App()" width="1920" height="1080" /></p>
+<p>Now let’s clear out the CSS files so that we can start with a fresh start. Open the App.css file and delete all the contents. In the <em>Index.css</em> file remove all contents except the styles for :root. The <em>Index.css</em> file should look like the following.</p>
+<pre class="prettyprint language-css"><code class="language-css">:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+}</code></pre>
+<p>Now run the app to ensure that everything is working as expected. You can use the Start Debugging button from the toolbar or the F5 keyboard shortcut. After that a browser window should open with the following content.</p>
+<p><img decoding="async" class="alignnone wp-image-250722" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-4.png" alt="Image showing localhost todo list" width="835" height="463" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-4.png 835w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-4-300x166.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/a-screenshot-of-a-computer-description-automatica-4-768x426.png 768w" sizes="(max-width: 835px) 100vw, 835px" /></p>
+<p>This would be a good time to create a commit in case you need to roll back to a good state later. Now that you’ve started the app you can leave it running, as you make changes the app will automatically refresh with the latest content using the Hot Module Replacement support. Some actions like adding folders or renaming files will require that you stop debugging and then restart it but in general you can leave it running in the background as you develop your app. Open the TodoList.jsx component so that we can start to define that.</p>
+<p>In TodoList.jsx first add the UI needed to show and manage todo entries and then hook it up to store the values after that. Update TodoList.jsx to have the following content.</p>
+<pre class="prettyprint language-js"><code class="language-js">function TodoList() {
+    return (
+        &lt;div&gt;
+            &lt;h1&gt;TODO&lt;/h1&gt;
+            &lt;div&gt;
+                &lt;input
+                    type="text"
+                    placeholder="Enter a task"
+                    required
+                    aria-label="Task text" /&gt;
+                &lt;button className="add-button" aria-label="Add task" &gt;
+                    Add
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;ol id="todo-list"&gt;
+                &lt;p&gt;existing tasks will be shown here&lt;/p&gt;
+            &lt;/ol&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default TodoList;</code></pre>
+<p>We have added an input box for the todo item as well as a button to submit that. The existing tasks will be displayed under the input and button, but we will get to that soon. Now that we have the input field to get a new task added, we will wire up the Add button. We will use the <a href="https://react.dev/reference/react/useState">useState</a> React hook to add two state variables, one for the task which is getting added and another to store the existing tasks. For this tutorial the tasks will be stored in memory we will not add a database for persistent storage. Add the following import statement to TodoList.jsx to import useState.</p>
+<p><code>import { useState } from 'react'</code></p>
+<p>Now we can use that hook to create the state variables. Add the following code in the TodoList function above the return statement.</p>
+<pre class="prettyprint language-js"><code class="language-js">const [tasks, setTasks] = useState([
+    "Drink some coffee",
+    "Create a TODO app",
+    "Drink some more coffee"]);
+
+const [newTaskText, setNewTaskText] = useState("");</code></pre>
+<p>This will setup two variables, <code>tasks</code> and <code>newTaskText</code>, for the data and two functions that you can call to update those variables, <code>setTasks</code> and <code>setNewTasks</code>. When a value for a state variable is changed React will automatically re-render the component. We are almost ready to update TodoList.jsx to show the todo items as a list, but there is an important React concept that we must explain before doing so.</p>
+<p>In React when you display a list of items you will need to add a key to uniquely identify each item in the list. This is explained in depth in the React docs at <a href="https://react.dev/learn/rendering-lists">Rendering Lists</a>, but we will cover what is needed for this tutorial. We have a list of todo items that we want to display, and we need to associate a unique key for each item, the key for each item should not change. Since the key for each item should not change, we cannot use the index of the item in the array as the key. We need an id which will not change through out the lifetime of those values. We will use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID">randomUUID()</a> to create a unique id for each todo item.</p>
+<p>Now let’s create TodoList.jsx using a uuid as the key for each todo item. Update TodoList.jsx to contain the following code.</p>
+<pre class="prettyprint language-js"><code class="language-js">import React, { useState } from 'react';
+
+const initialTasks = [
+    { id: self.crypto.randomUUID(), text: 'Drink some coffee' },
+    { id: self.crypto.randomUUID(), text: 'Create a TODO app' },
+    { id: self.crypto.randomUUID(), text: 'Drink some more coffee' }
+];
+
+function TodoList() {
+    const [tasks, setTasks] = useState(initialTasks);
+    const [newTaskText, setNewTaskText] = useState("");
+
+    return (
+        &lt;article
+            className="todo-list"
+            aria-label="task list manager"&gt;
+            &lt;header&gt;
+                &lt;h1&gt;TODO&lt;/h1&gt;
+                &lt;form className="todo-input" aria-controls="todo-list"&gt;
+                    &lt;input
+                        type="text"
+                        placeholder="Enter a task"
+                        value={newTaskText} /&gt;
+                    &lt;button
+                        className="add-button"&gt;
+                        Add
+                    &lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/header&gt;
+            &lt;ol id="todo-list" aria-live="polite" aria-label="task list"&gt;
+                {tasks.map((task, index) =&gt;
+                    &lt;li key={task.id}&gt;
+                        &lt;span className="text"&gt;{task.text}&lt;/span&gt;
+                    &lt;/li&gt;
+                )}
+            &lt;/ol&gt;
+        &lt;/article&gt;
+    );
+}
+export default TodoList;</code></pre>
+<p>Since the id values are assigned outside the TodoList function, we can be sure the values will not change if the page is rerendered. When you try the app in this state, you will notice that you cannot type into the todo input element. This is because the input element is bound to <code>newTaskText</code> which has been initialized to a blank string. To allow users to add new tasks, we will need to handle the <code>onChange</code> event on that control. We also need to implement the Add button support. Add the functions immediately above the return statement in the TodoList function.</p>
+<pre class="prettyprint language-js"><code class="language-js">function handleInputChange(event) {
+    setNewTaskText(event.target.value);
+}
+
+function addTask() {
+    if (newTaskText.trim() !== "") {
+        setTasks(t =&gt; [...t, { id: self.crypto.randomUUID(), text: newTaskText }]);
+        setNewTaskText("");
+    }
+    event.preventDefault();
+}</code></pre>
+<p>In the <code>handleInputChanged</code> function, the new value from the input field is passed in via <code>event.target.value</code> and that is used to update the value for the <code>newTaskText</code> variable with <code>setNewTaskText</code>. In the <code>addTask</code> function we add the new task to the list of existing tasks using <code>setTasks</code> and we set the id of the item as a new uuid value. Update the input element to include <code>onChange={handleInputChange}</code> and update the Add button to include <code>onClick={addTask}</code>. This will wire up the event to the function that handles that event. Following this you should be able to add a new task to the task list. New tasks are added to the bottom of the list. To make this app more useful, we need to add support to delete tasks and to move a task up or down. Let’s get started on that.</p>
+<p>We will add the functions to support delete, move up and move down and then update the markup to show a button for each action. Add the following in the TodoList function above the return statement.</p>
+<pre class="prettyprint language-js"><code class="language-js">function deleteTask(id) {
+    const updatedTasks = tasks.filter(task =&gt; task.id != id);
+    setTasks(updatedTasks);
+}
+
+function moveTaskUp(index) {
+    if (index &gt; 0) {
+        const updatedTasks = [...tasks];
+        [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
+        setTasks(updatedTasks);
+    }
+}
+
+function moveTaskDown(index) {
+    if (index &lt; tasks.length) {
+        const updatedTasks = [...tasks];
+        [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
+        setTasks(updatedTasks);
+    }
+}</code></pre>
+<p>The delete function takes in the task id and deletes that one from the list and uses the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">Array <code>filter()</code></a> method to create a new array excluding the selected item and then calls <code>setTasks()</code>. The other two functions take in the index of the item since this is specific to the item ordering. Both <code>moveTaskUp()</code> and <code>moveTaskDown()</code> use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">array destructuring assignment</a> to swap the selected task with its neighbor. Now we will update the view to include these buttons. Update the return statement to contain the following.</p>
+<pre class="prettyprint language-js"><code class="language-js">return (
+    &lt;article
+        className="todo-list"
+        aria-label="task list manager"&gt;
+        &lt;header&gt;
+            &lt;h1&gt;TODO&lt;/h1&gt;
+            &lt;form className="todo-input" onSubmit={addTask} aria-controls="todo-list"&gt;
+                &lt;input
+                    type="text"
+                    required
+                    autoFocus
+                    placeholder="Enter a task"
+                    value={newTaskText}
+                    aria-label="Task text"
+                    onChange={handleInputChange} /&gt;
+                &lt;button
+                    className="add-button"
+                    aria-label="Add task"&gt;
+                    Add
+                &lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/header&gt;
+        &lt;ol id="todo-list" aria-live="polite"&gt;
+            {tasks.map((task, index) =&gt;
+                &lt;li key={task.id}&gt;
+                    &lt;span className="text"&gt;{task.text}&lt;/span&gt;
+                    &lt;button className="delete-button" onClick={() =&gt; deleteTask(task.id)}&gt;
+                        <img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f5d1.png" alt="🗑" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+                    &lt;/button&gt;
+                    &lt;button className="up-button" onClick={() =&gt; moveTaskUp(index)}&gt;
+                        ⇧
+                    &lt;/button&gt;
+                    &lt;button className="down-button" onClick={() =&gt; moveTaskDown(index)}&gt;
+                        ⇩
+                    &lt;/button&gt;
+                &lt;/li&gt;
+            )}
+        &lt;/ol&gt;
+    &lt;/article&gt;
+);</code></pre>
+<p>We have added the buttons needed to perform the tasks we discussed above. We are using Unicode characters as icons on the buttons. In the markup there are some attributes added for when we add some CSS later. You will also notice the use of <a href="https://www.w3.org/WAI/standards-guidelines/aria/">aria attributes</a> to improve accessibility, the are optional but highly recommended. If you run the app it should look like the image below.</p>
+<p><img decoding="async" class="alignnone wp-image-250723" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-5.png" alt="Image showing the UI for the todo list with the garbage icon and the up/down arrows" width="478" height="320" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-5.png 478w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-5-300x201.png 300w" sizes="(max-width: 478px) 100vw, 478px" /></p>
+<p>You should now be able to perform the following in the TODO web app.</p>
+<ul>
+<li>Add task</li>
+<li>Delete task</li>
+<li>Move task up</li>
+<li>Move task down</li>
+</ul>
+<p>This is working well, but we can refactor this so that we have a reusable component to display the todo items. The markup for the todo item will go into a new component, TodoItem. Since the management of the list will stay in the Todo component, we will pass callbacks to the delete and move buttons. To get started, right click the components folder in the Solution Explorer and select Add &gt; New Item. In the dialog that opens select the React JSX Component File. Give it the name TodoItem and click Add. We will pass in the task and callbacks as props to this new component. The TodoItem should contain the following code.</p>
+<pre class="prettyprint language-js"><code class="language-js">import PropTypes from 'prop-types';
+
+function TodoItem({ task, deleteTaskCallback, moveTaskUpCallback, moveTaskDownCallback }) {
+    return (
+        &lt;li aria-label="task" &gt;
+            &lt;span className="text"&gt;{task}&lt;/span&gt;
+            &lt;button
+                type="button"
+                aria-label="Delete task"
+                className="delete-button"
+                onClick={() =&gt; deleteTaskCallback()}&gt;
+                <img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f5d1.png" alt="🗑" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+            &lt;/button&gt;
+            &lt;button
+                type="button"
+                aria-label="Move task up"
+                className="up-button"
+                onClick={() =&gt; moveTaskUpCallback()}&gt;
+                ⇧
+            &lt;/button&gt;
+            &lt;button
+                type="button"
+                aria-label="Move task down"
+                className="down-button"
+                onClick={() =&gt; moveTaskDownCallback()}&gt;
+                ⇩
+            &lt;/button&gt;
+        &lt;/li&gt;
+    );
+}
+
+TodoItem.propTypes = {
+    task: PropTypes.string.isRequired,
+    deleteTaskCallback: PropTypes.func.isRequired,
+    moveTaskUpCallback: PropTypes.func.isRequired,
+    moveTaskDownCallback: PropTypes.func.isRequired,
+};
+
+export default TodoItem;</code></pre>
+<p>The code above contains the markup from the Todo component and at the bottom we declare the propTypes. Props are used to pass data from a parent component to child components. For more info on props the docs are available at <a href="https://react.dev/learn/passing-props-to-a-component">Passing Props to a Component – React</a>. Since the delete and move functions are being passed in as callbacks, the onClick handler will need to be updated to call into those callbacks. The full code for TodoList is below that uses the TodoItem component.</p>
+<pre class="prettyprint language-js"><code class="language-js">import React, { useState } from 'react'
+import TodoItem from './TodoItem'
+
+const initialTasks = [
+    { id: self.crypto.randomUUID(), text: 'Drink some coffee' },
+    { id: self.crypto.randomUUID(), text: 'Create a TODO app' },
+    { id: self.crypto.randomUUID(), text: 'Drink some more coffee' }
+];
+
+function TodoList() {
+    const [tasks, setTasks] = useState(initialTasks);
+    const [newTaskText, setNewTaskText] = useState("");
+    function handleInputChange(event) {
+        setNewTaskText(event.target.value);
+    }
+    function addTask() {
+        if (newTaskText.trim() !== "") {
+            setTasks(t =&gt; [...t, { id: self.crypto.randomUUID(), text: newTaskText }]);
+            setNewTaskText("");
+        }
+        event.preventDefault();
+    }
+    function deleteTask(id) {
+        const updatedTasks = tasks.filter(task =&gt; task.id !== id);
+        setTasks(updatedTasks);
+    }
+    function moveTaskUp(index) {
+        if (index &gt; 0) {
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
+            setTasks(updatedTasks);
+        }
+    }
+    function moveTaskDown(index) {
+        if (index &lt; tasks.length) {
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
+            setTasks(updatedTasks);
+        }
+    }
+    return (
+        &lt;article
+            className="todo-list"
+            aria-label="task list manager"&gt;
+            &lt;header&gt;
+                &lt;h1&gt;TODO&lt;/h1&gt;
+                &lt;form onSubmit={addTask} aria-controls="todo-list"&gt;
+                    &lt;input
+                        type="text"
+                        required
+                        placeholder="Enter a task"
+                        value={newTaskText}
+                        aria-label="Task text"
+                        onChange={handleInputChange} /&gt;
+                    &lt;button
+                        className="add-button"
+                        aria-label="Add task"&gt;
+                        Add
+                    &lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/header&gt;
+            &lt;ol id="todo-list" aria-live="polite"&gt;
+                {tasks.map((task, index) =&gt;
+                    &lt;TodoItem
+                        key={task.id}
+                        task={task.text}
+                        deleteTaskCallback={() =&gt; deleteTask(task.id)}
+                        moveTaskUpCallback={() =&gt; moveTaskUp(index)}
+                        moveTaskDownCallback={() =&gt; moveTaskDown(index)}
+                    /&gt;
+                )}
+            &lt;/ol&gt;
+        &lt;/article&gt;
+    );
+}
+
+export default TodoList;</code></pre>
+<p>Now the TodoItem component is used to render each todo item. Notice that we set the key to <code>task.id</code> which contains the uuid value for that task. When you run the app, you shouldn’t see any changes to the look or behavior of the app since we refactored it to use TodoItem. Let’s move on to styling.</p>
+<p>Now that we have all the basic functions supported, it’s time to start adding some styling to this to make it look nice. Now would be a good time to create a commit to save your progress. Let’s first start by adding a link in the Index.html for a font family, Inter, that we will use for this app. In the Index.html there are some other items that need to be cleaned up. Specifically, the title should be updated and vite.svg file is still being used as the icon. Update the Index.html file to have the following content.</p>
+<pre class="prettyprint language-js"><code class="language-js">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;link rel="icon" type="image/svg+xml" href="/checkmark-square.svg" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;title&gt;TODO app&lt;/title&gt;
+        &lt;link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'&gt;
+        &lt;script type="module" defer src="/src/main.jsx"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Edit the main.jsx file to replace &#8216;root&#8217; with &#8216;main&#8217; when calling createRoot the full content for that file is below.</p>
+<pre class="prettyprint language-js"><code class="language-js">import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+createRoot(document.querySelector('main')).render(
+    &lt;StrictMode&gt;
+        &lt;App /&gt;
+    &lt;/StrictMode&gt;,
+)</code></pre>
+<p>In addition to these changes the file checkmark-square.svg was added to the public folder. This is an SVG from the FluentUI checkmark square image which I downloaded directly. There is a package that you can use for a more integrated experience but that’s outside the scope of this post.</p>
+<p>Now let’s update the styles of the TodoList component. In the components folder add a new CSS file named TodoList.css. You can right click on the project and select Add &gt; New Item and then select Style Sheet. Give the file the name TodoList.css. Add the following to TodoList.css.</p>
+<pre class="prettyprint language-css"><code class="language-css">.todo-list {
+    background-color: #1e1e1e;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 25rem;
+}
+
+.todo-list h1 {
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.todo-input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.todo-input input {
+    flex: 1;
+    padding: 0.625rem;
+    border: 0.0625rem solid #333;
+    border-radius: 0.25rem;
+    margin-right: 0.625rem;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.todo-input .add-button {
+    padding: 0.625rem 1.25rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.todo-input .add-button:hover {
+    background-color: #0056b3;
+}
+
+.todo-list ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem;
+    border-bottom: 0.0625rem solid #333;
+}
+
+.todo-list li:last-child {
+    border-bottom: none;
+}
+
+.todo-list .text {
+    flex: 1;
+}
+
+.todo-list li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 0.625rem;
+    color: #e0e0e0;
+}
+
+.todo-list li button:hover {
+    color: #007bff;
+}
+
+.todo-list li button.delete-button {
+    color: #ff4d4d;
+}
+
+.todo-list li button.up-button,
+.todo-list li button.down-button {
+    color: #4caf50;
+}</code></pre>
+<p>After that edit TodoList.jsx to add the following import at the top of the file.</p>
+<pre class="prettyprint language-js"><code class="language-js">import './TodoList.css';</code></pre>
+<p>Refresh the browser after saving the changes. This should improve the styling of the app. The app should look like the following screenshot.</p>
+<p><img decoding="async" class="alignnone wp-image-250724" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-6.png" alt="Image showing the final todo list cleaned up view" width="1250" height="816" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-6.png 1250w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-6-300x196.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-6-1024x668.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250718-6-768x501.png 768w" sizes="(max-width: 1250px) 100vw, 1250px" /></p>
+<p>Now you have built a working Todo app which stores the todo items in memory. From here you could update the app to store the todo items in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>/<a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDb</a>, or integrate this with a server-side database, or other backend, for more permanent storage.</p>
+<h2>Recap</h2>
+<p>In this tutorial you have created a new React app using Visual Studio 2022. The app consists of a todo list, which includes support to add tasks, delete tasks and to reorder them. You created two new React components and used those throughout this tutorial.</p>
+<h2>Resources</h2>
+<p>Below are some links to related resources.</p>
+<ul>
+<li>Code for this sample <a href="https://github.com/sayedihashimi/todojswebapp">sayedihashimi/todojswebapp (github.com)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/visualstudio/javascript/?view=vs-2022">Visual Studio JavaScript and TypeScript projects</a></li>
+</ul>
+<h2>Feedback</h2>
+<p>You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>: report any bugs or issues via <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio">report a problem</a> and share your <a href="https://developercommunity.visualstudio.com/report?space=8&amp;entry=suggestion">suggestions for new features</a> or improvements to existing ones. You can also leave a comment here or reach out to Sayed on Twitter at <a href="https://twitter.com/sayedihashimi">@SayedIHashimi</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/creating-a-react-todo-app-in-visual-studio-2022/">Creating a React TODO app in Visual Studio 2022</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Organize Your Breakpoints like a pro</title>
+      <link>https://devblogs.microsoft.com/visualstudio/organize-your-breakpoints-like-a-pro/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Wed, 25 Sep 2024 10:00:50 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Breakpoints]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Developer Productivity]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250754</guid>
+      <description><![CDATA[<p>Do you feel overwhelmed by the sheer number of breakpoints in your Visual Studio project? Wish you could categorize and toggle them on and off with ease? The new breakpoint group feature in Visual Studio 2022 is here to transform your debugging experience. Breakpoint groups allow you to create custom collections of breakpoints and apply [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/organize-your-breakpoints-like-a-pro/">Organize Your Breakpoints like a pro</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Do you feel overwhelmed by the sheer number of breakpoints in your Visual Studio project? Wish you could categorize and toggle them on and off with ease? The new breakpoint group feature in Visual Studio 2022 is here to transform your debugging experience.</p>
+<p><img decoding="async" class="alignnone wp-image-250755" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250754-1.png" alt="Image of a large list of breakpoints" width="1012" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250754-1.png 1256w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250754-1-300x171.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250754-1-1024x583.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250754-1-768x437.png 768w" sizes="(max-width: 1012px) 100vw, 1012px" /></p>
+<p>Breakpoint groups allow you to create custom collections of breakpoints and apply various actions to them. For example, you can enable or disable all breakpoints in a group or set conditions and actions for them or even make the whole group dependent on other breakpoints.</p>
+<p>But that&#8217;s not all. You can also mark the selected<strong> breakpoint group as the default</strong>, ensuring all newly added breakpoints are automatically included in that group. This enhancement simplifies the management and organization of breakpoints, providing seamless debugging when investigating multiple issues.</p>
+<h2>Recap: Breakpoint groups</h2>
+<p>To create a breakpoint group, right-click on any breakpoint in the Breakpoints window and select <strong>Add to Group &gt; New Group</strong>. You can name the group and add a description if you want.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/bpgroup.gif"><img decoding="async" class="alignnone size-full wp-image-250765" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/bpgroup.gif" alt="Image bpgroup" width="1321" height="734" /></a></p>
+<p>To add more breakpoints to the group, simply drag and drop them from the Breakpoints window or use the right-click menu. To remove breakpoints from the group, drag and drop them outside the group or use the right-click menu. You can also delete the group, which will remove all the breakpoints in the group from your project.</p>
+<h2>Default Breakpoint Group</h2>
+<p>To set a breakpoint group as the default, simply right-click on the group and choose &#8220;Set as Default Group.&#8221; The default group will be distinctly labeled in bold, making it easy to identify. When you have a default breakpoint group, any new breakpoints you add to your code will automatically be added to that group. This ensures that your breakpoints are organized consistently, without the need to manually sort them each time you add new ones.</p>
+<p>If your needs change, you can easily move breakpoints to a different group at any time. This flexibility allows you to adapt your breakpoint organization as your project evolves. You can change the default group at any time or clear it altogether.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/deafultbp.gif"><img decoding="async" class="alignnone wp-image-250764" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/deafultbp.gif" alt="Image deafultbp" width="1249" height="764" /></a></p>
+<p>You can access all the breakpoint group actions from the right-click menu or the toolbar in the Breakpoints window.</p>
+<h2>Try it out today</h2>
+<p>We hope you find the breakpoint group feature useful and productive. It&#8217;s one of the many improvements we&#8217;ve made to the debugging experience in Visual Studio 2022, thanks to your feedback and suggestions.</p>
+<p>Please download the latest version of Visual Studio and try it out. Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn.</a></p>
+<p>Report any issues or suggestions via <strong>Help &gt; Send Feedback</strong>.</p>
+<p>Learn more about other Copilot assisted features in Visual Studio by checking out additional resources <a href="https://learn.microsoft.com/en-us/visualstudio/debugger/debug-with-copilot?view=vs-2022">Debug with GitHub Copilot &#8211; Visual Studio (Windows) | Microsoft Learn</a></p>
+<p>Thank you for using Visual Studio and happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/organize-your-breakpoints-like-a-pro/">Organize Your Breakpoints like a pro</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Next-Gen Code Coverage in Visual Studio: Enhanced C++ Support and Security</title>
+      <link>https://devblogs.microsoft.com/visualstudio/next-gen-code-coverage-in-visual-studio-enhanced-c-support-and-security/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jakub Chocholowicz]]></dc:creator>
+      <pubDate>Tue, 24 Sep 2024 10:00:02 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Arm64]]></category>
+      <category><![CDATA[security]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250731</guid>
+      <description><![CDATA[<p>We’re excited to share the latest changes in Visual Studio’s code coverage components. If you haven’t already, be sure to check out our previous blog posts: What’s New in Our Code Coverage Tooling? and Code coverage features in Visual Studio Enterprise. C++ Code Coverage Tired of instable native code coverage that doesn’t support ARM64? Now, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/next-gen-code-coverage-in-visual-studio-enhanced-c-support-and-security/">Next-Gen Code Coverage in Visual Studio: Enhanced C++ Support and Security</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We’re excited to share the latest changes in Visual Studio’s code coverage components. If you haven’t already, be sure to check out our previous blog posts: <a href="https://devblogs.microsoft.com/dotnet/whats-new-in-our-code-coverage-tooling/">What’s New in Our Code Coverage Tooling?</a> and <a href="https://devblogs.microsoft.com/visualstudio/code-coverage-features-in-visual-studio-enterprise/">Code coverage features in Visual Studio Enterprise</a>.</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; font-size: 14px; border-radius: 6px; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.11</a></div></p>
+<h2>C++ Code Coverage</h2>
+<p>Tired of instable native code coverage that doesn’t support ARM64? Now, you can collect native code coverage for all your methods, including those on ARM64. We have completely overhauled the C++ code coverage support to improve reliability, performance, and security. The new implementation, powered by MSVC compiler tooling, now supports x86, x64, and ARM64 architectures. To enable the new experience, you need to enable the <a href="https://learn.microsoft.com/cpp/build/reference/profile-performance-tools-profiler?view=msvc-170">/PROFILE</a> linker option for all C++ projects, including both testing and production.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250731-1.png"><img decoding="async" class="alignnone wp-image-250732 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250731-1.png" alt="Image showing Configuration Properties, Linker, Advanced and set Profile to Yes (/Profile)" width="1359" height="955" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250731-1.png 1359w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250731-1-300x211.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250731-1-1024x720.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250731-1-768x540.png 768w" sizes="(max-width: 1359px) 100vw, 1359px" /></a></p>
+<p>For detailed examples, visit:</p>
+<ul>
+<li><a href="https://github.com/microsoft/codecoverage/blob/main/samples/VisualStudio/scenarios/scenario06/README.md">Scenario 06: C++ Code Coverage in Visual Studio</a></li>
+<li><a href="https://github.com/microsoft/codecoverage/blob/main/samples/VisualStudio/scenarios/scenario07/README.md">Scenario 07: C++ Code Coverage in Visual Studio ARM64</a></li>
+</ul>
+<p>This feature is available only for the MSVC compiler.</p>
+<h2>Introducing Microsoft.CodeCoverage.Console</h2>
+<p>You can use the new <strong>Microsoft.CodeCoverage.Console</strong> tool to collect code coverage for console applications, merge coverage reports, and instrument binaries. It can also capture code coverage for each test separately, making it an ideal choice for use in CI pipelines.</p>
+<p>Available in Visual Studio Enterprise through Developer PowerShell, this command-line tool extends the capabilities of the well-known <a href="https://learn.microsoft.com/dotnet/core/additional-tools/dotnet-coverage">dotnet-coverage</a> tool, adding support for C++ code coverage and enhanced security features.</p>
+<p>For an example of how to use the Microsoft.CodeCoverage.Console tool, visit <a href="https://github.com/microsoft/codecoverage/blob/main/samples/VisualStudio/scenarios/scenario09/README.md">Scenario 09: C++ Code Coverage for Console Apps in Developer PowerShell for Visual Studio Enterprise.</a> Visit <a href="https://devblogs.microsoft.com/dotnet/whats-new-in-our-code-coverage-tooling/#meet-dotnet-coverage2">What’s New in Our Code Coverage Tooling?</a> to find even more examples.</p>
+<p>To learn more, check out the <a href="https://learn.microsoft.com/visualstudio/test/microsoft-code-coverage-console-tool">Microsoft.CodeCoverage.Console documentation</a>.</p>
+<h2>Enhanced Security Features</h2>
+<p>You can collect code coverage for web applications running in IIS for both .NET and C++ using <strong>Microsoft.CodeCoverage.Console</strong>, which allows for the instrumentation of both C++ and .NET binaries. Additionally, Visual Studio code coverage components now include enhanced security features, such as controlling access to data passed through named pipes and shared memory. This security improvement also supports running web applications in IIS under different user accounts, allowing you to specify which users can access the coverage data.</p>
+<p>For a full example, visit <a href="https://github.com/microsoft/codecoverage/blob/main/samples/VisualStudio/scenarios/scenario08/README.md">Scenario 08: Static Code Coverage for ASP.NET Core Web Apps (Razor Pages) in IIS</a>.</p>
+<h2>Summary</h2>
+<p>In this update, we’ve enhanced the code coverage experience in Visual Studio with a complete rewrite of C++ code coverage support, introduced the new Microsoft.CodeCoverage.Console tool, and added new security measures for managing access to shared data. These changes provide a faster, more reliable, and secure way to measure code coverage in your applications, especially when working with C++ projects.</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank" target="_blank" rel="noopener">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/next-gen-code-coverage-in-visual-studio-enhanced-c-support-and-security/">Next-Gen Code Coverage in Visual Studio: Enhanced C++ Support and Security</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Level up your collaborations with the pull request experience in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/level-up-your-collaborations-with-the-pull-request-experience-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Mon, 23 Sep 2024 10:00:47 +0000</pubDate>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[Git Integration]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250702</guid>
+      <description><![CDATA[<p>One of our main goals is to help you and your team collaborate more effectively and efficiently on your software projects. That&#8217;s why we are constantly improving our Version Control features, especially the ones related to the pull request workflow. Starting in Visual Studio version 17.11, you can enjoy a smoother and smarter pull request [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/level-up-your-collaborations-with-the-pull-request-experience-in-visual-studio/">Level up your collaborations with the pull request experience in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>One of our main goals is to help you and your team collaborate more effectively and efficiently on your software projects. That&#8217;s why we are constantly improving our Version Control features, especially the ones related to the pull request workflow. Starting in Visual Studio version 17.11, you can enjoy a smoother and smarter pull request experience, from creating to reviewing to merging. You can link your Azure DevOps work items, and in both Azure DevOps and GitHub you can create draft PRs and use default templates. You can even get AI assistance to write your pull request descriptions. Plus, you can view and respond to your pull request comments right in the editor, without leaving Visual Studio. Sounds awesome, right? Download the latest Visual Studio release and see for yourself!</p>
+<p style="margin: 0in; font-family: Calibri; font-size: 11.0pt;"><div style="text-align:center"><a class="cta_button_link" href="https://visualstudio.microsoft.com/downloads/" style="text-transform: titlecase; font-size: 14px; border-radius: 6px; display: inline-block; background-color: #5C2D91; color: white; padding: 10px; margin:10px 0; text-decoration: none;" target="_blank">Download Visual Studio 17.11</a></div></p>
+<h2>Create <em>all </em>your pull requests in Visual Studio</h2>
+<p>We were so excited by the enthusiastic reception to the new <a href="https://devblogs.microsoft.com/visualstudio/create-a-pull-request-in-visual-studio/">Create a Pull Request</a> flow and the <a href="https://devblogs.microsoft.com/visualstudio/create-a-pull-request/">subsequent updates</a>. This feature had hundreds of survey responses, and we read every single comment. We’ve delivered on the top concerns, enabling Azure DevOps work item linking, default Pull Request templates, and draft PRs.</p>
+<ul>
+<li>The Azure DevOps “New Pull Request” window now has a section where you can add your linked work items. These items are reflected in the web as being linked – avoiding the context switch to the web and fulfilling many branch policies that require a linked ticket.</li>
+<li>Default pull request templates will auto-populate in the description box if there’s one available. Learn more about how to add default templates in your repository in the <a href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository">GitHub documentation</a> and <a href="https://learn.microsoft.com/azure/devops/repos/git/pull-request-templates?view=azure-devops#default-pull-request-templates">Azure DevOps documentation.</a></li>
+<li>Create your pull request as a draft using the drop down menu on the “Create” button. This lets your colleagues know it’s a work in progress.</li>
+<li>Learn more about the GitHub Copilot generated pull request descriptions in <a href="https://devblogs.microsoft.com/visualstudio/let-github-copilot-draft-of-your-pull-request-description/">our previous blog</a>.</li>
+</ul>
+<p><img decoding="async" class="alignnone wp-image-250703" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250702-1.png" alt="Image showing a draft of a pull request description for ADO and GitHub" width="504" height="284" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250702-1.png 504w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250702-1-300x169.png 300w" sizes="(max-width: 504px) 100vw, 504px" /></p>
+<h2>View your pull request comments in the editor</h2>
+<p>Mapping between your code editor and your browser to view pull request comments can be a hassle. We&#8217;ve added your GitHub and Azure DevOps pull request comments directly in your working file. You can now stay in your context, make necessary code changes, and interact with your colleagues&#8217; suggestions without switching contexts to the browser.</p>
+<p>Enable the feature flag, “Pull Request Comments”, then checkout any branch with an active pull request branch and click on “Show comments in file”. You can also click on the “PR #” entry point from the Git Changes window or from the Git top level menu with Git &gt; GitHub or Azure DevOps &gt; Show comments in File.</p>
+<p><img decoding="async" class="alignnone wp-image-250704" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250702-2.png" alt="Image of Git Changes screen" width="900" height="506" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250702-2.png 900w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250702-2-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/09/word-image-250702-2-768x432.png 768w" sizes="(max-width: 900px) 100vw, 900px" /></p>
+<p>You can navigate between files in the pull request and comments in the files using the toolbar. Leverage the following keyboard shortcuts:</p>
+<table>
+<tbody>
+<tr>
+<td>Go to the previous file in the pull request</td>
+<td>Ctrl+Shift+Alt+F6</td>
+</tr>
+<tr>
+<td>Go to the next file in the pull request</td>
+<td>Ctrl+Alt+F6</td>
+</tr>
+<tr>
+<td>Go to the previous comment</td>
+<td>Ctrl+Shift+Alt+F8</td>
+</tr>
+<tr>
+<td>Go to the next comment</td>
+<td>Ctrl+Alt+F8</td>
+</tr>
+<tr>
+<td>Move focus back to the code from a comment</td>
+<td>Esc</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>In the last preview we included better support for @ mentions and work item references for your comments. We also improved the UI with the addition of avatars, other visual tweaks to improve accessibility, and we enabled better syncing with the server.</p>
+<h2>Contribute to what’s next</h2>
+<p>A smoother pull request experience helps your collaborations thrive! Be sure to try out the latest features in Visual Studio 17.11 GA and share your feedback in the following surveys:</p>
+<ul>
+<li><a href="https://aka.ms/CreatePR">Create a Pull Request Improvements</a></li>
+<li><a href="https://aka.ms/ReviewPR">View Pull Request Comments</a></li>
+</ul>
+<p>We plan to continue improving the pull request experience based on your feedback, so let us know what’s missing and what you’re looking forward to! We&#8217;ve got a lot of functionality on the roadmap, including adding new pull request comments and seeing the comments in the diff view between your source and target.</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/level-up-your-collaborations-with-the-pull-request-experience-in-visual-studio/">Level up your collaborations with the pull request experience in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>

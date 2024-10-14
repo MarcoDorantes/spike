@@ -106,15 +106,15 @@ Describe derivation {
 
 Describe LoadHistory1 {
     BeforeAll {
-        $history = Read-SymbolHistory $home\Downloads\MD_Tracked-Symbol-Quote-Utilization_2024-07-31_ByDate.csv
+        $history = Read-SymbolHistory $home\Downloads\MD_Tracked-Symbol-Quote-Utilization_2024-10-12_ByDate.csv
     }
 
-    It load1 {
+    It loaded {
         $history | Should -Not -BeNullOrEmpty
     }
 
     It historic1 {
-        $symbol = $history | select -Last 1
+        $symbol = $history | ?{$_.ID -eq 'SIC/TXN *' -and $_.When.Date -eq [DateTime]'2024-07-31'}
         $symbol.ID | Should -Be 'SIC/TXN *'
         $symbol.StockSeries | Should -Be 'TXN *'
         $symbol.Emisora | Should -Be 'TXN'
@@ -123,5 +123,25 @@ Describe LoadHistory1 {
         $symbol.Counted | Should -Be 1
         $symbol.ConfigurableTopicSuffix | Should -Be 'SIC/TXN ~'
         '{0:s}' -f $symbol.When | Should -Be '2024-07-31T17:14:00'
+    }
+
+    It historic2 {
+        $symbol = $history | select -Last 1
+        $symbol.ID | Should -Be 'NAC/FSITES 20'
+        $symbol.StockSeries | Should -Be 'FSITES 20'
+        $symbol.Emisora | Should -Be 'FSITES'
+        $symbol.Serie | Should -Be '20'
+        $symbol.Market | Should -Be 'NAC'
+        $symbol.Counted | Should -Be 1
+        $symbol.ConfigurableTopicSuffix | Should -Be 'NAC/FSITES 20'
+        '{0:s}' -f $symbol.When | Should -Be '2024-10-11T17:13:00'
+    }
+
+    It recent1 {
+        $recent_sum   = $history | ?{$_.When.Date -ge [DateTime]'2024-10-01'} | group ID | %{ [PSCustomObject]@{ID=$_.Name; Sum=[UInt32](($_.Group|measure -Sum Counted).Sum)} } | sort -desc Sum
+        $recent_stats = $history | ?{$_.When.Date -ge [DateTime]'2024-10-01'} | group ID | %{ [PSCustomObject]@{ID=$_.Name; Stats=($_.Group.Counted | measure -AllStats)} } | sort -desc {$_.Stats.Sum}
+        $top1 = $recent_sum | select -First 1 | %{'{0}|{1}' -f $_.ID,$_.Sum}
+        $top2 = $recent_stats | select -First 1 |%{'{0}|{1:0}' -f $_.ID,$_.Stats.Sum}
+        $top1 -eq $top2 | Should -BeTrue
     }
 }

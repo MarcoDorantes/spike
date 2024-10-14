@@ -92,7 +92,7 @@ function Read-SymbolHistory([Parameter(Mandatory)][System.IO.FileInfo]$file)
 $ss = Read-SymbolTrace .\source\SymbolCmdlet\Symbols-20241007-171300.csv
 $ss | sort -desc Counted -Stable| ? {$_.Market -eq 'NAC' -and $_.Emisora.StartsWith('O')}|select ID,Counted|measure -Sum Counted
 
-cat $home\Downloads\MD_Tracked-Symbol-Quote-Utilization_2024-07-31_ByDate.csv -first 2
+cat $home\Downloads\MD_Tracked-Symbol-Quote-Utilization_2024-10-12_ByDate.csv -first 2
 "Date","Symbol","Market","QuoteCount"
 "6/30/2020 5:14:01 PM","MMM *","SIC","164"
 #>
