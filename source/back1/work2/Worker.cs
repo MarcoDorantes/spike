@@ -77,5 +77,5 @@ public class Worker : BackgroundService
 
 public class Worker2 : Worker
 {
-    public Worker2(ILogger<Worker> logger, IClass1 c, System.IServiceProvider services):base(logger, c, services) {}
+    public Worker2(ILogger<Worker2> logger, IClass1 c, System.IServiceProvider services):base(logger, c, services) {}
 }

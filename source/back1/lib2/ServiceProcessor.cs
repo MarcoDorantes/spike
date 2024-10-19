@@ -4,14 +4,14 @@ using System;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
-public class ServiceProcessor : IServiceProcessor
+public class ServiceProcessor(ILogger<ServiceProcessor> _logger) : IServiceProcessor
 {
-    protected readonly ILogger<ServiceProcessor> _logger;
+    /*protected readonly ILogger<ServiceProcessor> _logger;
 
     public ServiceProcessor(ILogger<ServiceProcessor> logger)
     {
         _logger = logger;
-    }
+    }*/
     
     public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
