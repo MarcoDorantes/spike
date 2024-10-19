@@ -3,14 +3,14 @@ namespace lib2;
 using System;
 using Microsoft.Extensions.Logging;
 
-public class EngineOperationalWindowCycle : IEngineOperationalWindowCycle
+public class EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> _logger) : IEngineOperationalWindowCycle
 {
-    protected readonly ILogger<EngineOperationalWindowCycle> _logger;
+    /*protected readonly ILogger<EngineOperationalWindowCycle> _logger;
 
     public EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> logger)
     {
         _logger = logger;
-    }
+    }*/
 
     public async System.Threading.Tasks.Task Open(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {

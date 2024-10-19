@@ -4,14 +4,14 @@ using System;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
-public class EngineProcessor : IEngineProcessor
+public class EngineProcessor(ILogger<EngineProcessor> _logger) : IEngineProcessor
 {
-    protected readonly ILogger<EngineProcessor> _logger;
+    /*protected readonly ILogger<EngineProcessor> _logger;
 
     public EngineProcessor(ILogger<EngineProcessor> logger)
     {
         _logger = logger;
-    }
+    }*/
 
     public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
