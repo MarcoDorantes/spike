@@ -24,9 +24,9 @@ public class ServiceProcessor(ILogger<ServiceProcessor> _logger) : IServiceProce
     private bool disposedValue;
     protected virtual void Dispose(bool disposing)
     {
+        _logger.LogInformation("{what} disposed({disposing}) at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, disposing, DateTimeOffset.Now);
         if (!disposedValue)
         {
-            _logger.LogInformation("{what} disposed({disposing}) at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, disposing, DateTimeOffset.Now);
             if (disposing)
             {
                 // TODO: dispose managed state (managed objects)
