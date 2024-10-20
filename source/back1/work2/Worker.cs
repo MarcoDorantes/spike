@@ -22,30 +22,31 @@ public class Worker : BackgroundService
 
     ~Worker()
     {
-        _logger?.LogInformation("{what} finalized at: {time}", GetType().Name, DateTimeOffset.Now);
+        _logger?.LogInformation("{what} finalized at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         Dispose(false);
     }
     public override void Dispose()
     {
-        _logger.LogInformation("{what} disposed at: {time}", GetType().Name, DateTimeOffset.Now);
+        _logger.LogInformation("{what} disposed at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         Dispose(true);
         base.Dispose();
       //GC.SuppressFinalize(this);
     }
     protected virtual void Dispose(bool disposing)
     {
-        _logger.LogInformation("{what} disposing({disposing}) at: {time}", GetType().Name, disposing, DateTimeOffset.Now);
+        _logger.LogInformation("{what} disposing({disposing}) at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, disposing, DateTimeOffset.Now);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("{what} executed at: {time}", GetType().Name, DateTimeOffset.Now);
+        _logger.LogInformation("{what} executed at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         while (!stoppingToken.IsCancellationRequested)
         {
             if (_logger.IsEnabled(LogLevel.Information))
             {
-                _logger.LogInformation("{what} running at: {time}", GetType().Name, DateTimeOffset.Now);
+                _logger.LogInformation("{what} running at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
             }
+            //https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection
             //https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-basics
             //https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-guidelines
             //https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_preventing-dirty-writes
@@ -58,19 +59,19 @@ public class Worker : BackgroundService
             await service_instance.Execute(_services, stoppingToken);
         }
         await Task.Delay(4000, stoppingToken);
-        _logger.LogInformation("{what} ended at: {time}", GetType().Name, DateTimeOffset.Now);
+        _logger.LogInformation("{what} ended at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         await Task.Delay(4000);
     }
 
     public override async Task StartAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("{what} started at: {time}", GetType().Name, DateTimeOffset.Now);
+        _logger.LogInformation("{what} started at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         await base.StartAsync(stoppingToken);
     }
 
     public override async Task StopAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("{what} stopped at: {time}", GetType().Name, DateTimeOffset.Now);
+        _logger.LogInformation("{what} stopped at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         await base.StopAsync(stoppingToken);
     }
 }

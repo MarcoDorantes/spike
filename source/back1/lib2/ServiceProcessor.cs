@@ -16,7 +16,7 @@ public class ServiceProcessor(ILogger<ServiceProcessor> _logger) : IServiceProce
     public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
         using IEngineProcessor engine = services.GetRequiredService<IEngineProcessor>();
-        _logger.LogInformation("{what} executed at {time}", GetType().Name, DateTimeOffset.Now);
+        _logger.LogInformation("{what} executed at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         await engine.Execute(services, stoppingToken);
     }
 
@@ -26,7 +26,7 @@ public class ServiceProcessor(ILogger<ServiceProcessor> _logger) : IServiceProce
     {
         if (!disposedValue)
         {
-            _logger.LogInformation("{what} disposed({disposing}) at {time}", GetType().Name, disposing, DateTimeOffset.Now);
+            _logger.LogInformation("{what} disposed({disposing}) at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, disposing, DateTimeOffset.Now);
             if (disposing)
             {
                 // TODO: dispose managed state (managed objects)

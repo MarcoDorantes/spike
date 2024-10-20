@@ -14,21 +14,20 @@ public class EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> 
 
     public async System.Threading.Tasks.Task Open(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
-        _logger.LogInformation("{what} started at {time}", GetType().Name, DateTimeOffset.Now);
+        _logger.LogInformation("{what} opened at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
     }
 
-    public async System.Threading.Tasks.Task Close(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
+    public /*async*/ void Close(/*System.IServiceProvider services, System.Threading.CancellationToken stoppingToken*/)
     {
-        _logger.LogInformation("{what} stopped at {time}", GetType().Name, DateTimeOffset.Now);
-        await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
+        _logger.LogInformation("{what} closed at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
     }
 
     #region Disposable support
     private bool disposedValue;
     protected virtual void Dispose(bool disposing)
     {
-        _logger.LogInformation("{what} disposed({disposing}) at {time}", GetType().Name, disposing, DateTimeOffset.Now);
+        _logger.LogInformation("{what} disposed({disposing}) at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, disposing, DateTimeOffset.Now);
         if (!disposedValue)
         {
             if (disposing)
@@ -37,7 +36,7 @@ public class EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> 
             }
 
             // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-
+            Close();
             // TODO: set large fields to null
             disposedValue = true;
         }

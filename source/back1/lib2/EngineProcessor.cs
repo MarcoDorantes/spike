@@ -15,18 +15,18 @@ public class EngineProcessor(ILogger<EngineProcessor> _logger) : IEngineProcesso
 
     public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
-        _logger.LogInformation("{what} executed at {time}", GetType().Name, DateTimeOffset.Now);
-        using IEngineOperationalWindowCycle cycle = services.GetRequiredService<IEngineOperationalWindowCycle>();
-        await cycle.Open(services, stoppingToken);
+        _logger.LogInformation("{what} executed at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
+        using IEngineOperationalWindowCycle window = services.GetRequiredService<IEngineOperationalWindowCycle>();
+        await window.Open(services, stoppingToken);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
-        await cycle.Close(services, stoppingToken);
+        /*await*/ window.Close();
     }
 
     #region Disposable support
     private bool disposedValue;
     protected virtual void Dispose(bool disposing)
     {
-        _logger.LogInformation("{what} disposed({disposing}) at {time}", GetType().Name, disposing, DateTimeOffset.Now);
+        _logger.LogInformation("{what} disposed({disposing}) at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, disposing, DateTimeOffset.Now);
         if (!disposedValue)
         {
             if (disposing)
