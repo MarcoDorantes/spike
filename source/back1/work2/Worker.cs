@@ -30,7 +30,7 @@ public class Worker : BackgroundService
         _logger.LogInformation("{what} disposed at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
         Dispose(true);
         base.Dispose();
-      //GC.SuppressFinalize(this);
+        GC.SuppressFinalize(this);
     }
     protected virtual void Dispose(bool disposing)
     {
