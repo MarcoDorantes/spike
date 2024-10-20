@@ -59,7 +59,7 @@ class Program
             builder.Services.AddTransient<lib2.IServiceProcessor, lib2.ServiceProcessor>();
 
             builder.Services.AddTransient<lib2.IEngineProcessor, lib2.EngineProcessor>();
-            builder.Services.AddTransient<lib2.IEngineOperationalWindowCycle, lib2.EngineOperationalWindowCycle>();
+            builder.Services.AddTransient<lib2.IEngineOperationalWindow, lib2.EngineOperationalWindow>();
 
             var host = builder.Build();
             host.Run();

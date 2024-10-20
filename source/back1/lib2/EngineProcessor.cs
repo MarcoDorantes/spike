@@ -16,7 +16,7 @@ public class EngineProcessor(ILogger<EngineProcessor> _logger) : IEngineProcesso
     public async System.Threading.Tasks.Task Execute(System.IServiceProvider services, System.Threading.CancellationToken stoppingToken)
     {
         _logger.LogInformation("{what} executed at {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, DateTimeOffset.Now);
-        using IEngineOperationalWindowCycle window = services.GetRequiredService<IEngineOperationalWindowCycle>();
+        using IEngineOperationalWindow window = services.GetRequiredService<IEngineOperationalWindow>();
         await window.Open(services, stoppingToken);
         await System.Threading.Tasks.Task.Delay(System.Threading.Timeout.Infinite, stoppingToken);
         /*await*/ window.Close();

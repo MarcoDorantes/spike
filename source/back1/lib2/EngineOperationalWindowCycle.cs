@@ -3,11 +3,11 @@ namespace lib2;
 using System;
 using Microsoft.Extensions.Logging;
 
-public class EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> _logger) : IEngineOperationalWindowCycle
+public class EngineOperationalWindow(ILogger<EngineOperationalWindow> _logger) : IEngineOperationalWindow
 {
-    /*protected readonly ILogger<EngineOperationalWindowCycle> _logger;
+    /*protected readonly ILogger<EngineOperationalWindow> _logger;
 
-    public EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> logger)
+    public EngineOperationalWindow(ILogger<EngineOperationalWindow> logger)
     {
         _logger = logger;
     }*/
@@ -43,7 +43,7 @@ public class EngineOperationalWindowCycle(ILogger<EngineOperationalWindowCycle> 
     }
 
     // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-    ~EngineOperationalWindowCycle()
+    ~EngineOperationalWindow()
     {
         // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
         Dispose(disposing: false);
