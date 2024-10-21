@@ -12,20 +12,29 @@ public interface IClass1{}
 public class Class1:IClass1{}
 
 public interface IFileLogger<Class2> : ILogger<Class2>{}
-public class FileLogger<Class2> : IFileLogger<Class2>
+public class FileLogger<Class2> : IFileLogger<Class2>, IDisposable
 {
     protected System.Diagnostics.TextWriterTraceListener listener;
     protected System.IO.TextWriter listenerWriter;
 
     public FileLogger()
     {
-        // var logname = 'file1.log'
+        // var logname = $"file1_{DateTime.Now:yyyy-MM-ddTHH-mm-ss-fff}.log";
         // System.IO.FileInfo listenerFile = new(logname);
         // listenerWriter = listenerFile.CreateText();
         listenerWriter = Console.Out;
         listener = new(listenerWriter);
         System.Diagnostics.Trace.Listeners.Add(listener);
         System.Diagnostics.Trace.AutoFlush = true;
+    }
+    
+    public void Dispose()
+    {
+        System.Diagnostics.Trace.WriteLine($"/FileLogger.Dispose");
+        listener?.Dispose();
+        listenerWriter?.Dispose();
+        listener=null;
+        listenerWriter=null;
     }
 
     #region ILogger<T>
