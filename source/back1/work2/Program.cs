@@ -11,25 +11,52 @@ using static System.Console;
 public interface IClass1{}
 public class Class1:IClass1{}
 
-public interface IFileLogger<Class2>: ILogger<Class2>{}
+public interface IFileLogger<Class2> : ILogger<Class2>{}
 public class FileLogger<Class2> : IFileLogger<Class2>
 {
+    protected System.Diagnostics.TextWriterTraceListener listener;
+    protected System.IO.TextWriter listenerWriter;
+
+    public FileLogger()
+    {
+        // var logname = 'file1.log'
+        // System.IO.FileInfo listenerFile = new(logname);
+        // listenerWriter = listenerFile.CreateText();
+        listenerWriter = Console.Out;
+        listener = new(listenerWriter);
+        System.Diagnostics.Trace.Listeners.Add(listener);
+        System.Diagnostics.Trace.AutoFlush = true;
+    }
+
     #region ILogger<T>
     public System.IDisposable BeginScope<TState>(TState state) where TState : notnull => null;
 
     public bool IsEnabled(LogLevel logLevel) => true;
 
-    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, System.Exception exception, System.Func<TState, System.Exception, string> formatter){}
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, System.Exception exception, System.Func<TState, System.Exception, string> formatter)
+    {
+        System.Diagnostics.Trace.WriteLine($"/{state}");
+    }
     #endregion
 }
+public class FileLoggerProvider : ILoggerProvider//to use the .NET 8 Logging infrastructure
+{
+    public ILogger CreateLogger(string categoryName) {return null;}
+    public void Dispose() {}
+}
 
-public interface IClass2 {void f(string s);}
-public class Class2(ILogger<Class2> logger1, IFileLogger<Class2> logger2):IClass2
+public interface IClass2 : IDisposable {void f(string s);}
+public class Class2(ILogger<Class2> logger1, IFileLogger<Class2> logger2) : IClass2
 {
     public void f(string s)
     {
-        logger2.LogInformation("{what} f({s}) at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, s, DateTimeOffset.Now);
-        logger1.LogInformation("{what} f({s}) at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, s, DateTimeOffset.Now);
+        logger1.LogInformation("{what} {where}({s}) at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, nameof(f), s, DateTimeOffset.Now);
+        logger2.LogInformation("{what} {where}({s}) at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, nameof(f), s, DateTimeOffset.Now);
+    }
+    public void Dispose()
+    {
+        logger1.LogInformation("{what} {where} at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, nameof(Dispose), DateTimeOffset.Now);
+        logger2.LogInformation("{what} {where} at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, nameof(Dispose), DateTimeOffset.Now);
     }
 }
 
@@ -79,8 +106,8 @@ class Program
           //builder.Services.AddHostedService<Worker2>();
             builder.Services.AddSingleton<IClass1>(_=>new Class1());
 
-            builder.Services.AddTransient<IClass2,Class2>();
-            builder.Services.AddTransient<IFileLogger<Class2>,FileLogger<Class2>>();
+            builder.Services.AddTransient<IClass2, Class2>();
+            builder.Services.AddTransient<IFileLogger<Class2>, FileLogger<Class2>>();
 
           //builder.Services.AddTransient<lib2.IServiceProcessor>(provider => new lib2.ServiceProcessor(logfactory.CreateLogger<lib2.ServiceProcessor>()));
             builder.Services.AddTransient<lib2.IServiceProcessor, lib2.ServiceProcessor>();

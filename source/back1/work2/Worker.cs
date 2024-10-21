@@ -55,7 +55,7 @@ public class Worker : BackgroundService
             var same = object.ReferenceEquals(_c,c2);
             _logger.LogInformation("{what} same: {same}", GetType().Name, same);
 
-            IClass2 x2 = _services.GetRequiredService<IClass2>();
+            using IClass2 x2 = _services.GetRequiredService<IClass2>();
             x2.f("here");
 
             using lib2.IServiceProcessor service_instance = _services.GetRequiredService<lib2.IServiceProcessor>();
