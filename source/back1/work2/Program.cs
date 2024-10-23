@@ -12,17 +12,18 @@ public interface IClass1{}
 public class Class1:IClass1{}
 
 public interface IFileLogger<Class2> : ILogger<Class2>{}
-public class FileLogger<Class2> : IFileLogger<Class2>, IDisposable
+public class FileLoggerBase : ILogger, IDisposable
 {
     protected System.Diagnostics.TextWriterTraceListener listener;
     protected System.IO.TextWriter listenerWriter;
 
-    public FileLogger()
+    public FileLoggerBase()
     {
-        // var logname = $"file1_{DateTime.Now:yyyy-MM-ddTHH-mm-ss-fff}.log";
-        // System.IO.FileInfo listenerFile = new(logname);
-        // listenerWriter = listenerFile.CreateText();
-        listenerWriter = Console.Out;
+        WriteLine($"{DateTime.Now:s} {nameof(FileLoggerBase)}.ctor()");
+        var logname = $"file1_{DateTime.Now:yyyy-MM-ddTHH-mm-ss-fff}.log";
+        System.IO.FileInfo listenerFile = new(logname);
+        listenerWriter = listenerFile.CreateText();
+        // listenerWriter = Console.Out;
         listener = new(listenerWriter);
         System.Diagnostics.Trace.Listeners.Add(listener);
         System.Diagnostics.Trace.AutoFlush = true;
@@ -30,7 +31,7 @@ public class FileLogger<Class2> : IFileLogger<Class2>, IDisposable
     
     public void Dispose()
     {
-        System.Diagnostics.Trace.WriteLine($"/FileLogger.Dispose");
+        System.Diagnostics.Trace.WriteLine($"/FileLoggerBase.Dispose");
         listener?.Dispose();
         listenerWriter?.Dispose();
         listener=null;
@@ -48,10 +49,25 @@ public class FileLogger<Class2> : IFileLogger<Class2>, IDisposable
     }
     #endregion
 }
+public class FileLogger<Class2> : FileLoggerBase, IFileLogger<Class2>
+{
+    public FileLogger()
+    {
+        WriteLine($"{DateTime.Now:s} {nameof(FileLogger<Class2>)}.ctor()");
+    }
+}
+
 public class FileLoggerProvider : ILoggerProvider//to use the .NET 8 Logging infrastructure
 {
-    public ILogger CreateLogger(string categoryName) {return null;}
-    public void Dispose() {}
+    public ILogger CreateLogger(string categoryName)
+    {
+        WriteLine($"{DateTime.Now:s} {nameof(FileLoggerProvider)}.{nameof(CreateLogger)}(categoryName = {categoryName})");
+        return new FileLoggerBase();
+    }
+    public void Dispose()
+    {
+        WriteLine($"{DateTime.Now:s} {nameof(FileLoggerProvider)}.{nameof(Dispose)}()");
+    }
 }
 
 public interface IClass2 : IDisposable {void f(string s);}
@@ -110,7 +126,8 @@ class Program
             //ildasm(typeof(Microsoft.Extensions.DependencyInjection.ObjectFactory));
             //return;
 
-//          using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddConsole());
+          //using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddConsole());
+          //using ILoggerFactory logfactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddProvider(new FileLoggerProvider()));
 
           //builder.Services.AddHostedService<Worker2>();
             builder.Services.AddSingleton<IClass1>(_=>new Class1());
