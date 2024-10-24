@@ -48,7 +48,7 @@ public class app1spec
     }
     async System.Threading.Tasks.Task SendAsync(int n)
     {
-        await System.IO.File.AppendAllTextAsync(@"C:\temp\log\tstate.log",$"{n}\n");
+        await System.IO.File.AppendAllTextAsync(@"F:\tep\log\tstate.log",$"{n}\n");
     }
     void sendm(int n)
     {
@@ -67,7 +67,7 @@ public class app1spec
         public System.Threading.Tasks.Task task;
         public async System.Threading.Tasks.Task SendAsync(int n)
         {
-            await System.IO.File.AppendAllTextAsync(@"C:\temp\log\tstate.log",$"{n}\n");
+            await System.IO.File.AppendAllTextAsync(@$"F:\tep\log\tstate_{n}.log",$"{n}\n");
         }
         public void sendm(int n)
         {
@@ -79,6 +79,8 @@ public class app1spec
     {
         var exes=Enumerable.Range(0,1000).Aggregate(new System.Collections.Generic.List<Exe>(),(whole,next)=>{whole.Add(new Exe());return whole;});
         for(int k=0;k<1000;++k) exes[k].sendm(k);
-        System.Threading.Tasks.Task.WaitAll(exes.Select(e=>e.task).ToArray());
+        System.Threading.Thread.Sleep(15000);
+        Assert.AreEqual(1000,exes.Where(e=>e.task!=null).Count());
+        System.Threading.Tasks.Task.WaitAll(exes.Where(e=>e.task!=null).Select(e=>e.task).ToArray());
     }
 }
