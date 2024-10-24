@@ -84,10 +84,32 @@ function Read-SymbolTrace([Parameter(Mandatory)][System.IO.FileInfo]$file)
     Import-Csv $file | ConvertTo-SymbolObject
 }
 
-function Read-SymbolHistory([Parameter(Mandatory)][System.IO.FileInfo]$file)
+function Read-SymbolHistory([Parameter(Mandatory)][System.IO.FileInfo]$file, $DaysBack, $from = [DateTime]::Today)
 {
-    Import-Csv $file | ConvertTo-HistoricSymbolObject
+    if($DaysBack)
+    {
+        $FromDate = $from.AddDays(-$DaysBack)
+        Import-Csv $file | ?{ [DateTime]$_.Date -ge $FromDate } | ConvertTo-HistoricSymbolObject
+    }
+    else { Import-Csv $file | ConvertTo-HistoricSymbolObject }
 }
+
+function Get-RecentSymbolStats($history, $DaysBack = 30, $from = [DateTime]::Today)
+{
+    $FromDate = $from.AddDays(-$DaysBack)
+    $history | ?{$_.When.Date -ge $FromDate} | group ID | %{ $stats=$_.Group.Counted | measure -AllStats; [PSCustomObject]@{ID=$_.Name; Count=$stats.Count; Average=$stats.Average; Sum=$stats.Sum; Maximum=$stats.Maximum; Minimum=$stats.Minimum; StandardDeviation=$stats.StandardDeviation} } | sort -desc {$_.Sum}
+}
+
+function Get-AllSymbolInHistory($history)
+{
+    $history | select -Unique ID | select -expand ID
+}
+
+function Get-AllSymbolInRecentStats($recent_stats)
+{
+    $recent_stats | select -Unique ID | select -expand ID
+}
+
 <#
 $ss = Read-SymbolTrace .\source\SymbolCmdlet\Symbols-20241007-171300.csv
 $ss | sort -desc Counted -Stable| ? {$_.Market -eq 'NAC' -and $_.Emisora.StartsWith('O')}|select ID,Counted|measure -Sum Counted
