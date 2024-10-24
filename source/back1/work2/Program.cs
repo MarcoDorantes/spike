@@ -84,6 +84,7 @@ public class Class2(ILogger<Class2> logger1, IFileLogger<Class2> logger2) : ICla
         logger2.LogInformation("{what} {where} at: {time:yyyy-MM-dd HH:mm:ss.fffffff}", GetType().Name, nameof(Dispose), DateTimeOffset.Now);
     }
 }
+public interface IClass3<out T>{}
 
 class Program
 {
@@ -103,6 +104,7 @@ class Program
     {
         try
         {
+//WriteLine(typeof(IClass3<>).Name);return;
             var builder = Host.CreateApplicationBuilder(args);
             builder.Services.AddHostedService<Worker>();
             //ildasm(builder);
@@ -134,13 +136,16 @@ class Program
 
             builder.Services.AddTransient<IClass2, Class2>();
             builder.Services.AddTransient<IFileLogger<Class2>, FileLogger<Class2>>();
+//ILogger<Class2>
 
           //builder.Services.AddTransient<lib2.IServiceProcessor>(provider => new lib2.ServiceProcessor(logfactory.CreateLogger<lib2.ServiceProcessor>()));
             builder.Services.AddTransient<lib2.IServiceProcessor, lib2.ServiceProcessor>();
 
             builder.Services.AddTransient<lib2.IEngineProcessor, lib2.EngineProcessor>();
             builder.Services.AddTransient<lib2.IEngineOperationalWindow, lib2.EngineOperationalWindow>();
-
+WriteLine($"builder.Services.Count = {builder.Services.Count}");
+builder.Services.Where(s=>s.ServiceType.Name.Contains("Logger")).Select(s=>s.ServiceType.AssemblyQualifiedName).Distinct().ToList().ForEach(WriteLine);
+//https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor.servicetype
             var host = builder.Build();
             host.Run();
             //host.Run();

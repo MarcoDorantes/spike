@@ -2,6 +2,7 @@ namespace flog1spec;
 
 using System;
 using System.IO;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 
 [TestClass, TestCategory("Component")]
@@ -15,7 +16,7 @@ public class app1spec
         folder = context.DeploymentDirectory;
     }
 
-    [TestMethod]
+    [TestMethod, Ignore]
     public void LogFileCreated()
     {
         Microsoft.Extensions.Logging.ILogger<app1spec> logger = null;
@@ -44,5 +45,40 @@ public class app1spec
             disposable?.Dispose();
             filelogger_provider.Dispose();
         }
+    }
+    async System.Threading.Tasks.Task SendAsync(int n)
+    {
+        await System.IO.File.AppendAllTextAsync(@"C:\temp\log\tstate.log",$"{n}\n");
+    }
+    void sendm(int n)
+    {
+      //var t=SendAsync(n);t.Wait();
+      //System.Threading.Tasks.Task.Run(async () => await SendAsync(n).ConfigureAwait(false));
+      //System.IO.File.AppendAllText(@"C:\temp\log\tstate0.log",$"{n}\n");
+    }
+    [TestMethod, Ignore]
+    public void tstate()
+    {
+        for(int k=0;k<1000;++k) sendm(k);
+        System.Threading.Thread.Sleep(15000);
+    }
+    class Exe
+    {
+        public System.Threading.Tasks.Task task;
+        public async System.Threading.Tasks.Task SendAsync(int n)
+        {
+            await System.IO.File.AppendAllTextAsync(@"C:\temp\log\tstate.log",$"{n}\n");
+        }
+        public void sendm(int n)
+        {
+            task = System.Threading.Tasks.Task.Run(async () => await SendAsync(n).ConfigureAwait(false));
+        }
+    }
+    [TestMethod]
+    public void tstates()
+    {
+        var exes=Enumerable.Range(0,1000).Aggregate(new System.Collections.Generic.List<Exe>(),(whole,next)=>{whole.Add(new Exe());return whole;});
+        for(int k=0;k<1000;++k) exes[k].sendm(k);
+        System.Threading.Tasks.Task.WaitAll(exes.Select(e=>e.task).ToArray());
     }
 }
