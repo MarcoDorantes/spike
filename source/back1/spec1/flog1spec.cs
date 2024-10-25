@@ -3,6 +3,7 @@ namespace flog1spec;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 [TestClass, TestCategory("Component")]
@@ -49,15 +50,18 @@ public class app1spec
             filelogger_provider.Dispose();
         }
     }
-    async System.Threading.Tasks.Task SendAsync(int n, string folder, string tag)
+    async Task SendAsync(int n, string folder, string tag, string logfile, object sync)
     {
-        var filename=Path.Combine(folder, $"{tag}_{n}.log");
+        var name = $"{tag}_{n}.log";
+        var filename=Path.Combine(folder, name);
         await File.AppendAllTextAsync(filename,$"{n}");
+        await Task.Delay(100);
+        lock(sync) File.AppendAllText(logfile, $"{name},{n}\n");
     }
-    void sendm(int n, string folder, string tag)
+    void sendm(int n, string folder, string tag, string logfile, object sync)
     {
       //var t=SendAsync(n, folder, tag);t.Wait();
-      System.Threading.Tasks.Task.Run(async () => await SendAsync(n, folder, tag).ConfigureAwait(false));
+      Task.Run(async () => await SendAsync(n, folder, tag, logfile, sync).ConfigureAwait(false));
     }
     [TestMethod]
     public void tstate()
@@ -65,10 +69,17 @@ public class app1spec
         var folder=Path.Combine(folderbase, nameof(tstate));
         if(Directory.Exists(folder)) Directory.Delete(folder, true);
         Directory.CreateDirectory(folder);
-        for(int k=0;k<1000;++k) sendm(k, folder, nameof(tstate));
+        object sync = new();
+        var logfile = Path.Combine(folder, $"logfile_{nameof(tstate)}.txt");
+        for(int k=0;k<1000;++k) sendm(k, folder, nameof(tstate), logfile, sync);
         System.Threading.Thread.Sleep(15000);
         var index = Directory.EnumerateFiles(folder,"*.log").Select(f=>int.Parse(File.ReadAllText(f))).Distinct();
         Assert.AreEqual(1000,index.Count());
+        var loglines = File.ReadAllLines(logfile);
+        var logpairs = loglines.Select(l=>{var pair=l.Split(','); return (pair[0],int.Parse(pair[1]));});
+        Assert.AreEqual(1000,logpairs.Select(p=>p.Item1).Distinct().Count());
+        Assert.AreEqual(1000,logpairs.Select(p=>p.Item2).Distinct().Count());
+        Assert.AreEqual(1000,logpairs.Count(p=> p.Item1 == $"{nameof(tstate)}_{p.Item2}.log"));
         Directory.EnumerateFiles(folder,"*.log").ToList().ForEach(f=>File.Delete(f));
     }
     class Exe(string folder, string tag):IDisposable
@@ -79,14 +90,14 @@ public class app1spec
             sync = new();
         }
         public static string LogFile{get;set;}
-        public System.Threading.Tasks.Task task;
+        public Task task;
         public string filename;
-        public async System.Threading.Tasks.Task WriteAsync(string filename, int n)
+        public async Task WriteAsync(string filename, int n)
         {
+            await Task.Delay(100);
             await File.AppendAllTextAsync(filename,$"{n}");
-            await System.Threading.Tasks.Task.Delay(100);
         }
-        public async System.Threading.Tasks.Task SendAsync(int n)
+        public async Task SendAsync(int n)
         {
             var name = $"{tag}_{n}.log";
             filename = Path.Combine(folder, name);
@@ -95,7 +106,7 @@ public class app1spec
         }
         public void sendm(int n)
         {
-            task = System.Threading.Tasks.Task.Run(async () => await SendAsync(n).ConfigureAwait(false));
+            task = Task.Run(async () => await SendAsync(n).ConfigureAwait(false));
         }
         public void Dispose(){if(File.Exists(filename)) File.Delete(filename);}
     }
@@ -110,16 +121,16 @@ public class app1spec
         for(int k=0;k<1000;++k) exes[k].sendm(k);
         System.Threading.Thread.Sleep((int)TimeSpan.Parse("00:03:00").TotalMilliseconds);
         Assert.AreEqual(1000,exes.Where(e=>e.task!=null).Count());
-        System.Threading.Tasks.Task.WaitAll(exes.Where(e=>e.task!=null).Select(e=>e.task).ToArray());
+        Task.WaitAll(exes.Where(e=>e.task!=null).Select(e=>e.task).ToArray());
         //ls F:\tep\log\tstateB*.log|cat|%{[PSCustomObject]@{Index=[int]::Parse($_)}}|select -Unique Index|measure
         var index = Directory.EnumerateFiles(folder,"*.log").Select(f=>int.Parse(File.ReadAllText(f))).Distinct();
         Assert.AreEqual(1000,index.Count());
         var loglines = File.ReadAllLines(Exe.LogFile);
         Assert.AreEqual(1000,loglines.Count());
-        var pairs = loglines.Select(l=>{var pair=l.Split(','); return (pair[0],int.Parse(pair[1])); });
-        Assert.AreEqual(1000,pairs.DistinctBy(p=>p.Item2).Count());
-        Assert.AreEqual(1000,pairs.DistinctBy(p=>p.Item1).Count());
-        Assert.AreEqual(1000,pairs.Count(p=>int.Parse(System.Text.RegularExpressions.Regex.Match(p.Item1,@$"{nameof(tstates)}_(?<NN>\d+)\.log").Groups["NN"].Value) == p.Item2));
+        var logpairs = loglines.Select(l=>{var pair=l.Split(','); return (pair[0],int.Parse(pair[1])); });
+        Assert.AreEqual(1000,logpairs.DistinctBy(p=>p.Item2).Count());
+        Assert.AreEqual(1000,logpairs.DistinctBy(p=>p.Item1).Count());
+        Assert.AreEqual(1000,logpairs.Count(p=>int.Parse(System.Text.RegularExpressions.Regex.Match(p.Item1,@$"{nameof(tstates)}_(?<NN>\d+)\.log").Groups["NN"].Value) == p.Item2));
         exes.ForEach(e=>e.Dispose());
     }
 }
