@@ -119,6 +119,7 @@ End of Capture2
 
 https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-csharp.html
 https://docs.aws.amazon.com/cdk/v2/guide/cli.html
+https://docs.aws.amazon.com/cdk/api/v2/
 
 On folder for cdk.json:
 cdk synth | Out-File template.yml
