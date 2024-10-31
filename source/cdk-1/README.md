@@ -116,3 +116,9 @@ Sources
 [3] [Tips & Tricks: Debugging your C# CDK project in Visual Studio | AWS Developer Tools Blog] (https://aws.amazon.com/blogs/developer/tips-tricks-debugging-your-c-cdk-project-in-visual-studio/)
 
 End of Capture2
+
+https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-csharp.html
+https://docs.aws.amazon.com/cdk/v2/guide/cli.html
+
+On folder for cdk.json:
+cdk synth | Out-File template.yml
