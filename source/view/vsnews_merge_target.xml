@@ -25014,5 +25014,596 @@ createRoot(document.querySelector('main')).render(
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/level-up-your-collaborations-with-the-pull-request-experience-in-visual-studio/">Level up your collaborations with the pull request experience in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Visual Studio 2022 v17.12 with .NET 9</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-12-with-dotnet-9/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 12 Nov 2024 18:12:48 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Release]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251184</guid>
+      <description><![CDATA[<p>We are thrilled to announce the General Availability (GA) of Visual Studio 2022 version 17.12. This update focuses on providing fantastic developer experiences for working with .NET 9 projects and new AI productivity features, along with continuous improvements for all developers. Thanks to your continuous feature requests, we&#8217;ve incorporated many of them in this release. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-12-with-dotnet-9/">Visual Studio 2022 v17.12 with .NET 9</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We are thrilled to announce the General Availability (GA) of Visual Studio 2022 version 17.12. This update focuses on providing fantastic developer experiences for working with <strong>.NET 9</strong> projects and new <strong>AI productivity features</strong>, along with continuous improvements for all developers.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-251289" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251184-1.png" alt="Abstract Visual Studio image" width="1200" height="498" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251184-1.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251184-1-300x125.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251184-1-1024x425.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251184-1-768x319.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>Thanks to your continuous feature requests, we&#8217;ve incorporated many of them in this release. There&#8217;s something new for every developer. We have added several new tools and enhancements that simplify your workflow and improve productivity. Whether you&#8217;re looking for advanced debugging capabilities, more efficient code management, or enhanced security features, this update has it all.</p>
+<p><a href="https://visualstudio.microsoft.com/downloads/"><strong><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/downloads/" target="_blank">Download Visual Studio 2022 v17.12</a></div></strong></a></p>
+<p>For detailed information on each new feature, check out the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes">release notes</a>. If you&#8217;re pressed for time, here are the key highlights.</p>
+<h2><strong>Productivity</strong></h2>
+<ul>
+<li><strong>Copy from the Error List</strong>: Copying an error from the Error List now copies just the description instead of the entire row to the clipboard.</li>
+<li><strong>Go to line anywhere in Code Search</strong>: In Code Search, you can now navigate to a specific line in the current document or other specified document.</li>
+<li><strong>Dock the Code Search window</strong>: You can now freely position the Code Search window with capabilities like docking and auto-hiding.</li>
+<li><strong>Customize collapsed text indicator</strong>: Set custom colors for the collapsed text indicator in the Visual Studio editor.</li>
+<li><strong>Refresh your Find results</strong>: You can now refresh the results to a previous Find to get up-to-date search matches.</li>
+<li><strong>More space for horizontal scrollbar</strong>: You can now control the visibility of the file level indicators in CodeLens.</li>
+<li><strong>Non-blocking Code Cleanup on save</strong>: When Code Cleanup is run on Save, it now operates in a non-blocking manner, for a smoother coding experience.</li>
+</ul>
+<h2><strong>GitHub Copilot</strong></h2>
+<ul>
+<li><strong>AI smart variable inspection</strong>: Optimize your debugging workflow with Integrated AI variable inspection.</li>
+<li><strong>AI-powered IEnumerable visualizer</strong>: AI-powered LINQ Editable Expressions in the IEnumerable visualizer.</li>
+<li><strong>Fix code with GitHub Copilot</strong>: GitHub Copilot assists you in resolving code issues.</li>
+<li><strong>Better AI completions for C#</strong>: GitHub Copilot brings in additional context from relevant source files to improve completions for C#.</li>
+<li><strong>Debug tests with GitHub Copilot</strong>: Get help with debugging failed tests by using Debug Tests with GitHub Copilot.</li>
+</ul>
+<h2><strong>Debugging &amp; diagnostics</strong></h2>
+<ul>
+<li><strong>Shows method return values when debugging</strong>: The debugger now displays inline return values for enhanced debugging efficiency.</li>
+<li><strong>Export breakpoint groups with ease</strong>: Effortless import and export of breakpoint groups.</li>
+<li><strong>Blazor WebAssembly debugging</strong>: An improved debugging experience for Blazor WebAssembly apps targeting .NET 9 or later.</li>
+<li><strong>Meter Histogram in Profiler Counter Tool</strong>: Enhanced performance insights using Meter Histogram in Profiler Counter Tool.</li>
+<li><strong>Analyze memory use over time</strong>: Select and compare multiple memory snapshots using the Diagnostics Tool window.</li>
+</ul>
+<h2><strong>Git tooling</strong></h2>
+<ul>
+<li><strong>Manage file renaming with Git</strong>: Get peace of mind when renaming files with a new notification.</li>
+<li><strong>Pull requests using drafts and templates</strong>: Create pull request drafts and start your descriptions with templates in Visual Studio.</li>
+<li><strong>Create internal GitHub repos</strong>: Visual Studio now supports creating internal repos and includes guidance for each type of repository to give you more confidence when starting a new project.</li>
+<li><strong>Copy Git link</strong>: You can get a GitHub or Azure DevOps link to a specific line of code to make it easy to share with your colleagues.</li>
+<li><strong>Customize your AI Git commit message</strong>: You can add additional instructions to the prompt for generating your Git commit message with GitHub Copilot.</li>
+<li><strong>Multi-repo for GitHub and Azure DevOps</strong>: You can now create pull requests and link work items in multi-repo scenarios.</li>
+</ul>
+<h2><strong>IDE</strong></h2>
+<ul>
+<li><strong>Preserve font across theme changes</strong>: Changing themes will now remember your font and font size preferences.</li>
+<li><strong>Multi-Project Launch Configuration</strong>: Streamline debugging by setting up and saving launch profiles for specific projects within multi-project solutions. Share configurations effortlessly with your team.</li>
+<li><strong>Copy files between instances</strong>: You can now copy files and folders from Solution Explorer in one instance of Visual Studio to another.</li>
+<li><strong>Multiple GitHub accounts</strong>: You can now add multiple GitHub accounts and set an active account to drive GitHub features like GitHub Copilot and Version Control.</li>
+<li><strong>Certificate Revocation Checks</strong>: Visual Studio now alerts you if it detects digital certificate problems during network calls.</li>
+<li><strong>MotW security warnings</strong>: Mark of the web (MotW) security warnings are now integrated into the overall trust functionality.</li>
+<li><strong>Teams Toolkit new AI templates</strong>: The Teams Toolkit onboards new AI Teams app templates.</li>
+</ul>
+<h2><strong>Cloud</strong></h2>
+<ul>
+<li><strong>Azure App Service publish security updates</strong>: Publishing to Azure App Service securely using integrated security updates.</li>
+<li><strong>Azure WebJobs Linux support</strong>: Publishing to Azure WebJobs on Linux is now supported by right-click publish in Visual Studio.</li>
+<li><strong>Azure Functions Flex Consumption</strong>: Publish to Azure Flex Consumption hosting plan, currently in Preview.</li>
+<li><strong>Connected Services security update</strong>: Making your apps and development experienced more secure.</li>
+</ul>
+<h2><strong>Desktop</strong></h2>
+<ul>
+<li><strong>Enhanced WinUI components search</strong>: Enhance WinUI project setup with improved Visual Studio Installer search, simplifying component location for developers.</li>
+</ul>
+<h2><strong>Web</strong></h2>
+<ul>
+<li><strong>Request variables in HTTP files</strong>: HTTP files now support request variables. That is where you can send a request and then use data from the response, or request, in future requests.</li>
+<li><strong>HTTP files shared environment</strong>: In HTTP environment files we have added support to share variables across environments.</li>
+<li><strong>Vitest support in JavaScript and TypeScript</strong>: When using JavaScript and TypeScript projects you can now author test cases with Vitest.</li>
+<li><strong>Inlay Hints support for more languages</strong>: Inlay Hint support has been added to JavaScript, TypeScript, Python and Razor as well as a setting to control its behavior.</li>
+</ul>
+<h2><strong>Data</strong></h2>
+<ul>
+<li><strong>SDK-style SQL projects in SSDT</strong>: You can now use the SDK-style project file format in your SQL Server Data Tools projects.</li>
+</ul>
+<h2><strong>.NET</strong></h2>
+<ul>
+<li><strong>Achieve more with .NET 9</strong>: .NET 9 elevates cloud-native and intelligent app development, focusing on productivity enhancements, streamlined deployments, and accelerated AI integration.</li>
+<li><strong>NuGet audits transitive packages</strong>: NuGet is changing default audit settings to include transitive packages.</li>
+</ul>
+<h2><strong>C++</strong></h2>
+<ul>
+<li><strong>Set C++ Command Line Arguments</strong>: A new way to set your command line arguments right from the toolbar.</li>
+<li><strong>Build Insights view explanations</strong>: Learn how to use each tab of Build Insights via a newly added link to documentation.</li>
+<li><strong>Build Insights path adjustments</strong>: Get a clearer view of your file in Build Insights, see full path on hover.</li>
+<li><strong>Open Folder for Unreal Engine uproject</strong>: A new way of opening your uproject.</li>
+<li><strong>Change signature improved</strong>: You can now effectively change signatures with our improved feature for C++.</li>
+</ul>
+<h2>SHARE YOUR FEEDBACK AND STAY CONNECTED</h2>
+<p>As you use Visual Studio, let us know what you love, what you like, and where you’d like us to improve. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>: report any bugs or issues via <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio">report a problem</a> and <a href="https://developercommunity.visualstudio.com/report?space=8&amp;entry=suggestion">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>As always, we appreciate the time you’ve spent reporting issues and hope you continue to give us feedback on how we’re doing and what we can improve.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-12-with-dotnet-9/">Visual Studio 2022 v17.12 with .NET 9</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Better GitHub Copilot Completions for C#</title>
+      <link>https://devblogs.microsoft.com/visualstudio/better-github-copilot-completions-for-c/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mika Dumont]]></dc:creator>
+      <pubDate>Mon, 11 Nov 2024 15:27:27 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[C#]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251281</guid>
+      <description><![CDATA[<p>We&#8217;re excited to announce a significant enhancement to GitHub Copilot that elevates your C# coding experience. Introducing the new update: GitHub Copilot code completions now provide more accurate and relevant autocomplete suggestions by incorporating additional C# context. Previously, GitHub Copilot generated suggestions based on the content of your currently active file and any other open [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/better-github-copilot-completions-for-c/">Better GitHub Copilot Completions for C#</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We&#8217;re excited to announce a significant enhancement to GitHub Copilot that elevates your C# coding experience. Introducing the new update: GitHub Copilot code completions now provide more accurate and relevant autocomplete suggestions by incorporating additional C# context.</p>
+<p>Previously, GitHub Copilot generated suggestions based on the content of your currently active file and any other open files in your editor. While this approach was helpful, we have discovered that including more relevant context can greatly improve the quality of these suggestions.</p>
+<p>With this latest update, GitHub Copilot now automatically considers semantically relevant files for additional context, even if these files are not open in your editor. This enhancement helps reduce hallucinations and ensures that you receive more pertinent and precise code completions.</p>
+<p><strong>Before</strong>: Semantically relevant files are not considered as context for GitHub Copilot Completions</p>
+<figure style="text-align: center;"><iframe title="YouTube video player" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/without-related-files.mp4"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span><em>without-related-files.mp4&#8243; width=&#8221;560&#8243; height=&#8221;315&#8243; allowfullscreen=&#8221;allowfullscreen&#8221;&gt;<span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span></em></iframe></figure>
+<p><strong>After</strong>: Semantically relevant files are considered as context for GitHub Copilot Completions</p>
+<figure style="text-align: center;"><iframe title="YouTube video player" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/with-related-files.mp4"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span><em>without-related-files.mp4&#8243; width=&#8221;560&#8243; height=&#8221;315&#8243; allowfullscreen=&#8221;allowfullscreen&#8221;&gt;<span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span></em></iframe></figure>
+<p>To dive deeper into how this new feature works and how it can improve your coding productivity, check out our detailed blog post <a href="https://devblogs.microsoft.com/dotnet/improving-github-copilot-completions-in-visual-studio-for-csharp-developers/">Improving GitHub Copilot Completions in Visual Studio for C# Developers</a> on the .NET blog.</p>
+<p>Stay tuned for more updates and thank you for being a part of our developer community.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/better-github-copilot-completions-for-c/">Better GitHub Copilot Completions for C#</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/without-related-files.mp4" length="146986" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/with-related-files.mp4" length="143762" type="video/mp4" />
+    </item>
+    <item>
+      <title>Introducing a new, more conversational way to chat with GitHub Copilot</title>
+      <link>https://devblogs.microsoft.com/visualstudio/conversational-way-to-chat-with-github-copilot/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Wed, 06 Nov 2024 16:46:22 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Conversational AI]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251224</guid>
+      <description><![CDATA[<p>In the fast-evolving world of software development, intuitive AI-driven interactions are becoming essential to unlocking new levels of productivity. Today, we’re excited to share our latest innovation &#8211; a guided chat experience within GitHub Copilot that reshapes how developers interact with AI. This guided chat experience is available in Visual Studio 2022 17.12 Preview 3 [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/conversational-way-to-chat-with-github-copilot/">Introducing a new, more conversational way to chat with GitHub Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>In the fast-evolving world of software development, intuitive AI-driven interactions are becoming essential to unlocking new levels of productivity. Today, we’re excited to share our latest innovation &#8211; a <strong>guided chat experience</strong> within GitHub Copilot that reshapes how developers interact with AI. This guided chat experience is available in Visual Studio 2022 17.12 Preview 3 and above.</p>
+<p>This guided way to chat was created with one clear goal in mind: to make interactions between developers and AI more natural, effective, and aligned with everyday workflows. It is our deep belief that conversational AI is the future of development, and we’re committed to leading that transformation.</p>
+<h3>Making Copilot Conversations Smarter and Simpler</h3>
+<p>As we’ve refined GitHub Copilot, one thing has become clear: while users appreciate the potential of AI-driven tools, there’s a learning curve. Developers have shared that crafting the right prompt can sometimes feel like a challenge—understanding how to phrase a question, knowing what context to include, and making the most of Copilot’s capabilities. In some cases, the experience left users feeling like they were getting too much or too little from their interactions.</p>
+<p><strong>Customer feedback highlights the challenge:</strong></p>
+<ul>
+<li><em>&#8220;The chat experience is helpful, but I wish it felt more like an assistant—something that could help guide me and give me only what I need without extra noise.&#8221;</em></li>
+<li><em>&#8220;I love how Copilot just starts generating, but it sometimes feels like I have to sift through a lot to get to what I actually wanted.&#8221;</em></li>
+</ul>
+<p>These insights inspired us to rethink how AI should work for developers. Rather than relying only on intent-based commands or predefined prompts, this chat allows for a more fluid, conversational experience—one that adapts to the user’s context and needs.</p>
+<h3><strong>How does this work? </strong></h3>
+<p>Our guided chat experience takes Copilot beyond simple input-output exchanges, turning it into a collaborative assistant. When the context is clear, Copilot provides direct and relevant answers. When it isn’t, Copilot guides you by asking follow-up questions to ensure clarity and precision.</p>
+<p><iframe src="//www.youtube.com/embed/owygXEVNRJg" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p>The implications are significant:</p>
+<ul>
+<li><strong>More Engagement:</strong> Developers spend less time figuring out how to phrase their prompts and more time focused on the task at hand.</li>
+<li><strong>Less Complexity:</strong> Copilot’s ability to guide and clarify reduces the need for developers to navigate complex intent systems.</li>
+<li><strong>Increased Productivity:</strong> With less back-and-forth and more focused responses, developers can move faster through their workflows.</li>
+</ul>
+<p>In our early trials, we’ve seen encouraging signs that Guided Chat makes a real difference. So we are excited for you all to try it out.</p>
+<p>As we continue refining this guided way to chat, user feedback and engagement will be at the center of our improvements, ensuring that it delivers the intelligent and seamless experience developers need.</p>
+<h2>Thank you for your continuous feedback</h2>
+<p>We owe much of our progress to our users&#8217; invaluable feedback. Your insights and suggestions have been instrumental in making Visual Studio better with each update. We appreciate your continuous support and look forward to bringing you more innovative features.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/conversational-way-to-chat-with-github-copilot/">Introducing a new, more conversational way to chat with GitHub Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Learn how to create a Client-Server Application in under 45 Minutes in the new Season of AI</title>
+      <link>https://devblogs.microsoft.com/visualstudio/learn-how-to-create-a-client-server-application-in-under-45-minutes-in-the-new-season-of-ai/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Pablo Lopes]]></dc:creator>
+      <pubDate>Tue, 05 Nov 2024 17:03:32 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Web]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[ASP.NET]]></category>
+      <category><![CDATA[Blazor]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251211</guid>
+      <description><![CDATA[<p>What if you could create a robust, versatile client-server application in under 45 minutes? With Visual Studio and GitHub Copilot, this is not only possible but also efficient and enjoyable. This Season of AI, we show you how to use developer tools like GitHub Copilot to create apps from scratch. This season of AI occurs [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/learn-how-to-create-a-client-server-application-in-under-45-minutes-in-the-new-season-of-ai/">Learn how to create a Client-Server Application in under 45 Minutes in the new Season of AI</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><img decoding="async" class="alignnone wp-image-251212" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-1.png" alt="Season of AI feature image" width="886" height="287" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-1.png 886w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-1-300x97.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-1-768x249.png 768w" sizes="(max-width: 886px) 100vw, 886px" /></p>
+<p>What if you could create a robust, versatile client-server application in under 45 minutes? With Visual Studio and GitHub Copilot, this is not only possible but also efficient and enjoyable. This Season of AI, we show you how to use developer tools like <strong>GitHub Copilot</strong> to create apps from scratch. This season of AI occurs from <strong>October 1</strong> through <strong>December 30, 2024,</strong> and the <strong>first 150 speakers</strong> with confirmed events will receive a special swag gift pack!</p>
+<p>You will experience firsthand how to:</p>
+<p>&#8211; Develop both server-side and client-side code using .NET, Blazor, and Minimal APIs.</p>
+<p>&#8211; Run and test your application locally with the Azurite storage emulator.</p>
+<p>&#8211; Deploy your application to Azure using an automated CI/CD pipeline with GitHub actions.</p>
+<p>Whether you&#8217;re enhancing the number of users of your app, making your app more reliable, or striving to iterate quicker, dive in and leverage the capabilities of Visual Studio and GitHub Copilot to transform your development workflow.</p>
+<h1>Learn how to use Copilot in Visual Studio</h1>
+<p>Learn how to use the commands in Visual Studio for Copilot, inline suggestions, and Copilot Chat. Understand the difference between them and use them to quickly create our Blazor frontend and our ASP.NET API Backend, plus create connections for our application to be deployed on Azure using Azure Table storage and WebApp services, lastly adding CI/CD to our project using GitHub Actions.</p>
+<p>For this exciting session, we will also guide you through building a simple yet complete Car Database application. This application will retrieve the Car database from Azure Tables and display the data in a user-friendly Web App for everyone to view.</p>
+<p><img decoding="async" class="alignnone wp-image-251213" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-2.png" alt="A print of the Car Service to be used for the Application." width="652" height="623" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-2.png 652w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-2-300x287.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251211-2-24x24.png 24w" sizes="(max-width: 652px) 100vw, 652px" /></p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://github.com/microsoft/community-content/blob/main/SeasonOfAI-S2-Copilots/client-server-app-vs-copilot-dotnet.md" target="_blank">Follow the GitHub tutorial guide</a></div></p>
+<p>Learn how to do this and more in our guide to <a id="post-251211-_Int_piZFFVds"></a>our Season of AI! There are also more talks ready to be given in the <a href="https://github.com/microsoft/community-content/tree/main/SeasonOfAI-S2-Copilots">main repository,</a> where you can everything about Copilots and AI. Check them all and organize an event with this content at <a href="https://aka.ms/registerSeasonOfAI">aka.ms/RegisterSeasonOfAI</a> and enjoy this Season of AI!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/learn-how-to-create-a-client-server-application-in-under-45-minutes-in-the-new-season-of-ai/">Learn how to create a Client-Server Application in under 45 Minutes in the new Season of AI</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>The making of Bring Back Plus/Minus</title>
+      <link>https://devblogs.microsoft.com/visualstudio/the-making-of-bring-back-plus-minus/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Marco Goertz]]></dc:creator>
+      <pubDate>Mon, 04 Nov 2024 15:41:35 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Feedback]]></category>
+      <category><![CDATA[story]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=250989</guid>
+      <description><![CDATA[<p>A lesson about the software forensics process involved in developing the Bring Back Plus/Minus extension, which brings back the plus/minus symbols to the editor outlining feature in Visual Studio 2022. While I did have the advantage of being able to look at the Visual Studio source code, I could have figured this out just as well without [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/the-making-of-bring-back-plus-minus/">The making of Bring Back Plus/Minus</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>A lesson about the software forensics process involved in developing the <a href="https://marketplace.visualstudio.com/items?itemName=MarcoGoertz.BringBackPlusMinus&amp;ssr=false#overview">Bring Back Plus/Minus</a> extension, which brings back the plus/minus symbols to the editor outlining feature in Visual Studio 2022.</p>
+<p>While I did have the advantage of being able to look at the Visual Studio source code, I could have figured this out just as well without it, and that&#8217;s the focus of this article.</p>
+<p>The investigation of how to bring back the plus/minus symbols started with this important clue from a <a href="https://developercommunity.visualstudio.com/t/Outlining-in-179-uses-ugly-v-for-coll/10584634#T-N10625097">comment</a> on the Developer Community feedback ticket for this issue:</p>
+<blockquote><p>However, Visual Studio has a very rich extensibility model, and if users have strong feelings about the visuals in their IDE, I encourage people to try writing an extension to change the icon used here. The class that controls the expansion is this one: <strong>OutliningMarginHeaderControl</strong></p></blockquote>
+<p>A quick internet search for the class name led me to this reference article for <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.outliningmarginheadercontrol?view=visualstudiosdk-2022&amp;devlangs=csharp">OutliningMarginHeaderControl Class</a> where the definition contains the following valuable information:</p>
+<ul>
+<li>Namespace: <code>Microsoft.VisualStudio.Text.Editor</code></li>
+<li>Assembly: <code>Microsoft.VisualStudio.Text.UI.Wpf.dll</code></li>
+<li>Package: <code>Microsoft.VisualStudio.Text.UI.Wpf v17.9.187</code></li>
+</ul>
+<p>Now that we know where to find this class, it&#8217;s time to examine the assembly. For that we will use the excellent ILSpy tool, which you can install from the Microsoft Store: <a href="https://apps.microsoft.com/detail/xp8c26vdwlp4t4?hl=en-US&amp;gl=US">ILSpy Fresh</a></p>
+<p>Once you&#8217;ve installed ILSpy, launch it and load the assembly <code>Microsoft.VisualStudio.Text.UI.Wpf.dll</code>. You can find this assembly in the Visual Studio installation folder, usually in the following path:</p>
+<p><code>&lt;VSInstallDir&gt;\Common7\IDE\CommonExtensions\Microsoft\Editor\Microsoft.VisualStudio.Text.UI.Wpf.dll</code></p>
+<p>After the assembly is loaded, search for the class <code>OutliningMarginHeaderControl</code> in the <code>Microsoft.VisualStudio.Text.Editor</code> namespace and you will find the following code for the static constructor:</p>
+<p><img decoding="async" width="1237" height="624" class="wp-image-251156" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/outliningmarginheadercontrol-in-ilspy.png" alt="OutliningMarginHeaderControl in ILSpy" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/outliningmarginheadercontrol-in-ilspy.png 1237w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/outliningmarginheadercontrol-in-ilspy-300x151.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/outliningmarginheadercontrol-in-ilspy-1024x517.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/outliningmarginheadercontrol-in-ilspy-768x387.png 768w" sizes="(max-width: 1237px) 100vw, 1237px" /></p>
+<p>This is where the default style key for the control is being set. The next step is to find the XAML <code>Style</code> for the control. For that we open the <code>Resources</code> node where we find <code>themes/generic.baml</code>, which includes the entire style for the <code>OutliningMarginHeaderControl</code>:</p>
+<p><img decoding="async" width="412" height="246" class="wp-image-251157" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/generic-baml-node-in-ilspy.png" alt="generic.baml node in ILSpy" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/generic-baml-node-in-ilspy.png 412w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/generic-baml-node-in-ilspy-300x179.png 300w" sizes="(max-width: 412px) 100vw, 412px" /></p>
+<pre class="prettyprint language-xml"><code class="language-xml">
+&lt;Style x:Key="{x:Type textUiWpf:OutliningMarginHeaderControl}" TargetType="{x:Type textUiWpf:OutliningMarginHeaderControl}"&gt;
+    &lt;Style.Resources&gt; 
+      &lt;ResourceDictionary&gt; 
+        &lt;Geometry x:Key="ExpandRight"&gt;F1M2.146.146a.5.5,0,0,1,.708,0l4,4a.5.5,0,0,1,0,.708l-4,4a.5.5,0,0,1-.708-.708L5.793,4.5,2.146.854A.5.5,0,0,1,2.146.146Z&lt;/Geometry&gt; 
+        &lt;Geometry x:Key="ExpandDown"&gt;F1M8.854,2.146a.5.5,0,0,1,0,.708l-4,4a.5.5,0,0,1-.708,0l-4-4a.5.5,0,0,1,.708-.708L4.5,5.793,8.146,2.146A.5.5,0,0,1,8.854,2.146Z&lt;/Geometry&gt; 
+      &lt;/ResourceDictionary&gt; 
+    &lt;/Style.Resources&gt; 
+    &lt;Setter Property="Focusable" Value="False" /&gt; 
+    &lt;Setter Property="FrameworkElement.Cursor" Value="Hand" /&gt; 
+    &lt;Setter Property="Template"&gt; 
+      &lt;Setter.Value&gt; 
+        &lt;ControlTemplate TargetType="{x:Type textUiWpf:OutliningMarginHeaderControl}"&gt; 
+          &lt;Grid&gt; 
+            &lt;Viewbox Name="ExpandCollapseIcon" Width="9" Height="13" VerticalAlignment="Center"&gt; 
+              &lt;Border Width="9" Height="13" Background="{DynamicResource outlining.chevron.background}"&gt; 
+                &lt;Rectangle Name="ExpandCollapseRectangle" Width="9" Height="9"&gt; 
+                  &lt;FrameworkElement.Resources&gt; 
+                    &lt;ResourceDictionary&gt; 
+                      &lt;SolidColorBrush x:Key="canvas" Opacity="0" /&gt; 
+                    &lt;/ResourceDictionary&gt; 
+                  &lt;/FrameworkElement.Resources&gt; 
+                  &lt;Shape.Fill&gt; 
+                    &lt;DrawingBrush Stretch="None"&gt; 
+                      &lt;DrawingBrush.Drawing&gt; 
+                        &lt;DrawingGroup&gt; 
+                          &lt;DrawingGroup&gt; 
+                            &lt;GeometryDrawing Brush="{DynamicResource canvas}" Geometry="F1 M9,0 L9,9 L0,9 L0,0" /&gt; 
+                          &lt;/DrawingGroup&gt; 
+                          &lt;DrawingGroup&gt; 
+                            &lt;GeometryDrawing Brush="{DynamicResource outlining.chevron.foreground}" Geometry="{StaticResource ExpandRight}" /&gt; 
+                          &lt;/DrawingGroup&gt; 
+                        &lt;/DrawingGroup&gt; 
+                      &lt;/DrawingBrush.Drawing&gt; 
+                    &lt;/DrawingBrush&gt; 
+                  &lt;/Shape.Fill&gt; 
+                &lt;/Rectangle&gt; 
+              &lt;/Border&gt; 
+            &lt;/Viewbox&gt; 
+          &lt;/Grid&gt; 
+          &lt;ControlTemplate.Triggers&gt; 
+            &lt;Trigger Property="textUiWpf:OutliningMarginHeaderControl.IsExpanded" Value="True"&gt; 
+              &lt;Setter TargetName="ExpandCollapseRectangle" Property="Shape.Fill"&gt; 
+                &lt;Setter.Value&gt; 
+                  &lt;DrawingBrush Stretch="None"&gt; 
+                    &lt;DrawingBrush.Drawing&gt; 
+                      &lt;DrawingGroup&gt; 
+                        &lt;DrawingGroup&gt; 
+                          &lt;GeometryDrawing Brush="{DynamicResource canvas}" Geometry="F1 M9,0 L9,9 L0,9 L0,0" /&gt; 
+                        &lt;/DrawingGroup&gt; 
+                        &lt;DrawingGroup&gt; 
+                          &lt;GeometryDrawing Brush="{DynamicResource outlining.chevron.foreground}" Geometry="{StaticResource ExpandDown}" /&gt; 
+                        &lt;/DrawingGroup&gt; 
+                      &lt;/DrawingGroup&gt; 
+                    &lt;/DrawingBrush.Drawing&gt; 
+                  &lt;/DrawingBrush&gt; 
+                &lt;/Setter.Value&gt; 
+              &lt;/Setter&gt; 
+            &lt;/Trigger&gt; 
+          &lt;/ControlTemplate.Triggers&gt; 
+        &lt;/ControlTemplate&gt; 
+      &lt;/Setter.Value&gt; 
+    &lt;/Setter&gt; 
+&lt;/Style&gt; 
+</code></pre>
+<p>This is the style for the new chevron symbols. Here we find interesting things like the geometry for the expand/collapse symbols, the colors, and the trigger that changes the symbol when the control is expanded. The next step is to find the original <code>Style</code> for the plus/minus symbols. For that we can either use an older VS installation or we can take advantage of the reference information above, which states that this control is included in the <code>Microsoft.VisualStudio.Text.UI.Wpf v17.9.187</code> NuGet package. Now we know that the symbols changed in 17.9, so we will look for a version before that. For example, the last one before that is <a href="https://www.nuget.org/packages/Microsoft.VisualStudio.Text.UI.Wpf/17.8.222">17.8.222</a>.</p>
+<p>We can download the package, change its extension from .nupkg to .zip, and extract the assembly from the <code>lib\net472</code> folder. Once we have the assembly, we can load it in ILSpy and look for the original style for the control just like we did before:</p>
+<pre class="prettyprint language-xml"><code class="language-xml">
+&lt;Style x:Key="{x:Type textUiWpf:OutliningMarginHeaderControl}" TargetType="{x:Type textUiWpf:OutliningMarginHeaderControl}"&gt;
+	&lt;Setter Property="Focusable" Value="False" /&gt;
+	&lt;Setter Property="Template"&gt;
+		&lt;Setter.Value&gt;
+			&lt;ControlTemplate TargetType="{x:Type textUiWpf:OutliningMarginHeaderControl}"&gt;
+				&lt;Grid&gt;
+					&lt;Border Name="WhitePadding" Height="11" Width="9" BorderBrush="{DynamicResource ViewBackgroundBrush}" Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0,1,0,1" VerticalAlignment="Center"&gt;
+						&lt;Border Name="TheSquare" Height="9" Width="9" BorderBrush="{DynamicResource outlining.verticalrule.foreground}" Background="{DynamicResource outlining.square.background}" BorderThickness="1"&gt;
+							&lt;Canvas&gt;
+								&lt;Line X1="1" Y1="3.5" X2="6" Y2="3.5" Stroke="{DynamicResource outlining.square.foreground}" /&gt;
+								&lt;Line Name="Vertical" X1="3.5" Y1="1" X2="3.5" Y2="6" Stroke="{DynamicResource outlining.square.foreground}" /&gt;
+							&lt;/Canvas&gt;
+						&lt;/Border&gt;
+					&lt;/Border&gt;
+				&lt;/Grid&gt;
+				&lt;ControlTemplate.Triggers&gt;
+					&lt;Trigger Property="textUiWpf:OutliningMarginHeaderControl.IsExpanded" Value="True"&gt;
+						&lt;Setter TargetName="Vertical" Property="Visibility" Value="Hidden" /&gt;
+						&lt;Setter TargetName="TheSquare" Value="{DynamicResource ViewBackgroundBrush}" Property="Border.Background" /&gt;
+					&lt;/Trigger&gt;
+				&lt;/ControlTemplate.Triggers&gt;
+			&lt;/ControlTemplate&gt;
+		&lt;/Setter.Value&gt;
+	&lt;/Setter&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Since the new style no longer uses dynamic resources for <code>outlining.square</code>, we must assume that these resources are no longer available in the new version of VS. This means that we needed to replace these resources with other colors. For the foreground <code>outlining.chevron.foreground</code> made sense. The background was a little bit harder because <code>outlining.chevron.background</code> didn&#8217;t do anything. With a little experimenting I had settled on <code>outlining.collapsehintadornment.background</code> for the first version of the extension. Both were not ideal or what they used to be &#8211; the chevron foreground is quite a bit darker and the background for the plus symbol is a lot lighter than before, but this combination worked in both light and dark themes, and any other existing color resources would look wrong in one theme or another.</p>
+<h2>How to build a VSIX extension to override the style</h2>
+<p>To override the style, I started by creating a new VSIX project with an async package:</p>
+<p><img decoding="async" width="550" height="206" class="wp-image-251158" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/new-vsix-project-template.png" alt="New VSIX Project Template" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/new-vsix-project-template.png 550w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/new-vsix-project-template-300x112.png 300w" sizes="(max-width: 550px) 100vw, 550px" /></p>
+<p>Then I added a new ResourceDictionary file <code>Style.xaml</code> to the project and copied the style from the old assembly, pasted it into the ResourceDictionary, and updated it with the new color resource value. Make sure that the <code>Build Action</code> for this <code>Style.xaml</code> is set to <code>Page</code>. I also gave this style a key <code>x:Key="OriginalOutliningMarginHeaderControlStyle"</code>, so that I can easily look it up later:</p>
+<pre class="prettyprint language-xml"><code class="language-xml">
+&lt;ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:textUiWpf="clr-namespace:Microsoft.VisualStudio.Text.Editor;assembly=Microsoft.VisualStudio.Text.UI.Wpf"&gt;
+	&lt;Style x:Key="OriginalOutliningMarginHeaderControlStyle" TargetType="textUiWpf:OutliningMarginHeaderControl"&gt;
+		...
+</code></pre>
+<p>The last thing that needed to be done was to override the style in the <code>InitializeAsync</code> method of the package. The following code loads the resource dictionary, looks up the style by its key, and places it in the current application&#8217;s resources using the implicit style key <code>typeof(OutliningMarginHeaderControl)</code>, so that Visual Studio will find this Style first:</p>
+<pre class="prettyprint language-csharp"><code class="language-csharp">
+protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress progress) 
+{ 
+	// When initialized asynchronously, the current thread may be a background thread at this point. 
+	// Do any initialization that requires the UI thread after switching to the UI thread. 
+	await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken); 
+	var resourceDictionary = new ResourceDictionary(); 
+	resourceDictionary.Source = new Uri("pack://application:,,,/BringBackPlusMinus;component/Style.xaml"); 
+	var style = resourceDictionary["OriginalOutliningMarginHeaderControlStyle"]; 
+	Application.Current.Resources[typeof(OutliningMarginHeaderControl)] = style; 
+}
+</code></pre>
+<p>Building and running the project launched the experimental instance of Visual Studio and voila &#8211; the plus/minus symbols were back!</p>
+<p>Now all that was left to do was to update the vsixmanifest, build the extension in Release mode, and upload it to the <a href="https://marketplace.visualstudio.com/">Visual Studio Marketplace</a> following this <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/walkthrough-publishing-a-visual-studio-extension?view=vs-2022">Walkthrough: Publish a Visual Studio extension</a>.</p>
+<h2>Adding support for color customization</h2>
+<p>When I started using the preview builds of Visual Studio 2022 17.12, I noticed that the rendering of the plus/minus symbols was broken because the chevron symbol color definition had changed. I decided to introduce a dedicated color definition for the plus/minus symbols to avoid such problems going forward:</p>
+<pre class="prettyprint language-csharp"><code class="language-csharp">
+[Export(typeof(EditorFormatDefinition))] 
+[Name(OutliningExpanderIdentifier)] 
+[UserVisible(true)] 
+internal sealed class OutliningExpanderFormatDefinition : EditorFormatDefinition 
+{ 
+	public const string OutliningExpanderIdentifier = "outlining.plusminus"; 
+	public OutliningExpanderFormatDefinition() 
+	{ 
+		this.ForegroundColor = Color.FromRgb(0x55, 0x55, 0x55); 
+		this.BackgroundColor = Color.FromRgb(0xE2, 0xE2, 0xE2); 
+		this.DisplayName = Strings.OutliningMarginPlusMinus; 
+	} 
+}
+</code></pre>
+<p>As an added benefit the colors are now consistent with the original plus/minus symbols, and they can be customized in <strong>Tools -&gt; Options -&gt; Environment -&gt; Fonts and Colors</strong>:</p>
+<p><img decoding="async" width="740" height="431" class="wp-image-251159" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/plus-minus-symbol-colors-in-tools-options-dialog.png" alt="Plus/minus symbol colors in Tools/Options dialog" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/plus-minus-symbol-colors-in-tools-options-dialog.png 740w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/plus-minus-symbol-colors-in-tools-options-dialog-300x175.png 300w" sizes="(max-width: 740px) 100vw, 740px" /></p>
+<p>To make sure that the colors look correct in the dark theme as well, I added a <code>ThemeColors.xml</code> file to the project with the following content:</p>
+<pre class="prettyprint language-xml"><code class="language-xml">
+&lt;Themes&gt; 
+	&lt;Theme Name="Dark" GUID="{1ded0138-47ce-435e-84ef-9ec1f439b749}"&gt; 
+		&lt;Category Name="BringBackPlusMinus" GUID="{063E9575-C1A8-4729-BB15-AAA2EFB44FC0}"&gt; 
+			&lt;Color Name="outlining.plusminus"&gt; 
+				&lt;Background Type="CT_RAW" Source="FF000000" /&gt; 
+				&lt;Foreground Type="CT_RAW" Source="FFE2E2E2" /&gt; 
+			&lt;/Color&gt; 
+		&lt;/Category&gt; 
+	&lt;/Theme&gt; 
+&lt;/Themes&gt;
+</code></pre>
+<p>It needs to be converted to a .pkgdef file using the <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/internals/vsix-color-compiler">VsixColorCompiler</a> first, which is then included in the extension&#8217;s .vsixmanifest.</p>
+<h2>Conclusion</h2>
+<p>In summary, with a little bit of detective work we were able to locate the style for the outlining symbols, build a VSIX extension, and override the style with the original style that brings back the original plus/minus outlining buttons.</p>
+<p>The source code for the extension is available on <a href="https://github.com/mgoertz-msft/BringBackPlusMinus">GitHub</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/the-making-of-bring-back-plus-minus/">The making of Bring Back Plus/Minus</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Unreal Engine Toolbar in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/unreal-engine-toolbar-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sy Brand]]></dc:creator>
+      <pubDate>Wed, 30 Oct 2024 12:00:15 +0000</pubDate>
+      <category><![CDATA[Gaming]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Game Development]]></category>
+      <category><![CDATA[Unreal Engine]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251151</guid>
+      <description><![CDATA[<p>In Visual Studio 2022 version 17.11, we’ve added a new Unreal Engine toolbar to Visual Studio. The Unreal Engine toolbar is a new feature that provides quick access to common Unreal Engine tasks. You can find the toolbar at the top of your code window when you have an Unreal Engine project loaded. The toolbar [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/unreal-engine-toolbar-in-visual-studio/">Unreal Engine Toolbar in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>In Visual Studio 2022 version 17.11, we’ve added a new Unreal Engine toolbar to Visual Studio.</p>
+<p><img decoding="async" class="alignnone wp-image-251152" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251151-1.png" alt="Image showing new tool bar with otpions like attach process, rescan blueprints, UE logs, and configure tools" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251151-1.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251151-1-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251151-1-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>The Unreal Engine toolbar is a new feature that provides quick access to common Unreal Engine tasks. You can find the toolbar at the top of your code window when you have an Unreal Engine project loaded. The toolbar includes the following actions:</p>
+<p><strong>Attach to Unreal Engine process</strong>: Lets you easily debug your game or editor by attaching to the running Unreal Engine process. You can choose which process to attach to from a drop-down menu.</p>
+<p><strong>Rescan Blueprints Cache</strong>: Refreshes the cache of Blueprint symbols in Visual Studio, which can help you resolve errors or warnings related to Blueprints.</p>
+<p><strong> Unreal Engine Log</strong>: Opens the Unreal Engine log window in Visual Studio, where you can view the output of your game or editor. The window captures log messages from running Unreal processes and makes it possible to see the output live while working on the game. You can also filter the log messages by severity or category using the built-in tools in Visual Studio.</p>
+<p><strong>Access Unreal Engine Configuration Page</strong>: pens the Unreal Engine configuration page in Visual Studio, where you can customize various settings for your Unreal Engine development. For example, you can enable or disable IntelliSense for Unreal Engine types, change the formatting style of your code, or set up <a id="post-251151-_Int_mPxZGIUj"></a>additional paths for your project.</p>
+<p>The Unreal Engine toolbar is designed to reduce the need to switch between different applications or windows. You can also customize the toolbar by adding or removing actions or moving it to a different location in Visual Studio.</p>
+<h2>Try it out</h2>
+<p>We hope you enjoy using the Unreal Engine toolbar in Visual Studio and we would love to hear your feedback. Please let us know what you think by leaving a comment below, or by using the <a href="https://learn.microsoft.com/en-us/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022"><em>Report a Problem</em> </a>tool in Visual Studio. Your input helps us make Visual Studio better for you and other Unreal Engine developers.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/unreal-engine-toolbar-in-visual-studio/">Unreal Engine Toolbar in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Create Unreal Engine modules faster</title>
+      <link>https://devblogs.microsoft.com/visualstudio/create-unreal-engine-modules-faster/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sy Brand]]></dc:creator>
+      <pubDate>Tue, 29 Oct 2024 16:09:18 +0000</pubDate>
+      <category><![CDATA[Gaming]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Game Development]]></category>
+      <category><![CDATA[Unreal Engine]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251146</guid>
+      <description><![CDATA[<p>Unreal Engine modules help keep your code organized and modular. However, creating modules can be a tedious and error-prone process that involves manually editing configuration files and adding boilerplate code. Visual Studio 2022 version 17.11 comes with a new dialog to help with this process. With the new Add Module dialog, you can quickly add [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/create-unreal-engine-modules-faster/">Create Unreal Engine modules faster</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Unreal Engine modules help keep your code organized and modular. However, creating modules can be a tedious and error-prone process that involves manually editing configuration files and adding boilerplate code.</p>
+<p>Visual Studio 2022 version 17.11 comes with a new dialog to help with this process. With the new <em>Add Module</em> dialog, you can quickly add new modules to your project without leaving Visual Studio or manually editing configurations.</p>
+<h2>How to use the Add Unreal Engine Module dialog</h2>
+<p>To use the <em>Add Unreal Engine Module</em> dialog, you need to have an Unreal Engine project open in Visual Studio. You can do this by opening the .<a id="post-251146-_Int_OO88J7OY"></a>sln file generated by the Unreal Editor from your project folder, or by <a href="https://devblogs.microsoft.com/cppblog/directly-edit-unreal-engine-projects-in-visual-studio-2022/">opening the Unreal Engine project directly</a> by opening the folder containing the *.uproject file through File-&gt;Open-&gt;Folder&#8230;.</p>
+<p><img decoding="async" class="alignnone wp-image-251147" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251146-1.png" alt="Ctrl+Shift+Alt+O to open a new folder" width="554" height="266" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251146-1.png 554w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251146-1-300x144.png 300w" sizes="(max-width: 554px) 100vw, 554px" /></p>
+<p>Once you have your project open, right click on the project in Solution Explorer and select <strong>Add &gt; Unreal Engine Item</strong>. This will open the <em>Add New Item</em> dialog, where you can select <em>Empty Unreal Engine Module</em> to launch the <em>Add Unreal Engine Module</em> dialog. This dialog lets you specify the name, type, loading phase, and path of your new module.</p>
+<p><img decoding="async" class="alignnone wp-image-251148" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251146-2.png" alt="Image showing the Add Unreal Engine Module" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251146-2.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251146-2-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251146-2-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>After you click <strong>OK</strong>, Visual Studio will create the module folder and files for you and update the project settings accordingly. Visual Studio also updates the *.uproject file, registering the module there and makes sure that the module builds. You can then start writing your module code right away or use the <a href="https://devblogs.microsoft.com/visualstudio/easily-add-unreal-engine-classes-to-your-c-project/"><em>Add Unreal Engine Class</em></a> dialog to add new classes to your module.</p>
+<h2>Why use Unreal Engine modules</h2>
+<p>Unreal Engine modules are a way of organizing your code into self-contained units that can be loaded and unloaded at runtime. Modules can <a id="post-251146-_Int_1hKkP26m"></a>contain C++ code, assets, shaders, blueprints, and other resources that are related to a specific functionality or feature.</p>
+<p>Using modules has several benefits, such as:</p>
+<ul>
+<li><strong>Improving code readability and maintainability</strong> by separating concerns and reducing coupling.</li>
+<li><strong>Enhancing performance and memory usage</strong> by loading only the modules needed for a given context.</li>
+<li><strong>Enabling code reuse and sharing</strong> by creating libraries of common or generic modules that can be used across different projects or platforms.</li>
+</ul>
+<p><strong>Simplifying packaging and deployment</strong> by bundling modules together into plugins or DLCs.</p>
+<p>To learn more about Unreal Engine modules, check out the <a href="https://dev.epicgames.com/community/learning/knowledge-base/GDD9/unreal-engine-modules-overview-and-structure">official documentation</a>.</p>
+<h2>Give us your feedback</h2>
+<p>We hope you enjoy using the new <em>Add Module</em> dialog and find it useful for your Unreal Engine development. We&#8217;d love to hear your feedback and suggestions on how we can improve this feature and make Visual Studio even better for you.</p>
+<p>Thank you for your continuous support and feedback, which helps us make Visual Studio the best tool for your development needs.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/create-unreal-engine-modules-faster/">Create Unreal Engine modules faster</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Easily add Unreal Engine classes to your C++ project</title>
+      <link>https://devblogs.microsoft.com/visualstudio/easily-add-unreal-engine-classes-to-your-c-project/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sy Brand]]></dc:creator>
+      <pubDate>Mon, 28 Oct 2024 15:43:57 +0000</pubDate>
+      <category><![CDATA[Gaming]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Game Development]]></category>
+      <category><![CDATA[Unreal Engine]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251139</guid>
+      <description><![CDATA[<p>Visual Studio 2022 v17.11 introduces a new Add Unreal Engine Class dialog that lets you easily add common Unreal Engine classes to your project. You can also choose to which module to add your class, so you can keep your code organized and modular. To use this feature, you need to have an Unreal Engine [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/easily-add-unreal-engine-classes-to-your-c-project/">Easily add Unreal Engine classes to your C++ project</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 v17.11 introduces a new <em>Add Unreal Engine Class</em> dialog that lets you easily add common Unreal Engine classes to your project. You can also choose to which module to add your class, so you can keep your code organized and modular.</p>
+<p><img decoding="async" class="alignnone wp-image-251140" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251139-1.png" alt="Adding the Unreal Engine Character Base classs" width="509" height="561" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251139-1.png 509w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/word-image-251139-1-272x300.png 272w" sizes="(max-width: 509px) 100vw, 509px" /></p>
+<p>To use this feature, you need to have an Unreal Engine project open in Visual Studio. Right click on the project in Solution Explorer and select <strong>Add &gt; Unreal Engine Item</strong>. In the <em>Add New Item</em> dialog, select <em>Unreal Engine Common Classes</em> to open the <em>Add Unreal Engine Class</em> dialog. This dialog shows you a list of common Unreal Engine classes that you can use as a base for your new class. Once you select a base class, you can enter the name of your new class. You can also specify the module to which Visual Studio should add your class.</p>
+<p>When you click <strong>OK</strong>, Visual Studio will generate the header and source files for your new class and add them to your project. You can then open the files and start writing your code.</p>
+<h2>Benefits of using the Add Unreal Engine Class dialog</h2>
+<p>The <em>Add Unreal Engine Class</em> dialog has several benefits over the <a id="post-251139-_Int_nQgHI5u6"></a>previous way of adding Unreal Engine classes to your project. Some of the these benefits are:</p>
+<p><strong>You can choose from an expanded list of base classes </strong>by simply selecting one from the <em>Base class</em> list.</p>
+<p><strong>You can specify the module name for your class</strong>, which helps you organize your code into logical units. Modules are Unreal Engine plugins or projects that <a id="post-251139-_Int_SD4ad4u4"></a>contain related classes and assets. By creating separate modules for your classes, you can improve the modularity, reusability, and maintainability of your code.</p>
+<p><strong>You can avoid naming conflicts and errors</strong> when adding classes to your project. The <em>Add Unreal Engine Class</em> dialog checks the validity of your class name and path and warns you if they conflict with an existing class or file. It also ensures that your class inherits from the correct base class and includes the necessary headers and macros.</p>
+<h2>Try it out</h2>
+<p>We hope you enjoy using the <em>Add Unreal Engine Class</em> dialog in Visual Studio. This feature is part of our ongoing effort to improve the C++ development experience for game developers. We would love to hear your feedback and suggestions on how we can make it even better. Please share your thoughts with us on <a href="https://developercommunity.visualstudio.com/">Developer Community</a> or <a href="https://x.com/visualstudio">Twitter</a>.</p>
+<p>We also want to thank you for your continuous feedback and support, which helps us make Visual Studio the best tool for developing games with Unreal Engine. Stay tuned for more updates and features coming soon.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/easily-add-unreal-engine-classes-to-your-c-project/">Easily add Unreal Engine classes to your C++ project</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Upgrade Your Windows Forms .NET Projects to the Latest .NET Version for Enhanced Security</title>
+      <link>https://devblogs.microsoft.com/visualstudio/upgrade-your-windows-forms-net-projects-to-the-latest-net-version-for-enhanced-security/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Shyam Gupta]]></dc:creator>
+      <pubDate>Thu, 24 Oct 2024 12:00:10 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Windows Forms]]></category>
+      <category><![CDATA[designer]]></category>
+      <category><![CDATA[security]]></category>
+      <category><![CDATA[WinForms]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251077</guid>
+      <description><![CDATA[<p>Each release of .NET introduces a host of new features and bug fixes that enhance both performance and security. To leverage these benefits both service and desktop application developers must upgrade their applications to the latest .NET versions. Just like other developers wanting to take advantage of the latest .NET enhancements, we are updating our [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/upgrade-your-windows-forms-net-projects-to-the-latest-net-version-for-enhanced-security/">Upgrade Your Windows Forms .NET Projects to the Latest .NET Version for Enhanced Security</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="none">Each release of .NET introduces a host of new features and bug fixes that enhance both performance and security. To leverage these benefits both service and desktop application developers must upgrade their applications to the latest .NET versions. Just like other developers wanting to take advantage of the latest .NET enhancements, we are updating our design-time support policy. This update will enhance the safety of the Visual Studio WinForms design-time experience and motivate WinForms developers to update their applications for improved security. </span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}"> </span><span data-contrast="none">However, updating this policy will mean we will no longer support designing Forms in projects targeting older, unsupported .NET versions. This means developers too will need to update their projects to supported .NET runtimes in order to design their forms in Visual Studio.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}"> </span></p>
+<h1>It is Time to Upgrade!</h1>
+<p><span data-contrast="none">Upgrading the WinForms Designer and your applications to newer .NET versions not only enhances security but also improves design-time reliability and performance by leveraging the </span><a href="https://learn.microsoft.com/en-us/dotnet/whats-new/"><span data-contrast="none">enhancements available in those .NET versions</span></a><span data-contrast="none"> and referenced NuGet packages. We strongly recommend keeping your applications updated with the latest .NET versions.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="none">Beginning with the VS 17.12 Preview 3 release, the WinForms Designer will automatically check your project&#8217;s target .NET version. If it falls below the minimum supported .NET or .NET LTS version, you will receive a notification displayed prominently in an InfoBar. This feature will keep you informed about your project’s compatibility, allowing easy access to a list of .NET versions and their support status.</span></p>
+<p><img decoding="async" width="1972" height="799" class="wp-image-251078" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/screenshot-of-windows-forms-net-designer-displayi.png" alt="Screenshot of Windows Forms .NET Designer displaying the new InfoBar. " srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/screenshot-of-windows-forms-net-designer-displayi.png 1972w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/screenshot-of-windows-forms-net-designer-displayi-300x122.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/screenshot-of-windows-forms-net-designer-displayi-1024x415.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/screenshot-of-windows-forms-net-designer-displayi-768x311.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/10/screenshot-of-windows-forms-net-designer-displayi-1536x622.png 1536w" sizes="(max-width: 1972px) 100vw, 1972px" /></p>
+<h1>Future Support for WinForms Designer with respect to .NET Runtimes</h1>
+<p><span data-contrast="none">Each time a .NET LTS release reaches its end of support, Visual Studio will update the WinForms Out-of-Process Designer minimum supported version to that LTS release. For example, when .NET 6 LTS goes out of support in November 2024, the following Visual Studio release, 17.13, will update the designer to have .NET 6 as the minimum supported version. Consequently, projects targeting .NET versions below 6, such as .NET Core 3.1 and .NET 5, will no longer load in the Designer. Hence, we highly recommend upgrading your application to the latest .NET release to remain compatible with Visual Studio 17.13 or newer versions. You can use Designer in Visual Studio 17.12 to migrate. For more information refer to </span><span data-contrast="auto">VS Product Life Cycle and Servicing wiki. </span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}"> </span></p>
+<p><span data-contrast="auto">Under this policy, each time .NET ships a new LTS release, the WinForms Designer will update our minimum .NET version supported to the </span><i><span data-contrast="auto">previous</span></i> <span data-contrast="auto">.NET LTS.  Why the </span><i><span data-contrast="auto">previous </span></i><span data-contrast="auto">LTS? We recognize that enterprises may have some delay in getting upgrades completed, and we don’t want to break them. We will, however, continue to present the InfoBar to </span><span data-contrast="auto">developers </span><span data-contrast="auto">informing them that they are targeting an out of support .NET release. When developers try to load a project targeting below the WinForms Designer minimum supported version, users will be presented with an error message informing them that the WinForms Designer requires a newer version of .NET.  </span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}"> </span></p>
+<p><span data-contrast="none">The following table outlines the WinForms Designer support policy going forward. While it currently focuses on .NET 6 and .NET 8, the same pattern will apply to future .NET LTS releases.</span></p>
+<table>
+<tbody>
+<tr>
+<td><strong>.NET LTS Release</strong></td>
+<td><strong>End of support (E)</strong></td>
+<td><strong>WinForms Designer support policy for next VS release after (E)</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">6.0</td>
+<td style="text-align: center;">Nov 2024</td>
+<td>&#8211; Designer will support projects targeting .NET 6.0 and newer versions.</p>
+<p>&#8211; Versions below 6.0 will not be supported.</td>
+</tr>
+<tr>
+<td style="text-align: center;">8.0</td>
+<td style="text-align: center;">Nov 2026</td>
+<td>&#8211; Projects targeting .NET 8.0 and newer versions will be supported.</p>
+<p>&#8211; Versions below 8.0 will not be supported.</td>
+</tr>
+</tbody>
+</table>
+<p><span class="TextRun SCXW252430906 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW252430906 BCX8">As .NET 8</span><span class="NormalTextRun SCXW252430906 BCX8"> reaches end-of-support, we will promptly upgrade the Designer process to</span><span class="NormalTextRun SCXW252430906 BCX8"> require at least</span><span class="NormalTextRun SCXW252430906 BCX8"> .NET 8</span> <span class="NormalTextRun SCXW252430906 BCX8">in the </span><span class="NormalTextRun SCXW252430906 BCX8">subsequent</span><span class="NormalTextRun SCXW252430906 BCX8"> Visual Studio release. This proactive approach ensures that you stay current with your projects while </span><span class="NormalTextRun SCXW252430906 BCX8">maintaining</span><span class="NormalTextRun SCXW252430906 BCX8"> compatibility with the WinForms Designer in newer Visual Studio versions. You can learn more about the .NET release lifecycle in this </span></span><a class="Hyperlink SCXW252430906 BCX8" href="https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core" target="_blank" rel="noreferrer noopener"><span class="TextRun Underlined SCXW252430906 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW252430906 BCX8" data-ccp-charstyle="Hyperlink">wiki</span></span></a><span class="TextRun SCXW252430906 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW252430906 BCX8">.</span></span></p>
+<p><strong>Important Note:</strong> These changes will only impact the design-time experience of the WinForms Designer. At runtime, all .NET versions will continue to function as they do now.</p>
+<h1>Conclusion and call for feedback</h1>
+<p>In today’s rapidly evolving landscape, prioritizing security in software development is essential, and it requires the commitment of all developers. The WinForms Designer team is dedicated to improving security, but we need your collaboration to ensure that projects remain updated with the latest .NET versions. While this may feel like a significant change, it is a necessary step toward enhancing the security of the WinForms Designer and your applications.</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/upgrade-your-windows-forms-net-projects-to-the-latest-net-version-for-enhanced-security/">Upgrade Your Windows Forms .NET Projects to the Latest .NET Version for Enhanced Security</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Get Hands-On with Visual Studio, .NET, AI, and More at Live! 360 next month.</title>
+      <link>https://devblogs.microsoft.com/visualstudio/live-360-orlando-2024/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Wed, 23 Oct 2024 13:01:37 +0000</pubDate>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Data and Analytics]]></category>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[.NET MAUI]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[VS LIVE!]]></category>
+      <category><![CDATA[VS Live! Event]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251040</guid>
+      <description><![CDATA[<p>Visual Studio LIVE! Orlando 2024 November 17-22 &#124; Loews Royal Pacific Resort, Orlando, FL We’re only four weeks away from the final Visual Studio Live! event of the year, and we’re close to capacity! Live! 360 Orlando offers something for everyone—whether you’re a developer, IT professional, data specialist, or cybersecurity expert. You’ll have the opportunity [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/live-360-orlando-2024/">Get Hands-On with Visual Studio, .NET, AI, and More at Live! 360 next month.</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h2>Visual Studio LIVE! Orlando 2024
+November 17-22 | Loews Royal Pacific Resort, Orlando, FL</h2>
+<p>We’re only four weeks away from the final Visual Studio Live! event of the year, and we’re close to capacity! Live! 360 Orlando offers something for everyone—whether you’re a developer, IT professional, data specialist, or cybersecurity expert. You’ll have the opportunity to learn from industry leaders while networking with peers who share similar roles.</p>
+<h3>Packed Hands-On Labs and Workshops</h3>
+<p>The week kicks off and wraps up with two full days of hands-on labs and workshops, featuring top experts like GitHub&#8217;s Brian Randell and Mickey Gousset, along with Microsoft’s own James Montemagno and Jon Galloway. Learn directly from MVPs and seasoned professionals to deepen your technical skills in real-world scenarios.</p>
+<h3>Over 300 Sessions Across 40 Tracks</h3>
+<p>Live! 360 Orlando is one of the most hands-on, knowledge-packed events of the year, featuring over 300 sessions spread across 40 tracks. Whether you’re interested in the latest developments in .NET 9, Azure AI, Microsoft Copilot, or building Copilot Agents, there’s a session for you. Plus, a dedicated conference within Live! 360 focuses exclusively on cybersecurity, ensuring you’ll stay ahead of the latest threats.</p>
+<h3>Keynote Highlights</h3>
+<ul>
+<li><strong>Live! 360 Keynote: Building Lovable Software for Millions of Users</strong>
+November 19, 11:00 AM – 12:00 PM
+Join Mads Kristensen, Principal Product Manager at Microsoft, as he shares insights on how the Developer Division designs software to meet the diverse needs of IT pros, DBAs, security specialists, data scientists, and developers worldwide. Learn from Mads’ experience about overcoming challenges and creating essential, beloved products for millions of users.</li>
+<li><strong>Visual Studio Live! &amp; Cloud &amp; Containers Live! Keynote: The Cloud-Native, Run Anywhere Future of .NET 9 Is Here!</strong>
+November 19, 8:00 AM – 9:00 AM
+Featuring Jon Galloway, Rachel Kang, and James Montemagno, this keynote will showcase the incredible potential of .NET 9 for cloud-native development and its evolving capabilities for running anywhere.</li>
+<li><strong>Data Platform Live! Keynote: Secure, Unified, and Scalable Data in the Era of AI</strong>
+November 19, 8:00 AM – 9:00 AM
+Presented by Davide Mauri and Drew Skwiers-Koballa, this keynote will dive into how Microsoft Azure Data technologies provide the secure, scalable platforms needed to leverage AI and build next-gen applications.</li>
+<li><strong>Artificial Intelligence Live! Keynote: How and Why, AI is Redefining Your Apps</strong>
+November 19, 8:00 AM – 9:00 AM
+Steve Sanderson will explore how AI-driven features like semantic search, data extraction, and intelligent workflows are transforming modern software development.</li>
+</ul>
+<h3>Exclusive Networking Opportunities</h3>
+<p>Live! 360 Orlando offers unmatched opportunities to network with top experts and fellow professionals. With attendance capped at just 1,500, you’ll have the chance to meet speakers and product managers in casual settings. Don’t miss the Welcome Reception on Monday evening and visit our speaker&#8217;s booth throughout the event. Whether you want to discuss GitHub Copilot or the future of .NET, these events provide the perfect opportunity to connect.</p>
+<h3><strong>Register Now and Save</strong></h3>
+<p>If you’re a Visual Studio Professional or Enterprise Subscriber, you can unlock exclusive discounts through <a href="https://my.visualstudio.com" target="_blank" rel="noopener">My.VisualStudio.com</a>. Not a subscriber? No problem—take advantage of our early bird pricing on the <a href="https://na.eventscloud.com/ereg/index.php?eventid=778865" target="_blank" rel="noopener">Live! 360 event page</a>. But act fast—space is limited, and this event is sure to sell out!</p>
+<p>We can’t wait to see you in Orlando for a week of hands-on learning, expert insights, and valuable connections!</p>
+<p>Be sure to track me down and say hello, I&#8217;m looking forward to meeting you.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/live-360-orlando-2024/">Get Hands-On with Visual Studio, .NET, AI, and More at Live! 360 next month.</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
