@@ -1,7 +1,8 @@
-﻿using Amazon.CDK;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+
+using Amazon.CDK;
 
 namespace Cdk1
 {
@@ -9,8 +10,7 @@ namespace Cdk1
     {
         public static void Main(string[] args)
         {
-            var app = new App();
-            new Cdk1Stack(app, "Cdk1Stack", new StackProps
+            StackProps properties = new()
             {
                 // If you don't specify 'env', this stack will be environment-agnostic.
                 // Account/Region-dependent features and context lookups will not work,
@@ -37,7 +37,9 @@ namespace Cdk1
                 */
 
                 // For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-            });
+            };
+            App app = new();
+            Cdk1Stack stack = new(app, "Cdk1Stack", properties);
             app.Synth();
         }
     }
