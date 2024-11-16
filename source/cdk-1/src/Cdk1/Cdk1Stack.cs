@@ -8,6 +8,7 @@ namespace Cdk1
         internal Cdk1Stack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
             // The code that defines your stack goes here
+            //Amazon.CDK.AWS.EC2.
         }
     }
 }
