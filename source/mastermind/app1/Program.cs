@@ -12,6 +12,7 @@ namespace matermind
 {
     class Exe
     {
+        const uint DIGITMIN_LIMIT = 5;
         static IEnumerable<string> VALID_INPUT_KEYS_ARRAY;
         static string Read_GuessKeys()
         {
@@ -27,24 +28,28 @@ namespace matermind
                     result=$"{text}";
                     break;
                 }
-                if(k.Key == ConsoleKey.Backspace && keys.Count > 0)
+                if(k.Key == ConsoleKey.Backspace)
                 {
-                    keys.RemoveAt(keys.Count-1);
-                    Write(" \b");
+                    if(keys.Count > 0)
+                    {
+                        keys.RemoveAt(keys.Count-1);
+                        Write(" \b");
+                    } else Write(" ");
                 }
                 else if(VALID_INPUT_KEYS_ARRAY.Any(c=>c==$"{k.Key}")) keys.Add(k.KeyChar);
             }while(true);
             return result;
         }
-        static IEnumerable<int> Get_GameCode()
+        static IEnumerable<int> Get_GameCode(int mindigit, int maxdigit)
         {
-            List<int> result=new ();
+            if(maxdigit-mindigit<DIGITMIN_LIMIT) throw new Exception($"Less than {DIGITMIN_LIMIT} is an invalid number for the length of the magic number ({mindigit},{maxdigit}).");
+            List<int> result=[];
             do
             {
-                var c=System.Security.Cryptography.RandomNumberGenerator.GetInt32(0,10);
+                var c=System.Security.Cryptography.RandomNumberGenerator.GetInt32(mindigit,maxdigit+1);
                 if(!result.Contains(c)) result.Add(c);
             }while(result.Count != 4);
-            return result;    
+            return result;
         }
         static string Read_Guess(string Prompt)
         {
@@ -67,16 +72,16 @@ namespace matermind
             }
             return (white,red);
         }
-        static void TopEntryPoint(uint trylimit = 12, bool separator = false)
+        static void TopEntryPoint(uint from_digit, uint to_digit, uint trylimit = 12, bool separator = false)
         {
-            WriteLine();
-            var toguess = Get_GameCode();
+            WriteLine($"\n*** Each number is between {from_digit} and {to_digit}. You have {trylimit} chances to guess correct all numbers. ***\n");
+            var toguess = Get_GameCode((int)from_digit, (int)to_digit);
 //WriteLine(string.Join(" ",toguess));
             var askguess = "Which are the four numbers? : ";
             int trycount = 0;
             do
             {
-                if(trycount >= trylimit) { WriteLine($"\n\nYou reached the attempts limit of {trylimit}: The game won!!!\nThe numbers were {string.Join(" ",toguess)}\n"); break;  }
+                if(trycount >= trylimit) { WriteLine($"\n\nYou reached the attempts limit of {trylimit}: The house won!!!\nThe numbers were {string.Join(" ",toguess)}\n"); break;  }
                 var guess_input = Read_Guess(askguess);
                 var guess = Get_Guess(guess_input,separator);
                 ++trycount;
@@ -91,8 +96,12 @@ namespace matermind
         }
         static void Main(string[] args)
         {
-            VALID_INPUT_KEYS_ARRAY = System.Enum.GetNames(typeof(System.ConsoleKey)).Where(k=>k.Contains("NumPad") || System.Text.RegularExpressions.Regex.Match(k,@"^D\d$").Success || k=="Spacebar");
-            TopEntryPoint();
+            try
+            {
+                VALID_INPUT_KEYS_ARRAY = System.Enum.GetNames(typeof(System.ConsoleKey)).Where(k=>k.Contains("NumPad") || System.Text.RegularExpressions.Regex.Match(k,@"^D\d$").Success || k=="Spacebar");
+                TopEntryPoint(1U,6U);
+            }
+            catch(Exception ex) { WriteLine($"\n{ex.Message}"); }
 
             //WriteLine(string.Join(" ",VALID_INPUT_KEYS_ARRAY));
             //WriteLine($"\n\n{Read_GuessKeys()}");
