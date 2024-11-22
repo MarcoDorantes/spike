@@ -37,6 +37,7 @@ namespace matermind
                     } else Write(" ");
                 }
                 else if(VALID_INPUT_KEYS_ARRAY.Any(c=>c==$"{k.Key}")) keys.Add(k.KeyChar);
+                //space? separator? no-dups?
             }while(true);
             return result;
         }
@@ -68,7 +69,7 @@ namespace matermind
             for(int k=0; k<4; ++k)
             {
                 if(guess.ElementAt(k) == toguess.ElementAt(k)) { ++red; }
-                else if(toguess.Contains(guess.ElementAt(k))) { ++white; }//dups? Unkey? Error message?
+                else if(toguess.Contains(guess.ElementAt(k))) { ++white; }//dups: Unkey? Error message?
             }
             return (white,red);
         }
@@ -89,9 +90,7 @@ namespace matermind
                 if(guess.SequenceEqual(toguess)) { WriteLine($"\n\nYou won in {trycount} attempts!!!\n"); break; }
                 var trylabel = $"Attempt #{trycount,-2}>";
                 var hint = Get_Hint(guess, toguess);
-        WriteLine($"\r{askguess}{guess_input} {trylabel} Misplaced: {hint.Whites} Exact: {hint.Reds}");
-
-
+                WriteLine($"\r{askguess}{guess_input} {trylabel} Misplaced: {hint.Whites} Exact: {hint.Reds}");
             }while(true);
         }
         static void Main(string[] args)
