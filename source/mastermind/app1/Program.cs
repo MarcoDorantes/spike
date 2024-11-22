@@ -68,13 +68,13 @@ namespace matermind
             for(int k=0; k<4; ++k)
             {
                 if(guess.ElementAt(k) == toguess.ElementAt(k)) { ++red; }
-                else if(toguess.Contains(guess.ElementAt(k))) { ++white; }
+                else if(toguess.Contains(guess.ElementAt(k))) { ++white; }//dups? Unkey? Error message?
             }
             return (white,red);
         }
         static void TopEntryPoint(uint from_digit, uint to_digit, uint trylimit = 12, bool separator = false)
         {
-            WriteLine($"\n*** Each number is between {from_digit} and {to_digit}. You have {trylimit} chances to guess correct all numbers. ***\n");
+            WriteLine($"\n*** Each number is inclusively between {from_digit} and {to_digit}. You have {trylimit} chances to guess exact all numbers. ***\n");
             var toguess = Get_GameCode((int)from_digit, (int)to_digit);
 //WriteLine(string.Join(" ",toguess));
             var askguess = "Which are the four numbers? : ";
