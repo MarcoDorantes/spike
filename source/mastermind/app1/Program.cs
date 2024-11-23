@@ -38,6 +38,7 @@ namespace matermind
                 }
                 else if(VALID_INPUT_KEYS_ARRAY.Any(c=>c==$"{k.Key}")) keys.Add(k.KeyChar);
                 //space? separator? no-dups?
+                //incomplete guess: ENTER before 4 digits.
             }while(true);
             return result;
         }
