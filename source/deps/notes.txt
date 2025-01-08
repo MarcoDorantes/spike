@@ -1,0 +1,143 @@
+**********************************************************************
+** Visual Studio 2022 Developer PowerShell v17.12.3
+** Copyright (c) 2022 Microsoft Corporation
+**********************************************************************
+PS C:\Users\41477\source\repos> pushd .\spike\
+git pull
+Already up to date.
+git status
+On branch flogm
+Your branch is up to date with 'origin/flogm'.
+
+nothing to commit, working tree clean
+
+dotnet --info
+.NET SDK:
+ Version:           9.0.101
+ Commit:            eedb237549
+ Workload version:  9.0.100-manifests.4a280210
+ MSBuild version:   17.12.12+1cce77968
+
+Runtime Environment:
+ OS Name:     Windows
+ OS Version:  10.0.19045
+ OS Platform: Windows
+ RID:         win-x64
+ Base Path:   C:\Program Files\dotnet\sdk\9.0.101\
+
+.NET workloads installed:
+ [maui-windows]
+   Installation Source: VS 17.12.35527.113
+   Manifest Version:    9.0.0/9.0.100
+   Manifest Path:       C:\Program Files\dotnet\sdk-manifests\9.0.100\microsoft.net.sdk.maui\9.0.0\WorkloadManifest.json
+   Install Type:              Msi
+
+ [maccatalyst]
+   Installation Source: VS 17.12.35527.113
+   Manifest Version:    18.1.9163/9.0.100
+   Manifest Path:       C:\Program Files\dotnet\sdk-manifests\9.0.100\microsoft.net.sdk.maccatalyst\18.1.9163\WorkloadManifest.json
+   Install Type:              Msi
+
+ [android]
+   Installation Source: VS 17.12.35527.113
+   Manifest Version:    35.0.7/9.0.100
+   Manifest Path:       C:\Program Files\dotnet\sdk-manifests\9.0.100\microsoft.net.sdk.android\35.0.7\WorkloadManifest.json
+   Install Type:              Msi
+
+ [ios]
+   Installation Source: VS 17.12.35527.113
+   Manifest Version:    18.1.9163/9.0.100
+   Manifest Path:       C:\Program Files\dotnet\sdk-manifests\9.0.100\microsoft.net.sdk.ios\18.1.9163\WorkloadManifest.json
+   Install Type:              Msi
+
+ [aspire]
+   Installation Source: VS 17.12.35527.113
+   Manifest Version:    8.2.2/8.0.100
+   Manifest Path:       C:\Program Files\dotnet\sdk-manifests\8.0.100\microsoft.net.sdk.aspire\8.2.2\WorkloadManifest.json
+   Install Type:              Msi
+
+Configured to use loose manifests when installing new manifests.
+
+Host:
+  Version:      9.0.0
+  Architecture: x64
+  Commit:       9d5a6a9aa4
+
+.NET SDKs installed:
+  9.0.101 [C:\Program Files\dotnet\sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 6.0.36 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.AspNetCore.App 8.0.11 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.AspNetCore.App 9.0.0 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 6.0.36 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.NETCore.App 8.0.11 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.NETCore.App 9.0.0 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.WindowsDesktop.App 6.0.36 [C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App]
+  Microsoft.WindowsDesktop.App 8.0.11 [C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App]
+  Microsoft.WindowsDesktop.App 9.0.0 [C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App]
+
+Other architectures found:
+  x86   [C:\Program Files (x86)\dotnet]
+    registered at [HKLM\SOFTWARE\dotnet\Setup\InstalledVersions\x86\InstallLocation]
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+
+
+start .\source\back1\spec1\
+dotnet new sln -o source\deps
+
+dotnet new classlib -o .\source\deps\lib1
+The template "Class Library" was created successfully.
+
+Processing post-creation actions...
+Restoring C:\Users\41477\source\repos\spike\source\deps\lib1\lib1.csproj:
+Restore succeeded.
+
+
+dotnet new classlib -o .\source\deps\lib2
+The template "Class Library" was created successfully.
+
+Processing post-creation actions...
+Restoring C:\Users\41477\source\repos\spike\source\deps\lib2\lib2.csproj:
+Restore succeeded.
+
+
+dotnet new console -o .\source\deps\app1
+
+dotnet sln .\source\deps\ add .\source\deps\lib1\
+Project `lib1\lib1.csproj` added to the solution.
+
+dotnet sln .\source\deps\ add .\source\deps\lib2\
+Project `lib2\lib2.csproj` added to the solution.
+
+dotnet sln .\source\deps\ add .\source\deps\app1\
+Project `app1\app1.csproj` added to the solution.
+
+
+Workload updates are available. Run `dotnet workload list` for more information.
+dotnet workload list
+
+Installed Workload Id      Manifest Version       Installation Source
+---------------------------------------------------------------------
+android                    35.0.7/9.0.100         VS 17.12.35527.113
+aspire                     8.2.2/8.0.100          VS 17.12.35527.113
+ios                        18.1.9163/9.0.100      VS 17.12.35527.113
+maccatalyst                18.1.9163/9.0.100      VS 17.12.35527.113
+maui-windows               9.0.0/9.0.100          VS 17.12.35527.113
+
+
+dotnet publish .\source\deps\app1\ -c Release --force --runtime win-x64 --self-contained -o C:\temp\app1
+
+dotnet build .\source\deps\lib2\ -c Release
+dotnet publish .\source\deps\lib2\ -c Release -o C:\temp\lib2
