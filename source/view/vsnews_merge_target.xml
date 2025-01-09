@@ -26352,5 +26352,392 @@ Steve Sanderson will explore how AI-driven features like semantic search, data e
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/updates-for-c-developers-in-visual-studio-2022-17-12/">Updates for C++ developers in Visual Studio 2022 17.12</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>GitHub Copilot Free is here in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/github-copilot-free-is-here-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Wed, 18 Dec 2024 18:14:49 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251812</guid>
+      <description><![CDATA[<p>If you haven’t already heard, GitHub just announced Copilot Free! And great news: you can already start using Copilot Free right now in Visual Studio. It&#8217;s available now, and we&#8217;re putting the finishing touches on a more streamlined experience in January. We’re excited to bring these benefits to the entire Visual Studio family. With Copilot [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-free-is-here-in-visual-studio/">GitHub Copilot Free is here in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>If you haven’t already heard, GitHub just announced <a href="https://github.blog/news-insights/product-news/github-copilot-in-vscode-free/">Copilot Free</a>! And great news: you can already start using <strong>Copilot Free</strong> right now in Visual Studio. It&#8217;s available now, and we&#8217;re putting the finishing touches on a more streamlined experience in January.</p>
+<p>We’re excited to bring these benefits to the entire Visual Studio family. With Copilot Free, you’ll have AI-powered tools right at your fingertips—smarter debugging, AI generated commit messages, AI-breakpoint placement, and of course, direct access to Completions, Chat, and much more. Developers have seen a <a href="https://github.com/customer-stories/duolingo">25%</a> speed increase with Copilot—and now you can experience that boost firsthand in Visual Studio.</p>
+<div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn">
+<div class="flex-col gap-1 md:gap-3">
+<div class="flex max-w-full flex-col flex-grow">
+<div class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words text-start [.text-message+&amp;]:mt-5" dir="auto" data-message-author-role="assistant" data-message-id="c9223446-6964-4654-8b5d-0ce139b8ed02" data-message-model-slug="gpt-4o">
+<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
+<div class="markdown prose w-full break-words dark:prose-invert light">
+<h3><strong>Ready to give it a try?</strong></h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p style="text-align: center;"><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://github.com/settings/copilot" target="_blank"> Sign up for GitHub Copilot Free</a></div></p>
+<h3 style="text-align: left;"><strong>A couple of recommendations</strong></h3>
+<ol>
+<li><strong>Try it now:</strong> Don’t wait to experience the benefits. Give <strong>GitHub Copilot Free</strong> a spin in Visual Studio today. Just note that for now, you won’t be notified when you hit your usage limit, but we’ve got you covered with updates coming in January.</li>
+<li><strong>Stay Updated:</strong> Keep your Visual Studio installation current and subscribe to the <a href="https://visualstudio.microsoft.com/vs/preview/">preview channels</a>. By staying on the cutting edge, you’ll be among the first to enjoy the latest updates, ensuring you get the most out of Copilot Free as we roll out new features.</li>
+</ol>
+<h3><strong>Looking ahead to January</strong></h3>
+<p>Copilot Free will be even easier to use in Visual Studio. You’ll see clear indicators when you hit your usage limits—no more guesswork. And if you find yourself needing more, upgrading to a no-limits plan will be smooth and seamless, so you can keep your ideas flowing.</p>
+<p>Keep an eye on the latest previews for these updates, and don’t forget to share your feedback through <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-free-is-here-in-visual-studio/">GitHub Copilot Free is here in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Refresh your Find results</title>
+      <link>https://devblogs.microsoft.com/visualstudio/refresh-your-find-results/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Leah Tran]]></dc:creator>
+      <pubDate>Tue, 17 Dec 2024 13:00:35 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Find]]></category>
+      <category><![CDATA[Search]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251787</guid>
+      <description><![CDATA[<p>Are you tired of having to repeatedly launch the Find window in Visual Studio to update your search results? Whether you&#8217;ve just refactored some code or pulled recent changes, having to redo a search to get updated results is no longer necessary. With the new refresh option, you can now update your Find results without [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/refresh-your-find-results/">Refresh your Find results</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Are you tired of having to repeatedly launch the Find window in Visual Studio to update your search results? Whether you&#8217;ve just refactored some code or pulled recent changes, having to redo a search to get updated results is no longer necessary. With the new refresh <a id="post-251787-_Int_fqCvJZHY"></a>option, you can now update your Find results without the hassle of starting over.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/refresh-search-results-icon-highlighted-e1734111940468.png"><img fetchpriority="high" decoding="async" class="alignnone size-full wp-image-251788" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/refresh-search-results-icon-highlighted-e1734111940468.png" alt="Refresh search results icon highlighted" width="500" height="170" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/refresh-search-results-icon-highlighted-e1734111940468.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/refresh-search-results-icon-highlighted-e1734111940468-300x102.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></a></p>
+<p>The <em>Refresh search results </em>button in Visual Studio 2022 will save you time and effort when searching through your code.</p>
+<h2><em>Refresh </em>your <a id="post-251787-_Int_R3gIEucq"></a>previous Find</h2>
+<p>No more friction when updating your earlier Find results! After completing a Find, you can click the clockwise arrow icon to refresh the results instantly. This ensures all changes you’ve made since the last Find are reflected without having to reopen the Find window.</p>
+<p><img decoding="async" width="1099" height="334" class="wp-image-251789" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-refresh-search-results-icon-to-the.png" alt="In the toolbar, Refresh search results icon to the right of Group by and Stops a background find" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-refresh-search-results-icon-to-the.png 1099w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-refresh-search-results-icon-to-the-300x91.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-refresh-search-results-icon-to-the-1024x311.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-refresh-search-results-icon-to-the-768x233.png 768w" sizes="(max-width: 1099px) 100vw, 1099px" /></p>
+<h2><em>Modify Find</em> to refine search parameters</h2>
+<p>To avoid confusion, we&#8217;ve also relabeled the former Repeat Find to <em>Modify Find</em>, now represented with a pencil icon.</p>
+<p>Clicking <em>Modify Find</em> reopens Find in Files with your prior search criteria for that set of results, making it easier to refine your searches and get the results you need.</p>
+<h2><img decoding="async" width="1099" height="334" class="wp-image-251790" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-modify-find-at-the-far-right.png" alt="In the toolbar, Modify Find at the far right" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-modify-find-at-the-far-right.png 1099w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-modify-find-at-the-far-right-300x91.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-modify-find-at-the-far-right-1024x311.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/in-the-toolbar-modify-find-at-the-far-right-768x233.png 768w" sizes="(max-width: 1099px) 100vw, 1099px" /></h2>
+<h2>Conclusion</h2>
+<p>We are thrilled to bring you these improvements in Visual Studio 2022, aimed at making your development process more efficient and less cumbersome. Your continuous feedback helps us make Visual Studio even better, and we appreciate your ongoing support.</p>
+<p>Thank you for being a valued user of Visual Studio. We look forward to hearing more about your experiences with the Refresh functionality in Find Results and are always open to your suggestions for further enhancements.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/refresh-your-find-results/">Refresh your Find results</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Create internal GitHub repos for your team</title>
+      <link>https://devblogs.microsoft.com/visualstudio/create-internal-github-repos-for-your-team/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Mon, 16 Dec 2024 13:00:09 +0000</pubDate>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251783</guid>
+      <description><![CDATA[<p>Visual Studio 2022 now includes support for creating internal repositories for GitHub organizations. This feature allows developers to work within their GitHub organization&#8217;s guidelines within the Visual Studio environment more effectively. Managing repositories involves configuring varying levels of visibility and permissions. Visual Studio 2022’s new feature aims to smooth this process by providing support for [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/create-internal-github-repos-for-your-team/">Create internal GitHub repos for your team</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 now includes support for creating internal repositories for GitHub organizations. This feature allows developers to work within their GitHub organization&#8217;s guidelines within the Visual Studio environment more effectively.</p>
+<p><img decoding="async" class="alignnone wp-image-251784" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251783-1.png" alt="Creating a new git rep with local path" width="854" height="616" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251783-1.png 854w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251783-1-300x216.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251783-1-768x554.png 768w" sizes="(max-width: 854px) 100vw, 854px" /></p>
+<p>Managing repositories involves configuring varying levels of visibility and permissions. Visual Studio 2022’s new feature aims to smooth this process by providing support for internal repositories, ensuring that developers can be aligned with their organization&#8217;s polices when they create new repositories.</p>
+<h1>How it works</h1>
+<p>In the <strong>Create a Git repository </strong>dialog, the visibility of your new repository now includes the new internal option if you’ve selected an account where internal repositories are available. Additionally, Visual Studio now offers detailed guidance for each type of repository. This guidance clarifies the visibility settings of new projects based on the account being used, helping developers ensure the correct setup of their repositories from the outset. If you try to create a repository with the wrong visibility, the action will fail, so that you don’t share your sourcecode with anyone you didn’t mean to.</p>
+<p>This functionality reduces the need for leaving Visual Studio to create internal repositories from GitHub – an unfamiliar flow, allowing developers to focus more on coding and less on managing repository settings.</p>
+<h1>Continuous improvement with your feedback</h1>
+<p>The feedback from Visual Studio users has been instrumental in developing these features. This continuous input helps enhance the functionality of Visual Studio, making it a more efficient tool for developers. Leave your thoughts on this feature <a href="https://developercommunity.visualstudio.com/t/Clarify-the-new-Git-repository-dialog-to/10580823">here</a>.</p>
+<p>Thank you for your ongoing feedback, which continues to improve Visual Studio with every update.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/create-internal-github-repos-for-your-team/">Create internal GitHub repos for your team</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Dock the Code Search window in Visual Studio 2022</title>
+      <link>https://devblogs.microsoft.com/visualstudio/dock-the-code-search-window-in-visual-studio-2022/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Leah Tran]]></dc:creator>
+      <pubDate>Tue, 31 Dec 2024 13:00:22 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[code search]]></category>
+      <category><![CDATA[Search]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251794</guid>
+      <description><![CDATA[<p>Ever felt frustrated with the search window cluttering your workspace? The latest feature in Visual Studio 2022 gives you more control over the behavior of the Code and Feature Search window, making your search experience smoother and more efficient. Some users have shared that the search window feels intrusive, interrupting your work by appearing mid-screen [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/dock-the-code-search-window-in-visual-studio-2022/">Dock the Code Search window in Visual Studio 2022</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Ever felt frustrated with the search window cluttering your workspace? The latest feature in Visual Studio 2022 gives you more control over the behavior of the Code and Feature Search window, making your search experience smoother and more efficient.</p>
+<p><img fetchpriority="high" decoding="async" width="1200" height="662" class="wp-image-251797" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/search-docked-below-the-editor-.png" alt="Search docked below the editor." srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/search-docked-below-the-editor-.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/search-docked-below-the-editor--300x166.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/search-docked-below-the-editor--1024x565.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/search-docked-below-the-editor--768x424.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>Some users have shared that the search window feels intrusive, interrupting your work by appearing mid-screen or on the wrong screen and taking up precious screen real estate. You now have the <a id="post-251794-_Int_AXEdxsZv"></a>option to turn the search window into a tool window and dock it where you’d like.</p>
+<h1>Choose how you want your search window</h1>
+<p>Visual Studio now allows you to dock the search window and perform various tool window actions, like Solution Explorer and other tool windows. The window will continue to pop up by default, but you can now dock, pop out, or auto-hide the search window as a tool window.</p>
+<p>After launching Code Search (Ctrl+T or Ctrl+,) or Feature Search (Ctrl+Q), click the box icon with an arrow at the top right of the window. This icon transforms the search window into a versatile tool window, which you can then dock anywhere in your interface and organize your workspace as you like.</p>
+<p><img decoding="async" width="1200" height="399" class="wp-image-251798" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-docking-window-button-next-to-hide-or.png" alt="Switch to a docking window button next to Hide or Show preview button" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-docking-window-button-next-to-hide-or.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-docking-window-button-next-to-hide-or-300x100.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-docking-window-button-next-to-hide-or-1024x340.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-docking-window-button-next-to-hide-or-768x255.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>If you try it out and decide this feature isn’t for you, you can go back to the popup version of the window by clicking on the box icon with a rectangle.</p>
+<p><img decoding="async" width="735" height="312" class="wp-image-251799" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-popup-window-button-next-to-hide-or-sh.png" alt="Switch to a popup window button next to Hide or Show preview button" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-popup-window-button-next-to-hide-or-sh.png 735w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/switch-to-a-popup-window-button-next-to-hide-or-sh-300x127.png 300w" sizes="(max-width: 735px) 100vw, 735px" /></p>
+<h1>Streamlined previewing experience</h1>
+<p>We’ve also simplified the previewing experience within the search window. The interface has been simplified and cleaned up, providing a more user-friendly experience. A single button, marked with an eye icon, allows you to toggle the preview panel on and off.</p>
+<p><img decoding="async" width="1200" height="399" class="wp-image-251800" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/hide-or-show-preview-button.png" alt="Hide or Show preview button" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/hide-or-show-preview-button.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/hide-or-show-preview-button-300x100.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/hide-or-show-preview-button-1024x340.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/hide-or-show-preview-button-768x255.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>Moreover, the preview panel&#8217;s position will now automatically adjust based on the dimensions of the search window, ensuring a seamless and adaptable viewing experience.</p>
+<p><img decoding="async" width="1200" height="661" class="wp-image-251801" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/preview-panel-is-below-results-list-with-search-wi.png" alt="Preview panel is below results list with search window docked right" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/preview-panel-is-below-results-list-with-search-wi.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/preview-panel-is-below-results-list-with-search-wi-300x165.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/preview-panel-is-below-results-list-with-search-wi-1024x564.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/preview-panel-is-below-results-list-with-search-wi-768x423.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<h1>We appreciate your feedback</h1>
+<p>We are deeply grateful for the continuous feedback from our dedicated users, which plays a crucial role in making Visual Studio better with each update. Your input helps us refine and enhance the features that matter most to you.</p>
+<p>Thank you for being an integral part of the Visual Studio community. We can&#8217;t wait for you to experience the improved search window control in Visual Studio 2022!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/dock-the-code-search-window-in-visual-studio-2022/">Dock the Code Search window in Visual Studio 2022</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Go to line anywhere with Code Search for Visual Studio 2022</title>
+      <link>https://devblogs.microsoft.com/visualstudio/go-to-line-anywhere-with-code-search-for-visual-studio-2022/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Leah Tran]]></dc:creator>
+      <pubDate>Mon, 30 Dec 2024 13:00:42 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[code search]]></category>
+      <category><![CDATA[Navigate through code]]></category>
+      <category><![CDATA[Search]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251839</guid>
+      <description><![CDATA[<p>Finding the exact line of code where an issue is occurring can be like searching for a needle in a haystack. Whether you are debugging an error on line 43 of a file or diving into a specific section of code, you can efficiently jump to the right places with this newest addition to Code [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/go-to-line-anywhere-with-code-search-for-visual-studio-2022/">Go to line anywhere with Code Search for Visual Studio 2022</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Finding the exact line of code where an issue is occurring can be like searching for a needle in a haystack. Whether you are debugging an error on line 43 of a file or diving into a specific section of code, you can efficiently jump to the right places with this newest addition to Code Search.</p>
+<p>In Code Search, you can now jump to a specific line in the current file or another file, making it faster and easier to move around your codebase.</p>
+<h1>Navigate to a line in the current document</h1>
+<p>No need to scroll endlessly to find a specific line. With the updated Code Search, you can swiftly jump to any line in the current document by simply typing colon + line number. For example, <a id="post-251839-_Int_UOF1URck"></a>typing <strong>:39</strong> instantly takes you to line 39 in the active file.</p>
+<p><img decoding="async" class="alignnone wp-image-251840" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-1.png" alt="Navigate to a line in the current document :39 items shown" width="800" height="534" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-1.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-1-300x200.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-1-768x513.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></p>
+<h1>Navigate to a line in a different document</h1>
+<p>But that&#8217;s not all! You can also navigate to a specific line in a certain document by appending the file name with a colon and the line number. For instance, entering <strong>Order:43</strong> will direct you to line 43 in the <em>Order.cs</em> file. If you don&#8217;t specify the exact file name, the search will try to find the best match for you.</p>
+<p><img decoding="async" class="alignnone wp-image-251841" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-2.png" alt="Navigate to a line in a different document Order:43 items" width="800" height="534" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-2.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-2-300x200.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251839-2-768x513.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></p>
+<h1>We appreciate your feedback</h1>
+<p>Your feedback is invaluable to us. It helps us make Visual Studio better with each update. We are excited to see how this new feature will enhance your coding workflow.</p>
+<p>From feedback we received during Previews, we’ve already got work lined up to support another format for line navigation. See more at <a href="https://developercommunity.visualstudio.com/t/Support-Filenameline:column-format-in-/10720994">Support Filename(line,column) format in Code Search &#8211; Developer Community (visualstudio.com)</a>.</p>
+<p>We look forward to hearing about your experiences and suggestions.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/go-to-line-anywhere-with-code-search-for-visual-studio-2022/">Go to line anywhere with Code Search for Visual Studio 2022</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Connect securely to your Azure resources</title>
+      <link>https://devblogs.microsoft.com/visualstudio/connect-securely-to-your-azure-resources/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Brady Gaster]]></dc:creator>
+      <pubDate>Tue, 24 Dec 2024 13:00:11 +0000</pubDate>
+      <category><![CDATA[Administration]]></category>
+      <category><![CDATA[Reliability]]></category>
+      <category><![CDATA[Team and Development]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Authentication]]></category>
+      <category><![CDATA[Azure App Services]]></category>
+      <category><![CDATA[Azure Storage]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251830</guid>
+      <description><![CDATA[<p>Visual Studio 2022&#8217;s Connected Services features are being updated to help you start secure. In the past, for example with Azure Storage, we’d inject the entire connection string into your configuration. With this update, we’ve removed the secrets from the UX – and from what we save to configuration – altogether. This means your code [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/connect-securely-to-your-azure-resources/">Connect securely to your Azure resources</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022&#8217;s Connected Services features are being updated to help you start secure. In the past, for example with Azure Storage, we’d inject the entire connection string into your configuration. With this update, we’ve removed the secrets from the UX – and from what we save to configuration – altogether. This means your code has fewer secrets in it, so you won’t push those into your source control repository inadvertently.</p>
+<p><img decoding="async" class="alignnone wp-image-251831" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251830-1.png" alt="Connecting to Azure storage old view" width="804" height="564" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251830-1.png 804w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251830-1-300x210.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251830-1-768x539.png 768w" sizes="(max-width: 804px) 100vw, 804px" /></p>
+<h1>Integrated authentication, by default</h1>
+<p>Prior to this update, Connected Services would inject secret-inclusive connection strings for resources like Azure Storage into your secrets. If you were using <em>secrets.json</em> for local storage, this would result in your secrets being stored in files on disk.</p>
+<p><img decoding="async" class="alignnone wp-image-251832" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-program-description-au.png" alt="screenshot of code with secret blurred out in it" width="1564" height="429" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-program-description-au.png 1564w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-program-description-au-300x82.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-program-description-au-1024x281.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-program-description-au-768x211.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-program-description-au-1536x421.png 1536w" sizes="(max-width: 1564px) 100vw, 1564px" /></p>
+<p>After this update, your <em>secrets.json</em> will contain no actual secrets, but rather the Azure Storage endpoints for your service instance. Using the latest Azure SDKs, your code connects to your Azure resources using your Visual Studio or Azure CLI login. Locally, your logged-in credential does the magic; in Azure, the app service&#8217;s managed identity takes over!</p>
+<p><img decoding="async" class="alignnone wp-image-251833" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screen-shot-of-a-computer-description-automatic.png" alt="screenshot of the same code after update with no secret in code" width="1425" height="264" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screen-shot-of-a-computer-description-automatic.png 1425w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screen-shot-of-a-computer-description-automatic-300x56.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screen-shot-of-a-computer-description-automatic-1024x190.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screen-shot-of-a-computer-description-automatic-768x142.png 768w" sizes="(max-width: 1425px) 100vw, 1425px" /></p>
+<h1>Benefits with this update</h1>
+<p><strong>Enhanced security:</strong> Fewer secrets on disk means your development process is automatically more secure, since you mitigate the potential for these secrets to be inadvertently committed to source control.</p>
+<p><strong>Simplified development and deployment:</strong> Focus on what you do best &#8211; coding &#8211; while Connected Services handles the tedious parts, more securely than ever.</p>
+<p><strong>Automated configuration:</strong> During publishing, your app is seamlessly configured with the necessary identity and roles needed to access resources, making the process smoother than ever.</p>
+<h1>Thank You for Your Feedback</h1>
+<p>Your invaluable feedback drives our continuous improvement. We&#8217;re thrilled to bring you these enhancements and can&#8217;t wait to hear about your experiences with the new Connected Services feature. Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/connect-securely-to-your-azure-resources/">Connect securely to your Azure resources</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Security updates to Azure publishing from Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/security-updates-to-azure-publishing-from-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Brady Gaster]]></dc:creator>
+      <pubDate>Mon, 23 Dec 2024 13:00:24 +0000</pubDate>
+      <category><![CDATA[Administration]]></category>
+      <category><![CDATA[Reliability]]></category>
+      <category><![CDATA[Team and Development]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Authentication]]></category>
+      <category><![CDATA[Azure App Services]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251823</guid>
+      <description><![CDATA[<p>Visual Studio 2022 introduces a new feature to improve the security of publishing applications to Azure App Service. This feature is designed to disable Basic Authentication and enable integrated security for a more secure publishing process. Basic Authentication has been identified as a less secure method for managing app deployments. Visual Studio 2022 addresses this [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/security-updates-to-azure-publishing-from-visual-studio/">Security updates to Azure publishing from Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 introduces a new feature to improve the security of publishing applications to Azure App Service. This feature is designed to disable Basic Authentication and enable integrated security for a more secure publishing process.</p>
+<p><img decoding="async" class="alignnone wp-image-251824" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251823-1.png" alt="Disabling basic Auth" width="1200" height="480" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251823-1.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251823-1-300x120.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251823-1-1024x410.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/word-image-251823-1-768x307.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>Basic Authentication has been identified as a less secure method for managing app deployments. Visual Studio 2022 addresses this issue by offering you an option to disable Basic Authentication, which enhances security by using integrated authentication.</p>
+<h2>The problem with Basic Authentication</h2>
+<p>Basic Authentication involves sending user credentials in a format that is not highly secure, making it vulnerable to interception. This poses a risk to the integrity of applications.</p>
+<h2>Secure publishing with integrated authentication</h2>
+<p>The new feature in Visual Studio 2022 disables Basic Authentication and enables integrated security for publishing to Azure App Service. This ensures that publishing credentials is handled securely, reducing the risks associated with Basic Authentication.</p>
+<p>When publishing to an Azure App Service that has Basic Authentication enabled (which is <strong>not</strong> recommended), users will see the <strong>Turn on Basic Authentication</strong> option, and it will be unchecked by default. Customers who need to retain Basic Authentication can check the box, but given the recommendation is to disable Basic Authentication it’s unchecked by default, so you <strong>start</strong> secure if this is the first time you’re publishing or, you <strong>get</strong> secure once you go through the publishing process after you update Visual Studio.</p>
+<p><img decoding="async" class="alignnone wp-image-251825" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica.png" alt="publishing a new app service (basic auth available)" width="804" height="564" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica.png 804w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica-300x210.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica-768x539.png 768w" sizes="(max-width: 804px) 100vw, 804px" /></p>
+<p>If you’ve created the Web App recently via the portal or this or any future version of Visual Studio, Basic Authentication will be disabled by default. For any Web App that’s already got Basic Authentication disabled, we circumvent inadvertently making the Web App less secure by disabling the checkbox altogether, so you <strong>stay</strong> secure.</p>
+<p><img decoding="async" class="alignnone wp-image-251826" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica-1.png" alt="publishing a new app service (basic auth not available)" width="804" height="564" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica-1.png 804w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica-1-300x210.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/12/a-screenshot-of-a-computer-description-automatica-1-768x539.png 768w" sizes="(max-width: 804px) 100vw, 804px" /></p>
+<p>This feature improves the overall security of the publishing process, ensuring that sensitive credentials are not exposed. It also simplifies the process by defaulting to a more secure option, reducing the need for manual security configurations. If, at any point, you need to re-enable Basic Authentication, this is always possible in the Azure Portal.</p>
+<h2>Conclusion</h2>
+<p>We deeply appreciate your invaluable feedback, which plays a crucial role in enhancing Visual Studio. Thank you for being a vital part of our community.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/security-updates-to-azure-publishing-from-visual-studio/">Security updates to Azure publishing from Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Benchmarking with Visual Studio Profiler</title>
+      <link>https://devblogs.microsoft.com/visualstudio/benchmarking-with-visual-studio-profiler/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Nik Karpinsky]]></dc:creator>
+      <pubDate>Tue, 07 Jan 2025 13:00:08 +0000</pubDate>
+      <category><![CDATA[performance]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Developer Productivity]]></category>
+      <category><![CDATA[Visual Studio Profiler]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251545</guid>
+      <description><![CDATA[<p>In Visual Studio 17.13 Preview we have released our updated BenchmarkDotNet diagnosers, allowing you to use more of the tools in the performance profiler to analyze benchmarks. With this change it is super quick to dig into CPU usage and allocations of benchmarks making the measure, change, measure cycle quick and efficient. Benchmarking a real [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/benchmarking-with-visual-studio-profiler/">Benchmarking with Visual Studio Profiler</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>In Visual Studio 17.13 Preview we have released our updated BenchmarkDotNet diagnosers, allowing you to use more of the tools in the performance profiler to analyze benchmarks. With this change it is super quick to dig into CPU usage and allocations of benchmarks making the measure, change, measure cycle quick and efficient.</p>
+<h2>Benchmarking a real project</h2>
+<p>So, to show how we can use the tools to make things better let&#8217;s go ahead and benchmark a real project. At the time of writing this article, <a href="https://www.nuget.org/packages/CsvHelper/">CsvHelper</a> is the 67<sup>th</sup> most popular package on Nuget.org with over 9 million downloads of the current version. If we can benchmark this and make it better, we can help lots of users.</p>
+<p>You can follow along by pulling down my fork of this at: <a href="https://github.com/karpinsn/CsvHelper">CsvHelper Fork</a>. The notable changes are that I have added are a new console project (CsvHelper.Benchmarks) that we can use to store our benchmarks, adding the <a href="https://benchmarkdotnet.org/">BenchmarkDotNet</a> package to do the actual benchmark runs, and a simple <code>EnumerateRecords</code> benchmark that parses a CSV stream into records which is shown below.</p>
+<pre class="prettyprint language-cs language-csharp"><code class="language-cs language-csharp">public class BenchmarkEnumerateRecords
+{
+	private const int entryCount = 10000;
+	private readonly MemoryStream stream = new();
+
+	public class Simple
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+	}
+
+	[GlobalSetup]
+	public void GlobalSetup()
+	{
+		using var streamWriter = new StreamWriter(this.stream, null, -1, true);
+		using var writer = new CsvWriter(streamWriter, CultureInfo.InvariantCulture, true);
+		var random = new Random(42); // Pick a known seed to keep things consistent
+
+		var chars = new char[10];
+		string getRandomString()
+		{
+			for (int i = 0; i &lt; 10; ++i)
+				chars[i] = (char)random.Next('a', 'z' + 1);
+			return new string(chars);
+		}
+
+		writer.WriteHeader(typeof(Simple));
+		writer.NextRecord();
+		for (int i = 0; i &lt; BenchmarkEnumerateRecords.entryCount; ++i)
+		{
+			writer.WriteRecord(new Simple()
+			{
+				Id = random.Next(),
+				Name = getRandomString()
+			});
+			writer.NextRecord();
+		}
+	}
+
+	[GlobalCleanup]
+	public void GlobalCleanup()
+	{
+		this.stream.Dispose();
+	}
+
+	[Benchmark]
+	public void EnumerateRecords()
+	{
+		this.stream.Position = 0;
+		using var streamReader = new StreamReader(this.stream, null, true, -1, true);
+		using var csv = new CsvReader(streamReader, CultureInfo.InvariantCulture, true);
+		foreach (var record in csv.GetRecords&lt;Simple&gt;())
+		{
+			_ = record;
+		}
+	}
+}</code></pre>
+<p>A few things to note here. We have a global setup function that creates a simple CSV stream and holds it in a memory stream for us. We do this inside the <code>[GlobalSetup]</code> of the benchmark run so that it doesn’t skew the results of our benchmark, we only want to benchmark the actual parsing of the CSV file, not creating test data.</p>
+<p>Next, we have a global cleanup function that properly disposes our memory stream, which is just good practice in the event more benchmarks get added so we don’t continuously leak memory.</p>
+<p>Lastly, our benchmark simply creates a <code>CsvReader</code> from a stream and then reads each record from it. This exercises the parsing functionality of CsvHelper which is what we are going to try and optimize.</p>
+<h2>Getting insight into the benchmark</h2>
+<p>From here you can add a BenchmarkDotNet (BDN) Diagnoser to the benchmark class to capture information about the benchmark while it is running. BenchmarkDotNet comes with an included <code>[MemoryDiagnosers]</code> which captures allocation and overall memory usage information. If we add this attribute and run the benchmark you should get something like</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkBefore-1.png"><img fetchpriority="high" decoding="async" class="alignnone size-full wp-image-251575" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkBefore-1.png" alt="Benchmark run results before local changes" width="1235" height="346" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkBefore-1.png 1235w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkBefore-1-300x84.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkBefore-1-1024x287.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkBefore-1-768x215.png 768w" sizes="(max-width: 1235px) 100vw, 1235px" /></a></p>
+<p>From here you can see the normal mean, error, and standard deviation that BDN provides along with output from our diagnoser which shows we have allocated 1.69 MB of memory during the benchmark and its breakdown in the different GC heaps. If we want to dig further, which I do <img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f60a.png" alt="😊" class="wp-smiley" style="height: 1em; max-height: 1em;" />, then we can include the <a href="https://www.nuget.org/packages/Microsoft.VisualStudio.DiagnosticsHub.BenchmarkDotNetDiagnosers">Microsoft.VisualStudio.DiagnosticsHub.BenchmarkDotNetDiagnosers</a> package from Nuget.org, which hooks BenchmarkDotNet into the Visual Studio Profiler so we can see what is happening during the run. After including this package and adding the <code>[DotNetAllocDiagnoser]</code> and <code>[DotNetObjectAllocJobConfiguration]</code> to the benchmark and rerunning we get:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAlloc.png"><img decoding="async" class="alignnone size-full wp-image-251605" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAlloc.png" alt="Allocation benchmark" width="1689" height="484" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAlloc.png 1689w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAlloc-300x86.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAlloc-1024x293.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAlloc-768x220.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAlloc-1536x440.png 1536w" sizes="(max-width: 1689px) 100vw, 1689px" /></a></p>
+<p>The biggest thing of note is the line at the bottom showing the path to a collected diagsession file which is the Visual Studio profilers file format for its results. With the new updates it automatically opens in VS and now we have all the stuff we need to dig in and maybe reduce some allocations.</p>
+<h2>Hunting for allocations</h2>
+<p>Now that we have a diagsession detailing all the allocations from the run, lets see if we can reduce the allocations we are doing and reduce the load on the garbage collector.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/AllocatedTypes.png"><img decoding="async" class="alignnone size-full wp-image-251598" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/AllocatedTypes.png" alt="Types allocated in benchmark run" width="1279" height="799" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/AllocatedTypes.png 1279w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/AllocatedTypes-300x187.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/AllocatedTypes-1024x640.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/AllocatedTypes-768x480.png 768w" sizes="(max-width: 1279px) 100vw, 1279px" /></a></p>
+<p>Since our benchmark is designed to deserialize 10,000 records from the memory stream we want to look for anything that is a multiple of 10,000 as that is indicating it is allocating for each record. Immediately we see, <code>string</code>, <code>Type[]</code>, <code>int32</code>, and <code>Simple</code>. <code>String</code> and <code>Int32</code> are the properties on our <code>Simple</code> record type so that makes sense, and <code>Simple</code> is the record type we are deserializing so again that makes sense. The <code>Type[]</code> is a bit suspicious and digging in further things just look worse:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/EmptyTypes.png"><img decoding="async" class="alignnone size-full wp-image-251599" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/EmptyTypes.png" alt="Empty array allocations during benchmark run" width="1279" height="799" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/EmptyTypes.png 1279w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/EmptyTypes-300x187.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/EmptyTypes-1024x640.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/EmptyTypes-768x480.png 768w" sizes="(max-width: 1279px) 100vw, 1279px" /></a></p>
+<p>In this case it looks like we are allocating an empty <code>Type[]</code> for each record we deserialize, each one being 24 bytes adding up to 7.6MB of allocations in this benchmark run. These junk allocations that can&#8217;t hold any data wind up accounting for 14% of allocations in the benchmark run. This is crazy, and something we should be able to fix. Double clicking on the type shows us the backtraces, which shows it is coming from some anonymous function:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/TypeAllocationLocation.png"><img decoding="async" class="alignnone size-full wp-image-251600" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/TypeAllocationLocation.png" alt="Empty type array allocation location" width="1279" height="799" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/TypeAllocationLocation.png 1279w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/TypeAllocationLocation-300x187.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/TypeAllocationLocation-1024x640.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/TypeAllocationLocation-768x480.png 768w" sizes="(max-width: 1279px) 100vw, 1279px" /></a></p>
+<p>Going to source for this (right click context menu-&gt; Go to Source File) we see the following:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolver.png"><img decoding="async" class="alignnone wp-image-251564 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolver.png" alt="ObjectResolver function from CsvHelper NuGet package" width="790" height="328" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolver.png 790w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolver-300x125.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolver-768x319.png 768w" sizes="(max-width: 790px) 100vw, 790px" /></a></p>
+<p>To me it isn’t immediately obvious where this allocation is coming from, so the easiest thing to do is just add a breakpoint to the <code>CreateInstance</code> call and then look around in the debugger. Now BDN runs our benchmarks in a separate process to better control the benchmarks, so to debug we can just instantiate our benchmark and call our benchmark method ourself. We can do this by updating main like so:</p>
+<pre class="prettyprint language-cs language-csharp"><code class="language-cs language-csharp">static async Task Main(string[] args)
+{
+	//_ = BenchmarkRunner.Run&lt;BenchmarkEnumerateRecords&gt;();
+
+	var benchmarks = new BenchmarkEnumerateRecords();
+	benchmarks.GlobalSetup();
+	await benchmarks.EnumerateRecords();
+	benchmarks.GlobalCleanup();
+}</code></pre>
+<p>Running in the debugger we hit where our allocation is occurring:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolverDebugger.png"><img decoding="async" class="alignnone size-full wp-image-251565" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolverDebugger.png" alt="In ObjectResolver code running under the debugger" width="984" height="337" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolverDebugger.png 984w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolverDebugger-300x103.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/ObjectResolverDebugger-768x263.png 768w" sizes="(max-width: 984px) 100vw, 984px" /></a></p>
+<p>Again, it isn’t super obvious where this allocation is occurring so let’s step into the call in case this is coming from an inlined frame:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/CreateInstanceDebugger.png"><img decoding="async" class="alignnone size-full wp-image-251569" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/CreateInstanceDebugger.png" alt="CreateInstance function running under VS debugger" width="1054" height="309" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/CreateInstanceDebugger.png 1054w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/CreateInstanceDebugger-300x88.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/CreateInstanceDebugger-1024x300.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/CreateInstanceDebugger-768x225.png 768w" sizes="(max-width: 1054px) 100vw, 1054px" /></a></p>
+<p>This method has a <code>Type</code> parameter but not <code>Type[]</code>. It is a relatively short function though so maybe it and its caller are getting inlined so let&#8217;s step in again.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetFuncDebugger.png"><img decoding="async" class="alignnone size-full wp-image-251566" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetFuncDebugger.png" alt="Image GetFuncDebugger" width="1027" height="339" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetFuncDebugger.png 1027w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetFuncDebugger-300x99.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetFuncDebugger-1024x338.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetFuncDebugger-768x254.png 768w" sizes="(max-width: 1027px) 100vw, 1027px" /></a></p>
+<p>Unfortunately no <code>Type[]</code> yet, but this method is marked as <code>AggressiveInlining</code> which explains why we didn&#8217;t see it in the allocation stack. One last step in and boom, we got our <code>Type[]</code> allocation!</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetArgTypesDebugger.png"><img decoding="async" class="alignnone size-full wp-image-251567" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetArgTypesDebugger.png" alt="Image GetArgTypesDebugger" width="943" height="312" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetArgTypesDebugger.png 943w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetArgTypesDebugger-300x99.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/GetArgTypesDebugger-768x254.png 768w" sizes="(max-width: 943px) 100vw, 943px" /></a></p>
+<p>Now this is where the ah hah moment is! We are calling <code>GetArgTypes</code> which returns a <code>Type[]</code> based on the <code>object[]</code> that is passed in. We start by allocating an array that is the same size as the <code>object[]</code>, but if the <code>object[]</code> is length 0 then we allocate a new 0 length array. In this case we can easily fix this by checking the parameter size and returning early in the case that there are no arguments to get the type from.</p>
+<pre class="prettyprint language-cs language-csharp"><code class="language-cs language-csharp">[MethodImpl(MethodImplOptions.AggressiveInlining)]
+private static Type[] GetArgTypes(object?[] args)
+{
+	if (args.Length == 0)
+	{
+		return Array.Empty&lt;Type&gt;();
+	}
+
+	var argTypes = new Type[args.Length];
+	for (var i = 0; i &lt; args.Length; i++)
+	{
+		argTypes[i] = args[i]?.GetType() ?? typeof(object);
+	}
+
+	return argTypes;
+}</code></pre>
+<p>After making this change, we can rerun our benchmarks, remember measure/change/measure, and we get the following:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAfter.png"><img decoding="async" class="alignnone size-full wp-image-251574" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAfter.png" alt="Benchmark run after local changes showing performance improvement" width="1235" height="345" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAfter.png 1235w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAfter-300x84.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAfter-1024x286.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/BenchmarkAfter-768x215.png 768w" sizes="(max-width: 1235px) 100vw, 1235px" /></a></p>
+<p>We effectively cut down on the allocated memory by ~14%! While this may not seem like a huge win, this scales with the number of records. For CSV files with lots of records this is a big win, especially in a library that is already very fast and heavily optimized.</p>
+<h2>Let us know what you think</h2>
+<p>In summary, we were able to take a real-world project, add a benchmark to it, use the Visual Studio profiler, and make a meaningful contribution in just a single blog post. By creating a benchmarking suite, it is easy to isolate specific code that you want to improve by measure/change/measure and see the impact of your performance optimizations. We’d love to hear what you think! <div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://www.surveymonkey.com/r/TRB7LHF " target="_blank">Share your thoughts</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/benchmarking-with-visual-studio-profiler/">Benchmarking with Visual Studio Profiler</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Unlocking insights with Meter Histogram in the profiler</title>
+      <link>https://devblogs.microsoft.com/visualstudio/unlocking-insights-with-meter-histogram-in-the-profiler/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Mon, 06 Jan 2025 13:00:51 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[performance]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Performance]]></category>
+      <category><![CDATA[Performance Improvements]]></category>
+      <category><![CDATA[Visual Studio Profiler]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251975</guid>
+      <description><![CDATA[<p>Are you struggling with performance bottlenecks in your applications? Look no further! Visual Studio 2022 introduces the Meter Histogram feature in its performance profiling suite, providing you with the tools to analyze and visualize histogram data like never before. The Meter Histogram is a key enhancement to Visual Studio&#8217;s performance profiling suite. This feature enables [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/unlocking-insights-with-meter-histogram-in-the-profiler/">Unlocking insights with Meter Histogram in the profiler</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Are you struggling with performance bottlenecks in your applications? Look no further! Visual Studio 2022 introduces the Meter Histogram feature in its performance profiling suite, providing you with the tools to analyze and visualize histogram data like never before.</p>
+<p><img decoding="async" class="alignnone wp-image-251976" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-1.png" alt="Meter Histogram in Visual Studio" width="500" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-1.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-1-300x169.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>The <strong>Meter Histogram</strong> is a key enhancement to Visual Studio&#8217;s performance profiling suite. This feature enables you to capture and analyze histogram data generated by various performance instruments, offering clear insights into the distribution of your application&#8217;s data. By visualizing this data, you can easily identify patterns and anomalies that may be causing performance bottlenecks.</p>
+<h1>Understanding histogram data visualization</h1>
+<p>When recording data from histogram instruments, the Meter Histogram feature visualizes the histogram results, providing a clear and intuitive representation of data distribution over time. This visualization helps developers quickly find patterns and anomalies that may be affecting application performance.</p>
+<p>Additionally, the swim lane graph offers a detailed, segmented view of performance metrics. This feature enhances your ability to pinpoint and address performance issues by breaking down data into easily digestible segments, making it easier to understand the root cause of any bottlenecks.</p>
+<p><img decoding="async" class="alignnone wp-image-251977" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-2.png" alt="Image highlighting the swim lane segments" width="1200" height="675" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-2.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-2-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-2-1024x576.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251975-2-768x432.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>In the fast-paced world of software development, optimizing performance is crucial. The Meter Histogram feature in Visual Studio 2022 empowers developers to gain deeper insights into their applications, leading to more efficient and high-performing software. This tool is a must-have for anyone looking to take their performance profiling to the next level.</p>
+<h1>Continuous improvement, thanks to you</h1>
+<p>We value your feedback as it helps us make Visual Studio better. If you have any ideas or issues regarding the Meter Histogram feature or anything else, please use the <a href="https://learn.microsoft.com/en-us/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">Report a Problem tool</a> in Visual Studio.</p>
+<p>Stay connected with the Visual Studio team through <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>.</p>
+<p>Thank you for choosing Visual Studio!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/unlocking-insights-with-meter-histogram-in-the-profiler/">Unlocking insights with Meter Histogram in the profiler</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
