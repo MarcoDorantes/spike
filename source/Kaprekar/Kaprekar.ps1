@@ -10,7 +10,10 @@ function GetSumB([int]$n)
     return [int]$sorted
 }
 
-function GetSum([int]$n)
+function GetSum   ([int]$n) { return (GetSumA $n) - (GetSumB $n) }
+function GetSum_v1([int]$n) { return (GetSumA $n) - (GetSumB $n) }
+
+function GetSum_v2([int]$n)
 {
     [int]$a = GetSumA $n
     [int]$b = GetSumB $n
@@ -27,7 +30,7 @@ function GetSumCount
     [int]$c = 0
     do
     {
-        $r = GetSum $r
+        $r = GetSum_v1 $r
         ++$c
         if($c -ge $limit) { return [int](-1) }
     }
