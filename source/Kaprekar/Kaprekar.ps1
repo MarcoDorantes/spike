@@ -10,7 +10,13 @@ function GetSumB([int]$n)
     return [int]$sorted
 }
 
-function GetSum([int]$n) { return (GetSumA $n) - (GetSumB $n) }
+function GetSum([int]$n)
+{
+    [int]$a = GetSumA $n
+    [int]$b = GetSumB $n
+    if($a -gt $b) { return ($a - $b) }
+    else { return ($b - $a) }
+}
 
 function GetSumCount
 {
