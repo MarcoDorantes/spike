@@ -26739,5 +26739,495 @@ private static Type[] GetArgTypes(object?[] args)
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/unlocking-insights-with-meter-histogram-in-the-profiler/">Unlocking insights with Meter Histogram in the profiler</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Announcing a free GitHub Copilot for Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/announcing-a-free-github-copilot-for-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Thu, 23 Jan 2025 17:37:46 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[#Githubcopilot]]></category>
+      <category><![CDATA[CopilotFree]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252073</guid>
+      <description><![CDATA[<p>We&#8217;re excited to announce an all new free plan for GitHub Copilot, available for everyone today in Visual Studio. All you need is a GitHub account. No trial. No subscription. No credit card. With GitHub Copilot Free, you’ll receive: 2,000 code completions per month 50 chat messages per month Access to the latest AI models with [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/announcing-a-free-github-copilot-for-visual-studio/">Announcing a free GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We&#8217;re excited to announce an all new <strong>free plan for GitHub Copilot</strong>, available for everyone today in Visual Studio. All you need is a GitHub account. No trial. No subscription. No credit card.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://learn.microsoft.com/visualstudio/ide/copilot-free-plan?view=vs-2022#get-started-with-copilot-free-in-visual-studio" target="_blank">Enable GitHub Copilot Free</a></div> <strong>With GitHub Copilot Free, you’ll receive:</strong></p>
+<ul>
+<li>2,000 code completions per month</li>
+<li>50 chat messages per month</li>
+<li>Access to the latest AI models with Anthropic Claude 3.5 Sonnet and Open AI&#8217;s GPT-4o.</li>
+</ul>
+<p><iframe title="Getting started with GitHub Copilot Free in Visual Studio" width="500" height="281" src="https://www.youtube.com/embed/f8CkP7SC-kM?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h2><strong>GitHub Copilot’s Features in Visual Studio</strong></h2>
+<p>GitHub Copilot transforms your Visual Studio experience with powerful features designed to save you time and supercharge your productivity:</p>
+<h3><strong>Copilot Edits: Multi-File Editing</strong></h3>
+<p><a href="https://learn.microsoft.com/en-us/visualstudio/ide/copilot-edits?view=vs-2022">Copilot Edits</a> helps you quickly make changes to multiple files with just one prompt. Edits combines the conversational flow of chat and an inline review experience to help you write code faster and better.</p>
+<ul>
+<li><strong>Preview with clarity</strong>: Know exactly what&#8217;s being modified with a summary of the affected files and the proposed changes.</li>
+<li><strong>Review with flow</strong>: View code diffs inline, directly in your editor. Use the TAB key to accept or the Alt+Del key to reject individual changes or apply/dismiss all at once.</li>
+<li><strong>Iterate with confidence</strong>: Use checkpoints to revisit earlier iterations of a code file or try an alternative approach anytime for novel ideas.</li>
+</ul>
+<p><iframe src="//www.youtube.com/embed/ZjzAAPMbs5s" width="1120" height="628" allowfullscreen="allowfullscreen"></iframe></p>
+<h3><strong>Chat with @workspace and @vs</strong></h3>
+<p>Copilot Chat is deeply integrated into your workflow. It understands your entire solution and your Visual Studio environment. Just use commands like @workspace or @vs to get context-specific responses. will intuitively take in your related files and knowledge about the traits your solution to always give you the most relevant responses.</p>
+<p><iframe title="Copilot @Workspace" width="500" height="281" src="https://www.youtube.com/embed/tJg6haJpuEM?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h3><strong>Never write a commit message again </strong></h3>
+<p>Copilot will automatically review staged changes and suggest a commit message for you. You can even customize the prompt to make the generated message sound like you or follow your team’s conventions.</p>
+<p><iframe src="//www.youtube.com/embed/x51o-SAjIgY" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<h3><strong>Use Copilot to fix your errors </strong></h3>
+<p>Resolve code errors effortlessly with GitHub Copilot&#8217;s file awareness. Now integrated into the lightbulb and error list, Copilot offers fixes and explanations for C# and C++ issues.</p>
+<p><iframe src="//www.youtube.com/embed/3c32zcAvpAo" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<h3><strong>Set your breakpoints automatically</strong></h3>
+<p>Use Copilot to help you quickly find where to <a href="https://devblogs.microsoft.com/visualstudio/transform-your-debugging-experience-with-github-copilot/">apply breakpoints</a> without manually crafting complex expressions, speed up the debugging process and make it easier to pinpoint and resolve issues in your code.</p>
+<p><iframe src="//www.youtube.com/embed/tv1MkdeOmLM" width="1120" height="628" allowfullscreen="allowfullscreen"></iframe></p>
+<h3><strong>GitHub Copilot is Everywhere in Visual Studio</strong></h3>
+<p>Discover the amazing features GitHub Copilot brings to Visual Studio! From boosting productivity to simplifying your coding journey, there&#8217;s so much to explore. Check out this <a href="https://www.youtube.com/watch?v=f8CkP7SC-kM">video</a> for a deeper dive into all the features and tips to get started.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://learn.microsoft.com/visualstudio/ide/copilot-free-plan?view=vs-2022#get-started-with-copilot-free-in-visual-studio" target="_blank">Enable GitHub Copilot Free</a></div></p>
+<p>Want to stay in the loop on the newest and most exciting updates for Visual Studio? Follow us on Twitter and LinkedIn, and keep an eye on our blogs for the latest announcements!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/announcing-a-free-github-copilot-for-visual-studio/">Announcing a free GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Our Favorite NEW Visual Studio Features of 2024</title>
+      <link>https://devblogs.microsoft.com/visualstudio/our-favorite-new-visual-studio-features-of-2024/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jason Chlus]]></dc:creator>
+      <pubDate>Thu, 16 Jan 2025 17:01:56 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Data and Analytics]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[performance]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET MAUI]]></category>
+      <category><![CDATA[Aspire]]></category>
+      <category><![CDATA[code search]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Debugging]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Unreal Engine]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252076</guid>
+      <description><![CDATA[<p>Last year, the Visual Studio team delivered many new developer-focused improvements and AI integrations, many of which came directly from your feedback on Developer Community. In this post, we highlight the team’s favorite features from 2024 that boost productivity, streamline workflows, and enhance your coding experience. Let’s dive in! Image Hover Preview: See your images [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/our-favorite-new-visual-studio-features-of-2024/">Our Favorite NEW Visual Studio Features of 2024</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Last year, the Visual Studio team delivered many new developer-focused improvements and AI integrations, many of which came directly from your feedback on <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>. In this post, we highlight the team’s favorite features from 2024 that boost productivity, streamline workflows, and enhance your coding experience. Let’s dive in!</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com" target="_blank">Download Visual Studio 2022</a></div></p>
+<figure style="text-align: center;"><iframe title="YouTube video player" src="https://www.youtube.com/embed/kNQ_eC8tRmA?si=fyL6RNw3cI41ludR" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></figure>
+<h4><strong>Image Hover Preview: See your images instantly! (Mads Kristensen 00:30)</strong></h4>
+<p>Struggling to visualize referenced images in your code? Visual Studio’s Image Hover Preview solves this by showing a <strong>quick preview of any image</strong>, complete with dimensions and file size, when you hover over its reference. It&#8217;s a small addition with a big impact on productivity.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252078" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-2.png" alt="When you hover an image source it shows a preview in Visual Studio" width="793" height="379" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-2.png 1056w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-2-300x143.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-2-1024x490.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-2-768x367.png 768w" sizes="(max-width: 793px) 100vw, 793px" /></p>
+<p><em>I love this feature!</em></p>
+<h4><strong>Error Copying Improvements: Copy only what you need (Mads Kristensen 00:55)</strong></h4>
+<p>Historically, copying error messages might have included detailed data that weren’t necessary to you. With this update, you can copy (Ctrl+C) <strong>just the error description</strong>, making it easier to search for solutions online.</p>
+<p><img decoding="async" class="alignnone wp-image-252079" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-3.png" alt="Copy now takes just the description from error messages" width="1346" height="532" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-3.png 1346w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-3-300x119.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-3-1024x405.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-3-768x304.png 768w" sizes="(max-width: 1346px) 100vw, 1346px" /></p>
+<p>Before:</p>
+<p>Severity Code Description Project File Line Suppression State</p>
+<p>Error (active) CS0103 The name &#8216;Test&#8217; does not exist in the current context ConsoleApp1 C:\Users\jamont\source\repos\ConsoleApp1\ConsoleApp1\Program.cs 7</p>
+<p>After:</p>
+<p>The name &#8216;Test&#8217; does not exist in the current context</p>
+<h4><strong>Drag/Drop across multiple instances of Visual Studio (Mads Kristensen 1:45)</strong></h4>
+<p>You can now copy/paste or <a href="https://devblogs.microsoft.com/visualstudio/copy-files-across-instances-of-visual-studio/">drag/drop files between Visual Studio instances</a> seamlessly. This feature works across most project types and enhances workflow efficiency.</p>
+<p><img decoding="async" class="alignnone wp-image-251426" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2024/11/word-image-251424-1.gif" alt="gif showing how to drag and drop files into a different instance of VS" width="808" height="455" /></p>
+<h4><strong>Rename Suggestions: Smarter names for cleaner code (Dalia Ado Sheasha 2:48)</strong></h4>
+<p>Tired of unclear variable or method names? The Rename Suggestions feature analyzes your code to offer <strong>context-aware naming options</strong>. It&#8217;s a lifesaver when working on legacy or inherited projects.</p>
+<p><em>I hate naming things; this means I don’t have to!</em></p>
+<h4><strong>Copilot for Commits: Automated and personalized messages (Jessie Houghton 4:23)</strong></h4>
+<p>Commit messages just got easier. GitHub Copilot now <a href="https://devblogs.microsoft.com/visualstudio/write-your-git-commits-with-github-copilot/"><strong>generates customized commit messages</strong></a>, ensuring they align with your preferences and cover every change.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2023/11/AI-Generated-Commit-1.gif"><img decoding="async" class="wp-image-246159 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2023/11/AI-Generated-Commit-1.gif" alt="Image AI Generated Commit 1" width="950" height="534" /></a></p>
+<h4><strong>Memory Layout Viewer: Optimize memory usage (Sy Brand 5:25)</strong></h4>
+<p>Visual Studio now lets you <strong>visualize memory layout</strong>, identify gaps, and optimize memory usage. This is particularly beneficial for projects requiring efficient memory management.</p>
+<p><img decoding="async" class="alignnone wp-image-252080" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-4.png" alt="Color coded visual of memory layouts by bytes" width="1301" height="692" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-4.png 1301w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-4-300x160.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-4-1024x545.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-4-768x408.png 768w" sizes="(max-width: 1301px) 100vw, 1301px" /></p>
+<h4><strong>Async Debugging made easy (Andy Sterland 6:23)</strong></h4>
+<p>Debugging async/await code is notoriously tricky. The new Async Debugger in Visual Studio provides <strong>clearer insights</strong> into async calls, making it easier to identify issues and debug effectively.</p>
+<h4><strong>New .NET MAUI templates: Start projects with ease (Rachel Kang 8:08)</strong></h4>
+<p>With this update to .NET MAUI templates, you can now include <a href="https://devblogs.microsoft.com/dotnet/dotnet-maui-welcomes-syncfusion-open-source-contributions/">sample content</a> to jump-start your project. These templates integrate popular toolkits for a smoother development experience.</p>
+<p><img decoding="async" class="alignnone wp-image-252081" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-5.png" alt="Showcasing an example .NET MAUI template" width="1431" height="725" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-5.png 1431w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-5-300x152.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-5-1024x519.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-5-768x389.png 768w" sizes="(max-width: 1431px) 100vw, 1431px" /></p>
+<h4><strong>Everything Copilot (Bruno Capuano 9:50)</strong></h4>
+<p>You can now ask domain specific questions in Copilot Chat. Which, in combination with Copilot Edits, provides targeted code suggestions that you can add in session. If you want to change up the suggestions, you now can choose between different models in Copilot Chat.</p>
+<h4><strong>New Extension Manager and Extension Hot Loading (Maia Kelner 11:11)</strong></h4>
+<p>Installing extensions no longer interrupts your flow. With <a href="https://devblogs.microsoft.com/visualstudio/introducing-a-powerful-new-extension-manager/">extension hot loading</a>, you can install and use extensions <strong>without restarting Visual Studio</strong>.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2023/07/word-image-243995-1.gif"><img decoding="async" class="aligncenter  wp-image-243996" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2023/07/word-image-243995-1.gif" alt="Full-length extension descriptions in the Extension Manager" width="872" height="648" /></a></p>
+<p><em>Check out the new </em><a href="https://marketplace.visualstudio.com/items?itemName=luislhg.BrightXaml"><em>Bright Xaml Extension</em></a><em>!</em></p>
+<h4><strong>Unreal Engine integration: Game development streamlined (David Li 12:55)</strong></h4>
+<p>Game developers rejoice! Open Unreal Engine projects <strong>directly in Visual Studio</strong>, configure targets, and leverage the <a href="https://devblogs.microsoft.com/visualstudio/unreal-engine-toolbar-in-visual-studio/"><strong>new Unreal Engine toolbar</strong></a> for efficient workflows.</p>
+<p><img decoding="async" class="alignnone wp-image-252082" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-6.png" alt="New Unreal Engine toolbar, options to attach processes, scan blueprints, configure tools, and more" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-6.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-6-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-6-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<h4><strong>Code Search (Sandy Armstrong 14:13)</strong></h4>
+<p>Use Ctrl + T to launch search. You can now search for <a href="https://devblogs.microsoft.com/visualstudio/search-scoping-helps-you-find-what-youre-looking-for/">specific scopes</a> (current document, entire solution, etc)</p>
+<p><img decoding="async" class="alignnone wp-image-252083" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-7.png" alt="Code search ability to search by entire solution, project, or document" width="900" height="599" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-7.png 900w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-7-300x200.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-7-768x511.png 768w" sizes="(max-width: 900px) 100vw, 900px" /></p>
+<p><em>You can dock the feature search window!</em></p>
+<h4><strong>.NET Aspire integrations (James Montemagno 15:09)</strong></h4>
+<p>You can now easily orchestrate your existing .NET applications and services with a <a href="https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&amp;pivots=visual-studio">single click</a>. Visual Studio will automatically create the .NET Aspire `AppHost` and `ServiceDefault` projects and configure everything for you! From the same context menu in Visual Studio you can easily add .NET Aspire integrations to your project by bringing up a filtered NuGet search. Check it out!</p>
+<p><img decoding="async" class="alignnone wp-image-252084" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-8.png" alt="Highlighting .NET Aspire Orchestrator Support" width="618" height="372" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-8.png 618w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252076-8-300x181.png 300w" sizes="(max-width: 618px) 100vw, 618px" /></p>
+<h3><strong>We love your feedback!</strong></h3>
+<p>These innovations and improvements are a direct result of your input. The Visual Studio team thrives on feedback, and your suggestions continue to make it better. Keep sharing your thoughts and ideas on <a href="https://developercommunity.microsoft.com/VisualStudio">Developer Community</a>. We’re building the future of development together!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/our-favorite-new-visual-studio-features-of-2024/">Our Favorite NEW Visual Studio Features of 2024</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Join us at VS Live! 2025 Las Vegas</title>
+      <link>https://devblogs.microsoft.com/visualstudio/vs-live-2025-las-vegas/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Tue, 14 Jan 2025 16:00:35 +0000</pubDate>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[VS LIVE!]]></category>
+      <category><![CDATA[VS Live! Event]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252048</guid>
+      <description><![CDATA[<p>Join Your Favorite Speakers at VS Live! Las Vegas With the new year here, many developers are looking for the best ways to stay ahead in a rapidly evolving tech landscape. That’s why Visual Studio Live! Las Vegas, March 10-14, 2025, is a must-attend event! Stay ahead of the curve with the latest enhancements in [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vs-live-2025-las-vegas/">Join us at VS Live! 2025 Las Vegas</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h2><span data-ccp-props="{}">Join Your Favorite Speakers at VS Live! Las Vegas</span></h2>
+<p>With the new year here, many developers are looking for the best ways to stay ahead in a rapidly evolving tech landscape. That’s why Visual Studio Live! Las Vegas, March 10-14, 2025, is a must-attend event!</p>
+<p>Stay ahead of the curve with the latest enhancements in .NET, Azure, GitHub, GitHub Copilot, Visual Studio, and more. Visual Studio Live! Las Vegas is your fastest way to catch up on the innovations shaping the tech landscape.</p>
+<h2><b><span data-contrast="auto">What Makes VS Live! Las Vegas a Must-Attend?</span></b><span data-ccp-props="{}"> </span></h2>
+<p><span data-contrast="auto">From hands-on workshops to deep-dive sessions, this event is loaded with practical guidance you can apply immediately in your day-to-day development work. And I’m especially excited about our two powerhouse keynotes—we’ll explore the future of .NET, AI, and secure cloud-native data solutions.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">But that’s just the start. This year’s session lineup covers a huge spectrum, including:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="1" data-aria-level="1"><b><span data-contrast="auto">AI Development</span></b><span data-contrast="auto">: See the latest for developers infusing their apps with AI leveraging LLMS, vector databases, and the latest SDKs to enhance developer. Also come see the latest enhancements in GitHub Copilot for AI assisted development.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="2" data-aria-level="1"><b><span data-contrast="auto">Mobile &amp; Desktop App Development:</span></b><span data-contrast="auto"> Come learn how to build native Windows apps with WinUI 3 and the Windows App SDK, dive deep into native multi-platform development with .NET MAUI, and hybrid development across all platforms with Blazor Hybrid.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="3" data-aria-level="1"><b><span data-contrast="auto">.NET &amp; C# Best Practices:</span></b><span data-contrast="auto"> Learn the newest .NET/C# features, bust common myths, and sharpen your skills in asynchronous programming, configuration, and more.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="4" data-aria-level="1"><b><span data-contrast="auto">SQL, Cosmos, Fabric, and AI:</span></b><span data-contrast="auto"> Dive into vector search, SQL integration with AI frameworks, the latest in CosmosDB, and data analysis in Fabric—directly from the team that builds them.  This will include details on the new release of SQL Server 2025 and SQL database in Fabric.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="5" data-aria-level="1"><b><span data-contrast="auto">Developer Well-Being &amp; Leadership:</span></b><span data-contrast="auto"> Sessions on burnout, imposter syndrome, and team-building for remote developers—because our industry is about people as much as technology.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="6" data-aria-level="1"><b><span data-contrast="auto">Hands-On Labs:</span></b><span data-contrast="auto"> Roll up your sleeves in multi-day labs exploring Python &amp; AI, .NET Aspire, SQL Server 2025, Blazor, and more—perfect for those who learn by doing.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<h2>Two Keynotes You Won’t Want to Miss</h2>
+<table style="border-collapse: collapse; width: 100%;">
+<tbody>
+<tr>
+<td style="width: 100%;"><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/vs-live-lv-2025-speakers.jpg"><img decoding="async" class="aligncenter size-full wp-image-252058" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/vs-live-lv-2025-speakers.jpg" alt="Image vs live lv 2025 speakers" width="1066" height="354" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/vs-live-lv-2025-speakers.jpg 1066w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/vs-live-lv-2025-speakers-300x100.jpg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/vs-live-lv-2025-speakers-1024x340.jpg 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/vs-live-lv-2025-speakers-768x255.jpg 768w" sizes="(max-width: 1066px) 100vw, 1066px" /></a></td>
+</tr>
+</tbody>
+</table>
+<h2><b><span data-contrast="auto">Why I Think You’ll Love This Conference</span></b><span data-ccp-props="{}"> </span></h2>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="1" data-aria-level="1"><b><span data-contrast="auto">Hands-On .NET &amp; Azure Insights:</span></b><span data-contrast="auto"> There’s no better way to learn than by doing, and VSLive! is packed with demos, labs, and real-world examples.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="2" data-aria-level="1"><b><span data-contrast="auto">Expert Speakers &amp; Networking:</span></b><span data-contrast="auto"> Rub elbows with Microsoft insiders, MVPs, and fellow Visual Studio developers. I’m always amazed by how many real-world problems get solved in hallway chats.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="3" data-aria-level="1"><b><span data-contrast="auto">Vegas Vibes &amp; Big Ideas:</span></b><span data-contrast="auto"> After the sessions, explore the excitement of Las Vegas while solidifying the new connections you’ve made.</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<h2><b><span data-contrast="auto">Ready to Register?</span></b><span data-ccp-props="{}"> </span></h2>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="1" data-aria-level="1"><b><span data-contrast="auto">Exclusive Discounts:</span></b><span data-contrast="auto"> If you have a Visual Studio Professional or Enterprise subscription, check </span><a href="https://my.visualstudio.com/" target="_blank" rel="noopener"><span data-contrast="none">my.visualstudio.com</span></a><span data-contrast="auto"> for exclusive discounts included with your subscription. </span></li>
+</ul>
+<ul>
+<li data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" aria-setsize="-1" data-aria-posinset="2" data-aria-level="1"><b><span data-contrast="auto">Early Bird Deals:</span></b><span data-contrast="auto"> If you’re not a subscriber, save by registering early on the </span><a href="https://vslive.com/events/las-vegas-2025/home.aspx" target="_blank" rel="noopener"><span data-contrast="none">VSLive! Las Vegas event page</span></a><span data-contrast="auto">. But hurry—<strong>Early Bird specials are ending soon.</strong></span><strong> </strong></li>
+</ul>
+<p><span data-contrast="auto">I’ll be there, and I’d love to meet you to talk about all things Visual Studio, Azure, GitHub, AI, and more. Feel free to reach out with me via <a href="https://www.linkedin.com/in/jimharrer/" target="_blank" rel="noopener">LinkedIn</a> if you would like to meet during the conference. </span><span data-ccp-props="{}"> </span></p>
+<p>Let’s make 2025 the year we elevate our skills together. Visual Studio Live! is more than a conference—it’s a community of developers learning, sharing, and growing. I can’t wait to see you there!</p>
+<p><b><span data-contrast="auto">See you in Las Vegas!</span></b></p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://vslive.com/events/las-vegas-2025/home.aspx" target="_blank">LEARN MORE ABOUT VS LIVE! LAS VEGAS</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vs-live-2025-las-vegas/">Join us at VS Live! 2025 Las Vegas</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Enhanced Change Signature in C++</title>
+      <link>https://devblogs.microsoft.com/visualstudio/enhanced-change-signature-in-c/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mryam Girmay]]></dc:creator>
+      <pubDate>Mon, 13 Jan 2025 13:00:41 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[C++]]></category>
+      <category><![CDATA[Refactoring]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=251968</guid>
+      <description><![CDATA[<p>Change Signature allows you to modify a function&#8217;s parameters, including reordering, adding, removing, or altering them across various locations. Previously, the Change Signature feature in Visual Studio involved multiple clicks and nested pop-up windows. In Visual Studio 2022 version 17.12, we&#8217;ve reduced the number of clicks and eliminated these nested steps to streamline the process. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhanced-change-signature-in-c/">Enhanced Change Signature in C++</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><a href="https://learn.microsoft.com/en-us/cpp/ide/refactoring/change-signature?view=msvc-170">Change Signature</a> allows you to modify a function&#8217;s parameters, including reordering, adding, removing, or altering them across various locations. Previously, the Change Signature feature in Visual Studio involved multiple clicks and nested pop-up windows. In Visual Studio 2022 version 17.12, we&#8217;ve reduced the number of clicks and eliminated these nested steps to streamline the process.</p>
+<p><img decoding="async" class="alignnone wp-image-251969" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-1.png" alt="Image of the improved Change Signature UI" width="1429" height="699" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-1.png 1429w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-1-300x147.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-1-1024x501.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-1-768x376.png 768w" sizes="(max-width: 1429px) 100vw, 1429px" /></p>
+<h2>Simplified Process with Intuitive Interface</h2>
+<p>We have updated the user interface for the Change Signature feature based on direct feedback we received from C++ developers to reduce the number of clicks and pop-up windows. It allows you to manage function parameters more efficiently by adding, removing, modifying and rearranging them directly in the parameter list editor. This layout allows you to see all your changes in one place, reducing the likelihood of errors.</p>
+<p>This updated interface allows you to select and drag parameters to change their order to the desired position. This not only speeds up the process but also makes it easier to visualize and implement the changes.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/change-signature-cut.gif"><img decoding="async" class="alignnone size-full wp-image-252024" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/change-signature-cut.gif" alt="Image change signature cut" width="1633" height="608" /></a></p>
+<p>Previous Change Signature UI:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-2.png"><img decoding="async" class="aligncenter size-full wp-image-251970" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-2.png" alt="Image word image 251968 2" width="1705" height="1523" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-2.png 1705w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-2-300x268.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-2-1024x915.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-2-768x686.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-251968-2-1536x1372.png 1536w" sizes="(max-width: 1705px) 100vw, 1705px" /></a></p>
+<h2>Access Change Signature</h2>
+<p>To access the improved Change Signature feature, you can press <strong>Ctrl+.</strong> or right-click in the Visual Studio editor and select<strong> Quick Actions and Refactorings…</strong> to open the Quick Actions and Refactoring menu. From there, select Change Signature to start making your modifications. This feature not only allows you to change the signature but also ensures that any parameter renames are reflected throughout the function. This access ensures you can make changes on-the-fly without disrupting your workflow.</p>
+<h2>Send us your Feedback</h2>
+<p>We are committed to continuous improvement based on your feedback. Your insights are invaluable, and we encourage you to keep sharing them with us using the <a href="https://learn.microsoft.com/en-us/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">Send Feedback</a> button in Visual Studio, through the <a href="https://developercommunity.visualstudio.com/cpp">Developer Community</a>, or via email at <a href="mailto:visualcpp@microsoft.com">visualcpp@microsoft.com</a>.</p>
+<p>Stay connected with the Visual Studio team by following us on Twitter <a href="https://x.com/visualc">@VisualC</a>, Twitter <a href="https://x.com/VisualStudio">@VisualStudio</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhanced-change-signature-in-c/">Enhanced Change Signature in C++</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>HTTP File updates for Request Variables and more</title>
+      <link>https://devblogs.microsoft.com/visualstudio/http-file-updates-for-request-variables-and-more/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sayed Ibrahim Hashimi]]></dc:creator>
+      <pubDate>Thu, 06 Feb 2025 15:00:26 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252272</guid>
+      <description><![CDATA[<p>Many users have requested adding support for Request Variables in HTTP files in Visual Studio. With Request Variables, you can send an HTTP request and then use data from the response, or request, in any subsequent request that is sent from the HTTP file. We have also added support for a shared environment, $shared, which [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/http-file-updates-for-request-variables-and-more/">HTTP File updates for Request Variables and more</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Many users have requested adding support for Request Variables in <a href="https://learn.microsoft.com/en-us/aspnet/core/test/http-files?view=aspnetcore-9.0">HTTP files</a> in Visual Studio. With Request Variables, you can send an HTTP request and then use data from the response, or request, in any subsequent request that is sent from the HTTP file. We have also added support for a shared environment, $shared, which enables you to share variables across different environments. In this post we will outline the new support which has been added for Request Variables and more. All the features listed in this post are included in Visual Studio 2022 17.12+.</p>
+<h2>Request Variables</h2>
+<p>When working with APIs it’s common to get a value from an endpoint and then use that value in a subsequent request. This can be achieved by using Request Variables. We have <a href="https://review.learn.microsoft.com/aspnet/core/test/http-files?view=aspnetcore-9.0&amp;branch=main#request-variables">docs for Request Variables</a>, but we will go over everything here as well. One of the more common scenarios for using Request Variables is when you call into an endpoint to authenticate to the APIs and get a token back which can be used for future requests. The sample request below is for David Fowler’s <a href="https://github.com/davidfowl/TodoApp">TodoApi sample</a>. The API has an endpoint where you can create a new user by supplying the username and password. This is the endpoint that we are making a request to.</p>
+<pre class="prettyprint language-default"><code class="language-default">@username = bloguser
+# login and save the response as "login"
+# @name login
+POST {{TodoApi_HostAddress}}/users/token
+Content-Type: application/json
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+###</code></pre>
+<p>In this case the username is defined in the HTTP file, but the password is stored securely using <a href="https://learn.microsoft.com/en-us/aspnet/core/test/http-files?view=aspnetcore-9.0#environment-files">HTTP Environments</a>. The request below is to the <em>/users/token</em> endpoint, and we pass in the username and password as a part of the body of the HTTP request. The special sauce that makes this a Request Variable, sometimes referred to as Named Request, is the line immediately above the comment.</p>
+<pre class="prettyprint language-default"><code class="language-default"># @name login</code></pre>
+<p>After sending this request in Visual Studio you can then get values from the response, or the request. In snippet below, you can see how we use the login Request Variable to access the token which was returned as a part of the response when it was submitted. The login response body contained a single value, token. Now that we have logged in, we can create a TODO item with the request below.</p>
+<pre class="prettyprint language-default"><code class="language-default"># Create a TODO item
+# @name todo1
+POST {{TodoApi_HostAddress}}/todos
+Authorization: Bearer {{login.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "title": "Write blog post"
+}
+###
+</code></pre>
+<p>In this request we extract the token value and use it to specify the value for the Authorization header. The syntax <em>{{login.response.body.$.token}}</em>. Let’s take a closer look at the syntax.</p>
+<pre class="prettyprint language-default"><code class="language-default">{{login.response.body.$.token}}</code></pre>
+<p>Below is a table summarizing the syntax for using values from Request Variables.</p>
+<table>
+<tbody>
+<tr>
+<td>Element</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>requestVarName (<em>login in this case</em>)</td>
+<td>Request Variable which is being referenced.</td>
+</tr>
+<tr>
+<td>response|request</td>
+<td>Whether the value will be extracted from the response or the request.</td>
+</tr>
+<tr>
+<td>body|headers</td>
+<td>Whether the value will be extracted from the headers or body of the request or response (as specified in response|request).</td>
+</tr>
+<tr>
+<td>*|JSONPath|XPath|Header</td>
+<td>The expression that will be evaluated to extract the result.</p>
+<p>For a request returning a JSON body, use a JSONPath expression.</p>
+<p>For a request returning an XML body, use XPath.</p>
+<p>* will return the entire result.</p>
+<p>* cannot be used when extracting from headers.</td>
+</tr>
+</tbody>
+</table>
+<p>For the sample request above, we are extracting the token from the response and passing it in as a header for the request to the <em>/todos</em> endpoint. After we send this request, the result that is returned is shown below.</p>
+<pre class="prettyprint language-default"><code class="language-default">{
+  "id": 36,
+  "title": "Write blog post",
+  "isComplete": false
+}
+</code></pre>
+<p>Now that we have created a TODO item, we can update that item with the request below. If you noticed the request above has declared a Request Variable named <em>todo1</em>, so we can refer to values from the response, or request, using that. Let’s update the title to add “ today” at the end of the current title. The request below will update the TODO item. We will use PUT since this is an update to an existing item.</p>
+<pre class="prettyprint language-default"><code class="language-default">PUT {{TodoApi_HostAddress}}/todos/{{todo1.response.body.$.id}}
+Authorization: Bearer {{login.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "id": {{todo1.response.body.$.id}},
+  "title": {{todo1.response.body.$.title}} today,
+  "isComplete": {{todo1.response.body.$.isComplete}}
+}
+###
+</code></pre>
+<p>In this request we use data from the original todo1 request to populate the body of the PUT request. Notice that the title property appends “ today” to the end of the existing title. After sending this request, the result was.</p>
+<pre class="prettyprint language-default"><code class="language-default">{
+  "id": 36,
+  "title": "Write blog post today",
+  "isComplete": false
+}
+</code></pre>
+<p>Here you can see that the title of the blog post was successfully updated. In these examples I have shown working with “flat” JSON results, but you can use any JSONPath expression to extract the data from the response, or request, body. If your endpoints are returning XML, use an XPath expression instead of JSONPath. Let’s move on to discuss the support for $shared.</p>
+<h2>$shared Environment</h2>
+<p>When working with <a href="https://learn.microsoft.com/en-us/aspnet/core/test/http-files?view=aspnetcore-9.0#environment-files">HTTP environments</a> you can define multiple different environments for your HTTP requests. For example, you may create a <em>dev</em> environment which refers to your API which is running locally and a <em>test</em> environment when you want to send request to a remote test environment. In these cases you may want to declare a variable which is made available to all environments. This is exactly what the new <em>$shared</em> environment is for. HTTP environments are defined in a file named http-client.env.json, also http-client.env.json.user. If you create an environment named $shared, the variables will be made available in any environment. If a variable is declared in both $shared and standard environments, the value defined in the standard environment will win. Below is an example HTTP environment file containing a $shared environment and two standard environments.</p>
+<pre class="prettyprint language-default"><code class="language-default">{
+  "$shared": {
+    "message": "Default msg from Shared",
+    "username": "httpfile-user",
+    "hosturl": "http://example.com/api/sample"
+  },
+  "dev": {
+    "hosturl": "http://localhost:5000/api/sample"
+  },
+  "prod": {
+    "message": "Message from prod environment"
+  }
+}
+</code></pre>
+<p>This is a very basic HTTP environment file where we have a dev and prod environment defined in addition to the $shared. In the dev environment the value for hosturl has been customized to point to localhost and the prod environment has customized the message value. To show how this works we will use a third-party open-source website <a href="https://httpbin.org/">httpbin.org</a>. <a href="https://httpbin.org/">httpbin.org</a> is a great tool for API developers. We will create an HTTP file that makes request to <a href="https://httpbin.org/">httpbin.org</a> and have it return the values which were provided. We will use the /headers endpoint so that httpbin will echo the headers that we send to it. Below is the request that we will send.</p>
+<pre class="prettyprint language-default"><code class="language-default">GET https://httpbin.org/headers
+X-Message: {{message}}
+X-User: {{username}}
+X-Hosturl: {{hosturl}}
+
+###
+</code></pre>
+<p>This request will use the variables defined in the HTTP environment in the request sent to httpbin.org. Reminder that you can select the environment in the dropdown in the top right of HTTP file editor. I’ve set the environment to dev, and the result from httpbin.org is shown below.</p>
+<pre class="prettyprint language-default"><code class="language-default">{
+  "headers": {
+    "X-Hosturl": "http://localhost:5000/api/sample",
+    "X-Message": "Default msg from Shared",
+    "X-User": "httpfile-user"
+  }
+}
+</code></pre>
+<p>In the response I removed some irrelevant headers. We can see that the values are being populated as expected. The value for <em>hosturl</em> is localhost as specified in the <em>dev</em> environment and the other values come from the <em>$shared</em>. When we switch the environment to prod and send the same request the response is as follows.</p>
+<pre class="prettyprint language-default"><code class="language-default">{
+  "headers": {
+    "X-Hosturl": "http://example.com/api/sample",
+    "X-Message": "Message from prod environment",
+    "X-User": "httpfile-user"
+  }
+}
+</code></pre>
+<p>The values for both <em>hosturl</em> and message have changed. The value for <em>hosturl</em> and username are coming from the $shared and <em>message</em> is coming from the value provided in the <em>prod</em> environment. If you send a request without an environment selected, values from $shared will be available. Now we have covered the new support for $shared, we will close out the blog post now.</p>
+<h2>Closing</h2>
+<p>In this post we have covered two new features for HTTP files, Request Variables and $shared in HTTP environments. With Request Variable support you can now create “chained” requests which take values from previous requests. This should enable you to exercise your APIs more in realistic ways than before. In addition, with $shared you can now share variables across environments making it easier for you to work with HTTP environments. If you are new to HTTP files take a look at <a href="https://learn.microsoft.com/aspnet/core/test/http-files?view=aspnetcore-9.0">the docs</a> for more info.</p>
+<p>The updates in this post were inspired by feedback from users like yourself. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>: report any bugs or issues via <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio">report a problem</a> and share your <a href="https://developercommunity.visualstudio.com/report?space=8&amp;entry=suggestion">suggestions for new features</a> or improvements to existing ones.</p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/http-file-updates-for-request-variables-and-more/">HTTP File updates for Request Variables and more</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Your fonts are now preserved when changing theme</title>
+      <link>https://devblogs.microsoft.com/visualstudio/your-fonts-are-now-preserved-when-changing-theme/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mark Downie]]></dc:creator>
+      <pubDate>Tue, 04 Feb 2025 13:00:18 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[themes]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252255</guid>
+      <description><![CDATA[<p>Do you find yourself adjusting your font settings every time you change themes in Visual Studio, We&#8217;ve made some changes that we think will help. The latest update in Visual Studio 2022 allows theme switching without affecting font settings. This feature maintains the selected font face and size regardless of the chosen theme, while font [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/your-fonts-are-now-preserved-when-changing-theme/">Your fonts are now preserved when changing theme</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Do you find yourself adjusting your font settings every time you change themes in Visual Studio, We&#8217;ve made some changes that we think will help.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252256" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252255-1.png" alt="Image of 2 themes where the fonts stay the same and adapt to the updated theme" width="500" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252255-1.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252255-1-300x169.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>The latest update in Visual Studio 2022 allows theme switching without affecting font settings. This feature maintains the selected font face and size regardless of the chosen theme, while font colors continue to adapt to the theme.</p>
+<h2>Seamless integration for a better user experience</h2>
+<p>This improvement is automatically enabled for all users, facilitating a consistent appearance in your coding environment. If you prefer the prior behavior, you can revert it easily. Just navigate to <strong>Tools &gt; Manage Preview Features</strong> and locate the option <strong>Separate font settings from color theme selection</strong>. Unchecking this box will once again tie your font directly to the theme.</p>
+<h2>Why this feature matters</h2>
+<p>Font choices can be deeply personal, and we know that preserving the right font settings enhances productivity and allows you to focus more on just coding. This feature supports individual preferences for readability, accessibility, and aesthetics, making the development environment both comfortable and efficient.</p>
+<h2>Thank you for your feedback</h2>
+<p>This improvement comes from our invaluable <a href="https://developercommunity.microsoft.com/VisualStudio">developer feedback community</a>. Your suggestions make Visual Studio better with each update. Keep sharing your thoughts to help us enhance your coding experience.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/your-fonts-are-now-preserved-when-changing-theme/">Your fonts are now preserved when changing theme</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Customize your AI-generated git commit messages</title>
+      <link>https://devblogs.microsoft.com/visualstudio/customize-your-ai-generated-git-commit-messages/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Mon, 03 Feb 2025 16:00:58 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252252</guid>
+      <description><![CDATA[<p>When it comes to collaborative software development, clear and effective communication is key. One area that often gets overlooked is the Git commit message. Poorly crafted commit messages can lead to confusion and inefficiencies within a team. That’s why we’ve built on the suggestions and feedback for the AI-generated commit messages, and now you can [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/customize-your-ai-generated-git-commit-messages/">Customize your AI-generated git commit messages</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>When it comes to collaborative software development, clear and effective communication is key. One area that often gets overlooked is the Git commit message. Poorly crafted <a id="post-252252-_Int_UngOjTcV"></a>commit messages can lead to confusion and inefficiencies within a team. That’s why we’ve built on the <a href="https://developercommunity.visualstudio.com/t/System-prompt-for-copilot-commit-message/10744657">suggestions and feedback for the AI-generated commit messages</a>, and now you can add custom prompt instructions!</p>
+<p><img decoding="async" class="alignnone wp-image-252253" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252252-1.png" alt="Screenshot showing how you can customize the format of your git commit messages" width="536" height="242" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252252-1.png 536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252252-1-300x135.png 300w" sizes="(max-width: 536px) 100vw, 536px" /></p>
+<p>This new capability enables you to tailor commit messages to fit your workflow and team&#8217;s standards seamlessly.</p>
+<p>This means you have control over the number of lines, the length of the lines, and even the style of the commit message. By specifying these details, you ensure that each commit message is not only meaningful but also consistent with your team&#8217;s guidelines.</p>
+<p>To make use of this feature, simply navigate to <strong>Tools &gt; Options &gt; Copilot </strong>and input your desired parameters. This customization can significantly enhance your workflow by making commit messages more informative and standardized, ultimately leading to better collaboration and less confusion.</p>
+<h2>We value your feedback</h2>
+<p>We continuously strive to improve our tools based on your feedback. Your insights are invaluable in making Visual Studio an even better platform for developers around the world. We appreciate your ongoing support and encourage you to keep sharing your thoughts with us. Let us know what you think of this feature in this <a href="https://developercommunity.visualstudio.com/t/System-prompt-for-copilot-commit-message/10744657">suggestion ticket</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/customize-your-ai-generated-git-commit-messages/">Customize your AI-generated git commit messages</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Customizing collapsed text Indicators</title>
+      <link>https://devblogs.microsoft.com/visualstudio/customizing-collapsed-text-indicators/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Dominic Nahous]]></dc:creator>
+      <pubDate>Thu, 30 Jan 2025 19:03:06 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[UI Design]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252226</guid>
+      <description><![CDATA[<p>Visual Studio 2022 introduces new options for customizing the collapsed text indicator, which helps in distinguishing between different sections of collapsed text in the editor. This aims to make the coding environment more intuitive and easier to use by providing additional customization for visual cues. Customizing your coding environment You can now personalize the color [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/customizing-collapsed-text-indicators/">Customizing collapsed text Indicators</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 introduces new options for customizing the collapsed text indicator, which helps in distinguishing between different sections of collapsed text in the editor. This aims to make the coding environment more intuitive and easier to use by providing additional customization for visual cues.</p>
+<p><img decoding="async" class="alignnone wp-image-252227" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252226-1.png" alt="New collapsed text ellipses " width="562" height="240" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252226-1.png 562w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252226-1-300x128.png 300w" sizes="(max-width: 562px) 100vw, 562px" /></p>
+<h1>Customizing your coding environment</h1>
+<p>You can now personalize the color and background of the editor’s collapsed text indicator independently by setting custom colors for both the collapsed and expanded text indicators. This feature can be accessed via the <strong>Tools &gt; Options &gt; Environment &gt; Fonts and Colors</strong> menu.</p>
+<p><img decoding="async" class="alignnone wp-image-252228" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252226-2.png" alt="Customizing the collapsed text indicator to yellow and red" width="829" height="514" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252226-2.png 829w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252226-2-300x186.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/word-image-252226-2-768x476.png 768w" sizes="(max-width: 829px) 100vw, 829px" /></p>
+<p>The two new entries in the Test Editor settings list that control the color of the collapsed text indicator are:</p>
+<ul>
+<li>Collapsed Text Indicator (Collapsed)</li>
+<li>Collapsed Text Indicator (Expanded)</li>
+</ul>
+<p>In addition to customizing the collapsed and expanded colors separately, both the foreground and background colors for these indicators can be set independently from one another.</p>
+<h1>Conclusion</h1>
+<p>This new customization feature in Visual Studio 2022 enhances the coding environment by providing clear visual distinctions between different sections of code, making it easier to navigate and manage.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/customizing-collapsed-text-indicators/">Customizing collapsed text Indicators</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Iterate across multiple files more efficiently with GitHub Copilot Edits (Preview)</title>
+      <link>https://devblogs.microsoft.com/visualstudio/iterate-across-multiple-files-more-efficiently-with-github-copilot-edits-preview/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Aaron Yim]]></dc:creator>
+      <pubDate>Tue, 28 Jan 2025 13:00:58 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[#Githubcopilot]]></category>
+      <category><![CDATA[Conversational AI]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252165</guid>
+      <description><![CDATA[<p>GitHub Copilot Edits (Preview) in Visual Studio 2022 combines the conversational flow of chat and an inline review experience to help you iterate across your codebase with more control and efficiency. 💡 Here’s how Copilot Edits helps with iterating across multiple files: Preview with clarity: Review a clear summary that highlights affected files and proposed [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/iterate-across-multiple-files-more-efficiently-with-github-copilot-edits-preview/">Iterate across multiple files more efficiently with GitHub Copilot Edits (Preview)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>GitHub Copilot Edits (Preview) in Visual Studio 2022 combines the conversational flow of chat and an inline review experience to help you iterate across your codebase with more control and efficiency.</p>
+<p><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f4a1.png" alt="💡" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Here’s how Copilot Edits helps with iterating across multiple files:</p>
+<ul>
+<li><strong>Preview with clarity</strong>: Review a clear summary that highlights affected files and proposed changes.</li>
+<li><strong>Review with flow</strong>: View code diffs inline, directly in your editor. Either the TAB key to accept and Alt+Del keys to reject individual changes, or apply/dismiss all at once.</li>
+<li><strong>Iterate with confidence</strong>: Use checkpoints to revisit earlier iterations of a code file or try an alternative approach anytime for novel ideas.</li>
+</ul>
+<p><div style="width: 1920px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-252165-1" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/edits-final-_-jan-16-_-captions.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/edits-final-_-jan-16-_-captions.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/edits-final-_-jan-16-_-captions.mp4</a></video></div></p>
+<h3>Available in Visual Studio 2022 Preview</h3>
+<ul>
+<li>Copilot Edits is available in versions 17.13 Preview 3 and later of Visual Studio 2022.</li>
+<li>To use Copilot Edits, <a href="https://learn.microsoft.com/en-us/visualstudio/subscriptions/sign-in-github">sign in to Visual Studio 2022 with a GitHub account</a> that has access to Copilot, now available to all users with <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-free-is-here-in-visual-studio/">Copilot Free</a>.</li>
+</ul>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/vs/preview/" target="_blank">Get Visual Studio 2022 Preview</a></div></p>
+<h3>Get started with GitHub Copilot Edits in Visual Studio</h3>
+<ol>
+<li><strong>Start an Edits thread: </strong>In the Copilot Chat window, click the Edits thread button (a &#8220;+&#8221; symbol with a pencil icon).</li>
+<li><strong>Describe your changes: </strong>Use natural language to describe your edits, just as you would in Copilot Chat.</li>
+<li><strong>Specify context or let Copilot discover: </strong>Copilot Edits will automatically consider your current file, open files, or search for related files across your codebase. You can also specify context using # commands like #errors, #file, #solution.</li>
+</ol>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted.png"><img decoding="async" class="alignnone wp-image-252191 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted.png" alt="Image eshop copilotedits gettingstarted" width="2102" height="1430" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted.png 2102w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted-300x204.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted-1024x697.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted-768x522.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted-1536x1045.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/eshop_copilotedits_gettingstarted-2048x1393.png 2048w" sizes="(max-width: 2102px) 100vw, 2102px" /></a></p>
+<p>For more details on how to use Copilot Edits, visit our <a href="https://learn.microsoft.com/en-us/visualstudio/ide/copilot-edits?view=vs-2022">documentation</a>.</p>
+<h3>We appreciate your feedback</h3>
+<p>Your feedback is invaluable for helping us improve Copilot Edits &#8211; please share with us on the <a href="https://developercommunity.visualstudio.com/t/GitHub-Copilot-Edits-now-available-in-17/10824251">Developer Community ticket</a> for Copilot Edits or the <a href="https://learn.microsoft.com/en-us/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">Send Feedback</a> button in Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/iterate-across-multiple-files-more-efficiently-with-github-copilot-edits-preview/">Iterate across multiple files more efficiently with GitHub Copilot Edits (Preview)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/edits-final-_-jan-16-_-captions.mp4" length="13169216" type="video/mp4" />
+    </item>
   </channel>
 </rss>
