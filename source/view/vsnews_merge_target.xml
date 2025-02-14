@@ -27229,5 +27229,237 @@ X-Hosturl: {{hosturl}}
 ]]></content:encoded>
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/01/edits-final-_-jan-16-_-captions.mp4" length="13169216" type="video/mp4" />
     </item>
+    <item>
+      <title>New restrictions on package loading</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-restrictions-on-package-loading/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Ryan Molden]]></dc:creator>
+      <pubDate>Thu, 13 Feb 2025 22:45:37 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[vsix]]></category>
+      <category><![CDATA[vssdk]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252355</guid>
+      <description><![CDATA[<p>As Visual Studio transitions its core packages and services to an async loading/retrieval model, we&#8217;ve identified bugs in both the initial async implementation and the existing synchronous package loading mechanism. While most of these bug fixes have been transparent to extenders, one requires attention due to changed constraints. This post highlights that change. Note that [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-restrictions-on-package-loading/">New restrictions on package loading</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>As Visual Studio transitions its core packages and services to an async loading/retrieval model, we&#8217;ve identified bugs in both the initial async implementation and the existing synchronous package loading mechanism.</p>
+<p>While most of these bug fixes have been transparent to extenders, one requires attention due to changed constraints. This post highlights that change. Note that this is only applicable to VSSDK based extensions and does not apply to VisualStudio.Extensiblity. For more information on the differences between extensibility models in Visual Studio, please refer to this documentation: <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/extensibility-models?view=vs-2022">Choose the right Visual Studio extensibility model for you &#8211; Visual Studio (Windows) | Microsoft Learn</a></p>
+<h2>Summary</h2>
+<p>The change prevents cyclical package load requests to avoid a race condition where service requests, which should never return null, may occasionally do so. Cyclical package loads were never recommended, and any previous success was due to design decisions made over 25 years ago when Visual Studio was primarily single-threaded, and package loads had to occur on the UI thread.</p>
+<p>If you trigger a cyclical package load request it will fail with an HRESULT of 0x80049283 (VS_E_CYCLICPACKAGELOAD). For managed callers this would surface as a COMException with that HRESULT, for native callers the HRESULT would be returned directly.</p>
+<p>The change occurred in 17.12 Preview 2 (version 17.12.35309.182) and is present in all subsequent previews and releases.</p>
+<h2>Background Context</h2>
+<h3>Service Discovery 101</h3>
+<p>In Visual Studio, a service is tied to a package. When the service is requested, the package loads (if not already loaded) and registers a service factory (IServiceProvider) to retrieve the service instance.</p>
+<p>Typically, service factories are registered in the package&#8217;s Initialize(Async) method (or SetSite for native packages).</p>
+<p>The service retrieval path in Visual Studio works as follows:</p>
+<ol>
+<li>Caller A asks for Service B</li>
+<li>The service manager checks if a service factory for Service B is already registered. If so, it invokes the factory and returns the result.</li>
+<li>If no factory is registered, it checks if the package providing the service factory is loaded. If loaded, the request fails, as the service cannot be acquired.</li>
+<li>If the package is not loaded, it loads the package, expecting it to register the service factory, and checks again for registration.</li>
+<li>If no factory is registered, the request fails.</li>
+<li>If a factory is registered, it is invoked to retrieve the service instance.</li>
+</ol>
+<h3>The Problem</h3>
+<p>The issue arises when a recursive package load is required.</p>
+<p>So, for example, if Package A is currently loading and it calls GetService to get a service it itself provides. This creates a loop in the package load request chain as A is loading and has entered a code path, that to complete, must wait for A to finish loading.</p>
+<p>Another example would be if Package A is currently loading and calls GetService on a service that comes from Package B. If Package B, during its load, calls GetService on a service that comes from package A we again have a loop in the package load request chain.</p>
+<p>These loops can be arbitrarily long (i.e. Package A triggers Package B to load, which triggers package C to load, which triggers package D to load &#8230;. which triggers Package A to load).</p>
+<p>If a service being requested during a package load from a package that is currently loading then:</p>
+<ul>
+<li>If the package has registered the service factory before the request is made, the service manager invokes the factory and returns the service—this is the ideal path.</li>
+<li>If the package has not registered the service factory before the request is made, a problem occurs. When the service manager checks if the package is loaded, it detects the package is still loading (not fully loaded). If it blocks waiting for the package to finish loading, a deadlock occurs, as the package load waits for the service return, but that requires the package load to complete. If it ignores the loading state, it returns null, since the service factory hasn&#8217;t been registered yet.</li>
+</ul>
+<p>To make this work, the original design marked a package as &#8220;loaded&#8221; right before its Initialize/SetSite was called.</p>
+<p>This was a reasonable compromise in the context of the time, as all package loads were synchronous and occurred on the UI thread, eliminating concerns about concurrent load requests. It also allowed cycles to &#8220;work&#8221; if the service-providing package registered all its services before attempting to retrieve any services that could lead to a cycle.</p>
+<h2>So Why the Change?</h2>
+<p>The term &#8220;work&#8221; was used in quotes because, while it sometimes worked, it was unreliable. For it to work, all packages had to register their service factories before making requests that could introduce a cycle. This was unenforceable, error-prone, and led to issues where internal packages would re-query for services if the initial request returned null. It was also susceptible to failure from minor changes, like refactoring initialization code or altering the load order of packages, which could invert the request chain and break the cycle (or introduce another).</p>
+<p>Additionally, this approach only worked in a single-threaded loading model, which Visual Studio no longer uses.</p>
+<p>In a multi-threaded loading model, the likelihood of race conditions increases. If a package is marked as loaded before its SetSite/Initialize method is called, a request from another thread may consider the package already loaded and attempt to retrieve the service, racing with the original package’s service factory registration.</p>
+<p>To prevent null services from being returned due to this race condition, we must ensure that all loads, except the original request, block until the package initialization completes (until Initialize(Async)/SetSite returns). However, blocking on in-progress loads should only occur if the calling thread is independent of the original thread that initiated the load; otherwise, it could deadlock the entire process.</p>
+<h2>The Fix</h2>
+<p>To solve this problem, we rely on AsyncLazy to manage package loads. AsyncLazy uses AsyncLocal to detect re-entrant invocations. It can determine, from the context of any thread, if the caller is related to the original thread that invoked AsyncLazy&#8217;s value factory. If so, it throws an exception; if not, it blocks the caller until the original invocation completes.</p>
+<p>This behavior is exactly what we need, but it means cyclic load requests will now throw an exception, causing a failure. While this is unavoidable (and actually desirable), it represents a change in behavior. This approach ensures a package isn’t considered loaded until its Initialize(Async)/SetSite completes, eliminating the registration race condition, and properly handles concurrent load requests—blocking if unrelated to the original load, or failing otherwise.</p>
+<h2>Call to Action</h2>
+<p>This change is necessary to prevent a race condition, which arises from how Visual Studio services are discovered.</p>
+<h3>Ways to avoid cycles</h3>
+<p>Since cycles are no longer allowed, it&#8217;s important to avoid creating them. The good news is that changes made to address these issues will also work in older versions, as cycles were never a good idea. While race conditions still exist in older versions, these cannot be avoided without applying this fix more broadly, which would impact a larger user base.</p>
+<p>The most common mistake we observed was developers being too eager in Initialize(Async)/SetSite, often leading to cycles. Specifically, people would:</p>
+<ol>
+<li>Eagerly create service instances, which often required fetching other services.</li>
+<li>Eagerly create tool windows, which also required fetching services.</li>
+<li>Eagerly fetch services to store in backing fields, even if they weren&#8217;t used in Initialize(Async)/SetSite.</li>
+</ol>
+<p>Your Initialize(Async)/SetSite should do minimal work. You won&#8217;t know why your package was loaded, but if it was to retrieve a service or load a tool window, those actions will occur by a follow-up call after Initialize(Async)/SetSite completes.</p>
+<p>To avoid cycles, services can be retrieved &#8220;just in time&#8221; using Lazy&lt;T&gt; or AsyncLazy&lt;T&gt; outside of Initialize(Async)/SetSite. Similarly, while service factories should be registered eagerly, the actual service creation (which can involve fetching other services) happens only after the package is fully loaded, eliminating the cycle risk.</p>
+<p>Tool windows should also be created outside Initialize(Async)/SetSite, and any required services can be fetched at that point. An example of this pattern can be seen here: <a href="https://developercommunity.visualstudio.com/t/Upgrading-to-Visual-Studio-2022-17121/10797142">Upgrading to Visual Studio 2022 17.12.1 displays error Exception from HRESULT: 0x80049283 &#8211; Developer Community</a> In this case the extension is eagerly creating its toolwindow inside its InitializeAsync, this is unnecessary. A separate call will be made by the environment when your toolwindow is needed.</p>
+<h2>Customer Value</h2>
+<p>This change was made to reduce instances of services returning null when they should never do so. Such failures are problematic because if the caller doesn&#8217;t null-check the result, it could crash Visual Studio. If they do check for null, they must handle the missing service appropriately. Most users opted to disable functionality that depended on the missing service, leading to inconsistent behavior—where Visual Studio sometimes appeared to lack features that worked in previous sessions, even though the code hadn&#8217;t changed.</p>
+<p>For extenders, this change adds some extra work, but it also eliminates the uncertainty around services occasionally returning null. They can now consistently treat null as either a fatal error or an indication that a feature is unavailable, rather than a strange, self-correcting issue that might resolve with a retry.</p>
+<h2>Conclusion + Thanks</h2>
+<p>We understand that changes to &#8220;working&#8221; code are generally undesirable. Initially, we didn’t expect many people to be affected, but after issues were reported by two internal teams and one external team, we realized a fix we anticipated would be non-disruptive was, in fact, impacting extenders.</p>
+<p>This post was directly motivated by user feedback, which alerted us to the issue, rather than users silently adjusting their code without fully understanding the cause, for that we are grateful.</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-restrictions-on-package-loading/">New restrictions on package loading</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>First preview of Visual Studio 2022 v17.14</title>
+      <link>https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-14/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Wed, 12 Feb 2025 14:45:47 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Reliability]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Preview]]></category>
+      <category><![CDATA[security]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252341</guid>
+      <description><![CDATA[<p>We are pleased to announce the release of Visual Studio 2022 v17.14 Preview 1, marking the initial preview of our next update to Visual Studio. This update prioritizes delivering exceptional developer experiences, with an emphasis on stability and security, as well as AI enhancements. Download the preview and see the full list of enhancements in [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-14/">First preview of Visual Studio 2022 v17.14</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We are pleased to announce the release of Visual Studio 2022 v17.14 Preview 1, marking the initial preview of our next update to Visual Studio. This update prioritizes delivering exceptional developer experiences, with an emphasis on <strong>stability and security</strong>, as well as <strong>AI enhancements.</strong> <a href="https://visualstudio.microsoft.com/vs/preview/">Download the preview</a> and see the full list of enhancements in the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes-preview">release notes</a>.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252342" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-close-up-of-a-purple-band-description-automatic.png" alt="abstract image of Visual Studio" width="624" height="256" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-close-up-of-a-purple-band-description-automatic.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-close-up-of-a-purple-band-description-automatic-300x123.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></p>
+<h2>Stability &amp; security</h2>
+<p>In this release, we’re focusing on bug fixes that help make Visual Studio more stable and secure. This is something we do from time to time. Our goal is to ensure that developers can work in a reliable and secure environment without disruptions. By addressing critical issues and enhancing overall performance, we aim to provide a seamless development experience. Our commitment to stability and security means rigorous testing and quality assurance processes are in place, ensuring that every aspect of the IDE functions optimally.</p>
+<h2>AI improvements</h2>
+<p>Visual Studio 2022 v17.14 includes AI features that aim to improve developer productivity by automating routine tasks, providing code suggestions, and enhancing coding efficiency. The platform offers AI-assisted code completion, refactoring tools, and personalized insights, allowing developers to write more efficient code and focus on complex aspects of their projects, potentially speeding up development cycles.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/vs/preview/" target="_blank">Download Visual Studio Preview</a></div></p>
+<p>We hope you enjoy this preview of Visual Studio, and we look forward to hearing what you think. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>, by reporting issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>You can <a href="https://visualstudio.microsoft.com/vs/preview/">download the preview</a> from our website or update it from within the IDE. Please note that you should not use this preview in production environments, and some extensions or workloads may not be compatible with it.</p>
+<p>Thank you for using Visual Studio and <strong>happy coding</strong>!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/first-preview-of-visual-studio-2022-v17-14/">First preview of Visual Studio 2022 v17.14</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Visual Studio 2022 v17.13 is Now Available!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-13-is-now-available/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 11 Feb 2025 18:34:45 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[Data and Analytics]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[performance]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Team and Development]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Aspire]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Developer Productivity]]></category>
+      <category><![CDATA[Docker]]></category>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[ssdt]]></category>
+      <category><![CDATA[UI Design]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252327</guid>
+      <description><![CDATA[<p>We are excited to announce the availability of Visual Studio 2022 v17.13. This update focuses on stability and security, along with continuous improvements for all developers using Visual Studio. Based on your feature requests, several new tools and enhancements have been added to this release. This update includes improvements for developers, such as advanced debugging [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-13-is-now-available/">Visual Studio 2022 v17.13 is Now Available!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We are excited to announce the availability of Visual Studio 2022 v17.13. This update focuses on <strong>stability</strong> and <strong>security</strong>, along with <strong>continuous improvements</strong> for all developers using Visual Studio.</p>
+<p><img decoding="async" class="alignnone wp-image-252328" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252327-1.png" alt="Abstract Visual Studio image" width="1200" height="498" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252327-1.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252327-1-300x125.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252327-1-1024x425.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252327-1-768x319.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>Based on your feature requests, several new tools and enhancements have been added to this release. This update includes improvements for developers, such as advanced debugging capabilities, efficient code management, and enhanced security features. These additions aim to simplify workflows and boost productivity.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/downloads/" target="_blank">Download Visual Studio 2022 v17.13</a></div></p>
+<p>For detailed information on each new feature, check out the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes">release notes</a>. If you’re pressed for time, here are the key highlights.</p>
+<h2>Productivity</h2>
+<ul>
+<li><strong>Customize file encoding</strong>: Specify the default encoding for saving files in Visual Studio.</li>
+<li><strong>Reimagine the horizontal scrollbar</strong>: The horizontal scrollbar in the editor now repositions itself to always be accessible, even when space is limited.</li>
+<li><strong>Choose whether to indent word wrap</strong>: You can now specify whether lines that wrap in the editor should be indented.</li>
+<li><strong>Navigate to recent files in Code Search</strong>: In Code Search, you can now easily jump between your recent files.</li>
+<li><strong>Enhanced line &amp; column navigation</strong>: Visual Studio now supports advanced line and column navigation in Code Search.</li>
+</ul>
+<h2>GitHub Copilot</h2>
+<ul>
+<li><strong>Meet GitHub Copilot Free</strong>: GitHub Copilot Free is now available, gives you 2,000 code completions and 50 chat requests per month at no cost—all seamlessly integrated into Visual Studio.</li>
+<li><strong>AI-enhanced Feature Search</strong>: You can now ask GitHub Copilot to get detailed responses for your queries.</li>
+<li><strong>Use GitHub Copilot Edits across files</strong>: Iterate across multiple files more efficiently.</li>
+<li><strong>GitHub Copilot shortcuts</strong>: New keyboard shortcuts for threads in GitHub Copilot Chat.</li>
+<li><strong>Slash command expansions</strong>: Enhance slash commands by expanding into natural language.</li>
+</ul>
+<h2>Debugging &amp; diagnostics</h2>
+<ul>
+<li><strong>Highlight syntax with IEnumerable Visualizer</strong>: Enhanced editable expression with syntax highlighting is now available.</li>
+<li><strong>Craft complex LINQ queries</strong>: Enhanced editable expression with GitHub Copilot Inline Chat directly in the IEnumerable Visualizer.</li>
+<li><strong>Streamline debugging for native code</strong>: The Visual Studio profiler&#8217;s instrumentation tool now supports targeted instrumentation for native code.</li>
+<li><strong>Thread summaries in Parallel Stacks</strong>: Enhance the debugging process with AI thread summaries in Parallel Stacks.</li>
+<li><strong>Display unified async stacks in profiler</strong>: The Visual Studio profiler unifies async stacks for streamlined .NET profiling.</li>
+<li><strong>Use color-coded swim lanes for CPU profiling</strong>: The Visual Studio profiler enables multiprocess CPU analysis with color-coded graphs and filtering.</li>
+</ul>
+<h2>Git tooling</h2>
+<ul>
+<li><strong>Add comments on pull requests</strong>: Review pull requests in Visual Studio by adding new comments to the files on the checked-out branch.</li>
+<li><strong>Catch issues at commit time</strong>: Get GitHub Copilot-powered suggestions for your code changes to help you catch potential issues early and improve your code quality.</li>
+<li><strong>View and manage Git tags</strong>: Navigate and push Git tags seamlessly from Visual Studio.</li>
+</ul>
+<h2>IDE</h2>
+<ul>
+<li><strong>Preserve font preferences across themes</strong>: Changing themes will now preserve your font and font size preferences.</li>
+<li><strong>Onboard a GitHub account</strong>: Add GitHub accounts from the first launch wizard or the Visual Studio shell.</li>
+<li><strong>Manage multiple GitHub accounts</strong>: Add multiple GitHub accounts and set an active account to drive GitHub features like GitHub Copilot and version control.</li>
+<li><strong>Add a new markdown file</strong>: Adding a new markdown file just got easier with the new template available in the Add New Item dialog.</li>
+<li><strong>Check out the new features in the Teams Toolkit</strong>: Learn about the Teams Toolkit improvements in the new release.</li>
+</ul>
+<h2>Cloud</h2>
+<ul>
+<li><strong>Leverage .NET Aspire and Azure Functions</strong>: Azure Functions can now use .NET Aspire to integrate serverless technology into .NET Aspire.</li>
+<li><strong>Launch a new Docker configuration</strong>: Enable depends_on support with the DependencyAwareStart launch configuration option.</li>
+<li><strong>Add scale to Docker Compose</strong>: The scale property in Docker Compose is now supported.</li>
+</ul>
+<h2>Web</h2>
+<ul>
+<li><strong>Extract HTML to Razor component</strong>: Use a code action to easily extract HTML to a Razor component in Visual Studio.</li>
+<li><strong>Disable format on paste for Razor files</strong>: You can now disable the format on paste feature for Razor in Visual Studio.</li>
+</ul>
+<h2>Data</h2>
+<ul>
+<li><strong>Use SDK-style SQL projects in SSDT</strong>: You can now use the SDK-style project file format in your SQL Server Data Tools projects with enhanced SQL debugging and schema comparison capabilities.</li>
+</ul>
+<h2>Stay in touch</h2>
+<p>As you use Visual Studio, let us know what you love, what you like, and where you’d like us to improve. You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home">Developer Community</a>: report any bugs or issues via <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio">report a problem</a> and <a href="https://developercommunity.visualstudio.com/report?space=8&amp;entry=suggestion">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio">YouTube</a>, <a href="https://twitter.com/VisualStudio">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022">Microsoft Learn</a>.</p>
+<p>As always, we appreciate the time you’ve spent reporting issues and hope you continue to give us feedback on how we’re doing and what we can improve.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-13-is-now-available/">Visual Studio 2022 v17.13 is Now Available!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>VisualStudio.Extensibility: Managing .NET runtime versions</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-managing-net-runtime-versions/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Tina Schrepfer (LI)]]></dc:creator>
+      <pubDate>Mon, 10 Feb 2025 16:17:53 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[visualstudio.extensibility]]></category>
+      <category><![CDATA[vsix]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252310</guid>
+      <description><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow developers like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance and reliability, and that can be installed without the need to restart Visual Studio. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-managing-net-runtime-versions/">VisualStudio.Extensibility: Managing .NET runtime versions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow developers like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance and reliability, and that can be installed without the need to restart Visual Studio. Additional benefits include a sleek and intuitive .NET 8-based API and comprehensive, well-maintained documentation to help you develop amazing extensions faster than ever before.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/visualstudio.extensibility" target="_blank">Get Started with VisualStudio.Extensibility</a></div></p>
+<p>In the recent releases of Visual Studio, we&#8217;ve focused on documenting features that are polished for GA, so we haven&#8217;t blogged often about features available only in the preview channel. However, some features are worthy of early announcement to gather feedback so we can iterate earlier and make the experience better. Today, we’re writing about one such feature – managing the .NET runtime versions, which is available for you to try out in 17.14 Preview 1.</p>
+<p>A key benefit of VisualStudio.Extensibility is that extensions can run out of process on .NET 8, giving you access to a modern, more performant runtime. However, .NET has some fundamental differences from .NET Framework (netfx): each version of the runtime can run side by side and each version of the runtime goes out of support faster than netfx. A new version of .NET comes out every year, with odd number releases receiving 18 months of support, and even number releases receiving 36 months (see <a href="https://dotnet.microsoft.com/en-us/platform/support/policy">here</a> for the official .NET support policy). Thus, for extensions running out of process on VisualStudio.Extensibility, we must roll forward our version of .NET every so often, even after Visual Studio 2022 is past active development and goes into servicing. To get more details on Visual Studio’s support policy, please see <a href="https://learn.microsoft.com/visualstudio/productinfo/vs-servicing">here</a>.</p>
+<p>In 17.14 preview 1, we are introducing the experience that extension developers and consumers can expect when .NET runtime versions roll forward. The following diagram provides a sample timeline of what you can expect for VisualStudio.Extensibility extensions in VS 2022 in the coming years with respect to .NET runtime versions:</p>
+<p><img decoding="async" class="alignnone wp-image-252312" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-line-of-information-on-a-white-background-ai-ge.png" alt="Timeline for VS .NET runtimes" width="1783" height="742" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-line-of-information-on-a-white-background-ai-ge.png 1783w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-line-of-information-on-a-white-background-ai-ge-300x125.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-line-of-information-on-a-white-background-ai-ge-1024x426.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-line-of-information-on-a-white-background-ai-ge-768x320.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/a-line-of-information-on-a-white-background-ai-ge-1536x639.png 1536w" sizes="(max-width: 1783px) 100vw, 1783px" /></p>
+<p>Extension consumers should not expect major or intrusive changes to their workflow when .NET runtime versions are rolled forward. Visual Studio will continue to load their VisualStudio.Extensibility extensions, even if these extensions do not specify that they target the latest supported version of .NET. Let’s wind back time and suppose VisualStudio.Extensibility extensions started running on the .NET 6 runtime. With .NET 6 having just reached its end of life, Visual Studio will now load VisualStudio.Extensibility extensions on .NET 8 runtime, even if the extension did not specify that it supports .NET 8. The following screenshot displays the information (icon) displayed when Visual Studio loads an extension that does not specify it supports the installed .NET runtime. When .NET 8 reaches end-of-life, users can expect a similar transition from .NET 8 to .NET 10.</p>
+<p><img decoding="async" class="alignnone wp-image-252313" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-3.png" alt="Command sample with pop up saying what this is acceptable on" width="2170" height="160" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-3.png 2170w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-3-300x22.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-3-1024x76.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-3-768x57.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-3-1536x113.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-3-2048x151.png 2048w" sizes="(max-width: 2170px) 100vw, 2170px" /></p>
+<p>For extension developers, you will have an opportunity to try loading your extensions in the new runtime version before the current runtime goes out of support. The following screenshot displays the new F5 debug experience when a new .NET runtime version is available.</p>
+<p><img decoding="async" class="alignnone wp-image-252314" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-4.png" alt="Dropdown showing options for runtime with new runtime highlighted" width="1301" height="380" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-4.png 1301w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-4-300x88.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-4-1024x299.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252310-4-768x224.png 768w" sizes="(max-width: 1301px) 100vw, 1301px" /></p>
+<p>For more information on how to configure your extension to run against different runtimes, please see our official documentation on the subject <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/dotnet-management-overview">here</a>.</p>
+<p>We understand that this model of updating the runtime even when Visual Studio 2022 goes out of active development deviates from how extensions are typically maintained in the in-proc, VSSDK model. For developers familiar with .NET, each version brings about breaking changes, although they are often scoped and announced well in advance. As with most .NET applications, the majority of extensions do not need to be rewritten or updated to target the latest .NET runtime version. If you as extension developers do not want to take on the additional burden of considering .NET runtime version compatibility, you can also choose to run their VisualStudio.Extensibility extension in the main devenv.exe process against the .NET Framework runtime. However, in doing so you would lose the ability to install your extensions without restarting Visual Studio, since the extensions are no longer run in isolation.</p>
+<p>This is a big shift, so we anticipate a lot of questions around this. We urge you to use our GitHub repo to file <a href="https://github.com/microsoft/VSExtensibility/issues">issues</a> or sound off your concerns in <a href="https://developercommunity.visualstudio.com/t/VisualStudioExtensibility-Feedback-on/10843113">this</a> Developer Community feedback ticket if you have questions or concerns regarding this change.</p>
+<h1>We want to hear from you!</h1>
+<p>The time and effort you’ve spent reporting issues and sharing suggestions so far has been instrumental in shaping VisualStudio.Extensibility. We need your help as we continue to develop VisualStudio.Extensibility! Please try out the features and APIs announced and let us know what you think. Check out the <a href="https://aka.ms/VisualStudio.Extensibility" target="_blank" rel="noopener">docs</a>, browse the <a href="https://aka.ms/VisualStudio.Extensibility/Samples" target="_blank" rel="noopener">code samples</a>, and build your <a href="https://aka.ms/VisualStudio.Extensibility/FirstExtension" target="_blank" rel="noopener">first extension</a>. You can send feedback and report issues through our <a href="https://github.com/microsoft/VSExtensibility/issues" target="_blank" rel="noopener">issue tracker</a>.</p>
+<p>To request features, look at <a href="https://developercommunity.visualstudio.com/VisualStudio?q=%5BVisualStudio.Extensibility%5D&amp;ftype=idea" target="_blank" rel="noopener">Developer Community</a> to see if someone else made a similar request first. Create a new one if you can’t find a similar request. By checking for similar requests and upvoting and commenting on them, you help us better prioritize requests. Give VisualStudio.Extensibility a try today and share your thoughts with us!</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank" target="_blank" rel="noopener">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-managing-net-runtime-versions/">VisualStudio.Extensibility: Managing .NET runtime versions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
