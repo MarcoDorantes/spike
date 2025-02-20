@@ -27461,5 +27461,135 @@ X-Hosturl: {{hosturl}}
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-managing-net-runtime-versions/">VisualStudio.Extensibility: Managing .NET runtime versions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Introducing Code Referencing for GitHub Copilot Completions in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-code-referencing-for-github-copilot-completions-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Simona Liao]]></dc:creator>
+      <pubDate>Wed, 19 Feb 2025 16:40:08 +0000</pubDate>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Code Referencing]]></category>
+      <category><![CDATA[GitHub Copilot Completions]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252415</guid>
+      <description><![CDATA[<p>When GitHub Copilot completions (or “gray text”) pop up on your screen, have you ever wondered where does the completions come from and worried about if it matches with public code leading to license issues? If you have, we are introducing code referencing to support you and provide more transparency! We are excited to announce [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-code-referencing-for-github-copilot-completions-in-visual-studio/">Introducing Code Referencing for GitHub Copilot Completions in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>When GitHub Copilot completions (or “gray text”) pop up on your screen, have you ever wondered where does the completions come from and worried about if it matches with public code leading to license issues? If you have, we are introducing code referencing to support you and provide more transparency!</p>
+<p>We are excited to announce that code referencing is available now for GitHub Copilot Completions in Visual Studio 2022 17.13, a feature previously introduced in Copilot Chat (see <a href="https://devblogs.microsoft.com/visualstudio/introducing-code-referencing-for-github-copilot-chat-in-visual-studio/">previous blog post</a>). So you can feel more confident when accepting the completions!</p>
+<h2>Learn about Completions Public Code Match</h2>
+<p>When you accept a completion that matches code in a public GitHub repository for the first time in your solution, a toast notification will appear on the bottom right of your editor.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252416" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-1.png" alt="A toast notification that pops up on the bottom right corner of Visual Studio with the title: Found similar code in public repos. Body text include: Copilot completion code matches will appear in the Copilot output window pane. There are two buttons in the toast: on the left, View code matches and on the right, More info." width="431" height="164" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-1.png 431w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-1-300x114.png 300w" sizes="(max-width: 431px) 100vw, 431px" /></p>
+<p>From the toast, you can view code matches in the GitHub Copilot Output Window, where includes more detailed information about the license type and a link to GitHub.com, where the original public code file lives. You can click on the link to read more about the original file and make informed decisions, such as including code attribution or removing the code from your project.</p>
+<p><img decoding="async" class="alignnone wp-image-252417" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-2.png" alt="The Visual Studio Output Window, showing output from GitHub Copilot. One output message is highlighted with a red rectangular box. The highlighted output message is [Completions Public Code Match Information] Similar code with license type [MIT], followed by a link to github. " width="1471" height="234" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-2.png 1471w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-2-300x48.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-2-1024x163.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252415-2-768x122.png 768w" sizes="(max-width: 1471px) 100vw, 1471px" /></p>
+<p>From the toast, you can also learn more information about public code match and how to manage it as an individual subscriber here: <a href="https://docs.github.com/en/copilot" target="_blank" rel="noopener">Managing Copilot policies as an individual subscriber</a>.</p>
+<p>In your future coding workflow, you can always check for any public code match by opening the Output Window (Ctrl+Alt+O) and searching for “Completions Public Code Match Information.”</p>
+<p>Note:</p>
+<ul>
+<li>Code referencing for completions only occurs for accepted Copilot completions. Any code you have written, as well as completions you have modified or dismissed, are not checked for public code matches.</li>
+<li>Typically, matches to public code occur in less than one percent of Copilot completions, so you should not expect to see code references for many completions. This estimation is higher if you work in open-source repositories.</li>
+</ul>
+<h2>Configure Code Referencing</h2>
+<p><strong>Note:</strong> If you are a member of an organization on GitHub Enterprise Cloud and have been assigned a GitHub Copilot seat through your organization, you may not be able to configure suggestions matching public code in your personal account settings. Your settings will be inherited from your organization or enterprise.</p>
+<p>If you are an individual subscriber, your personal settings for GitHub Copilot include an option to either allow or block code suggestions that match publicly available code:</p>
+<ul>
+<li><strong>Block suggestions matching public code</strong>: GitHub Copilot checks code suggestions with their surrounding code against public code on GitHub. If there’s a match or near match, the suggestion is not shown.</li>
+<li><strong>Allow suggestions matching public code</strong>: When Copilot suggests matching code, you can view details of the matches and navigate to the relevant repositories on GitHub.</li>
+</ul>
+<p><strong>To adjust your settings:</strong></p>
+<ol>
+<li>In the upper-right corner of any page on GitHub, click your profile photo, then click <strong>Your Copilot</strong>.</li>
+<li>Next to <strong>Suggestions matching public code</strong>, use the dropdown menu to select <strong>Allow</strong> or <strong>Block</strong>.</li>
+</ol>
+<p>For more information, see <a href="https://docs.github.com/en/copilot" target="_blank" rel="noopener">Managing Copilot policies as an individual subscriber</a>.</p>
+<h2>Code with More Confidence and Transparency</h2>
+<p>This new functionality offers developers greater transparency on their code completions (or &#8220;gray text&#8221;) by providing detailed information on any public code matches found. Prior to this change, Copilot completions with public code match were automatically blocked. Now, developers have the choice to access more code completions and receive sufficient information about any public code matches, enabling them to make informed decisions.</p>
+<h2>Try It Out Today</h2>
+<p>We believe this new code referencing feature in Copilot Completions improves your development experience with more transparency and informed choices. Give it a try in Visual Studio 17.13 or later, and share your feedback with us.</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank" target="_blank" rel="noopener">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-code-referencing-for-github-copilot-completions-in-visual-studio/">Introducing Code Referencing for GitHub Copilot Completions in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>VisualStudio.Extensibility: Tagger support and updates to settings</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-tagger-support-and-updates-to-settings/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Tina Schrepfer (LI)]]></dc:creator>
+      <pubDate>Tue, 18 Feb 2025 17:12:06 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[visualstudio.extensibility]]></category>
+      <category><![CDATA[vsix]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252396</guid>
+      <description><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow users like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance, reliability, and installation without restarting Visual Studio. Additional benefits include a sleek and intuitive [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-tagger-support-and-updates-to-settings/">VisualStudio.Extensibility: Tagger support and updates to settings</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow users like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance, reliability, and installation without restarting Visual Studio. Additional benefits include a sleek and intuitive .NET 8-based API and comprehensive, well-maintained documentation to help you develop amazing extensions faster than ever before.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/VisualStudio.Extensibility" target="_blank">Get Started with VisualStudio.Extensibility</a></div></p>
+<p>For the latest up-to-date docs and installation instructions, visit <a href="https://aka.ms/VisualStudio.Extensibility">https://aka.ms/VisualStudio.Extensibility</a>. We encourage you to report bugs and suggest features via the <a href="https://aka.ms/VisualStudio.Extensibility/Issues">issue tracker</a> on our <a href="https://aka.ms/VisualStudio.Extensibility/Repo">GitHub repo</a>, where you can also find extension <a href="https://aka.ms/VisualStudio.Extensibility/Samples">samples</a> to help you get started.</p>
+<h1>What’s new for VisualStudio.Extensibility in 17.13?</h1>
+<p>Our 17.13 release of VisualStudio.Extensibility includes the following features:</p>
+<ul>
+<li>Enhanced editor extensibility through tagger support</li>
+<li>Expanded settings API to allow for observation of changed settings values</li>
+</ul>
+<p>Both sets of APIs are marked as experimental, which means that they are subject to change as we iterate on the design based on customer feedback. A core principle of VisualStudio.Extensibility is to provide intuitive APIs. As hard as we work to shape the API to be intuitive from inception, we understand that there are likely gaps we’re missing or assumptions we’re making that could be addressed over time. We therefore mark new APIs as experimental to allow customers to report such gaps so we can address them. To read more about our experimental API and breaking changes policy, please see <a href="https://github.com/microsoft/VSExtensibility/blob/main/docs/breaking_changes.md&quot; \l &quot;Guidance-and-Expectations-Around-Breaking-Changes">here</a>.</p>
+<h2>Taggers – the foundation of custom text decoration</h2>
+<p>A powerful editor is foundational to a developer&#8217;s daily workflow, providing the essential tools and features needed to write, debug, and maintain code efficiently. In Visual Studio, text decorators are one of the key differentiators that enhance this experience. These decorators, such as text colorization and CodeLens, offer contextual information to help developers understand and navigate their code more effectively. At the heart of these decorative features is the concept of taggers. Taggers are the mechanism to mark the text in the editor with hidden information, enabling the editor to adopt various text decorations later.</p>
+<p>For example, to provide a custom CodeLens, first we need to define where the CodeLens should show up. Is it CodeLens for a method or a class? Different languages have different syntax for how methods are defined, and some languages may not have classes at all. To know where the blocks of code that make sense for your custom CodeLens to show up, we first need to “tag” the text in the editor with additional information. In 17.12, we talked about how CodeLens can only be created for languages supported by default in Visual Studio, like .NET or C++. This is because the text is already tagged by our own language services to contain the metadata needed for CodeLens. In 17.13, we are providing the API to provide your own tags, so that you can add CodeLens to languages not supported by Visual Studio. The following example shows a snippet of how to define CodeLens tags for a markdown file.</p>
+<pre class="prettyprint language-txt"><code class="language-txt">
+[VisualStudioContribution]
+internal class MarkdownCodeLensTaggerProvider : ExtensionPart, ITextViewTaggerProvider&lt;CodeLensTag&gt;, ITextViewChangedListener
+{
+    private readonly object lockObject = new();
+    private readonly Dictionary&lt;Uri, List&lt;MarkdownCodeLensTagger&gt;&gt; taggers = new();
+
+    public TextViewExtensionConfiguration TextViewExtensionConfiguration =&gt; new()
+    {
+        AppliesTo = [DocumentFilter.FromDocumentType("vs-markdown")],
+    };
+
+    public Task&lt;TextViewTagger&lt;CodeLensTag&gt;&gt; CreateTaggerAsync(ITextViewSnapshot textView, CancellationToken cancellationToken)
+    {
+        var tagger = new MarkdownCodeLensTagger(this, textView.Document.Uri);
+        lock (this.lockObject)
+        {
+            if (!this.taggers.TryGetValue(textView.Document.Uri, out var taggers))
+            {
+                taggers = new();
+                this.taggers[textView.Document.Uri] = taggers;
+            }
+
+            taggers.Add(tagger);
+        }
+
+        return Task.FromResult&lt;TextViewTagger&lt;CodeLensTag&gt;&gt;(tagger);
+    }
+}
+</code></pre>
+<p>Of course, there’s a lot more that goes into creating taggers for markdown files, so to view the whole code sample, please see <a href="https://github.com/microsoft/VSExtensibility/tree/main/New_Extensibility_Model/Samples/TaggersSample">here</a>, or you can refer to our <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/editor/walkthroughs/taggers">documentation</a> for more details. Try it out and customize the CodeLens experience in your extension even more!</p>
+<h2>Observing changes to settings values</h2>
+<p>Another addition we introduced in 17.13 is an enhancement to our settings API which allows extenders to get notified of changes to their settings values. Extenders can now generate settings observers to monitor changes and read their settings value snapshot.</p>
+<pre class="prettyprint language-txt"><code class="language-txt">
+public MyToolWindow(MyCategoryObserver settingsObserver)
+{
+    settingsObserver.Changed += this.SettingsObserver_ChangedAsync;
+}
+
+private async Task SettingsObserver_ChangedAsync(MyCategorySnapshot settingsSnapshot)
+{
+    this.MySetting = settingsSnapshot.MySetting.ValueOrDefault(defaultValue: true);
+    ...
+}
+</code></pre>
+<p>Please read our <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/settings/settings#read-and-monitor-setting-values">documentation</a> for more detailed information and walk through our <a href="https://github.com/microsoft/VSExtensibility/tree/main/New_Extensibility_Model/Samples/SettingsSample">sample code</a> for full context.</p>
+<h1>We want to hear from you!</h1>
+<p>The time and effort you’ve spent reporting issues and sharing suggestions so far has been instrumental in shaping VisualStudio.Extensibility. We need your help as we continue to develop VisualStudio.Extensibility! Please try out the features and APIs announced and let us know what you think. Check out the <a href="https://aka.ms/VisualStudio.Extensibility">docs</a>, browse the <a href="https://aka.ms/VisualStudio.Extensibility/Samples">code samples</a>, and build your <a href="https://aka.ms/VisualStudio.Extensibility/FirstExtension">first extension</a>. You can send feedback and report issues through our <a href="https://github.com/microsoft/VSExtensibility/issues">issue tracker</a>.</p>
+<p>To request features, look at <a href="https://developercommunity.visualstudio.com/VisualStudio?q=%5BVisualStudio.Extensibility%5D&amp;ftype=idea">Developer Community</a> to see if someone else made a similar request first. Create a new one if you can’t find a similar request. By checking for similar requests and upvoting and commenting on them, you help us better prioritize requests. Give VisualStudio.Extensibility a try today and share your thoughts with us!</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-tagger-support-and-updates-to-settings/">VisualStudio.Extensibility: Tagger support and updates to settings</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
