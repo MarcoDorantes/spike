@@ -27591,5 +27591,139 @@ private async Task SettingsObserver_ChangedAsync(MyCategorySnapshot settingsSnap
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-tagger-support-and-updates-to-settings/">VisualStudio.Extensibility: Tagger support and updates to settings</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Catch issues before you commit to Git</title>
+      <link>https://devblogs.microsoft.com/visualstudio/catch-issues-before-you-commit-to-git/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Thu, 27 Feb 2025 17:06:24 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252505</guid>
+      <description><![CDATA[<p>Discovering issues with code changes after committing changes can be frustrating. Fortunately, Visual Studio offers a new feature that helps you catch potential problems early, improving your code quality. Visual Studio now includes a feature powered by GitHub Copilot that lets you review your local code changes before committing them, before they are part of [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/catch-issues-before-you-commit-to-git/">Catch issues before you commit to Git</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Discovering issues with code changes after committing changes can be frustrating. Fortunately, Visual Studio offers a new feature that helps you catch potential problems early, improving your code quality.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252506" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252505-1.png" alt="copilot giving a suggestion on new code on how to improve it" width="900" height="503" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252505-1.png 900w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252505-1-300x168.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252505-1-768x429.png 768w" sizes="(max-width: 900px) 100vw, 900px" /></p>
+<p>Visual Studio now includes a feature powered by GitHub Copilot that lets you review your local code changes before committing them, before they are part of your pull request. This can help identify performance and security issues early, ensuring you maintain a higher quality codebase.</p>
+<h2>How to Get Started</h2>
+<p>To use this feature, ensure your GitHub Copilot subscription is active and enabled within Visual Studio. If you don’t already have GitHub Copilot, you can sign up for free <a href="https://github.com/settings/copilot">here</a>.</p>
+<p>You’ll need to enable the necessary feature flags:</p>
+<ul>
+<li>Tools &gt; Options &gt; Preview Features &gt; Pull Request Comments</li>
+<li>Tools &gt; Options &gt; GitHub &gt; Copilot &gt; Source Control Integration &gt; Enable Git preview features.</li>
+</ul>
+<p>Then, you&#8217;ll see a new sparkle comment button in the Git Changes window. Clicking this button allows GitHub Copilot to review your local code changes and provide inline suggestions.</p>
+<p><img decoding="async" class="alignnone wp-image-252507" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252505-2.png" alt="Copilot reviews changes and suggests commit improvements" width="500" height="272" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252505-2.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/word-image-252505-2-300x163.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>As always with AI powered features, you’ll want to review Copilot’s suggestions for accuracy, which you can do directly in your working file. You can navigate between comments or collapse them using the up arrow icon in the top right corner of the comment box. Please share your scenarios with us <a href="https://aka.ms/LocalCodeReview">in the survey</a> to help us make the comments as useful as possible.</p>
+<h2>Share your feedback</h2>
+<p>We rely on your <a href="https://developercommunity.visualstudio.com/t/Use-Copilot-to-review-commit/10575248">user feedback</a> to guide our roadmaps in Visual Studio. Please share your thoughts on this feature in <a href="https://aka.ms/LocalCodeReview">this survey.</a> Also, we’re already tracking a suggestion to improve this feature with customization, so share your thoughts <a href="https://developercommunity.visualstudio.com/t/Customize-Copilot-code-review/10844722">here</a>.</p>
+<p>We value your continued support and insights to make your experiences in Visual Studio the best they can be, especially now with AI!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/catch-issues-before-you-commit-to-git/">Catch issues before you commit to Git</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Claude 3.7 Now Available in GitHub Copilot for Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/claude-3-7-now-available-in-github-copilot-for-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Tue, 25 Feb 2025 01:45:58 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Anthropic]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252474</guid>
+      <description><![CDATA[<p>The world of AI is evolving at a breathtaking pace, and today brings an exciting milestone for developers and tech enthusiasts alike. Anthropic’s newest release, Claude 3.7, is now available directly within GitHub Copilot for Visual Studio 2022 17.13, heralding a new era of seamlessly integrated, advanced AI coding assistance. This new Sonnet model supports [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/claude-3-7-now-available-in-github-copilot-for-visual-studio/">Claude 3.7 Now Available in GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p data-start="67" data-end="399">The world of AI is evolving at a breathtaking pace, and today brings an exciting milestone for developers and tech enthusiasts alike. Anthropic’s newest release, <a href="https://www.anthropic.com/"><strong data-start="229" data-end="243">Claude 3.7</strong></a>, is now available directly within GitHub Copilot for Visual Studio 2022 17.13, heralding a new era of seamlessly integrated, advanced AI coding assistance. This new Sonnet model supports the non-thinking modes in Copilot.</p>
+<p data-start="67" data-end="399"><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/image.jpg"><img decoding="async" class="alignnone size-full wp-image-252475" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/image.jpg" alt="Image image" width="421" height="240" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/image.jpg 421w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/image-300x171.jpg 300w" sizes="(max-width: 421px) 100vw, 421px" /></a></p>
+<h3 data-start="401" data-end="430">How to Access Claude 3.7</h3>
+<p data-start="432" data-end="456">Getting started is easy:</p>
+<ul data-start="458" data-end="822">
+<li data-start="458" data-end="559"><strong data-start="460" data-end="485">Open the Chat Window:</strong> Click the Copilot badge at the top right of your Visual Studio interface.</li>
+<li data-start="560" data-end="639"><strong data-start="562" data-end="586">Launch Copilot Edit:</strong> Open the chat window to initiate an editing session.</li>
+<li data-start="640" data-end="822"><strong data-start="642" data-end="664">Select Your Model:</strong> In the prompt box, open the model picker. By default, ChatGPT 4 is selected, but you can easily switch to Claude 3.7 Sonnet to harness its advanced features.</li>
+</ul>
+<p data-start="0" data-end="71">If you don’t see Claude 3.7 as an option, there could be two reasons:</p>
+<ol data-start="73" data-end="329" data-is-last-node="" data-is-only-node="">
+<li data-start="73" data-end="175"><strong data-start="76" data-end="122">It’s not available for Copilot Free users.</strong> Only paid Copilot users have access to this model.</li>
+<li data-start="176" data-end="329" data-is-last-node=""><strong data-start="179" data-end="251">You need to enable the policy for 3.7 Sonnet in your GitHub profile.</strong> Make sure to enable Claude access in your <a href="https://github.com/settings/copilot">setting</a>.</li>
+</ol>
+<h4 data-start="1022" data-end="1037">Learn More</h4>
+<p data-start="1039" data-end="1258">For further details, check out the <a href="https://docs.github.com/en/copilot/using-github-copilot/ai-models/using-claude-sonnet-in-github-copilot#about-claude-sonnet-in-github-copilot-chat">Using Claude Sonnet in Copilot Chat &#8211; GitHub Docs. </a></p>
+<p data-start="1260" data-end="1399" data-is-last-node="" data-is-only-node="">We’re super excited about this enhancement to our development environment and can’t wait to hear your feedback. Let us know what you think!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/claude-3-7-now-available-in-github-copilot-for-visual-studio/">Claude 3.7 Now Available in GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Leverage vision in Copilot Chat</title>
+      <link>https://devblogs.microsoft.com/visualstudio/attach-images-in-github-copilot-chat/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Mon, 24 Feb 2025 17:33:16 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[CopilotFree]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252436</guid>
+      <description><![CDATA[<p>Now, in the preview channel, you can attach images in GitHub Copilot chat to help you illustrate your ideas effectively and get the best responses.  Imagine working on a UI development task where describing a design or layout through text just doesn&#8217;t cut it. Or perhaps you&#8217;re debugging an issue and need to share a [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/attach-images-in-github-copilot-chat/">Leverage vision in Copilot Chat</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span class="TextRun SCXW44648517 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW44648517 BCX8">Now, in the preview channel, you can attach images in</span><span class="NormalTextRun SCXW44648517 BCX8"> GitHub Copilot</span><span class="NormalTextRun SCXW44648517 BCX8"> chat to help you </span><span class="NormalTextRun SCXW44648517 BCX8">illustrate </span><span class="NormalTextRun SCXW44648517 BCX8">your ideas</span><span class="NormalTextRun SCXW44648517 BCX8"> effectively and get the best </span><span class="NormalTextRun SCXW44648517 BCX8">responses</span><span class="NormalTextRun SCXW44648517 BCX8">.</span></span><span class="EOP SCXW44648517 BCX8" data-ccp-props="{}"> </span></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Upload-image-icon.png"><img decoding="async" class="alignnone  wp-image-252439" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Upload-image-icon-300x138.png" alt="Upload image to copilot prompt box" width="487" height="224" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Upload-image-icon-300x138.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Upload-image-icon-1024x472.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Upload-image-icon-768x354.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Upload-image-icon.png 1047w" sizes="(max-width: 487px) 100vw, 487px" /></a></p>
+<p><span data-contrast="auto">Imagine working on a UI development task where describing a design or layout through text just doesn&#8217;t cut it. Or perhaps you&#8217;re debugging an issue and need to share a screenshot of an error state or message. Starting in 17.13 Preview channels, you can now paste an image from your clipboard or use the paperclip icon in the chat window to upload your image directly from your file explorer. Simply add your prompt text and send! Copilot will analyze the image and use it as additional context to generate a better response.</span><span data-ccp-props="{}"> </span></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Breakout-Game-Vision-Example.png"><img decoding="async" class="alignnone  wp-image-252438" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Breakout-Game-Vision-Example-236x300.png" alt="Vision attachment breakout game example" width="448" height="570" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Breakout-Game-Vision-Example-236x300.png 236w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Breakout-Game-Vision-Example-805x1024.png 805w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Breakout-Game-Vision-Example-768x976.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/02/Breakout-Game-Vision-Example.png 1072w" sizes="(max-width: 448px) 100vw, 448px" /></a></p>
+<p><span class="TextRun SCXW40513968 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW40513968 BCX8">In this </span><span class="NormalTextRun SCXW40513968 BCX8">simple </span><span class="NormalTextRun SCXW40513968 BCX8">example, Copilot was able to </span><span class="NormalTextRun SCXW40513968 BCX8">interpret the attached image</span><span class="NormalTextRun SCXW40513968 BCX8"> context as a colorful </span><span class="NormalTextRun SCXW40513968 BCX8">breakout game</span><span class="NormalTextRun SCXW40513968 BCX8">. </span> <span class="NormalTextRun SCXW40513968 BCX8">Combining that request with </span><span class="NormalTextRun SCXW40513968 BCX8">the open file</span><span class="NormalTextRun SCXW40513968 BCX8"> and the loaded project, Copilot can create a plan and suggest code to scaffold an entire working project from scratch. When combined with the</span><span class="NormalTextRun SCXW40513968 BCX8"> iteration</span><span class="NormalTextRun SCXW40513968 BCX8"> power of </span></span><a class="Hyperlink SCXW40513968 BCX8" href="https://learn.microsoft.com/en-us/visualstudio/ide/copilot-edits?view=vs-2022" target="_blank" rel="noreferrer noopener"><span class="TextRun Underlined SCXW40513968 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW40513968 BCX8" data-ccp-charstyle="Hyperlink">Copilot edits</span></span></a><span class="TextRun SCXW40513968 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW40513968 BCX8">, even more is possible with existing code bases. Check out this </span><span class="NormalTextRun SCXW40513968 BCX8">clip </span><span class="NormalTextRun SCXW40513968 BCX8">of the Microsoft Ignite session that previewed this functionality</span><span class="NormalTextRun SCXW40513968 BCX8"> to see it in action.</span></span><span class="EOP SCXW40513968 BCX8" data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:259}"> </span></p>
+<p><iframe title="YouTube video player" src="//www.youtube.com/embed/-y3FEblPRj4?si=iToQQsKoYxzqUo5Y&amp;start=1594" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<h3 aria-level="1"><span data-contrast="none">More details</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:360,&quot;335559739&quot;:80,&quot;335559740&quot;:259}"> </span></h3>
+<p><span data-contrast="auto">PNG, JPG, and GIF image attachments are only supported in the preview release on GPT-4o, though the model will only take a single frame of an animated GIF. Additionally, you can attach up to three images per message, providing ample space to convey your ideas visually. </span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="1"><span data-contrast="none">Building with your feedback</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:360,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">This capability to attach images in GitHub Copilot chat helps bring the latest in LLM improvements to work for you in Visual Studio. To continue to improve these experiences, please share your feedback on <a href="https://aka.ms/ChatImageAttachments">this survey</a>.</span></p>
+<p>As we continuously strive to improve Visual Studio, and your feedback is invaluable! We appreciate your ongoing support and are excited to bring you this new feature to enhance your coding experience.<span data-ccp-props="{}"> </span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/attach-images-in-github-copilot-chat/">Leverage vision in Copilot Chat</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Unlocking More Power: Tool Calling in GitHub Copilot for Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/function-calling-is-now-enabled-in-github-copilot/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Thu, 20 Feb 2025 18:00:52 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Context]]></category>
+      <category><![CDATA[Models]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252167</guid>
+      <description><![CDATA[<p>Have you ever been frustrated when Copilot doesn’t understand you? While it can’t read your mind, we’ve been working hard to make your coding experience smoother. Previously, Copilot in Visual Studio could look at files in your repository, but you needed to specify the context of your code manually. We understand this wasn’t the most [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/function-calling-is-now-enabled-in-github-copilot/">Unlocking More Power: Tool Calling in GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Have you ever been frustrated when Copilot doesn’t understand you? While it can’t read your mind, we’ve been working hard to make your coding experience smoother.</p>
+<p>Previously, Copilot in Visual Studio could look at files in your repository, but you needed to specify the context of your code manually. We understand this wasn’t the most intuitive experience, so we’ve been working on a smarter way to infer information automatically.</p>
+<h2><strong>Introducing Tool Calling: A Smarter Copilot</strong></h2>
+<p>Tool Calling is here—a major update that changes how you interact with Copilot. Now, Copilot can automatically search for more relevant code or tools it needs to address your questions. This works with GPT-4o and Claude Sonnet.</p>
+<p>You can now simply describe what you need in natural language, and Copilot can decide what of the information below is relevant:</p>
+<ul>
+<li>Your current file</li>
+<li>Open files or related files in your solution</li>
+<li>Your whole codebase</li>
+<li>debugger (locals, call stacks, etc.)</li>
+<li>or Visual Studio itself</li>
+</ul>
+<p>Web integration is also coming soon, allowing you to ask questions that span both local code and external data sources. (But for now you can use @GitHub.)</p>
+<p><iframe title="Function calling in GitHub Copilot" width="500" height="281" src="https://www.youtube.com/embed/hALZoDdY8-w?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p>And that’s not all we added….</p>
+<h2><strong>Smarter Knowledge Retrieval</strong></h2>
+<h4><strong>Even more transparency and control</strong></h4>
+<p>While Tool Calling is a significant improvement, it’s not perfect. To tweak any missteps, try the Retry button to generate a fresh response. You can also manually specify files, methods, classes, or entire solutions using # references in your prompts.</p>
+<h4><strong>Help Shape the Future</strong></h4>
+<p>Tool Calling enables both enhanced context retrieval and greater workflow automation. Please update to the latest version of Visual Studio to access upcoming features. We also invite you to try Chat again and share your feedback—let us know what works, what doesn’t, and how we can improve your experience.</p>
+<p>Happy coding!</p>
+<h2></h2>
+<h2>Want to try this out?</h2>
+<p>Activate GitHub Copilot Free and unlock this AI feature, plus many more.</p>
+<p>No trials. No credit cards. Just your GitHub account. <a href="https://learn.microsoft.com/en-us/visualstudio/ide/copilot-free-plan?view=vs-2022#get-started-with-copilot-free-in-visual-studio">Get Copilot Free</a></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/function-calling-is-now-enabled-in-github-copilot/">Unlocking More Power: Tool Calling in GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
