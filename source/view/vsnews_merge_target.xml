@@ -27725,5 +27725,188 @@ private async Task SettingsObserver_ChangedAsync(MyCategorySnapshot settingsSnap
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/function-calling-is-now-enabled-in-github-copilot/">Unlocking More Power: Tool Calling in GitHub Copilot for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>GPT-4o Copilot code completion model available now in Visual Studio public preview</title>
+      <link>https://devblogs.microsoft.com/visualstudio/gpt-4o-copilot-code-completion-model-available-now-in-visual-studio-public-preview/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Simona Liao]]></dc:creator>
+      <pubDate>Tue, 11 Mar 2025 15:00:21 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub Copilot Completions]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252652</guid>
+      <description><![CDATA[<p>We are excited to announce that the new GPT-4o Copilot code completion model is now available for GitHub Copilot users in Visual Studio starting in 17.14 Preview 2! This new model, based on GPT-4o mini, has undergone additional training on over 275,000 high-quality public repositories across more than 30 popular programming languages. As a result, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/gpt-4o-copilot-code-completion-model-available-now-in-visual-studio-public-preview/">GPT-4o Copilot code completion model available now in Visual Studio public preview</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252653" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-1.jpeg" alt="GitHub Copilot, GPT-4o Copilot" width="1431" height="752" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-1.jpeg 1431w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-1-300x158.jpeg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-1-1024x538.jpeg 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-1-768x404.jpeg 768w" sizes="(max-width: 1431px) 100vw, 1431px" /></p>
+<p>We are excited to announce that the new GPT-4o Copilot code completion model is now available for GitHub Copilot users in Visual Studio starting in 17.14 Preview 2! This new model, based on GPT-4o mini, has undergone additional training on over 275,000 high-quality public repositories across more than 30 popular programming languages. As a result, developers can expect more accurate suggestions and better performance.</p>
+<h2>Try it out now!</h2>
+<p>For Visual Studio users who have yet to use GitHub Copilot, get started today! There’s even a free plan that includes 2,000 completions and 50 chats per month. You can<a href="https://learn.microsoft.com/en-us/visualstudio/ide/copilot-free-plan?view=vs-2022"> sign up directly in Visual Studio</a> (version 17.8 or higher) or explore plans <a href="https://github.com/features/copilot/plans">here</a>.</p>
+<p>Once you have enabled GitHub Copilot, try out the new model by going to Tools -&gt; Options -&gt; GitHub -&gt; Copilot -&gt; Copilot Completions and selecting &#8220;GPT-4o Copilot&#8221; in the dropdown. You can also access the settings by clicking the GitHub Copilot badge on the top right corner and go to Settings -&gt; Options. Note that there might be a delay on retrieving the latest model list for the first time, please try restarting Visual Studio if you don&#8217;t see the new GPT-4o model in the dropdown.</p>
+<p><img decoding="async" class="alignnone wp-image-252654" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-2.png" alt="image highlighting how to customize models in the GitHub Copilot settings; GitHub -&gt; Copilot -&gt; Copilot Completions and selecting &quot;GPT-4o Copilot&quot; in the dropdown menu under Copilot Completions Model" width="1055" height="547" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-2.png 1055w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-2-300x156.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-2-1024x531.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252652-2-768x398.png 768w" sizes="(max-width: 1055px) 100vw, 1055px" /></p>
+<h2>GPT-4o Copilot Access Notes</h2>
+<ul>
+<li>Copilot Pro users: The new model is available for you now in 17.14 Preview 2 and later.</li>
+<li>Copilot Business or Enterprise users: Your administrator needs to enable this model for your organization first by opting in to Editor preview features in the Copilot policy settings on github.com.</li>
+<li>Copilot Free users: using this model will count toward your 2,000 free monthly completions.</li>
+</ul>
+<p>We believe this model could further enhance your productivity in Visual Studio with higher quality code completions. We encourage you to give it a try and share your experience with us. Please share any feedback on Developer Community to help us deliver better experiences for all Visual Studio GitHub Copilot users. We are committed to improving developer productivity and joy with GitHub Copilot in Visual Studio and thank you for being part of this journey!</p>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/gpt-4o-copilot-code-completion-model-available-now-in-visual-studio-public-preview/">GPT-4o Copilot code completion model available now in Visual Studio public preview</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Unlock Free Access to Cloud Academy: A New Benefit for Visual Studio Subscribers</title>
+      <link>https://devblogs.microsoft.com/visualstudio/cloud-academy-visual-studio-subscription-benefit/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Mon, 10 Mar 2025 12:00:55 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252540</guid>
+      <description><![CDATA[<p>I’m very excited to share some great news with you! Starting today, if you’re a Visual Studio Professional or Enterprise subscriber, you can get free access to Cloud Academy from QA—no trial, and no credit card required. This exclusive benefit is included with your Visual Studio subscription and provides 12 months of free access to [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/cloud-academy-visual-studio-subscription-benefit/">Unlock Free Access to Cloud Academy: A New Benefit for Visual Studio Subscribers</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>I’m very excited to share some great news with you! Starting today, if you’re a Visual Studio Professional or Enterprise subscriber, you can get free access to Cloud Academy from QA—no trial, and no credit card required. This exclusive benefit is included with your Visual Studio subscription and provides 12 months of free access to Cloud Academy. Act fast—<span style="text-decoration: underline;">this is a limited-time offer</span>. Just log in to the Visual Studio subscriptions portal at my.visualstudio.com and activate your free plan.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/cloud-academy-qa-logo.png" target="_blank" rel="https://www.qa.com/en-us/self-paced-learning/ noopener"><img decoding="async" class="aligncenter wp-image-252543 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/cloud-academy-qa-logo.png" alt="Image cloud academy qa logo" width="660" height="110" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/cloud-academy-qa-logo.png 660w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/cloud-academy-qa-logo-300x50.png 300w" sizes="(max-width: 660px) 100vw, 660px" /></a></p>
+<h2>What is Cloud Academy?</h2>
+<p>Cloud Academy, now part of QA, is a premier learning platform that helps developers and IT pros master cloud technologies. QA acquired Cloud Academy to expand its robust training offerings, bringing even more hands-on, outcome-based learning experiences to users worldwide.</p>
+<h2>Master Azure with Hands-on Learning</h2>
+<p>I know how important hands-on experience is when it comes to mastering cloud skills, and this benefit is packed with practical learning opportunities:</p>
+<ul>
+<li><strong>221 Hands-on Labs</strong></li>
+<li><strong>330 Lessons</strong></li>
+<li><strong>111 Exams</strong></li>
+<li><strong>23 Certification Exam Prep Courses</strong></li>
+</ul>
+<h2>Learn Your Way</h2>
+<p>One of my favorite features of this platform is how flexible the learning options are. You can choose the style that fits you best:</p>
+<ul>
+<li><strong>Guided Labs</strong>: Follow step-by-step instructions to complete tasks in a live Azure environment.</li>
+<li><strong>Challenge Labs:</strong> If you’re confident in your skills, jump right into a challenge without instructions and validate your work by submitting your code.</li>
+<li><strong>Cloud Sandboxes</strong>: Want to experiment? Practice freely in a safe, pre-configured Azure environment—no need to worry about using up your own Azure credits!</li>
+</ul>
+<h2>Smarter Learning with AI-Powered Smart Assessments &amp; Ela: Your Expert Learning Assistant</h2>
+<p>Another standout feature is Ela, your Expert Learning Assistant, and Smart Assessments—and I think you’re going to love it. Instead of working through lessons you’ve already mastered, these AI-driven assessments baseline your knowledge and adjust your learning path accordingly. That means less time reviewing what you already know and more time building new skills that matter.</p>
+<h2>Meet Ela: Your AI-Powered Learning Assistant</h2>
+<p>I&#8217;m really excited about this—Cloud Academy now includes Ela, an AI-driven learning assistant designed to enhance your self-paced learning experience. Ela is trained exclusively on QA-authored content, making it a trusted source for guidance whenever you need it.</p>
+<p>What makes Ela special? Unlike basic AI chatbots, Ela is built with real-world expertise to provide tutor-style support. Whether you&#8217;re looking for quick revision, knowledge checks, explanations of complex topics, or even lab-specific assistance, Ela is available 24/7 to help you along the way.</p>
+<p>Here are just a few of Ela&#8217;s standout capabilities:</p>
+<ul>
+<li><strong>Summarize</strong>: Quickly review key takeaways from course content for faster learning.</li>
+<li><strong>Test</strong>: Reinforce your understanding with knowledge checks before moving forward.</li>
+<li><strong>Explain</strong>: Get clear, practical explanations that connect theory to application.</li>
+</ul>
+<p>Ela isn&#8217;t just limited to courses—she also provides hands-on lab support, helping you troubleshoot code, find bugs, and clarify lab tasks.</p>
+<p>This is a game-changer for learners who want real-time, expert-level support while mastering Azure.</p>
+<h2>Get Ready for Certification</h2>
+<p>If you’ve been thinking about getting Azure certified, this benefit will help you get there faster. With <strong>23 certification prep courses,</strong> you’ll go beyond just memorization and apply what you learn through a mix of lessons, hands-on labs, quizzes, and exams.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/my.visualstudio.com-banner.png" target="_blank" rel="https://my.visualstudio.com noopener"><img decoding="async" class="aligncenter wp-image-252545 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/my.visualstudio.com-banner.png" alt="Image my visualstudio com banner" width="587" height="143" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/my.visualstudio.com-banner.png 587w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/my.visualstudio.com-banner-300x73.png 300w" sizes="(max-width: 587px) 100vw, 587px" /></a></p>
+<h2>Activate Your Free Access Today</h2>
+<p>I can’t wait for you to try this out! Redeem your free Cloud Academy access now by logging into <a href="https://my.visualstudio.com">my.visualstudio.com</a> and activating your license. Remember, this is limited time offer so act now before it’s gone.</p>
+<p>At Microsoft, we’re passionate about helping developers grow their skills and advance their careers. Everyone learns differently, and we know that access to the right tools and resources makes all the difference. Cloud Academy is another opportunity to expand your Azure expertise and bring valuable cloud solutions to your company—whether that’s improving efficiency, driving innovation, or scaling your applications to meet the demands of the future.</p>
+<h2>Check out the new Visual Studio Hub</h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://aka.ms/vshub">Visual Studio Hub </a>for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<p>Let me know your thoughts about our VS subscriber benefits—you can reach me on <a href="https://linkedin.com/in/jimharrer">LinkedIn</a>!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/cloud-academy-visual-studio-subscription-benefit/">Unlock Free Access to Cloud Academy: A New Benefit for Visual Studio Subscribers</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>New Debugging and Profiling Features in Visual Studio (v17.13)</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-debugging-and-profiling-features-in-visual-studio-v17-13/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Wed, 05 Mar 2025 15:39:27 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Profiling]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252584</guid>
+      <description><![CDATA[<p>The latest Visual Studio update (v17.13) brings a strong set of debugging and profiling features designed to speed up troubleshooting, making it more efficient. With AI-driven features in this release, variable analysis and data inspection are smarter and more intuitive, and problems are easier to identify and debug. Profiling tool improvements also deliver better support [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-debugging-and-profiling-features-in-visual-studio-v17-13/">New Debugging and Profiling Features in Visual Studio (v17.13)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The latest Visual Studio update (v17.13) brings a strong set of debugging and profiling features designed to speed up troubleshooting, making it more efficient. With AI-driven features in this release, variable analysis and data inspection are smarter and more intuitive, and problems are easier to identify and debug. Profiling tool improvements also deliver better support and visualization for multi-process execution, native code, and async workflows, with clearer insights into performance bottlenecks. For a full list of debugger and diagnostics features in this release, check out the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes-preview">release notes</a>.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/downloads/" target="_blank">Download Visual Studio 2022 v17.13</a></div></p>
+<h2>GitHub Copilot Assited Debugging Features</h2>
+<h3>Smarter exception and variable analysis</h3>
+<p>GitHub Copilot Exception Analysis and Variable Analysis now use your project context intelligently to find and bring to your attention the most relevant code to errors.</p>
+<p>With sharper, actionable insights and smarter, context-aware solutions, these capabilities can guide you to the root cause of issues more quickly, make your debugging workflow more streamlined, and provide greater overall accuracy in debugging errors.</p>
+<p><img decoding="async" class="alignnone wp-image-252585" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-1.png" alt="GitHub Copilot explaining an error" width="749" height="716" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-1.png 749w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-1-300x287.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-1-24x24.png 24w" sizes="(max-width: 749px) 100vw, 749px" /></p>
+<h3>AI-Powered Parallel Stacks window</h3>
+<p>Auto-Summarize in Parallel Stacks gives you AI-generated summaries so you can get a quick idea of what each thread is doing. Copilot Chat Integration with App Summarization goes a step further, identifying probable problems, recommending solutions, and enabling you to ask questions, get them explained, and get AI-powered suggestions—all in the context of your debugging session.</p>
+<p>Combined, these tools simplify parallel debugging so you can diagnose and repair threading problems more quickly and confidently.</p>
+<p><img decoding="async" class="alignnone wp-image-252586" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc.png" alt="Copilot Chat Integration In Parallel Stack Deadlock example" width="624" height="420" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc-300x202.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></p>
+<h3>Enhanced Editable Expressions in IEnumerable Visualizer</h3>
+<p>The IEnumerable Visualizer now features GitHub Copilot Inline Chat, allowing you to refine editable expressions using natural language. Open a prompt with the Copilot sparkle button, tell it what you would like to change, and receive AI-generated LINQ queries for customized filtering your data. Including syntax highlighting to make it easier to read.</p>
+<p><img decoding="async" class="alignnone wp-image-252587" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-3.png" alt="IEnumerable expression Visualizer" width="848" height="130" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-3.png 848w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-3-300x46.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-3-768x118.png 768w" sizes="(max-width: 848px) 100vw, 848px" /></p>
+<h2>Profiling Features</h2>
+<h3>Targeted Instrumentation for native code</h3>
+<p>The Instrumentation tool in the Visual Studio now has targeted instrumentation for native code, allowing you to choose functions and classes to inspect thoroughly.</p>
+<p>This improves performance monitoring and makes it easier for you to spot issues, streamlining your debugging experience.</p>
+<p><img decoding="async" class="alignnone wp-image-252588" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-4.png" alt="List of instruments you can easily select and view" width="824" height="1155" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-4.png 824w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-4-214x300.png 214w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-4-731x1024.png 731w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-4-768x1077.png 768w" sizes="(max-width: 824px) 100vw, 824px" /></p>
+<h3>Display unified async stacks in profiler</h3>
+<p>The Visual Studio profiler now improves debugging of .NET applications by showing stitched async stacks in the summary and detail call tree windows.</p>
+<p>This feature gives a more cohesive, clearer picture of asynchronous operations, making it easier for developers to follow the entire execution path, including asynchronous method calls, in a single, unified stack trace.</p>
+<p><img decoding="async" class="alignnone wp-image-252589" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-5.png" alt="Detailed tree view of call stacks" width="765" height="430" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-5.png 765w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-5-300x169.png 300w" sizes="(max-width: 765px) 100vw, 765px" /></p>
+<h3>Multiprocess Analysis with Color-Coded Swimlanes in CPU Usage</h3>
+<p>CPU Usage tool in the Visual Studio profiler now supports multiprocess analysis, with performance graphs displayed as separate color coding for each process in swim lanes.</p>
+<p>The graphs are displayed as stacked area charts. You can also filter processes by a dropdown at the top left, to enable focused analysis.</p>
+<p>This enhancement enables you to profile and isolate CPU usage by process with ease in one session. Providing better visualization of resource usage, it optimizes profiling performance and simplifies multiprocess application performance tuning.</p>
+<p><img decoding="async" class="alignnone wp-image-252590" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-6.png" alt="graph of CPU usage" width="1142" height="189" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-6.png 1142w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-6-300x50.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-6-1024x169.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252584-6-768x127.png 768w" sizes="(max-width: 1142px) 100vw, 1142px" /></p>
+<h2>Thank you!</h2>
+<p>We aim to make your debugging and profiling experience as smooth and productive as it can be. We really appreciate the feedback and suggestions you provide, as that is what determines the direction of the tools you use daily. Never stop providing us with feedback, as we can keep making Visual Studio an excellent and user-friendly tool for developers like you.</p>
+<p>Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-debugging-and-profiling-features-in-visual-studio-v17-13/">New Debugging and Profiling Features in Visual Studio (v17.13)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Great new productivity features in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/great-new-productivity-features-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Mon, 03 Mar 2025 16:28:28 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Developer Productivity]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252558</guid>
+      <description><![CDATA[<p>Sometimes it’s the little things in life that matter the most. In the latest version of Visual Studio, we’ve added some features and tweaks that aim to put a smile on your face and make you more productive. Here is a list of some of these, and if you want the full list, make sure [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/great-new-productivity-features-in-visual-studio/">Great new productivity features in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Sometimes it’s the little things in life that matter the most. In the latest version of Visual Studio, we’ve added some features and tweaks that aim to put a smile on your face and make you more productive. Here is a list of some of these, and if you want the full list, make sure to check out the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes">release notes</a>.</p>
+<h2>Customize file encoding</h2>
+<p>Developers working in cross-platform environments often need files to be saved with specific file encodings. Changing these encodings can lead to various issues.</p>
+<p>Visual Studio now allows you to set the default file encoding for saving files. This feature ensures that your preferred encoding is used whenever possible.</p>
+<p>To set the default encoding, navigate to <strong>Tools → Options → Environment → Documents</strong>. There, you will find an option titled <strong>Save files with a specific encoding</strong>. If this option is unchecked, Visual Studio will manage file encoding using its default behavior. If checked, Visual Studio will use the encoding specified in the adjacent combo box whenever a file is saved.</p>
+<p><img decoding="async" class="alignnone wp-image-252559" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-1.png" alt="Image showing save file option with the following option Western European (Windows) - Code page 1252" width="500" height="165" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-1.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-1-300x99.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>If Visual Studio cannot save with the specified encoding (e.g., requesting <em>ASCII</em> encoding for a file containing Unicode characters), it will display a dialog informing you of the issue.</p>
+<h2>Choose whether to indent word wrap</h2>
+<p>We are excited to introduce a new feature that allows you to control whether wrapped lines are indented in the editor. This enhancement provides greater flexibility and customization for your coding environment, ensuring that your code appears exactly as you prefer.</p>
+<p><img decoding="async" class="alignnone wp-image-252560" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-2.png" alt="code with word wrapped enabled" width="500" height="226" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-2.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-2-300x136.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>To change this option, follow these steps:</p>
+<ol>
+<li>Go to <strong>Tools → Options → Text Editor → General</strong>.</li>
+<li>Look for the option called <strong>Automatically indent when word wrap is enabled</strong>.</li>
+</ol>
+<p>By default, this option is enabled, meaning that wrapped lines will be indented. If you prefer your wrapped lines not to be indented, simply uncheck this option. This setting can help improve readability and maintain the desired formatting of your code, especially in projects where indentation style is crucial.</p>
+<h2>Preserve font preferences across themes</h2>
+<p>We understand that the fonts developers select when coding is a personal choice, influenced by preferences for readability, accessibility, or aesthetics. Visual Studio themes primarily focus on presentation colors and are independent of your preferred fonts.</p>
+<p>With this update, we&#8217;ve introduced functionality to retain your font face and size choices when switching themes. You can now set your font preferences once and switch themes in Visual Studio without needing to reconfigure your font settings every time. Note that the colors of your fonts remain linked to the theme, as that is the purpose of themes, but your font selections will be preserved.</p>
+<p><img decoding="async" class="alignnone wp-image-252561" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-3.png" alt="2 themes that have that stay the same" width="500" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-3.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-3-300x169.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>This feature will be enabled by default for all users. If you prefer the previous behavior, go to <strong>Tools &gt; Manage Preview Features</strong> and find the option <strong>Separate font settings from color theme selection</strong>. If this option is checked, your font preferences will be maintained regardless of theme changes. Uncheck the box to reinstate the previous behavior which ties font choices to theme.</p>
+<h2>Reimagine the horizontal scrollbar</h2>
+<p>The editor tray in Visual Studio is a valuable space for a wealth of information. You can control your zoom, check the health of your document, see what line you&#8217;re on, and access a variety of additional information.</p>
+<p>Unfortunately, sometimes all of that information can crowd out the horizontal scrollbar, making it difficult to scroll through your window. This is particularly true in a side-by-side view where the system tray isn&#8217;t very wide.</p>
+<p>With this latest update, these struggles are a thing of the past. If the scrollbar drops below a usable width, it will reposition itself above the system tray to ensure it&#8217;s always accessible. By default, it will return to the editor tray as soon as there&#8217;s enough room for it again.</p>
+<p><img decoding="async" class="alignnone wp-image-252562" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-4.png" alt="Highlighting the horizontal bar" width="500" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-4.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-4-300x169.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>While we believe this behavior will be ideal for most users, if you encounter any issues, you can control the behavior in <strong>Tools → Options</strong>. The option is located under <strong>Text Editor → Advanced</strong> and is labeled <strong>Editor horizontal scrollbar location</strong>. This setting allows you to choose whether the scrollbar adjusts its position according to the available space, stays in the editor tray, or always appears above the editor tray.</p>
+<p><img decoding="async" class="alignnone wp-image-252563" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-5.png" alt="Options to change horizontal bar behavior " width="574" height="134" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-5.png 574w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252558-5-300x70.png 300w" sizes="(max-width: 574px) 100vw, 574px" /></p>
+<h2>Thank you!</h2>
+<p>We are dedicated to continuously improving your development experience, and many of these advancements are driven by your invaluable feedback and suggestions. Your input plays a vital role in shaping the future of Visual Studio, and we encourage you to keep sharing your ideas with us.</p>
+<p>Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/great-new-productivity-features-in-visual-studio/">Great new productivity features in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
