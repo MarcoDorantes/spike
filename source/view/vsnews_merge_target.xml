@@ -27908,5 +27908,372 @@ private async Task SettingsObserver_ChangedAsync(MyCategorySnapshot settingsSnap
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/great-new-productivity-features-in-visual-studio/">Great new productivity features in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Introducing Visual Studio Hub</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-hub/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jacqueline Widdis]]></dc:creator>
+      <pubDate>Mon, 24 Mar 2025 14:44:42 +0000</pubDate>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[News]]></category>
+      <category><![CDATA[Preview Features]]></category>
+      <category><![CDATA[Visual Studio Hub]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252596</guid>
+      <description><![CDATA[<p>The Visual Studio Hub is here! Keeping up with the latest Visual Studio updates, features, and resources can feel like a full-time job. We’ve heard it time and time again—you want a simpler way to stay informed without digging through scattered blog posts, release notes, and social media updates. That’s why we created Visual Studio [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-hub/">Introducing Visual Studio Hub</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> is here!</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Homepage.png"><img fetchpriority="high" decoding="async" class="wp-image-252608 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Homepage-1024x808.png" alt="Visual Studio Hub Hero Tiles" width="731" height="577" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Homepage-1024x808.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Homepage-300x237.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Homepage-768x606.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Homepage.png 1377w" sizes="(max-width: 731px) 100vw, 731px" /></a></p>
+<p>Keeping up with the latest Visual Studio updates, features, and resources can feel like a full-time job. We’ve heard it time and time again—you want a simpler way to stay informed without digging through scattered blog posts, release notes, and social media updates.</p>
+<p>That’s why we created Visual Studio Hub—a single destination to help you quickly find what matters most. Whether you’re looking for the newest features, GitHub Copilot resources, upcoming events, or expert insights from our product teams, the Hub makes it easy to stay connected with everything happening in the Visual Studio ecosystem.</p>
+<h2>What can you expect from Visual Studio Hub?</h2>
+<h3>Discover What&#8217;s New</h3>
+<p>Stay up to date with the latest features in the new releases of Visual Studio 2022. This section allows users to select which category and features are most relevant to their work. This will update with each new release, so check back often!</p>
+<h3><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubWhatsNewDemo.gif"><img decoding="async" class="wp-image-252605 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubWhatsNewDemo.gif" alt="An image of the what's new dropdown section on the new Visual Studio Hub webpage." width="808" height="479" /></a></h3>
+<h3>GitHub Copilot Resources</h3>
+<p>This area provides you with information on how to get started with GitHub Copilot in the Visual Studio IDE. There are tutorials on code completion, AI chat, and prompt tips.</p>
+<h3><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VS-Hub-GH-Section.png"><img decoding="async" class="aligncenter wp-image-252631 " src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VS-Hub-GH-Section-1024x523.png" alt="Visual Studio Hub Copilot Section" width="653" height="334" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VS-Hub-GH-Section-1024x523.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VS-Hub-GH-Section-300x153.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VS-Hub-GH-Section-768x392.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VS-Hub-GH-Section.png 1523w" sizes="(max-width: 653px) 100vw, 653px" /></a></h3>
+<h3>Key Resources</h3>
+<p>Don&#8217;t overlook the key resource section as they will point you to even more opportunities to learn, connect with developers in your community, and give feedback to the engineering teams working to improve the Visual Studio IDE experience.</p>
+<p>While our Microsoft Learn sites are some of the most popular and you can find the link there, two other gems are nestled in this section. To network with other developers on-line, in person, or through user groups, visit our <a href="https://developer.microsoft.com/en-us/community">community site</a>.</p>
+<p>In addition, if you are someone with great ideas you would love to see implemented in the Visual Studio IDE or have ideas for improvement, our <a href="https://developercommunity.visualstudio.com/VisualStudio">feedback site</a> should interest you. If you ever forget how to find them, the Visual Studio Hub will show you the way back.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Key-Resources.png"><img decoding="async" class="wp-image-252606 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Key-Resources.png" alt="A screenshot of the Visual Studio hub swim lane that shows how to access Microsoft Learn, the developer community connection website and a developer community feedback site." width="767" height="362" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Key-Resources.png 1372w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Key-Resources-300x141.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Key-Resources-1024x483.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHub-Key-Resources-768x362.png 768w" sizes="(max-width: 767px) 100vw, 767px" /></a></p>
+<h3>Developer Blogs</h3>
+<p>Our product teams often publish content on the latest trends, product developments, and best practices. Through the blogs section, you can stay ahead of the curve since the four most recent blogs posted on the Visual Studio Blog will show up in this section.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubBlogSection.png"><img decoding="async" class="aligncenter size-large wp-image-252632" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubBlogSection-1024x727.png" alt="Visual Studio Hub Blog Section" width="1024" height="727" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubBlogSection-1024x727.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubBlogSection-300x213.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubBlogSection-768x545.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubBlogSection-1536x1090.png 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/VSHubBlogSection.png 1557w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<h3>Community Engagement</h3>
+<p>We know everyone who uses social media has preferences, and we want to help you find our official accounts. Come join the conversation, see the most recent posts, and connect with our engineering teams.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/communityVSHub.png"><img decoding="async" class="aligncenter wp-image-252698 size-large" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/communityVSHub-1024x733.png" alt="Visual studio hub social media section" width="1024" height="733" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/communityVSHub-1024x733.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/communityVSHub-300x215.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/communityVSHub-768x550.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/communityVSHub.png 1435w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>The Visual Studio Hub is here to stay as your go-to resource for everything related to Visual Studio. Still, this is just the beginning! We plan to bring even more relevant content as you continue to share what matters most to you.</p>
+<p><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2615.png" alt="☕" class="wp-smiley" style="height: 1em; max-height: 1em;" />We hope you&#8217;ll spend your next coffee break with us!</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/hub/" target="_blank">Come Visit Visual Studio Hub!</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-hub/">Introducing Visual Studio Hub</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Enhance Pull Request Reviews with In-Depth Feedback</title>
+      <link>https://devblogs.microsoft.com/visualstudio/enhance-pull-request-reviews-with-in-depth-feedback/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Thu, 20 Mar 2025 15:00:02 +0000</pubDate>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[Team and Development]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252766</guid>
+      <description><![CDATA[<p>Visual Studio 2022 has taken the pull request experience to the next level by making reviews interactive. We previously enabled viewing your pull request comments inline in your working files. Now, the latest update empowers you to add comments directly within the IDE, streamlining the review process. Now, pull request reviewers can conduct deep reviews [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhance-pull-request-reviews-with-in-depth-feedback/">Enhance Pull Request Reviews with In-Depth Feedback</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 has taken the pull request experience to the next level by making reviews interactive. We previously enabled <a href="https://devblogs.microsoft.com/visualstudio/level-up-your-collaborations-with-the-pull-request-experience-in-visual-studio/">viewing your pull request comments</a> inline in your working files. Now, the latest update empowers you to add comments directly within the IDE, streamlining the review process. Now, pull request reviewers can conduct deep reviews with the navigational power of the IDE and stay in their focused environment.</p>
+<p><iframe title="YouTube video player" src="//www.youtube.com/embed/m232fB40BC8?si=0CGTX5UPODozXT0u" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>We heard <a href="https://developercommunity.visualstudio.com/t/VS2022-171-Git-Pull-Request-is-gone/1576559">from your feedback</a> that the web experience for reviewing pull requests can only go so far. When you need to <em>really </em>understand your colleagues&#8217; proposed changes, it&#8217;s best to checkout their branch and use the navigation and build tools in VS. Once you’re on their branch and you’ve identified some feedback, you can add the comment directly without having to map it back to the code in the web. This extends previous functionality where you could view and reply to only existing comments.</p>
+<h2>Enabling this feature</h2>
+<p>To start using the new commenting feature, first ensure you have enabled the feature flags:</p>
+<ul>
+<li><strong>Tools &gt; Options &gt; Preview Features &gt; Pull Request Comments </strong></li>
+<li><strong>Tools &gt; Options &gt; Pull Request Add Comment</strong>.</li>
+</ul>
+<p>Once these are activated, checkout any branch with an active pull request and click on <strong>Show comments in files</strong> in the InfoBar to activate the pull request comments experience in the editor. Alternatively, you can enable comments by using the top level menu Git &gt; ADO/GitHub &gt; Show Comments in Files or from the PR dropdown menu next to the view all commits link in the Git Changes window.</p>
+<p><img decoding="async" class="alignnone wp-image-252768" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-2.png" alt="Git Changes window showing Branch has an active pull request. Show comments in files. Open in browser" width="1142" height="742" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-2.png 1142w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-2-300x195.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-2-1024x665.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-2-768x499.png 768w" sizes="(max-width: 1142px) 100vw, 1142px" /></p>
+<h2>Adding comments to pull request files</h2>
+<p>Simply click on the <strong>Add Comment</strong> icon in the margin, or right-click the line you&#8217;d like to comment on and select <strong>Git &gt; Add Comment</strong> from the context menu.</p>
+<p><img decoding="async" class="alignnone wp-image-252769" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-3.png" alt="image hovering the add comment button" width="500" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-3.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252766-3-300x169.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>The comment icon will only appear in files that are part of the pull request. For GitHub pull requests, comments can only be added to lines surrounding and including the changes.</p>
+<h2>We appreciate your feedback!</h2>
+<p>This is <a href="https://devblogs.microsoft.com/visualstudio/level-up-your-collaborations-with-the-pull-request-experience-in-visual-studio/">another step in our journey</a> to deliver a powerful and integrated pull request experience. We started with supporting the create a pull request workflow, enabled viewing pull request comments on your checked out branches, and now, you can add new review comments, as well!</p>
+<p>We won’t stop there. Your continuous suggestions and insights play a crucial role in shaping the tools we build. We&#8217;re thrilled to bring you this enhancement and are eager to hear how it improves your workflow.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhance-pull-request-reviews-with-in-depth-feedback/">Enhance Pull Request Reviews with In-Depth Feedback</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Find the IDE features you need with GitHub Copilot and Search</title>
+      <link>https://devblogs.microsoft.com/visualstudio/find-the-ide-features-you-need-with-github-copilot-and-search/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Leah Tran]]></dc:creator>
+      <pubDate>Wed, 19 Mar 2025 15:00:29 +0000</pubDate>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <category><![CDATA[Search]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252762</guid>
+      <description><![CDATA[<p>Ever find yourself needing to locate a specific menu item, command, or option in Visual Studio, but you don&#8217;t know its name or location? Do you often struggle to find detailed instructions on using certain features effectively? Now, there’s a solution to get you the information you need right in the IDE. Visual Studio now [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/find-the-ide-features-you-need-with-github-copilot-and-search/">Find the IDE features you need with GitHub Copilot and Search</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Ever find yourself needing to locate a specific menu item, command, or option in Visual Studio, but you don&#8217;t know its name or location? Do you often struggle to find detailed instructions on using certain features effectively?</p>
+<p>Now, there’s a solution to get you the information you need right in the IDE.</p>
+<p><img decoding="async" class="alignnone wp-image-252763" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252762-1.png" alt="image highlighting ask copilot in feature search" width="1200" height="675" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252762-1.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252762-1-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252762-1-1024x576.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252762-1-768x432.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<p>Visual Studio now makes it easy to access GitHub Copilot Chat from Feature Search (Ctrl+Q). Clicking “Ask Copilot” will send your query to GitHub Copilot Chat and get detailed responses, without leaving Visual Studio and search for docs online.</p>
+<p>This tool interprets the semantic meaning of your query, considers your Visual Studio version, and provides accurate answers. This means no more guessing the correct terminology or navigating through multiple menus.</p>
+<p>For instance, typing &#8216;prettify file&#8217; in the traditional search might not bring up the &#8216;format document&#8217; option. However, GitHub Copilot Chat understands the intent behind your query and can guide you to the correct setting with all the information you need to use it.</p>
+<h2>How it works</h2>
+<p>Notice the @vs label in the sent chat message? When your search query gets sent over to the GitHub Copilot chat, the @vs agent is called. This @vs agent has in-depth knowledge about the workings of Visual Studio, with strong context on the features available in the current version you’re using and how those work.</p>
+<p>The @vs agent works in the Visual Studio GitHub Copilot Chat even if you’re not starting from Feature Search. You can invoke the agent on your own by adding @vs to your chat message.</p>
+<h2>Appreciation for your feedback</h2>
+<p>Your insights help us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support.</p>
+<p>Your feedback is invaluable in shaping Visual Studio&#8217;s future. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/find-the-ide-features-you-need-with-github-copilot-and-search/">Find the IDE features you need with GitHub Copilot and Search</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Boost your GitHub productivity with our new multi-account support!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/boost-your-github-productivity-with-our-new-multi-account-support/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Ruben Rios]]></dc:creator>
+      <pubDate>Tue, 18 Mar 2025 14:00:56 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Sign in]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252688</guid>
+      <description><![CDATA[<p>Managing your GitHub identity in Visual Studio 2022 just got easier! Our latest update overhauls the GitHub account management experience and improves how you work with multiple accounts, especially for GitHub Copilot and version control scenarios. In this post, we&#8217;ll detail how these changes will make your GitHub workflow smoother, from the moment you start [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/boost-your-github-productivity-with-our-new-multi-account-support/">Boost your GitHub productivity with our new multi-account support!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Managing your GitHub identity in Visual Studio 2022 just got easier! Our latest update overhauls the GitHub account management experience and improves how you work with multiple accounts, especially for GitHub Copilot and version control scenarios. In this post, we&#8217;ll detail how these changes will make your GitHub workflow smoother, from the moment you start using Visual Studio to your everyday coding.</p>
+<h2>Onboarding Improvements</h2>
+<p>The latest Visual Studio 2022 update streamlines your GitHub experience right from the very start. You can now Sign in with your GitHub account during the first launch experience:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/firstlaunchwithgithub.png"><img decoding="async" class="alignnone size-full wp-image-252690" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/firstlaunchwithgithub.png" alt="Image firstlaunchwithgithub" width="971" height="495" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/firstlaunchwithgithub.png 971w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/firstlaunchwithgithub-300x153.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/firstlaunchwithgithub-768x392.png 768w" sizes="(max-width: 971px) 100vw, 971px" /></a></p>
+<p>If you would rather configure your account at a later stage, you can also sign in with GitHub accounts directly from the Visual Studio shell, regardless of whether a Microsoft account is present.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/signinfromshell.png"><img decoding="async" class="alignnone size-full wp-image-252691" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/signinfromshell.png" alt="Image signinfromshell" width="408" height="132" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/signinfromshell.png 408w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/signinfromshell-300x97.png 300w" sizes="(max-width: 408px) 100vw, 408px" /></a></p>
+<p>Please note that roaming settings are not currently available for GitHub accounts. You’ll need to add a Microsoft account if you want to roam your Visual Studio settings across devices.</p>
+<h2>Multiple GitHub Accounts</h2>
+<p>We&#8217;re happy to announce that you can now add and manage multiple GitHub accounts! Multi-account support was a top request from you, and the latest update enables it for all Visual Studio 2022 users.</p>
+<p>You can add multiple public GitHub accounts effortlessly from all the same identity controls you normally interact with. For instance, you can open the profile card, click on &#8220;Add another account,&#8221; sign in to your GitHub account, and repeat as needed!</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/addaccountanimation.gif"><img decoding="async" class="alignnone size-full wp-image-252692" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/addaccountanimation.gif" alt="Image addaccountanimation" width="625" height="500" /></a></p>
+<h3>Seamless Switching Between Accounts</h3>
+<p>Once you successfully add your first GitHub account, Visual Studio will automatically If you have multiple accounts, switching the active accounts is effortless; just open the profile card, access the account options and select the &#8220;Set as active account&#8221; button.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilotbecomesactive-2.gif"><img decoding="async" class="alignnone size-full wp-image-252694" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilotbecomesactive-2.gif" alt="Image copilotbecomesactive 2" width="625" height="500" /></a></p>
+<h3>GitHub Copilot Integration</h3>
+<p>The active GitHub account drives the activation of GitHub Copilot. If your active account is subscribed to GitHub Copilot Free, GitHub Copilot for Individuals or GitHub Copilot for Business, the Copilot feature will activate automatically.</p>
+<p>You can check the GitHub Copilot badge to quickly assess if your active account has valid entitlements, as its status will indicate whether GitHub Copilot is active.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilotbecomesactive.gif"><img decoding="async" class="alignnone size-full wp-image-252695" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilotbecomesactive.gif" alt="Image copilotbecomesactive" width="273" height="80" /></a></p>
+<h3>Version Control Integration</h3>
+<p>Managing multiple accounts also impacts version control-related scenarios. If you are working on GitHub pull requests or issues, Visual Studio prompt you to set a GitHub account and will remember your preference for each repository.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/vc-dialog.png"><img decoding="async" class="alignnone size-full wp-image-252696" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/vc-dialog.png" alt="Image vc dialog" width="560" height="300" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/vc-dialog.png 560w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/vc-dialog-300x161.png 300w" sizes="(max-width: 560px) 100vw, 560px" /></a></p>
+<p>That means that you won’t need to worry about switching accounts for regular Git operations like push, pull, and fetch. between it and the repository preferences,</p>
+<h2>Conclusion</h2>
+<p>We&#8217;ve been working hard to make your GitHub experience in Visual Studio 2022 even better, and we think you&#8217;ll love these updates!  From easier onboarding and managing multiple GitHub accounts to automatic GitHub Copilot activation and smart Git handling, this update has you covered.</p>
+<p>Thank you for your continuous feedback, which helps us make Visual Studio better with every release.  Please remember that you can keep sharing your thoughts and suggestions by visiting our <a href="https://developercommunity.visualstudio.com/VisualStudio">developer community portal</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/boost-your-github-productivity-with-our-new-multi-account-support/">Boost your GitHub productivity with our new multi-account support!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Introducing automatic documentation comment generation in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-automatic-documentation-comment-generation-in-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sinem Akinci, Allie Barry]]></dc:creator>
+      <pubDate>Mon, 17 Mar 2025 15:00:10 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Docs]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252739</guid>
+      <description><![CDATA[<p>We are excited to announce that Copilot is now automatically integrated into Visual Studio’s editor to help you generate doc comments for functions. This new feature aims to streamline your documentation process and enhance your coding experience. To access these updates, you will need a GitHub Copilot subscription. If you don’t already have GitHub Copilot, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-automatic-documentation-comment-generation-in-visual-studio/">Introducing automatic documentation comment generation in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We are excited to announce that Copilot is now automatically integrated into Visual Studio’s editor to help you generate doc comments for functions. This new feature aims to streamline your documentation process and enhance your coding experience.</p>
+<p>To access these updates, you will need a GitHub Copilot subscription. If you don’t already have GitHub Copilot, you can sign up for free <a href="https://github.com/settings/copilot" target="_blank" rel="noopener">here</a>.</p>
+<h1>AI doc comment generation</h1>
+<p>If you have automatic doc comment generation enabled via your settings, you can simply type what would trigger your doc comment format (such as ///) and Copilot suggestions will automatically fill out the function description based on the contents of the function, including a summary and any parameters and return types (if available). You can then accept these suggestions using a single tab, just like regular Copilot code completions.</p>
+<h1><img decoding="async" class="alignnone wp-image-252747" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/a-computer-screen-shot-of-a-computer-code-ai-gene-2.gif" alt="Gif showcasing copilot generating a summary in the comments" width="768" height="295" /></h1>
+<h1>How to enable doc comments</h1>
+<p>To access this feature, you will need to have automatically generating doc comments enabled.</p>
+<p>For C++ projects, you can configure the generated documentation comment styles using the following setting in <strong>Tools &gt; Options. </strong>Both XML and Doxygen style comments are supported by this feature.</p>
+<p><img decoding="async" class="alignnone wp-image-252748" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-2-2.png" alt="Tools &gt; Option, Coding Style, General to enable for C++" width="871" height="585" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-2-2.png 871w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-2-2-300x201.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-2-2-768x516.png 768w" sizes="(max-width: 871px) 100vw, 871px" /></p>
+<p>For C#, you would need to enable the following setting in your <strong>Tools &gt; Options</strong></p>
+<p><img decoding="async" class="alignnone wp-image-252749" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-3-2.png" alt="Tools &gt; Option, C#, Advanced, Comments for C#" width="817" height="551" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-3-2.png 817w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-3-2-300x202.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252739-3-2-768x518.png 768w" sizes="(max-width: 817px) 100vw, 817px" /></p>
+<h2>Share your feedback</h2>
+<p>This feature is available for Visual Studio 17.14 Preview 2 for both C# and C++ project files. We encourage you to explore this feature and see how GitHub Copilot can transform and simplify your coding experience.</p>
+<p>We deeply appreciate the continuous <a href="https://developercommunity.microsoft.com/VisualStudio">feedback</a> from our users, which drives us to improve and innovate. Your input is invaluable in making Visual Studio better with each update. Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-automatic-documentation-comment-generation-in-visual-studio/">Introducing automatic documentation comment generation in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>New, Simpler Solution File Format</title>
+      <link>https://devblogs.microsoft.com/visualstudio/new-simpler-solution-file-format/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Nayana Srikanth]]></dc:creator>
+      <pubDate>Thu, 13 Mar 2025 17:30:38 +0000</pubDate>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252703</guid>
+      <description><![CDATA[<p>For years, you’ve worked with Visual Studio’s solution file (*.SLN) format, and while it’s a core part of your project organization, we know the experience hasn’t always been smooth. Whether you’ve been modifying, maintaining, or trying to resolve merge conflicts, it’s often felt more like a hassle than it should be. We understand your frustrations, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-simpler-solution-file-format/">New, Simpler Solution File Format</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>For years, you’ve worked with Visual Studio’s solution file (*.SLN) format, and while it’s a core part of your project organization, we know the experience hasn’t always been smooth. Whether you’ve been modifying, maintaining, or trying to resolve merge conflicts, it’s often felt more like a hassle than it should be. We understand your frustrations, and we’re here to talk about why it’s time for a change and how a new solution file format can make your life easier.</p>
+<h2>The Challenges</h2>
+<p>Despite being a critical element of the Visual Studio ecosystem, the existing solution file format has its share of drawbacks:</p>
+<ul>
+<li>Manual Edits Are Tedious: Editing solution files manually is error-prone due to its tool-centric format. Small mistakes often lead to misconfigurations, disrupting your workflow.</li>
+<li>Merge Conflicts Are a Constant Issue: In team environments, merge conflicts in solution files can cause lost work, corrupted files, and delays, making it harder to focus on building software.</li>
+<li>Verbosity and Redundancy: Solution files start with over 200 characters, and as you add projects, they quickly become bloated with duplicate GUIDs and metadata, cluttering your work.</li>
+<li>No Real Benefit from Duplication: Redundant references to project names and solution items provide little value and only add confusion, taking up space without improving your workflow.</li>
+<li>Non-Standard File Format: The .SLN file format is specific to Visual Studio and not a widely recognized standard, which limits its compatibility with external tools and automation.</li>
+</ul>
+<h3>To help you visualize these challenges, here&#8217;s an example of a traditional Visual Studio solution file:</h3>
+<pre class="prettyprint language-txt"><code class="language-txt">Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34511.98
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetMonitorWebApp", "DotNetMonitorWebApp\DotNetMonitorWebApp.csproj", "{1385B389-B20C-4D19-8FE0-85629BC41343}"
+EndProject
+Global
+GlobalSection(SolutionConfigurationPlatforms) = preSolution
+Debug|Any CPU = Debug|Any CPU
+Release|Any CPU = Release|Any CPU
+EndGlobalSection
+GlobalSection(ProjectConfigurationPlatforms) = postSolution
+{1385B389-B20C-4D19-8FE0-85629BC41343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{1385B389-B20C-4D19-8FE0-85629BC41343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{1385B389-B20C-4D19-8FE0-85629BC41343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{1385B389-B20C-4D19-8FE0-85629BC41343}.Release|Any CPU.Build.0 = Release|Any CPU
+EndGlobalSection
+GlobalSection(SolutionProperties) = preSolution
+HideSolutionNode = FALSE
+EndGlobalSection
+GlobalSection(ExtensibilityGlobals) = postSolution
+SolutionGuid = {C12E911E-FAA3-4ACE-B6BF-C3605E866483}
+EndGlobalSection
+EndGlobal
+</code></pre>
+<h2>Simplifying the Solution File</h2>
+<p>We’ve made several improvements with the new solution file format to enhance your experience. These changes include a more readable and editable structure, the use of a XML format, and the preservation of whitespace and comments for better organization. The new format is minimalistic, optimizing performance for faster load times, and reduces merge conflicts in version control. It also ensures compatibility with older Visual Studio versions and aligns with certain MSBuild conventions for smoother integration with other tools.</p>
+<p>Here’s a detailed look at these enhancements:</p>
+<ul>
+<li><strong>Human-Readable and Editable:</strong> The new solution file format is designed with clarity in mind, making it easy for developers to read and modify project configurations. This eliminates much of the confusion and errors that arose from manually editing complex files.</li>
+<li><strong>Standardized XML Format:</strong> We’ve moved away from a proprietary format and adopted XML for the solution file structure. XML is widely understood, offering flexibility and standardization for greater ease of use.</li>
+<li><strong>Whitespace and Comment Preservation:</strong> We now preserve whitespace and comments within solution files when saving them, ensuring your formatting stays intact and helping to maintain an organized file.</li>
+<li><strong>Minimalistic Footprint:</strong> The new format adopts sensible defaults, keeping the solution file minimal and optimizing performance. This leads to efficient use of resources, even for large solutions.</li>
+<li><strong>Reduced Merge Conflicts:</strong> By simplifying the file structure, we&#8217;ve reduced the likelihood of merge conflicts in version control systems. This means fewer headaches when collaborating with teammates and easier management of changes.</li>
+<li><strong>Compatibility with Older Visual Studio Versions: </strong>We’ve ensured compatibility with Visual Studio Dev 17.14, allowing a smooth transition between the old and new file formats without disrupting your workflow.</li>
+<li><strong>Alignment with MSBuild</strong>: The new format aligns with certain MSBuild conventions, which enhances its integration with other tools and platforms, ensuring smoother interoperability.</li>
+</ul>
+<h3>To give you a glimpse into the simplicity of the new .SLNX format, here&#8217;s an example:</h3>
+<pre class="prettyprint language-txt"><code class="language-txt">&lt;Solution&gt;
+&lt;Project Path="DotNetMonitorWebApp\DotNetMonitorWebApp.csproj" /&gt;
+&lt;/Solution&gt;
+</code></pre>
+<p>To save a solution in the new file format, select the solution node in Solution Explorer, then go to File -&gt; Save Solution As… and choose the &#8220;XML Solution File (*.SLNX)&#8221; format. The solution will then be saved as a .SLNX file.</p>
+<p><img decoding="async" class="alignnone wp-image-252704" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/a-screenshot-of-a-computer-description-automatica.png" alt="Saving a XML file in the new format" width="722" height="115" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/a-screenshot-of-a-computer-description-automatica.png 552w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/a-screenshot-of-a-computer-description-automatica-300x48.png 300w" sizes="(max-width: 722px) 100vw, 722px" /></p>
+<p>To open a .SLNX file, use the File -&gt; Open command and select the .SLNX file. Note that Visual Studio is not registered as the default handler for .SLNX files, so they won’t open in Visual Studio by default.</p>
+<p><iframe title="YouTube video player" src="https://www.youtube.com/embed/Iwc3jGCbt5A?si=Q4fkgrx2lsRT50E8" width="800" height="450" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<h2>Frequently Asked Questions (FAQ)</h2>
+<p>If you have questions about or are curious to learn more about the format and our plans, have a read of the FAQ section below.</p>
+<h3>What is a solution file?</h3>
+<p>A Visual Studio solution file (.SLN extension) is essential for organizing and managing multiple projects within Visual Studio. It acts as a container that maintains references between projects, build configurations, and other settings, defining how the solution is structured, and which projects are involved.</p>
+<h3>What support is available for the .SLNX format across different tools and environments?</h3>
+<p>We are currently working on providing support for the. SLNX format across various tools and environments. Here&#8217;s what you can expect:</p>
+<ul>
+<li>MSBuild Support: MSBuild now fully supports the <strong>.SLNX</strong> format, enabling seamless integration with the .NET and C++ build systems. This support allows for efficient building, adding, and removing projects within <strong>.SLNX</strong> files using MSBuild commands.</li>
+<li>.NET CLI Support: The <a href="https://devblogs.microsoft.com/dotnet/introducing-slnx-support-dotnet-cli"><strong>.NET CLI</strong> </a>has been updated to handle <strong>.SLNX</strong> files, providing consistent experience for managing solutions directly from the command line.</li>
+<li>C# Dev Kit Support: The <strong>C# Dev Kit</strong> for VS Code now fully supports the <strong>.SLNX</strong> format, making it easier to work with solution files within the VS Code environment.</li>
+</ul>
+<h3>What about third-party tool support?</h3>
+<p>The <strong>.SLNX</strong> file format is designed for <strong>wide adoption</strong>, but we recommend <strong>waiting until it’s more finalized</strong> before fully adopting it.</p>
+<p>If you&#8217;re using tools that rely on either the .SLN or .SLNX file formats, we have
+developed an open source serializer that supports both formats: <a href="https://github.com/microsoft/vs-solutionpersistence">vs-solutionpersistence</a>.</p>
+<h3>Can I edit .SLNX files without unloading?</h3>
+<p>Like .SLN files, .SLNX files must be unloaded to be edited in Visual Studio. However, we don&#8217;t anticipate many cases where manual editing will be
+necessary. If you&#8217;d like to see support for editing without unloading, we
+encourage you to upvote the community request.</p>
+<h3>What about solution filters?</h3>
+<p>Solution filters (.SLNf files), which help improve load and run times, will
+continue to work with the new .SLNX format — but keep in mind that filter files are tied to a specific solution file. If you migrate your solution from .SLN to
+.SLNX, you’ll need to update the filter file to reference the new .SLNX file, otherwise it will still try to open the old .SLN file.</p>
+<h3>Will extensions continue to support. SLNX?</h3>
+<p>We designed the .SLNX file format to be transparent to extensions. Existing
+Visual Studio APIs that work with .SLN files should continue to work without
+requiring changes. However, if your extension directly edits solution files, it will need to support both .SLN and .SLNX formats. To learn more about working with solution files in extensions, we recommend checking out the <a href="https://github.com/microsoft/vs-solutionpersistence">vs-solutionpersistence</a> library, which provides useful APIs for solution file manipulation</p>
+<h3>How do I migrate from the old .SLN format to .SLNX?</h3>
+<p>Migrating from the traditional <strong>.SLN</strong> format to the new <strong>.SLNX</strong> format is <strong>simple</strong>, and there are two ways to do it:</p>
+<ul>
+<li>
+<h4>Using the .NET CLI (for .NET projects)</h4>
+</li>
+</ul>
+<p style="padding-left: 40px;">For .NET developers, you can migrate your solution using the following command:</p>
+<p style="padding-left: 40px;"><em><code>dotnet SLN &lt;YourSolutionFile.SLN&gt; migrate</code> </em></p>
+<p style="padding-left: 40px;">Replace &lt;YourSolutionFile.SLN&gt; with the actual name of your solution file. This command will generate a .SLNX file from your existing .SLN file.</p>
+<ul>
+<li>
+<h4><strong>Using Visual Studio (recommended for all languages)</strong></h4>
+</li>
+</ul>
+<p style="padding-left: 40px;">Once the <strong>.SLNX</strong> feature is enabled, you can save your solution in the new format directly from Visual Studio — this method works for all supported project types, including <strong>C++, Python, JS/TS</strong>, and others.</p>
+<p style="padding-left: 40px;">To save in the new format:</p>
+<ol>
+<li style="list-style-type: none;">
+<ol>
+<li>Right-click the <strong>solution node</strong> in <strong>Solution Explorer</strong>.</li>
+<li>Select <strong>File -&gt; Save Solution As&#8230;</strong>.</li>
+<li>In the file type dropdown, choose <strong>Xml Solution File (*.SLNX)</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+</li>
+</ol>
+<h3>Can I have both .SLN and .SLNX files in the same repo? What’s the best practice for teams where some clients still use .SLN and others want to move to .SLNX?</h3>
+<p>We strongly recommend <strong>not having both .SLN and .SLNX files in the same repository</strong>. This can cause issues such as:</p>
+<ul>
+<li>Commands like dotnet SLN will not automatically detect the correct solution file.</li>
+<li>Keeping both files manually in sync can be error-prone and lead to confusion across teams.</li>
+</ul>
+<p>If you absolutely need to maintain both for compatibility reasons (e.g., during a phased migration), consider using a <strong>sync tool</strong> like this one: <a href="https://github.com/edvilme/dotnet-sln-sync">dotnet-SLN-sync</a>, which helps automatically keep .SLN and .SLNX files aligned.</p>
+<p>However, the recommended best practice is to <strong>coordinate the transition with all clients and move fully to .SLNX once the entire team or organization is ready</strong>.</p>
+<p><span style="font-size: 10pt;"><strong>Disclaimer:</strong> <em>The dotnet-sln-sync tool is a community-developed project and is not maintained or supported by Microsoft. Please use it at your discretion.</em></span></p>
+<h3>Will file globbing be supported?</h3>
+<p>The current solution design lists all projects and their locations directly in the solution file. This approach allows Visual Studio to begin loading projects almost immediately.</p>
+<p>Supporting globbing, would require scanning the file system and evaluating potentially complex patterns to identify matching projects. Especially for larger repositories, this additional step can significantly slow down the loading process which is why globbing is not currently supported.</p>
+<p>For those unfamiliar, globbing refers to pattern matching used to dynamically resolve file paths, commonly seen in many build systems and tools. You can read more about this concept <a href="https://en.wikipedia.org/wiki/Glob_(programming)">here.</a></p>
+<h3>Why did you choose XML for .SLNX?</h3>
+<p>We selected XML because it&#8217;s a widely used format, and it&#8217;s the same format used by project files. XML in project files supports powerful evaluation and execution capabilities, but we want to keep .SLNX simple for now. We’re focused on maintaining the basic functionality like .SLN while keeping things straightforward.</p>
+<h3>What are the minimum supported tooling versions for building with &gt;SLNX format, and what scenarios are currently unsupported?</h3>
+<p>To build with the <strong>.SLNX </strong>format:</p>
+<ul>
+<li>If you’re building with <strong>.NET</strong>, ensure the project’s <strong>global.json</strong> is set to a minimum of <strong>.NET 9.0.200 SDK</strong>.</li>
+<li>If you’re building with <strong>MSBuild</strong>, make sure your build tools are using <strong>Visual Studio</strong> or <strong>Build Tools for Visual Studio</strong> version <strong>17.13</strong> or later.</li>
+</ul>
+<h2><strong>Looking Ahead: Your Feedback Is Key</strong></h2>
+<p>Your feedback shapes the future of Visual Studio, and we truly appreciate the time you take to share it. Whether it’s a bug report or a new feature idea, your insights help us build a better experience for you.</p>
+<p><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f4e2.png" alt="📢" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Got feedback? Let us know!</strong></p>
+<ul>
+<li><strong>Report a Problem</strong> – If something isn’t working as expected, tell us on <a href="https://developercommunity.visualstudio.com/">Developer Community</a>.</li>
+<li><strong>Suggest a Feature</strong> – Have an idea to make Visual Studio even better? We’re listening!</li>
+</ul>
+<p>To stay in the loop on the latest updates, tips, and discussions from the Visual Studio team connect with the us on the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> .</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/new-simpler-solution-file-format/">New, Simpler Solution File Format</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Make more sense of multithreaded debugging</title>
+      <link>https://devblogs.microsoft.com/visualstudio/make-more-sense-of-multithreaded-debugging/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Junyu Wang]]></dc:creator>
+      <pubDate>Wed, 12 Mar 2025 15:23:36 +0000</pubDate>
+      <category><![CDATA[Data and Analytics]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252657</guid>
+      <description><![CDATA[<p>Debugging complex programs often feels like navigating a labyrinth of threads and stack traces. The challenge of understanding thread behaviors and tracing issues can be daunting, leading to longer development times and increased frustration. But now, there&#8217;s a solution that simplifies this process—introducing AI-powered thread summaries in Parallel Stacks Window with Visual Studio. To address [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/make-more-sense-of-multithreaded-debugging/">Make more sense of multithreaded debugging</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Debugging complex programs often feels like navigating a labyrinth of threads and stack traces. The challenge of understanding thread behaviors and tracing issues can be daunting, leading to longer development times and increased frustration. But now, there&#8217;s a solution that simplifies this process—introducing AI-powered thread summaries in <em>Parallel Stacks Window </em> with Visual Studio.</p>
+<p>To address these challenges, Visual Studio introduces two AI-powered features that make debugging more intuitive: <strong>thread summaries</strong> and <strong>app summarization</strong>. These enhancements bring clarity to your debugging workflow by providing concise explanations of thread activity and interactive AI-driven assistance.</p>
+<h2>AI-generated thread summaries</h2>
+<p>Understanding what each thread is doing at any given moment is crucial when working with parallel execution. The auto summaries feature in <em>Parallel Stacks Window </em>helps developers quickly gain context by generating AI-powered summaries for each thread. Instead of manually analyzing individual stack frames, you can now get a high-level overview at a glance.</p>
+<p>When you open the <em>Parallel Stacks Window</em>, these summaries appear at the top of each thread. These summaries provide a high-level overview of each thread&#8217;s current activity, helping you quickly grasp their purpose and status.</p>
+<p><img decoding="async" width="1501" height="692" class="wp-image-252658" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/ai-summarization-of-threads.png" alt="AI Summarization of Threads" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/ai-summarization-of-threads.png 1501w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/ai-summarization-of-threads-300x138.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/ai-summarization-of-threads-1024x472.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/ai-summarization-of-threads-768x354.png 768w" sizes="(max-width: 1501px) 100vw, 1501px" /></p>
+<h2>App Summarization with Copilot</h2>
+<p>Taking AI assistance a step further, the app summarization feature in <em>Parallel Stacks Window</em> enables developers to interactively explore and resolve debugging challenges with Copilot Chat. This feature doesn’t just summarize— it allows you to ask questions, get explanations, and receive AI-powered suggestions tailored to the debugging context.</p>
+<p>Instead of just presenting raw call stacks, this integration provides clear overviews of each thread&#8217;s actions, potential issues, and fixes. This results in a more intuitive approach to multi-threaded debugging, significantly reducing the time needed to understand and resolve complex thread interactions.</p>
+<p><img decoding="async" width="1238" height="833" class="wp-image-252659" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc-1.png" alt="Copilot Chat Integration In Parallel Stack Deadlock example " srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc-1.png 1238w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc-1-300x202.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc-1-1024x689.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/copilot-chat-integration-in-parallel-stack-deadloc-1-768x517.png 768w" sizes="(max-width: 1238px) 100vw, 1238px" /></p>
+<p>To use this feature, simply click the “summarize” button at the top of the <em>Parallel Stacks Window</em>. This will open the Copilot Chat on the side, preloaded with relevant thread context. You can then engage in an interactive, AI-powered conversation to resolve common threading issues such as deadlocks and race conditions while optimizing your threading model for better efficiency and reliability.Bottom of Form</p>
+<p>By seamlessly combining parallel stack insights with Copilot Chat&#8217;s app summaries, Visual Studio streamlines your debugging workflow, empowering you to diagnose, understand, and address threading issues with greater confidence and speed.</p>
+<h2>Try It Out</h2>
+<p>Both AI-generated<strong> thread summaries</strong> and <strong>app summarization </strong>aim to reduce debugging time and improve developer productivity. Whether you need a high-level overview or an in-depth analysis of a thread, these features provide the clarity and intelligence required to navigate complex debugging scenarios.</p>
+<p>Please try it out and give us some <a href="https://developercommunity.microsoft.com/VisualStudio">feedback</a>. Your insights and suggestions are invaluable as we strive to make Visual Studio the best development environment for you.</p>
+<p>Thank you for helping us make Visual Studio better every day.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/make-more-sense-of-multithreaded-debugging/">Make more sense of multithreaded debugging</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
