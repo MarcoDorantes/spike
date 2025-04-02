@@ -28275,5 +28275,79 @@ requiring changes. However, if your extension directly edits solution files, it 
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/make-more-sense-of-multithreaded-debugging/">Make more sense of multithreaded debugging</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>View and manage git tags</title>
+      <link>https://devblogs.microsoft.com/visualstudio/view-and-manage-git-tags/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Sebastian Hernandez]]></dc:creator>
+      <pubDate>Mon, 31 Mar 2025 15:10:25 +0000</pubDate>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Git File History]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252888</guid>
+      <description><![CDATA[<p>Are you tired of switching between your IDE and command-line tools to manage Git tags? We’ve got the perfect solution for you! With the latest update, Visual Studio empowers you to seamlessly view and manage Git tags directly within the Git Repository window. This streamlined workflow ensures you remain within the familiar environment of the [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/view-and-manage-git-tags/">View and manage git tags</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Are you tired of switching between your IDE and command-line tools to manage Git tags? We’ve got the perfect solution for you!</p>
+<p>With the latest update, Visual Studio empowers you to seamlessly view and manage Git tags directly within the Git Repository window. This streamlined workflow ensures you remain within the familiar environment of the IDE, enhancing your productivity and efficiency when working with Git tags.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252890" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252888-1-1.png" alt="Image of lots of tags in the branch manager in Visual Studio" width="800" height="850" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252888-1-1.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252888-1-1-282x300.png 282w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/word-image-252888-1-1-768x816.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></p>
+<h2>Effortless navigation and action</h2>
+<p>Visual Studio now allows you to handle Git tags without ever leaving the IDE. Gone are the days of interrupting your workflow to open a separate Git tool. The integration of Git tag management within Visual Studio means you can now:</p>
+<ul>
+<li>View all your tags effortlessly in the Git Repository window.</li>
+<li>Quickly navigate to the specific commit associated with a tag and view it in the git history graph.</li>
+<li>Perform a variety of actions on tags, including creating, pushing, and deleting, through an intuitive context menu that appears when you right-click on a tag.</li>
+</ul>
+<h2>Continuous improvement with user feedback</h2>
+<p>We are continuously improving Visual Studio based on your feedback. Your insights help us create a better, more efficient development environment, and we are excited to see how this new Git tag management feature enhances your workflow. For example, a lot of the efforts such as the ability to delete tags were suggested via feedback tickets like the ability to <a href="https://developercommunity.visualstudio.com/t/Visual-studio-2022-deleting-git-tag/10065264">delete tags</a>.</p>
+<p>Thank you for being a part of our journey and for helping us make Visual Studio the best IDE for developers.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/view-and-manage-git-tags/">View and manage git tags</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Debugging with the AI-powered IEnumerable visualizer</title>
+      <link>https://devblogs.microsoft.com/visualstudio/debugging-with-the-ai-powered-ienumerable-visualizer/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Junyu Wang]]></dc:creator>
+      <pubDate>Wed, 26 Mar 2025 15:00:31 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugging]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252815</guid>
+      <description><![CDATA[<p>Are you tired of wrestling with complex LINQ queries during debugging? Visual Studio 2022 has introduced powerful new improvement, powered by AI, to simplify your workflow with its editable expression feature in the IEnumerable Visualizer. These added functionalities aim to make debugging more intuitive and efficient, helping you write and refine LINQ queries with ease. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/debugging-with-the-ai-powered-ienumerable-visualizer/">Debugging with the AI-powered IEnumerable visualizer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Are you tired of wrestling with complex LINQ queries during debugging? Visual Studio 2022 has introduced powerful new improvement, powered by AI, to simplify your workflow with its editable expression feature in the IEnumerable Visualizer. These added functionalities aim to make debugging more intuitive and efficient, helping you write and refine LINQ queries with ease.</p>
+<p>Say goodbye to frustration and hello to efficiency with the new enhancement!</p>
+<h2>The Challenge: Crafting Complex and Desired LINQ Expressions</h2>
+<p>Generating and troubleshooting LINQ queries can be a tedious and intricate process, often demanding precise syntax knowledge and countless iterations. Developers could have spent excessive time refining queries, slowing down the debugging process. To solve this, Visual Studio introduces three major enhancements: Syntax Highlighting for editable expressions, Inline Chat for quick refinement, and GitHub Copilot Chat Integration for advanced assistance. These features streamline LINQ query writing, helping you debug your project dealing with large dataset with greater speed and accuracy.</p>
+<h2>Syntax Highlighting for Editable Expressions</h2>
+<p>To make queries more readable and easier to debug, Visual Studio 2022 now includes <strong>Syntax Highlighting</strong> in the IEnumerable Visualizer’s editable expression. Different elements of the query, such as keywords, classes, enums, and structures, are color-coded, making it easier to identify and understand their roles within the expression. This enhancement allows developers to quickly scan and pinpoint potential issues at a glance.</p>
+<p><img decoding="async" width="919" height="262" class="wp-image-252816" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/syntax-highlighted-editable-expression-for-ienumer.png" alt="Syntax Highlighted Editable Expression For IEnumerable Visualizer" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/syntax-highlighted-editable-expression-for-ienumer.png 919w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/syntax-highlighted-editable-expression-for-ienumer-300x86.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/syntax-highlighted-editable-expression-for-ienumer-768x219.png 768w" sizes="(max-width: 919px) 100vw, 919px" /></p>
+<h4>Customize syntax highlighting</h4>
+<p>Visual Studio allows you to customize the color scheme to suit your preferences. To personalize your colors:</p>
+<ol>
+<li>Go to <strong>Tools &gt; Options &gt; Environment &gt; Fonts and Colors</strong>.</li>
+<li>Select <strong>Text Editor</strong> from the <strong>Show settings for</strong> dropdown.</li>
+<li>Adjust each <strong>User Types</strong> item&#8217;s color to match your coding style.</li>
+</ol>
+<h2>Editable Expression Inline Copilot Chat</h2>
+<p>In addition to syntax highlighting, the IEnumerable Visualizer now features <strong>Inline Chat</strong>, allowing users to leverage AI directly within the visualizer to refine LINQ queries. With this feature, writing and modifying queries becomes more intuitive.</p>
+<p>To bring up the <strong>Inline Chat</strong>, simply click the GitHub Copilot sparkle button <img decoding="async" width="20" height="20" class="wp-image-252817" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/github-copilot-icon.png" alt="Github Copilot Icon" /> located in the bottom-right corner of the editable expression text box. This will open a text box above the original editable expression, with a prompt that says, “Describe how you want to refine your current expression.”</p>
+<p><img decoding="async" width="897" height="156" class="wp-image-252818" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-example.png" alt="Editable Expression Inline Chat Example " srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-example.png 897w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-example-300x52.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-example-768x134.png 768w" sizes="(max-width: 897px) 100vw, 897px" /></p>
+<p>GitHub Copilot will generate a LINQ query based on your input and automatically execute it by default. For immediate confirmation, look for the green checkmark <img decoding="async" width="20" height="20" class="wp-image-252819" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/status-checkmark-icon.png" alt="status checkmark icon" /> , which indicates that the LINQ query generated by GitHub Copilot has been fully executed and applied. You can reuse the input field to describe how you’d like to modify your current expression using natural language. After entering your request, clicking the sent arrow on the right prompts Copilot to generate an optimized LINQ query.</p>
+<h2>Copilot Chat Integration for Deeper Debugging</h2>
+<p><img decoding="async" width="895" height="140" class="wp-image-252820" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-continue-to-chat.png" alt="Editable Expression Inline Chat Continue to Chat " srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-continue-to-chat.png 895w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-continue-to-chat-300x47.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-inline-chat-continue-to-chat-768x120.png 768w" sizes="(max-width: 895px) 100vw, 895px" /></p>
+<p>For those who need further refinement beyond inline edits, the <strong>Copilot Chat integration</strong> provides a more advanced debugging experience. Once the <strong>Inline Chat</strong> generates a LINQ query, a “Continue in Chat” option appears, allowing developers to engage in a deeper, interactive conversation about their query. Clicking this button opens the <em>GitHub Copilot Chat Window</em>, where users can refine the expression further, ask follow-up questions, or explore alternative approaches. This feature ensures that even the most complex queries can be fine-tuned with the power of AI while keeping developers in full control of their code.</p>
+<p><img decoding="async" width="320" height="339" class="wp-image-252821" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-copilot-chat-integration-show.png" alt="Editable Expression Copilot Chat Integration Show in Visualizer" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-copilot-chat-integration-show.png 320w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-copilot-chat-integration-show-283x300.png 283w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/03/editable-expression-copilot-chat-integration-show-24x24.png 24w" sizes="(max-width: 320px) 100vw, 320px" /></p>
+<p>This feature not only assists in generating LINQ queries but also provides immediate feedback and guidance, making it easier to create complex filters and transformations with confidence. When satisfied with the refinements, developers can seamlessly transition back to the visualizer using the “Show in Visualizer” button, which applies the optimized query directly within the debugging environment. The <strong>Inline Chat</strong> is perfect for quick adjustments, while the full<strong> Copilot Chat Integration</strong> supports deeper iterations, ensuring a smooth and efficient debugging workflow.</p>
+<p><iframe title="Enhanced Editable Expression in IEnumerable Visualizer!" width="500" height="281" src="https://www.youtube.com/embed/nzbJMyEl8bI?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h1>Thank you for your feedback</h1>
+<p>Many of these ideas stem from your feedback through customer interviews and <a href="https://developercommunity.microsoft.com/VisualStudio">Developer Community</a> suggestions. Our goal is to reduce debugging time and enhance developer productivity. Whether you&#8217;re making minor syntax tweaks or optimizing complex queries, these improvements bring greater clarity and efficiency to debugging codebase working with large datasets.</p>
+<p>Your continuous feedback is what drives us to improve Visual Studio. We are excited to see how the enhanced editable expression feature with AI assistance will transform your debugging experience. Keep sharing your insights and suggestions to help us make Visual Studio even better.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/debugging-with-the-ai-powered-ienumerable-visualizer/">Debugging with the AI-powered IEnumerable visualizer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
