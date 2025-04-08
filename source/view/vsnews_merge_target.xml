@@ -28349,5 +28349,96 @@ requiring changes. However, if your extension directly edits solution files, it 
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/debugging-with-the-ai-powered-ienumerable-visualizer/">Debugging with the AI-powered IEnumerable visualizer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>Multi-Process CPU Usage Analysis in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/multi-process-cpu-usage-analysis-in-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/multi-process-cpu-usage-analysis-in-visual-studio/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Tue, 08 Apr 2025 16:17:16 +0000</pubDate>
+      <category><![CDATA[Data and Analytics]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[CPU Usage]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Developer Productivity]]></category>
+      <category><![CDATA[Performance Improvements]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252948</guid>
+      <description><![CDATA[<p>Streamlined Performance Insights Across Processes The Visual Studio Profiler&#8217;s CPU Usage tool and Instrumentation tool now supports multi-process analysis, providing a unified view of CPU activity across multiple processes. With performance graphs featuring distinct, color-coded stacked swim lanes for each process, diagnosing and optimizing CPU usage is now more efficient than ever. Tackling Multi-Process Complexity [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/multi-process-cpu-usage-analysis-in-visual-studio/">Multi-Process CPU Usage Analysis in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h2><strong>Streamlined Performance Insights Across Processes</strong></h2>
+<p>The Visual Studio Profiler&#8217;s CPU Usage tool and Instrumentation tool now supports multi-process analysis, providing a unified view of CPU activity across multiple processes. With performance graphs featuring distinct, color-coded stacked swim lanes for each process, diagnosing and optimizing CPU usage is now more efficient than ever.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252950" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/a-screen-shot-of-a-graph-ai-generated-content-may.png" alt="CPU performance graph" width="1142" height="189" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/a-screen-shot-of-a-graph-ai-generated-content-may.png 1142w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/a-screen-shot-of-a-graph-ai-generated-content-may-300x50.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/a-screen-shot-of-a-graph-ai-generated-content-may-1024x169.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/a-screen-shot-of-a-graph-ai-generated-content-may-768x127.png 768w" sizes="(max-width: 1142px) 100vw, 1142px" /></p>
+<h2><strong>Tackling Multi-Process Complexity</strong></h2>
+<p>Analyzing CPU usage for applications across multiple processes has traditionally been challenging. Identifying performance bottlenecks with multiple processes requires manual correlation of data across separate views and slowing down optimization efforts. With this improvement, Visual Studio directly addresses these challenges.</p>
+<p>The CPU Usage and Instrumentation tool now offers:</p>
+<ul>
+<li>CPU usage by Process: Stacked area charts with clear, color-coded swim lanes make it easy to see CPU usage across processes.</li>
+<li>Multiple processes representation in the detail&#8217;s views like caller/callee, Call Tree, Functions, Modules and Flame Graph.</li>
+<li>Clear Process Identification: Instantly identify which processes are consuming the most resources.</li>
+<li>Process filter: Filtering option to filter out the graphs and details view to focus on specific processes relevant to your profiling session. The filter option is located on the top left corner of the summary page.</li>
+<li>Enhanced Diagnosis Efficiency: Spot cross-process issues faster with a unified, streamlined view.</li>
+</ul>
+<p><img decoding="async" class="alignnone wp-image-252951" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252948-2.gif" alt="Gif selecting and unselecting certain CPU processes" width="1684" height="1124" /></p>
+<h2>Try it and let us know what you think!</h2>
+<p>We hope you enjoy using multi-process CPU analysis, it is designed to help you make smarter, data-driven decisions, optimize your resource usage, and deliver even better-performing products.
+We’d love your feedback and suggestions for improvements. Please leave a comment below or use the Send Feedback button in Visual Studio. Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, <a href="https://x.com/VisualC">Twitter @VisualC</a>, <a href="https://www.youtube.com/user/VisualStudio">YouTube</a>, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn.</a></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/multi-process-cpu-usage-analysis-in-visual-studio/">Multi-Process CPU Usage Analysis in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/multi-process-cpu-usage-analysis-in-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>Your Pluralsight Benefit Just Got Better</title>
+      <link>https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Thu, 03 Apr 2025 13:45:56 +0000</pubDate>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[Cloud]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Announcement]]></category>
+      <category><![CDATA[VSS Benefits]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252851</guid>
+      <description><![CDATA[<p>&#160; As I talk with Visual Studio developers about the learning and skilling benefits included in their subscription, one thing I hear often is: “I wish I had more time to actually use Pluralsight.” Starting today, I’m pleased to share that we’re doing something about that. We’ve extended access to Pluralsight for all Visual Studio [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025/">Your Pluralsight Benefit Just Got Better</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>&nbsp;</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/1200x400-Skill-up-and-stand-out-with-Pluralsight.png"><img decoding="async" class="aligncenter size-full wp-image-252894" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/1200x400-Skill-up-and-stand-out-with-Pluralsight.png" alt="Image 1200 215 400 8211 Skill up and stand out with Pluralsight" width="1200" height="400" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/1200x400-Skill-up-and-stand-out-with-Pluralsight.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/1200x400-Skill-up-and-stand-out-with-Pluralsight-300x100.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/1200x400-Skill-up-and-stand-out-with-Pluralsight-1024x341.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/1200x400-Skill-up-and-stand-out-with-Pluralsight-768x256.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></a></p>
+<p>As I talk with Visual Studio developers about the learning and skilling benefits included in their subscription, one thing I hear often is:</p>
+<p><em>“I wish I had more time to actually use Pluralsight.”</em></p>
+<p>Starting today, I’m pleased to share that we’re doing something about that.</p>
+<p>We’ve extended access to Pluralsight for all Visual Studio subscribers—<strong>12 months for Enterprise</strong> and <strong>6 months for Professional</strong>—giving you more time to build skills, prepare for certifications, and stay ahead in a fast-moving industry.</p>
+<p><strong>Why this matters</strong></p>
+<p>We know developers are juggling a lot—projects, meetings, and ever-evolving tech. That’s why we’ve worked to extend the window of opportunity. Pluralsight is a powerful platform with thousands of expert-led courses, hands-on labs, and certification prep tools designed for real-world development.</p>
+<p>Our internal data shows that Visual Studio learners typically spend 6 to 8 hours per course, and popular topics like <strong>C#</strong> and <strong>Angular</strong> align directly with enterprise needs. The extended access means you now have time to go deeper, revisit skills, or explore something entirely new—on your schedule.</p>
+<p><strong>Get hands-on with Skills Labs</strong></p>
+<p>Beyond courses, <strong>Pluralsight’s Skills labs</strong> give you a chance to learn by doing. These labs offer fully provisioned environments where you can try things out without risk—spin up virtual machines, configure Azure services, work with Git, or explore Power BI.</p>
+<p>It’s the kind of practice that builds confidence—and makes the learning stick.</p>
+<p><strong>Here&#8217;s what’s included</strong></p>
+<p>With your extended access, here’s just a sample of what you can tap into:</p>
+<ul>
+<li><strong>Generative AI</strong>: 150+ courses, including 20+ focused on GitHub Copilot to help you boost productivity with AI-assisted coding.</li>
+<li><strong>Azure Deep Dives</strong>: 489+ courses, from cloud fundamentals to advanced Azure architecture.</li>
+<li><strong>C# Learning Paths</strong>: Nearly 100 courses to sharpen your skills in one of the most widely used enterprise languages.</li>
+<li><strong>Labs for Microsoft Azure</strong>: Over 500 hands-on labs, including 61 new ones added in the past year.</li>
+<li><strong>Certification Prep</strong>: Courses and resources supporting 30+ Microsoft and Azure certifications to help validate your skills.</li>
+</ul>
+<p><strong>Your growth is our commitment</strong></p>
+<p>At Visual Studio, we’re invested in helping you succeed—not just with tools, but with the resources to support your career. This expanded Pluralsight benefit is just one part of that commitment. Whether you’re diving into cloud tech, prepping for a cert, or just trying to sharpen your day-to-day workflow—we’ve got your back.</p>
+<h3 class="" data-start="134" data-end="179"><strong data-start="138" data-end="179">Eligibility: Who Gets Extended Access</strong></h3>
+<p class="" data-start="181" data-end="536">This benefit is available to Visual Studio <strong data-start="224" data-end="240">Professional</strong> and <strong data-start="245" data-end="259">Enterprise</strong> subscribers with a <strong data-start="279" data-end="318">standard Visual Studio subscription</strong>. If you&#8217;re unsure about your subscription type or want more details, check out the <a class="" href="https://learn.microsoft.com/visualstudio/subscriptions/vs-pluralsight" target="_blank" rel="noopener" data-start="402" data-end="535">Visual Studio + Pluralsight documentation on Microsoft Learn</a>.</p>
+<p><strong>How to get started</strong></p>
+<p>If you&#8217;re a <strong>Visual Studio Enterprise or Professional subscriber</strong>, head to <a href="https://my.visualstudio.com">my.visualstudio.com</a> and activate your extended Pluralsight access. It’s already waiting for you.</p>
+<p>You’ve got more time. Now’s the moment to make the most of it.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://My.VisualStudio.com" target="_blank">ACTIVATE ON MY.VISUALSTUDIO.COM</a></div></p>
+<p>Thanks for being part of the Visual Studio community. We can’t wait to see where your learning journey takes you next.</p>
+<p><strong>Check out the new Visual Studio Hub</strong></p>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/dev-hub">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<p><strong>Appreciation for your feedback</strong></p>
+<p>Your insights help us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support.</p>
+<p>Your feedback is invaluable in shaping Visual Studio’s future. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025/">Your Pluralsight Benefit Just Got Better</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
