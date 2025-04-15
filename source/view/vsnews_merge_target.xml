@@ -28440,5 +28440,38 @@ We’d love your feedback and suggestions for improvements. Please leave a comme
 <p>The post <a href="https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025/">Your Pluralsight Benefit Just Got Better</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
 ]]></content:encoded>
     </item>
+    <item>
+      <title>.NET Aspire and Azure Functions integration preview</title>
+      <link>https://devblogs.microsoft.com/visualstudio/net-aspire-and-azure-functions-integration-preview/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/net-aspire-and-azure-functions-integration-preview/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Brady Gaster]]></dc:creator>
+      <pubDate>Wed, 09 Apr 2025 12:00:19 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Data and Analytics]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[Aspire]]></category>
+      <category><![CDATA[Azure Functions]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252964</guid>
+      <description><![CDATA[<p>Have you ever struggled with integrating serverless technology into your existing .NET projects? The new update in Visual Studio has got you covered. Say hello to the powerful integration of .NET Aspire with Azure Functions, making your development process smoother than ever before. With this release of Visual Studio, Azure Functions developers can enlist in [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/net-aspire-and-azure-functions-integration-preview/">.NET Aspire and Azure Functions integration preview</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Have you ever struggled with integrating serverless technology into your existing .NET projects? The new update in Visual Studio has got you covered. Say hello to the powerful integration of .NET Aspire with Azure Functions, making your development process smoother than ever before.</p>
+<p>With this release of Visual Studio, Azure Functions developers can enlist in .NET Aspire orchestration when creating a new Azure Functions project. This simple addition transforms your workflow by including an App Host and a Service Defaults project in your solution right from the get-go. Check out this video by James Montemagno showing you how to integrate .NET Aspire with Azure Functions today.</p>
+<p><iframe title="Build your first Azure Function with .NET Aspire support" width="500" height="281" src="https://www.youtube.com/embed/g-fKXzrNOhI?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p>Gone are the days of tedious configurations. Now, setting up a new isolated Azure Functions project with .NET Aspire integration is as easy as checking a box. Upon creation, you&#8217;ll find an App Host and Service Defaults project seamlessly included in your solution, streamlining your development process and reducing setup time.</p>
+<h2>Effortless integration with existing projects</h2>
+<p>But what if you have an existing Azure Functions project that you want to enhance with .NET Aspire? Visual Studio 2022 has you covered. Just like with ASP.NET Core apps, you can now add .NET Aspire support to your existing Azure Functions projects effortlessly. This ensures that you can leverage the power of .NET Aspire orchestration without having to start from scratch.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-252966" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-2.png" alt="Right click solution to show a .NET Aspire Orchestrator Support option" width="602" height="532" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-2.png 602w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-2-300x265.png 300w" sizes="(max-width: 602px) 100vw, 602px" /></p>
+<h2>Real-time monitoring and debugging</h2>
+<p>The integration doesn&#8217;t just stop at setup. Running or debugging an Azure Functions project with .NET Aspire support will launch the .NET Aspire dashboard in your browser. This powerful tool allows you to monitor the execution of your Azure Functions in real-time. You&#8217;ll see exactly how the .NET Aspire orchestrator is managing your functions, and you&#8217;ll have the ability to pause and resume execution directly from the dashboard.</p>
+<p><img decoding="async" class="alignnone wp-image-252967" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-3.png" alt=".NET Aspire dashboard" width="1100" height="498" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-3.png 1100w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-3-300x136.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-3-1024x464.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-252964-3-768x348.png 768w" sizes="(max-width: 1100px) 100vw, 1100px" /></p>
+<p>We&#8217;re incredibly excited to bring this feature to you and can&#8217;t wait to see the innovative ways you&#8217;ll use Azure Functions within your .NET Aspire projects. Your continuous <a href="https://developercommunity.microsoft.com/dotnet">feedback</a> has been instrumental in making Visual Studio better, and we look forward to your thoughts on this new integration.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/net-aspire-and-azure-functions-integration-preview/">.NET Aspire and Azure Functions integration preview</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/net-aspire-and-azure-functions-integration-preview/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
+    </item>
   </channel>
 </rss>
