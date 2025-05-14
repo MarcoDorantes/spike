@@ -28473,5 +28473,320 @@ We’d love your feedback and suggestions for improvements. Please leave a comme
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/net-aspire-and-azure-functions-integration-preview/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
     </item>
+    <item>
+      <title>Agent mode has arrived in preview for Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/agent-mode-has-arrived-in-preview-for-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/agent-mode-has-arrived-in-preview-for-visual-studio/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Katie Savage, Aaron Yim]]></dc:creator>
+      <pubDate>Tue, 13 May 2025 17:26:51 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Agent Mode]]></category>
+      <category><![CDATA[AI Agents]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253199</guid>
+      <description><![CDATA[<p>Plan, build, test, and fix — all from one prompt. Agent mode is now available in public preview for all users in Visual Studio 17.14. Agent mode in Visual Studio allows you to define tasks using natural language, with Copilot autonomously planning, editing your codebase, invoking tools, and iterating to resolve issues. Unlike Copilot Chat [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/agent-mode-has-arrived-in-preview-for-visual-studio/">Agent mode has arrived in preview for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><strong>Plan, build, test, and fix — all from one prompt.</strong></p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/vs/downloads/" target="_blank">Download Visual Studio 17.14</a></div></p>
+<p><strong>Agent mode</strong> is now available in <strong>public preview</strong> for all users in Visual Studio 17.14. Agent mode in Visual Studio allows you to define tasks using natural language, with Copilot autonomously planning, editing your codebase, invoking tools, and iterating to resolve issues. Unlike Copilot Chat or Edits, agent mode doesn’t stop at one suggestion or file edit but works iteratively until the task is complete.</p>
+<p><iframe title="Introducing agent mode in Visual Studio" width="500" height="281" src="https://www.youtube.com/embed/7_duh0HoT9o?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h2>What can agent mode do?</h2>
+<p>Agent mode doesn’t just help you write code — it helps you finish the job. All of this is done iteratively, meaning that Copilot will continue to examine and perform your task on its own output and the result of that output until it completes your prompt. This means agent mode can:</p>
+<ul>
+<li><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f4a1.png" alt="💡" class="wp-smiley" style="height: 1em; max-height: 1em;" /><strong>Autonomously determine the relevant context</strong> and files to edit.</li>
+<li><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f4bb.png" alt="💻" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Suggest terminal commands</strong> for you to approve and run.</li>
+<li><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f501.png" alt="🔁" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Iterate</strong> until the task is complete — checking for errors, and running builds/tests to validate results.</li>
+<li><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f4e1.png" alt="📡" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Invoke trusted tools via MCP servers</strong> — including linters, test runners, and static analyzers in your dev environment.</li>
+</ul>
+<p>We’re also simplifying the Copilot experience by making agent mode the new default way to apply code changes. You can think of agent mode as the next evolution of Edits which developers have come to love in GitHub Copilot chat with even more power!</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-253200" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253199-1.png" alt="Agent mode turned on in VS" width="500" height="291" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253199-1.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253199-1-300x175.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<h2>How to enable it</h2>
+<p>Agent mode is off by default in this preview phase. To turn it on:</p>
+<ol>
+<li>Use Visual Studio Code 17.14 GA or later</li>
+<li>Go to Feature Search (Ctrl + Q)</li>
+<li>Search: copilot-<a id="post-253199-_Int_YG7f1SMg"></a>chat.agent</li>
+<li>Enable: Copilot Chat: Agent Enabled</li>
+<li>In the Copilot Chat window switch to “Agent” and try a high-level prompt. You can access the Copilot Chat window from the Copilot badge in the upper right of the IDE.</li>
+</ol>
+<h2>Using agent mode</h2>
+<p>Agent mode is a powerful tool that can be applied in many scenarios. It can create apps from scratch, refactor code across multiple files, write and run tests, generate documentation, integrate new libraries, implement terminal-heavy tasks, and answer questions about complex codebases. It enhances productivity by orchestrating your development flow while keeping you in control. When determining if agent mode is the right tool for the job, consider the following.</p>
+<ul>
+<li><strong>Edit scope</strong>: Agent mode takes the reins, autonomously searching your codebase and determining the relevant context and files to edit.</li>
+<li><strong>Task complexity</strong>: For intricate tasks that go beyond simple code edits, agent mode shines. It handles tool invocations and terminal commands, making it ideal for complex projects.</li>
+<li><strong>Duration</strong>: Agent mode is thorough, involving multiple steps to process a request. It might take longer to get a response as it determines the context, plans the action, and more.</li>
+<li><strong>Self-iteration</strong>: One of the standout features of agent mode is its ability to evaluate the outcome of generated edits and iterate multiple times to resolve intermediate issues.</li>
+<li><strong>Multiple requests</strong>: Depending on the complexity of the task, agent mode might result in multiple requests to the backend from a single prompt.</li>
+</ul>
+<p><span data-contrast="auto">Once you&#8217;ve determined that agent mode is the right tool for the job, you just need to give it a good prompt. Here are some example prompts to give you an idea of what you can ask the agent to do:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">&#8220;Add error handling to this API&#8221;</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">&#8220;Convert this project to use environment variables&#8221;</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">&#8220;Write tests for this class and fix anything that fails&#8221;</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto"> &#8220;Add structured logging with Serilog&#8221;</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">&#8220;Replace </span><span data-contrast="auto">HttpClient</span><span data-contrast="auto"> with </span><span data-contrast="auto">IHttpClientFactory&#8221;</span></li>
+</ul>
+<p>A key to better, more accurate responses from Copilot is providing it with sufficient context about your preferred coding standards, team preferences, libraries, and more. You can provide this context with <strong>custom instructions</strong>. The custom instructions feature enables you to automatically add pre-specified contextual details to your chat questions. To configure custom instructions, follow the <a href="https://learn.microsoft.com/visualstudio/ide/copilot-chat-context?view=vs-2022#enable-custom-instructions">documentation instructions</a>.</p>
+<h2>Boost agent mode with MCP servers</h2>
+<p>This release further extends the power of agent mode by supporting <a href="https://modelcontextprotocol.io/introduction">Model Context Protocol (MCP</a>) servers. MCP servers provide additional context to the Copilot agent and give it access to tools, data, and resources. The MCP website describes MCP as a universal adaptor for AI applications. In the same way that a universal adaptor lets you connect your physical devices to accessories, MCP lets you connect AI applications to other data and tools without needing to build a custom connection to each data source. For example, you can connect directly to your database and analyze schemes, pull in information for GitHub repos such as issues and pull requests, automate end-to-end testing with Playwright, or you can even build your own with several SDKs including C#! <span data-contrast="auto">Here are a few other examples of what you can do with MCP servers:</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Interact with your cloud environment</span></b><span data-contrast="auto">: For example, the official Azure MCP server gives access to list, query, and interact with services and tools like Azure Storage, Cosmos DB, the Azure CLI, and more.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Query and manage database: </span></b><span data-contrast="auto">Execute queries against Cosmos DB containers, get Azure Storage container properties and metadata, and manage blob containers and blobs.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Search and manage version control platform</span></b><span data-contrast="auto">: For example, the GitHub API allows batch creation of issues or batch updates of files, can search for code and issues across GitHub repositories, and more.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:259}"> </span></p>
+<p><img decoding="async" class="alignnone wp-image-253201" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253199-2.jpeg" alt="Filter tools options for agent mode" width="987" height="621" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253199-2.jpeg 987w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253199-2-300x189.jpeg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253199-2-768x483.jpeg 768w" sizes="(max-width: 987px) 100vw, 987px" /></p>
+<h2>More updates with new monthly release schedule for Copilot</h2>
+<p>We’re constantly evolving to get Copilot features out so that you, the developer, are never behind. As such, we’re excited to announce that Visual Studio is moving to a monthly release schedule for Copilot updates. You can access the latest Copilot updates by continuing to update Visual Studio to the latest version.</p>
+<h3>Check out the new Visual Studio Hub</h3>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h3>Appreciation for your feedback</h3>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/agent-mode-has-arrived-in-preview-for-visual-studio/">Agent mode has arrived in preview for Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/agent-mode-has-arrived-in-preview-for-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>🎉 Visual Studio 2022 v17.14 is now generally available!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-14-is-now-generally-available/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-14-is-now-generally-available/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 13 May 2025 17:24:25 +0000</pubDate>
+      <category><![CDATA[Accessibility]]></category>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Performance]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Agent Mode]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Next Edits Suggestion]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253205</guid>
+      <description><![CDATA[<p>We’re thrilled to announce the general availability of Visual Studio 2022 version 17.14! This release continues our mission to empower developers with faster, smarter, and more productive tools across all workloads. There is so much for developers to love in this release, so be sure to check out the release notes for the full list. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-14-is-now-generally-available/">🎉 Visual Studio 2022 v17.14 is now generally available!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We’re thrilled to announce the general availability of <strong>Visual Studio 2022 version 17.14</strong>! This release continues our mission to empower developers with faster, smarter, and more productive tools across all workloads.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/vs/downloads/" target="_blank">Download Visual Studio 17.14</a></div></p>
+<p>There is so much for developers to love in this release, so be sure to check out the <a href="https://learn.microsoft.com/visualstudio/releases/2022/release-notes">release notes</a> for the full list. This is only the beginning, going forward, we’ll be bringing new features to you even faster with a new monthly release cadence for stable releases of Visual Studio! Here are some of the highlights you can look forward to when you update to 17.14 today!</p>
+<h3>AI Assisted Development with GitHub Copilot</h3>
+<p>GitHub Copilot in Visual Studio continues to evolve and add powerful productivity features for developers. In this release, we’re <a href="https://devblogs.microsoft.com/visualstudio/agent-mode-has-arrived-in-preview-for-visual-studio"><strong>introducing agent mode (preview)</strong></a><strong> </strong>to supercharge the AI assisted development experience. With agent mode, simply chat with Visual Studio using natural language and through that conversation, get it to complete multi-step, complex coding tasks for you. The agent understands your entire codebase and can recognize and fix errors automatically, suggest and execute terminal commands, and analyze run-time errors until your task is complete. Check it out:</p>
+<p><iframe title="Introducing agent mode in Visual Studio" width="500" height="281" src="https://www.youtube.com/embed/7_duh0HoT9o?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p>Agent mode is in public preview and can be enabled in the preview settings today! In addition to the new <strong>agent mode (preview</strong>) in this release you will find even more great new features and enhancements:</p>
+<ul>
+<li><strong>MCP Support (preview)</strong>: Model Context Protocol (MCP) support provides the Copilot agent structured access to tools, data, and resources. It&#8217;s like a universal adaptor for AI applications that lets you connect to other data and tools without needing to build custom connections to each data source. MCP Support is in public preview and can be enabled in the preview settings today.</li>
+<li><strong>AI doc comment generation</strong>: Automatically generate doc comments for C++ and C# functions. simply type what would trigger your doc comment format (such as ///) and Copilot suggestions will automatically fill out the function description based on the contents of the function. Read <a href="https://devblogs.microsoft.com/visualstudio/introducing-automatic-documentation-comment-generation-in-visual-studio/">the blog post</a> to learn more.</li>
+<li><strong>Next Edit Suggestion (NES)</strong>: NES leverages the previous edits made and predicts the next edit to come, whether it&#8217;s an insertion, deletion, or mix of both. Unlike code completions, which are limited to generating suggestions at your caret location, NES can support you anywhere in your file, where the next edit is most likely to occur. NES can be enabled in the settings.</li>
+</ul>
+<p><div style="width: 1734px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-253205-1" width="1734" height="610" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Point4-29.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Point4-29.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Point4-29.mp4</a></video></div></p>
+<h3>Debugging &amp; diagnostics</h3>
+<ul>
+<li>Update your UI, live at design time: Live Preview is now available at design time, allowing you to see changes in your app UI in real-time. You can also use Hot Reload and other live UI tools in this way, ensuring a seamless workflow with .NET MAUI and WPF apps.</li>
+</ul>
+<p><img decoding="async" class="alignnone wp-image-253206" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-1.png" alt="Live design time debugging" width="1200" height="710" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-1.png 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-1-300x178.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-1-1024x606.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-1-768x454.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></p>
+<ul>
+<li><strong>New debugger for .NET MAUI apps</strong>: New Mono debug engine for .NET MAUI integrated into the Visual Studio Core debugger.</li>
+<li><strong>Show datatips for LINQ Expressions</strong>: Enhanced LINQ expression debugging experience with clause hovering datatip.</li>
+<li><strong>Zero-Length Array Allocation Insights</strong>: The .NET Allocation Tool now identifies zero-length array allocations, helping optimize memory usage and performance.</li>
+</ul>
+<h3>C++</h3>
+<ul>
+<li><strong title="Full debuggability for your optimized C++ code without compromising on performance.">C++ Dynamic Debugging (in preview)</strong> brings full debuggability for your optimized C++ code without compromising on performance.</li>
+</ul>
+<p><iframe title="C++ Dynamic Debugging" width="500" height="281" src="https://www.youtube.com/embed/Q1--TUl8Nug?start=205&#038;feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<ul>
+<li><strong>C++23 improvements</strong> include support for new lambda attributes, <code>if consteval</code>, and static operators, enhancing both code efficiency and safety</li>
+<li><strong>C++ productivity </strong>boosts with features like automatic template argument population and improved IntelliSense for CMake modules</li>
+</ul>
+<p>For a detailed overview of these C++ updates and more, check out the full post <a href="https://devblogs.microsoft.com/cppblog/whats-new-for-cpp-developers-in-visual-studio-2022-17-14/">What’s New for C++ Developers in Visual Studio 2022 17.14 &#8211; C++ Team Blog</a></p>
+<h3>Git tooling</h3>
+<ul>
+<li><strong>View Outgoing / Incoming Commits</strong>: The Git Repository window now provides a filter at its toolbar to show only outgoing / incoming commits.<img decoding="async" class="alignnone wp-image-253207" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-2.png" alt="Highlighted icon showing incoming/outgoing git commits" width="1000" height="562" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-2.png 1000w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-2-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/word-image-253205-2-768x432.png 768w" sizes="(max-width: 1000px) 100vw, 1000px" /></li>
+<li><strong>Restore the Git repository window</strong>: Keep the Git Repository window open between restarts with this new setting.</li>
+<li><strong>Default branch name</strong>: Allow users to customize the initial default branch when a new git repository is created.</li>
+</ul>
+<h3>Visual Studio 17.14 Release Party – Watch Live or On Demand</h3>
+<p>To celebrate the 17.14 release, we’re hosting a special live <a href="https://www.youtube.com/watch?v=FYEe82qAp2Q" target="_blank" rel="noopener">Visual Studio Release Party on YouTube!</a> Join us on May 14th at 1PM PT to see some of the newest features in action, straight from the PMs and engineers who built them. From Copilot Agent Mode to C++ debugging and Git improvements, you&#8217;ll get live demos, behind-the-scenes insights, and a chance to hear what’s coming next.</p>
+<p>Can’t make it live? No problem—the event will be available on demand afterward so you can catch up anytime.</p>
+<h3>Delivering new features in Visual Studio even faster!</h3>
+<p>We’re picking up the pace. Starting now, we’re shifting to a monthly release cadence for Visual Studio 2022, focused <strong>on AI-powered Copilot enhancements, deeper integration</strong>, and rapid iteration based on your feedback. Update today to 17.14 to enjoy the latest features and look for it to evolve every month with meaningful improvements you can count on! Look for our next feature update in June!</p>
+<p>Lastly, we&#8217;ve started work on the next major version of Visual Studio, planned for release later this year. We’ll be sharing more details here soon—follow the blog to stay up to date with the latest Visual Studio news.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-14-is-now-generally-available/">🎉 Visual Studio 2022 v17.14 is now generally available!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-14-is-now-generally-available/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Point4-29.mp4" length="6266255" type="video/mp4" />
+    </item>
+    <item>
+      <title>Set the default file encoding</title>
+      <link>https://devblogs.microsoft.com/visualstudio/set-the-default-file-encoding/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/set-the-default-file-encoding/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mark Downie]]></dc:creator>
+      <pubDate>Mon, 28 Apr 2025 14:50:31 +0000</pubDate>
+      <category><![CDATA[Cross-Platform]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253104</guid>
+      <description><![CDATA[<p>Have you ever encountered unexpected issues due to file encoding when working in cross-platform environments? These frustrating problems can disrupt your workflow and consume valuable time. Visual Studio addresses these concerns with a new feature – the Default File Encoding option. You can now specify the encoding Visual Studio should use when saving files. This [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/set-the-default-file-encoding/">Set the default file encoding</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Have you ever encountered unexpected issues due to file encoding when working in cross-platform environments? These frustrating problems can disrupt your workflow and consume valuable time. Visual Studio addresses these concerns with a new feature – the Default File Encoding option.</p>
+<p>You can now specify the encoding Visual Studio should use when saving files. This ensures that files are saved with the correct encoding, minimizing potential issues.</p>
+<p>Developers often work on projects across different platforms, each requiring specific file encodings. Incorrectly managed encodings can lead to various issues, from corrupted files to unreadable text. The Default File Encoding feature helps mitigate this issue by allowing you to set a default encoding, ensuring consistency and reducing the risk of character display issues or data corruption.</p>
+<h2>Setting the default file encoding</h2>
+<p>To configure the default file encoding, navigate to <strong>Tools &gt; Options &gt; Environment &gt; Documents</strong>. You&#8217;ll find an option labeled <em>Save files with the following encoding</em>. If this option is checked, Visual Studio will attempt to save files using the encoding specified in the adjacent combo box. If unchecked, Visual Studio will revert to its default behavior for managing file encodings.</p>
+<p><img decoding="async" class="alignnone wp-image-253105" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253104-1.png" alt="Save files with the following encoding check box highlighting Western European - Code page 1252" width="500" height="165" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253104-1.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253104-1-300x99.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>This feature is useful for maintaining consistency across projects and minimizing encoding-related issues. It’s a straightforward tool that enhances productivity and preserves file integrity.</p>
+<h2>Handling encoding conflicts</h2>
+<p>In cases where Visual Studio cannot save a file with the specified encoding, such as attempting to save a file with Unicode characters in ASCII format, a dialog will notify you of the issue. This proactive notification helps prevent data loss or file corruption, allowing you to address problems promptly.</p>
+<p>As always, we appreciate your continuous feedback, which drives us to make Visual Studio better with each release. Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/set-the-default-file-encoding/">Set the default file encoding</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/set-the-default-file-encoding/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
+    </item>
+    <item>
+      <title>Effortless adjustments with an adaptive paste</title>
+      <link>https://devblogs.microsoft.com/visualstudio/effortless-adjustments-with-an-adaptive-paste/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/effortless-adjustments-with-an-adaptive-paste/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Leah Tran]]></dc:creator>
+      <pubDate>Wed, 23 Apr 2025 14:51:46 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253081</guid>
+      <description><![CDATA[<p>Find yourself needing to adjust pasted code to actually work in your project? Visual Studio 2022 introduces the capability to adapt your pasted code with Copilot to reduce the time you spend on making tedious changes. Streamline manual code modifications with adaptive paste When you&#8217;re copying and pasting code, the process often comes with extra [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/effortless-adjustments-with-an-adaptive-paste/">Effortless adjustments with an adaptive paste</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Find yourself needing to adjust pasted code to actually work in your project? Visual Studio 2022 introduces the capability to adapt your pasted code with Copilot to reduce the time you spend on making tedious changes.</p>
+<p><iframe title="YouTube video player" src="//www.youtube.com/embed/zklV3In9KU8?si=EmKuS5P5bqzqHKaY" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<h1>Streamline manual code modifications with adaptive paste</h1>
+<p>When you&#8217;re copying and pasting code, the process often comes with extra steps. Adjusting parameters, correcting styling, or fixing even the most minor errors can slow down your workflow. These small, repetitive tasks add up and disrupt your focus. Addressing these challenges, Visual Studio introduces a new Copilot-powered capability that adapts pasted code seamlessly, saving you time and effort.</p>
+<p>This feature intelligently adapts pasted code to your solution&#8217;s context, incorporating the new code into your existing project by:</p>
+<ul>
+<li>Aligning syntax and styling with the document</li>
+<li>Inferring parameter adjustments</li>
+<li>Fixing minor errors</li>
+<li>Supporting language translation, human and code-based</li>
+<li>Completing patterns or filling in blanks</li>
+</ul>
+<h2>Example: Implementing interface members</h2>
+<p>Imagine you’re working with a `Math` class that implements the `IMath` interface. You copy and paste the implementation for the `Ceiling` method into the same file. Adapting the pasted code will adjust the code to implement the missing `Floor` method, completing the interface for you.</p>
+<p><img decoding="async" class="alignnone wp-image-253083" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253081-2.gif" alt="Adaptive paste example gif" width="1567" height="705" /></p>
+<h2>How to use it</h2>
+<p>The adaptive paste springs into action the moment you perform a regular paste using `Ctrl+V`, assuming the pasted code has at least three lines. When the “Tab to adapt” suggestion action appears, you can press the `TAB` key to request a suggestion. You’ll then see a diff that compares the original pasted code with the adjusted version, so you can preview changes before they’re applied.</p>
+<h1>Try adaptive paste in Version 17.14 Preview 3</h1>
+<p>Starting in <a href="https://visualstudio.microsoft.com/vs/preview/">Visual Studio 2022 version 17.14 Preview 3</a> and in the stable 17.14 version release,  you can try adaptive paste by turning on the option:</p>
+<p><strong>Tools &gt; Options &gt; GitHub &gt; Copilot &gt; Editor &gt; Enable Adaptive Paste.</strong></p>
+<p>Once activated, adaptive paste becomes a helpful tool in your workflow. Whether you’re integrating new snippets, fixing small errors, or streamlining patterns, it supports you in coding more efficiently.</p>
+<h1>Check out the new Visual Studio Hub</h1>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h1>Appreciation for your feedback</h1>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/effortless-adjustments-with-an-adaptive-paste/">Effortless adjustments with an adaptive paste</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/effortless-adjustments-with-an-adaptive-paste/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>Toolbox Support for Explicit Assembly References in Windows Forms Out-of-Process Designer</title>
+      <link>https://devblogs.microsoft.com/visualstudio/toolbox-support-for-explicit-assembly-references-in-windows-forms-out-of-process-designer/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/toolbox-support-for-explicit-assembly-references-in-windows-forms-out-of-process-designer/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Merrie McGaw, Shyam Gupta]]></dc:creator>
+      <pubDate>Thu, 17 Apr 2025 14:45:27 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Windows Forms]]></category>
+      <category><![CDATA[Assembly References]]></category>
+      <category><![CDATA[designer]]></category>
+      <category><![CDATA[out-of-process]]></category>
+      <category><![CDATA[Toolbox]]></category>
+      <category><![CDATA[WinForms]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253042</guid>
+      <description><![CDATA[<p>Visual Studio 17.14 Preview 3 introduces a new feature that enhances the Windows Forms out-of-process designer experience for .NET Framework projects. This release brings Toolbox support for Explicit Assembly References, addressing a long-standing need in legacy application development and migration workflows. What Are Explicit Assembly References? Explicit Assembly References are stand-alone assemblies directly referenced in [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/toolbox-support-for-explicit-assembly-references-in-windows-forms-out-of-process-designer/">Toolbox Support for Explicit Assembly References in Windows Forms Out-of-Process Designer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 17.14 Preview 3 introduces a new feature that enhances the <a href="https://learn.microsoft.com/en-us/dotnet/desktop/winforms/visualstudio/troubleshoot-32bit?view=netdesktop-9.0#out-of-process-designer">Windows Forms <strong>out-of-process</strong> designer experience for .NET Framework projects</a>. This release brings <strong>Toolbox support for Explicit Assembly References</strong>, addressing a long-standing need in legacy application development and migration workflows.</p>
+<p><img decoding="async" class="alignnone wp-image-253043" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253042-1.jpeg" alt="Extension icon" width="1035" height="582" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253042-1.jpeg 1432w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253042-1-300x169.jpeg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253042-1-1024x576.jpeg 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/word-image-253042-1-768x432.jpeg 768w" sizes="(max-width: 1035px) 100vw, 1035px" /></p>
+<h2>What Are Explicit Assembly References?</h2>
+<p>Explicit Assembly References are stand-alone assemblies directly referenced in your project. They are not pulled in through NuGet packages, project references, or the Global Assembly Cache (GAC). These assemblies often represent legacy .NET Framework components, especially those compiled for 32-bit, which are not easily upgraded to modern .NET and may exist outside of package management.</p>
+<p>Until now, the Toolbox in the Windows Forms designer only displayed controls sourced from NuGet packages or project references. This created a limitation for developers working with long-standing legacy codebases. Explicit Assembly References were invisible to the Toolbox, leading to a fragmented experience and reduced productivity, particularly during modernization efforts.</p>
+<h2>Why This Matters</h2>
+<p>Developers relying on legacy Windows Forms controls often face challenges due to this limitation. The traditional approach of using the &#8220;Choose Items&#8230;&#8221; dialog in the Toolbox for in-process designer fails entirely for 32-bit assemblies as those assemblies cannot be loaded in 64-bit Visual Studio.</p>
+<p>In response, we have extended Toolbox support to automatically fetch controls’ information from Explicit Assembly References. This allows developers to use their legacy controls within the modern out-of-process designer, removing a key blocker in migration and maintenance workflows.</p>
+<h2>How It Works</h2>
+<p>When you launch the Windows Forms out-of-process designer for a .NET Framework project, the designer now automatically scans all references in the solution. It identifies Explicit Assembly References without loading them into Visual Studio itself. Leveraging the Roslyn APIs, the designer analyzes metadata to extract Toolbox item information from these assemblies.</p>
+<p>This approach ensures that eligible controls appear in the Toolbox—ready for drag-and-drop just like those from NuGet or project references.</p>
+<h2>Important Caveats</h2>
+<p>The out-of-process designer uses a <a href="https://devblogs.microsoft.com/dotnet/custom-controls-for-winforms-out-of-process-designer/">new extensibility model</a>, which clearly separates <strong>design time</strong> and <strong>runtime</strong> assemblies. This separation is crucial for enabling advanced design time scenarios like custom CodeDomSerializer usage, specialized UITypeEditor implementations, and custom TypeConverter behaviors.</p>
+<p>Explicit Assembly References do not support this separation. As a result, all such assemblies are treated as runtime only, which limits their design time functionality. While basic Toolbox and control instantiation scenarios will work, advanced behaviors may not function as expected.</p>
+<p>For the best experience, especially when working with custom design-time features, we <strong>strongly recommend</strong> using NuGet packages that follow the <a href="https://github.com/microsoft/winforms-designer-extensibility/blob/main/docs/sdk/control-library-nuget-package-spec.md">specified layout</a> for runtime and design-time separation.</p>
+<h2>Configuring the Feature</h2>
+<p>This feature is <strong>enabled by default</strong> starting with Visual Studio 17.14 Preview 3 for .NET Framework projects. If needed, you can toggle this functionality via <strong>Visual Studio → Tools → Options → Preview Features</strong></p>
+<p><img decoding="async" class="alignnone wp-image-253044" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/image-of-the-tools-greateroptions-greaterpreview-features-dial.png" alt="Image of the Tools-&gt;Options-&gt;Preview Features dialog with the &quot;Windows Forms Designer Direct Assembly Reference Toolbox Support (requires restart) options selected." width="912" height="71" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/image-of-the-tools-greateroptions-greaterpreview-features-dial.png 912w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/image-of-the-tools-greateroptions-greaterpreview-features-dial-300x23.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/image-of-the-tools-greateroptions-greaterpreview-features-dial-768x60.png 768w" sizes="(max-width: 912px) 100vw, 912px" /></p>
+<p>We&#8217;re currently rolling out this feature <strong>exclusively for .NET Framework projects</strong>, but we plan to extend this support to .NET projects in future Visual Studio releases.</p>
+<h2>Looking Ahead</h2>
+<p>Toolbox support for Explicit Assembly References simplifies working with legacy controls and helps pave the way for smoother migration to .NET. Once this feature expands to .NET projects, it will serve as a powerful bridge during modernization efforts.</p>
+<p>While we are happy to offer this capability, we continue to emphasize that for the richest and most predictable design-time experience, the <strong>recommended path remains through well-structured NuGet packages</strong> aligned with the new extensibility model.</p>
+<p><strong>Ready to try it out?</strong> Download Visual Studio 17.14 Preview 3 and open your Windows Forms .NET Framework project in the <a href="https://learn.microsoft.com/dotnet/desktop/winforms/visualstudio/troubleshoot-32bit?view=netdesktop-9.0&quot; \l &quot;out-of-process-designer">out-of-process designer</a>. Your legacy controls will now appear in the Toolbox, ready for use!</p>
+<h2>Check out the new Visual Studio Hub</h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h2>Appreciation for your feedback</h2>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/toolbox-support-for-explicit-assembly-references-in-windows-forms-out-of-process-designer/">Toolbox Support for Explicit Assembly References in Windows Forms Out-of-Process Designer</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/toolbox-support-for-explicit-assembly-references-in-windows-forms-out-of-process-designer/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
+    </item>
+    <item>
+      <title>GitHub Copilot Highlights in Visual Studio 17.14 Preview 3 (Available Now)</title>
+      <link>https://devblogs.microsoft.com/visualstudio/github-copilot-highlights-in-visual-studio-17-14-preview-3-available-now/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/github-copilot-highlights-in-visual-studio-17-14-preview-3-available-now/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Katie Savage]]></dc:creator>
+      <pubDate>Wed, 16 Apr 2025 18:24:10 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=252998</guid>
+      <description><![CDATA[<p>Visual Studio 17.14 Preview 3 is now available! The GitHub Copilot experience in Visual Studio is continuously updated to provide the latest advancements in AI-assisted development. The following features and improvements have been recently released in Visual Studio version 17.14 Preview 3. (Remember, preview versions of Visual Studio can be run side by side with [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-highlights-in-visual-studio-17-14-preview-3-available-now/">GitHub Copilot Highlights in Visual Studio 17.14 Preview 3 (Available Now)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 17.14 Preview 3 is now available!</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/vs/preview/" target="_blank">Download Visual Studio Preview</a></div></p>
+<p>The GitHub Copilot experience in Visual Studio is continuously updated to provide the latest advancements in AI-assisted development. The following features and improvements have been recently released in Visual Studio version 17.14 Preview 3. (Remember, preview versions of Visual Studio can be run side by side with the main releases)</p>
+<p><iframe title="GitHub Copilot Highlights in Visual Studio 17.14 Preview 3" width="500" height="281" src="https://www.youtube.com/embed/Cg5RC21uWi8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h2>A guided Walkthrough for getting started</h2>
+<p>If you&#8217;re new to GitHub Copilot in Visual Studio and are looking for a quick, guided way to get started, this feature is for you. Head to the GitHub Copilot badge dropdown and select GitHub Copilot Walkthrough. This will launch the walkthrough as a new tab in your workspace.</p>
+<p>This five-step walkthrough will show you how to get Copilot for free, introduce you to AI-powered code completions, Copilot Chat, show you how to provide Copilot with specific context about your solution, and introduce you to the multi-file editing power of Copilot Edits. Once you complete these steps, you should be ready to start using and experimenting with Copilot.</p>
+<p><div style="width: 1920px;" class="wp-video"><video class="wp-video-shortcode" id="video-252998-2" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/WalkthroughP3.mp4?_=2" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/WalkthroughP3.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/WalkthroughP3.mp4</a></video></div></p>
+<h2>Improved model access and Code Mapping</h2>
+<p>It&#8217;s also now easier than ever to access the latest models like Claude 3.7 from within Visual Studio. Instead of needing to adjust your settings, you can now enable any of the available models from github.com directly through Visual Studio. When you select your model within Copilot Chat, you will be prompted to enable your chosen model.</p>
+<p><div style="width: 1920px;" class="wp-video"><video class="wp-video-shortcode" id="video-252998-3" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/ModelApprovalP3.mp4?_=3" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/ModelApprovalP3.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/ModelApprovalP3.mp4</a></video></div></p>
+<p>How and where Copilot inserts its code suggestions into your code in the right place has also gotten an upgrade in this release with improvements to what we call “Code Mapping”.</p>
+<p><div style="width: 1920px;" class="wp-video"><video class="wp-video-shortcode" id="video-252998-4" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/CodeMappingP3.mp4?_=4" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/CodeMappingP3.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/CodeMappingP3.mp4</a></video></div></p>
+<h2>Copilot can suggest the next edit and fix pasted code automatically</h2>
+<p>We also have some exciting updates coming to the Code Completion experience that will allow Copilot to better understand your intention as you&#8217;re writing code and enhance its ability to assist you with editing your code. The feature is called Next Edit Suggestions, which helps developers by providing contextual suggestions for code edits based on previous changes.</p>
+<p><div style="width: 1920px;" class="wp-video"><video class="wp-video-shortcode" id="video-252998-5" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/NESP3.mp4?_=5" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/NESP3.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/NESP3.mp4</a></video></div></p>
+<p>Another feature to watch out for is adaptive paste which automatically adjusts code you paste into Visual Studio to fit the context of your existing code, minimizing the need for manual modifications. This feature also supports scenarios such as minor error fixes, code styling, formatting, human and code language translation, and fill-in-the-blank or continue-the-pattern tasks.</p>
+<p><div style="width: 1920px;" class="wp-video"><video class="wp-video-shortcode" id="video-252998-6" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/AdaptivePasteP3.mp4?_=6" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/AdaptivePasteP3.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/AdaptivePasteP3.mp4</a></video></div></p>
+<p>Learn more about these features in the preview 3 release notes: <a href="https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview?tabs=allfeatures">Visual Studio 2022 Preview Release Notes | Microsoft Learn</a></p>
+<h2>Try the latest Preview</h2>
+<p>If you&#8217;d like to see any of these features in action and stay up to date with the latest Copilot updates, try out <a href="https://aka.ms/visualstudio/preview">the preview version of Visual Studio</a>.</p>
+<h2>Check out the new Visual Studio Hub</h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h2>Appreciation for your feedback</h2>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-highlights-in-visual-studio-17-14-preview-3-available-now/">GitHub Copilot Highlights in Visual Studio 17.14 Preview 3 (Available Now)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/github-copilot-highlights-in-visual-studio-17-14-preview-3-available-now/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">7</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/WalkthroughP3.mp4" length="9841988" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/ModelApprovalP3.mp4" length="4571567" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/CodeMappingP3.mp4" length="4609374" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/NESP3.mp4" length="1919160" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/AdaptivePasteP3.mp4" length="4410939" type="video/mp4" />
+    </item>
   </channel>
 </rss>
