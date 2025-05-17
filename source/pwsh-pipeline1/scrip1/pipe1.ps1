@@ -14,12 +14,12 @@ function Read-Source
     process
     {
         Write-Warning 'process Read-Source'
-       #cat $file | ?{![string]::IsNullOrWhiteSpace($_)}
+        cat $file | ?{![string]::IsNullOrWhiteSpace($_)}
     }
     end
     {
         Write-Warning 'end Read-Source'
-        cat $file | ?{![string]::IsNullOrWhiteSpace($_)}
+       #cat $file | ?{![string]::IsNullOrWhiteSpace($_)}
     }
 }
 #$lines = cat C:\temp\source1.txt | ?{![string]::IsNullOrWhiteSpace($_)}
