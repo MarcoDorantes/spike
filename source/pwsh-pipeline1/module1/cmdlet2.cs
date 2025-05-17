@@ -30,8 +30,10 @@ public class ReadPipeCommand : PSCmdlet
     }
     protected override void ProcessRecord()
     {
-        WriteWarning($"{DateTime.Now:mm:ss.fffffff} {Tag} {nameof(ProcessRecord)}: InputObject=[{InputObject}]");
-        WriteObject(InputObject);
+        var line=$"{DateTime.Now:mm:ss.fffffff} {Tag} {nameof(ProcessRecord)}: InputObject=[{InputObject}]";
+        WriteWarning(line);
+      //WriteObject(InputObject);
+        WriteObject(line);
     }
     protected override void EndProcessing()
     {
