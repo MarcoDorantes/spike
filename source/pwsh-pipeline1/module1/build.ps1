@@ -23,7 +23,7 @@ if ($DeployFolder.Exists)
     if(Test-Path $target_folder)
     {
         rm -Force -Recurse $target_folder
-	    if ( $? ) { "$target_folder clean done." } else { throw "$result" }
+	    if ( $? ) { "$target_folder found and clean done." } else { throw "$result" }
     }
 
 	$result = dotnet publish $repository\$proj -c Release --force --runtime win-x64 --self-contained -o $target_folder

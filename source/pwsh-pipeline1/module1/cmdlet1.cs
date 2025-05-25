@@ -1,4 +1,4 @@
-﻿namespace cmdlet1;
+﻿namespace module1;
 
 using System.IO;
 using System.Linq;
