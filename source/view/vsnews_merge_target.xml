@@ -28788,5 +28788,172 @@ We’d love your feedback and suggestions for improvements. Please leave a comme
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/NESP3.mp4" length="1919160" type="video/mp4" />
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/04/AdaptivePasteP3.mp4" length="4410939" type="video/mp4" />
     </item>
+    <item>
+      <title>Connecting to Private NuGet Feeds Just Got Easier</title>
+      <link>https://devblogs.microsoft.com/visualstudio/connecting-to-private-nuget-feeds-just-got-easier/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/connecting-to-private-nuget-feeds-just-got-easier/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Ruben Rios]]></dc:creator>
+      <pubDate>Wed, 21 May 2025 15:55:18 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Authentication]]></category>
+      <category><![CDATA[NuGet]]></category>
+      <category><![CDATA[nuget packages]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253176</guid>
+      <description><![CDATA[<p>The Visual Studio 2022 17.14 update is here, and it brings great quality-of-life improvements—especially around NuGet authentication. From context about the authentication needs of private NuGet feeds to a simplified account selection workflow, this update helps you stay focused on your code! If you haven’t already, download the latest Visual Studio update to take advantage [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/connecting-to-private-nuget-feeds-just-got-easier/">Connecting to Private NuGet Feeds Just Got Easier</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2022-v17-14-is-now-generally-available/">Visual Studio 2022 17.14 update is here</a>, and it brings great quality-of-life improvements—especially around NuGet authentication. From context about the authentication needs of private NuGet feeds to a simplified account selection workflow, this update helps you stay focused on your code! If you haven’t already, <a href="https://visualstudio.microsoft.com/downloads/">download</a> the latest Visual Studio update to take advantage of this and the rest of the improvements.</p>
+<h2><strong>Streamlining the NuGet authentication experience</strong></h2>
+<p>Over the past year, we’ve made significant strides to improve the identity and authentication experiences across Visual Studio 2022. For instance, we introduced <a href="https://devblogs.microsoft.com/visualstudio/enhancing-your-visual-studio-authentication-experience/">Web Account Manager (WAM) support</a> to unify and simplify the sign-in experience of Entra ID accounts &amp; we recently followed that up by adding <a href="https://devblogs.microsoft.com/visualstudio/boost-your-github-productivity-with-our-new-multi-account-support/">multi-account support for GitHub</a>, making it easier than ever to manage your GitHub identities inside Visual Studio.</p>
+<p>Today, we’re excited to share the next step in that journey: a more intuitive and reliable NuGet authentication experience. With the latest update, Visual Studio now proactively detects when authentication is needed during package restore and presents a new dialog that provides helpful context—such as which feed you’re attempting to access—and makes it easy to select the account best suited for the job. This small but impactful change simplifies the sign-in process, reduces authentication prompts, and helps you stay focused on your coding needs.</p>
+<p>Here’s what you can expect:</p>
+<ul>
+<li><strong>Clearer sign-in guidance</strong> showing you the specific NuGet feed you are accessing.</li>
+<li><strong>Improved support for multi-factor authentication (MFA) </strong>allows you to efficiently manage accounts needed for NuGet restore operations, whether adding new accounts, selecting from existing ones, or re-entering credentials directly within the dialog.</li>
+<li><strong>A more predictable sign in experience</strong>, with fewer repeated prompts and less authentication guesswork.</li>
+</ul>
+<h2><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Improved-Nuget.png"><img fetchpriority="high" decoding="async" class="alignnone size-full wp-image-253325" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Improved-Nuget.png" alt="Improved Nuget image" width="608" height="298" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Improved-Nuget.png 608w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Improved-Nuget-300x147.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></a></h2>
+<h2><strong>Try It Out and Keep the Feedback Coming</strong></h2>
+<p>We’ll continue investing in making the Visual Studio’s identity and authentication experiences more seamless, secure, and intuitive so please, keep the feedback coming— Every <a href="https://developercommunity.visualstudio.com/VisualStudio">suggestion, upvote</a>, and <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022">report</a> helps us prioritize the areas that matter most to you. And while we’ve made great progress, we’re far from done!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/connecting-to-private-nuget-feeds-just-got-easier/">Connecting to Private NuGet Feeds Just Got Easier</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/connecting-to-private-nuget-feeds-just-got-easier/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
+    </item>
+    <item>
+      <title>Faster .NET Upgrades Powered by GitHub Copilot</title>
+      <link>https://devblogs.microsoft.com/visualstudio/faster-net-upgrades-powered-by-github-copilot/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/faster-net-upgrades-powered-by-github-copilot/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[McKenna Barlow]]></dc:creator>
+      <pubDate>Mon, 19 May 2025 16:00:43 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[.NET upgrade]]></category>
+      <category><![CDATA[Modernization]]></category>
+      <category><![CDATA[Upgrade]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253273</guid>
+      <description><![CDATA[<p>Introducing GitHub Copilot app modernization – Upgrade for .NET You probably don’t look forward to the process of modernizing your applications. It can be time consuming, risky, and full of manual toil. Today we’re changing that. We’re thrilled to introduce the public preview of GitHub Copilot app modernization &#8211; Upgrade for .NET, an AI-powered experience [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/faster-net-upgrades-powered-by-github-copilot/">Faster .NET Upgrades Powered by GitHub Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<h2>Introducing GitHub Copilot app modernization – Upgrade for .NET</h2>
+<p>You probably don’t look forward to the process of modernizing your applications. It can be time consuming, risky, and full of manual toil. Today we’re changing that.</p>
+<p>We’re thrilled to introduce the public preview of <strong>GitHub Copilot app modernization &#8211; Upgrade for .NET</strong>, an AI-powered experience that helps you bring your .NET applications to the latest version quicker and more confidently than ever before. Powered by GitHub Copilot and Agent Mode, it serves as an intelligent upgrade companion that understands your code, determines the right upgrade path, and applies changes step by step with minimal manual effort.</p>
+<p>Read more about the public preview on our <a href="https://devblogs.microsoft.com/dotnet/github-copilot-upgrade-dotnet">.NET blog.</a></p>
+<h2>Get Started with Faster .NET Upgrades Today!</h2>
+<p>Getting started with GitHub Copilot app modernization &#8211; Upgrade for .NET is easy.</p>
+<p><strong>Step 1: Install the Extension</strong>
+Head to the Visual Studio Marketplace and download the <strong>GitHub Copilot app modernization &#8211; Upgrade for .NET </strong>extension. Once installed, you’re ready!</p>
+<p><strong>Step 2: Use Copilot Agent Mode</strong>
+To unlock the full power of AI-assisted upgrades, install the latest version of <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 17.14</a> and sign-in to a GitHub account with an active Copilot subscription.</p>
+<ol>
+<li><strong>Ensure you have agent mode enabled:</strong> In Visual Studio, go to Tools &gt; Options &gt; GitHub &gt; Copilot &gt; Copilot Chat and select &#8220;Enable agent mode in the chat pane.&#8221;</li>
+<li><strong>Turn on Agent Mode</strong>: To get started, open the GitHub Copilot Chat window, click the “<strong>Ask</strong>” button, then click “<strong>Agent</strong>”. This turns on Copilot Agent Mode, which gives you a smarter, more natural way to do the upgrades.</li>
+<li><strong>Select the Upgrade Tool:</strong> Once in Copilot Agent Mode, be sure to select the “<strong>Upgrade”</strong> tool from the Copilot Chat Tool Selector. Otherwise, Agent Mode won’t be able to use the specialized upgrade tools.</li>
+</ol>
+<p><img decoding="async" width="400" height="436" class="wp-image-253276" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-gif-of-a-user-selecting-the-correct-tool-in-agen.gif" alt="A GIF of a user selecting the correct tool in Agent Mode in Copilot Chat " /></p>
+<p>For more information on Agent Mode, check out <a href="https://devblogs.microsoft.com/visualstudio/agent-mode-has-arrived-in-preview-for-visual-studio/">our blog</a> on the topic.</p>
+<h2>How to Run the Upgrade</h2>
+<p>You’ve got two options:</p>
+<p>Right-click your project or solution in Solution Explorer and select “Upgrade with GitHub Copilot”</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/solution-explorer-invocation-1.gif"><img decoding="async" class="alignnone size-full wp-image-253289" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/solution-explorer-invocation-1.gif" alt="solution explorer invocation 1 image" width="400" height="406" /></a></p>
+<p>Or, just tell Copilot what you want to do in the chat:
+<img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <em>“Upgrade my solution to .NET 8”</em></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/help-me-upgrade-my-solution-1.gif"><img decoding="async" class="alignnone size-full wp-image-253290" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/help-me-upgrade-my-solution-1.gif" alt="help me upgrade my solution 1 image" width="400" height="635" /></a></p>
+<p>That’s it. GitHub Copilot gets to work analyzing your code, preparing the upgrade, and guiding you through code changes.</p>
+<h2>What’s Included?</h2>
+<p><strong><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f6e0.png" alt="🛠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Automated code transformations:</strong> Copilot automatically makes the changes required to get your applications running on modern .NET.</p>
+<p><div style="width: 1920px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-253273-1" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/GHCPUA-Update-Progress-Focus-1.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/GHCPUA-Update-Progress-Focus-1.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/GHCPUA-Update-Progress-Focus-1.mp4</a></video></div></p>
+<p><strong><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2699.png" alt="⚙" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Customizable workflows:</strong> You can tailor which projects to upgrade, whether to address packages with security vulnerabilities in your upgrade, and more.</p>
+<p><strong><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f9e0.png" alt="🧠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Learning from your manual changes:</strong> When manual intervention is required, GitHub Copilot can learn from your manual changes and apply those learnings if it encounters a similar situation later on in your upgrade.</p>
+<p><img decoding="async" width="400" height="619" class="wp-image-253280" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-gif-showingcopilot-acknowledging-its-recording.gif" alt="A GIF showingCopilot acknowledging it's recording user changes and learning from manual interventions" /></p>
+<p><strong><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f500.png" alt="🔀" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Git Integration:</strong> Git commits are automatically created on your behalf so that you can adopt and test changes incrementally.</p>
+<p><img decoding="async" class="wp-image-253281" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-commits-generated-by-the-tool.png" alt="A screenshot of the commits generated by the tool " width="727" height="424" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-commits-generated-by-the-tool.png 1080w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-commits-generated-by-the-tool-300x175.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-commits-generated-by-the-tool-1024x597.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-commits-generated-by-the-tool-768x448.png 768w" sizes="(max-width: 727px) 100vw, 727px" /></p>
+<p><strong><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Automatic test validation:</strong> It automatically runs your application’s unit tests to ensure correct behavior post-upgrade.</p>
+<p><strong><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f916.png" alt="🤖" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Agent Mode functionality:</strong> Take advantage of Copilot Agent Mode with the latest preview version of Visual Studio installed.</p>
+<h2>Please Share Your Feedback</h2>
+<p>Start your upgrade journey today with GitHub Copilot app modernization – Upgrade for .NET! Your feedback is crucial to us as we aim to improve the product during this public preview. To share feedback with the team, please utilize the “Leave Feedback” button in the upper right corner of the Upgrade Manager UX in Visual Studio.</p>
+<p><img decoding="async" width="973" height="607" class="wp-image-253282" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-upgrade-monitor-ux-showing-whe.png" alt="A screenshot of the Upgrade Monitor UX showing where to find the Leave Feedback button" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-upgrade-monitor-ux-showing-whe.png 973w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-upgrade-monitor-ux-showing-whe-300x187.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/a-screenshot-of-the-upgrade-monitor-ux-showing-whe-768x479.png 768w" sizes="(max-width: 973px) 100vw, 973px" /></p>
+<p>We also welcome feedback via email to <a href="mailto:ghcpuacusteng@microsoft.com">ghcpuacusteng@microsoft.com</a>, as well as direct responses to our <a href="https://www.surveymonkey.com/r/5G3BDTD?source=vsblog">feedback survey</a>.</p>
+<h2>Check out the new Visual Studio Hub</h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/faster-net-upgrades-powered-by-github-copilot/">Faster .NET Upgrades Powered by GitHub Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/faster-net-upgrades-powered-by-github-copilot/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">2</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/GHCPUA-Update-Progress-Focus-1.mp4" length="4797367" type="video/mp4" />
+    </item>
+    <item>
+      <title>How to Watch Microsoft Build 2025 Online</title>
+      <link>https://devblogs.microsoft.com/visualstudio/how-to-watch-microsoft-build-2025-online/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/how-to-watch-microsoft-build-2025-online/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Fri, 16 May 2025 14:00:41 +0000</pubDate>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[MSBuild]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253248</guid>
+      <description><![CDATA[<p>Microsoft Build 2025 Is Here! — How to Make the Most of It Virtually It’s that time again—Microsoft Build has started! Microsoft Build 2025 runs this week (May 19–22)—and now’s the perfect time to catch the sessions live or watch past sessions on-demand. This year, Build is more accessible than ever. Every keynote, breakout session, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/how-to-watch-microsoft-build-2025-online/">How to Watch Microsoft Build 2025 Online</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<article>
+<h1>Microsoft Build 2025 Is Here! — How to Make the Most of It Virtually</h1>
+<p>It’s that time again—<strong>Microsoft Build</strong> has started! Microsoft Build 2025 runs this week (May 19–22)—and now’s the perfect time to catch the sessions live or watch past sessions on-demand.</p>
+<p>This year, <strong>Build is more accessible than ever.</strong> Every keynote, breakout session, demo theater, and even our hands-on labs are available to stream—<strong>live or on-demand</strong>—completely free. No travel. No ticket. Just you, your browser, and some of the best developer content of the year.</p>
+<p>I’ve had the privilege of working alongside our Product Managers and Engineering teams to help bring these new experiences to life. And I can confidently say—this year’s lineup is comprehensive, with something for every Visual Studio user. From deep dives into .NET and GitHub Copilot in Visual Studio, to lightning-fast demo theaters and hands-on labs powered by the Microsoft Skillable platform, there’s truly something for everyone.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://build.microsoft.com/sessions" target="_blank">SCHEDULE BUILDER</a></div></p>
+<h2>Step 1: Customize Your Schedule</h2>
+<p>If you do just one thing today, head over to <a href="https://build.microsoft.com" target="_blank" rel="noopener">build.microsoft.com</a> and use the free Schedule Builder. It’s the easiest way to:</p>
+<ul>
+<li><strong>Add Must Watch</strong> sessions from Satya Nadella, Kevin Scott, Amanda Silver, and Scott Guthrie and friends.</li>
+<li><strong>Pick breakouts</strong> tailored to your interests—Visual Studio, AI agents, .NET 9, GitHub Copilot, Azure, and more.</li>
+<li><strong>Queue up on-demand sessions</strong> you can catch later, even after the event ends.</li>
+</ul>
+<p><img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f4a1.png" alt="💡" class="wp-smiley" style="height: 1em; max-height: 1em;" /> And this year, keep an eye out for “AI Agents” and “Agentic” —a new way to think about how AI works with you, not just for you. Visual Studio is evolving, and the sessions hinting at this shift are worth flagging.</p>
+<h2>Step 2: Prioritize Live Viewing (and Must-Watch Sessions)</h2>
+<p>Many sessions—especially keynotes—feature live Q&amp;A and real-time demos you won’t want to miss. And with <strong>133 sessions focused on Developer Tools and .NET</strong>, there’s truly something for everyone.</p>
+<p>I encourage you to use the <a href="https://build.microsoft.com/" target="_blank" rel="noopener">schedule builder</a> and find the topics you’re interested in. Here are just a few I’ll be attending in person to help get you started:</p>
+<h3>Must Watch!</h3>
+<ul>
+<li><a href="https://build.microsoft.com/en-US/sessions/KEY010" target="_blank" rel="noopener"><strong>Opening Keynote with Satya Nadella</strong></a> – Big-picture announcements across AI, Copilot, and developer platforms.</li>
+<li><a href="https://build.microsoft.com/en-US/sessions/KEY020" target="_blank" rel="noopener"><strong>Unpacking the tech with Kevin Scott, Charles Lamanna, and Scott Guthrie</strong></a> – A deeper look at what’s next for developers using Microsoft tools.</li>
+<li><a href="https://build.microsoft.com/en-US/sessions/BRK100" target="_blank" rel="noopener"><strong>Reimagining Software Development and DevOps with Agentic AI</strong></a> &#8211; Amanda Silver and Mario Rodriguez show how Agentic AI is being infused across the entire development lifecycle—from brainstorming to release. See how GitHub Copilot is evolving to help teams plan smarter, code faster, and stay in flow across Visual Studio and GitHub.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/KEY040" target="_blank" rel="noopener">Epic Closing Demo with Mark Russinovich and Scott Hanselman </a></strong>-A high-energy, code-first finale weaving together Build’s boldest tech—from Copilot PCs to frontier models, Visual Studio, and vibe coding—all live with Mark and Scott.</li>
+</ul>
+<h3>More to add to your watch list:</h3>
+<ul>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/BRK120" target="_blank" rel="noopener">Top GitHub Copilot Features You Missed in Visual Studio 2022</a> &#8211; </strong>Visual Studio now delivers its most AI-powered experience yet—with GitHub Copilot deeply integrated into your daily workflow. In this session, we’ll walk through the latest Copilot features lighting up in Visual Studio, including Agent Mode (Preview), which brings goal-driven, multi-step assistance right into the IDE.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/BRK101" target="_blank" rel="noopener">The Future of .NET App Modernization Streamlined with AI</a> &#8211; </strong>GitHub Copilot and Agents are transforming how developers modernize their applications and get them cloud ready. Come see how GitHub Copilot Upgrade for .NET helps you upgrade your .NET applications directly from Visual Studio. From project and dependency analysis, plan execution, automatic self-healing, detailed reporting, and more. Hear from industry experts who are transforming their .NET app modernization with GitHub Copilot.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/BRK121" target="_blank" rel="noopener">Yet &#8220;Another Highly Technical Talk&#8221; with Hanselman and Toub</a> &#8211; </strong>Following from their &#8220;Highly Technical Talk&#8221; at Build 2024, join Scott Hanselman and partner software engineer Stephen Toub for another talk that is 100% LIVE demo. Zero slides, just code. In this &#8220;highly technical talk&#8221; on the internals of .NET, they&#8217;ll look for performance issues and fix them live on stage. In this talk, you&#8217;ll learn debugging, performance, and optimization skills. If you are super advanced, level up, and let&#8217;s see how deep you can go!</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/BRK127" target="_blank" rel="noopener">Unleash Developer Potential with AI and Dev Box</a> &#8211; </strong>Microsoft Dev Box is reimagining the developer environment. See how this customizable, project-focused platform supports AI development with flexible compute, seamless integration with Visual Studio and VS Code, and team-specific setups that go beyond traditional VDI. Learn how Dev Box is enabling the next generation of productivity.</li>
+</ul>
+<h3>Demo Theaters and Labs:</h3>
+<p>Demo Theaters and Labs give you two great ways to explore what’s new. Demos are quick, 15-minute lightning sessions—perfect for discovering new features and getting inspired fast. Labs go deeper with guided, hands-on experiences you can follow step-by-step, right in your browser. Whether you join live or watch later, both formats are available online and designed to fit your pace.</p>
+<ul>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/LAB300" target="_blank" rel="noopener">Lab: Hands-on with GitHub Copilot in Visual Studio</a> &#8211; </strong>Want to go from curious to confident with Copilot in Visual Studio? This lab walks you through real scenarios that show just how integrated and helpful Copilot has become.
+Get guided, interactive practice using AI inside the IDE.</li>
+<li><strong><a href="https://build.microsoft.com/en-US/sessions/DEM517" target="_blank" rel="noopener">Demo: Build, Deploy &amp; Use Your First Model Context Protocol (MCP) Server</a> &#8211; </strong>Curious about what MCP really is? This lightning-fast session will walk you through building your very first Model Context Protocol server from scratch. You’ll create it in VS Code, test it live, and deploy it—learning why this matters for agent-based development along the way.</li>
+</ul>
+<p><strong>Can’t catch them all live?</strong> No worries—<strong>everything is available on-demand</strong> after Build so you can watch at your own pace.</p>
+<h2>Step 3: Stay Connected</h2>
+<p>Follow the conversation on <strong>#MSBuild, #VisualStudio</strong> and <strong>#dotNET</strong> on X. Ask questions, share what you’re learning, and connect with other developers from around the world. You’ll find inspiration in the comments—and maybe even a new collaborator.</p>
+<p><strong>Use the Schedule Builder today.</strong>
+Start building your watchlist now at <a href="https://build.microsoft.com" target="_blank" rel="noopener">build.microsoft.com</a>, and I’ll see you—virtually—next week.</p>
+<p>Let’s code the future together.</p>
+<p>&#8230;.Jim</p>
+<hr />
+<h3>Check out the new Visual Studio Hub</h3>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/" target="_blank" rel="noopener">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h3>Appreciation for your feedback</h3>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com" target="_blank" rel="noopener">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+</article>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/how-to-watch-microsoft-build-2025-online/">How to Watch Microsoft Build 2025 Online</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/how-to-watch-microsoft-build-2025-online/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
+    </item>
   </channel>
 </rss>
