@@ -56,7 +56,7 @@ public class FileLogger<Class2> : FileLoggerBase, IFileLogger<Class2>
         WriteLine($"{DateTime.Now:s} {nameof(FileLogger<Class2>)}.ctor()");
     }
 }
-
+/*
 public class FileLoggerProvider : ILoggerProvider//to use the .NET 8 Logging infrastructure
 {
     public ILogger CreateLogger(string categoryName)
@@ -69,7 +69,7 @@ public class FileLoggerProvider : ILoggerProvider//to use the .NET 8 Logging inf
         WriteLine($"{DateTime.Now:s} {nameof(FileLoggerProvider)}.{nameof(Dispose)}()");
     }
 }
-
+*/
 public interface IClass2 : IDisposable {void f(string s);}
 public class Class2(ILogger<Class2> logger1, IFileLogger<Class2> logger2) : IClass2
 {

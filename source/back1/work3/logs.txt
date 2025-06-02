@@ -1,0 +1,4 @@
+6/1/2025 9:04:56 PM [Information] Application started. Press Ctrl+C to shut down.
+6/1/2025 9:04:56 PM [Information] Hosting environment: Development
+6/1/2025 9:04:56 PM [Information] Content root path: C:\Users\dev2\source\repos\spike\source\back1\work3
+6/1/2025 9:05:27 PM [Information] Application is shutting down...
