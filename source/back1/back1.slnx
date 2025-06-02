@@ -1,0 +1,23 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/1 - spec/">
+    <Project Path="spec1/spec1.csproj" />
+  </Folder>
+  <Folder Name="/2 - lib/">
+    <Project Path="flog1/flog1.csproj" />
+    <Project Path="lib1/lib1.csproj" />
+    <Project Path="lib2/lib2.csproj" />
+  </Folder>
+  <Folder Name="/3 - host/">
+    <Project Path="app1/app1.csproj" />
+    <Project Path="work1/work1.csproj" />
+    <Project Path="work2/work2.csproj" />
+    <Project Path="work3/work3.csproj" />
+    <Project Path="work4/work4.csproj" />
+    <Project Path="work5/work5.csproj" />
+  </Folder>
+</Solution>
