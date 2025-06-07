@@ -28955,5 +28955,292 @@ Start building your watchlist now at <a href="https://build.microsoft.com" targe
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/how-to-watch-microsoft-build-2025-online/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
     </item>
+    <item>
+      <title>How to filter C++ Build Insights by project</title>
+      <link>https://devblogs.microsoft.com/visualstudio/how-to-filter-c-build-insights-by-project/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/how-to-filter-c-build-insights-by-project/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[David Li, Moyo Okeremi]]></dc:creator>
+      <pubDate>Thu, 05 Jun 2025 15:37:33 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Performance]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[C++]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253442</guid>
+      <description><![CDATA[<p>Visual Studio 2022 version 17.14 comes with quality-of-life improvements to its C++ Build Insights integration that will make it easier for you to navigate large multi-project traces and handle long file names for your build inputs and artifacts. What is C++ Build Insights? C++ Build Insights is a powerful tool that lets you visualize and [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/how-to-filter-c-build-insights-by-project/">How to filter C++ Build Insights by project</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Visual Studio 2022 version 17.14 comes with quality-of-life improvements to its C++ Build Insights integration that will make it easier for you to navigate large multi-project traces and handle long file names for your build inputs and artifacts.</p>
+<h2><img fetchpriority="high" decoding="async" class="alignnone wp-image-253443" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253442-1.png" alt="Build insights showcasing all the fles/projects build times and parse counts" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253442-1.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253442-1-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253442-1-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></h2>
+<h2>What is C++ Build Insights?</h2>
+<p>C++ Build Insights is a powerful tool that lets you visualize and optimize the build process of your C++ projects. It leverage MSVC&#8217;s trace capture technology and uses the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/event-tracing-for-windows--etw-">Windows </a><a id="post-253442-_Int_xZ6H58Ne"></a><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/event-tracing-for-windows--etw-">ETW</a> framework to collect detailed information about every build event, such as compilation, linking, code analysis, and more. You can then view and analyze this data in many ways, such as a timeline, a <a id="post-253442-_Int_3iP4Rgv0"></a>flame graph, or a tree map. As of Visual Studio 2022 version 17.7, C++ Build Insights is <a href="https://devblogs.microsoft.com/cppblog/build-insights-now-available-in-visual-studio-2022/">integrated into Visual Studio</a>.</p>
+<p>C++ Build Insights can help you identify and fix bottlenecks, dependencies, and inefficiencies in your build system, resulting in faster and more reliable builds. You can also compare different builds and see how your changes affect the build performance over time. To learn more, read how <a href="https://developer.microsoft.com/en-us/games/articles/2025/03/gdc-2025-build-insights-call-of-duty-modern-warfare/">Activision used Build Insights to cut Call of Duty’s Build Time by 50%</a> on the Microsoft Game Dev Blog.</p>
+<h2>How to Filter C++ Build Insights by Project</h2>
+<p>One of the new features in Visual Studio 2022 is the ability to filter your C++ Build Insights results for Visual Studio solutions by project. This can be particularly useful if you have a large solution with multiple projects and you want to focus on one of them. To do this, simply run Build Insights on your solution by selecting <strong>Build &gt; Run Build Insights on Solution</strong> and then either <strong>Build </strong>or <strong>Rebuild,</strong> depending on whether you want to measure the build from scratch. This will generate an ETL (event trace log) trace, which Visual Studio will automatically open to visualize the data collected. Select the project that you want to filter by selecting the funnel next to the <em>Project</em> column and narrowing down the set of projects for which you want to view the data.</p>
+<h2>How to Filter C++ Build Insights by File Paths</h2>
+<p>In addition to project filtering, Build Insights now also supports file path filtering, which gives you fine-grained control over which files are included in your analysis. This is especially helpful in large codebases where build data from third-party libraries or generated code can clutter your view. With the File Path Filter, you can use glob patterns to focus on specific directories or file types—helping you isolate and investigate the build performance of just the parts you care about. Whether you’re narrowing your focus during a regression investigation or simply trying to understand the build cost of a particular code change, file path filtering helps you get answers faster.</p>
+<p>To do this, simply run Build Insights on your solution by selecting <strong>Build &gt; Run Build Insights on Solution</strong> and then either <strong>Build </strong>or <strong>Rebuild,</strong> depending on whether you want to measure the build from scratch. This will generate an ETL (event trace log) trace, which Visual Studio will automatically open to visualize the data collected. Select the project that you want to filter by selecting the funnel next to the File Path column and typing in the glob pattern you want to focus on or ignore.</p>
+<h2>How to see the file names and paths of build inputs and artifacts</h2>
+<p>Another improvement in Visual Studio is the way Build Insights displays the file names and paths of your build inputs and artifacts, such as source files, object files, libraries, and executables. Instead of showing the full path, which can be quite long and hard to read, Build Insights now shows the relative path and the file name, separated by a backslash. This makes it easier to find your build artifacts, especially if you have a complex folder structure.</p>
+<p>You can see the file names and paths of your build inputs and artifacts in any view that shows them, such as the Included Files view, which shows the files that are included by each source file during compilation. You can also hover over any build event to see more details, including the file name and path.</p>
+<p>We hope you find these quality-of-life improvements useful and that they help you optimize your C++ build process. We are always working on making Visual Studio better for developers, and we appreciate your continuous feedback and suggestions. Please tell us what you think of these features and what else you want in Build Insights.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/how-to-filter-c-build-insights-by-project/">How to filter C++ Build Insights by project</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/how-to-filter-c-build-insights-by-project/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>Cloud Academy: Unlock Your Azure Skills and Accelerate Your Career</title>
+      <link>https://devblogs.microsoft.com/visualstudio/cloud-academy-benefit-for-visual-studio-subscribers/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/cloud-academy-benefit-for-visual-studio-subscribers/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Tue, 03 Jun 2025 14:00:08 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253411</guid>
+      <description><![CDATA[<p>When we launched the Cloud Academy benefit for Visual Studio Professional and Enterprise subscribers back in March 2025, our goal was simple: give you the hands-on, practical learning experience you need to confidently master Azure and cloud technologies — without spending a dime beyond your subscription. Why? Because in today’s fast-changing tech world, knowing theory [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/cloud-academy-benefit-for-visual-studio-subscribers/">Cloud Academy: Unlock Your Azure Skills and Accelerate Your Career</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>When we launched the Cloud Academy benefit for Visual Studio Professional and Enterprise subscribers back in March 2025, our goal was simple: <strong>give you the hands-on, practical learning experience you need to confidently master Azure and cloud technologies</strong> — without spending a dime beyond your subscription.</p>
+<p>Why? Because in today’s fast-changing tech world, knowing theory isn’t enough. You need to <em>do</em> — to experiment, build, troubleshoot, and grow your skills in a real environment. That’s exactly what Cloud Academy delivers.</p>
+<h2><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Level-up-your-skills-with-Cloud-Academy-800x300-1.png"><img decoding="async" class="aligncenter size-full wp-image-253414" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Level-up-your-skills-with-Cloud-Academy-800x300-1.png" alt="Level up your skills with Cloud Academy 800 215 300 image" width="800" height="300" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Level-up-your-skills-with-Cloud-Academy-800x300-1.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Level-up-your-skills-with-Cloud-Academy-800x300-1-300x113.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Level-up-your-skills-with-Cloud-Academy-800x300-1-768x288.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></a></h2>
+<h2><strong>From Frustration to Confidence: Learning That Fits Your Style</strong></h2>
+<p>If you’re like many developers I’ve talked to, finding time to build new skills feels like a constant struggle. Between deadlines, meetings, and firefighting production issues, carving out space to learn something new is tough.</p>
+<p>Cloud Academy understands that. Whether you’re the type who likes step-by-step guided labs, jumping straight into hands-on challenges, or tinkering freely in a safe sandbox, this platform adapts to how <em>you</em> learn best.</p>
+<p>The result? <strong>Visual Studio subscribers</strong> are completing labs at a rate 10% higher than other learners on Cloud Academy. That means you’re not just skimming content — you’re gaining meaningful, practical skills that stick.</p>
+<h2><strong>What’s New? Fresh Content Tailored for Today’s Cloud Challenges</strong></h2>
+<p>Cloud technology evolves rapidly, and staying ahead means keeping your skills sharp. We’ve added new lessons and labs to make sure you’re ready to tackle the latest Azure capabilities and security challenges, including:</p>
+<ul>
+<li><strong>Automate document processing with Azure AI Document Intelligence Studio</strong> — no coding needed, just real impact.</li>
+<li><strong>Strengthen endpoint security with Microsoft Entra ID’s automated password management</strong> — because security can’t be an afterthought.</li>
+<li><strong>Streamline device management with Intune device naming templates</strong> — save time and reduce errors.</li>
+<li><strong>Dive into Azure OpenAI Service’s prompt engineering</strong> — build AI apps that behave reliably.</li>
+<li>…and much more that matches what companies are demanding now.</li>
+</ul>
+<h2><strong>Hands-On Labs: Where Real Learning Happens</strong></h2>
+<p>Reading about cloud services is one thing. Building and deploying containerized apps, automating workflows, or managing state in Azure Container Apps — that’s where the real transformation happens.</p>
+<p>Cloud Academy’s labs let you roll up your sleeves in real Azure environments, so you:</p>
+<ul>
+<li>Push container images and manage registries.</li>
+<li>Automate file processing with Azure Functions.</li>
+<li>Explore state management with Dapr in container apps.</li>
+</ul>
+<p>This kind of hands-on experience turns concepts into capabilities, making you more valuable to your team and your company.</p>
+<h2><strong>Certification Prep That Works</strong></h2>
+<p>Many subscribers are also using Cloud Academy to prep for Microsoft certifications, which are a powerful way to validate your skills and open doors in your career. The top courses are aligned to:</p>
+<ul>
+<li><strong>AZ-900: Azure Fundamentals</strong> — perfect for getting started.</li>
+<li><strong>AZ-204: Developing Azure Solutions</strong> — for building real cloud apps.</li>
+<li><strong>AI-900 and AI-102</strong> — tapping into the future of AI on Azure.</li>
+<li><strong>AZ-400: Azure DevOps Solutions</strong> — mastering modern cloud development workflows.</li>
+</ul>
+<p>With lessons, labs, quizzes, and exams, Cloud Academy makes certification prep practical and effective — no more cramming or rote memorization.</p>
+<h2><strong>Meet Ela: Your Personal AI-Powered Learning Coach</strong></h2>
+<p>Learning alone can be challenging. That’s why Cloud Academy includes Ela, an AI-powered Expert Learning Assistant who’s like having a tutor at your side 24/7.</p>
+<p>Ela helps you by:</p>
+<ul>
+<li>Summarizing complex lessons into bite-sized insights.</li>
+<li>Testing your knowledge so you focus on what matters.</li>
+<li>Explaining tricky concepts clearly.</li>
+<li>Guiding you during hands-on labs to troubleshoot and stay on track.</li>
+</ul>
+<p>With Ela’s support, you can accelerate your learning, overcome roadblocks, and gain confidence faster than ever before.</p>
+<h2><strong>How to Activate Your Cloud Academy Access Today</strong></h2>
+<p>Getting started is fast and easy:</p>
+<ol>
+<li>Log in to <a href="https://my.visualstudio.com" target="_blank" rel="noopener">visualstudio.com</a> with your Visual Studio subscription.</li>
+<li>Navigate to the Benefits section.</li>
+<li>Activate your Cloud Academy access — no credit card, no trials, just instant access.</li>
+<li>This exclusive benefit is available at no extra cost with select Visual Studio subscription levels.</li>
+</ol>
+<p>To see if you’re Professional or Enterprise subscription is eligible, check out this <a class="" href="https://learn.microsoft.com/en-us/visualstudio/subscriptions/vs-cloud-academy" target="_blank" rel="noopener" data-start="294" data-end="319">document on MS Learn</a>.</p>
+<p><strong>Your Next Step Toward Cloud Mastery</strong></p>
+<p>At Microsoft, we’re committed to empowering you with tools, training, and resources that truly move the needle. Based on the incredible feedback we’ve received, Cloud Academy is proving to be more than just another training platform — it’s a catalyst for career growth, innovation, and real-world impact.</p>
+<p>Whether you want to build apps that scale, improve your security posture, or prepare for certification, Cloud Academy is here to help you every step of the way. Take advantage of this special benefit today and watch how your Azure skills—and your confidence—soar.</p>
+<p><strong>Stay Connected with Visual Studio</strong></p>
+<p>Don’t forget to visit the <a href="https://visualstudio.com">Visual Studio Hub</a> for the latest updates, videos, and community discussions to keep your developer journey vibrant.</p>
+<p>Got thoughts on Visual Studio benefits or Cloud Academy? I’d love to hear from you! Connect with me on LinkedIn.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/cloud-academy-benefit-for-visual-studio-subscribers/">Cloud Academy: Unlock Your Azure Skills and Accelerate Your Career</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/cloud-academy-benefit-for-visual-studio-subscribers/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">4</slash:comments>
+    </item>
+    <item>
+      <title>Extension Manager updates in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/extension-manager-updates-in-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/extension-manager-updates-in-visual-studio/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Javier De la Garza]]></dc:creator>
+      <pubDate>Mon, 02 Jun 2025 18:13:24 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Updates]]></category>
+      <category><![CDATA[visualstudio.extensibility]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253400</guid>
+      <description><![CDATA[<p>The latest updates in Visual Studio 2022 introduced features specifically designed to improve how you manage extensions. These updates offer tools that help you automate processes, provide detailed controls for configuration, and enhance the user interface to streamline your development workflows. Seamless auto updates Visual Studio now automatically triggers updates whenever you open the Extension [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/extension-manager-updates-in-visual-studio/">Extension Manager updates in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The latest updates in Visual Studio 2022 introduced features specifically designed to improve how you manage extensions. These updates offer tools that help you automate processes, provide detailed controls for configuration, and enhance the user interface to streamline your development workflows.</p>
+<h2>Seamless auto updates</h2>
+<p>Visual Studio now automatically triggers updates whenever you open the Extension Manager window. This ensures you are consistently working with the latest features and fixes without needing to manually initiate updates.</p>
+<p><img decoding="async" class="alignnone wp-image-253401" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-1.png" alt="Infobar notifying that an update is available for an extension" width="800" height="219" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-1.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-1-300x82.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-1-768x210.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></p>
+<h2>Infobar notifications for applied updates</h2>
+<p>An Infobar will now appear when updates are applied, reminding you to restart Visual Studio. This ensures the updates take effect without requiring additional steps on your part.</p>
+<h2>Auto update settings on the extension page</h2>
+<p>Settings for auto updates have been integrated directly into the extension page, making it easier to access and configure them. You can quickly adjust preferences without navigating through multiple menus.</p>
+<p><img decoding="async" class="alignnone wp-image-253402" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-2.png" alt="Ability to que &quot;update extensions automatically&quot;" width="800" height="211" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-2.png 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-2-300x79.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-2-768x203.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></p>
+<h2>Filter by pending changes</h2>
+<p>A new &#8220;Pending&#8221; category has been added to highlight pending updates or modifications. This feature helps developers like you stay informed about changes that require attention..</p>
+<p><img decoding="async" class="alignnone wp-image-253403" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-3.png" alt="Filtering by category &gt; Pending (for pending changes)" width="589" height="270" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-3.png 589w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-3-300x138.png 300w" sizes="(max-width: 589px) 100vw, 589px" /></p>
+<h2>Additional auto update settings in Tools &gt; Options</h2>
+<p>For better accessibility, auto update settings are also available under **Tools &gt; Options**. This provides an alternative way to manage your preferences in a centralized location.</p>
+<p><img decoding="async" class="alignnone wp-image-253404" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-4.png" alt="Showing tools &gt; options additional settings" width="792" height="706" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-4.png 792w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-4-300x267.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253400-4-768x685.png 768w" sizes="(max-width: 792px) 100vw, 792px" /></p>
+<h3>Simplified settings interface</h3>
+<p>The user interface for managing settings has been redesigned to reduce complexity. With fewer clicks and clearer options, configuring your environment is now more intuitive.</p>
+<h3>Excluded extensions list</h3>
+<p>An excluded extensions list is now available, automatically populating with extensions you choose to exclude from automatic updates. This feature is especially useful for extensions critical to your workflow, where manual update control is preferred.</p>
+<h2>Conclusion</h2>
+<p>These enhancements in Visual Studio 2022 aim to make extension management more user-friendly and efficient. By automating frequent tasks and providing more granular control, these updates contribute to a streamlined development experience that increase your productivity!</p>
+<p>We appreciate the feedback from our developer community, which plays a vital role in shaping these updates. Please continue to share your insights to help us improve Visual Studio with every release.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/extension-manager-updates-in-visual-studio/">Extension Manager updates in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/extension-manager-updates-in-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
+    </item>
+    <item>
+      <title>Improve the commands in your extensions</title>
+      <link>https://devblogs.microsoft.com/visualstudio/improve-the-commands-in-your-extensions/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/improve-the-commands-in-your-extensions/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Wed, 28 May 2025 15:53:58 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Reliability]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253374</guid>
+      <description><![CDATA[<p>As Visual Studio extension authors, our goal is to create tools that empower developers across diverse environments. A key part of this mission involves ensuring that your extension commands remain accessible and consistent across all Visual Studio locales. In your VSSDK extensions, by adding the CanonicalName property to your commands in the .vsct file, you [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/improve-the-commands-in-your-extensions/">Improve the commands in your extensions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>As Visual Studio extension authors, our goal is to create tools that empower developers across diverse environments. A key part of this mission involves ensuring that your extension commands remain accessible and consistent across all Visual Studio locales. In your VSSDK extensions, by adding the <em>CanonicalName</em> property to your commands in the .vsct file, you can achieve greater resilience and user satisfaction for your extension.</p>
+<p>And with a few simple tricks, you can make your command names a lot prettier as well.</p>
+<h2>Why add the <em>CanonicalName</em> property?</h2>
+<p>When a Visual Studio extension supports multiple locales, the names of commands can vary based on localized resources. While this improves usability in specific languages, it can sometimes lead to inconsistencies or challenges in maintaining a stable reference to commands programmatically. For example, if a command’s name changes between locales, automation scripts, or even third-party integrations referencing that command may break.</p>
+<p>The <em>CanonicalName</em> property solves this issue by providing a stable, locale-independent identifier for your commands. With this property:</p>
+<ul>
+<li><strong>Commands are more predictable</strong>: Developers referencing your extension programmatically can rely on a fixed name across all locales.</li>
+<li><strong>Better integration</strong>: Tools and integrations can seamlessly reference commands without needing locale-specific handling.</li>
+<li><strong>Enhanced user experience</strong>: End users benefit from consistent behavior and fewer issues caused by localization mismatches.</li>
+</ul>
+<h2>Step-by-step guide to adding <em>CanonicalName</em></h2>
+<p>Here’s how you can add the <em>CanonicalName</em> property to your commands in the .vsct file of your Visual Studio extension:</p>
+<h3>1. Locate Your .vsct File</h3>
+<p>The .vsct (Visual Studio Command Table) file defines the commands for your extension. It’s usually found in the root folder of your Visual Studio extension project.</p>
+<h3>2. Add the <em>CanonicalName</em> Attribute to Commands</h3>
+<p>Within the .vsct file, commands are defined using the <em>&lt;Button&gt;</em>, <em>&lt;Combo&gt;</em> or <em>&lt;Menu&gt;</em> elements. To add the <em>CanonicalName</em> property, include it as a child inside the <em>&lt;Strings&gt;</em> element. Here’s an example:</p>
+<pre><code class="language-xml">&lt;Button guid="guidMyExtensionCmdSet" id="cmdidMyCommand" priority="0x0100" type="Button"&gt;
+  &lt;Parent guid="guidMyExtensionCmdSet" id="MyMenuGroup" /&gt;
+  &lt;Icon guid="guidImages" id="bmpPic1" /&gt;
+  &lt;Strings&gt;
+    &lt;ButtonText&gt;My Command&lt;/ButtonText&gt;
+    &lt;CanonicalName&gt;.MyExtension.MyCommandName&lt;/CanonicalName&gt;
+  &lt;/Strings&gt;
+&lt;/Button&gt;
+</code></pre>
+<h3>3. Ensure uniqueness of <em>CanonicalName</em></h3>
+<p>The value you assign to <em>CanonicalName </em>must be unique across all commands in your extension. Use meaningful and descriptive identifiers that reflect the command’s purpose.</p>
+<h2>Best practices for using CanonicalName</h2>
+<ul>
+<li><strong>Use PascalCase</strong>: Follow consistent naming conventions like PascalCase for the <em>CanonicalName</em> values.</li>
+<li><strong>Keep it descriptive</strong>: Make the names meaningful to help developers understand the purpose of the command without additional context.</li>
+<li><strong>Avoid localization</strong>: The <em>CanonicalName</em> should always remain in English and free from localization to ensure consistency.</li>
+<li><strong>Start with a period</strong>: This ensures that nothing is added in front of the command name. This is to avoid command names that look like <em>OtherContextMenus.MyExtension.MyCommandName</em>. The leading period is stripped automatically by VS, so it won’t show up.</li>
+<li><strong>Lead with the extension name</strong>: This is to make it very clear that this command is provided by your extension. It also makes it easy for users to search for all commands provided by your extension.</li>
+</ul>
+<h2>We’ve updated the XML Schema file</h2>
+<p>To reflect this best practice of providing the <a id="post-253374-_Int_FiBrOQXS"></a>CanonicalName property with all commands, we’ve updated the schema file to provide in-editor warnings when it is missing. It’s just a warning and it doesn’t affect the VSCT Compiler which will continue to compile the command table as it always has. This is simply a change to make it easier for you to remember to add the property. It will be included in a future update to Visual Studio.</p>
+<h3><strong>Conclusion</strong></h3>
+<p>Adding the <em>CanonicalName</em> property to your commands in the .vsct file is a small but impactful change that enhances the resilience and usability of your Visual Studio extensions. By ensuring consistent references across all locales, you’ll provide a smoother experience for developers and maintain a higher-quality extension.</p>
+<p>Take a moment to review your extension’s .vsct file and implement this property where necessary. It’s a straightforward step toward making your tools even more powerful and user-friendly.</p>
+<p>Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/improve-the-commands-in-your-extensions/">Improve the commands in your extensions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/improve-the-commands-in-your-extensions/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>VisualStudio.Extensibility: Editor classification and updates to user prompt</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-editor-classification-and-updates-to-user-prompt/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-editor-classification-and-updates-to-user-prompt/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Tina Schrepfer (LI)]]></dc:creator>
+      <pubDate>Tue, 27 May 2025 16:00:42 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[visualstudio.extensibility]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253359</guid>
+      <description><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow users like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance, reliability, and installation without restarting Visual Studio. Additional benefits include a sleek and intuitive [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-editor-classification-and-updates-to-user-prompt/">VisualStudio.Extensibility: Editor classification and updates to user prompt</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We continue to invest in the VisualStudio.Extensibility SDK to allow users like you to create extensions that run faster and smoother than ever before! VisualStudio.Extensibility helps you build extensions that run outside the main Visual Studio IDE process for improved performance, reliability, and installation without restarting Visual Studio. Additional benefits include a sleek and intuitive .NET 8-based API and comprehensive, well-maintained documentation to help you develop amazing extensions faster than ever before.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/VisualStudio.Extensibility" target="_blank">Get Started with VisualStudio.Extensibility</a></div></p>
+<p>For the latest up-to-date docs and installation instructions, visit <a href="https://aka.ms/VisualStudio.Extensibility">https://aka.ms/VisualStudio.Extensibility</a>. We encourage you to report bugs and suggest features via the <a href="https://aka.ms/VisualStudio.Extensibility/Issues">issue tracker</a> on our <a href="https://aka.ms/VisualStudio.Extensibility/Repo">GitHub repo</a>, where you can also find extension <a href="https://aka.ms/VisualStudio.Extensibility/Samples">samples</a> to help you get started. We have also launched a new video series on Visual Studio Toolbox to provide a more detailed tour of our samples. Check out the series <a href="https://aka.ms/vsextensibilityseries">here</a>!</p>
+<h2>What’s new for VisualStudio.Extensibility for 17.14?</h2>
+<p>Our 17.14 release of VisualStudio.Extensibility includes the following features:</p>
+<ul>
+<li>Text classification support</li>
+<li>Updates to the ShowPromptAsync API</li>
+</ul>
+<p>This release also includes a previously <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-managing-net-runtime-versions/">mentioned</a> change regarding .NET runtime management requirements. VisualStudio.Extensibility extensions are executed on a separate .NET runtime host, unlike VSSDK extensions which run in the same process as devenv.exe, using the .NET Framework runtime. Since VisualStudio.Extensibility extensions operate on .NET, we must adhere to the runtime servicing lifetime of .NET. Consequently, the VisualStudio.Extensibility platform will be regularly updated to advance to newer versions of .NET LTS. For more information on how this affects you as an extension developer or consumer, please refer to our documentation here.</p>
+<h2>Color text in files with classification support</h2>
+<p>In Visual Studio <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-tagger-support-and-updates-to-settings/">17.13</a>, we added support for taggers in the editor, allowing advanced functionalities such as custom code lens providers. This enhancement laid the groundwork for the text classification feature we are introducing in 17.14. Text classification facilitates custom text coloring within an opened file, commonly referred to as semantic and syntactic colorization. The following snippet demonstrates the creation of classification tags, which are fundamental to implementing editor classification. Please note that the example provided is a very simplistic approach and should not be used without further refinement. For a more comprehensive guide on writing a classification extension, please refer to our <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/editor/walkthroughs/classification?view=vs-2022">documentation</a> and <a href="https://github.com/microsoft/VSExtensibility/tree/main/New_Extensibility_Model/Samples/ClassificationSample">sample materials</a>.</p>
+<pre class="prettyprint language-csharp"><code class="language-csharp">private async Task CreateTagsAsync(ITextDocumentSnapshot document)
+{
+   List&lt;TaggedTrackingTextRange&lt;ClassificationTag&gt;&gt; tags = new();
+   foreach (var line in document.Lines)
+   {
+      var match = LineRegex.Match(line.Text.CopyToString());
+
+      if (match.Success)
+      {
+         foreach (Capture capture in match.Groups[FieldTextMatchName].Captures)
+         {
+            tags.Add(new(
+new(document, line.Text.Start + capture.Index, capture.Length, TextRangeTrackingMode.ExtendNone),
+new(ClassificationType.KnownValues.String)));
+         }
+      }
+   }
+
+   await this.UpdateTagsAsync(
+      updatedRanges: [new(document, 0, document.Length)],
+      tags,
+      CancellationToken.None);
+}
+</code></pre>
+<h2>Display icons and prompt for input with an enhanced ShowPromptAsync API</h2>
+<p>We routinely assess suggestion tickets that track requests for new APIs to be integrated into VisualStudio.Extensibility. Numerous factors influence our decision on which features to prioritize, including the complexity and cost of implementation. In version 17.14, we are pleased to announce that we have addressed a community-requested <a href="https://developercommunity.visualstudio.com/t/VisualStudioExtensibility-Add-support/10563532">feature</a> by introducing icon support in our ShowPromptAsync API. Furthermore, we have added the capability to provide user-input prompt. Below is a code snippet demonstrating how to configure a user prompt with custom icons, titles, messages, and options. For more detailed information, please refer to our <a href="https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/user-prompt/user-prompts?view=vs-2022">documentation</a>.</p>
+<pre class="prettyprint language-csharp"><code class="language-csharp">// Show a prompt that accepts string input from the user, with a default value, custom title and custom icon.
+
+string? feedback = await shell.ShowPromptAsync(
+   $"Thank you for configuring {projectName}. Do you have any feedback?",
+   new InputPromptOptions
+   {
+      DefaultText = feedbackPrompt,
+      Icon = ImageMoniker.KnownValues.Feedback,
+      Title = Title,
+   },
+   cancellationToken);
+
+this.logger.TraceInformation($"Feedback received: {feedback}");
+</code></pre>
+<h2>We want to hear from you!</h2>
+<p>We appreciate the time you’ve spent reporting issues/suggestions and hope you continue to give us feedback when using Visual Studio on what you like and what we can improve. Your feedback is critical to help us make Visual Studio the best tool it can be! You can share feedback with us via <a href="https://developercommunity.visualstudio.com/home%22%20/t%20%22_blank" target="_blank" rel="noopener">Developer Community</a>: report any bugs or issues via <a href="https://learn.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio?view=vs-2022" target="_blank" rel="noopener">report a problem</a> and <a href="https://developercommunity.microsoft.com/VisualStudio/suggest" target="_blank" rel="noopener">share your suggestions</a> for new features or improvements to existing ones.</p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://www.youtube.com/@visualstudio" target="_blank" rel="noopener">YouTube</a>, <a href="https://twitter.com/VisualStudio" target="_blank" rel="noopener">Twitter</a>, <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.twitch.tv/visualstudio" target="_blank" rel="noopener">Twitch</a> and on <a href="https://learn.microsoft.com/en-us/visualstudio/?view=vs-2022" target="_blank" rel="noopener">Microsoft Learn</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-editor-classification-and-updates-to-user-prompt/">VisualStudio.Extensibility: Editor classification and updates to user prompt</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-editor-classification-and-updates-to-user-prompt/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+    </item>
   </channel>
 </rss>
