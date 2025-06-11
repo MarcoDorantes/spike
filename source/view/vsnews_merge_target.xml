@@ -29242,5 +29242,60 @@ this.logger.TraceInformation($"Feedback received: {feedback}");
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visualstudio-extensibility-editor-classification-and-updates-to-user-prompt/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
     </item>
+    <item>
+      <title>Next edit suggestions available in Visual Studio GitHub Copilot</title>
+      <link>https://devblogs.microsoft.com/visualstudio/next-edit-suggestions-available-in-visual-studio-github-copilot/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/next-edit-suggestions-available-in-visual-studio-github-copilot/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Simona Liao]]></dc:creator>
+      <pubDate>Mon, 09 Jun 2025 15:00:39 +0000</pubDate>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Next Edits Suggestion]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253452</guid>
+      <description><![CDATA[<p>GitHub Copilot code completions, or gray text, are specialized in autocompleting unfinished code or providing helpful template code. In reality, coding activities are more diverse than writing new code. What if Copilot could better assist your coding not only with code generation, but your code editing activities as well? We are excited to announce next [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/next-edit-suggestions-available-in-visual-studio-github-copilot/">Next edit suggestions available in Visual Studio GitHub Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>GitHub Copilot code completions, or gray text, are specialized in autocompleting unfinished code or providing helpful template code. In reality, coding activities are more diverse than writing new code. What if Copilot could better assist your coding not only with code generation, but your code editing activities as well?</p>
+<p>We are excited to announce <em>next edit suggestions, </em>or <em>NES</em> for short, is now available in <strong>Visual Studio 2022 17.14</strong> to further improve your coding experience. NES leverages the previous edits made and predicts the next edit to come, whether it’s an insertion, deletion, or mix of both. Unlike Copilot completions which are limited to generating suggestions at your caret location, NES can support you anywhere in your file, where the next edit is most likely to occur.</p>
+<h2>Example usage scenarios</h2>
+<p>Next edit suggestions can be helpful in a variety of scenarios, not only making obvious repetitive changes like renaming, but also more logical changes when you are adding/removing variables or changing the intention of a method. Here are some examples:</p>
+<h4><strong>1. Refactoring a 2D Point class to 3D Point:</strong></h4>
+<p><div style="width: 1712px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-253452-1" width="1712" height="448" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Point3-26-1.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Point3-26-1.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Point3-26-1.mp4</a></video></div></p>
+<h4><strong>2. Update the code syntax to modern C++ using STL:</strong></h4>
+<p>Note that NES is not just making repetitive changes to updating all &#8220;printf() &#8220; to &#8220;std::cout&#8220;, but also updating other syntax such as &#8220;fgets()&#8220;.</p>
+<p><div style="width: 1698px;" class="wp-video"><video class="wp-video-shortcode" id="video-253452-2" width="1698" height="618" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Migration3-28-1.mp4?_=2" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Migration3-28-1.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Migration3-28-1.mp4</a></video></div></p>
+<h4><strong>3. Make logical changes in response to a newly added variable:</strong></h4>
+<p>NES responds quickly to the new variable, which adds the maximum number of guesses a player can make in a game, and Copilot Completions also jumps in to help.</p>
+<p><div style="width: 1142px;" class="wp-video"><video class="wp-video-shortcode" id="video-253452-3" width="1142" height="374" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/AddingVariable3-28.mp4?_=3" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/AddingVariable3-28.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/AddingVariable3-28.mp4</a></video></div></p>
+<h2></h2>
+<h2>Getting started with next edit suggestions</h2>
+<p>Enable NES via <strong>Tools &gt; Options &gt; GitHub &gt; Copilot &gt; Copilot Completions &gt; Enable Next Edit Suggestions.</strong></p>
+<p>Like completions, all you need to do to get NES is to start coding!</p>
+<p>When there is an available edit suggestion, it could be presented in a diff view where the red diff indicates the original code you had, and the green indicates the new one suggested by Copilot to clearly shows any replacement or deletion of your original code.</p>
+<p>If the edit is on a different line than the one you are on now, it will suggest you <strong>Tab </strong>to Navigate to the corresponding line first. The arrow in the hint bar indicates where the next edit is located. You won’t need to manually search for related edits anymore; NES will lead the way!</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-253454" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/a-computer-screen-shot-of-a-program-ai-generated.png" alt="Next edit suggestions pop up with a navigation hint bar that includes Tab and arrow key down, a purple arrow in the gutter space next to the line number, and inline diffs where red indicates the original code and green indicates the new code. The current caret location is on line 1 and the edit is on line 4, thus the navigation hint bar is suggesting the user to hit tab to jump from line 1 to line 4." width="641" height="310" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/a-computer-screen-shot-of-a-program-ai-generated.png 641w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/a-computer-screen-shot-of-a-program-ai-generated-300x145.png 300w" sizes="(max-width: 641px) 100vw, 641px" /></p>
+<p>After you are on the same line as the edit, you can <strong>Tab to Accept</strong> the suggestion.</p>
+<p><img decoding="async" class="alignnone wp-image-253455" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253452-3.png" alt="Next edit suggestions, still with inline diffs where red indicates the original code and green indicates the new code. Now the caret location is on line 4, where is the part of the suggestion area, so the gutter arrow changes from purple to grey, and the navigation hint bar changes to say Tab accept." width="696" height="273" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253452-3.png 696w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/word-image-253452-3-300x118.png 300w" sizes="(max-width: 696px) 100vw, 696px" /></p>
+<p>In addition to the hint bars, an arrow in the gutter also pops up to indicate that there is an edit suggestion available. You can click on the arrow to explore the edit suggestion menu. This menu allows you to interact with NES using a mouse, when you don’t want to press the Tab key.</p>
+<p><img decoding="async" class="alignnone wp-image-253456" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/a-screen-shot-of-a-computer-program-ai-generated.png" alt="Next edit suggestions, still with inline diffs where red indicates the original code and green indicates the new code. The view where user clicks on the gutter arrow, and a context menu pops up below the gutter arrow with three options: Navigate to, Accept, Dismiss" width="675" height="200" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/a-screen-shot-of-a-computer-program-ai-generated.png 675w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/a-screen-shot-of-a-computer-program-ai-generated-300x89.png 300w" sizes="(max-width: 675px) 100vw, 675px" /></p>
+<p>See next edit suggestions explained step-by-step:</p>
+<p><iframe src="//www.youtube.com/embed/pojy5BGdZTU" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p>Please give NES a try today to let it assist you in your logical editing flow! If you have any feedback, our team would love to hear from you through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a> to help us keep iterating on and improving NES!</p>
+<h2>Check out the new Visual Studio Hub</h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h2>Appreciation for your feedback</h2>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/next-edit-suggestions-available-in-visual-studio-github-copilot/">Next edit suggestions available in Visual Studio GitHub Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/next-edit-suggestions-available-in-visual-studio-github-copilot/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Point3-26-1.mp4" length="4636352" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Migration3-28-1.mp4" length="11259416" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/AddingVariable3-28.mp4" length="2600441" type="video/mp4" />
+    </item>
   </channel>
 </rss>
