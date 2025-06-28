@@ -29297,5 +29297,161 @@ this.logger.TraceInformation($"Feedback received: {feedback}");
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/Migration3-28-1.mp4" length="11259416" type="video/mp4" />
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/AddingVariable3-28.mp4" length="2600441" type="video/mp4" />
     </item>
+    <item>
+      <title>Better Models, Smarter Defaults: Claude Sonnet 4, GPT-4.1, and More Control in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/better-models-smarter-defaults-claude-sonnet-4-gpt-4-1-and-more-control-in-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/better-models-smarter-defaults-claude-sonnet-4-gpt-4-1-and-more-control-in-visual-studio/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Wed, 25 Jun 2025 23:24:03 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Models]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253427</guid>
+      <description><![CDATA[<p>We’re excited to share some major improvements to the Copilot experience in Visual Studio, including smarter default models, more choices, and easier ways to manage your usage. Smarter default model Copilot in Visual Studio now uses GPT-4.1 as the default model (previously 4o). In our testing, it delivers significantly better performance—faster responses, higher quality suggestions, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/better-models-smarter-defaults-claude-sonnet-4-gpt-4-1-and-more-control-in-visual-studio/">Better Models, Smarter Defaults: Claude Sonnet 4, GPT-4.1, and More Control in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We’re excited to share some major improvements to the Copilot experience in Visual Studio, including smarter default models, more choices, and easier ways to manage your usage.</p>
+<h3><strong>Smarter default model</strong></h3>
+<p>Copilot in Visual Studio now uses <strong>GPT-4.1</strong> as the default model (previously 4o). In our testing, it delivers significantly better performance—faster responses, higher quality suggestions, and greater efficiency overall.</p>
+<h3><strong>More models to choose from</strong></h3>
+<p>Want to try something else? You now have access to an ever-broader range of models:</p>
+<ul>
+<li><strong>Claude Sonnet 4</strong></li>
+<li><strong>Claude Opus 4</strong></li>
+<li><strong>Claude Sonnet 3.5</strong></li>
+<li><strong>Claude 3.7 (non-thinking and thinking)</strong></li>
+<li><strong>OpenAI o3 mini</strong></li>
+<li><strong>Gemini 2.0 Flash</strong></li>
+<li><strong>Gemini 2.5 Pro</strong></li>
+</ul>
+<p>Model selections are now sticky, meaning your chosen model stays selected across threads for a smoother workflow. <span class="TextRun SCXW245396793 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun CommentStart SCXW245396793 BCX8">Not sure which model to use for your task? Check out </span></span><a class="Hyperlink SCXW245396793 BCX8" href="https://docs.github.com/copilot/using-github-copilot/ai-models/choosing-the-right-ai-model-for-your-task" target="_blank" rel="noreferrer noopener"><span class="TextRun Underlined SCXW245396793 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW245396793 BCX8" data-ccp-charstyle="Hyperlink">this documentation</span></span></a><span class="TextRun SCXW245396793 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW245396793 BCX8"> to learn about each </span><span class="NormalTextRun SCXW245396793 BCX8">models’</span><span class="NormalTextRun SCXW245396793 BCX8"> strengths</span><span class="NormalTextRun SCXW245396793 BCX8">. </span><span class="NormalTextRun SCXW245396793 BCX8">Give them a try</span><span class="NormalTextRun SCXW245396793 BCX8"> and let us know what you think!</span></span><span class="EOP Selected SCXW245396793 BCX8" data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true}"> </span></p>
+<p>We’ve also made it easier to enable and switch between models. If a model is available under your plan but not yet enabled, you’ll now see a prompt right in the model picker—no need to navigate to GitHub settings.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/inline-approval.png"><img fetchpriority="high" decoding="async" class="alignnone size-full wp-image-253576" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/inline-approval.png" alt="inline approval image" width="1134" height="656" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/inline-approval.png 1134w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/inline-approval-300x174.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/inline-approval-1024x592.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/inline-approval-768x444.png 768w" sizes="(max-width: 1134px) 100vw, 1134px" /></a></p>
+<h3><strong>Usage management and billing updates</strong></h3>
+<p>With GitHub’s <a href="https://github.blog/changelog/2025-06-18-update-to-github-copilot-consumptive-billing-experience/">new billing model</a>, we’ve made a few updates in Visual Studio to help you stay in control.</p>
+<h2>Track Your Usage Easily</h2>
+<p>We’ve added a new <strong>Copilot Consumptions</strong> panel to help you monitor your usage. Just click the Copilot badge in the top-right corner of Visual Studio, then select <strong>Copilot Consumptions</strong> to see how many premium requests you’ve used across chat, inline suggestions, and more.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/usage.png"><img decoding="async" class="alignnone size-full wp-image-253432" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/usage.png" alt="usage image" width="787" height="451" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/usage.png 787w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/usage-300x172.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/usage-768x440.png 768w" sizes="(max-width: 787px) 100vw, 787px" /></a></p>
+<p>From there, you can also access <strong>Manage Plan</strong> to update your subscription or adjust settings on GitHub.com.  <span data-teams="true">If you run out of your <a id="menur2v0d" class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" title="https://docs.github.com/en/copilot/managing-copilot/monitoring-usage-and-entitlements/about-premium-requests" href="https://docs.github.com/en/copilot/managing-copilot/monitoring-usage-and-entitlements/about-premium-requests" target="_blank" rel="noreferrer noopener" aria-label="Link premium requests">premium requests</a>, you’ll automatically switch to a standard model, GPT-4.1, at no extra cost.</span></p>
+<p><strong>Note:</strong> Some models may count more heavily toward your quota—for example, number of requests consumed vary depending on the model used. You’ll see this clearly indicated in the model picker before you make a selection.</p>
+<p>We hope these updates make Copilot in Visual Studio more powerful and transparent for you.
+Have a favorite model? Tell us how you’re using it—we’d love to hear from you! <img src="https://s.w.org/images/core/emoji/15.1.0/72x72/1f60a.png" alt="😊" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h2>Check out the new Visual Studio Hub</h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h2>We appreciate your feedback</h2>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/better-models-smarter-defaults-claude-sonnet-4-gpt-4-1-and-more-control-in-visual-studio/">Better Models, Smarter Defaults: Claude Sonnet 4, GPT-4.1, and More Control in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/better-models-smarter-defaults-claude-sonnet-4-gpt-4-1-and-more-control-in-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">2</slash:comments>
+    </item>
+    <item>
+      <title>Inside Access: Join Us at VS Live! Redmond for a Week of Deep Developer Learning</title>
+      <link>https://devblogs.microsoft.com/visualstudio/inside-access-join-us-at-vs-live-redmond-for-a-week-of-deep-developer-learning/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/inside-access-join-us-at-vs-live-redmond-for-a-week-of-deep-developer-learning/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Mon, 23 Jun 2025 14:00:26 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[VS LIVE!]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253542</guid>
+      <description><![CDATA[<p>A long time ago, I stood in a packed room at VS Live! and watched developers erupt in applause after a debugging demo shaved hours off a real-world problem. That was the moment I realized this wasn’t just a conference—it was a place where developers and toolmakers come together to push the craft forward. I’m [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/inside-access-join-us-at-vs-live-redmond-for-a-week-of-deep-developer-learning/">Inside Access: Join Us at VS Live! Redmond for a Week of Deep Developer Learning</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>A long time ago, I stood in a packed room at VS Live! and watched developers erupt in applause after a debugging demo shaved hours off a real-world problem. That was the moment I realized this wasn’t just a conference—it was a place where developers and toolmakers come together to push the craft forward.</p>
+<p>I’m excited to announce that I’ll be keynoting <strong>VS Live! Redmond 2025</strong>, August 4–8 at the Microsoft Conference Center—and I’d love for you to join us.</p>
+<p>This is more than just a developer event. It’s the one time each year when the Visual Studio, GitHub, and Azure engineering teams open our doors, share what we’re working on, and connect directly with the developers we build for. I’ve already started working with the team on a set of demos that will surprise you—and I mean that in the best way.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/vslive-8-2025.jpg"><img decoding="async" class="alignnone  wp-image-253551" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/vslive-8-2025.jpg" alt="vslive 8 2025 image" width="756" height="396" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/vslive-8-2025.jpg 1200w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/vslive-8-2025-300x157.jpg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/vslive-8-2025-1024x536.jpg 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/vslive-8-2025-768x402.jpg 768w" sizes="(max-width: 756px) 100vw, 756px" /></a></p>
+<p>Let me show you why this is the event I never miss.</p>
+<h2><strong>Top 6 Reasons to Join Us at VS Live! Redmond</strong></h2>
+<ol>
+<li><strong>Kick Off with My Keynote and Exclusive Visual Studio Demos</strong>
+I’m teaming up with the Visual Studio engineering team to bring you fresh, powerful demos that will reshape how you think about building and debugging software. These are workflows we’ve never shown publicly before—and I can’t wait to share them with you.</li>
+<li><strong>Unlock the Power of Copilot Agent Mode + MCP</strong>
+Copilot’s new Agent Mode isn’t just a concept—it’s live, extensible, and deeply integrated into Visual Studio. At VS Live!, we’ll show you how to use it to handle multi-step dev tasks, integrate Model Context Protocol (MCP) tools, and turn GitHub Copilot into an AI teammate that actually gets things done.</li>
+<li><strong>Only 400 Spots Left for This Exclusive On-Campus Event</strong>
+VS Live! Redmond is intentionally smaller and more intimate than most developer conferences—and it’s held right here in <strong>Building 33</strong> on the Microsoft campus, home to the Visual Studio product team. Fewer than 400 seats remain. If you want in, now’s the time to register.</li>
+<li><strong>Meet the Experts: Visual Studio, GitHub, and Azure</strong>
+We’re hosting a special “Meet the Experts” experience where you can talk directly with the PMs and engineers building your tools. No booths. No filters. Just honest, developer-to-developer conversations about what’s working, what’s not, and what’s next.</li>
+<li><strong>Help Shape the Future of Visual Studio</strong>
+We’ve carved out time for a dedicated feedback session with the Visual Studio IDE team. Bring your questions, feature ideas, and wish lists—we want to hear them. Your voice will help shape how Visual Studio continues to evolve.</li>
+<li><strong>70+ Sessions. 39 Microsoft Speakers. Hands-On Everything.</strong>
+From .NET and Azure to GitHub Copilot and Microsoft Fabric, you’ll get access to deep technical sessions, hands-on labs, and hallway conversations with folks who build the tech. This isn’t high-level theory—it’s practical, real-world content you can apply the moment you get back to work.</li>
+</ol>
+<h2><strong>Save Your Seat – And Save Big</strong></h2>
+<p>Visual Studio subscribers unlock <strong>exclusive pricing</strong> at <a href="https://my.visualstudio.com">https://my.visualstudio.com</a>. Just sign in with your subscriber ID to find your priority code.</p>
+<p>Not a subscriber? No problem. Use <strong>Priority Code VSLIVEHQ25</strong> at checkout on the <a href="https://vslive.com/events/microsofthq-2025/home.aspx">VS Live! Redmond event page</a> to save up to <strong>$500</strong> on registration.</p>
+<p>There are fewer than 400 spots left for this <strong>exclusive, smaller event</strong>—held right on the Microsoft campus in <strong>Building 33</strong>, home to the Visual Studio engineering team.</p>
+<p>And for a few lucky attendees, we’re planning something special: <strong>a backstage pass experience</strong>, including private meetups and Redmond campus tours. More details coming soon.</p>
+<p>Whether you&#8217;re a long-time Visual Studio subscriber or just starting to explore GitHub Copilot and Azure AI, this is your chance to connect with the engineers building the tools you use every day—and the community that makes it all worth it.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://vslive.com/events/microsofthq-2025/home.aspx" target="_blank">VS LIVE! REDMOND</a></div></p>
+<p><strong>P.S.</strong> If you see me in the halls or at a session, stop me and say hi—I’d love to hear what you’re building.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/inside-access-join-us-at-vs-live-redmond-for-a-week-of-deep-developer-learning/">Inside Access: Join Us at VS Live! Redmond for a Week of Deep Developer Learning</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/inside-access-join-us-at-vs-live-redmond-for-a-week-of-deep-developer-learning/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>Agent mode is now generally available with MCP support</title>
+      <link>https://devblogs.microsoft.com/visualstudio/agent-mode-is-now-generally-available-with-mcp-support/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/agent-mode-is-now-generally-available-with-mcp-support/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel, Filisha Shah, Allie Barry]]></dc:creator>
+      <pubDate>Tue, 17 Jun 2025 18:24:08 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[Agent Mode]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[MCP]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253501</guid>
+      <description><![CDATA[<p>Copilot agent mode is the next evolution in AI-assisted development—and it&#8217;s now generally available in the Visual Studio June update. Agent mode turns GitHub Copilot into an autonomous pair programmer capable of handling multi-step development tasks from end to end. It builds a plan, executes it, adapts along the way, and loops through tasks until [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/agent-mode-is-now-generally-available-with-mcp-support/">Agent mode is now generally available with MCP support</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Copilot agent mode is the next evolution in AI-assisted development—and it&#8217;s now generally available in the Visual Studio June update.</p>
+<p>Agent mode turns GitHub Copilot into an autonomous pair programmer capable of handling multi-step development tasks from end to end. It builds a plan, executes it, adapts along the way, and loops through tasks until completion.</p>
+<p>Agent mode can analyze your codebase, propose and apply edits, run commands, respond to build or lint errors, and self-correct. You can integrate additional tools from <a href="https://learn.microsoft.com/en-us/visualstudio/ide/mcp-servers?view=vs-2022">MCP servers</a> to expand the agent&#8217;s capabilities. Ask Mode, on the other hand works <em>with</em> you in a conversational way &#8211; you guide it with prompts, give it context, and steer the direction. Where Ask Mode helps you think through a problem, Agent Mode executes the goal.</p>
+<p>To try agent mode out, open <strong>Copilot Chat</strong>, click the <code><strong>Ask</strong></code> button, and switch to <code><strong>Agent</strong></code>.</p>
+<p><a href="https://youtu.be/iqiR7uQJe7A"><iframe src="//www.youtube.com/embed/iqiR7uQJe7A" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></a></p>
+<p>&nbsp;</p>
+<h3><strong>From Goals to Working Code</strong></h3>
+<p>Agent mode is built for real-world scenarios. You can give it high-level tasks like:</p>
+<ul>
+<li>“Add ‘buy now’ functionality to my product page.”</li>
+<li>“Add a retry mechanism to this API call with exponential backoff and a unit test.”</li>
+<li>“Create a new Blazor web app that does X&#8221;</li>
+</ul>
+<p>Copilot will try to identify the right files, apply changes, run builds, and fix errors—all while keeping you in control with editable previews, undo, and a live action feed. The more context and detail you provide, the better the results. Agent mode works best when it understands your intent clearly. The more precise your instructions and context, the more effective the outcome.</p>
+<h1>Tool calling</h1>
+<p>At its core, agent mode uses<strong> tool calling </strong>to access a growing set of capabilities inside Visual Studio. When given a goal, it selects and executes the right tools step by step. You can explore the available tools via the tool&#8217;s dropdown (icon with two wrenches) in the Copilot Chat Window.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/mcptools.png"><img decoding="async" class="alignnone size-full wp-image-253502" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/mcptools.png" alt="mcp tools image" width="624" height="296" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/mcptools.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/06/mcptools-300x142.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></p>
+<p>Want it to be more powerful? You can extend the agent by adding tools from an ecosystem of Model Context Protocol (MCP) extenders.</p>
+<h1>Agent mode + MCP</h1>
+<p>Model Context Protocol (MCP) is a protocol designed to seamlessly connect AI agents with a variety of external tools and services, similar to how HTTP standardized web communication. The aim is to enable any client to integrate robust tool servers such as databases, code search, and deployment systems, without writing customer connections for each tool. With MCP, the agent can be configured to access rich, real-time context from across your development stack:</p>
+<ul>
+<li>GitHub repositories</li>
+<li>CI/CD pipelines</li>
+<li>Monitoring and telemetry systems</li>
+<li>And more</li>
+</ul>
+<p>MCP is open source and extensible, so you can connect any compatible server. Common integrations include GitHub, Azure, and external providers like Perplexity. Check out the MCP <a href="https://github.com/modelcontextprotocol/servers">official server repository</a> to learn more.</p>
+<p>Visual Studio uses the native <code>mcp.json</code> file for MCP server configuration, and also detects compatible configurations set up by other development environments, such as <code>.vscode/mcp.json</code>. Learn more <a href="https://learn.microsoft.com/en-us/visualstudio/ide/mcp-servers?view=vs-2022">here</a>.</p>
+<p>Once connected, the agent can take smarter actions. For example, if you add tools from the GitHub MCP server, your agent can retrieve and create issues on your behalf, check repo history, search GitHub, etc. A Figma MCP server provides the agent access to your design mockups.</p>
+<p>This is what makes agent mode truly extensible: it plugs into your environment and acts with real understanding of your tools, systems, and workflows.</p>
+<p>We’re incredibly excited about this new prompt-first experience, and how it empowers developers to move faster while staying in full control. We’re continuously evolving it, and your input plays a big role—please keep the feedback coming <a href="https://developercommunity.visualstudio.com/home">here</a>. And make sure to include your logs. It helps us get to the root faster and fix the problem.</p>
+<h2>Beyond agent mode: more AI updates to try in the June release</h2>
+<p>But wait, we’re not done! The team included additional features in this <a href="https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes#github-copilot">release </a>that are intended to improve your experience with Copilot in Visual Studio.</p>
+<ul>
+<li><strong>Reuse and Share Prompt Files Easily</strong>: Create reusable prompt files in your repository, allowing you and your team to share and run custom prompts with ease. A prompt file is a standalone markdown file containing a prompt that you can run directly in chat, reducing the number of requests you need to type.</li>
+<li><strong>Gemini 2.5 Pro and GPT-4.1 are now available</strong>: Developers love working with different models with chat and agent mode to get the desired results they are looking for. Now, Gemini 2.5 Pro and GPT-4.1 are available, offering improved reasoning and generation capabilities for your coding workflows.</li>
+<li><strong>Reference the Output Window as part of your chat context</strong>: Troubleshoot runtime behavior more effectively.</li>
+<li><strong>Monitor your usage</strong> of GitHub Copilot directly from Visual Studio.</li>
+<li><strong>General availability of the Agents Toolkit 17.14 </strong>with improvements for building Microsoft 365 apps and intelligent agents.</li>
+</ul>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/agent-mode-is-now-generally-available-with-mcp-support/">Agent mode is now generally available with MCP support</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/agent-mode-is-now-generally-available-with-mcp-support/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
+    </item>
   </channel>
 </rss>
