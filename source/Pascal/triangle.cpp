@@ -18,16 +18,16 @@ void triangle_of_Pascal(unsigned int rows)
   grid[1][--row_start_index]=1;
   for(int row=2; row<rows; ++row) {
     int row_value_count = row+1;
-    int row_calcs = row_value_count-2;
+    int row_sums = row_value_count-2;
     grid[row][--row_start_index]=1;
-    int calcs_count=0;
-    int column=row_start_index+2;
-    for(; column<columns; column+=2) {
-      if(calcs_count>=row_calcs) break;
-      grid[row][column] = grid[row-1][column-1] + grid[row-1][column+1];
-      ++calcs_count;
+    int sums_count=0;
+    int col=row_start_index+2;
+    for(; col<columns; col+=2) {
+      if(sums_count>=row_sums) break;
+      grid[row][col]=grid[row-1][col-1] + grid[row-1][col+1];
+      ++sums_count;
     }
-    grid[row][column]=1;
+    grid[row][col]=1;
   }
   
   /*for(int row=0; row<rows; ++row) {
