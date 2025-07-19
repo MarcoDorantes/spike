@@ -20,12 +20,13 @@ void triangle_of_Pascal(unsigned int rows)
     int row_value_count = row+1;
     int row_sums = row_value_count-2;
     grid[row][--row_start_index]=1;
-    int sums_count=0;
     int col=row_start_index+2;
-    for(; col<columns; col+=2) {
-      if(sums_count>=row_sums) break;
+    for(
+      int sums_count=0;
+      col<columns && sums_count<row_sums;
+      col+=2, ++sums_count)
+    {
       grid[row][col]=grid[row-1][col-1] + grid[row-1][col+1];
-      ++sums_count;
     }
     grid[row][col]=1;
   }
