@@ -50,6 +50,6 @@ void triangle_of_Pascal(unsigned int rows)
 
 int main() {
   int return_code = 0;
-  triangle_of_Pascal(6U);//15 max Window
+  triangle_of_Pascal(8U);//15 max Window
   return return_code;
 }
