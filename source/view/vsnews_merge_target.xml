@@ -29453,5 +29453,119 @@ From .NET and Azure to GitHub Copilot and Microsoft Fabric, you’ll get access 
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/agent-mode-is-now-generally-available-with-mcp-support/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
     </item>
+    <item>
+      <title>Watch Live: Visual Studio Toolbox at VS LIVE! Redmond 2025</title>
+      <link>https://devblogs.microsoft.com/visualstudio/watch-live-visual-studio-toolbox-at-vs-live-redmond-2025/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/watch-live-visual-studio-toolbox-at-vs-live-redmond-2025/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Tue, 29 Jul 2025 15:28:53 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253722</guid>
+      <description><![CDATA[<p>Join Robert Green and Leslie Richardson for a full day of live sessions, demos, and interviews. Live from Microsoft HQ – Stream Tuesday’s Sessions with Visual Studio Toolbox! On Tuesday, August 5, join us for a special edition of Visual Studio Toolbox Live—broadcast from VS LIVE! Redmond and hosted by Leslie Richardson and Robert Green. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/watch-live-visual-studio-toolbox-at-vs-live-redmond-2025/">Watch Live: Visual Studio Toolbox at VS LIVE! Redmond 2025</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><em>Join Robert Green and Leslie Richardson for a full day of live sessions, demos, and interviews.</em></p>
+<h2><strong>Live from Microsoft HQ – Stream Tuesday’s Sessions with Visual Studio Toolbox!</strong></h2>
+<p>On <strong>Tuesday, August 5</strong>, join us for a <strong>special edition of Visual Studio Toolbox Live</strong>—broadcast from VS LIVE! Redmond and hosted by <strong>Leslie Richardson</strong> and <strong>Robert Green</strong>. You’ll get a full day of Microsoft-led sessions, live studio commentary, behind-the-scenes interviews, and exclusive insights straight from campus.</p>
+<p><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://aka.ms/join-vslive" target="_blank" rel="noopener">Click here to set a YouTube reminder</a></strong> so you don’t miss a moment.</p>
+<h3><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f3a4.png" alt="🎤" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>What You’ll See on Tuesday</strong></h3>
+<p>We’re streaming five sessions led by Microsoft product teams across Visual Studio, Azure, GitHub Copilot, and .NET. Whether you&#8217;re looking to boost your daily productivity or build your next-gen AI app, this day is packed with learning.</p>
+<ul>
+<li><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f6e0.png" alt="🛠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://vslive.com/events/microsofthq-2025/sessions/tuesday/t01-visual-studio.aspx" target="_blank" rel="noopener">8:00 AM – Getting the Most out of the Latest in Visual Studio</a>
+</strong><em>Harshada Hole &amp; Jessie Houghton, Microsoft</em>
+See the newest productivity boosts, AI-assisted debugging, and smarter Git tools—plus how to make them work for your day-to-day workflow.</li>
+<li><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f916.png" alt="🤖" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://vslive.com/events/microsofthq-2025/sessions/tuesday/t06-nextgen-ai-apps.aspx" target="_blank" rel="noopener">9:30 AM – Build Next-Gen AI Apps with .NET and Azure</a></strong>
+<em>Jon Galloway, Microsoft</em>
+Discover the latest SDKs, patterns, and frameworks for building intelligent cloud-native applications.</li>
+<li><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f399.png" alt="🎙" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://vslive.com/events/microsofthq-2025/sessions/tuesday/tues-key.aspx" target="_blank" rel="noopener">11:15 AM – Keynote: The Future of Visual Studio</a></strong>
+<em>Mads Kristensen, Microsoft</em>
+Get inspired as Mads shows off what’s new and what’s coming next for developers building with Visual Studio.</li>
+<li><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f9e0.png" alt="🧠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://vslive.com/events/microsofthq-2025/sessions/tuesday/t11-net-dev-with-vs.aspx" target="_blank" rel="noopener">1:30 PM – Getting the Most Out of .NET Development with Visual Studio</a></strong>
+<em>Allie Barry &amp; Wendy Breiding, Microsoft</em>
+Tips, tricks, and GitHub Copilot techniques to boost your .NET development efficiency and code quality.</li>
+<li><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4f1.png" alt="📱" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://vslive.com/events/microsofthq-2025/sessions/tuesday/t16-vs-and-net-maui.aspx" target="_blank" rel="noopener">3:00 PM – Building Mobile &amp; Desktop Apps with .NET MAUI</a></strong><em>David Ortinau, Microsoft</em>
+Explore how to build stunning cross-platform apps with .NET MAUI using Visual Studio’s latest live tooling and project templates.</li>
+</ul>
+<h3><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f3a5.png" alt="🎥" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Hosted Live from the Studio</strong></h3>
+<p>Between each session, we’ll cut to the Visual Studio Toolbox studio with <strong>Robert and Leslie</strong>, featuring:</p>
+<ul>
+<li><strong>Live Q&amp;A</strong> from the YouTube chat</li>
+<li><strong>Guest drop-ins</strong> from our Microsoft speakers</li>
+<li><strong>Commentary and context</strong> to help you apply what you just saw</li>
+<li>And maybe a few surprises&#8230;</li>
+</ul>
+<p><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Have a question during the stream? Drop it in the chat—Robert and Leslie might feature it live!</strong></p>
+<h3><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4fa.png" alt="📺" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>How to Watch</strong></h3>
+<p><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f534.png" alt="🔴" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Watch the Full Livestream on YouTube</strong>
+Catch all five Microsoft-led sessions, plus live studio hosting from Robert Green and Leslie Richardson.</p>
+<p><strong><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://aka.ms/join-vslive" target="_blank" rel="noopener">Watch Live on YouTube</a></strong>
+<em>(Streaming begins Tuesday, August 5 at 8:00 AM PT)</em></p>
+<h4><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f3a5.png" alt="🎥" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Get the Backstage Pass with Krezzia &amp; Lydia</h4>
+<p>Want to see what it’s like behind the scenes at VS LIVE! Redmond?
+Follow <strong>Krezzia Basilio</strong> and <strong>Lydia Yong</strong>, Microsoft FTEs from the <em>Aspire Undergrad Program</em>, as they bring you backstage interviews, speaker walk-and-talks, reaction clips, and stories from the event floor.</p>
+<p>This is your unofficial, unscripted, attendee-level view of the action—from greenroom to keynote to closing time.</p>
+<p><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://www.tiktok.com/@visualstudio" target="_blank" rel="noopener">Follow on TikTok</a>
+<img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/" target="_blank" rel="noopener">Follow on LinkedIn</a></p>
+<h3><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4fc.png" alt="📼" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Catch the Sessions On-Demand (After August 11)</strong></h3>
+<p>Can’t join live? No problem—on-demand recordings of many Microsoft-led sessions will be available a few days after the event.</p>
+<h3><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f527.png" alt="🔧" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Want More Toolbox?</strong></h3>
+<p><em>Visual Studio Toolbox</em> is your go-to show for weekly tips, tools, and demos straight from the product team and engineering experts. From debugging hacks to Copilot walkthroughs, it’s where devs stay current without falling behind.</p>
+<p><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://learn.microsoft.com/en-us/shows/visual-studio-toolbox/" target="_blank" rel="noopener"><strong>Explore Visual Studio Toolbox Episodes</strong></a></p>
+<h3><strong>We’ll See You on August 5</strong></h3>
+<p>This is more than just a livestream—it’s a chance to learn directly from the people who build the tools you use every day. We hope you’ll tune in, join the chat, and spend a day with us at Microsoft HQ.</p>
+<p>—Jim</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/watch-live-visual-studio-toolbox-at-vs-live-redmond-2025/">Watch Live: Visual Studio Toolbox at VS LIVE! Redmond 2025</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/watch-live-visual-studio-toolbox-at-vs-live-redmond-2025/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+    </item>
+    <item>
+      <title>Fresh Learning Paths Now Available on Pluralsight for VS Subscribers</title>
+      <link>https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025-2/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025-2/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Tue, 22 Jul 2025 14:00:40 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Learning Benefits]]></category>
+      <category><![CDATA[Pluralsight]]></category>
+      <category><![CDATA[Visual Studio Subscriptions]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253682</guid>
+      <description><![CDATA[<p>We’ve been thrilled to see so many of you jump back into your Pluralsight benefit after our April 3rd announcement about extended access. Your enthusiasm for learning and leveling up with Visual Studio inspires us every day. If you haven’t had a chance to dive in yet—or want to explore what’s new since then—I wanted [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025-2/">Fresh Learning Paths Now Available on Pluralsight for VS Subscribers</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We’ve been thrilled to see so many of you jump back into your Pluralsight benefit after our <a href="https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025/" target="_blank" rel="noopener">April 3rd announcement</a> about extended access. Your enthusiasm for learning and leveling up with Visual Studio inspires us every day. If you haven’t had a chance to dive in yet—or want to explore what’s new since then—I wanted to share an update on some exciting new courses and paths that we think you’ll find especially valuable.</p>
+<h2><strong>More Time to Learn, More Ways to Grow</strong></h2>
+<p>Visual Studio developers on a paid Professional or Enterprise subscription unlock exclusive learning opportunities—Professional subscribers receive 6 months of complimentary Pluralsight access, while Enterprise subscribers get a full 12 months. That’s even more time to immerse yourself in expert-led courses, hands-on labs, and certification prep, all tailored to the latest Microsoft technologies.</p>
+<p>Why does this matter? Because we know how busy developers are juggling projects, deadlines, and meetings. Pluralsight offers you the flexibility to learn at your own pace, whenever and wherever it fits your schedule.</p>
+<h2><strong>What’s New on Pluralsight?</strong></h2>
+<p>Pluralsight was recently named a Leader in the 2025 Forrester Wave, earning the highest scores in strategy, hands-on learning, skill benchmarking, innovation, and partner ecosystem. This platform is built to help you grow your career with courses designed by industry experts — and the content keeps evolving.</p>
+<p>Here are some of the standout new courses you’ll want to check out:</p>
+<ul>
+<li><strong>VS Code Foundations</strong> (Beginner, Published July 2025)
+Many developers switch between Visual Studio IDE and Visual Studio Code, choosing the right tool for different tasks. This course helps you get comfortable with VS Code’s interface, extensions, command palette, source control, and AI-powered features—so you can make the most of both environments.</li>
+<li><strong>Secure Development with GitHub Copilot</strong> (Beginner, Published May 2025)
+GitHub Copilot can speed up your coding, but like any powerful tool, security matters. Learn how to configure Copilot to keep your company’s intellectual property safe, find vulnerabilities in your code, and fix them before they become problems. This course is essential for writing secure software with AI-assisted coding.</li>
+<li><strong>Prompt Engineering</strong> (Beginner, Published April 2025)
+Generative AI is everywhere, but knowing how to ask the right questions is key. This learning path teaches you how to craft effective prompts that produce precise, context-aware outputs with models like GPT-4. Perfect for developers and data scientists eager to unlock AI’s full potential.</li>
+<li><strong>Generative AI and Copilot in Microsoft Fabric</strong> (Intermediate, Updated March 2025)
+Imagine having a sidekick that helps you create, troubleshoot, and analyze data with AI-driven insights. This course shows you how to leverage Copilot and generative AI across Microsoft Fabric services like data pipelines and Power BI to boost your productivity and creativity.</li>
+<li><strong>Automating Azure Blob and Archive Storage Operations</strong> (Advanced, Updated May 2025)
+Cloud automation is a must-have skill. Learn how to automate Azure storage workflows, implement infrastructure as code, and integrate securely with your existing systems in this deep dive.</li>
+<li><strong>Designing Serverless Architectures with Azure Functions</strong> (Advanced, Updated May 2025)
+Build scalable, event-driven cloud applications with Azure Functions. Explore microservice patterns, event integration, monitoring, and security best practices for serverless architectures.</li>
+</ul>
+<h2><strong>Ready to Unlock Your Extended Pluralsight Access?</strong></h2>
+<p>If you’re a Visual Studio Professional or Enterprise subscriber, your Pluralsight access is waiting for you. Simply head over to <a href="https://my.visualstudio.com" target="_blank" rel="noopener">my.visualstudio.com</a>, log in with your Visual Studio credentials, and activate your benefit. If you have additional questions regarding this benefit, <a href="https://learn.microsoft.com/visualstudio/subscriptions/vs-pluralsight" target="_blank" rel="noopener">check out this article.</a></p>
+<p>Thanks for being part of the Visual Studio community. We can’t wait to see where your learning journey takes you next.</p>
+<h2><strong>Check out the new Visual Studio Hub</strong></h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub" target="_blank" rel="noopener">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h2><strong>Appreciation for your feedback</strong></h2>
+<p>Your insights help us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support.</p>
+<p>Your feedback is invaluable in shaping Visual Studio’s future. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/" target="_blank" rel="noopener">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025-2/">Fresh Learning Paths Now Available on Pluralsight for VS Subscribers</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025-2/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+    </item>
   </channel>
 </rss>
