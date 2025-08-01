@@ -1,10 +1,21 @@
 // https://qr.ae/pAExuz
 // cl /EHsc triangle.cpp
+/*
+The Formula Behind the Numbers
+Each number in Pascal's Triangle can be calculated directly using the binomial coefficient formula.
+The number in the nth row and kth position (starting the count from 0) is given by the formula:
 
+            n!
+(n, k) = --------
+         k!(n-k)!
+
+function Factorial($n) { if($n -le 1) {return 1} else {return $n * (Factorial ($n-1))} }
+function Pascal($n, $k){ return (Factorial $n) / ((Factorial $k)*(Factorial ($n-$k)))  }
+*/
 #include <iostream>
 #include <vector>
 
-void triangle_of_Pascal(unsigned int rows)
+void triangle_of_Pascal_v1(unsigned int rows)
 {
   if(rows<1) return;
   std::cout<<"Pascal's triangle of "<<rows<<" rows:\n";
@@ -48,8 +59,38 @@ void triangle_of_Pascal(unsigned int rows)
   }
 }
 
+int factorial(int n){if(n<=1) return 1; return n*factorial(n-1);}
+int Pascal(int n,int k){return factorial(n) / (factorial(k) * factorial(n-k));}
+void triangle_of_Pascal_v2(unsigned int rows)
+{
+  if(rows<1) return;
+  std::cout<<"Pascal's triangle of "<<rows<<" rows:\n";
+  if(rows==1){std::cout<<rows<<"\n";return;}
+  std::vector<std::vector<int>> grid(rows);
+
+  grid[0]=std::vector<int>(1, 1);
+  for(int row=1, columns=2; row<rows; ++row, ++columns) {
+    grid[row]=std::vector<int>(columns);
+    for(int col=0; col<columns; ++col)
+    {
+      grid[row][col] = Pascal(row,col);
+    }
+  }
+
+  for(int row=0, tabs=rows-1; row<rows; ++row, --tabs) {
+    std::cout<<std::string(tabs, '\t');
+    for(int col=0; col<grid[row].size(); ++col)
+    {
+      if(col>0) std::cout<<"\t\t";
+      std::cout<<grid[row][col];
+    }
+    std::cout<<"\n";
+  }
+}
+
 int main() {
   int return_code = 0;
-  triangle_of_Pascal(8U);//15 max Window
+  triangle_of_Pascal_v1(8U);//15 max Window
+  triangle_of_Pascal_v2(8U);
   return return_code;
 }
