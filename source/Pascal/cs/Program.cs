@@ -1,7 +1,38 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using static System.Console;
 
-void triangle_of_Pascal(int rows)//uint rows)
+int factorial(int n){if(n<=1) return 1; return n*factorial(n-1);}
+int Pascal(int n,int k){return factorial(n) / (factorial(k) * factorial(n-k));}
+void triangle_of_Pascal_v2(int rows)
+{
+  if (rows < 1) return;
+  WriteLine($"Pascal's triangle of {rows} rows:\n");
+  if (rows == 1) { WriteLine(rows); return; }
+  List<List<int>> grid = [];
+
+  grid.Add(new([1]));
+  for (int row = 1, columns = 2; row < rows; ++row, ++columns)
+  {
+    grid.Add(new());
+    for (int col = 0; col < columns; ++col)
+    {
+      grid[row].Add(Pascal(row, col));
+    }
+  }
+
+  for (int row = 0, tabs = rows - 1; row < rows; ++row, --tabs)
+  {
+    Write(new string('\t', tabs));
+    for (int col = 0; col < grid[row].Count; ++col)
+    {
+      if (col > 0) Write("\t\t");
+      Write(grid[row][col]);
+    }
+    WriteLine();
+  }
+}
+
+void triangle_of_Pascal_v1(int rows)//uint rows)
 {
   if(rows<1) return;
   WriteLine($"Pascal's triangle of {rows} rows:\n");
@@ -36,4 +67,9 @@ void triangle_of_Pascal(int rows)//uint rows)
   }
 }
 
-triangle_of_Pascal(8);//8U//15 max Window
+try
+{
+  triangle_of_Pascal_v1(8);//8U//15 max Window
+  triangle_of_Pascal_v2(8);
+}
+catch (System.Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }

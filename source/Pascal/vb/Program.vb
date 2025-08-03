@@ -2,10 +2,68 @@ Imports System
 
 Module TriangleOfPascal
 
-Sub triangle_of_Pascal(rows as Integer)
-  System.Console.WriteLine("Pascal's triangle of " & rows & " rows:")
+Function Factorial(ByVal n As Integer) As Integer
+    if n<=1 Then
+      Return 1
+    End If
+    Return n*Factorial(n-1)
+End Function
+
+Function Pascal(ByVal n As Integer, ByVal k As Integer) As Integer
+  Return Cint(Math.Floor(Factorial(n) / (Factorial(k) * Factorial(n-k))))
+End Function
+
+Sub triangle_of_Pascal_v2(rows as Integer)
+	If rows < 1 Then
+		Return
+	End If
+  Console.WriteLine("Pascal's triangle of " & rows & " rows:")
   If rows = 1 Then
-    System.Console.WriteLine(rows)
+    Console.WriteLine(rows)
+    Return
+  End If
+  Dim grid As New List(Of List(Of Integer))
+
+  grid.Add(New List(Of Integer))
+  grid(0).Add(1)
+  Dim row as Integer = 1
+  Dim columns as Integer = 2
+  While row<rows
+    grid.Add(New List(Of Integer))
+    Dim col as Integer = 0
+    While col<columns
+      grid(row).Add(Pascal(row,col))
+      col = col+1
+    End While
+    row = row+1
+    columns = columns+1
+  End While
+
+  row=0
+  Dim tabs as Integer = rows-1
+  While row<rows
+    Console.Write(New String(Chr(9), tabs))
+    Dim col as Integer = 0
+    While col<grid(row).Count
+      If col>0 Then
+        Console.Write(New String(Chr(9), 2))
+      End If
+      Console.Write(grid(row)(col))
+      col = col+1
+    End While
+    Console.WriteLine
+    row = row+1
+    tabs = tabs-1
+  End While
+End Sub
+
+Sub triangle_of_Pascal_v1(rows as Integer)
+	If rows < 1 Then
+		Return
+	End If
+  Console.WriteLine("Pascal's triangle of " & rows & " rows:")
+  If rows = 1 Then
+    Console.WriteLine(rows)
     Return
   End If
   Dim columns as Integer = (rows * 2) - 1
@@ -40,14 +98,14 @@ Sub triangle_of_Pascal(rows as Integer)
   For Each rowline as List(Of Integer) in grid
     For Each v as Integer in rowline
       if v=0 Then
-        System.Console.Write(Chr(9))
+        Console.Write(Chr(9))
       Else
-        System.Console.Write(v & Chr(9))
+        Console.Write(v & Chr(9))
       End If
     Next
-    System.Console.WriteLine()
+    Console.WriteLine()
   Next
-End Sub 
+End Sub
 
 Sub found1(rows As Integer)
 		Dim triangle As New List(Of List(Of Integer))()
@@ -100,9 +158,10 @@ Sub found2(rows As Integer)
 End Sub
 
 Sub Main(args As String())
-  triangle_of_Pascal(8)
-  found1(8)
-  found2(8)
+  triangle_of_Pascal_v1(8)
+  triangle_of_Pascal_v2(8)
+  'found1(8)
+  'found2(8)
 End Sub
 
 End Module
