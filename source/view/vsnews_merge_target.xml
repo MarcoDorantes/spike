@@ -29567,5 +29567,114 @@ Build scalable, event-driven cloud applications with Azure Functions. Explore mi
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/vss-pluralsight-2025-2/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
     </item>
+    <item>
+      <title>GPT-5 Now Available in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/gpt-5-now-available-in-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/gpt-5-now-available-in-visual-studio/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Tue, 12 Aug 2025 17:10:52 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253821</guid>
+      <description><![CDATA[<p>We’re excited to share that GPT-5, OpenAI’s latest frontier model, is now rolling out in GitHub Copilot for Visual Studio. GPT-5 offers faster responses and even better performance for writing and understanding code. This release brings a new level of capability to your development workflow, making it easier to move from idea to implementation. Try [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/gpt-5-now-available-in-visual-studio/">GPT-5 Now Available in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p data-start="153" data-end="298">We’re excited to share that GPT-5, OpenAI’s latest frontier model, is now rolling out in GitHub Copilot for Visual Studio.</p>
+<p data-start="300" data-end="588">GPT-5 offers faster responses and even better performance for writing and understanding code. This release brings a new level of capability to your development workflow, making it easier to move from idea to implementation.</p>
+<p data-start="300" data-end="588"><strong data-start="590" data-end="605">Try it now:</strong> Click the Copilot badge in your IDE, open Chat, and select GPT-5 (Preview).</p>
+<p><div style="width: 640px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-253821-1" width="640" height="360" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/gpt5new-3.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/gpt5new-3.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/gpt5new-3.mp4</a></video></div></p>
+<h3 data-start="685" data-end="723">Why GPT-5 Matters to you</h3>
+<p data-start="724" data-end="813">GPT-5 is OpenAI’s most advanced model to date. It delivers substantial improvements in:</p>
+<ul>
+<li data-start="817" data-end="877">Reasoning and decision-making for complex coding tasks</li>
+<li data-start="880" data-end="973">Code quality and maintainability, even for large implementations with minimal prompting</li>
+<li data-start="976" data-end="1064">Clarity of explanations, giving you a better understanding of the changes it makes</li>
+</ul>
+<p data-start="1154" data-end="1296">From building end-to-end features to understanding unfamiliar codebases, GPT-5 is designed to help you move faster while staying in control.</p>
+<h3 data-start="1298" data-end="1316">Availability</h3>
+<p data-start="1317" data-end="1491">GPT-5 is rolling out to all paid Copilot plans starting today. You can access it in both Agent Mode and Ask Mode. If you do not yet see GPT-5 in your model picker, check back soon as rollout continues. Note: <span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out">As GPT‑5 becomes more widely available, GitHub has announced the phased deprecation of several older models, see: <a href="https://github.blog/changelog/2025-06-20-upcoming-deprecation-of-o1-gpt-4-5-o3-mini-and-gpt-4o/">Upcoming deprecation of o1, GPT-4.5, o3-mini, and GPT-4o &#8211; GitHub Changelog</a>. </span></p>
+<p data-start="1584" data-end="1810"><strong>For Copilot Enterprise and Business customers:</strong><br data-start="1634" data-end="1637" />Administrators must enable the GPT-5 policy in Copilot settings. Once enabled, users in the organization will be able to select GPT-5 in the model picker in Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/gpt-5-now-available-in-visual-studio/">GPT-5 Now Available in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/gpt-5-now-available-in-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">3</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/gpt5new-3.mp4" length="176799" type="video/mp4" />
+    </item>
+    <item>
+      <title>Visual Studio 2015 Retirement: Support reminder for older versions of Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2015-retirement-support-reminder-for-older-versions-of-visual-studio/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Paul Chapman]]></dc:creator>
+      <pubDate>Tue, 05 Aug 2025 16:16:53 +0000</pubDate>
+      <category><![CDATA[Administration]]></category>
+      <category><![CDATA[Installation and Updates]]></category>
+      <category><![CDATA[Visual Studio Subscriptions]]></category>
+      <category><![CDATA[Announcement]]></category>
+      <category><![CDATA[lifecycle]]></category>
+      <category><![CDATA[Support]]></category>
+      <category><![CDATA[Visual Studio 2015]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253779</guid>
+      <description><![CDATA[<p>Support for Visual Studio 2015 will end on October 14, 2025. If you’re using an older version of Visual Studio, we want to keep you productive and secure when using Visual Studio, and strongly recommend you upgrade to Visual Studio 2022, which brings the power of Copilot to your development workflow. It also contains key [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2015-retirement-support-reminder-for-older-versions-of-visual-studio/">Visual Studio 2015 Retirement: Support reminder for older versions of Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Support for Visual Studio 2015 will end on October 14, 2025. If you’re using an older version of Visual Studio, we want to keep you productive and secure when using Visual Studio, and strongly recommend you upgrade to Visual Studio 2022, which brings the power of Copilot to your development workflow. It also contains key productivity improvements in the editor, built-in support for Git version control and rich integration with GitHub, AI-powered code completions, and tools for .NET 8 and 9, and .NET MAUI.</p>
+<h2>Support Timeframe Reminders for older versions</h2>
+<p>If you’re still using an older version of Visual Studio, here’s a reminder of key support lifecycle dates.</p>
+<ol>
+<li><strong>Visual Studio 2015</strong> <a href="https://learn.microsoft.com/lifecycle/products/visual-studio-2015">extended support ends October 14, 2025</a>.</li>
+<li><strong>Visual Studio 2017 version 15.9 </strong>remains in <a href="https://docs.microsoft.com/lifecycle/products/visual-studio-2017">extended support until April 13, 2027</a>. During extended support we provide fixes only for security issues. You must be using version 15.9 to receive security updates and support.</li>
+<li><strong>Visual Studio 2019 version 16.11</strong> remains in <a href="https://learn.microsoft.com/lifecycle/products/visual-studio-2019">extended support through April 10, 2029</a>. During extended support we provide fixes only for security issues. You must be using version 16.11 to receive security updates and support.</li>
+<li><strong>Visual Studio 2022 version 17.14</strong> is in <a href="https://learn.microsoft.com/en-us/lifecycle/products/visual-studio-2022">mainstream support through January 12, 2027</a>, and then transitions to extended support through January 13, 2032. Additionally, version 17.10 LTSC is supported until January 13, 2026, and version 17.12 is supported until July 14, 2026. You must be on one of these versions to receive updates and support.</li>
+</ol>
+<h2>Visual Studio 2015 Retirement</h2>
+<p>On October 14, 2025, support will end for all Visual Studio 2015 editions, associated products, runtimes, and components, and they will no longer receive security or any other updates. These include:</p>
+<ul>
+<li>Visual Studio 2015 Enterprise, Professional, Community, Build Tools, Team Explorer, Test Professional editions, and Visual Studio 2015 Shell (Integrated and Isolated).</li>
+<li>Visual Studio SDK, Remote Tools, Agents, Feedback Client for Visual Studio Team Foundation Server 2015, Deployment Agent, Release Management, and Azure Tools.</li>
+<li><a href="https://learn.microsoft.com/en-us/lifecycle/faq/visual-c-faq">The MSVC Tools v140</a> – Visual Studio 2015. When using Visual Studio 2017 or later, update any project using MSVC v140 to use the latest MSVC toolset.</li>
+<li><a href="https://learn.microsoft.com/en-us/lifecycle/faq/visual-c-faq">Visual C++ Redistributable</a> for Visual Studio 2015. Update your applications to use the <a href="https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist">latest release of Visual C++ Redistributable</a>.</li>
+</ul>
+<h2>Check out the Visual Studio Hub</h2>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h2>Appreciation for your feedback</h2>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2015-retirement-support-reminder-for-older-versions-of-visual-studio/">Visual Studio 2015 Retirement: Support reminder for older versions of Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Smarter AI Edits in Visual Studio Copilot</title>
+      <link>https://devblogs.microsoft.com/visualstudio/smarter-ai-edits-in-visual-studio-copilot/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/smarter-ai-edits-in-visual-studio-copilot/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton, Oscar Obeso, Rhea Patel]]></dc:creator>
+      <pubDate>Thu, 31 Jul 2025 12:00:42 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[AI Agents]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253719</guid>
+      <description><![CDATA[<p>When we first set out to get smarter AI edits in Visual Studio Copilot, we knew we were tackling a deeply complex problem. It wasn’t just about generating great suggestions—it was about figuring out how to seamlessly apply those suggestions to your code. While the idea seemed simple at first glance, the reality was anything [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/smarter-ai-edits-in-visual-studio-copilot/">Smarter AI Edits in Visual Studio Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="auto">When we first set out to get smarter AI edits in Visual Studio Copilot, we knew we were tackling a deeply complex problem. It wasn’t just about generating great suggestions—it was about figuring out how to seamlessly apply those suggestions to your code. While the idea seemed simple at first glance, the reality was anything but.  </span><span data-ccp-props="{}"> </span></p>
+<p><div style="width: 992px;" class="wp-video"><video class="wp-video-shortcode" id="video-253719-2" width="992" height="616" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/07/SideBySideNewMapper.mp4?_=2" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/07/SideBySideNewMapper.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/07/SideBySideNewMapper.mp4</a></video></div></p>
+<h2><b><span data-contrast="auto">The Complexity of Implementing AI-Generated Edits</span></b><span data-ccp-props="{}"> </span></h2>
+<p><span data-contrast="auto">Let’s rewind to our early attempts. Copilot might give you a fantastic suggestion—a new method, a helpful refactor, or maybe even a corrected logic block. But the real challenge began when we tried to insert those changes into the existing file without breaking anything. Where does the edit go? What happens if the file has been updated since the suggestion was generated? What if the model’s output inadvertently introduces conflicts, overlaps existing code, or even forgets a required bracket? These questions made the process tricky, and the resulting red squiggles made it difficult to trust AI suggestions.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">In the early days, we approached this problem in the most straightforward way possible: brute force. We used heuristics and rule-based techniques like string matching and pattern recognition to identify where edits might belong. It worked&#8230; kind of. The results were often inconsistent, especially for complex edits spanning multiple lines. And as Copilot’s capabilities expanded to support more languages and scenarios, maintaining these rules became a moving target—always shifting, always growing harder to manage. Success rates hovered around 50%, which was far from ideal. In hindsight, it became increasingly clear that we couldn’t outpace the ever-evolving models with static rules.  </span><span data-ccp-props="{}"> </span></p>
+<h2><b><span data-contrast="auto">Better Models Meet Smarter Techniques</span></b><span data-ccp-props="{}"> </span></h2>
+<p><span data-contrast="auto">As AI technology advanced, we saw an opportunity to revisit this problem with a fresh perspective. Two major developments in AI made it possible to rethink how we could get smarter edits in Visual Studio Copilot: modern models with larger context windows and a groundbreaking technique called speculative decoding.  </span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Speculative decoding</span></b><span data-contrast="auto"> became a game changer for speeding up AI-assisted edits. It works by pairing a fast model with a more sophisticated one. The fast model generates token predictions for the edit ahead of time, while the smarter model steps in only when needed to refine or verify those predictions. This collaboration improved average token generation speed by 2-3x and made it feasible to implement the generated edits using the model, which significantly enhanced accuracy when integrating changes into your files.  </span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">By using speculative decoding, we adopted the model-based approach to applying edits that was able to fill in the gaps that the previous approach could not reach. Instead of relying on rule sets, we employed an AI model to simulate an “ideal” version of your file with the chosen suggestions seamlessly integrated. A smart diff algorithm then compares this ideal version with your actual file to pinpoint and precisely map the edits. This allowed the entire process to handle edge cases—like overlapping code or missing syntax—more intelligently than ever before.     </span><span data-ccp-props="{}"> </span></p>
+<h2><b><span data-contrast="auto">Balancing Accuracy and Speed</span></b><span data-ccp-props="{}"> </span></h2>
+<p><span data-contrast="auto">While speculative decoding dramatically improved performance, applying AI edits still came with a natural trade-off: using models introduced latency. Previously, all string computation was done locally, meaning edits appeared almost instantly. Now, every edit involved network calls and token generation—a process that unfolds incrementally as a token stream, rather than as a single, instant response.  </span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">To make this experience feel meaningful for users, we implemented a streaming animation in the editor. As edits are detected on the token stream, users see their document updating line by line in real time. This animation serves two purposes: showcasing progress and providing visibility into exactly how the changes are being applied. Although this approach trades the speed we had before for greater accuracy, feedback has shown that users value precision over raw speed—especially when it comes to maintaining code quality and reducing disruption.     </span><span data-ccp-props="{}"> </span></p>
+<h2><b><span data-contrast="auto">Looking Ahead</span></b></h2>
+<p><span data-contrast="auto">This work laid the foundation for Agent Mode in Visual Studio Copilot—a feature that enables the AI to not only suggest improvements but actively assist in executing them. For Agent Mode to function effectively, the edits needed to be precise, seamless, and reliable enough for the agent to build, debug, and test the code. Speculative decoding has already made significant strides in balancing speed and accuracy, but we&#8217;re not stopping there.</span></p>
+<p><span data-contrast="auto">A faster implementation of our speculative decoding technique is on the horizon. This updated version will leverage advancements in token generation and model pairing to further reduce latency while maintaining accuracy users have come to expect. Early tests show promise of a 2-4x speed boost compared to the original rollout, moving closer to the ideal experience where precision meets near-instant response times.</span><span data-ccp-props="{}"> </span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/smarter-ai-edits-in-visual-studio-copilot/">Smarter AI Edits in Visual Studio Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/smarter-ai-edits-in-visual-studio-copilot/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/07/SideBySideNewMapper.mp4" length="389385" type="video/mp4" />
+    </item>
   </channel>
 </rss>
