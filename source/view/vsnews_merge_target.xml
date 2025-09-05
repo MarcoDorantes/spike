@@ -29939,5 +29939,496 @@ Build scalable, event-driven cloud applications with Azure Functions. Explore mi
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/mcp-is-now-generally-available-in-visual-studio/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
     </item>
+    <item>
+      <title>Make Sense of Your Output Window with Copilot</title>
+      <link>https://devblogs.microsoft.com/visualstudio/make-sense-of-your-output-window-with-copilot/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/make-sense-of-your-output-window-with-copilot/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Thu, 04 Sep 2025 12:00:38 +0000</pubDate>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Context]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <category><![CDATA[Output Window]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254169</guid>
+      <description><![CDATA[<p>Ever found yourself staring at the Output Window, overwhelmed by endless lines of logs and cryptic messages? You&#8217;re not alone! For years, developers have relied on the Output Window for critical build and debug information. But making sense of it—and translating it into action—has been a challenge. What if you could instantly ask questions about your [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/make-sense-of-your-output-window-with-copilot/">Make Sense of Your Output Window with Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span class="TextRun SCXW30852590 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="auto"><span class="NormalTextRun SCXW30852590 BCX8">Ever found yourself staring at the Output Window, overwhelmed by endless lines of logs and cryptic messages? </span><span class="NormalTextRun SCXW30852590 BCX8">You&#8217;re</span><span class="NormalTextRun SCXW30852590 BCX8"> not alone! For years, developers have relied on the Output Window for critical build and debug information. But making sense of it—and translating it into action—has been a challenge. What if you could instantly ask questions about your logs and </span><span class="NormalTextRun AdvancedProofingIssueV2Themed SCXW30852590 BCX8">take action </span><span class="NormalTextRun SCXW30852590 BCX8">without leaving your workflow? Now you can, thanks to Copilot’s new Output Window </span><span class="NormalTextRun SCXW30852590 BCX8">context</span><span class="NormalTextRun SCXW30852590 BCX8">!</span></span><span class="EOP SCXW30852590 BCX8" data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none"><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/image001.png"><img fetchpriority="high" decoding="async" class="alignnone size-medium wp-image-254170" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/image001-283x300.png" alt="Output window in the attachment context window" width="283" height="300" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/image001-283x300.png 283w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/image001-24x24.png 24w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/image001.png 546w" sizes="(max-width: 283px) 100vw, 283px" /></a></span></h3>
+<h3 aria-level="2"><span data-contrast="none">Say hello to smarter output window assistance</span></h3>
+<p><span data-contrast="auto">In Visual Studio 17.14, Copilot can now read your Output Window, making it possible to interact with your build and debug logs like never before. Instead of wading through log files and searching for answers, simply ask Copilot questions about the output—whether you’re facing build errors, warnings, or just want to understand what’s happening behind the scenes.</span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">How does the Output Window context work?</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">If you’re looking at the output window, you can highlight the logs you want Copilot to help you understand, right click and invoke Copilot Chat. This works in the Build, Debug, Tests, Source Control, Package Manager, or whatever is your active output window. Additionally, if you’re facing an issue, Copilot may opt to take a look on your behalf, especially if you mention the output window with natural language in your prompts. Copilot analyzes the contents of the Output Window, provides helpful explanations, and even suggests next steps. </span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Why this feature matters for developers</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">The Output Window is a goldmine of information, but its sheer volume and complexity can slow you down. By bridging the gap between raw logs and actionable solutions, Copilot empowers you to debug faster, learn more, and focus on what matters—building great software. This integration is designed to boost productivity, reduce frustration, and help every developer, from beginner to expert, unlock the full power of Visual Studio.</span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Check out the new Visual Studio Hub </span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">Stay connected with everything Visual Studio in one place! Visit the </span><a href="https://visualstudio.microsoft.com/hub/"><span data-contrast="none">Visual Studio Hub</span></a><span data-contrast="auto"> for the latest release notes, YouTube videos, social updates, and community discussions. </span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Appreciation for your feedback </span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through </span><a href="https://developercommunity.visualstudio.com/VisualStudio"><span data-contrast="none">Developer Community</span></a><span data-contrast="auto">, you help us improve and shape the future of Visual Studio.</span><span data-ccp-props="{}"> </span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/make-sense-of-your-output-window-with-copilot/">Make Sense of Your Output Window with Copilot</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/make-sense-of-your-output-window-with-copilot/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>Boost Your Copilot Collaboration with Reusable Prompt Files</title>
+      <link>https://devblogs.microsoft.com/visualstudio/boost-your-copilot-collaboration-with-reusable-prompt-files/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/boost-your-copilot-collaboration-with-reusable-prompt-files/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jessie Houghton]]></dc:creator>
+      <pubDate>Tue, 02 Sep 2025 12:00:42 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Customization]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[GitHub Copilot Chat]]></category>
+      <category><![CDATA[Prompting]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254096</guid>
+      <description><![CDATA[<p>Writing effective prompts for AI tools can be time-consuming and challenging. Cement those efforts by leveraging reusable prompt files. These custom prompts allow for quick access at the prompt box, and they’re automatically stored and shared with your teammates to make it easy to multiply your Copilot successes.   Reusable prompt files solve the prompt-writing challenge  Reusable prompt files let you write, save, and run prompts right [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/boost-your-copilot-collaboration-with-reusable-prompt-files/">Boost Your Copilot Collaboration with Reusable Prompt Files</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="auto">Writing effective prompts for AI tools can be time-consuming and challenging. Cement those efforts by leveraging reusable prompt files. These custom prompts allow for quick access at the prompt box, and they’re automatically stored and shared with your teammates to make it easy to multiply your Copilot successes. </span><span data-ccp-props="{}"> </span></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/17.14.6_prompt_files.png"><img decoding="async" class="alignnone size-medium wp-image-254097" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/17.14.6_prompt_files-300x169.png" alt="Attach prompt files to your prompts" width="300" height="169" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/17.14.6_prompt_files-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/17.14.6_prompt_files-768x432.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/17.14.6_prompt_files.png 907w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3 aria-level="2"><span data-contrast="none">Reusable prompt files solve the prompt-writing challenge</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">Reusable prompt files let you write, save, and run prompts right inside Visual Studio. Simply craft your prompt in a .github/prompts/[title].prompt.md file, save it, and reference it whenever you need to engage Copilot. This means your best prompts are always at your fingertips—no more hunting through old files, emails, or notes.</span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Speed up your workflow and collaborate effortlessly</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">Whether you work solo or as part of a team, reusable prompt files save you time working with Copilot. The files are shared in the repository, ensuring consistent results across your projects and making them available to your colleagues. Everyone can benefit from tested, effective prompts that accelerate understanding and solution discovery. The days of reinventing the wheel are over!</span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Tips for maximizing your reusable prompt files</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="25" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Leverage the </span><a href="https://github.com/github/awesome-copilot"><span data-contrast="none">awesome-copilot repository</span></a><span data-contrast="auto"> to get started with Microsoft and community contributed prompt files.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:0,&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="25" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Use #prompt: or the context menu to add prompts in the prompt box. You can add more specific content or simply run it.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:0,&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="25" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Write your prompts in the prompt box to easily grab the prompt syntax for referencing files (#files:“filename.md”) and other context types.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:0,&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="25" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="auto">Organize prompt files by topic, project, or workflow for easy access.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:0,&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="25" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="5" data-aria-level="1"><span data-contrast="auto">Review and refine your most-used prompts regularly to keep them sharp and relevant.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:0,&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="25" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="6" data-aria-level="1"><span data-contrast="auto">Encourage team members to contribute their most effective prompts, building a shared resource library.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:0,&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<h3 aria-level="2"><span data-contrast="none">Check out the new Visual Studio Hub</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">Stay connected with everything Visual Studio in one place! Visit the </span><a href="https://visualstudio.microsoft.com/hub/"><span data-contrast="none">Visual Studio Hub</span></a><span data-contrast="auto"> for the latest release notes, YouTube videos, social updates, and community discussions. </span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Appreciation for your feedback</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}"> </span></h3>
+<p><span data-contrast="auto">Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through Developer Community, you help us improve and shape the future of Visual Studio.</span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/boost-your-copilot-collaboration-with-reusable-prompt-files/">Boost Your Copilot Collaboration with Reusable Prompt Files</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/boost-your-copilot-collaboration-with-reusable-prompt-files/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">5</slash:comments>
+    </item>
+    <item>
+      <title>Roadmap for AI in Visual Studio (September)</title>
+      <link>https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-september/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-september/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Wed, 27 Aug 2025 18:02:11 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Agent]]></category>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Chat]]></category>
+      <category><![CDATA[Models]]></category>
+      <category><![CDATA[Roadmap]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254064</guid>
+      <description><![CDATA[<p>Today, we’re excited to share our public roadmap, which outlines the next steps in evolving Visual Studio with AI-powered agentic experiences. With every month, we aim to deliver smarter, faster, and more intuitive tools that enhance your coding experience. Disclaimer: The items outlined here represent ongoing work for the month. They are not commitments or [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-september/">Roadmap for AI in Visual Studio (September)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Today, we’re excited to share our public roadmap, which outlines the next steps in evolving Visual Studio with AI-powered agentic experiences. With every month, we aim to deliver smarter, faster, and more intuitive tools that enhance your coding experience.</p>
+<p><em>Disclaimer: The items outlined here represent ongoing work for the month. They are not commitments or guarantees for delivery within the current month.</em></p>
+<p>With that said, here is what we are working on!</p>
+<h3><strong>New Modes for Debugging and Profiling: </strong></h3>
+<p>We’re streamlining how you find and switch between modes and making sure both built-in and extension-provided modes can handle more complex workflows.</p>
+<p>Two new agent-powered tools are in progress:</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Copilot-Profile-Agent-in-Visual-Studio/10951161">Profiler agent</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Copilot-Debugging--Agent-in-Visual-Studi/10951168?">Debugger agent </a></li>
+</ul>
+</li>
+</ul>
+<h3><strong>Supporting Customization via Modes</strong></h3>
+<p>We are making it seamless to integrate your workflows across your development stack into Visual Studio, tailoring them to you and your organization.</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Custom-modes-for-Copilot-Chat/10950930">Custom modes for Copilot Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Model-Context-Protocol-MCP-Enabled-in/10951127">Model Context Protocol (MCP) Enabled in All Modes</a></li>
+</ul>
+</li>
+</ul>
+<h3><strong>Agent Mode/Chat:                              </strong></h3>
+<p>We’ve been listening to your feedback on Agent Mode and Chat, and we’re making some big improvements.</p>
+<p style="padding-left: 40px;">Faster performance</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Agent-Mode-tool:-Speed-improvements-for/10951144">Agent Mode tool: Speed improvements for code mapping across more models</a></li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;">Better visibility</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Github-Copilot-Agent-progress/10904775?q=progress">Agent Mode Progress Indication</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Agent-Mode-as-the-default-chat-experienc/10956899">Agent Mode as the default chat experience (Experiment)</a></li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;">Expanding Agent Mode functionality</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Agent-mode-tool:-run-tests-through-tes/10951139">Agent mode tool: run test(s) through test explorer and package search</a></li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;">Smarter context retention</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Project-memories-for-Copilot-Chat/10951702">Project memories for Copilot Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/PlanningTo-dos-in-Copilot-Chat/10951150">Planning/To dos in Copilot Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Instruction-file-support-for-Copilot-Cha/10951145">Instruction file support for Copilot Chat</a></li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;">More control</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Allow-disabling-built-in-tools-in-agent/10920654?q=tools+disabled">Allow Disabling Built-In Tools</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Redirect-Agent-Mode-Mid-Response/10956902">Redirect Agent Mode Mid Response</a></li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;"><strong> </strong></p>
+<h3><strong>Model Context Proctol (MCP) </strong></h3>
+<p>We want you to bring your entire development stack into Visual Studio, supported by the same security, governance, and trust you expect from our product. To make this possible, we’re expanding support for these capabilities and making them easier to use.</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/MCP-Prompt-Templates-Prompts-support/10946068">Support Prompt</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Support-Resources-for-MCP-Servers/10951728">Support Resources</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Support-Sampling-in-MCP-Servers-for-publ/10951729">Support Sampling</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/MCP-registry-support-for-browsing-and-in/10951732">Registry support for browsing and installing MCP servers</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Visual-Studio-enables-governance-to-supp/10951779">Enabling governance to support allowlists for MCP servers</a></li>
+</ul>
+</li>
+</ul>
+<h3><strong>Models</strong></h3>
+<p>We’re committed to giving you access to the latest models, and in Visual Studio we carefully evaluate them to make sure you get the best possible experience. With the recent introduction of Bring Your Own Key, your choice of models is expanding even further.</p>
+<p style="padding-left: 40px;">GitHub Copilot native support:</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Claude-Opus-41-for-Copilot-Chat/10956891">Claude Opus 4.1</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/GPT-5-Mini-for-Copilot-Chat/10956892">GPT-5 Mini</a></li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;">Bring Your Own Key support:</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Azure-Foundry-support-in-Copilot-Chat/10956894">Azure Foundry</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/o-Custom-URLs-for-Models-in-Copilot-Chat/10956896">Custom URLs (add your own endpoints)</a></li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h3><strong>Azure Agentic DevOps</strong></h3>
+<p>We’re bringing the power of agentic workflows and Azure-native capabilities directly into Visual Studio, so you can build, deploy, and manage your applications with the same security, governance, and trust you expect from our platform. <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-for-azure-preview-launches-in-visual-studio-2022-with-azure-mcp-support/">The public preview is now available in Visual Studio 2022</a>, featuring an automatic installation of Azure MCP for a seamless start.</p>
+<p>Here’s what’s coming next:</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/GitHub-Copilot-for-Azure:-Agentic-Azure/10957072">1P Azure MCP installation in Visual Studio</a>
+<ul>
+<li>Publishing and CI/CD (GitHub Actions &amp; Azure DevOps) support to Azure App Service for .NET applications</li>
+<li>Custom modes tailored for Azure developers</li>
+</ul>
+</li>
+</ul>
+<h3><strong>Editor improvements</strong></h3>
+<p>Copilot-powered code completions and suggestions in your editor are triggered effortlessly and can accelerate your daily programming. We want to deliver a smooth and intuitive experience for you when interacting with these suggestions that minimize potential conflicts.</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Enable-Next-Edit-Suggestions-by-default/10951112?q=enable+next+edit+suggestion">Receive next edit suggestions predicted based on your last edits</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Copilot-keyboard-shortcut-to-accept-sugg/10605774">Copilot keyboard shortcut to accept suggestion.</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Use-Synthetic-Text-for-Copilot-Completio/10951153">Use Synthetic Text to Improve Copilot Completions Experiences</a></li>
+</ul>
+</li>
+</ul>
+<p>To make Visual Studio a truly AI-integrated IDE, we want to ensure that Copilot is seamlessly available at every step of your development workflow—not just for writing code, but also for searching, fixing errors, writing unit tests, and even committing and pushing your changes.</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Copilot-Supported-All-In-One-Search-Expe/10951118">Copilot Supported All-In-One Search Experience</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Add-More-Copilot-Actions-in-the-Context/10951154">Quickly Get Copilot Assistance from Your Context Menu</a></li>
+</ul>
+</li>
+</ul>
+<p>We’re excited for you to try these new experiences soon. If you have feedback, post it in the developer community ticket linked above. For other ideas or suggestions, drop a comment below or create a new ticket—our team reviews them all.</p>
+<p>Thanks <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f60a.png" alt="😊" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-september/">Roadmap for AI in Visual Studio (September)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-september/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
+    </item>
+    <item>
+      <title>The Visual Studio August Update is here – smarter AI, better debugging, and more control</title>
+      <link>https://devblogs.microsoft.com/visualstudio/the-visual-studio-august-update-is-here-smarter-ai-better-debugging-and-more-control/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/the-visual-studio-august-update-is-here-smarter-ai-better-debugging-and-more-control/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 26 Aug 2025 18:22:28 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[Git]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[C++]]></category>
+      <category><![CDATA[MCP]]></category>
+      <category><![CDATA[Models]]></category>
+      <category><![CDATA[Next Edits Suggestion]]></category>
+      <category><![CDATA[Sign in]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254076</guid>
+      <description><![CDATA[<p>The August 2025 update for Visual Studio 2022 (v17.14) is now available, and it’s all about helping developers stay focused, productive, and in control. Whether you&#8217;re building games, tuning performance, or exploring AI, this release brings meaningful improvements that make everyday development smoother and smarter. GPT-5 support now available We&#8217;re excited to announce that GPT-5 [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/the-visual-studio-august-update-is-here-smarter-ai-better-debugging-and-more-control/">The Visual Studio August Update is here &#8211; smarter AI, better debugging, and more control</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The August 2025 update for Visual Studio 2022 (v17.14) is now available, and it’s all about helping developers stay focused, productive, and in control. Whether you&#8217;re building games, tuning performance, or exploring AI, this release brings meaningful improvements that make everyday development smoother and smarter.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/update.png"><img decoding="async" class="alignnone size-full wp-image-254088" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/update.png" alt="update image" width="1277" height="715" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/update.png 1277w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/update-300x168.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/update-1024x573.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/update-768x430.png 768w" sizes="(max-width: 1277px) 100vw, 1277px" /></a></p>
+<h2><strong>GPT-5 support now available</strong></h2>
+<p>We&#8217;re excited to announce that <a href="https://devblogs.microsoft.com/visualstudio/gpt-5-now-available-in-visual-studio/">GPT-5 is now available in Visual Studio</a>, bringing the latest advancements in AI directly to your development environment. With GPT-5 integration, you can leverage more powerful, accurate, and context-aware code suggestions and chat experiences. Whether you’re writing complex algorithms, refactoring large codebases, or brainstorming new features, GPT-5 helps you move faster and with greater confidence.</p>
+<p><img decoding="async" class="alignnone wp-image-254078" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-2.png" alt="Showcasing the GPT-5 model being selected in copilot chat" width="500" height="281" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-2.png 500w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-2-300x169.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<h2><strong>Connect your entire stack with MCP</strong></h2>
+<p>We’re excited to announce that <a href="https://devblogs.microsoft.com/visualstudio/mcp-is-now-generally-available-in-visual-studio/">MCP (Model Context Protocol) support is now generally available in Visual Studio</a>. MCP is a powerful protocol that connects AI agents to external tools &#8211; like databases, code search, and deployment systems &#8211; without needing custom integrations for each one. Think of it as the HTTP of tool connectivity.</p>
+<p>With this release, Visual Studio makes it easier than ever to manage and connect to MCP servers:</p>
+<ul>
+<li><strong>OAuth support for any provider</strong>: Authenticate with any OAuth provider directly from Visual Studio using the new authorization spec.</li>
+<li><strong>One-click server install from the web</strong>: Add MCP servers with a single click from supported repositories &#8211; no more manual JSON editing.</li>
+<li><strong>New server add flow</strong>: Use the green plus button in the Copilot Chat tool picker to quickly configure and connect to new servers.</li>
+<li><strong>Governance controls</strong>: Organizations can now manage MCP access via GitHub policy settings for better compliance and control.</li>
+</ul>
+<p><img decoding="async" class="alignnone wp-image-254079" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-3.png" alt="showing all tools that connect with MCP" width="304" height="213" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-3.png 304w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-3-300x210.png 300w" sizes="(max-width: 304px) 100vw, 304px" /></p>
+<p>This update makes MCP a first-class experience in Visual Studio, helping teams unlock richer, real-time context across their entire engineering stack.</p>
+<h2><strong>Smarter Copilot Chat with better context</strong></h2>
+<p><a href="https://devblogs.microsoft.com/visualstudio/improving-codebase-awareness-in-visual-studio-chat/">Copilot Chat can now more reliably surface relevant code snippets</a>. It now uses improved semantic code search to better identify when a query should trigger a code lookup. When that context is detected, it searches across your solution or workspace to retrieve the most relevant snippets, even from natural language descriptions, reducing the need to manually navigate your codebase.</p>
+<p><img decoding="async" class="alignnone wp-image-254080" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-4.png" alt="Copilot provides a detailed description on how to save an image in a project calling out specific locations" width="506" height="475" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-4.png 506w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-4-300x282.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-4-24x24.png 24w" sizes="(max-width: 506px) 100vw, 506px" /></p>
+<h2><strong>Sign Up for Copilot with Google</strong></h2>
+<p>Getting started with Copilot is now easier than ever. You can sign up using your Google account directly from Visual Studio. It’s a fast, frictionless way to get up and running with AI-powered coding-no extra setup required.</p>
+<p><img decoding="async" class="alignnone wp-image-254081" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-5.png" alt="Signing up for copilot now has a google sign in path" width="519" height="622" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-5.png 519w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-5-250x300.png 250w" sizes="(max-width: 519px) 100vw, 519px" /></p>
+<h2><strong>Bring your own AI model to Chat</strong></h2>
+<p>Want more control over your AI experience? You can now connect your own language models to <a href="https://devblogs.microsoft.com/visualstudio/bring-your-own-model-visual-studio-chat/">Visual Studio Chat using API keys from OpenAI, Google, or Anthropic</a>. This gives you the flexibility to choose the model that best fits your workflow, whether you&#8217;re optimizing for performance, privacy, or experimentation.</p>
+<p><img decoding="async" class="alignnone wp-image-254082" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-6.png" alt="Showcasing all the models and custom models that you can upload" width="498" height="613" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-6.png 498w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-6-244x300.png 244w" sizes="(max-width: 498px) 100vw, 498px" /></p>
+<h2><strong>Unified debugging for Unreal Engine</strong></h2>
+<p>If you’re working in C++ with Unreal Engine, debugging just got a major upgrade. Visual Studio now lets you debug Blueprint and native code together in a single session. You’ll see Blueprint data in the call stack and locals window, and you can even set breakpoints directly in Blueprint code.</p>
+<p><img decoding="async" class="alignnone wp-image-254083" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-7.png" alt="Blueprint data being highlighted" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-7.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-7-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-7-768x432.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<p>This makes it easier to trace interactions and fix issues across both scripting layers.</p>
+<h2><strong>Copilot Suggestions when you want them</strong></h2>
+<p>Prefer a quieter editor? You can now disable automatic Copilot suggestions and trigger them manually with keyboard shortcuts. This gives you full control over when suggestions appear, helping you stay focused when you need to and get help when you want it.</p>
+<h2><strong>Cleaner editing with collapsed suggestions</strong></h2>
+<p>Next Edit Suggestions (NES) are now hidden by default. Instead of popping up automatically, they appear as a subtle margin indicator when relevant. You decide when to engage, keeping your editor clean and distraction-free.</p>
+<p><img decoding="async" class="alignnone wp-image-254084" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-8.png" alt="showcasing the unclasped accept/decline option" width="294" height="134" /></p>
+<h2><strong>Accept code completions partially</strong></h2>
+<p>Have you ever wanted to only accept the first couple words or lines of a Copilot code completions instead of accepting the whole thing? We are excited to announce that you will now be able to <a href="https://devblogs.microsoft.com/visualstudio/better-control-over-your-copilot-code-suggestions/">partially accept a completion word by word or line by line</a>!</p>
+<h2><strong>Git context in Copilot Chat</strong></h2>
+<p>Copilot Chat now understands your Git history. You can reference commits and uncommitted changes directly in chat to summarize work, explain updates, or generate tests-all without leaving the editor.</p>
+<p><img decoding="async" class="alignnone wp-image-254085" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-9.png" alt="Shows a dropdown of all the git commits" width="755" height="301" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-9.png 755w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/word-image-254076-9-300x120.png 300w" sizes="(max-width: 755px) 100vw, 755px" /></p>
+<p>This makes it easier to stay in flow while reviewing or refining your code.</p>
+<h2><strong>Built with your feedback</strong></h2>
+<p>Many of the features and fixes in this release come directly from the <a href="https://developercommunity.microsoft.com/VisualStudio">Developer Community</a>. Your suggestions and bug reports continue to shape Visual Studio, and we’re grateful for your input. You can explore all the community-driven updates and fixes in the <a href="https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes?tabs=allfeatures">release notes</a>.</p>
+<p>Thanks again for your feedback and support. We’re excited to keep building Visual Studio with you-one update at a time. Let us know what you think, and as always, happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/the-visual-studio-august-update-is-here-smarter-ai-better-debugging-and-more-control/">The Visual Studio August Update is here &#8211; smarter AI, better debugging, and more control</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/the-visual-studio-august-update-is-here-smarter-ai-better-debugging-and-more-control/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">2</slash:comments>
+    </item>
+    <item>
+      <title>GitHub Copilot for Azure (Preview) Launches in Visual Studio 2022 with Azure MCP Support</title>
+      <link>https://devblogs.microsoft.com/visualstudio/github-copilot-for-azure-preview-launches-in-visual-studio-2022-with-azure-mcp-support/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/github-copilot-for-azure-preview-launches-in-visual-studio-2022-with-azure-mcp-support/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Yun Jung Choi]]></dc:creator>
+      <pubDate>Mon, 25 Aug 2025 18:36:28 +0000</pubDate>
+      <category><![CDATA[Azure]]></category>
+      <category><![CDATA[Cloud]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Agent Mode]]></category>
+      <category><![CDATA[agents]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[LLM]]></category>
+      <category><![CDATA[MCP]]></category>
+      <category><![CDATA[microsoft]]></category>
+      <category><![CDATA[Model Context Protocol]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253992</guid>
+      <description><![CDATA[<p>The GitHub Copilot for Azure extension is now in Public Preview for Visual Studio 2022 (17.14+). It brings a curated set of Azure developer tools—exposed through the Azure MCP server—directly into GitHub Copilot Agent Mode in Visual Studio. The extension automatically installs and manages the Azure MCP server, so you can query resources, diagnose issues, [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-for-azure-preview-launches-in-visual-studio-2022-with-azure-mcp-support/">GitHub Copilot for Azure (Preview) Launches in Visual Studio 2022 with Azure MCP Support</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The GitHub Copilot for Azure extension is now in Public Preview for Visual Studio 2022 (17.14+). It brings a curated set of Azure developer tools—exposed through the Azure MCP server—directly into GitHub Copilot Agent Mode in Visual Studio. The extension automatically installs and manages the Azure MCP server, so you can query resources, diagnose issues, deploy with azd, and run Azure CLI commands—all from the Copilot Chat.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://marketplace.visualstudio.com/items?itemName=github-copilot-azure.GitHubCopilotForAzure2022&amp;ssr=false#overview" target="_blank">Try GitHub Copilot for Azure</a></div></p>
+<p><em>Ship Azure features without leaving Visual Studio. Agent-powered, MCP-enabled, no extra setup.</em></p>
+<p><iframe src="//www.youtube.com/embed/NXGRqbniExo" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<h2><strong>What’s in the Public Preview?</strong></h2>
+<ul>
+<li><strong>Zero-setup Azure MCP server</strong>
+The extension automatically downloads and starts the Azure MCP server the first time you open Copilot Chat—no manual install required. (You’ll see it in the tools list in Agent Mode.)
+<em>(Note: the MCP server version included with the extension may occasionally trail the latest upstream release by a few versions.)</em></li>
+<li><strong>Agent Mode + Azure tools</strong>
+Let Copilot pick the right tools for your goal—or choose specific tools from the toolbox in the Copilot Chat window. Typical tasks include: list and inspect resources, diagnose issues, pull app logs, deploy with azd, run Azure CLI commands, and more.</li>
+<li><strong>Broad Azure coverage via MCP tools</strong>
+The suite of tools allows interaction with:</p>
+<ul>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/2699.png" alt="⚙" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure App Configuration</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f6e1.png" alt="🛡" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Best Practices</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f5a5.png" alt="🖥" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure CLI Extension</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4e6.png" alt="📦" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Container Registry (ACR)</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4ca.png" alt="📊" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Cosmos DB (NoSQL Databases)</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f9ee.png" alt="🧮" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Data Explorer</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f418.png" alt="🐘" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Database for PostgreSQL – Flexible Server</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f6e0.png" alt="🛠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Developer CLI (azd) Extension</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f680.png" alt="🚀" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Deploy</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/2601.png" alt="☁" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Function App</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f511.png" alt="🔑" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Key Vault</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/2638.png" alt="☸" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Kubernetes Service (AKS)</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f5c4.png" alt="🗄" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure SQL Database, Elastic Pool, and Server</li>
+<li><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f4be.png" alt="💾" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Azure Storage</li>
+<li>&#8230;and many more!</li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 40px;">See the <strong>full, continuously updated list</strong> in the <a href="https://github.com/Azure/azure-mcp/blob/main/docs/azmcp-commands.md">Azure MCP server docs</a>.</p>
+<h2><strong>Get started</strong></h2>
+<h3><strong>Prerequisites</strong></h3>
+<ul>
+<li>Visual Studio 2022 17.14 or later (Agent Mode + MCP support)</li>
+<li>An active GitHub Copilot subscription and Copilot Chat enabled in Visual Studio</li>
+<li>A Microsoft account with access to an Azure subscription (or start free below)</li>
+</ul>
+<h3><strong>Install &amp; set up</strong></h3>
+<ol>
+<li style="list-style-type: none;">
+<ol>
+<li>Install the <strong>
+<a href="https://marketplace.visualstudio.com/items?itemName=github-copilot-azure.GitHubCopilotForAzure2022">GitHub Copilot for Azure (Preview)</a>
+</strong> extension for Visual Studio 2022.
+<em>The extension starts the Azure MCP server automatically—no manual setup required.</em></li>
+<li>Open <strong>Copilot Chat</strong> and select <strong>Agent Mode</strong>.
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AgentMode.png">
+<img decoding="async" class="wp-image-253999 alignnone" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AgentMode-300x73.png" alt="AgentMode image" width="450" height="109" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AgentMode-300x73.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AgentMode-768x186.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AgentMode.png 962w" sizes="(max-width: 450px) 100vw, 450px" />
+</a></li>
+<li>Click <strong>Select tools</strong> and check to enable the <strong>Azure Extension</strong>.
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/SelectTools.png">
+<img decoding="async" class="wp-image-254000 alignnone" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/SelectTools-300x73.png" alt="SelectTools image" width="455" height="111" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/SelectTools-300x73.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/SelectTools-768x186.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/SelectTools.png 962w" sizes="(max-width: 455px) 100vw, 455px" />
+</a></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AzureExtensionChecked.png">
+<img decoding="async" class="wp-image-254007 alignnone" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AzureExtensionChecked-300x116.png" alt="AzureExtensionChecked image" width="284" height="110" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AzureExtensionChecked-300x116.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AzureExtensionChecked-768x296.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/AzureExtensionChecked.png 835w" sizes="(max-width: 284px) 100vw, 284px" />
+</a></li>
+<li>In your prompts, include resource details for best results (subscription, resource group, resource name).</li>
+</ol>
+</li>
+</ol>
+<p><strong>New to Azure? </strong><a href="https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account">Sign up free and get $200 in credit</a> to explore services</p>
+<h3><strong>Try these example prompts</strong></h3>
+<p><em>These examples assume you’re in Agent Mode with Azure tools enabled. Add subscription and resource group names where helpful.</em></p>
+<ol>
+<li style="list-style-type: none;">
+<ol>
+<li style="list-style-type: none;">
+<ul>
+<li>&#8220;Do I have any webapps in my current subscription?&#8221;</li>
+<li>&#8220;Look for a WebApp named `&lt;appname&gt;`. Does it have any recent downtime?&#8221;</li>
+<li>&#8220;Find what tenants I have access to and what I&#8217;m currently using.&#8221;</li>
+<li>&#8220;Provide the weburls for these ACA apps.&#8221;</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2><strong>What’s next?</strong></h2>
+<p>We’re committed to continuously expanding the Azure toolset and deepening the integration with Visual Studio, all on top of the robust MCP foundation that is now generally available in Visual Studio. If you’re already using GitHub Copilot, we encourage you to try out GitHub Copilot for Azure and experience the new capabilities firsthand. Your feedback is invaluable—let us know which Azure scenarios you’d like to automate next and help shape the future of GitHub Copilot for Azure!</p>
+<p><a href="Learn%20how%20to%20share%20feedback%20in%20Visual%20Studio%202022">Learn how to share feedback in Visual Studio 2022</a></p>
+<h2><strong>Additional learning</strong></h2>
+<ol>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://devblogs.microsoft.com/visualstudio/mcp-is-now-generally-available-in-visual-studio/">Model Context Protocol (MCP) is Now Generally Available in Visual Studio <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f389.png" alt="🎉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> &#8211; Visual Studio Blog</a></li>
+<li><a href="https://devblogs.microsoft.com/visualstudio/agent-mode-is-now-generally-available-with-mcp-support/">Agent mode is now generally available with MCP support &#8211; Visual Studio Blog</a></li>
+<li><a href="https://learn.microsoft.com/en-us/shows/github-copilot-for-visual-studio/customizing-github-copilot-in-visual-studio-with-custom-instructions-miniseries">Customizing GitHub Copilot in Visual Studio with Custom Instructions (Part 5 of 8) | Microsoft Learn</a></li>
+</ul>
+</li>
+</ol>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/github-copilot-for-azure-preview-launches-in-visual-studio-2022-with-azure-mcp-support/">GitHub Copilot for Azure (Preview) Launches in Visual Studio 2022 with Azure MCP Support</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/github-copilot-for-azure-preview-launches-in-visual-studio-2022-with-azure-mcp-support/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+    </item>
+    <item>
+      <title>Better Control over Your Copilot Code Suggestions</title>
+      <link>https://devblogs.microsoft.com/visualstudio/better-control-over-your-copilot-code-suggestions/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/better-control-over-your-copilot-code-suggestions/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Simona Liao]]></dc:creator>
+      <pubDate>Thu, 21 Aug 2025 16:00:37 +0000</pubDate>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio 2022]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=253975</guid>
+      <description><![CDATA[<p>Copilot code completions and suggestions in the editor speed you up in your daily programming and coding activities, at every keystroke. They help you finish the line you&#8217;re typing or anticipate your next edit, making your workflow smoother and faster. At the same time, editor is where you focus and put in the deep work. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/better-control-over-your-copilot-code-suggestions/">Better Control over Your Copilot Code Suggestions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Copilot code completions and suggestions in the editor speed you up in your daily programming and coding activities, at every keystroke. They help you finish the line you&#8217;re typing or anticipate your next edit, making your workflow smoother and faster. At the same time, editor is where you focus and put in the deep work. Based on your feedback, we understand how important it is to strike the right balance between helpful suggestions and maintaining control over your attention and workspace.</p>
+<p>We&#8217;re excited to share features that give you enhanced control over your Copilot experience, so you can decide when suggestions show up and how much you accept, right inside your editor. These features are all available to you now, starting Visual Studio 2022 17.14.13 (August 2025).</p>
+<h2>Minimize Distractions When Coding</h2>
+<p>Do you prefer a quieter editor when actively thinking and coding? We have a few options in Visual Studio to help you stay focused on programming and still have Copilot assistance available for you when you are ready to review them.</p>
+<h3>1. No completions while typing</h3>
+<p>By default, completion is requested at every keystroke you type to provide just-in-time support. We learned from you that it could show up too quickly sometimes and interfere with your typing. You can pause code completions when you are quickly typing out the code.  Go to <strong>Tools -&gt; Options -&gt; IntelliCode -&gt; Advanced</strong> and turn on <strong>wait for pauses in typing before showing whole line completions<em>. </em></strong>This will add a debounce to request code completions when you are typing, so you will not see the completions quickly showing and disappearing while you are typing fast.</p>
+<h3>2. Only receive code completions when you request it</h3>
+<p>You can now disable automatic completions popping on and trigger them manually with keyboard shortcuts. This gives you full control over when suggestions appear, helping you stay focused when you need to and get help when you want it.</p>
+<p>Configure the trigger for code completions in <strong>Tools &gt; Options &gt; IntelliCode &gt; General</strong>. The default experience is <strong>Automatically generate code completions in the Editor</strong> and you can uncheck this setting to only receive suggestions when you explicitly request them by pressing <code>Alt</code> + <code>,</code> or <code>Alt</code> + <code>.</code>. If there are multiple code suggestions available after requesting, you can cycle through them by pressing <code>Alt</code> + <code>,</code> or <code>Alt</code> + <code>.</code>as well.</p>
+<p>When triggered with the keyboard shortcuts, a thinking hint bar will appear at your cursor position to indicate that Copilot is generating code suggestions. If no suggestions are returned, the hint bar will disappear after a few seconds. If suggestions are available, you can accept them by pressing Tab.</p>
+<p><div style="width: 640px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-253975-1" width="640" height="360" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/completions-on-demand.mp4?_=1" /></p><h3>3. Hide next edit suggestions and review them when you are ready</h3><p><a href="https://devblogs.microsoft.com/visualstudio/next-edit-suggestions-available-in-visual-studio-github-copilot/">Next edit suggestions</a> predict the next edit you will make based on your previous code edits. Sometimes these suggestions can be a bit distracting when appearing unexpectedly, and now you can hide NES by default and only review them when you want to.</p><p>NES will still be triggered based on your edits and when there is an available NES ready for you to review, a <strong>margin indicator</strong> will appear in the gutter space, pointing at the line that it has a suggestion for. To view this suggestion, you can either:</p><ol><li>Click the margin indicator or</li><li>Press <code>Tab</code></li></ol><p>and the suggestion will be displayed. Then, after viewing the suggestions, you can press Tab again to accept it or press ESC to dismiss it. After you accept a suggestion, any related suggestions will automatically appear again, as you might find them useful too. Any other new suggestions that are not related to your previously accepted suggestion will be hidden again.</p><p>For example, in the video below, after changing Point to Point3D, a NES is available but not displayed directly. The margin indicator and hint bar show that there is a suggestion on line 4 and then I clicked on the indicator to review it.</p><p>[video mp4="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/NEScollapsemode.mp4"]<a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/completions-on-demand.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/completions-on-demand.mp4</a></video></div></p>
+<h3>3. Hide next edit suggestions and only preview when you are ready</h3>
+<p><a href="https://learn.microsoft.com/en-us/visualstudio/ide/copilot-next-edit-suggestions?view=vs-2022">Next edit suggestions</a> predict the next edit you will make based on your previous code edits. Sometimes these suggestions can be a bit distracting when appearing unexpectedly, and now you can hide NES by default and only review them when you want to.</p>
+<p>NES will still be triggered based on your edits and when there is an available NES ready for you to review, a <strong>margin indicator</strong> will appear in the gutter space, pointing at the line that it has a suggestion for. To view this suggestion, you can either:</p>
+<ol>
+<li>Click the margin indicator or</li>
+<li>Press <code>Tab</code></li>
+</ol>
+<p>and the suggestion will be displayed. Then, after viewing the suggestions, you can press Tab again to accept it or press ESC to dismiss it. After you accept a suggestion, any related suggestions will automatically appear again, as you might find them useful too. Any other new suggestions that are not related to your previously accepted suggestion will be hidden again.</p>
+<p>For example, in the video below, after changing Point to Point3D, a NES is available but not displayed directly. The margin indicator and hint bar show that there is a suggestion on line 4 and then I clicked on the indicator to review it.</p>
+<p><div style="width: 640px;" class="wp-video"><video class="wp-video-shortcode" id="video-253975-2" width="640" height="360" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/NEScollapsemode.mp4?_=2" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/NEScollapsemode.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/NEScollapsemode.mp4</a></video></div></p>
+<p>To try out this experience, go to <strong>Tools &gt; Options &gt; GitHub &gt; Copilot &gt; Copilot Completions</strong> and check <strong>Collapse Next Edit Suggestions</strong>.</p>
+<h2>Partially Accept a Code Suggestion</h2>
+<p><span style="font-size: 12pt;">Have you ever wanted to only accept the first couple words or lines of a Copilot code completions instead of accepting the whole thing? We are excited to announce that you will now be able to partially accept a code completion word by word or line by line!</span></p>
+<p>When having a Copilot code completion in the editor&#8230;</p>
+<ul>
+<li>Use the shortcut <code>Ctrl</code> + <code>Right Arrow</code> to accept one <strong>word</strong> at a time,</li>
+<li>Use the shortcut <code>Ctrl</code> + <code>Down Arrow</code> to accept one <strong>line</strong> at a time.</li>
+</ul>
+<p>You can also use the margin indicator to accept the completion partially. When clicking on the margin indicator, it will have options for partial accepts too.</p>
+<p><div style="width: 640px;" class="wp-video"><video class="wp-video-shortcode" id="video-253975-3" width="640" height="360" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/partial-accept.mp4?_=3" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/partial-accept.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/partial-accept.mp4</a></video></div></p>
+<p>Now you will have more fine-grained control over how much code completions you would like to accept instead of having to accept the entire suggestions and edit afterwards. Please try it out and let us know what you think!</p>
+<p>Note: Partial accept overrides the existing functionality that bind to these shortcuts. If you would like to turn it off, please go to Tools &gt; Options &gt; IntelliCode &gt; Advanced &gt; Whole-line completions</p>
+<h2>Thanks for sharing your feedback!</h2>
+<p>We worked on these improvements because of your valuable feedback shared with us through Developer Community (<a href="https://developercommunity.visualstudio.com/t/Copilot-completions-are-too-intrusive/10810929#T-ND10921637">Copilot completions are too intrusive &#8211; Developer Community,</a>  <a href="https://developercommunity.visualstudio.com/t/Ability-to-partially-accept-GitHub-Copil/10906088?q=partial+accept">Ability to partially accept GitHub Copilot suggestions &#8211; Developer Community</a>) and product surveys. We truly appreciate your input—it helps us build better experiences. Please try out these ways to fine-tune Copilot suggestions in your editor and let us know how we can keep making it better for you!</p>
+<h3>Check out the new Visual Studio Hub</h3>
+<p>Stay connected with everything Visual Studio in one place! Visit the <a href="https://visualstudio.microsoft.com/hub/">Visual Studio Hub</a> for the latest release notes, YouTube videos, social updates, and community discussions.</p>
+<h3>Appreciation for your feedback</h3>
+<p>Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through <a href="https://developercommunity.visualstudio.com/VisualStudio">Developer Community</a>, you help us improve and shape the future of Visual Studio.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/better-control-over-your-copilot-code-suggestions/">Better Control over Your Copilot Code Suggestions</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/better-control-over-your-copilot-code-suggestions/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">4</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/NEScollapsemode.mp4" length="8022472" type="video/mp4" />
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/partial-accept.mp4" length="1288813" type="video/mp4" />
+    </item>
   </channel>
 </rss>
