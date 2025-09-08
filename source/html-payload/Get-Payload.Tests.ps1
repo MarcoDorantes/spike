@@ -1,3 +1,9 @@
+BeforeAll {
+    Import-Module $PSScriptRoot\Get-Payload.psm1
+}
+AfterAll {
+    Remove-Module Get-Payload
+}
 Describe x {
     It here-string {
         $email_body = @'
@@ -148,5 +154,15 @@ Describe x {
         $payload = $xml1.Node.SelectNodes('//text()').InnerText
         $payload | Should -Be @('Get-Date','Third line','Get-Date')
         $payload -is [object[]]| Should -BeTrue
+    }
+    It get-payload {
+        $email_body = @'
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body><div dir="ltr" style="font-family: &quot;Segoe UI&quot;, &quot;Segoe UI_MSFontService&quot;, -apple-system, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;"><br></div><div id="ms-outlook-mobile-body-separator-line" dir="ltr"><div style="font-family: &quot;Segoe UI&quot;, &quot;Segoe UI_MSFontService&quot;, -apple-system, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">Get-Date</div><div dir="ltr" style="font-family: &quot;Segoe UI&quot;, &quot;Segoe UI_MSFontService&quot;, -apple-system, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;"><br></div><div dir="ltr" style="font-family: &quot;Segoe UI&quot;, &quot;Segoe UI_MSFontService&quot;, -apple-system, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">Third line</div><div dir="ltr" style="font-family: &quot;Segoe UI&quot;, &quot;Segoe UI_MSFontService&quot;, -apple-system, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">Get-Date</div><div dir="ltr" style="font-family: &quot;Segoe UI&quot;, &quot;Segoe UI_MSFontService&quot;, -apple-system, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;"><br></div></div><div id="ms-outlook-mobile-signature" dir="ltr"></div></body></html>
+
+'@
+        $payload = GetPayload $email_body
+        $payload | Should -Be @('Get-Date','Third line','Get-Date')
     }
 }
