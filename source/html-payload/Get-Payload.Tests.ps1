@@ -104,6 +104,7 @@ Describe x {
         $payload | Should -Be 'Get-Date'
         $payload -is [string]| Should -BeTrue
     }
+
     It xml-payload {
         $email_body = @'
 <html><head>
@@ -117,6 +118,18 @@ Describe x {
         $xml1 = Select-Xml -Content ('<html><body>' + ($match.Matches[0].Groups['inner'].Value) + '</body></html>') -XPath '/'
         $xml1 | Should -Not -BeNullOrEmpty
         $payload = $xml1.Node.SelectNodes('//text()').InnerText
+        $payload | Should -Be 'Get-Date'
+        $payload -is [string]| Should -BeTrue
+    }
+
+    It xml-payload {
+        $email_body = @'
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body><div><span style="font-size: 21.333334px;">Get-Date</span></div></body></html>
+
+'@
+        $payload = GetPayload $email_body
         $payload | Should -Be 'Get-Date'
         $payload -is [string]| Should -BeTrue
     }
@@ -138,6 +151,7 @@ Describe x {
         $payload | Should -Be 'Get-Date'
         $payload -is [string]| Should -BeTrue
     }
+
     It xml-payload {
         $email_body = @'
 <html><head>
@@ -155,6 +169,7 @@ Describe x {
         $payload | Should -Be @('Get-Date','Third line','Get-Date')
         $payload -is [object[]]| Should -BeTrue
     }
+
     It get-payload {
         $email_body = @'
 <html><head>
