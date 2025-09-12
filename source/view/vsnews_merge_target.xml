@@ -30430,5 +30430,159 @@ The suite of tools allows interaction with:</p>
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/NEScollapsemode.mp4" length="8022472" type="video/mp4" />
       <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/08/partial-accept.mp4" length="1288813" type="video/mp4" />
     </item>
+    <item>
+      <title>Democratizing Performance: The Copilot Profiler Agent in Action on Real Code</title>
+      <link>https://devblogs.microsoft.com/visualstudio/copilot-profiler-agent-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/copilot-profiler-agent-visual-studio/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Thu, 11 Sep 2025 16:05:09 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[Performance Improvements]]></category>
+      <category><![CDATA[Profiling]]></category>
+      <category><![CDATA[Visual Studio 2026]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254306</guid>
+      <description><![CDATA[<p>We’re excited to announce the Copilot Profiler Agent available in Visual Studio 2026 Insiders, it&#8217;s an AI-powered performance assistant built directly into Visual Studio. Forget staring at endless call trees or walls of mysterious numbers that leave you asking, “where do I even start?” The Copilot Profiler Agent changes that.   Instead of raw data, you [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/copilot-profiler-agent-visual-studio/">Democratizing Performance: The Copilot Profiler Agent in Action on Real Code</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p style="text-align: left;"><span data-contrast="auto"><div class="alert alert-success"><p class="alert-divider"><i class="fabric-icon fabric-icon--Lightbulb"></i><strong>Watch behind the scenes of the Profiler Agent</strong></p>Head on over to the <a href="https://www.youtube.com/watch?v=u8kPpwvI1AI&amp;t=2s" target="_blank" rel="noopener">Copilot Profiler Agent</a> to watch.</div></span></p>
+<p style="text-align: left;"><span data-contrast="auto"><br />We’re excited to announce the </span><b><span data-contrast="auto">Copilot Profiler Agent </span></b><span data-contrast="auto">available in Visual Studio 2026 </span><span data-contrast="none">Insiders,</span> <span data-contrast="none">it&#8217;s an</span><span data-contrast="auto"> AI-powered performance assistant built directly into Visual Studio. Forget staring at endless call trees or walls of mysterious numbers that leave you asking, </span><i><span data-contrast="auto">“where do I even start?”</span></i><span data-contrast="auto"> The Copilot Profiler Agent changes that. </span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}"> </span></p>
+<p><span data-contrast="auto">Instead of raw data, you now get an AI partner that not only points out the real bottlenecks but also explains what’s going on, suggests fixes, writes benchmarks, and even validates improvements all in a smooth, guided loop.</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}"> </span></p>
+<p><span data-contrast="auto">It’s like having a performance engineer sitting next to you. Without the coffee runs. And starting today, it’s ready for action in the latest version of Visual Studio, powered by GitHub Copilot.</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}"> Download <a href="https://visualstudio.microsoft.com/insiders/">Visual Studio 2026 Insiders </a>today.</span></p>
+<p style="text-align: center;"><span data-contrast="auto"><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/dssss.png"><img fetchpriority="high" decoding="async" class="alignnone size-full wp-image-254311" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/dssss.png" alt="dssss image" width="572" height="285" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/dssss.png 572w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/dssss-300x149.png 300w" sizes="(max-width: 572px) 100vw, 572px" /></a></span></p>
+<p style="text-align: center;">Copilot Profiler Agent </p>
+<h3><b><span data-contrast="none">Meet the Copilot Profiler Agent</span></b><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:281,&quot;335559739&quot;:281}"> </span></h3>
+<p data-start="262" data-end="512">The Profiler Agent is the first-of-its-kind AI assistant in Visual Studio, designed to work seamlessly with GitHub Copilot. </p>
+<p data-start="514" data-end="546">Here’s what it can do for you:</p>
+<ul data-start="548" data-end="905">
+<li data-start="548" data-end="615">
+<p data-start="550" data-end="615"><strong data-start="550" data-end="561">Analyze</strong> CPU usage, memory allocations, and runtime behavior</p>
+</li>
+<li data-start="616" data-end="675">
+<p data-start="618" data-end="675"><strong data-start="618" data-end="629">Surface</strong> the most expensive bottlenecks in your code</p>
+</li>
+<li data-start="676" data-end="751">
+<p data-start="678" data-end="751"><strong data-start="678" data-end="690">Generate</strong> new BenchmarkDotNet benchmarks (or optimize existing ones)</p>
+</li>
+<li data-start="752" data-end="827">
+<p data-start="754" data-end="827"><strong data-start="754" data-end="765">Suggest</strong> actionable performance improvements you can apply instantly</p>
+</li>
+<li data-start="828" data-end="905">
+<p data-start="830" data-end="905"><strong data-start="830" data-end="842">Validate</strong> fixes with before/after metrics, all in a smooth guided loop</p>
+</li>
+</ul>
+<p data-start="907" data-end="986">And the best part, it’s as easy as asking a question in Copilot Chat. You can:</p>
+<ul data-start="988" data-end="1108">
+<li data-start="988" data-end="1040">
+<p data-start="990" data-end="1040">Tag it directly: <code data-start="1007" data-end="1038">@profiler Why is my app slow?</code></p>
+</li>
+<li data-start="1041" data-end="1108">
+<p data-start="1043" data-end="1108">Or just ask in plain language in Copilot agent mode: “Why is my frame rate dropping?”</p>
+</li>
+</ul>
+<p data-start="1110" data-end="1189">(Just make sure the Profiler Agent is enabled in the Copilot Chat tool menu.)</p>
+<p data-start="1110" data-end="1189"><span data-contrast="auto">Now, let’s take a look at it in action. In the demo below, you will see I pointed the agent at an existing benchmark in </span>SharpZipLib<span data-contrast="auto"> and asked it to optimize. From there, it handled everything: running the benchmark, guiding me through the changes, applying targeted performance fixes, and validating the results by re-running the benchmark. The result was a measurable performance improvement, all from a </span><b><span data-contrast="auto">single prompt</span></b><span data-contrast="auto">.</span></p>
+<p><iframe title="Copilot Profiler Agent : Profiling Made Simple" width="500" height="281" src="https://www.youtube.com/embed/TPAMiz6E2XU?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h3><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:276}">R</span><b><span data-contrast="none">eal Code. Real Impact</span></b></h3>
+<p><span data-contrast="auto">When we set out to build the Copilot Profiler Agent, we knew one thing for sure: showing it off on a “hello world” app wasn’t going to prove anything. Real developers don’t struggle with toy code. The real test was whether it could handle messy, performance-critical, </span>production-grade projects. </p>
+<p><span data-contrast="auto">So we aimed high: pointing the Profiler Agent at the </span><b><span data-contrast="auto">top 100 most widely used open-source libraries and applications </span></b><span data-contrast="auto">the kind of code that powers frameworks, services, and apps you probably use every single day.</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">The results blew past our expectations. The Profiler Agent :</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Wingdings" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Wingdings&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto"> Surfaced hidden bottlenecks you wouldn’t spot on your own</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Wingdings" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Wingdings&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Suggested practical, actionable fixes</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Wingdings" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Wingdings&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto"> Auto-generated benchmarks to validate improvements</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Wingdings" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Wingdings&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="auto"> Turned insights into real pull requests on real projects</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<p><span data-contrast="auto">We’ve already contributed PRs to </span><b><span data-contrast="auto">CSVHelper, NLog, Serilog, and more </span></b><span data-contrast="auto">all powered by the Profiler Agent’s insights.</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">And the feedback from the community says it all:</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<blockquote>
+<p><i><span data-contrast="auto">Saw the YouTube video and it is almost magical. Amazing how it was able to recognize that multiple expression-compiles could be merged into a single expression-compile.</span></i><span data-contrast="auto">– NLog Maintainer</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+</blockquote>
+<p><span data-contrast="auto">We’ll be publishing a detailed case studies soon, walking through exactly how the Profiler Agent tackled these projects step by step.</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">This isn’t just OSS, either. We rolled out the Profiler Agent for internal dogfooding across Microsoft teams, and the results have been equally eye-opening.</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">Here’s one story from a Principal Engineer:</span><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<blockquote>
+<p><i><span data-contrast="auto">I had a class that wrapped a dictionary and exposed a limited set of operations. I wanted to support foreach on the class, so I added IEnumerable&lt;TKey, TValue&gt;, but this caused a big jump in memory use and execution time compared to iterating directly over the inner dictionary. After several prompt iterations with the profiler agent, it nudged me toward the realization that .NET supports duck typing for foreach. I didn’t need IEnumerable at all just exposing GetEnumerator that forwards to the inner dictionary worked. </span></i><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><i><span data-contrast="auto">Honestly, I’m not sure I would have figured this out on my own. I even asked several principal-level engineers with deep .NET experience, and none of them knew about this either. When focused on allocation optimization, the profiler agent does a great job of spotting improvements.</span></i><span data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+</blockquote>
+<h3><b><span data-contrast="none">What’s Next</span></b><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></h3>
+<p><span data-contrast="auto">This is just the beginning. The Profiler Agent currently supports high CPU usage analysis and .NET object allocations and memory usage analysis and more coming soon.</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:276}"> </span></p>
+<p><span data-contrast="auto">We’re excited to see how you use this in your own workflows whether it’s tuning a game engine, optimizing a service, or just speeding up a slow UI. So please try it out and don&#8217;t forget to Share your results by taking this </span><span data-contrast="auto"><a href="https://www.surveymonkey.com/r/2ZNJFYP?sessionId=[sessionId_value]">short survey</a>.</span><span data-contrast="auto"> </span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:276}"> </span></p>
+<p>Stay connected with the Visual Studio team by following us on <a href="https://twitter.com/VS_Debugger">Twitter @VS_Debugger</a>, <a href="https://twitter.com/VisualStudio">Twitter @VisualStudio</a>, YouTube, and <a href="https://www.linkedin.com/showcase/microsoft-visual-studio/">LinkedIn.</a></p>
+<p><b><span data-contrast="auto">Democratizing profiling, one performance wins at a time. </span></b><span data-contrast="auto"><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f60a.png" alt="😊" class="wp-smiley" style="height: 1em; max-height: 1em;" /> </span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:276}"> </span></p>
+<p><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:276}"> </span></p>
+<p><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:240,&quot;335559740&quot;:240}"> </span></p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/copilot-profiler-agent-visual-studio/">Democratizing Performance: The Copilot Profiler Agent in Action on Real Code</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/copilot-profiler-agent-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>Visual Studio 2026 Insiders is here!</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2026-insiders-is-here/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 09 Sep 2025 16:52:29 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Insiders]]></category>
+      <category><![CDATA[Visual Studio 2026]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254198</guid>
+      <description><![CDATA[<p>Visual Studio 2026 Insiders is here &#8211; and it marks one of the most ambitious steps forward we’ve taken with the IDE. This release brings AI woven directly into the developer workflow, performance improvements that reset expectations for speed at enterprise scale, and a modern design that makes the environment feel lighter and more focused. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2026-insiders-is-here/">Visual Studio 2026 Insiders is here!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><div class="alert alert-success"><p class="alert-divider"><i class="fabric-icon fabric-icon--Lightbulb"></i><strong>Watch the Visual Studio 2026 Insiders release party</strong></p>Head on over to the <a href="https://www.youtube.com/watch?v=RUd_RO1OT1A">Visual Studio YouTube channel</a> to watch.</div></p>
+<p><strong>Visual Studio 2026 Insiders is here &#8211; and it marks one of the most ambitious steps forward we’ve taken with the IDE.</strong></p>
+<p>This release brings AI woven directly into the developer workflow, performance improvements that reset expectations for speed at enterprise scale, and a modern design that makes the environment feel lighter and more focused.</p>
+<p>And for the first time, we’re introducing the new <strong>Insiders Channel</strong>, which replaces the long-standing Preview Channel as the way developers can get early access to upcoming features.</p>
+<p>This is a release you can feel the moment you start using it &#8211; <a href="https://visualstudio.microsoft.com/insiders/">download the Insiders release</a> and <a href="https://aka.ms/vs/relnotes/insiders">check out the release notes</a> and see for yourself<strong>. </strong>And don&#8217;t miss out on <a href="https://learn.microsoft.com/visualstudio/ide/copilot-free-plan">Copilot Free</a> to unleash the full power of AI in Visual Studio 2026.</p>
+<p><video style="object-fit: cover;" poster="https://visualstudio.microsoft.com/wp-content/uploads/2025/09/Ins_VisualStudio_Thumbnail_anim.webp" preload="auto" controls="controls" width="100%" height="auto"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span><source src="https://visualstudio.microsoft.com/wp-content/uploads/2025/09/VisualStudio_InsidersVideo_RevFinal.webm" type="video/webm" /><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span><source src="https://visualstudio.microsoft.com/wp-content/uploads/2025/09/VisualStudio_InsidersVideo_RevFinal.mp4" type="video/mp4" /><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_end">﻿</span><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_end">﻿</span>Sorry, your browser doesn&#8217;t support embedded videos.</video>It’s all part of a simple but powerful goal: keeping developers in flow so you can spend less time fighting the tooling and more time solving the hard problems that matter. The IDE is made <em>by developers, for developers </em>&#8211; and you will always be at the center of the experience. Here’s a teaser of some of the things you can find in this new version:</p>
+<h2>AI Integrated Development</h2>
+<p>AI in Visual Studio 2026 isn’t bolted on. It’s woven into the daily rhythms of coding. Think of it as a quiet partner that knows your solution, respects your muscle memory, and offers help that’s timely rather than intrusive.</p>
+<p>You’ll notice it when you drop into a new codebase and the IDE helps you understand what you’re looking at, suggests the kinds of tests that usually get written in your repo, and keeps your docs and comments in step with your code. You’ll feel it when a “paste and fix” moment becomes a single confirmation because the editor adapts the snippet to your project’s patterns and conventions. And when performance questions pop up, you won’t be guessing – guidance is grounded in real traces and validated with benchmarks, so fixes come with confidence, not hope.</p>
+<p>Code reviews start with clear, actionable insights about correctness, performance, and security – on your machine, before you ever open a pull request. Through it all, <strong>you stay in control</strong>. The IDE takes the busy-work; <strong>you keep the judgment</strong>. The result is simple: you move faster, and your code gets better.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/profiler-agent-1.gif"><img decoding="async" class="alignnone size-full wp-image-254201" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/profiler-agent-1.gif" alt="profiler agent image" width="800" height="503" /></a></p>
+<p><em>The Profiler Agent can identify and fix performance issues in your code.</em></p>
+<h3>Blazing fast performance</h3>
+<p>Speed shapes what you can build in a day. In 2026, the loops you run most – opening solutions, navigating code, building, and pressing F5 – tighten up. You’ll notice that first launch feels snappier, big solutions feel lighter, and the time between an idea and a running app keeps shrinking. The gains show up on large codebases and they hold across both x64 and Arm64, so your machine’s power turns directly into developer velocity.</p>
+<p>You’ll feel it when you can jump between branches without losing your stride, when a full build doesn’t break your flow, and when pressing F5 is something you do instinctively because the wait is measured in moments.</p>
+<p>Early feedback says it plainly:</p>
+<ul>
+<li>“HOLY […] this is FAST.” – early previewer</li>
+<li>“It’s blazing fast on all my projects.” – Visual Studio MVP</li>
+</ul>
+<h3>A modern look and feel</h3>
+<p>Clarity matters when you live in an IDE. Visual Studio 2026 introduces a cleaner and more modern visual language. The result is a workspace that feels calm and intentional.</p>
+<p>You’ll notice crisper lines, <strong>improved iconography</strong>, and better spacing of visual elements. <strong>Options</strong> feel approachable rather than overwhelming, so tuning the IDE to your preferences is quick instead of delicate.</p>
+<p><strong>Managing extensions</strong> is straightforward, and a plethora of <strong>new color themes</strong> help your environment feel personal – comfortable for long sessions, focused when the pressure is on, and accessible by default.</p>
+<p>It’s a design that respects your attention and helps you stay oriented, even in the largest solutions.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/old_fluent-ui.png"><img decoding="async" class="alignnone size-full wp-image-254199" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/old_fluent-ui.png" alt="old fluent ui image" width="950" height="643" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/old_fluent-ui.png 950w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/old_fluent-ui-300x203.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/old_fluent-ui-768x520.png 768w" sizes="(max-width: 950px) 100vw, 950px" /></a></p>
+<p><em>Visual Studio 2026 redesigned using Fluent UI and ships with 11 new tinted themes</em></p>
+<h2>Try it today</h2>
+<p>Ready to see the future of Visual Studio? You can get started right now:</p>
+<ul>
+<li><a href="https://visualstudio.microsoft.com/insiders/">Download Visual Studio 2026 Insider</a></li>
+<li><a href="https://learn.microsoft.com/visualstudio/ide/copilot-free-plan">Get GitHub Copilot Free</a></li>
+<li><a href="https://aka.ms/vs/relnotes/preview">Read the release notes</a></li>
+<li><a href="https://aka.ms/devcom">Developer Community Feedback</a></li>
+</ul>
+<p>Visual Studio 2026 installs side-by-side with earlier versions, and if you’re on Visual Studio 2022 you can import components and settings to get coding right away.</p>
+<p>This is just the beginning. We’ll ship <strong>monthly updates</strong> that bring the latest performance improvements, design refinements, and AI innovations. And over the coming weeks, we’ll share deeper dives right here on the blog, so make sure to come back soon.</p>
+<h2>Thank you</h2>
+<p>Visual Studio has always been about more than code &#8211; it’s about the community of developers who build, grow, and push us to make the IDE better every day. Thank you for being part of this journey and for making Visual Studio the IDE trusted by millions worldwide.</p>
+<p><strong>Happy coding,</strong>
+The Visual Studio Team</p>
+<h3>Known issue</h3>
+<p>There&#8217;s a<a href="https://developercommunity.visualstudio.com/t/Errors-seen-immediately-following-new-in/10962760"> known issue</a> that can cause errors to show up for some users. Learn more about the issue and follow the ticket for more information.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2026-insiders-is-here/">Visual Studio 2026 Insiders is here!</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <enclosure url="https://visualstudio.microsoft.com/wp-content/uploads/2025/09/VisualStudio_InsidersVideo_RevFinal.webm" length="4542407" type="video/webm" />
+      <enclosure url="https://visualstudio.microsoft.com/wp-content/uploads/2025/09/VisualStudio_InsidersVideo_RevFinal.mp4" length="35351071" type="video/mp4" />
+    </item>
   </channel>
 </rss>
