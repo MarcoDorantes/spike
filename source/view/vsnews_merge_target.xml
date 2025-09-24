@@ -30584,5 +30584,132 @@ The Visual Studio Team</p>
       <enclosure url="https://visualstudio.microsoft.com/wp-content/uploads/2025/09/VisualStudio_InsidersVideo_RevFinal.webm" length="4542407" type="video/webm" />
       <enclosure url="https://visualstudio.microsoft.com/wp-content/uploads/2025/09/VisualStudio_InsidersVideo_RevFinal.mp4" length="35351071" type="video/mp4" />
     </item>
+    <item>
+      <title>Enhancements to XAML Live Preview in Visual Studio for .NET MAUI</title>
+      <link>https://devblogs.microsoft.com/visualstudio/enhancements-to-xaml-live-preview-in-visual-studio-for-net-maui/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rachel Kang (SHE/HER)]]></dc:creator>
+      <pubDate>Mon, 22 Sep 2025 17:26:51 +0000</pubDate>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[.NET MAUI]]></category>
+      <category><![CDATA[XAML]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254450</guid>
+      <description><![CDATA[<p>The XAML Live Preview feature in Visual Studio 2022 version 17.14 introduces a significant usability improvement for .NET MAUI projects: the XAML Live Preview window is now available during design time, eliminating the requirement to initiate a debug session. This change streamlines the UI development workflow for .NET MAUI applications. Design-Time Availability Previously, XAML Live [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhancements-to-xaml-live-preview-in-visual-studio-for-net-maui/">Enhancements to XAML Live Preview in Visual Studio for .NET MAUI</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>The <strong>XAML Live Preview</strong> feature in <strong>Visual Studio 2022 version 17.14</strong> introduces a significant usability improvement for .NET MAUI projects: the XAML Live Preview window is now available during <strong>design time</strong>, eliminating the requirement to initiate a debug session. This change streamlines the UI development workflow for .NET MAUI applications.</p>
+<h2>Design-Time Availability</h2>
+<p>Previously, XAML Live Preview was only accessible while debugging. With this release, you can open the XAML Live Preview window directly during design time. This allows you to see changes in your app UI in real-time. You can also use Hot Reload and other live UI tools in this way, ensuring a seamless workflow, improving iteration speed, and reducing context switching.</p>
+<p>To open it, go to <strong>Debug</strong> &gt; <strong>Windows</strong> &gt; <strong>XAML Live Preview</strong>.</p>
+<p>The XAML Live Preview window supports:</p>
+<ul>
+<li><strong>Element selection</strong> for navigating to source XAML.</li>
+<li><strong>Zoom and ruler tools</strong> for layout inspection.</li>
+<li><strong>Docking</strong> within the IDE for persistent visibility.</li>
+</ul>
+<h2>.NET MAUI Support for Android Targets</h2>
+<p>In addition to Windows, XAML Live Preview also supports rendering of <strong>Android devices and emulators</strong>. This allows developers to validate UI changes across platforms, providing a high-fidelity design-time experience that ensures consistency across devices.</p>
+<h2>GitHub Copilot and Vision Support</h2>
+<p>Take your UI design to the next level with XAML Live Preview and <strong>GitHub Copilot</strong>, supporting both manual and AI-assisted XAML authoring. With <strong>Copilot Vision</strong>, you can attach a reference image of a desired UI layout, and Copilot will generate the corresponding XAML. Live Preview reflects these changes in real time, enabling rapid prototyping and refinement.</p>
+<p><div style="width: 640px;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-254450-1" width="640" height="360" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/25166_MauiAgentVS2026_v2.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/25166_MauiAgentVS2026_v2.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/25166_MauiAgentVS2026_v2.mp4</a></video></div></p>
+<h2>Availability and Getting Started</h2>
+<p>This feature is available in:</p>
+<ul>
+<li><strong>Visual Studio 2022 version 17.14</strong></li>
+<li><strong>Visual Studio 2026 Insiders release</strong></li>
+</ul>
+<p>To begin using XAML Live Preview and explore its capabilities, refer to the official <a href="https://learn.microsoft.com/visualstudio/xaml-tools/xaml-live-preview">XAML Live Preview Documentation</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/enhancements-to-xaml-live-preview-in-visual-studio-for-net-maui/">Enhancements to XAML Live Preview in Visual Studio for .NET MAUI</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/25166_MauiAgentVS2026_v2.mp4" length="16128202" type="video/mp4" />
+    </item>
+    <item>
+      <title>Getting the most out of MCP in Visual Studio with Prompts, Resources, and Sampling</title>
+      <link>https://devblogs.microsoft.com/visualstudio/mcp-prompts-resources-sampling/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/mcp-prompts-resources-sampling/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Allie Barry, Praveen Sethuraman]]></dc:creator>
+      <pubDate>Wed, 17 Sep 2025 17:30:37 +0000</pubDate>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Chat]]></category>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[developer]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <category><![CDATA[LLM]]></category>
+      <category><![CDATA[MCP]]></category>
+      <category><![CDATA[Model Context Protocol]]></category>
+      <category><![CDATA[prompts]]></category>
+      <category><![CDATA[Resources]]></category>
+      <category><![CDATA[sampling]]></category>
+      <category><![CDATA[server]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254405</guid>
+      <description><![CDATA[<p>We&#8217;re excited to announce that Visual Studio now supports MCP prompts, resources, and sampling (with even more coming soon!) to enhance your Copilot experience by bringing in more context from your engineering stack. These powerful new features unlock deeper integrations with your favorite tools and services, making your development workflow more intelligent and context aware. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/mcp-prompts-resources-sampling/">Getting the most out of MCP in Visual Studio with Prompts, Resources, and Sampling</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>We&#8217;re excited to announce that Visual Studio now supports MCP prompts, resources, and sampling (with even more coming soon!) to enhance your Copilot experience by bringing in more context from your engineering stack. These powerful new features unlock deeper integrations with your favorite tools and services, making your development workflow more intelligent and context aware.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/" target="_blank">Try MCP in Visual Studio</a></div></p>
+<p>Let’s dive into each of these features and discuss some examples with specific MCP servers that can truly level up your AI-coding experience.</p>
+<h2>MCP Resources and Resource Templates: Access External Data Seamlessly</h2>
+<p>Model Context Protocol also provides a standardized way for servers to expose resources to clients. Resources allow servers to share data that provides context to language models, such as files, database schemas, or application-specific information. Each resource is uniquely identified by a URI, allowing you to get even more out of your MCP servers and pull in context directly in the IDE.</p>
+<h4><em>Example: Azure DevOps Work Items</em></h4>
+<p>When working with Azure DevOps, you can now reference work items, user stories, and project data directly in your chat conversations. The Azure DevOps MCP server exposes resources like work item templates, sprint information, and team capacity data that Copilot can use to provide more contextual suggestions about your project planning and development tasks.</p>
+<p><a href="vsweb+mcp:/install?%7B%22name%22%3A%22azure-devops%22%2C%22gallery%22%3Atrue%2C%22inputs%22%3A%5B%7B%22id%22%3A%22ado_org%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Azure%20DevOps%20organization%20name%20(e.g.%20%27contoso%27)%22%2C%22password%22%3Afalse%7D%5D%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure-devops%2Fmcp%22%2C%22%24%7Binput%3Aado_org%7D%22%5D%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_Azure_DevOps_MCP_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a></p>
+<h4>Using MCP Resources</h4>
+<p>To use any MCP resources available to you, reference them in Copilot chat the same way you would reference any other piece of context &#8211; with a hashtag (#) followed by the resource URI.</p>
+<h4>Resource Templates for Dynamic Content</h4>
+<p>Just like with prompts, MCP resources can have arguments that you can fill in to customize the resource for your specific needs. These are called resource templates. To configure them:</p>
+<ol>
+<li>Use the <strong>+ Reference</strong> button in chat</li>
+<li>Select the <strong>MCP resource</strong> option from the menu</li>
+<li>Choose your resource template and fill in any required arguments</li>
+<li>Click <strong>Add Resource</strong> to make this MCP resource referenceable in chat</li>
+</ol>
+<h4><em>Example: Figma Design Context</em></h4>
+<p>For teams working closely with design systems, the Figma MCP server allows you to reference design components, style guides, and design specifications directly in your development conversations. This bridges the gap between design and development by making design context readily available to Copilot.</p>
+<p><a href="vsweb+mcp:/install?%7B%22name%22%3A%22figma%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22http%3A%2F%2F127.0.0.1%3A3845%2Fmcp%22%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_Figma_MCP_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a></p>
+<h2>MCP Prompts and Prompt Templates: Get Better Responses with Specialized Instructions</h2>
+<p>MCP Prompts allow servers to provide structured messages and instructions for interacting with language models that are catered to the use case and content of the server in question, ensuring that you will get the best responses for a certain task.</p>
+<h4>How to Use MCP Prompts</h4>
+<p>Visual Studio now allows you to discover available prompts, retrieve their contents, and provide arguments to customize them. To reference any prompts that may come from an MCP server:</p>
+<ol>
+<li>Click the <strong>+ Reference</strong> button in chat</li>
+<li>Select the <strong>Prompts</strong> option</li>
+<li>Choose <strong>MCP prompts</strong> from the flyout</li>
+</ol>
+<p>You&#8217;ll see a pop-up where you can select the prompt you&#8217;d like to use, then click <strong>Insert Prompt</strong> to include the text from this prompt in chat.</p>
+<h4>Prompt Templates with Custom Arguments</h4>
+<p>Some MCP prompts will have arguments that you can fill in to customize the prompt for your specific needs &#8211; these are known as prompt templates. If you select a prompt in the modal dialog that contains arguments, you&#8217;ll be able to specify those values before inserting the prompt into chat.</p>
+<h4><em>Example: GitHub Integration</em></h4>
+<p>Imagine you&#8217;re working on code reviews and want to leverage GitHub&#8217;s specialized prompts. With the GitHub MCP server, you can access prompts specifically designed for analyzing pull requests, generating commit messages, or reviewing code changes. These prompts understand GitHub&#8217;s context and can provide more targeted assistance than generic prompts.</p>
+<p><a href="vsweb+mcp:/install?%7B%22name%22%3A%22github%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_GitHub_MCP_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a></p>
+<h2>MCP Sampling: Enabling Advanced Agentic Behaviors</h2>
+<p>Sampling in MCP allows servers to implement agentic behaviors by enabling LLM calls to occur nested inside other MCP server features. This powerful feature allows an MCP server to make requests of an LLM, rather than the typical workflow of an LLM requesting content from an MCP server. Visual Studio now supports this advanced capability, allowing your MCP servers to perform more complex, multi-step tasks on your behalf.</p>
+<h4>How Sampling works</h4>
+<p>There&#8217;s nothing to configure to take advantage of sampling &#8211; as long as your MCP server supports it, Visual Studio will too. When Copilot determines that a request would benefit from a sampling call, you&#8217;ll see a dialog containing all details of the request, asking you to confirm the sampling call before anything happens behind the scenes. This ensures you maintain full control over any automated actions.</p>
+<h4><em>Example: Playwright testing scenarios </em></h4>
+<p>The Playwright MCP server can use sampling to automatically generate comprehensive test scenarios based on your application&#8217;s current state. When you ask for help with testing, it might sample your application&#8217;s DOM structure, analyze user flows, and then generate targeted test scripts that cover critical user paths &#8211; all through intelligent sampling calls that you approve.</p>
+<p><a href="vsweb+mcp:/install?%7B%22name%22%3A%22playwright%22%2C%22gallery%22%3Atrue%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22%40playwright%2Fmcp%40latest%22%5D%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_Playwright_MCP_server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a></p>
+<h2>Getting Started</h2>
+<p>These new MCP capabilities are available now in Visual Studio. To get the most out of these features, we recommend exploring the MCP servers that align with your development workflow. Each server brings unique prompts, resources, and potentially sampling capabilities that can significantly enhance your Copilot experience.</p>
+<p>Try out some other popular MCP servers in Visual Studio with one-click:</p>
+<ul>
+<li><a href="vsweb+mcp:/install?%7B%22name%22%3A%22Awesome%20Copilot%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22ghcr.io%2Fmicrosoft%2Fmcp-dotnet-samples%2Fawesome-copilot%3Alatest%22%5D%7D" target="_blank" rel="noopener"><img decoding="async" class="alignnone" src="https://img.shields.io/badge/Visual_Studio-Install_Awesome_MCP_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a> &#8211; Discover and install custom prompts and instructions for GitHub Copilot.</li>
+<li><a href="vsweb+mcp:/install?%7B%22name%22%3A%22markitdown%22%2C%22gallery%22%3Atrue%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22markitdown-mcp%22%5D%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_MarkItDown_MCP_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a> &#8211; Convert various file formats (PDF, Word, Excel, images, audio) to Markdown.</li>
+<li><a href="vsweb+mcp:/install?%7B%22name%22%3A%22duckdb%22%2C%22gallery%22%3Atrue%2C%22inputs%22%3A%5B%7B%22id%22%3A%22duckdb_db_path%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Path%20to%20the%20DuckDB%20database%20file%20(e.g.%2C%20%2Fpath%2Fto%2Fdatabase.duckdb)%22%2C%22password%22%3Afalse%7D%5D%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22mcp-server-duckdb%22%2C%22--db-path%22%2C%22%24%7Binput%3Aduckdb_db_path%7D%22%5D%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_DuckDB_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a> &#8211; Query and analyze data in DuckDB databases locally and in the cloud.</li>
+<li><a href="vsweb+mcp:/install?%7B%22name%22%3A%22mongodb%22%2C%22gallery%22%3Atrue%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mongodb-mcp-server%22%5D%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_MongoDB_MCP_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a> &#8211; Database operations and management. Execute queries, manage collections, aggregation pipelines, and document operations.</li>
+<li><a href="vsweb+mcp:/install?%7B%22name%22%3A%22huggingface%22%2C%22gallery%22%3Atrue%2C%22url%22%3A%22https%3A%2F%2Fhf.co%2Fmcp%22%7D" target="_blank" rel="noopener"><img decoding="async" src="https://img.shields.io/badge/Visual_Studio-Install_HuggingFace_MCP_Server-C16FDE?style=flat-square&amp;logo=visualstudio&amp;logoColor=white" alt="Install in VS" /></a> &#8211; Access models, datasets, and Spaces on the Hugging Face Hub.</li>
+</ul>
+<p>The seamless integration of external tools and services through MCP represents a major step forward in creating a truly connected development environment. By bringing context from your entire engineering stack directly into your IDE, these features help Copilot provide more accurate, relevant, and actionable assistance for your daily development tasks.</p>
+<h2>Give us your feedback!</h2>
+<p><strong>We’re excited to continue evolving the MCP experience in VS, and your input plays a big role—please give us your feedback </strong><a href="https://developercommunity.visualstudio.com/home"><strong>here</strong></a><strong>, and let us know what you’d like to see next!</strong></p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/" target="_blank">Try MCP in Visual Studio</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/mcp-prompts-resources-sampling/">Getting the most out of MCP in Visual Studio with Prompts, Resources, and Sampling</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/mcp-prompts-resources-sampling/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+    </item>
   </channel>
 </rss>
