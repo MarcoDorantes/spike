@@ -12,8 +12,8 @@ function FF([scriptblock]$f, [scriptblock]$g)
     if($g)
     {
 
-        $ops = @(1,'name1')
-        $x = $g.Invoke($ops)
+        $opt = @(1,'name1')
+        $x = $g.Invoke($opt)
         if($x)
         {
             "`t`$x ($($x.Count)):`n`t`t$($x -join "`n`t`t")"
