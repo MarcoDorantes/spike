@@ -30711,5 +30711,426 @@ The Visual Studio Team</p>
       <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/mcp-prompts-resources-sampling/feed/</wfw:commentRss>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
     </item>
+    <item>
+      <title>Visual Studio Dev/Test Benefit Explained</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-dev-test-benefit-explained/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visual-studio-dev-test-benefit-explained/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Mon, 06 Oct 2025 15:52:00 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio Subscriptions]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[VSS Benefits]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254586</guid>
+      <description><![CDATA[<p>Before joining Microsoft, I served as VP of Application Development at one of the largest temporary staffing companies in the United States. I’ll never forget the look on our CFO’s face when I told him we needed two to three additional cloud environments to support a large-scale modernization project. His expression went from curious to [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-dev-test-benefit-explained/">Visual Studio Dev/Test Benefit Explained</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p data-start="324" data-end="762">Before joining Microsoft, I served as VP of Application Development at one of the largest temporary staffing companies in the United States. I’ll never forget the look on our CFO’s face when I told him we needed two to three additional cloud environments to support a large-scale modernization project. His expression went from curious to cautious as he started calculating what that might mean for compute, storage, and database costs.</p>
+<p data-start="764" data-end="869">“You want three more cloud environments? Do you have any idea what that’s going to cost us each month?”</p>
+<p data-start="871" data-end="1153">He wasn’t wrong to ask. Expanding our cloud footprint could easily double our monthly spend. What he didn’t realize was that we already had a built-in advantage—<strong data-start="1032" data-end="1151">a Visual Studio Subscription benefit that provides discounted Dev/Test rates for non-production workloads in Azure.</strong></p>
+<hr data-start="1251" data-end="1254" />
+<h2 data-start="1256" data-end="1277">Why This Matters</h2>
+<p>Like many enterprises, we were expanding our cloud footprint to support a modernization effort that touched multiple systems across accounting, ticketing, and field operations. Running in parallel across so many integration streams required more than just production and staging. We needed additional cloud environments for accounting integration, API modernization, mobile development, and quality assurance — each one mirroring production as closely as possible.</p>
+<p>The challenge wasn’t technical, it was financial. Every new environment meant more compute, more storage, and higher monthly costs. Our CFO was right to ask where that money would come from.</p>
+<p>That’s when I discovered something already included in our Visual Studio Professional and Enterprise subscriptions — the <a href="https://aka.ms/vss-devtest" target="_blank" rel="noopener">Azure Dev/Test benefit</a>.</p>
+<p><a href="https://azure.microsoft.com/en-us/pricing/offers/dev-test#discounts" target="_blank" rel="noopener"><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-254595" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/Azure-DevTest-Savings-Examples.jpg" alt="Azure DevTest Savings Examples image" width="1280" height="720" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/Azure-DevTest-Savings-Examples.jpg 1280w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/Azure-DevTest-Savings-Examples-300x169.jpg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/Azure-DevTest-Savings-Examples-1024x576.jpg 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/Azure-DevTest-Savings-Examples-768x432.jpg 768w" sizes="(max-width: 1280px) 100vw, 1280px" /></a></p>
+<p>&nbsp;</p>
+<p data-start="1936" data-end="2292">This benefit allows Visual Studio subscribers to run Windows and SQL Server VMs in Azure at the same base rates as Linux VMs of equivalent size. The Microsoft licensing costs are waived for development and testing, so you only pay for compute while it’s running. It’s a simple change with major impact: production-level environments for non-production costs.</p>
+<hr data-start="2294" data-end="2297" />
+<h2 data-start="2299" data-end="2337">The Pilot That Changed Everything</h2>
+<p>With cautious approval, I launched a pilot to test the Dev/Test benefit in action. Within a week, our team replicated the entire production environment in Azure using discounted Dev/Test rates. There were no procurement delays, no licensing complexities, and no approval bottlenecks—just straightforward cloud provisioning with real cost transparency.</p>
+<p>That one-week turnaround shattered our assumptions about how quickly we could scale and test new workloads in the cloud.</p>
+<hr data-start="2658" data-end="2661" />
+<h2 data-start="2663" data-end="2696">Why Developers Love Dev/Test</h2>
+<p>When I lead focus groups at <a href="https://aka.ms/vss-vslive" target="_blank" rel="noopener">Visual Studio Live!</a> events, I often ask developers which subscription benefits stand out beyond the IDE itself. The Azure Dev/Test benefit consistently ranks near the top. Developers tell me the same two things every time:</p>
+<ul>
+<li><strong>Prototyping freedom:</strong> they can spin up environments on demand to test ideas without waiting for budget approvals.</li>
+<li><strong>Production-grade testing:</strong> they can validate integrations and updates in environments that mirror production, without the production-level price tag.</li>
+</ul>
+<p>It’s one of the most valuable capabilities hidden in plain sight. Every Professional and Enterprise annual subscription includes access to these discounted Dev/Test rates for non-production workloads.</p>
+<hr data-start="3289" data-end="3292" />
+<h2 data-start="3294" data-end="3319">Scaling the Solution</h2>
+<p data-start="1694" data-end="1918">Once we proved the model worked, we expanded quickly. Using the Visual Studio Dev/Test benefit, our cloud environment evolved from a handful of shared test spaces into a scalable system that supported every stream of work:</p>
+<ul>
+<li data-start="1922" data-end="1972"><strong>Dedicated environments for each integration area</strong></li>
+<li data-start="1975" data-end="2027"><strong>Parallel development that removed team bottlenecks</strong></li>
+<li data-start="2030" data-end="2097"><strong>On-demand provisioning that could be started or stopped as needed</strong></li>
+<li data-start="2100" data-end="2147"><strong>Minimal oversight required from IT operations</strong></li>
+</ul>
+<p data-start="2149" data-end="2395">Because the benefit handled the licensing automatically, our IT pros no longer had to manage or approve environment requests. They stayed focused on higher-value initiatives while developers created the test environments they needed in minutes.</p>
+<p data-start="2397" data-end="2490">The result was faster releases, greater agility, and significantly lower operational costs.</p>
+<hr data-start="3899" data-end="3902" />
+<h2 data-start="3904" data-end="3926">Hidden Advantages</h2>
+<p data-start="2521" data-end="2594">Beyond the speed and savings, several additional benefits became clear:</p>
+<ul>
+<li data-start="2598" data-end="2701"><strong data-start="2598" data-end="2620">Parallel velocity:</strong> multiple teams could work independently without stepping on each other’s code.</li>
+<li data-start="2704" data-end="2804"><strong data-start="2704" data-end="2729">Risk-free innovation:</strong> the reduced cost of experimentation encouraged creative problem-solving.</li>
+<li data-start="2807" data-end="2909"><strong data-start="2807" data-end="2832">Realistic validation:</strong> production-like conditions made deployments smoother and more predictable.</li>
+<li data-start="2912" data-end="3023"><strong data-start="2912" data-end="2939">Operational simplicity:</strong> no hardware maintenance, no software installs, and fewer administrative blockers.</li>
+</ul>
+<p data-start="3025" data-end="3135">What started as a cost-saving pilot ended up transforming how we delivered software across the organization.</p>
+<hr data-start="4329" data-end="4332" />
+<h2 data-start="4334" data-end="4362">How You Can Get Started</h2>
+<p data-start="4364" data-end="4433">Visual Studio subscribers can access Azure Dev/Test pricing through one of three paths:</p>
+<ul>
+<li data-start="4437" data-end="4504"><a href="https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0148p/" target="_blank" rel="noopener"><strong data-start="4437" data-end="4460">Enterprise Dev/Test</strong></a>: available to organizations with an <strong data-start="516" data-end="545">Enterprise Agreement (EA)</strong>. This option provides centralized billing and the broadest management capabilities for teams running multiple non-production environments.</li>
+<li data-start="4507" data-end="4594"><a href="https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0023p/" target="_blank" rel="noopener"><strong data-start="4507" data-end="4533">Pay-As-You-Go Dev/Test</strong></a>: ideal for <strong data-start="727" data-end="767">individual developers or small teams</strong> with <strong data-start="773" data-end="831">Visual Studio Professional or Enterprise subscriptions</strong> who are <strong data-start="840" data-end="885">not covered under an Enterprise Agreement</strong>.</li>
+<li data-start="4597" data-end="4678"><a href="https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0148g/" target="_blank" rel="noopener"><strong data-start="4597" data-end="4624">Azure Plan for Dev/Test</strong></a>: designed for customers with <strong data-start="948" data-end="987">Microsoft Customer Agreements (MCA)</strong>, offering simplified modern billing and flexibility as organizations transition away from legacy agreements.</li>
+</ul>
+<p data-start="4680" data-end="4764">Each path unlocks the same Dev/Test discounts already included with your Visual Studio subscription, helping you run Windows and SQL Server workloads in Azure at significantly reduced rates for development and testing.</p>
+<hr data-start="4766" data-end="4769" />
+<h2 data-start="4771" data-end="4788">The Takeaway</h2>
+<p data-start="3620" data-end="3826">Most IT leaders still think of Visual Studio subscriptions as just IDE licenses. In reality, the <a href="https://aka.ms/vss-devtest" target="_blank" rel="noopener"><strong data-start="3717" data-end="3743">Azure Dev/Test benefit</strong></a> is one of the fastest ways to reduce cloud spend while accelerating development.</p>
+<p data-start="3828" data-end="3984">Several customers have told me this single benefit can easily justify the full cost of a Visual Studio subscription through cloud-computing savings alone.</p>
+<p data-start="3986" data-end="4151">The real question isn’t whether you can afford to modernize. The real question is whether you can afford <strong data-start="4091" data-end="4098">not</strong> to take advantage of the benefits you already own.</p>
+<p data-start="5154" data-end="5313"><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong data-start="5157" data-end="5222">Sign in to <a class="decorated-link" href="https://aka.ms/myvs" target="_new" rel="noopener" data-start="5170" data-end="5220">my.visualstudio.com</a></strong> today to explore Azure Dev/Test pricing and see how it can accelerate your next project.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-dev-test-benefit-explained/">Visual Studio Dev/Test Benefit Explained</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visual-studio-dev-test-benefit-explained/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+    </item>
+    <item>
+      <title>Roadmap for AI in Visual Studio (October)</title>
+      <link>https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-october/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Fri, 03 Oct 2025 19:29:09 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Chat]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254557</guid>
+      <description><![CDATA[<p>Today, we’re excited to share our public roadmap, which outlines the next steps in evolving Visual Studio with AI-powered agentic experiences. With every month, we aim to deliver smarter, faster, and more intuitive tools that enhance your coding experience. Disclaimer: The items outlined here represent ongoing work for the month. They are not commitments or [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-october/">Roadmap for AI in Visual Studio (October)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Today, we’re excited to share our public roadmap, which outlines the next steps in evolving Visual Studio with AI-powered agentic experiences. With every month, we aim to deliver smarter, faster, and more intuitive tools that enhance your coding experience.</p>
+<p><em>Disclaimer: The items outlined here represent ongoing work for the month. They are not commitments or guarantees for delivery within the current month. U</em>pvote the features you or your organization care about most, so we know what to prioritize. With that said, here is what we are working on!</p>
+<h3><strong>Remote agents</strong></h3>
+<p>We are starting to bring remote agents like the GitHub Copilot Coding Agent into the platform as a native experience, and this is just the beginning.</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Start-a-GitHub-Copilot-coding-agent-sess/10975250?q=coding+agent+">Start a GitHub Copilot coding agent session from Chat</a></li>
+</ul>
+<h3><strong>New Agents</strong></h3>
+<p>We’re streamlining how you find and switch between modes and making sure both built-in and extension-provided modes can handle more complex workflows. New agents are in progress:</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Copilot-Debugging--Agent-in-Visual-Studi/10951168?">Debugger agent</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Modernize-Agent-Improvements/10975284">Modernize Agent Improvements</a></li>
+</ul>
+<h3><strong>Agent Mode/Chat:         </strong><strong>                    </strong></h3>
+<p>We’ve been listening to your feedback on Agent Mode and Chat, and we’re making some big improvements.</p>
+<p>Tool call improvements</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Dynamic-tool-calling-in-Chat/10975291">Dynamic tool calling in Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Summarize-thread-history-when-limits-are/10975263">Summarize thread history to continue in thread</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Redirect-Agent-Mode-Mid-Response/10956902">Redirect Agent Mode Mid Response</a></li>
+</ul>
+<p>Planning lead development</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/PlanningTo-dos-in-Copilot-Chat/10951150">Planning/To dos in Copilot Chat</a></li>
+</ul>
+<h3><strong>Performance</strong></h3>
+<p>Performance and response quality are the biggest themes we’ve heard in feedback. Improving them is our top priority, and here’s what we’re tackling:</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Improve-startup-performance-of-Copilot-C/10976484">Improve startup performance of Copilot Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Token-Optimization-Reducing-token-utili/10976486">Token Optimization (Reducing token utilization, prompt caching)</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Tune-code_search-to-ensure-optimized-cal/10976487">Tune code_search to ensure optimized calling</a></li>
+</ul>
+<h3><strong>Model Context Protocol (MCP)</strong></h3>
+<p>We want you to bring your entire development stack into Visual Studio, backed by the same security, governance, and trust you already expect from our product. This sprint, we’re focused on reaching MCP full spec, improving UX and enhancing your governance controls.</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/MCP-Elicitation-Support-in-Chat/10975264">MCP Elicitation Support </a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Visual-Studio-enables-governance-to-supp/10951779">MCP Governance &#8211; Group Policy</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/MCP-Unified-UX-Experience/10975289">MCP Unified UX Experience</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Windows-MCP-registry-support/10976489">Windows MCP registry support </a></li>
+</ul>
+<h3><strong>Models</strong></h3>
+<p>We’re committed to giving you access to the latest models, and in Visual Studio we carefully evaluate them to make sure you get the best possible experience. We are continuing to expand even further.</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Auto-model-for-Copilot-Chat/10975254">Auto model in Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Add-Claude-Sonnet-45-Integration-for-Vi/10974906?dialog=comment">Claude Sonnet 4.5 in Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Add-GPT-5-Codex-in-Copilot-Chat/10975261">GPT 5 Codex in Chat</a></li>
+</ul>
+<p>To make Visual Studio a truly AI-integrated IDE, we want to ensure that Copilot is seamlessly available at every step of your development workflow—not just for writing code, but also for searching, fixing errors, writing unit tests, and even committing and pushing your changes.</p>
+<p>We’re excited for you to try these new experiences soon. If you have feedback, post it in the developer community ticket linked above. For other ideas or suggestions, drop a comment below or create a new ticket—our team reviews them all.</p>
+<p>Thanks <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f60a.png" alt="😊" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-october/">Roadmap for AI in Visual Studio (October)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>VS Live! Orlando – Your Ultimate Learning Adventure</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-live-orlando-2025/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visual-studio-live-orlando-2025/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Thu, 02 Oct 2025 16:00:38 +0000</pubDate>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio 2026]]></category>
+      <category><![CDATA[vslive]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254540</guid>
+      <description><![CDATA[<p>Imagine swapping stories with fellow developers over dinner as the Florida sun sets, then beginning the next morning with a stroll past the resort’s palm-lined walkways before catching your first session across 41 dynamic tracks. From there, immerse yourself in a full day of learning and connection. That’s the magic of Visual Studio Live! at Live 360 [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-live-orlando-2025/">VS Live! Orlando – Your Ultimate Learning Adventure</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="auto">Imagine swapping stories with fellow developers over dinner as the Florida sun sets, then beginning the next morning with a stroll past the resort’s palm-lined walkways before catching your first session across <a href="https://live360events.com/events/orlando-2025/sessions/session-list.aspx?EventDay=17" target="_blank" rel="noopener">41</a> dynamic tracks. From there, immerse yourself in a full day of learning and connection. That’s the magic of </span><a href="https://aka.ms/vsliveorlando25" target="_blank" rel="noopener"><span data-contrast="none">Visual Studio Live!</span></a><span data-contrast="auto"> at Live 360 Tech Con, November 16–21, 2025, at Universal Orlando’s Royal Pacific Resort.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-ccp-props="{}"> <a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Orlando-2025.png"><img decoding="async" class="aligncenter size-full wp-image-254541" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Orlando-2025.png" alt="VSLive Orlando 2025 image" width="624" height="342" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Orlando-2025.png 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Orlando-2025-300x164.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></span></p>
+<h2 data-start="602" data-end="643">Content-Rich Days, Networking Nights</h2>
+<p data-start="644" data-end="1040">From breakfast to late afternoon, Live! 360 delivers back-to-back sessions, workshops, and labs led by Microsoft product managers and industry experts. When the formal agenda ends, the real learning begins at evening networking events—grab a drink, compare notes with peers, or pick the brains of speakers and Product Managers of the Tools and Products you use every day. You’ll level-up your knowledge and discover how other Visual Studio users solve challenges just like yours.</p>
+<h2 data-start="1042" data-end="1087">A Custom Learning Journey for Every Role</h2>
+<p data-start="1088" data-end="1203">With six co-located events under one roof, Live! 360 lets you chart your own path through today’s hottest topics:</p>
+<ul>
+<li data-start="1207" data-end="1293"><strong data-start="1207" data-end="1230">Visual Studio Live!</strong>: Deep dives on .NET, C#, DevOps, and the latest IDE features</li>
+<li data-start="1296" data-end="1376"><strong data-start="1296" data-end="1319">Data Platform Live!</strong>: Best practices for databases, analytics, and big data</li>
+<li data-start="1379" data-end="1451"><strong data-start="1379" data-end="1393">TechMentor</strong>: Hands-on architecture, design patterns, and leadership</li>
+<li data-start="1454" data-end="1545"><strong data-start="1454" data-end="1487">Artificial Intelligence Live!</strong>: Practical AI, machine learning, and cognitive services</li>
+<li data-start="1548" data-end="1628"><strong data-start="1548" data-end="1576">Cloud &amp; Containers Live!</strong>: Modern architectures, Kubernetes, and serverless</li>
+<li data-start="1631" data-end="1720"><strong data-start="1631" data-end="1667">Cybersecurity &amp; Ransomware Live!</strong>: Threat defense, compliance, and incident response</li>
+</ul>
+<p data-start="1722" data-end="1877">Mix and match sessions across disciplines to tackle your toughest problems, whether you’re a developer, data pro, cloud engineer, or security specialist.</p>
+<p><span data-ccp-props="{}"> <a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Tracks.png"><img decoding="async" class="aligncenter size-full wp-image-254542" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Tracks.png" alt="VSLive Tracks image" width="644" height="131" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Tracks.png 644w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/10/VSLive-Tracks-300x61.png 300w" sizes="(max-width: 644px) 100vw, 644px" /></a></span></p>
+<h2>Spotlight Sessions You Can’t Miss</h2>
+<ul style="margin-left: 1.25em;">
+<li style="margin-bottom: 1rem;">
+<p style="margin: 0;"><a href="https://live360events.com/events/orlando-2025/sessions/tuesday/vsl-cc-keynote-tbd.aspx" target="_blank" rel="noopener">The Road to Visual Studio 2026: Building a Faster, Smarter IDE</a></p>
+<p style="margin: 0.15rem 0; color: #555; font-size: 0.95em;">Mads Kristensen, Principal PM, Visual Studio</p>
+<p style="margin: 0.25rem 0 0;">Explore the engineering breakthroughs behind Visual Studio 2026’s performance gains and AI integrations that make coding smoother and more intuitive.</p>
+</li>
+<li style="margin-bottom: 1rem;">
+<p style="margin: 0;"><a href="https://live360events.com/Events/Orlando-2025/Sessions/Tuesday/VST04-Debugging-with-GitHub-Copilot.aspx" target="_blank" rel="noopener">Next-Level Debugging with GitHub Copilot in Visual Studio</a></p>
+<p style="margin: 0.15rem 0; color: #555; font-size: 0.95em;">Harshada Hole, Sr. PM, Microsoft</p>
+<p style="margin: 0.25rem 0 0;">Learn how Copilot’s agent mode transforms debugging into an interactive, AI-guided experience that streamlines breakpoints and variable inspection.</p>
+</li>
+<li style="margin-bottom: 1rem;">
+<p style="margin: 0;"><a href="https://live360events.com/events/orlando-2025/sessions/sunday/vshol04-hol-distributed-app-building.aspx" target="_blank" rel="noopener">Get Started with .NET Aspire &amp; ASP.NET Core</a></p>
+<p style="margin: 0.15rem 0; color: #555; font-size: 0.95em;">Jeffrey T. Fritz, Microsoft</p>
+<p style="margin: 0.25rem 0 0;">Build distributed applications using the new .NET Aspire stack and ASP.NET Core, from basic integration to advanced telemetry and orchestration.</p>
+</li>
+<li style="margin-bottom: 1rem;">
+<p style="margin: 0;"><a href="https://live360events.com/Events/Orlando-2025/Sessions/Tuesday/L360-Keynote-Agentic-DevOps.aspx" target="_blank" rel="noopener">Agentic DevOps in Real Life: Build Faster, Ship Safer</a></p>
+<p style="margin: 0.15rem 0; color: #555; font-size: 0.95em;">Mickey Gousset &amp; Brian A. Randell, GitHub &amp; MCW</p>
+<p style="margin: 0.25rem 0 0;">See how AI-driven workflows in Visual Studio and GitHub Copilot automate infrastructure, strengthen security, and keep humans in control.</p>
+</li>
+<li style="margin-bottom: 0;">
+<p style="margin: 0;"><a href="https://live360events.com/Events/Orlando-2025/Sessions/Tuesday/VST16-Visual-Studio.aspx" target="_blank" rel="noopener">The Forgotten Features of Visual Studio You NEED In Your Life!</a></p>
+<p style="margin: 0.15rem 0; color: #555; font-size: 0.95em;">Harshada Hole &amp; Mads Kristensen</p>
+<p style="margin: 0.25rem 0 0;">Discover hidden IDE tools, shortcuts, and extensions that can dramatically boost your productivity and code quality.</p>
+</li>
+</ul>
+<h2 data-start="2969" data-end="3010">Subscriber Savings and Team Packages</h2>
+<p data-start="3011" data-end="3444">If you’re a Visual Studio Professional or Enterprise subscriber, sign in to <strong data-start="3087" data-end="3141"><a class="decorated-link" href="https://my.visualstudio.com" target="_new" rel="noopener" data-start="3089" data-end="3139">my.visualstudio.com</a></strong> to unlock your <em data-start="3157" data-end="3172">Priority Code</em> and save up to <strong data-start="3188" data-end="3196">$900</strong> off the regular price. Not a subscriber? Early bird pricing is available on the Live! 360 event page—but act fast, early bird is ending! Bring your team and take advantage of group rates, lab bundles, and hotel packages at Royal Pacific or Sapphire Falls.</p>
+<h2 data-start="3446" data-end="3463">Why Orlando?</h2>
+<p data-start="3464" data-end="3756">Learn from top experts by day, then enjoy world-class dining, resorts, and Universal Orlando by night. With perfect fall weather, it’s a tech-cation that recharges your skills and your spirit. You’ll return to the office refreshed, reconnected, and ready to apply everything you’ve learned.</p>
+<h2 data-start="3758" data-end="3792">Your Next Chapter Starts Here</h2>
+<p data-start="3793" data-end="4011">Don’t settle for another one-size-fits-all conference. Forge your own path, connect with peers and Microsoft insiders, and return home ready to transform your projects—and maybe sneak in a roller coaster ride or two.</p>
+<p><div class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/vsliveorlando25" target="_blank">LEARN MORE</a></div></p>
+<p><span data-ccp-props="{}"> </span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-live-orlando-2025/">VS Live! Orlando – Your Ultimate Learning Adventure</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visual-studio-live-orlando-2025/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+    </item>
+    <item>
+      <title>The $150 Secret Hiding in Plain Sight</title>
+      <link>https://devblogs.microsoft.com/visualstudio/unlock-vss-benefits-myvisualstudio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/unlock-vss-benefits-myvisualstudio/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Wed, 01 Oct 2025 16:27:11 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio Subscriptions]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254521</guid>
+      <description><![CDATA[<p>Picture this: I’m standing in front of 400+ developers at Visual Studio Live! Redmond, right here on the Microsoft campus in Building 33, about to reveal what I call the hidden value of a Visual Studio subscription. I pull up a simple question on the screen: About half the hands go up in the packed [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/unlock-vss-benefits-myvisualstudio/">The $150 Secret Hiding in Plain Sight</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><em>Picture this: I’m standing in front of 400+ developers at Visual Studio Live! Redmond, right here on the Microsoft campus in Building 33, about to reveal what I call the hidden value of a Visual Studio subscription. I pull up a simple question on the screen:</em></p>
+<p><a href="https://aka.ms/myvs" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-254522 size-large" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/my-slide-1024x576.png" alt="Picture of My.VisualStudio.com Portal Question" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/my-slide-1024x576.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/my-slide-300x169.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/my-slide-768x432.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/my-slide.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>About half the hands go up in the packed Kodiak Auditorium. Good start.</p>
+<p>&#8220;Now, how many have actually logged in and activated your benefits?&#8221;</p>
+<p>The room goes quiet. Maybe 160 hands remain raised.</p>
+<p>&#8220;And how many are using your monthly Azure credits?&#8221;</p>
+<p>I watch as the forest of hands dwindles to just a couple dozen brave souls. The math is staggering, and I see it everywhere I go. Visual Studio subscribers are essentially leaving money on the table.</p>
+<p><strong>The Moment Everything Clicks</strong></p>
+<p>What happens next never gets old. I navigate to <a href="https://aka.ms/myvs" target="_blank" rel="noopener">my.visualstudio.com</a> live on stage, and I watch faces light up across all 400+ seats as we explore together. There&#8217;s always that one developer in the third row who suddenly sits up straighter when they realize their Professional subscription includes $50 monthly in Azure credits. Or the enterprise developer in the back who does quick math and realizes she&#8217;s been missing out on $1,800 worth of annual Azure credits.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/MSDN.png"><img decoding="async" class="wp-image-254524 size-full aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/MSDN.png" alt="MSDN image" width="644" height="461" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/MSDN.png 644w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/MSDN-300x215.png 300w" sizes="(max-width: 644px) 100vw, 644px" /></a></p>
+<p>But the real magic happens when we dive deeper into the Downloads section. This is what used to be called MSDN. The gasps are audible when developers see the treasure trove waiting for them: Windows Server, SQL Server Developer Edition, Office Professional Plus, and dozens of other Microsoft products they could have been using for development and testing all along.</p>
+<p>&#8220;Wait,&#8221; someone always calls out from the 400-person crowd, &#8220;I can download all of this? Now?&#8221;</p>
+<p><em>Yes, when you need software for development and testing, this portal will help you find, download and activate it. </em></p>
+<p><strong>The Stories That Stick</strong></p>
+<p>Austin, a team lead from Dallas, approached me after a session at our Redmond event. She and her dev team had been eyeing some Pluralsight licenses for months, not realizing their Visual Studio Enterprise subscriptions already included up to 12 months of access for every Visual Studio developer. &#8220;We were about to submit a training budget request,&#8221; she said, pulling out her phone to message her team. &#8220;Turns out we can unlock this right now.&#8221;</p>
+<p>Then there&#8217;s Miguel from Chicago, who discovered the power of <a href="https://aka.ms/vss-devtest" target="_blank" rel="noopener">Azure Dev/Test</a> discounts during our benefits walkthrough. His company was struggling to afford a proper testing environment that mirrored their production setup for integrating a new asset management system with Logic Apps. &#8220;I can spin up the exact same environment for 50% less, &#8220;He texted his manager right in front of me. ‘Discounted DevTest pricing means we can finally test this integration properly without blowing our budget.'&#8221;</p>
+<p>These aren&#8217;t isolated stories. At every single <a href="https://aka.ms/vss-vslive" target="_blank" rel="noopener">Visual Studio Live!</a> event (whether it&#8217;s our intimate 400-person Microsoft HQ gathering or our larger city events) I hear variations of these revelations. Developers who&#8217;ve been subscribers for years, completely unaware of the developer toolkit they&#8217;ve been carrying in their back pocket.</p>
+<p><strong>Why This Matters More Than Ever</strong></p>
+<p>In my focus groups across the country (from our exclusive Microsoft HQ events to cities nationwide) I&#8217;ve discovered something interesting: developers who actively use their subscription benefits are 40% more likely to report job satisfaction. They&#8217;re learning new skills with Cloud Academy training, building prototypes with Azure credits, and testing enterprise scenarios with software included with the subscription.</p>
+<p>One CTO in Boston told me, &#8220;Once our team started actually using their Visual Studio benefits, our innovation velocity doubled. They&#8217;re not asking for budget approval to try new technologies. They&#8217;re already experimenting and showing me prototypes. We even held our first internal Hackathon.&#8221;</p>
+<p><strong>Your Benefits are waiting</strong></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/vss-pro-benefits-list2.png"> <img decoding="async" class="aligncenter wp-image-254535 size-large" style="border: 2px solid #000; border-radius: 4px; padding: 4px;" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/vss-pro-benefits-list2-1024x582.png" alt="vss pro benefits list2 image" width="1024" height="582" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/vss-pro-benefits-list2-1024x582.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/vss-pro-benefits-list2-300x171.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/vss-pro-benefits-list2-768x437.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/vss-pro-benefits-list2.png 1360w" sizes="(max-width: 1024px) 100vw, 1024px" /> </a></p>
+<p>Here&#8217;s the beautiful irony: the portal designed to unlock all these benefits (<a href="https://aka.ms/myvs" target="_blank" rel="noopener">my.visualstudio.com</a>) is itself the best-kept secret. Microsoft created this gateway to developer success, yet most subscribers treat it like a forgotten app on their phone.</p>
+<p>The next time you&#8217;re stuck waiting for budget approval to try a new Azure service, remember: you might already have $50 (Professional) or $150 (Enterprise) in monthly Azure credits waiting — every month, with no credit card required. When you need SQL Server for a side project, remember: the Developer Edition is sitting in your Downloads section. When you need to mirror your production environment for testing, remember: DevTest pricing can cut your costs by up to 57%.</p>
+<p><strong>The Five-Minute Challenge</strong></p>
+<p>I&#8217;ll leave you with the same challenge I give every audience (all 400+ developers at our Microsoft HQ events and beyond): Set a timer for five minutes right now. Go to <a href="https://aka.ms/myvs">my.visualstudio.com</a>, sign in with your Visual Studio subscription email, and click through every section. Benefits, Downloads, Product Keys. Don&#8217;t overthink it, don&#8217;t plan what you&#8217;ll use. Just see what&#8217;s there.</p>
+<p>I guarantee you&#8217;ll find something that makes you smile. Maybe it&#8217;s those Azure credits you forgot about. Maybe it&#8217;s a piece of software you were planning to purchase. Maybe it&#8217;s access to training from Cloud Academy or Pluralsight that could change your career trajectory.</p>
+<p>The key to your developer toolkit has been in your pocket all along. It&#8217;s time to unlock it.</p>
+<p><em>Ready to unlock what you&#8217;ve already paid for? Visit <a href="https://aka.ms/myvs" target="_blank" rel="noopener">my.visualstudio.com</a> today and discover the benefits waiting for you. Share this post with a fellow developer. Chances are, they need to hear this too.</em></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/unlock-vss-benefits-myvisualstudio/">The $150 Secret Hiding in Plain Sight</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/unlock-vss-benefits-myvisualstudio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">5</slash:comments>
+    </item>
+    <item>
+      <title>Visual Studio September Update – profiler agent, app modernization, and more</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-september-update/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visual-studio-september-update/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Simona Liao]]></dc:creator>
+      <pubDate>Tue, 30 Sep 2025 13:30:50 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[Debug]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Agent]]></category>
+      <category><![CDATA[Code Reviews]]></category>
+      <category><![CDATA[MCP]]></category>
+      <category><![CDATA[Mermaid]]></category>
+      <category><![CDATA[Modernization]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254492</guid>
+      <description><![CDATA[<p>The September 2025 update for Visual Studio 2022 (v17.14) is now available. In this month, we are bringing you a fully integrated and game-changing agentic AI experience, from code generation to modernization, profiling, and code reviews.   Profiler Agent We’ve heard the feedback loud and clear developers love the Profiler Agent. So, we’re bringing it [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-september-update/">Visual Studio September Update &#8211; profiler agent, app modernization, and more</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="auto">The September 2025 update for Visual Studio 2022 (v17.14) is now available. In this month, we are bringing you a fully integrated and game-changing agentic AI experience, from code generation to modernization, profiling, and code reviews. </span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Slide101-scaled.jpg"><img decoding="async" class="alignnone wp-image-254495 size-large" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Slide101-1024x576.jpg" alt="Summary photo of all the six updates in September" width="1024" height="576" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Slide101-1024x576.jpg 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Slide101-300x169.jpg 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Slide101-768x432.jpg 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Slide101-1536x864.jpg 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Slide101-2048x1152.jpg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<h2><span data-contrast="none">Profiler Agent</span></h2>
+<p><span data-contrast="auto">We’ve heard the feedback loud and clear developers love the Profiler Agent. So, we’re bringing it to </span><b><span data-contrast="auto">Visual Studio 2022</span></b><span data-contrast="auto"> as well. It’s an AI-powered assistant built into Visual Studio that helps you find and fix performance issues without needing to be a profiling expert.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">The Profiler Agent works with GitHub Copilot to:</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="43" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Analyze CPU usage, memory, and runtime behavior</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="43" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Highlight performance bottlenecks</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="43" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Create or optimize </span><b><span data-contrast="auto">BenchmarkDotNet</span></b><span data-contrast="auto"> benchmarks</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="43" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="auto">Suggest fixes and validate improvements in a guided loop</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<p><span data-contrast="auto">After turning on Agent Mode in Copilot chat window, you can interact with Profiler Agent in a few ways:</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:259}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="44" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Tag it directly in Copilot chat: </span>“@profiler Why is my app slow?”<span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559731&quot;:720,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="44" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Ask a natural question in Agent Mode: </span>“Why is my frame rate dropping?”<span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559731&quot;:720,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="44" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Or simply click the </span><b><span data-contrast="auto">“Suggest how I can optimize my code”</span></b><span data-contrast="auto"> starter prompt in New Copilot chat when you open any C# project.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<p><span data-contrast="auto">Profiler Agent takes the guesswork out of performance tuning. It shows you what’s wrong, suggests what to try, and confirms whether the change really helps. It’s faster, simpler, and approachable for anyone, new or experienced. Currently, it supports high CPU usage analysis and .NET object allocations, with more scenarios coming soon.</span></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/profiler-agent-1-1.gif"><img decoding="async" class="alignnone wp-image-254494 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/profiler-agent-1-1.gif" alt="Using profiler agent to run benchmark and optimize code" width="800" height="503" /></a></p>
+<h2 aria-level="1"><span data-contrast="none">.NET Application Modernization</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:0,&quot;335559740&quot;:259}"> </span></h2>
+<p><span data-contrast="auto">The </span><a href="https://learn.microsoft.com/en-us/dotnet/core/porting/github-copilot-app-modernization-overview"><span data-contrast="none">GitHub Copilot app modernization agent</span></a><span data-contrast="auto"> is an AI-powered tool in Visual Studio that helps you upgrade .NET applications to newer versions and migrate them to Azure.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">To try out the app modernization agent, you should:</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:259}"> </span></p>
+<ol>
+<li><span data-contrast="auto">Open your .NET project or solution in Visual Studio.</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Launch the modernization agent using one of the following methods:</span><span data-ccp-props="{}"> </span>
+<ol>
+<li><span data-contrast="auto">Right-click the solution or project in Solution Explorer and select Modernize.</span>
+<span data-contrast="auto">&#8211; or &#8211;</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Open the Copilot Chat window and type @modernize followed by your upgrade request.</span><span data-ccp-props="{}"> </span></li>
+</ol>
+</li>
+<li><span data-contrast="auto">Let the @modernize agent know what you&#8217;d like to upgrade or migrate.</span><span data-ccp-props="{}"> </span></li>
+</ol>
+<p><span data-contrast="auto">With the app modernization agent, it&#8217;s easier than ever to keep your .NET apps up to date and take advantage of the latest Azure features. Give it a try and see how much time you can save!</span><span data-ccp-props="{}"> </span></p>
+<h2 aria-level="1"><span data-contrast="none">Copilot Agent Mode Improvement</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:240,&quot;335559739&quot;:0}"> </span></h2>
+<p><span data-contrast="auto">Over the past few months, we&#8217;ve made significant updates to Agent Mode to improve reliability, responsiveness, and overall usability. Here are some of the improvements we&#8217;ve shipped:</span></p>
+<p><b><span data-contrast="auto">Performance &amp; Reliability</span></b><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="38" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Agent Mode now shows clearer progress indicators, so you always know what&#8217;s happening behind the scenes.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="38" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Improved prompt caching to speed up response times.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<p><b><span data-contrast="auto">Working Set &amp; File Management</span></b><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="39" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">The working set now stays hidden when empty, and only shows a file count when relevant.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="39" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Rejected files are automatically deleted from disk and removed from the working set.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="39" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Items marked with </span><b><span data-contrast="auto">no changes</span></b><span data-contrast="auto"> are now sorted to the bottom to reduce clutter.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<p><b><span data-contrast="auto">Prompting &amp; Planning</span></b><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="40" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Updated prompt formatting improves Agent Mode performance with GPT-5 models.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="40" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">We&#8217;re testing a new planning tool that lets the model break down complex requests into smaller, trackable steps using a live-updating markdown file. Early benchmarks (including SWE-bench) show significant gains on multi-step tasks.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<p><b><span data-contrast="auto">Build &amp; Tool Control</span></b><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="41" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">You can now disable automatic builds in Agent Mode. Open the tools menu next to the chat prompt and deselect <code>run_build </code>to take manual control.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<p><b><span data-contrast="auto">Fixes &amp; General Improvements</span></b><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="42" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Cancelling an Agent Mode request now works more reliably.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="42" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Resolved several issues where Agent Mode could stall or hang during tool execution.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></li>
+</ul>
+<p><span data-contrast="auto">We&#8217;re shipping updates every sprint. If you haven&#8217;t used Agent Mode in a while, now&#8217;s a great time to try it again. The experience is faster, smoother, and more stable &#8211; and we&#8217;re just getting started.</span><span data-ccp-props="{&quot;335559739&quot;:0}"> </span></p>
+<h2 aria-level="1"><span data-contrast="none">MCP Prompts, Resources, and Sampling</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:240,&quot;335559739&quot;:0}"> </span></h2>
+<p><span data-contrast="auto">The </span><b><span data-contrast="auto">Model Context Protocol (MCP)</span></b><span data-contrast="auto"> enables a powerful and standardized way for servers to expose structured prompts, contextual resources, and agentic behaviors to clients, enhancing how large language models operate within development environments.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:259}"> </span></p>
+<p><b><span data-contrast="auto">Prompts and Prompt Templates</span></b><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:259}"> </span></p>
+<p><span data-contrast="auto">MCP prompts provide structured instructions tailored to specific tasks and server contexts, ensuring optimal responses from models. In Visual Studio, you can discover and insert these prompts via the </span><b><span data-contrast="auto">+ Reference</span></b><span data-contrast="auto"> button in chat. Some prompts support </span><b><span data-contrast="auto">arguments</span></b><span data-contrast="auto">, allowing for customization, which are known as </span><b><span data-contrast="auto">prompt templates</span></b><span data-contrast="auto">.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:259}"> </span></p>
+<p><b><span data-contrast="auto">Resources and Resource Templates</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">MCP Resources offer contextual data such as files, schemas, or app-specific information, referenced using a </span><b><span data-contrast="auto">#URI</span></b><span data-contrast="auto"> in chat. Like prompts, resources can be customized using </span><b><span data-contrast="auto">resource templates</span></b><span data-contrast="auto">, which are configured through the same </span><b><span data-contrast="auto">+ Reference</span></b><span data-contrast="auto"> dialog. Once added, these resources become referenceable in chat, enriching model interactions with relevant context.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><b><span data-contrast="auto">Sampling</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">MCP Sampling introduces agentic capabilities by allowing servers to initiate LLM calls internally. This reverses the typical flow and enables servers to request model actions. Visual Studio supports this feature natively. When sampling is beneficial, you’ll be prompted with a confirmation dialog detailing the request before execution.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">To learn more about these new functionalities with examples, see: </span><a href="https://devblogs.microsoft.com/visualstudio/mcp-prompts-resources-sampling/"><span data-contrast="none">Getting the most out of MCP in Visual Studio with Prompts, Resources, and Sampling &#8211; Visual Studio Blog</span></a><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<h2 aria-level="1"><span data-contrast="none">Generate and view Mermaid diagrams with Copilot</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:240,&quot;335559739&quot;:0}"> </span></h2>
+<p><span data-contrast="auto">We are excited to announce that Visual Studio now supports rendering </span><a href="https://mermaid.js.org/intro/"><span data-contrast="none">Mermaid </span></a><span data-contrast="auto"> diagrams in the Markdown editor, where you can provide your own Mermaid syntax or have Copilot generate it for you! This new feature lets you visualize complex data structures and workflows directly within your editor, which would previously require an extension. </span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">You can prompt Copilot to generate architectural, flowchart, sequence, class, Gantt diagrams, pie charts or </span><a href="https://mermaid.js.org/intro/#diagram-types"><span data-contrast="none">any other kind of mermaid diagram</span></a><span data-contrast="auto"> to visualize abstract concepts. </span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:257}"> </span></p>
+<p><span data-contrast="auto">If you don’t have any ideas yet, try out the following prompts:</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:257}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="-" data-font="Calibri" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Calibri&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;-&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Create a sequence diagram for the API call flow</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:257}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="-" data-font="Calibri" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Calibri&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;-&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Visualize the relationships between entities in this schema</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:257}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="-" data-font="Calibri" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Calibri&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;-&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Create a Mermaid state diagram for the lifecycle of a task</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:257}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="-" data-font="Calibri" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Calibri&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;-&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="auto">I&#8217;m new to this project, visualize major components and their relationships to help me onboard</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:257}"> </span></li>
+</ul>
+<p><span data-contrast="auto">Copilot will read any attached references or related files in your codebase to grab necessary contexts and then return the Mermaid syntax in an embedded chat window. Simply click the </span><b><span data-contrast="auto">Preview</span></b><span data-contrast="auto"> button, a new markdown file will open, and the Mermaid diagram will be displayed in preview.</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:257}"> </span></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid1-1.png"><img decoding="async" class="alignnone wp-image-254182 " src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid1-1.png" alt="Copilot Chat Window with a wrapped response of mermaid syntax, and the preview button is circled out" width="416" height="422" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid1-1.png 520w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid1-1-296x300.png 296w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid1-1-24x24.png 24w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid1-1-48x48.png 48w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid1-1-96x96.png 96w" sizes="(max-width: 416px) 100vw, 416px" /></a></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid2.png"><img decoding="async" class="alignnone wp-image-254180 " src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid2.png" alt="A markdown editor where the left side is the mermaid syntax and the right side is the rendered mermaid chart" width="793" height="416" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid2.png 1993w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid2-300x157.png 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid2-1024x537.png 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid2-768x403.png 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/Mermaid2-1536x805.png 1536w" sizes="(max-width: 793px) 100vw, 793px" /></a></p>
+<h2><span data-contrast="none">Smarter code reviews</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:240,&quot;335559739&quot;:0}"> </span></h2>
+<p><span data-contrast="auto">We&#8217;ve made a major update to our </span><a href="https://devblogs.microsoft.com/visualstudio/catch-issues-before-you-commit-to-git/"><span data-contrast="none">local code review</span></a><span data-contrast="auto"> process, now powered by </span><a href="https://github.blog/changelog/2025-04-04-copilot-code-review-now-generally-available/"><span data-contrast="none">GitHub Copilot&#8217;s latest advancements for code review</span></a><span data-contrast="auto">. This integration elevates the quality of code reviews, making them smarter and more efficient. Now you can expect similar quality of code reviews to github.com and receive the reviews one step earlier right inside Visual Studio.</span><span data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:257}"> </span></p>
+<p><span data-ccp-props="{&quot;335559739&quot;:0}"> <a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/17.14_local_code_review_icon.png"><img decoding="async" class="alignnone wp-image-254493" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/17.14_local_code_review_icon.png" alt="screenshot of the version control tab and the mouse cursor is pointing at the local code review icon " width="504" height="282" /></a></span></p>
+<p><span data-contrast="auto">Experience smarter code reviews in Visual Studio with comments that are more insightful and precise, thanks to advanced reasoning models and improved prompting. Enjoy faster and more thorough reviews with optimized comment generation that covers your entire change set.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="none">To give you more control over the responses, custom instructions are now supported for local code review. Like how you would </span><a href="https://learn.microsoft.com/en-us/visualstudio/ide/copilot-chat-context?view=vs-2022#enable-custom-instructions"><span data-contrast="none">enable custom instructions for Copilot Chat</span></a><span data-contrast="none">, you can </span><a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot"><span data-contrast="none">create/add</span></a><span data-contrast="none"> a custom instructions file `.github/copilot-instructions.md` in the root of your repository.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">To use this feature, ensure your GitHub Copilot subscription is active and enabled within Visual Studio. If you don’t already have GitHub Copilot, you can sign up for free </span><a href="https://github.com/settings/copilot"><span data-contrast="none">here</span></a><span data-contrast="auto">. </span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">You’ll need to enable the necessary feature flags: </span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="33" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Tools &gt; Options &gt; Preview Features &gt; Pull Request Comments </span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="34" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Tools &gt; Options &gt; GitHub &gt; Copilot &gt; Source Control Integration &gt; Enable Git preview features. </span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">Then, you’ll see a new sparkle comment button in the Git Changes window. Clicking on this button allows GitHub Copilot to review your local code changes and provide inline suggestions. </span><span data-ccp-props="{}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Check out the new Visual Studio Hub</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:40,&quot;335559739&quot;:0}"> </span></h3>
+<p><span data-contrast="auto">Stay connected with everything Visual Studio in one place! Visit the </span><a href="https://visualstudio.microsoft.com/hub/"><span data-contrast="none">Visual Studio Hub</span></a><span data-contrast="auto"> for the latest release notes, YouTube videos, social updates, and community discussions.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:240,&quot;335559740&quot;:240}"> </span></p>
+<h3 aria-level="2"><span data-contrast="none">Appreciation for your feedback</span><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:40,&quot;335559739&quot;:0}"> </span></h3>
+<p><span data-contrast="auto">Your feedback helps us improve Visual Studio, making it an even more powerful tool for developers. We are immensely grateful for your contributions and look forward to your continued support. By sharing your thoughts, ideas, and any issues you encounter through </span><a href="https://developercommunity.visualstudio.com/VisualStudio"><span data-contrast="none">Developer Community</span></a><span data-contrast="auto">, you help us improve and shape the future of Visual Studio.</span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-september-update/">Visual Studio September Update &#8211; profiler agent, app modernization, and more</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visual-studio-september-update/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">4</slash:comments>
+    </item>
   </channel>
 </rss>
