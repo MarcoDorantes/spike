@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/notes/">
+    <File Path="notes.txt" />
+  </Folder>
+  <Project Path="WebSocketDemo.BackendService/WebSocketDemo.BackendService.csproj" />
+  <Project Path="WebSocketDemo.ConsoleClient/WebSocketDemo.ConsoleClient.csproj" />
+  <Project Path="WebSocketDemo.Server/WebSocketDemo.Server.csproj" />
+</Solution>

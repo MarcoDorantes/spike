@@ -1,0 +1,422 @@
+Create a solution with three projects, an ASP.NET project to accept Web Sockets connections, a console project with a client web socket, and a backend service project with a client web socket.
+
+dotnet new sln -n WebSocketDemo
+dotnet new web -n WebSocketDemo.Server --framework net9.0
+dotnet new console -n WebSocketDemo.ConsoleClient --framework net9.0
+dotnet new console -n WebSocketDemo.BackendService --framework net9.0
+dotnet sln add WebSocketDemo.Server/WebSocketDemo.Server.csproj
+dotnet sln add WebSocketDemo.ConsoleClient/WebSocketDemo.ConsoleClient.csproj
+dotnet sln add WebSocketDemo.BackendService/WebSocketDemo.BackendService.csproj
+
+http://localhost:5297
+-
+cd websocket2
+dotnet new sln -n WebSocketDemo
+The template "Solution File" was created successfully.
+
+dotnet new web -n WebSocketDemo.Server --framework net9.0
+The template "ASP.NET Core Empty" was created successfully.
+
+Processing post-creation actions...
+Restoring C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.Server\WebSocketDemo.Server.csproj:
+Restore succeeded.
+
+
+dotnet new console -n WebSocketDemo.ConsoleClient --framework net9.0
+The template "Console App" was created successfully.
+
+Processing post-creation actions...
+Restoring C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.ConsoleClient\WebSocketDemo.ConsoleClient.csproj:
+Restore succeeded.
+
+
+dotnet new console -n WebSocketDemo.BackendService --framework net9.0
+The template "Console App" was created successfully.
+
+Processing post-creation actions...
+Restoring C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.BackendService\WebSocketDemo.BackendService.csproj:
+Restore succeeded.
+
+
+dotnet sln add WebSocketDemo.Server/WebSocketDemo.Server.csproj
+Project `WebSocketDemo.Server\WebSocketDemo.Server.csproj` added to the solution.
+dotnet sln add WebSocketDemo.ConsoleClient/WebSocketDemo.ConsoleClient.csproj
+Project `WebSocketDemo.ConsoleClient\WebSocketDemo.ConsoleClient.csproj` added to the solution.
+dotnet sln add WebSocketDemo.BackendService/WebSocketDemo.BackendService.csproj
+Project `WebSocketDemo.BackendService\WebSocketDemo.BackendService.csproj` added to the solution.
+
+ls .\WebSocketDemo.Server\
+
+    Directory: C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.Server
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           10/6/2025  6:32 AM                obj
+d----           10/6/2025  6:32 AM                Properties
+-a---           10/6/2025  6:32 AM            127 appsettings.Development.json
+-a---           10/6/2025  6:32 AM            151 appsettings.json
+-a---           10/6/2025  6:32 AM            135 Program.cs
+-a---           10/6/2025  6:32 AM            219 WebSocketDemo.Server.csproj
+
+
+PS C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.Server> dotnet run -c Release
+Using launch settings from C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.Server\Properties\launchSettings.json...
+Building...
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5297
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.Server
+Server received: Hello from console client!
+Server received: here1
+Server received: Backend service status update #1 at 10/6/2025 6:44:26 AM
+Server received: Backend service status update #2 at 10/6/2025 6:44:31 AM
+Server received: Backend service status update #3 at 10/6/2025 6:44:36 AM
+Server received: Backend service status update #4 at 10/6/2025 6:44:41 AM
+Server received: here2
+Server received: Backend service status update #5 at 10/6/2025 6:44:46 AM
+Server received: Backend service status update #6 at 10/6/2025 6:44:51 AM
+Server received: Backend service status update #7 at 10/6/2025 6:44:56 AM
+Server received: Backend service status update #8 at 10/6/2025 6:45:01 AM
+Server received: Backend service status update #9 at 10/6/2025 6:45:06 AM
+Server received: Backend service status update #10 at 10/6/2025 6:45:11 AM
+Server received: Backend service status update #11 at 10/6/2025 6:45:16 AM
+Server received: Backend service status update #12 at 10/6/2025 6:45:21 AM
+Server received: Backend service status update #13 at 10/6/2025 6:45:26 AM
+Server received: Backend service status update #14 at 10/6/2025 6:45:31 AM
+Server received: Backend service status update #15 at 10/6/2025 6:45:36 AM
+Server received: Backend service status update #16 at 10/6/2025 6:45:41 AM
+Server received: Backend service status update #17 at 10/6/2025 6:45:46 AM
+Server received: Backend service status update #18 at 10/6/2025 6:45:51 AM
+Server received: Backend service status update #19 at 10/6/2025 6:45:56 AM
+Server received: Backend service status update #20 at 10/6/2025 6:46:01 AM
+Server received: here3
+Server received: Backend service status update #21 at 10/6/2025 6:46:06 AM
+Server received: Backend service status update #22 at 10/6/2025 6:46:11 AM
+Server received: Backend service status update #23 at 10/6/2025 6:46:16 AM
+Server received: Backend service status update #24 at 10/6/2025 6:46:21 AM
+Server received: Backend service status update #25 at 10/6/2025 6:46:26 AM
+Server received: Backend service status update #26 at 10/6/2025 6:46:31 AM
+Server received: Backend service status update #27 at 10/6/2025 6:46:36 AM
+Server received: Backend service status update #28 at 10/6/2025 6:46:41 AM
+Server received: Backend service status update #29 at 10/6/2025 6:46:46 AM
+Server received: Backend service status update #30 at 10/6/2025 6:46:51 AM
+Server received: Backend service status update #31 at 10/6/2025 6:46:56 AM
+Server received: Backend service status update #32 at 10/6/2025 6:47:01 AM
+Server received: Backend service status update #33 at 10/6/2025 6:47:06 AM
+Server received: Backend service status update #34 at 10/6/2025 6:47:11 AM
+Server received: Backend service status update #35 at 10/6/2025 6:47:16 AM
+Server received: Backend service status update #36 at 10/6/2025 6:47:21 AM
+Server received: Backend service status update #37 at 10/6/2025 6:47:26 AM
+Server received: Backend service status update #38 at 10/6/2025 6:47:31 AM
+Server received: Backend service status update #39 at 10/6/2025 6:47:36 AM
+Server received: Backend service status update #40 at 10/6/2025 6:47:41 AM
+Server received: Backend service status update #41 at 10/6/2025 6:47:46 AM
+Server received: Backend service status update #42 at 10/6/2025 6:47:51 AM
+Server received: Backend service status update #43 at 10/6/2025 6:47:56 AM
+Server received: Backend service status update #44 at 10/6/2025 6:48:01 AM
+Server received: Backend service status update #45 at 10/6/2025 6:48:06 AM
+Server received: Backend service status update #46 at 10/6/2025 6:48:11 AM
+Server received: Backend service status update #47 at 10/6/2025 6:48:16 AM
+Server received: Backend service status update #48 at 10/6/2025 6:48:21 AM
+Server received: Backend service status update #49 at 10/6/2025 6:48:26 AM
+Server received: Backend service status update #50 at 10/6/2025 6:48:31 AM
+Server received: Backend service status update #51 at 10/6/2025 6:48:36 AM
+Server received: Backend service status update #52 at 10/6/2025 6:48:41 AM
+Server received: Backend service status update #53 at 10/6/2025 6:48:46 AM
+Server received: Backend service status update #54 at 10/6/2025 6:48:51 AM
+Server received: Backend service status update #55 at 10/6/2025 6:48:56 AM
+Server received: Backend service status update #56 at 10/6/2025 6:49:01 AM
+Server received: Backend service status update #57 at 10/6/2025 6:49:06 AM
+Server received: Backend service status update #58 at 10/6/2025 6:49:11 AM
+Server received: Backend service status update #59 at 10/6/2025 6:49:16 AM
+Server received: Backend service status update #60 at 10/6/2025 6:49:21 AM
+Server received: Backend service status update #61 at 10/6/2025 6:49:26 AM
+Server received: Backend service status update #62 at 10/6/2025 6:49:31 AM
+Server received: Backend service status update #63 at 10/6/2025 6:49:36 AM
+Server received: Backend service status update #64 at 10/6/2025 6:49:41 AM
+
+--
+PS C:\Users\41477\source\repos\spike> cd .\source\websocket2\
+PS C:\Users\41477\source\repos\spike\source\websocket2> cd .\WebSocketDemo.ConsoleClient\
+PS C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.ConsoleClient> dotnet run -c Release
+Console WebSocket Client
+Exception: Unable to connect to the remote server
+PS C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.ConsoleClient> dotnet run -c Release
+Console WebSocket Client
+Connected to WebSocket server
+Enter message (or 'exit' to quit): Received: Server echo: Hello from console client!
+here1
+Enter message (or 'exit' to quit): Received: Server echo: here1
+here2
+Enter message (or 'exit' to quit): Received: Server echo: here2
+here3
+Enter message (or 'exit' to quit): Received: Server echo: here3
+
+--
+PS C:\Users\41477\source\repos> pushd spike
+cd .\source\websocket2\
+cd .\WebSocketDemo.BackendService\
+dotnet run -c Release
+Backend Service with WebSocket Client
+Exception: Unable to connect to the remote server
+PS C:\Users\41477\source\repos\spike\source\websocket2\WebSocketDemo.BackendService> dotnet run -c Release
+Backend Service with WebSocket Client
+Connected to WebSocket server
+Sent: Backend service status update #1 at 10/6/2025 6:44:26 AM
+Received: Server echo: Backend service status update #1 at 10/6/2025 6:44:26 AM
+Sent: Backend service status update #2 at 10/6/2025 6:44:31 AM
+Received: Server echo: Backend service status update #2 at 10/6/2025 6:44:31 AM
+Sent: Backend service status update #3 at 10/6/2025 6:44:36 AM
+Received: Server echo: Backend service status update #3 at 10/6/2025 6:44:36 AM
+Sent: Backend service status update #4 at 10/6/2025 6:44:41 AM
+Received: Server echo: Backend service status update #4 at 10/6/2025 6:44:41 AM
+Sent: Backend service status update #5 at 10/6/2025 6:44:46 AM
+Received: Server echo: Backend service status update #5 at 10/6/2025 6:44:46 AM
+Sent: Backend service status update #6 at 10/6/2025 6:44:51 AM
+Received: Server echo: Backend service status update #6 at 10/6/2025 6:44:51 AM
+Sent: Backend service status update #7 at 10/6/2025 6:44:56 AM
+Received: Server echo: Backend service status update #7 at 10/6/2025 6:44:56 AM
+Sent: Backend service status update #8 at 10/6/2025 6:45:01 AM
+Received: Server echo: Backend service status update #8 at 10/6/2025 6:45:01 AM
+Sent: Backend service status update #9 at 10/6/2025 6:45:06 AM
+Received: Server echo: Backend service status update #9 at 10/6/2025 6:45:06 AM
+Sent: Backend service status update #10 at 10/6/2025 6:45:11 AM
+Received: Server echo: Backend service status update #10 at 10/6/2025 6:45:11 AM
+Sent: Backend service status update #11 at 10/6/2025 6:45:16 AM
+Received: Server echo: Backend service status update #11 at 10/6/2025 6:45:16 AM
+Sent: Backend service status update #12 at 10/6/2025 6:45:21 AM
+Received: Server echo: Backend service status update #12 at 10/6/2025 6:45:21 AM
+Sent: Backend service status update #13 at 10/6/2025 6:45:26 AM
+Received: Server echo: Backend service status update #13 at 10/6/2025 6:45:26 AM
+Sent: Backend service status update #14 at 10/6/2025 6:45:31 AM
+Received: Server echo: Backend service status update #14 at 10/6/2025 6:45:31 AM
+Sent: Backend service status update #15 at 10/6/2025 6:45:36 AM
+Received: Server echo: Backend service status update #15 at 10/6/2025 6:45:36 AM
+Sent: Backend service status update #16 at 10/6/2025 6:45:41 AM
+Received: Server echo: Backend service status update #16 at 10/6/2025 6:45:41 AM
+Sent: Backend service status update #17 at 10/6/2025 6:45:46 AM
+Received: Server echo: Backend service status update #17 at 10/6/2025 6:45:46 AM
+Sent: Backend service status update #18 at 10/6/2025 6:45:51 AM
+Received: Server echo: Backend service status update #18 at 10/6/2025 6:45:51 AM
+Sent: Backend service status update #19 at 10/6/2025 6:45:56 AM
+Received: Server echo: Backend service status update #19 at 10/6/2025 6:45:56 AM
+Sent: Backend service status update #20 at 10/6/2025 6:46:01 AM
+Received: Server echo: Backend service status update #20 at 10/6/2025 6:46:01 AM
+Sent: Backend service status update #21 at 10/6/2025 6:46:06 AM
+Received: Server echo: Backend service status update #21 at 10/6/2025 6:46:06 AM
+Sent: Backend service status update #22 at 10/6/2025 6:46:11 AM
+Received: Server echo: Backend service status update #22 at 10/6/2025 6:46:11 AM
+Sent: Backend service status update #23 at 10/6/2025 6:46:16 AM
+Received: Server echo: Backend service status update #23 at 10/6/2025 6:46:16 AM
+Sent: Backend service status update #24 at 10/6/2025 6:46:21 AM
+Received: Server echo: Backend service status update #24 at 10/6/2025 6:46:21 AM
+Sent: Backend service status update #25 at 10/6/2025 6:46:26 AM
+Received: Server echo: Backend service status update #25 at 10/6/2025 6:46:26 AM
+Sent: Backend service status update #26 at 10/6/2025 6:46:31 AM
+Received: Server echo: Backend service status update #26 at 10/6/2025 6:46:31 AM
+Sent: Backend service status update #27 at 10/6/2025 6:46:36 AM
+Received: Server echo: Backend service status update #27 at 10/6/2025 6:46:36 AM
+Sent: Backend service status update #28 at 10/6/2025 6:46:41 AM
+Received: Server echo: Backend service status update #28 at 10/6/2025 6:46:41 AM
+Sent: Backend service status update #29 at 10/6/2025 6:46:46 AM
+Received: Server echo: Backend service status update #29 at 10/6/2025 6:46:46 AM
+Sent: Backend service status update #30 at 10/6/2025 6:46:51 AM
+Received: Server echo: Backend service status update #30 at 10/6/2025 6:46:51 AM
+Sent: Backend service status update #31 at 10/6/2025 6:46:56 AM
+Received: Server echo: Backend service status update #31 at 10/6/2025 6:46:56 AM
+Sent: Backend service status update #32 at 10/6/2025 6:47:01 AM
+Received: Server echo: Backend service status update #32 at 10/6/2025 6:47:01 AM
+Sent: Backend service status update #33 at 10/6/2025 6:47:06 AM
+Received: Server echo: Backend service status update #33 at 10/6/2025 6:47:06 AM
+Sent: Backend service status update #34 at 10/6/2025 6:47:11 AM
+Received: Server echo: Backend service status update #34 at 10/6/2025 6:47:11 AM
+Sent: Backend service status update #35 at 10/6/2025 6:47:16 AM
+Received: Server echo: Backend service status update #35 at 10/6/2025 6:47:16 AM
+Sent: Backend service status update #36 at 10/6/2025 6:47:21 AM
+Received: Server echo: Backend service status update #36 at 10/6/2025 6:47:21 AM
+Sent: Backend service status update #37 at 10/6/2025 6:47:26 AM
+Received: Server echo: Backend service status update #37 at 10/6/2025 6:47:26 AM
+Sent: Backend service status update #38 at 10/6/2025 6:47:31 AM
+Received: Server echo: Backend service status update #38 at 10/6/2025 6:47:31 AM
+Sent: Backend service status update #39 at 10/6/2025 6:47:36 AM
+Received: Server echo: Backend service status update #39 at 10/6/2025 6:47:36 AM
+Sent: Backend service status update #40 at 10/6/2025 6:47:41 AM
+Received: Server echo: Backend service status update #40 at 10/6/2025 6:47:41 AM
+Sent: Backend service status update #41 at 10/6/2025 6:47:46 AM
+Received: Server echo: Backend service status update #41 at 10/6/2025 6:47:46 AM
+Sent: Backend service status update #42 at 10/6/2025 6:47:51 AM
+Received: Server echo: Backend service status update #42 at 10/6/2025 6:47:51 AM
+Sent: Backend service status update #43 at 10/6/2025 6:47:56 AM
+Received: Server echo: Backend service status update #43 at 10/6/2025 6:47:56 AM
+Sent: Backend service status update #44 at 10/6/2025 6:48:01 AM
+Received: Server echo: Backend service status update #44 at 10/6/2025 6:48:01 AM
+Sent: Backend service status update #45 at 10/6/2025 6:48:06 AM
+Received: Server echo: Backend service status update #45 at 10/6/2025 6:48:06 AM
+Sent: Backend service status update #46 at 10/6/2025 6:48:11 AM
+Received: Server echo: Backend service status update #46 at 10/6/2025 6:48:11 AM
+Sent: Backend service status update #47 at 10/6/2025 6:48:16 AM
+Received: Server echo: Backend service status update #47 at 10/6/2025 6:48:16 AM
+Sent: Backend service status update #48 at 10/6/2025 6:48:21 AM
+Received: Server echo: Backend service status update #48 at 10/6/2025 6:48:21 AM
+Sent: Backend service status update #49 at 10/6/2025 6:48:26 AM
+Received: Server echo: Backend service status update #49 at 10/6/2025 6:48:26 AM
+Sent: Backend service status update #50 at 10/6/2025 6:48:31 AM
+Received: Server echo: Backend service status update #50 at 10/6/2025 6:48:31 AM
+Sent: Backend service status update #51 at 10/6/2025 6:48:36 AM
+Received: Server echo: Backend service status update #51 at 10/6/2025 6:48:36 AM
+Sent: Backend service status update #52 at 10/6/2025 6:48:41 AM
+Received: Server echo: Backend service status update #52 at 10/6/2025 6:48:41 AM
+Sent: Backend service status update #53 at 10/6/2025 6:48:46 AM
+Received: Server echo: Backend service status update #53 at 10/6/2025 6:48:46 AM
+Sent: Backend service status update #54 at 10/6/2025 6:48:51 AM
+Received: Server echo: Backend service status update #54 at 10/6/2025 6:48:51 AM
+Sent: Backend service status update #55 at 10/6/2025 6:48:56 AM
+Received: Server echo: Backend service status update #55 at 10/6/2025 6:48:56 AM
+Sent: Backend service status update #56 at 10/6/2025 6:49:01 AM
+Received: Server echo: Backend service status update #56 at 10/6/2025 6:49:01 AM
+Sent: Backend service status update #57 at 10/6/2025 6:49:06 AM
+Received: Server echo: Backend service status update #57 at 10/6/2025 6:49:06 AM
+Sent: Backend service status update #58 at 10/6/2025 6:49:11 AM
+Received: Server echo: Backend service status update #58 at 10/6/2025 6:49:11 AM
+Sent: Backend service status update #59 at 10/6/2025 6:49:16 AM
+Received: Server echo: Backend service status update #59 at 10/6/2025 6:49:16 AM
+Sent: Backend service status update #60 at 10/6/2025 6:49:21 AM
+Received: Server echo: Backend service status update #60 at 10/6/2025 6:49:21 AM
+Sent: Backend service status update #61 at 10/6/2025 6:49:26 AM
+Received: Server echo: Backend service status update #61 at 10/6/2025 6:49:26 AM
+Sent: Backend service status update #62 at 10/6/2025 6:49:31 AM
+Received: Server echo: Backend service status update #62 at 10/6/2025 6:49:31 AM
+Sent: Backend service status update #63 at 10/6/2025 6:49:36 AM
+Received: Server echo: Backend service status update #63 at 10/6/2025 6:49:36 AM
+Sent: Backend service status update #64 at 10/6/2025 6:49:41 AM
+Received: Server echo: Backend service status update #64 at 10/6/2025 6:49:41 AM
+Sent: Backend service status update #65 at 10/6/2025 6:49:46 AM
+Received: Server echo: Backend service status update #65 at 10/6/2025 6:49:46 AM
+Sent: Backend service status update #66 at 10/6/2025 6:49:51 AM
+Received: Server echo: Backend service status update #66 at 10/6/2025 6:49:51 AM
+Sent: Backend service status update #67 at 10/6/2025 6:49:56 AM
+Received: Server echo: Backend service status update #67 at 10/6/2025 6:49:56 AM
+Sent: Backend service status update #68 at 10/6/2025 6:50:01 AM
+Received: Server echo: Backend service status update #68 at 10/6/2025 6:50:01 AM
+Sent: Backend service status update #69 at 10/6/2025 6:50:06 AM
+Received: Server echo: Backend service status update #69 at 10/6/2025 6:50:06 AM
+Sent: Backend service status update #70 at 10/6/2025 6:50:11 AM
+Received: Server echo: Backend service status update #70 at 10/6/2025 6:50:11 AM
+Sent: Backend service status update #71 at 10/6/2025 6:50:16 AM
+Received: Server echo: Backend service status update #71 at 10/6/2025 6:50:16 AM
+Sent: Backend service status update #72 at 10/6/2025 6:50:21 AM
+Received: Server echo: Backend service status update #72 at 10/6/2025 6:50:21 AM
+Sent: Backend service status update #73 at 10/6/2025 6:50:26 AM
+Received: Server echo: Backend service status update #73 at 10/6/2025 6:50:26 AM
+Sent: Backend service status update #74 at 10/6/2025 6:50:31 AM
+Received: Server echo: Backend service status update #74 at 10/6/2025 6:50:31 AM
+Sent: Backend service status update #75 at 10/6/2025 6:50:36 AM
+Received: Server echo: Backend service status update #75 at 10/6/2025 6:50:36 AM
+Sent: Backend service status update #76 at 10/6/2025 6:50:41 AM
+Received: Server echo: Backend service status update #76 at 10/6/2025 6:50:41 AM
+Sent: Backend service status update #77 at 10/6/2025 6:50:46 AM
+Received: Server echo: Backend service status update #77 at 10/6/2025 6:50:46 AM
+Sent: Backend service status update #78 at 10/6/2025 6:50:51 AM
+Received: Server echo: Backend service status update #78 at 10/6/2025 6:50:51 AM
+Sent: Backend service status update #79 at 10/6/2025 6:50:56 AM
+Received: Server echo: Backend service status update #79 at 10/6/2025 6:50:56 AM
+Sent: Backend service status update #80 at 10/6/2025 6:51:01 AM
+Received: Server echo: Backend service status update #80 at 10/6/2025 6:51:01 AM
+Sent: Backend service status update #81 at 10/6/2025 6:51:06 AM
+Received: Server echo: Backend service status update #81 at 10/6/2025 6:51:06 AM
+Sent: Backend service status update #82 at 10/6/2025 6:51:11 AM
+Received: Server echo: Backend service status update #82 at 10/6/2025 6:51:11 AM
+Sent: Backend service status update #83 at 10/6/2025 6:51:16 AM
+Received: Server echo: Backend service status update #83 at 10/6/2025 6:51:16 AM
+Sent: Backend service status update #84 at 10/6/2025 6:51:21 AM
+Received: Server echo: Backend service status update #84 at 10/6/2025 6:51:21 AM
+Sent: Backend service status update #85 at 10/6/2025 6:51:26 AM
+Received: Server echo: Backend service status update #85 at 10/6/2025 6:51:26 AM
+Sent: Backend service status update #86 at 10/6/2025 6:51:31 AM
+Received: Server echo: Backend service status update #86 at 10/6/2025 6:51:31 AM
+Sent: Backend service status update #87 at 10/6/2025 6:51:37 AM
+Received: Server echo: Backend service status update #87 at 10/6/2025 6:51:37 AM
+Sent: Backend service status update #88 at 10/6/2025 6:51:42 AM
+Received: Server echo: Backend service status update #88 at 10/6/2025 6:51:42 AM
+Sent: Backend service status update #89 at 10/6/2025 6:51:47 AM
+Received: Server echo: Backend service status update #89 at 10/6/2025 6:51:47 AM
+Sent: Backend service status update #90 at 10/6/2025 6:51:52 AM
+Received: Server echo: Backend service status update #90 at 10/6/2025 6:51:52 AM
+Sent: Backend service status update #91 at 10/6/2025 6:51:57 AM
+Received: Server echo: Backend service status update #91 at 10/6/2025 6:51:57 AM
+Sent: Backend service status update #92 at 10/6/2025 6:52:02 AM
+Received: Server echo: Backend service status update #92 at 10/6/2025 6:52:02 AM
+Sent: Backend service status update #93 at 10/6/2025 6:52:07 AM
+Received: Server echo: Backend service status update #93 at 10/6/2025 6:52:07 AM
+Sent: Backend service status update #94 at 10/6/2025 6:52:12 AM
+Received: Server echo: Backend service status update #94 at 10/6/2025 6:52:12 AM
+Sent: Backend service status update #95 at 10/6/2025 6:52:17 AM
+Received: Server echo: Backend service status update #95 at 10/6/2025 6:52:17 AM
+Sent: Backend service status update #96 at 10/6/2025 6:52:22 AM
+Received: Server echo: Backend service status update #96 at 10/6/2025 6:52:22 AM
+Sent: Backend service status update #97 at 10/6/2025 6:52:27 AM
+Received: Server echo: Backend service status update #97 at 10/6/2025 6:52:27 AM
+Sent: Backend service status update #98 at 10/6/2025 6:52:32 AM
+Received: Server echo: Backend service status update #98 at 10/6/2025 6:52:32 AM
+Sent: Backend service status update #99 at 10/6/2025 6:52:37 AM
+Received: Server echo: Backend service status update #99 at 10/6/2025 6:52:37 AM
+Sent: Backend service status update #100 at 10/6/2025 6:52:42 AM
+Received: Server echo: Backend service status update #100 at 10/6/2025 6:52:42 AM
+Sent: Backend service status update #101 at 10/6/2025 6:52:47 AM
+Received: Server echo: Backend service status update #101 at 10/6/2025 6:52:47 AM
+Sent: Backend service status update #102 at 10/6/2025 6:52:52 AM
+Received: Server echo: Backend service status update #102 at 10/6/2025 6:52:52 AM
+Sent: Backend service status update #103 at 10/6/2025 6:52:57 AM
+Received: Server echo: Backend service status update #103 at 10/6/2025 6:52:57 AM
+Sent: Backend service status update #104 at 10/6/2025 6:53:02 AM
+Received: Server echo: Backend service status update #104 at 10/6/2025 6:53:02 AM
+Sent: Backend service status update #105 at 10/6/2025 6:53:07 AM
+Received: Server echo: Backend service status update #105 at 10/6/2025 6:53:07 AM
+Sent: Backend service status update #106 at 10/6/2025 6:53:12 AM
+Received: Server echo: Backend service status update #106 at 10/6/2025 6:53:12 AM
+Sent: Backend service status update #107 at 10/6/2025 6:53:17 AM
+Received: Server echo: Backend service status update #107 at 10/6/2025 6:53:17 AM
+Sent: Backend service status update #108 at 10/6/2025 6:53:22 AM
+Received: Server echo: Backend service status update #108 at 10/6/2025 6:53:22 AM
+Sent: Backend service status update #109 at 10/6/2025 6:53:27 AM
+Received: Server echo: Backend service status update #109 at 10/6/2025 6:53:27 AM
+Sent: Backend service status update #110 at 10/6/2025 6:53:32 AM
+Received: Server echo: Backend service status update #110 at 10/6/2025 6:53:32 AM
+Sent: Backend service status update #111 at 10/6/2025 6:53:37 AM
+Received: Server echo: Backend service status update #111 at 10/6/2025 6:53:37 AM
+Sent: Backend service status update #112 at 10/6/2025 6:53:42 AM
+Received: Server echo: Backend service status update #112 at 10/6/2025 6:53:42 AM
+Sent: Backend service status update #113 at 10/6/2025 6:53:47 AM
+Received: Server echo: Backend service status update #113 at 10/6/2025 6:53:47 AM
+Sent: Backend service status update #114 at 10/6/2025 6:53:52 AM
+Received: Server echo: Backend service status update #114 at 10/6/2025 6:53:52 AM
+Sent: Backend service status update #115 at 10/6/2025 6:53:57 AM
+Received: Server echo: Backend service status update #115 at 10/6/2025 6:53:57 AM
+Sent: Backend service status update #116 at 10/6/2025 6:54:02 AM
+Received: Server echo: Backend service status update #116 at 10/6/2025 6:54:02 AM
+Sent: Backend service status update #117 at 10/6/2025 6:54:07 AM
+Received: Server echo: Backend service status update #117 at 10/6/2025 6:54:07 AM
+Sent: Backend service status update #118 at 10/6/2025 6:54:12 AM
+Received: Server echo: Backend service status update #118 at 10/6/2025 6:54:12 AM
+Sent: Backend service status update #119 at 10/6/2025 6:54:17 AM
+Received: Server echo: Backend service status update #119 at 10/6/2025 6:54:17 AM
+Sent: Backend service status update #120 at 10/6/2025 6:54:22 AM
+Received: Server echo: Backend service status update #120 at 10/6/2025 6:54:22 AM
+Sent: Backend service status update #121 at 10/6/2025 6:54:27 AM
+Received: Server echo: Backend service status update #121 at 10/6/2025 6:54:27 AM
+Sent: Backend service status update #122 at 10/6/2025 6:54:32 AM
+Received: Server echo: Backend service status update #122 at 10/6/2025 6:54:32 AM
+Sent: Backend service status update #123 at 10/6/2025 6:54:37 AM
+Received: Server echo: Backend service status update #123 at 10/6/2025 6:54:37 AM
+Sent: Backend service status update #124 at 10/6/2025 6:54:42 AM
+Received: Server echo: Backend service status update #124 at 10/6/2025 6:54:42 AM
+Sent: Backend service status update #125 at 10/6/2025 6:54:47 AM
+Received: Server echo: Backend service status update #125 at 10/6/2025 6:54:47 AM
+Sent: Backend service status update #126 at 10/6/2025 6:54:52 AM
+Received: Server echo: Backend service status update #126 at 10/6/2025 6:54:52 AM
+Sent: Backend service status update #127 at 10/6/2025 6:54:57 AM
+Received: Server echo: Backend service status update #127 at 10/6/2025 6:54:57 AM
