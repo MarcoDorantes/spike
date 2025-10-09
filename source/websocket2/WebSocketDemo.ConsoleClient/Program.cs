@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Net.WebSockets;
+using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 namespace WebSocketDemo.ConsoleClient
@@ -11,27 +12,28 @@ namespace WebSocketDemo.ConsoleClient
         static async Task Main(string[] args)
         {
             Console.WriteLine("Console WebSocket Client");
-            await ConnectToServerAsync();
+            await ConnectToServerAsync(args);
         }
 
-        static async Task ConnectToServerAsync()
+        static async Task ConnectToServerAsync(string[] args)
         {
+            var address = "";
             using var client = new ClientWebSocket();
-            var serverUri = new Uri("ws://localhost:5297/ws");
-
+            var serverUri = new Uri(address);
             try
             {
                 await client.ConnectAsync(serverUri, CancellationToken.None);
-                Console.WriteLine("Connected to WebSocket server");
+                Console.WriteLine($"Connected to WebSocket server ({address})");
 
                 // Send initial message
-                await SendMessageAsync(client, "Hello from console client!");
+                var msg = "";
+                await SendMessageAsync(client, msg);
 
                 // Start receiving messages
                 _ = ReceiveMessagesAsync(client);
 
                 // Allow user to send messages
-                await SendUserMessagesAsync(client);
+                await SendUserMessagesAsync(client, args);
             }
             catch (Exception ex)
             {
@@ -49,17 +51,28 @@ namespace WebSocketDemo.ConsoleClient
                 CancellationToken.None);
         }
 
-        static async Task SendUserMessagesAsync(ClientWebSocket client)
+        static async Task SendUserMessagesAsync(ClientWebSocket client, string[] args)
         {
             while (client.State == WebSocketState.Open)
             {
-                Console.Write("Enter message (or 'exit' to quit): ");
+                Console.WriteLine("Enter message (or 'exit' to quit): ");
                 var message = Console.ReadLine();
                 
                 if (string.IsNullOrEmpty(message) || message.ToLower() == "exit")
                     break;
 
-                await SendMessageAsync(client, message);
+                if (string.IsNullOrEmpty(message) || message.ToLower() == "sub")
+                {
+                    var subscribe_payload = "";
+                    var newsub = args.FirstOrDefault();
+                    if(!string.IsNullOrWhiteSpace(newsub)) subscribe_payload = "";
+                    Console.WriteLine($"\nSubscribing to {subscribe_payload}...");
+                    await SendMessageAsync(client, subscribe_payload);
+                }
+                else
+                {
+                    await SendMessageAsync(client, message);
+                }
             }
 
             if (client.State == WebSocketState.Open)
