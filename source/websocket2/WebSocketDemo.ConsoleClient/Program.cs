@@ -57,6 +57,8 @@ namespace WebSocketDemo.ConsoleClient
 
         static async Task SendUserMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
         {
+            int capture_lapse = 10000;
+            if(int.TryParse(opts["lapse"],out int lapse)) capture_lapse = lapse;
             int cycle = 0;
             while (client.State == WebSocketState.Open)
             {
@@ -90,7 +92,7 @@ namespace WebSocketDemo.ConsoleClient
                 {
                     await SendMessageAsync(client, message);
                 }
-                if (batch) await System.Threading.Tasks.Task.Delay(10000);
+                if (batch) await System.Threading.Tasks.Task.Delay(capture_lapse);
             }
 
             if (client.State == WebSocketState.Open)
