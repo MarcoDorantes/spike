@@ -5,17 +5,21 @@ using System.Threading;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 
+using static System.Console;
+
 namespace WebSocketDemo.ConsoleClient
 {
     class Program
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Console WebSocket Client");
-            await ConnectToServerAsync(args);
+            nutility.Switch opts = new(args);
+            var batch = opts.Is("batch");
+            if(!batch) WriteLine("Console WebSocket Client");
+            await ConnectToServerAsync(opts, batch);
         }
 
-        static async Task ConnectToServerAsync(string[] args)
+        static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
         {
             var address = "";
             using var client = new ClientWebSocket();
@@ -23,21 +27,21 @@ namespace WebSocketDemo.ConsoleClient
             try
             {
                 await client.ConnectAsync(serverUri, CancellationToken.None);
-                Console.WriteLine($"Connected to WebSocket server ({address})");
+                if(!batch) WriteLine($"Connected to WebSocket server ({address})");
 
                 // Send initial message
                 var msg = "";
                 await SendMessageAsync(client, msg);
 
                 // Start receiving messages
-                _ = ReceiveMessagesAsync(client);
+                _ = ReceiveMessagesAsync(client, opts, batch);
 
                 // Allow user to send messages
-                await SendUserMessagesAsync(client, args);
+                await SendUserMessagesAsync(client, opts, batch);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
+                WriteLine($"Exception: {ex.Message}");
             }
         }
 
@@ -45,34 +49,48 @@ namespace WebSocketDemo.ConsoleClient
         {
             var bytes = Encoding.UTF8.GetBytes(message);
             await client.SendAsync(
-                new ArraySegment<byte>(bytes), 
-                WebSocketMessageType.Text, 
-                true, 
+                new ArraySegment<byte>(bytes),
+                WebSocketMessageType.Text,
+                true,
                 CancellationToken.None);
         }
 
-        static async Task SendUserMessagesAsync(ClientWebSocket client, string[] args)
+        static async Task SendUserMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
         {
+            int cycle = 0;
             while (client.State == WebSocketState.Open)
             {
-                Console.WriteLine("Enter message (or 'exit' to quit): ");
-                var message = Console.ReadLine();
-                
+                if(batch) await System.Threading.Tasks.Task.Delay(1000);
+                else WriteLine("Enter message (or 'exit' to quit): ");
+                var message = "";
+                if (batch)
+                {
+                    if (cycle > 0) message = "exit";
+                    else if(cycle == 0)
+                    {
+                        ++cycle;
+                        message = "sub";
+                        await System.Threading.Tasks.Task.Delay(1000);
+                    }
+                }
+                else message = ReadLine();
+
                 if (string.IsNullOrEmpty(message) || message.ToLower() == "exit")
                     break;
 
                 if (string.IsNullOrEmpty(message) || message.ToLower() == "sub")
                 {
                     var subscribe_payload = "";
-                    var newsub = args.FirstOrDefault();
-                    if(!string.IsNullOrWhiteSpace(newsub)) subscribe_payload = "";
-                    Console.WriteLine($"\nSubscribing to {subscribe_payload}...");
+                    var newsub = opts[0];
+                    if (!string.IsNullOrWhiteSpace(newsub)) subscribe_payload = "";
+                    if (!batch) WriteLine($"\nSubscribing to {subscribe_payload}...");
                     await SendMessageAsync(client, subscribe_payload);
                 }
                 else
                 {
                     await SendMessageAsync(client, message);
                 }
+                if (batch) await System.Threading.Tasks.Task.Delay(10000);
             }
 
             if (client.State == WebSocketState.Open)
@@ -81,14 +99,14 @@ namespace WebSocketDemo.ConsoleClient
             }
         }
 
-        static async Task ReceiveMessagesAsync(ClientWebSocket client)
+        static async Task ReceiveMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
         {
             var buffer = new byte[1024 * 4];
 
             while (client.State == WebSocketState.Open)
             {
                 var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-                
+
                 if (result.MessageType == WebSocketMessageType.Close)
                 {
                     await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server closed", CancellationToken.None);
@@ -96,7 +114,9 @@ namespace WebSocketDemo.ConsoleClient
                 }
 
                 var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                Console.WriteLine($"Received: {message}");
+                var label = opts.Is("recv") ? "Received: " : "";
+                var logline = $"{label}{message}";
+                WriteLine(logline);
             }
         }
     }
