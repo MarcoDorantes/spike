@@ -27,7 +27,11 @@ namespace WebSocketDemo.ConsoleClient
             try
             {
                 await client.ConnectAsync(serverUri, CancellationToken.None);
-                if(!batch) WriteLine($"Connected to WebSocket server ({address})");
+                if (!batch)
+                {
+                    WriteLine($"{client.State} to WebSocket server ({address})");
+                    WriteLine($"{nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
+                }
 
                 // Send initial message
                 var msg = "";
@@ -35,6 +39,7 @@ namespace WebSocketDemo.ConsoleClient
 
                 // Start receiving messages
                 _ = ReceiveMessagesAsync(client, opts, batch);
+                _ = CheckState(client, opts, batch);
 
                 // Allow user to send messages
                 await SendUserMessagesAsync(client, opts, batch);
@@ -120,6 +125,15 @@ namespace WebSocketDemo.ConsoleClient
                 var logline = $"{label}{message}";
                 WriteLine(logline);
             }
+        }
+        static async Task CheckState(ClientWebSocket client, nutility.Switch opts, bool batch)
+        {
+            if (batch) return;
+            do
+            {
+                WriteLine($"{DateTime.Now:o} {nameof(WebSocketState)} = [{client?.State}]");
+                await System.Threading.Tasks.Task.Delay(3000);
+            } while (true);
         }
     }
 }
