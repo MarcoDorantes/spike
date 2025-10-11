@@ -79,137 +79,136 @@ If the underlying network connection fails, both will eventually time out and cl
 
 You must implement application-level reconnection logic (e.g., using libraries like Socket.IO or custom code) for both to make them truly resilient in real-world scenarios.
 */
-namespace WebSocketDemo.ConsoleClient
+namespace WebSocketDemo.ConsoleClient;
+
+internal static partial class Config
 {
-    internal static partial class Config
+    public static string Address;
+    public static string InitialMessage;
+}
+class Program
+{
+    static async Task Main(string[] args)
     {
-        public static string Address;
-        public static string InitialMessage;
+        nutility.Switch opts = new(args);
+        var batch = opts.Is("batch");
+        if(!batch) WriteLine("Console WebSocket Client");
+        await ConnectToServerAsync(opts, batch);
     }
-    class Program
+
+    static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
     {
-        static async Task Main(string[] args)
+        var address = Config.Address;
+        using var client = new ClientWebSocket();
+        var serverUri = new Uri(address);
+        try
         {
-            nutility.Switch opts = new(args);
-            var batch = opts.Is("batch");
-            if(!batch) WriteLine("Console WebSocket Client");
-            await ConnectToServerAsync(opts, batch);
-        }
-
-        static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
-        {
-            var address = Config.Address;
-            using var client = new ClientWebSocket();
-            var serverUri = new Uri(address);
-            try
+            await client.ConnectAsync(serverUri, CancellationToken.None);
+            if (!batch)
             {
-                await client.ConnectAsync(serverUri, CancellationToken.None);
-                if (!batch)
-                {
-                    WriteLine($"{client.State} connection to WebSocket server ({address})");
-                    WriteLine($"{nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
-                }
-
-                // Send initial message
-                await SendMessageAsync(client, Config.InitialMessage);
-
-                // Start receiving messages
-                _ = ReceiveMessagesAsync(client, opts, batch);
-                _ = CheckState(client, opts, batch);
-
-                // Allow user to send messages
-                await SendUserMessagesAsync(client, opts, batch);
-            }
-            catch (Exception ex)
-            {
-                WriteLine($"Exception: {ex.Message}");
-            }
-        }
-
-        static async Task SendMessageAsync(ClientWebSocket client, string message)
-        {
-            var bytes = Encoding.UTF8.GetBytes(message);
-            await client.SendAsync(
-                new ArraySegment<byte>(bytes),
-                WebSocketMessageType.Text,
-                true,
-                CancellationToken.None);
-        }
-
-        static async Task SendUserMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
-        {
-            int capture_lapse = 10_000;
-            if(int.TryParse(opts["lapse"],out int lapse)) capture_lapse = lapse;
-            int cycle = 0;
-            while (client.State == WebSocketState.Open)
-            {
-                if(batch) await Task.Delay(1_000);
-                else WriteLine("Enter message (or 'exit' to quit): ");
-                var message = "";
-                if (batch)
-                {
-                    if (cycle > 0) message = "exit";
-                    else if(cycle == 0)
-                    {
-                        ++cycle;
-                        message = "sub";
-                        await Task.Delay(1_000);
-                    }
-                }
-                else message = ReadLine();
-
-                if (string.IsNullOrEmpty(message) || message.ToLower() == "exit")
-                    break;
-
-                if (string.IsNullOrEmpty(message) || message.ToLower() == "sub")
-                {
-                    var subscribe_payload = Config.GetSubscribePayload();
-                    var newsub = opts[0];
-                    if (!string.IsNullOrWhiteSpace(newsub)) subscribe_payload = Config.GetSubscribePayload(newsub);
-                    if (!batch) WriteLine($"\nSubscribing to {subscribe_payload}...");
-                    await SendMessageAsync(client, subscribe_payload);
-                }
-                else
-                {
-                    await SendMessageAsync(client, message);
-                }
-                if (batch) await Task.Delay(capture_lapse);
+                WriteLine($"{client.State} connection to WebSocket server ({address})");
+                WriteLine($"{nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
             }
 
-            if (client.State == WebSocketState.Open)
-            {
-                await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client closing", CancellationToken.None);
-            }
+            // Send initial message
+            await SendMessageAsync(client, Config.InitialMessage);
+
+            // Start receiving messages
+            _ = ReceiveMessagesAsync(client, opts, batch);
+            _ = CheckState(client, opts, batch);
+
+            // Allow user to send messages
+            await SendUserMessagesAsync(client, opts, batch);
         }
-
-        static async Task ReceiveMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
+        catch (Exception ex)
         {
-            var buffer = new byte[1024 * 4];
+            WriteLine($"Exception: {ex.Message}");
+        }
+    }
 
-            while (client.State == WebSocketState.Open)
+    static async Task SendMessageAsync(ClientWebSocket client, string message)
+    {
+        var bytes = Encoding.UTF8.GetBytes(message);
+        await client.SendAsync(
+            new ArraySegment<byte>(bytes),
+            WebSocketMessageType.Text,
+            true,
+            CancellationToken.None);
+    }
+
+    static async Task SendUserMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
+    {
+        int capture_lapse = 10_000;
+        if(int.TryParse(opts["lapse"],out int lapse)) capture_lapse = lapse;
+        int cycle = 0;
+        while (client.State == WebSocketState.Open)
+        {
+            if(batch) await Task.Delay(1_000);
+            else WriteLine("Enter message (or 'exit' to quit): ");
+            var message = "";
+            if (batch)
             {
-                var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-
-                if (result.MessageType == WebSocketMessageType.Close)
+                if (cycle > 0) message = "exit";
+                else if(cycle == 0)
                 {
-                    await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server closed", CancellationToken.None);
-                    break;
+                    ++cycle;
+                    message = "sub";
+                    await Task.Delay(1_000);
                 }
-
-                var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                var label = opts.Is("recv") ? "Received: " : "";
-                var logline = $"{label}{message}";
-                WriteLine(logline);
             }
-        }
-        static async Task CheckState(ClientWebSocket client, nutility.Switch opts, bool batch)
-        {
-            if (batch) return;
-            do
+            else message = ReadLine();
+
+            if (string.IsNullOrEmpty(message) || message.ToLower() == "exit")
+                break;
+
+            if (string.IsNullOrEmpty(message) || message.ToLower() == "sub")
             {
-                WriteLine($"{DateTime.Now:o} {nameof(WebSocketState)} = [{client?.State}]");
-                await Task.Delay(3_000);
-            } while (true);
+                var subscribe_payload = Config.GetSubscribePayload();
+                var newsub = opts[0];
+                if (!string.IsNullOrWhiteSpace(newsub)) subscribe_payload = Config.GetSubscribePayload(newsub);
+                if (!batch) WriteLine($"\nSubscribing to {subscribe_payload}...");
+                await SendMessageAsync(client, subscribe_payload);
+            }
+            else
+            {
+                await SendMessageAsync(client, message);
+            }
+            if (batch) await Task.Delay(capture_lapse);
         }
+
+        if (client.State == WebSocketState.Open)
+        {
+            await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client closing", CancellationToken.None);
+        }
+    }
+
+    static async Task ReceiveMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
+    {
+        var buffer = new byte[1024 * 4];
+
+        while (client.State == WebSocketState.Open)
+        {
+            var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            if (result.MessageType == WebSocketMessageType.Close)
+            {
+                await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server closed", CancellationToken.None);
+                break;
+            }
+
+            var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+            var label = opts.Is("recv") ? "Received: " : "";
+            var logline = $"{label}{message}";
+            WriteLine(logline);
+        }
+    }
+    static async Task CheckState(ClientWebSocket client, nutility.Switch opts, bool batch)
+    {
+        if (batch) return;
+        do
+        {
+            WriteLine($"{DateTime.Now:o} {nameof(WebSocketState)} = [{client?.State}]");
+            await Task.Delay(3_000);
+        } while (true);
     }
 }
