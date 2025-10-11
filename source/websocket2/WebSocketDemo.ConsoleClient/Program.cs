@@ -81,6 +81,11 @@ You must implement application-level reconnection logic (e.g., using libraries l
 */
 namespace WebSocketDemo.ConsoleClient
 {
+    internal static partial class Config
+    {
+        public static string Address;
+        public static string InitialMessage;
+    }
     class Program
     {
         static async Task Main(string[] args)
@@ -93,7 +98,7 @@ namespace WebSocketDemo.ConsoleClient
 
         static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
         {
-            var address = "";
+            var address = Config.Address;
             using var client = new ClientWebSocket();
             var serverUri = new Uri(address);
             try
@@ -101,13 +106,12 @@ namespace WebSocketDemo.ConsoleClient
                 await client.ConnectAsync(serverUri, CancellationToken.None);
                 if (!batch)
                 {
-                    WriteLine($"{client.State} to WebSocket server ({address})");
+                    WriteLine($"{client.State} connection to WebSocket server ({address})");
                     WriteLine($"{nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
                 }
 
                 // Send initial message
-                var msg = "";
-                await SendMessageAsync(client, msg);
+                await SendMessageAsync(client, Config.InitialMessage);
 
                 // Start receiving messages
                 _ = ReceiveMessagesAsync(client, opts, batch);
@@ -134,12 +138,12 @@ namespace WebSocketDemo.ConsoleClient
 
         static async Task SendUserMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
         {
-            int capture_lapse = 10000;
+            int capture_lapse = 10_000;
             if(int.TryParse(opts["lapse"],out int lapse)) capture_lapse = lapse;
             int cycle = 0;
             while (client.State == WebSocketState.Open)
             {
-                if(batch) await System.Threading.Tasks.Task.Delay(1000);
+                if(batch) await Task.Delay(1_000);
                 else WriteLine("Enter message (or 'exit' to quit): ");
                 var message = "";
                 if (batch)
@@ -149,7 +153,7 @@ namespace WebSocketDemo.ConsoleClient
                     {
                         ++cycle;
                         message = "sub";
-                        await System.Threading.Tasks.Task.Delay(1000);
+                        await Task.Delay(1_000);
                     }
                 }
                 else message = ReadLine();
@@ -159,9 +163,9 @@ namespace WebSocketDemo.ConsoleClient
 
                 if (string.IsNullOrEmpty(message) || message.ToLower() == "sub")
                 {
-                    var subscribe_payload = "";
+                    var subscribe_payload = Config.GetSubscribePayload();
                     var newsub = opts[0];
-                    if (!string.IsNullOrWhiteSpace(newsub)) subscribe_payload = "";
+                    if (!string.IsNullOrWhiteSpace(newsub)) subscribe_payload = Config.GetSubscribePayload(newsub);
                     if (!batch) WriteLine($"\nSubscribing to {subscribe_payload}...");
                     await SendMessageAsync(client, subscribe_payload);
                 }
@@ -169,7 +173,7 @@ namespace WebSocketDemo.ConsoleClient
                 {
                     await SendMessageAsync(client, message);
                 }
-                if (batch) await System.Threading.Tasks.Task.Delay(capture_lapse);
+                if (batch) await Task.Delay(capture_lapse);
             }
 
             if (client.State == WebSocketState.Open)
@@ -204,7 +208,7 @@ namespace WebSocketDemo.ConsoleClient
             do
             {
                 WriteLine($"{DateTime.Now:o} {nameof(WebSocketState)} = [{client?.State}]");
-                await System.Threading.Tasks.Task.Delay(3000);
+                await Task.Delay(3_000);
             } while (true);
         }
     }
