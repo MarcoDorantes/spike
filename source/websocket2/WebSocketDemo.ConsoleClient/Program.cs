@@ -6,7 +6,79 @@ using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 using static System.Console;
+/*
+https://www.unixtimestamp.com
+https://www.svix.com/resources/faq/websocket-vs-tcp
 
+Are the websockets connections are as reliable as TCP sockets connections?
+
+Summary
+WebSockets use TCP under the hood, so they inherit TCP’s reliability guarantees (ordered, retransmitted, error-checked delivery). Differences in real-world reliability come from layers around TCP: framing, browser/runtime limits, intermediaries (proxies, load balancers), timeouts, and application-level heartbeats and reconnection logic.
+
+How they compare technically
+Transport layer WebSocket runs on top of TCP, so the core transport reliability (in-order delivery, retransmission on loss, checksum) is the same as a raw TCP socket.
+
+Message model WebSocket provides a message/frame abstraction; raw TCP is a byte stream. Message framing means you get messages rather than a continuous byte stream, which changes how you detect and recover from partial data or framing errors.
+
+Connection lifecycle WebSocket is established via an HTTP(S) handshake and subject to HTTP infrastructure behavior (upgrades, headers, timeouts); raw TCP connections don’t require an HTTP handshake and are less likely to be interrupted by HTTP-aware intermediaries.
+
+Practical differences that affect reliability
+Intermediaries and proxies HTTP proxies, corporate firewalls, and some load balancers may terminate or silently drop long-lived HTTP/WebSocket connections more aggressively than plain TCP connections between known endpoints.
+
+Idle timeouts Many HTTP stacks and proxies enforce shorter idle timeouts for WebSocket connections; you typically need periodic pings (heartbeats) to keep the connection alive.
+
+Browser and platform limits Browsers impose limits (concurrent connections per origin, resource constraints) and may suspend background tabs; native TCP sockets in server-to-server apps aren’t subject to those exact constraints.
+
+TLS and handshake overhead WSS (WebSocket over TLS) and HTTPS upgrade handshakes add overhead and dependency on TLS session behavior; this can affect perceived availability but not TCP’s underlying delivery guarantees.
+
+Reconnection and app-level handling WebSocket applications commonly rely on client-side reconnection, message buffering, and deduplication to handle interruptions; raw TCP apps often implement similar logic but have more control over lower-level socket options.
+
+When to prefer one over the other
+Use WebSockets when
+
+You need real-time browser↔server bidirectional messaging.
+
+You want message framing and a standardized API in browsers.
+
+You accept HTTP-based deployment and can implement heartbeats and reconnection.
+
+Use raw TCP when
+
+You control both endpoints (server↔server or native client) and want maximal control over socket options, keepalive behavior, and lower overhead.
+
+You need to avoid HTTP proxies or browser-imposed limits.
+
+Recommendations to make WebSockets as reliable as possible
+Implement application-level heartbeats/pings to prevent idle timeouts.
+
+Add automatic reconnection with exponential backoff and resume or deduplicate messages.
+
+Use TLS (WSS) and consider TLS session resumption to reduce handshake cost.
+
+Monitor connection drops and intermediate devices (reverse proxies, load balancers) and tune their timeouts or use WebSocket-aware proxies.
+
+Design messages to be idempotent or include sequence IDs so you can safely retry or resume.
+
+Quick verdict
+Transport reliability (packet delivery and ordering) is effectively the same because WebSocket uses TCP. Real-world reliability differences arise from the HTTP/handshake layer, intermediaries, client environment, and application-level handling. With proper heartbeats, reconnection, and infrastructure tuning, WebSockets can be made as reliable for production use as raw TCP connections for the typical browser-based real-time use cases.
+-
+Differences in Connection Management
+While the data transport is equally reliable, the management of the connection can introduce differences in perceived reliability at the application level:
+
+Message Orientation:
+
+TCP Sockets offer a stream of bytes. Your application has to implement its own framing (message boundaries) to know where one message ends and the next begins. This adds complexity to the application layer.
+
+
+WebSockets provide a stream of messages. The protocol handles the framing for you, ensuring that an entire, complete message is delivered to the application in a single event, which makes them easier to work with for higher-level applications.
+
+
+Automatic Recovery: Neither a raw TCP socket nor a standard WebSocket connection automatically handles a broken connection (e.g., if a Wi-Fi connection is dropped).
+
+If the underlying network connection fails, both will eventually time out and close.
+
+You must implement application-level reconnection logic (e.g., using libraries like Socket.IO or custom code) for both to make them truly resilient in real-world scenarios.
+*/
 namespace WebSocketDemo.ConsoleClient
 {
     class Program
