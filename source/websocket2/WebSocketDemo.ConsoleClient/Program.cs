@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Net.WebSockets;
@@ -7,6 +6,14 @@ using System.Threading.Tasks;
 
 using static System.Console;
 /*
+orphan connection?
+    HA: server db to track clients to restore connections
+Each network touch should have retry/reconnect policy.
+    no state change, at all.
+    ping? verb support| ACK
+evidence of contact to server or client
+unplug cable
+
 https://www.unixtimestamp.com
 https://www.svix.com/resources/faq/websocket-vs-tcp
 
@@ -204,7 +211,7 @@ class Program
     }
     static async Task CheckState(ClientWebSocket client, nutility.Switch opts, bool batch)
     {
-        if (batch) return;
+        if(batch) return;
         do
         {
             WriteLine($"{DateTime.Now:o} {nameof(WebSocketState)} = [{client?.State}]");
