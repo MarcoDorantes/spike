@@ -10,4 +10,5 @@
   <Project Path="WebSocketDemo.BackendService/WebSocketDemo.BackendService.csproj" />
   <Project Path="WebSocketDemo.ConsoleClient/WebSocketDemo.ConsoleClient.csproj" />
   <Project Path="WebSocketDemo.Server/WebSocketDemo.Server.csproj" />
+  <Project Path="HttpSocket\HttpSocket.csproj" />
 </Solution>

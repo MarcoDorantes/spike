@@ -1,8 +1,11 @@
-﻿using System;
+﻿namespace WebSocketDemo.ConsoleClient;
+
+using System;
 using System.Text;
 using System.Threading;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using static System.Console;
 /*
@@ -86,7 +89,6 @@ If the underlying network connection fails, both will eventually time out and cl
 
 You must implement application-level reconnection logic (e.g., using libraries like Socket.IO or custom code) for both to make them truly resilient in real-world scenarios.
 */
-namespace WebSocketDemo.ConsoleClient;
 
 internal static partial class Config
 {
@@ -98,11 +100,39 @@ class Program
     static async Task Main(string[] args)
     {
         nutility.Switch opts = new(args);
-        var batch = opts.Is("batch");
-        if(!batch) WriteLine("Console WebSocket Client");
-        await ConnectToServerAsync(opts, batch);
+        if (opts.Is("client")) { LaunchClients(); }
+        else
+        {
+            var batch = opts.Is("batch");
+            if(!batch) WriteLine("Console WebSocket Client");
+            await ConnectToServerAsync(opts, batch);
+        }
     }
-
+    static void LaunchClients()
+    {
+        LaunchClient();
+    }
+    static void LaunchClient()
+    {
+        using CancellationTokenSource cancel = new();
+        Dictionary<string, object> config = new()
+        {
+            {nameof(Config.Address),Config.Address},
+            {nameof(Config.InitialMessage),Config.InitialMessage},
+            {"SubscribePayload",Config.GetSubscribePayload()}
+        };
+        using HttpSocket.HttpSocketClient client = new()
+        {
+            SourceHost = Out,
+            Configuration = config,
+            Cancellation = cancel.Token
+        };
+        client.Setup();
+        client.Start();
+        ReadLine();
+        cancel.Cancel();
+        client.Stop();
+    }
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
     {
         var address = Config.Address;
