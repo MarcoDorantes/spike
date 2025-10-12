@@ -111,12 +111,12 @@ class Program
     static void LaunchClients()
     {
         using CancellationTokenSource cancel = new();
-        var sub = Config.GetSubscribePayload();
-        using var client = LaunchClient(cancel.Token, sub);
+        using var client1 = LaunchClient(cancel.Token, Config.GetSubscribePayload());
+        using var client2 = LaunchClient(cancel.Token, Config.GetSubscribePayload("FMV.ORCL"));
         ReadLine();
         cancel.Cancel();
-        client.Stop();
-
+        client1.Stop();
+        client2.Stop();
     }
     static HttpSocket.HttpSocketClient LaunchClient(CancellationToken cancel, string sub)
     {
