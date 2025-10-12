@@ -110,28 +110,31 @@ class Program
     }
     static void LaunchClients()
     {
-        LaunchClient();
-    }
-    static void LaunchClient()
-    {
         using CancellationTokenSource cancel = new();
+        var sub = Config.GetSubscribePayload();
+        using var client = LaunchClient(cancel.Token, sub);
+        ReadLine();
+        cancel.Cancel();
+        client.Stop();
+
+    }
+    static HttpSocket.HttpSocketClient LaunchClient(CancellationToken cancel, string sub)
+    {
         Dictionary<string, object> config = new()
         {
             {nameof(Config.Address),Config.Address},
             {nameof(Config.InitialMessage),Config.InitialMessage},
-            {"SubscribePayload",Config.GetSubscribePayload()}
+            {"SubscribePayload",sub}
         };
-        using HttpSocket.HttpSocketClient client = new()
+        HttpSocket.HttpSocketClient client = new()
         {
             SourceHost = Out,
             Configuration = config,
-            Cancellation = cancel.Token
+            Cancellation = cancel
         };
         client.Setup();
         client.Start();
-        ReadLine();
-        cancel.Cancel();
-        client.Stop();
+        return client;
     }
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
     {
