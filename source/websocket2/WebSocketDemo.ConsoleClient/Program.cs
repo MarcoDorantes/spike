@@ -110,21 +110,26 @@ class Program
     }
     static void LaunchClients()
     {
+
         using CancellationTokenSource cancel = new();
-        using var client1 = LaunchClient(cancel.Token, Config.GetSubscribePayload());
-        using var client2 = LaunchClient(cancel.Token, Config.GetSubscribePayload("FMV.ORCL"));
+        using var client1 = LaunchClient(cancel.Token, Config.DefaultTopic);
+        using var client2 = LaunchClient(cancel.Token, "FMV.AAPL");
+        using var client3 = LaunchClient(cancel.Token, "FMV.ORCL");
         ReadLine();
         cancel.Cancel();
         client1.Stop();
         client2.Stop();
+        client3.Stop();
+        Thread.Sleep(4500);
     }
-    static HttpSocket.HttpSocketClient LaunchClient(CancellationToken cancel, string sub)
+    static HttpSocket.HttpSocketClient LaunchClient(CancellationToken cancel, string topic = null)
     {
         Dictionary<string, object> config = new()
         {
             {nameof(Config.Address),Config.Address},
             {nameof(Config.InitialMessage),Config.InitialMessage},
-            {"SubscribePayload",sub}
+            {"Topic",topic},
+            {"SubscribePayload",Config.GetSubscribePayload(topic)}
         };
         HttpSocket.HttpSocketClient client = new()
         {
