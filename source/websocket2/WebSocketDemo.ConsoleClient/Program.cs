@@ -1,6 +1,7 @@
 ﻿namespace WebSocketDemo.ConsoleClient;
 
 using System;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Net.WebSockets;
@@ -100,7 +101,7 @@ class Program
     static async Task Main(string[] args)
     {
         nutility.Switch opts = new(args);
-        if (opts.Is("client")) { LaunchClients(); }
+        if (opts.Is("client")) { LaunchClients(opts); }
         else
         {
             var batch = opts.Is("batch");
@@ -108,19 +109,30 @@ class Program
             await ConnectToServerAsync(opts, batch);
         }
     }
-    static void LaunchClients()
+    static void LaunchClients(nutility.Switch opts)
     {
-
+        int nclients = opts.Is("count") ? int.Parse(opts["count"]) : 3;
+        if (!(nclients > 0)) return;
         using CancellationTokenSource cancel = new();
-        using var client1 = LaunchClient(cancel.Token, Config.DefaultTopic);
-        using var client2 = LaunchClient(cancel.Token, "FMV.AAPL");
-        using var client3 = LaunchClient(cancel.Token, "FMV.ORCL");
-        ReadLine();
-        cancel.Cancel();
-        client1.Stop();
-        client2.Stop();
-        client3.Stop();
-        Thread.Sleep(3_000);
+        List<HttpSocket.HttpSocketClient> clients = [];
+        string[] topics = [Config.DefaultTopic, "FMV.AAPL", "FMV.ORCL"];
+        try
+        {
+            _ = Enumerable.Range(0, nclients).Aggregate(clients, (whole, next) =>
+            {
+                var topic = topics[whole.Count % topics.Length];
+                whole.Add(LaunchClient(cancel.Token, topic));
+                return whole;
+            });
+            ReadLine();
+            cancel.Cancel();
+            clients.ForEach(c => c.Stop());
+            Thread.Sleep(3_000);
+        }
+        finally
+        {
+            clients.ForEach(c => c.Dispose());
+        }
     }
     static HttpSocket.HttpSocketClient LaunchClient(CancellationToken cancel, string topic = null)
     {
