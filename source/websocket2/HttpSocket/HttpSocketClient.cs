@@ -24,7 +24,7 @@ public class HttpSocketClient : IDisposable
     }
     public void Start()
     {
-        _ = ConnectToServerAsync(Address, InitialMessage, SubscribePayload);
+        _ = ConnectToServerAsyncGuarded(Address, InitialMessage, SubscribePayload);
     }
     public void Stop()
     {
@@ -37,40 +37,66 @@ public class HttpSocketClient : IDisposable
     private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
     private string Address, InitialMessage, Topic, SubscribePayload;
 
+    private async Task ConnectToServerAsyncGuarded(string address, string InitialMessage, string sub)
+    {
+        do
+        {
+            try
+            {
+                await ConnectToServerAsync(Address, InitialMessage, SubscribePayload);
+                break;
+            }
+            catch (System.Threading.Tasks.TaskCanceledException exception)
+            {
+                SourceHost.WriteLine($"Connect exception: {exception.Message}");
+/*
+                Exception ex = exception;
+                StringBuilder logline = new();
+                for (int level = 0; ex != null; ex = ex.InnerException, ++level)
+                {
+                    logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
+                }
+                SourceHost.WriteLine($"Connect exception:\n{logline}");
+*/
+                break;
+            }
+            catch (Exception exception)
+            {
+                Exception ex = exception;
+                StringBuilder logline = new();
+                for (int level = 0; ex != null; ex = ex.InnerException, ++level)
+                {
+                    logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
+                }
+                SourceHost.WriteLine($"Connect exception:\n{logline}");
+            }
+        } while (true);
+    }
     private async Task ConnectToServerAsync(string address, string InitialMessage, string sub)
     {
-        client = new();
-        Task receive;
-        Uri serverUri = new(address);
         try
         {
+            client = new();
+            Uri serverUri = new(address);
             await client.ConnectAsync(serverUri, Cancellation);
             SourceHost.WriteLine($"{client.State} connection to WebSocket server ({address})");
             SourceHost.WriteLine($"{nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
-
-            // Send initial message
             await SendMessageAsync(InitialMessage);
-
-            // Start receiving messages
-            receive = ReceiveMessagesAsync();
-
+            Task receive = ReceiveMessagesAsync();
             _ = CheckState();
-
-            // Allow user to send messages
             await SendUserMessagesAsync(sub);
             await receive;
         }
-        catch (Exception ex)
+        finally
         {
-            StringBuilder logline = new();
-            for (int level = 0; ex != null; ex = ex.InnerException, ++level)
-            {
-                logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}");
-            }
-            SourceHost.WriteLine($"Connect exception:\n{logline}");
+            await LogFinalState();
         }
+    }
+    private async Task LogFinalState()
+    {
         var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-        SourceHost.WriteLine($"#{ReceivedMessageCount:N0} {DateTime.Now:o} {Topic} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
+        SourceHost.WriteLine($"{DateTime.Now:o} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
+        await Task.Delay(1);
     }
     private async Task DisconnectFromServerAsync()
     {
@@ -102,26 +128,43 @@ public class HttpSocketClient : IDisposable
     private async Task ReceiveMessagesAsync()
     {
         var buffer = new byte[1024 * 4];
-        while (client?.State == WebSocketState.Open)
+        try
         {
-            var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), Cancellation);
-//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
-            ++ReceivedMessageCount;
-            var heads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-            SourceHost.WriteLine($"#{ReceivedMessageCount:N0} {DateTime.Now:o} {Topic} {client?.State} {result.MessageType} {result.Count} {result.EndOfMessage} [{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]");
-            if (result.MessageType == WebSocketMessageType.Close)
+            while (!Cancellation.IsCancellationRequested)
             {
-                await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server closed", Cancellation);
-                break;
+                if (!(client?.State == WebSocketState.Open))
+                {
+                    throw new Exception($"{nameof(ReceiveMessagesAsync)} found invalid connection state ({client?.State}).");
+                }
+                var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), Cancellation);
+                //https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
+                ++ReceivedMessageCount;
+                var heads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
+                var header = $"{DateTime.Now:o} {Topic} Msg#{ReceivedMessageCount} {client?.State} {result.MessageType} {result.Count} {result.EndOfMessage} [{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]";
+                string body = null;
+                try
+                {
+                    if (result.MessageType == WebSocketMessageType.Close)
+                    {
+                        body = " Server closed.";
+                        await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server closed", Cancellation);
+                        throw new Exception(body);
+                    }
+                    var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                    body = $" Received: {message}";
+                }
+                finally
+                {
+                    var logline = $"{header}{body}";
+                    SourceHost.WriteLine(logline);
+                }
             }
-
-            var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-            var label = $"#{ReceivedMessageCount:N0} Received: ";
-            var logline = $"{label}{message}";
-            SourceHost.WriteLine(logline);
         }
-        var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-        SourceHost.WriteLine($"#{ReceivedMessageCount:N0} {DateTime.Now:o} {Topic} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
+        finally
+        {
+            var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
+            SourceHost.WriteLine($"{DateTime.Now:o} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
+        }
     }
     private async Task CheckState()
     {

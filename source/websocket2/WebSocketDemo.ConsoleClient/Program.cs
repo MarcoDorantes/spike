@@ -120,7 +120,7 @@ class Program
         client1.Stop();
         client2.Stop();
         client3.Stop();
-        Thread.Sleep(4500);
+        Thread.Sleep(3_000);
     }
     static HttpSocket.HttpSocketClient LaunchClient(CancellationToken cancel, string topic = null)
     {
