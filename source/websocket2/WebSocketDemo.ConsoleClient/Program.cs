@@ -120,8 +120,9 @@ class Program
         {
             _ = Enumerable.Range(0, nclients).Aggregate(clients, (whole, next) =>
             {
-                var topic = topics[whole.Count % topics.Length];
-                whole.Add(LaunchClient(cancel.Token, topic));
+                var id = whole.Count;
+                var topic = topics[id % topics.Length];
+                whole.Add(LaunchClient($"{id}", cancel.Token, topic));
                 return whole;
             });
             ReadLine();
@@ -134,7 +135,7 @@ class Program
             clients.ForEach(c => c.Dispose());
         }
     }
-    static HttpSocket.HttpSocketClient LaunchClient(CancellationToken cancel, string topic = null)
+    static HttpSocket.HttpSocketClient LaunchClient(string id, CancellationToken cancel, string topic = null)
     {
         Dictionary<string, object> config = new()
         {
@@ -145,6 +146,7 @@ class Program
         };
         HttpSocket.HttpSocketClient client = new()
         {
+            ID = id,
             SourceHost = Out,
             Configuration = config,
             Cancellation = cancel
