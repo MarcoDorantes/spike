@@ -96,6 +96,7 @@ internal static partial class Config
     public static string Address;
     public static string InitialMessage;
 }
+class Input { public string[] Topics { get; set; } }
 class Program
 {
     static async Task Main(string[] args)
@@ -116,6 +117,11 @@ class Program
         using CancellationTokenSource cancel = new();
         List<HttpSocket.HttpSocketClient> clients = [];
         string[] topics = [Config.DefaultTopic, "FMV.AAPL", "FMV.ORCL"];
+        if (opts.Is("topics"))
+        {
+            var input = nutility.Switch.AsType<Input>(opts);
+            if (input?.Topics?.Length > 0) topics = input.Topics;
+        }
         try
         {
             _ = Enumerable.Range(0, nclients).Aggregate(clients, (whole, next) =>

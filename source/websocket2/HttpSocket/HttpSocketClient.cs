@@ -38,13 +38,13 @@ public class HttpSocketClient : IDisposable
     private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
     internal string Address, InitialMessage, Topic, SubscribePayload;
 
-    private async Task ConnectToServerAsyncGuarded(string address, string InitialMessage, string sub)
+    private async Task ConnectToServerAsyncGuarded(string address, string initialMessage, string subscription)
     {
         do
         {
             try
             {
-                await ConnectToServerAsync(Address, InitialMessage, SubscribePayload);
+                await ConnectToServerAsync(address, initialMessage, subscription);
                 break;
             }
             catch (System.Threading.Tasks.TaskCanceledException exception)
@@ -73,22 +73,24 @@ public class HttpSocketClient : IDisposable
             }
         } while (true);
     }
-    private async Task ConnectToServerAsync(string address, string InitialMessage, string sub)
+    private async Task ConnectToServerAsync(string address, string initialMessage, string subscription)
     {
+        using CancellationTokenSource checking = new();
         try
         {
             client = new();
             Uri serverUri = new(address);
             await client.ConnectAsync(serverUri, Cancellation);
             SourceHost.WriteLine($"{ID} {client.State} connection to WebSocket server ({address}) {nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
-            await SendMessageAsync(InitialMessage);
+            _ = CheckState(checking.Token);
             Task receive = ReceiveMessagesAsync();
-            _ = CheckState();
-            await SendUserMessagesAsync(sub);
+            await SendMessageAsync(initialMessage);
+            await SendSubscribeMessageAsync(subscription);
             await receive;
         }
         finally
         {
+            checking.Cancel();
             await LogFinalState();
         }
     }
@@ -96,7 +98,7 @@ public class HttpSocketClient : IDisposable
     {
         var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
         SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
-        await Task.Delay(1);
+        await Task.Delay(1, Cancellation);
     }
     private async Task DisconnectFromServerAsync()
     {
@@ -113,16 +115,15 @@ public class HttpSocketClient : IDisposable
         await client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, Cancellation);
     }
 
-    private async Task SendUserMessagesAsync(string sub)
+    private async Task SendSubscribeMessageAsync(string subscription)
     {
-        //while (client.State == WebSocketState.Open)
         if (client?.State == WebSocketState.Open)
         {
-            var subscribe_payload = sub;
+            var subscribe_payload = subscription;
             SourceHost.WriteLine($"\n{ID} Subscribing to {subscribe_payload}...");
             await SendMessageAsync(subscribe_payload);
         }
-        else throw new Exception($"{ID} {nameof(SendUserMessagesAsync)} found invalid client state ({client?.State}).");
+        else throw new Exception($"{ID} {nameof(SendSubscribeMessageAsync)} found invalid client state ({client?.State}).");
     }
 
     private async Task ReceiveMessagesAsync()
@@ -166,12 +167,14 @@ public class HttpSocketClient : IDisposable
             SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
         }
     }
-    private async Task CheckState()
+    private async Task CheckState(CancellationToken checking)
     {
-        while (!Cancellation.IsCancellationRequested)
+        var taskid = Guid.NewGuid();
+        using var cancel = CancellationTokenSource.CreateLinkedTokenSource(Cancellation, checking);
+        while (!cancel.IsCancellationRequested)
         {
-            SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} {nameof(WebSocketState)} = [{client?.State}]");
-            await Task.Delay(3_000);
+            SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}]");
+            await Task.Delay(3_000, cancel.Token);
         }
     }
     #endregion
