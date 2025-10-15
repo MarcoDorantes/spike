@@ -134,6 +134,7 @@ class Program
             ReadLine();
             cancel.Cancel();
             clients.ForEach(c => c.Stop());
+            clients.ForEach(c => c.Dispose());
             Thread.Sleep(3_000);
         }
         finally
