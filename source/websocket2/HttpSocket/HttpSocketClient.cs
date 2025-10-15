@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ using System.Collections.Generic;
 //public interface ISourceProcessorHost{}
 public class HttpSocketClient : IDisposable
 {
+    public const string CheckStateDelayConfigKey = $"{nameof(CheckStateDelay)}";
+    public const string BufferSizeConfigKey = $"{nameof(BufferSize)}";
     public const int CheckStateDelayDefault = 5_000;
     public const int BufferSizeDefault = 1_024 * 4;
 
@@ -20,6 +23,8 @@ public class HttpSocketClient : IDisposable
     public void Setup()
     {
         ReceivedMessageCount = 0UL;
+        ThroughputPerSecondMin = ThroughputPerSecondMax = ThroughputPerSecondAvg = ThroughputPerSecondSum = 0D;
+        watch = null;
         Address = $"{Configuration[nameof(Address)]}";
         InitialMessage = $"{Configuration[nameof(InitialMessage)]}";
         Topic = $"{Configuration["Topic"]}";
@@ -33,7 +38,7 @@ public class HttpSocketClient : IDisposable
         SourceHost.WriteLine($"{nameof(BufferSize)}: {BufferSize}");
 
         CheckStateDelay = CheckStateDelayDefault;
-        if (Configuration.TryGetValue(nameof(CheckStateDelay), out object _delay) && int.TryParse($"{_delay}", out int delay))
+        if (Configuration.TryGetValue(nameof(CheckStateDelay), out object _delay) && int.TryParse($"{_delay}", out int delay) && delay > 0)
         {
             CheckStateDelay = delay;
         }
@@ -42,20 +47,34 @@ public class HttpSocketClient : IDisposable
     public void Start()
     {
         _ = ConnectToServerAsyncGuarded(Address, InitialMessage, SubscribePayload);
+        watch = Stopwatch.StartNew();
+        Running = true;
     }
     public void Stop()
     {
         _ = DisconnectFromServerAsync();
+        if (!Running) return;
+        Running = false;
+        watch?.Stop();
+        SourceHost.WriteLine($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount:N0} msgs");
+        SourceHost.WriteLine($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin:N2} msg/s");
+        SourceHost.WriteLine($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg:N2} msg/s");
+        SourceHost.WriteLine($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax:N2} msg/s");
+        SourceHost.WriteLine($"{nameof(ThroughputPerSecondMax)}:\t{watch?.Elapsed} ({watch?.ElapsedMilliseconds:N0}ms)");
     }
 
     #region WebSocket
     public string ID { get; set; }
+    public bool Running { get; private set; }
     public WebSocketState? State { get => client?.State; }
     public ulong ReceivedMessageCount { get; private set; }
-    private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
-    internal string Address, InitialMessage, Topic, SubscribePayload;
     public int BufferSize { get; private set; }
     public int CheckStateDelay { get; private set; }
+
+    private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
+    internal string Address, InitialMessage, Topic, SubscribePayload;
+    internal double ThroughputPerSecondMin,ThroughputPerSecondMax,ThroughputPerSecondAvg,ThroughputPerSecondSum;
+    internal Stopwatch watch;
 
     private async Task ConnectToServerAsyncGuarded(string address, string initialMessage, string subscription)
     {
@@ -190,9 +209,21 @@ public class HttpSocketClient : IDisposable
     {
         var taskid = Guid.NewGuid();
         using var cancel = CancellationTokenSource.CreateLinkedTokenSource(Cancellation, checking);
+        ulong prev_count = 0UL;
+        ulong avg_count = 0UL;
         while (!cancel.IsCancellationRequested)
         {
-            SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}]");
+            var current_ReceivedMessageCount = ReceivedMessageCount;
+            var dx = current_ReceivedMessageCount - prev_count;
+            double throughput_per_second = (double)dx / ((double)CheckStateDelay / 1_000D);
+            if (ThroughputPerSecondMin == 0D) ThroughputPerSecondMin = throughput_per_second;
+            ThroughputPerSecondMin = Math.MinMagnitude(throughput_per_second, ThroughputPerSecondMin);
+            ThroughputPerSecondMax = Math.MaxMagnitude(throughput_per_second, ThroughputPerSecondMax);
+            ThroughputPerSecondSum += throughput_per_second;
+            ++avg_count;
+            ThroughputPerSecondAvg = ThroughputPerSecondSum / avg_count;
+            SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {prev_count}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ThroughputPerSecondMin:N2} {ThroughputPerSecondAvg:N2} {ThroughputPerSecondMax:N2} msg/s]");
+            prev_count = current_ReceivedMessageCount;
             await Task.Delay(CheckStateDelay, cancel.Token);
         }
     }

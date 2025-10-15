@@ -128,7 +128,7 @@ class Program
             {
                 var id = whole.Count;
                 var topic = topics[id % topics.Length];
-                whole.Add(LaunchClient($"{id}", cancel.Token, topic));
+                whole.Add(LaunchClient($"{id}", cancel.Token, topic, opts));
                 return whole;
             });
             ReadLine();
@@ -142,7 +142,7 @@ class Program
             clients.ForEach(c => c.Dispose());
         }
     }
-    static HttpSocket.HttpSocketClient LaunchClient(string id, CancellationToken cancel, string topic = null)
+    static HttpSocket.HttpSocketClient LaunchClient(string id, CancellationToken cancel, string topic, nutility.Switch opts)
     {
         Dictionary<string, object> config = new()
         {
@@ -151,6 +151,7 @@ class Program
             {"Topic",topic},
             {"SubscribePayload",Config.GetSubscribePayload(topic)}
         };
+        if (opts.Is(HttpSocket.HttpSocketClient.CheckStateDelayConfigKey)) config[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey] = opts[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey];
         HttpSocket.HttpSocketClient client = new()
         {
             ID = id,
