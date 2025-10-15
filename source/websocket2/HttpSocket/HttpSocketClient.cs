@@ -11,6 +11,9 @@ using System.Collections.Generic;
 //public interface ISourceProcessorHost{}
 public class HttpSocketClient : IDisposable
 {
+    public const int CheckStateDelayDefault = 5_000;
+    public const int BufferSizeDefault = 1_024 * 4;
+
     public /*ISourceProcessorHost*/ System.IO.TextWriter SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
     public CancellationToken Cancellation { get; set; }
@@ -21,6 +24,20 @@ public class HttpSocketClient : IDisposable
         InitialMessage = $"{Configuration[nameof(InitialMessage)]}";
         Topic = $"{Configuration["Topic"]}";
         SubscribePayload = $"{Configuration[nameof(SubscribePayload)]}";
+
+        BufferSize = BufferSizeDefault;
+        if (Configuration.TryGetValue(nameof(BufferSize), out object _size) && int.TryParse($"{_size}", out int size))
+        {
+            BufferSize = size;
+        }
+        SourceHost.WriteLine($"{nameof(BufferSize)}: {BufferSize}");
+
+        CheckStateDelay = CheckStateDelayDefault;
+        if (Configuration.TryGetValue(nameof(CheckStateDelay), out object _delay) && int.TryParse($"{_delay}", out int delay))
+        {
+            CheckStateDelay = delay;
+        }
+        SourceHost.WriteLine($"{nameof(CheckStateDelay)}: {CheckStateDelay}");
     }
     public void Start()
     {
@@ -37,6 +54,8 @@ public class HttpSocketClient : IDisposable
     public ulong ReceivedMessageCount { get; private set; }
     private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
     internal string Address, InitialMessage, Topic, SubscribePayload;
+    public int BufferSize { get; private set; }
+    public int CheckStateDelay { get; private set; }
 
     private async Task ConnectToServerAsyncGuarded(string address, string initialMessage, string subscription)
     {
@@ -128,7 +147,7 @@ public class HttpSocketClient : IDisposable
 
     private async Task ReceiveMessagesAsync()
     {
-        var buffer = new byte[1024 * 4];
+        var buffer = new byte[BufferSize];
         try
         {
             while (!Cancellation.IsCancellationRequested)
@@ -174,7 +193,7 @@ public class HttpSocketClient : IDisposable
         while (!cancel.IsCancellationRequested)
         {
             SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}]");
-            await Task.Delay(3_000, cancel.Token);
+            await Task.Delay(CheckStateDelay, cancel.Token);
         }
     }
     #endregion
