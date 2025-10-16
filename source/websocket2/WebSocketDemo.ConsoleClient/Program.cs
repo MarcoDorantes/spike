@@ -97,6 +97,18 @@ internal static partial class Config
     public static string InitialMessage;
 }
 class Input { public string[] Topics { get; set; } }
+class ConsoleHost(System.IO.TextWriter Writer) : HttpSocket.ISourceProcessorHost
+{
+    void HttpSocket.ISourceProcessorHost.Information(string information) => Writer.WriteLine(information);
+    void HttpSocket.ISourceProcessorHost.Warning(string details_for_diagnostic) => Writer.WriteLine(details_for_diagnostic);
+    void HttpSocket.ISourceProcessorHost.Error(string details_for_diagnostic) => Writer.WriteLine(details_for_diagnostic);
+    void HttpSocket.ISourceProcessorHost.Error(Exception exception, string details_for_diagnostic) => Writer.WriteLine($"{exception.GetType().FullName}: {exception.Message} ({details_for_diagnostic})");
+    void HttpSocket.ISourceProcessorHost.NotifyState(string state) => Writer.WriteLine(state);
+    void HttpSocket.ISourceProcessorHost.StartTopicSubscription(string name, string vpnName, string host, string userName, string password, string sourceTopicPath, Action<IDictionary<string, object>> onmessage, string payloadFormat /*= "JSON"*/) => throw new NotImplementedException();
+    void HttpSocket.ISourceProcessorHost.SendNotification(string subject, string[] lines, IList<KeyValuePair<string, string>> attachs /*= null*/, bool error /*= false*/, string[] to /*= null*/, System.Text.Encoding encoding /*= null*/) => throw new NotImplementedException();
+    void HttpSocket.ISourceProcessorHost.SendNotification(string subject, string[] lines, IList<KeyValuePair<string, byte[]>> attachs /*= null*/, bool error /*= false*/, string[] to /*= null*/) => throw new NotImplementedException();
+    void HttpSocket.ISourceProcessorHost.UpdateReceivedCount(uint received_count) => Writer.WriteLine($"{nameof(HttpSocket.ISourceProcessorHost.UpdateReceivedCount)}: {received_count}");
+}
 class Program
 {
     static async Task Main(string[] args)
@@ -106,7 +118,7 @@ class Program
         else
         {
             var batch = opts.Is("batch");
-            if(!batch) WriteLine("Console WebSocket Client");
+            if (!batch) WriteLine("Console WebSocket Client");
             await ConnectToServerAsync(opts, batch);
         }
     }
@@ -155,14 +167,17 @@ class Program
         HttpSocket.HttpSocketClient client = new()
         {
             ID = id,
-            SourceHost = Out,
+            SourceHost = new ConsoleHost(Out),
             Configuration = config,
-            Cancellation = cancel
+            Cancellation = cancel,
+            OnNext = OnNext
         };
         client.Setup();
         client.Start();
         return client;
     }
+    static void OnNext(IDictionary<string, object> message) { }//=> foreach(app in Parsed-array-in-message) Observer?.OnNext(app);
+
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
     {
         var address = Config.Address;
@@ -206,17 +221,17 @@ class Program
     static async Task SendUserMessagesAsync(ClientWebSocket client, nutility.Switch opts, bool batch)
     {
         int capture_lapse = 10_000;
-        if(int.TryParse(opts["lapse"],out int lapse)) capture_lapse = lapse;
+        if (int.TryParse(opts["lapse"], out int lapse)) capture_lapse = lapse;
         int cycle = 0;
         while (client.State == WebSocketState.Open)
         {
-            if(batch) await Task.Delay(1_000);
+            if (batch) await Task.Delay(1_000);
             else WriteLine("Enter message (or 'exit' to quit): ");
             var message = "";
             if (batch)
             {
                 if (cycle > 0) message = "exit";
-                else if(cycle == 0)
+                else if (cycle == 0)
                 {
                     ++cycle;
                     message = "sub";
@@ -271,7 +286,7 @@ class Program
     }
     static async Task CheckState(ClientWebSocket client, nutility.Switch opts, bool batch)
     {
-        if(batch) return;
+        if (batch) return;
         do
         {
             WriteLine($"{DateTime.Now:o} {nameof(WebSocketState)} = [{client?.State}]");

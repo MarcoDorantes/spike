@@ -9,7 +9,6 @@ using System.Net.WebSockets;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-//public interface ISourceProcessorHost{}
 public class HttpSocketClient : IDisposable
 {
     public const string CheckStateDelayConfigKey = $"{nameof(CheckStateDelay)}";
@@ -17,9 +16,11 @@ public class HttpSocketClient : IDisposable
     public const int CheckStateDelayDefault = 5_000;
     public const int BufferSizeDefault = 1_024 * 4;
 
-    public /*ISourceProcessorHost*/ System.IO.TextWriter SourceHost { get; set; }
+    public ISourceProcessorHost SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
     public CancellationToken Cancellation { get; set; }
+    public Action<IDictionary<string, object>> OnNext { get; set; }
+
     public void Setup()
     {
         ReceivedMessageCount = 0UL;
@@ -35,14 +36,14 @@ public class HttpSocketClient : IDisposable
         {
             BufferSize = size;
         }
-        SourceHost.WriteLine($"{nameof(BufferSize)}: {BufferSize}");
+        SourceHost.Information($"{nameof(BufferSize)}: {BufferSize}");
 
         CheckStateDelay = CheckStateDelayDefault;
         if (Configuration.TryGetValue(nameof(CheckStateDelay), out object _delay) && int.TryParse($"{_delay}", out int delay) && delay > 0)
         {
             CheckStateDelay = delay;
         }
-        SourceHost.WriteLine($"{nameof(CheckStateDelay)}: {CheckStateDelay}");
+        SourceHost.Information($"{nameof(CheckStateDelay)}: {CheckStateDelay}");
     }
     public void Start()
     {
@@ -56,11 +57,11 @@ public class HttpSocketClient : IDisposable
         if (!Running) return;
         Running = false;
         watch?.Stop();
-        SourceHost.WriteLine($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount:N0} msgs");
-        SourceHost.WriteLine($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin:N2} msg/s");
-        SourceHost.WriteLine($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg:N2} msg/s");
-        SourceHost.WriteLine($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax:N2} msg/s");
-        SourceHost.WriteLine($"{nameof(ThroughputPerSecondMax)}:\t{watch?.Elapsed} ({watch?.ElapsedMilliseconds:N0}ms)");
+        SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount:N0} msgs");
+        SourceHost.Information($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin:N2} msg/s");
+        SourceHost.Information($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg:N2} msg/s");
+        SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax:N2} msg/s");
+        SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{watch?.Elapsed} ({watch?.ElapsedMilliseconds:N0}ms)");
     }
 
     #region WebSocket
@@ -73,7 +74,7 @@ public class HttpSocketClient : IDisposable
 
     private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
     internal string Address, InitialMessage, Topic, SubscribePayload;
-    internal double ThroughputPerSecondMin,ThroughputPerSecondMax,ThroughputPerSecondAvg,ThroughputPerSecondSum;
+    internal double ThroughputPerSecondMin, ThroughputPerSecondMax, ThroughputPerSecondAvg, ThroughputPerSecondSum;
     internal Stopwatch watch;
 
     private async Task ConnectToServerAsyncGuarded(string address, string initialMessage, string subscription)
@@ -87,7 +88,7 @@ public class HttpSocketClient : IDisposable
             }
             catch (System.Threading.Tasks.TaskCanceledException exception)
             {
-                SourceHost.WriteLine($"{ID} Connect exception: {exception.Message}");
+                SourceHost.Error($"{ID} Connect exception: {exception.Message}");
 /*
                 Exception ex = exception;
                 StringBuilder logline = new();
@@ -95,7 +96,7 @@ public class HttpSocketClient : IDisposable
                 {
                     logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
                 }
-                SourceHost.WriteLine($"{ID} Connect exception:\n{logline}");
+                SourceHost.Error($"{ID} Connect exception:\n{logline}");
 */
                 break;
             }
@@ -107,7 +108,7 @@ public class HttpSocketClient : IDisposable
                 {
                     logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
                 }
-                SourceHost.WriteLine($"{ID} Connect exception:\n{logline}");
+                SourceHost.Error($"{ID} Connect exception:\n{logline}");
             }
         } while (true);
     }
@@ -119,7 +120,7 @@ public class HttpSocketClient : IDisposable
             client = new();
             Uri serverUri = new(address);
             await client.ConnectAsync(serverUri, Cancellation);
-            SourceHost.WriteLine($"{ID} {client.State} connection to WebSocket server ({address}) {nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
+            SourceHost.Information($"{ID} {client.State} connection to WebSocket server ({address}) {nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
             _ = CheckState(checking.Token);
             Task receive = ReceiveMessagesAsync();
             await SendMessageAsync(initialMessage);
@@ -135,7 +136,7 @@ public class HttpSocketClient : IDisposable
     private async Task LogFinalState()
     {
         var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-        SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
+        SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
         await Task.Delay(1, Cancellation);
     }
     private async Task DisconnectFromServerAsync()
@@ -158,7 +159,7 @@ public class HttpSocketClient : IDisposable
         if (client?.State == WebSocketState.Open)
         {
             var subscribe_payload = subscription;
-            SourceHost.WriteLine($"\n{ID} Subscribing to {subscribe_payload}...");
+            SourceHost.Information($"\n{ID} Subscribing to {subscribe_payload}...");
             await SendMessageAsync(subscribe_payload);
         }
         else throw new Exception($"{ID} {nameof(SendSubscribeMessageAsync)} found invalid client state ({client?.State}).");
@@ -176,7 +177,7 @@ public class HttpSocketClient : IDisposable
                     throw new Exception($"{ID} {nameof(ReceiveMessagesAsync)} found invalid connection state ({client?.State}).");
                 }
                 var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), Cancellation);
-                //https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
+//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
                 ++ReceivedMessageCount;
                 var heads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
                 var header = $"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount} {client?.State} {result.MessageType} {result.Count} {result.EndOfMessage} [{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]";
@@ -191,18 +192,19 @@ public class HttpSocketClient : IDisposable
                     }
                     var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                     body = $" Received: {message}";
+//Ingest <message> into internal processing (where OnMessage/OnNext? is invoked)
                 }
                 finally
                 {
                     var logline = $"{header}{body}";
-                    SourceHost.WriteLine(logline);
+                    SourceHost.Information(logline);
                 }
             }
         }
         finally
         {
             var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-            SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
+            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
         }
     }
     private async Task CheckState(CancellationToken checking)
@@ -222,7 +224,7 @@ public class HttpSocketClient : IDisposable
             ThroughputPerSecondSum += throughput_per_second;
             ++avg_count;
             ThroughputPerSecondAvg = ThroughputPerSecondSum / avg_count;
-            SourceHost.WriteLine($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {prev_count}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ThroughputPerSecondMin:N2} {ThroughputPerSecondAvg:N2} {ThroughputPerSecondMax:N2} msg/s]");
+            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {prev_count}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ThroughputPerSecondMin:N2} {ThroughputPerSecondAvg:N2} {ThroughputPerSecondMax:N2} msg/s]");
             prev_count = current_ReceivedMessageCount;
             await Task.Delay(CheckStateDelay, cancel.Token);
         }
