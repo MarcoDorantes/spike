@@ -176,7 +176,10 @@ class Program
         client.Start();
         return client;
     }
-    static void OnNext(IDictionary<string, object> message) { }//=> foreach(app in Parsed-array-in-message) Observer?.OnNext(app);
+    static void OnNext(IDictionary<string, object> message) //? => foreach(app in Parsed-array-in-message) Observer?.OnNext(app);
+    {
+        WriteLine($"{string.Join(' ', message.ToList().Select(p => $"/{p.Key}={p.Value}/"))}");
+    }
 
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
     {

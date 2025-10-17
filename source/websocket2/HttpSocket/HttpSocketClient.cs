@@ -81,7 +81,7 @@ public class HttpSocketClient : IDisposable
         }
     }
     protected virtual BlockingCollection<IDictionary<string, object>> CreateBlockingCollection() => [];
-    protected IDictionary<string, object> deserialize(string message) => Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(message);
+    protected IDictionary<string, object>[] deserialize(string message) => Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>[]>(message);
 
     #region WebSocket FeedHandler reception
     public string ID { get; set; }
@@ -99,13 +99,13 @@ public class HttpSocketClient : IDisposable
     private BlockingCollection<IDictionary<string, object>> transit_collection;
     protected readonly Encoding encoding;
 
-    private void OnMessage(byte[] payload, string id=null)
+    private void OnMessage(byte[] payload)
     {
         Stopwatch elapsed = new();
         try
         {
             elapsed.Restart();
-            ProcessMessage(payload, id);
+            ProcessMessage(payload);
         }
         finally
         {
@@ -121,7 +121,7 @@ public class HttpSocketClient : IDisposable
         var map = deserialize(payload);
         return $"{map["Sequence"]}/{map["Time"]}";
     }*/
-    private void ProcessMessage(byte[] payload, string id)
+    private void ProcessMessage(byte[] payload)
     {
         //const int IDTrimLimit = 36;
         try
@@ -140,10 +140,10 @@ public class HttpSocketClient : IDisposable
 
            //var seqid = getseqid(payload);//payload deserializacion is an array: //[{"ev":"FMV","fmv":509.917,"sym":"MSFT","t":1760646477151120843}]
             var msg_id = $"{received_count}";//$"{received_count}/{seqid}";
-            SourceHost.Information($"{nameof(msg_id)}: {msg_id}/{id}");
+            SourceHost.Information($"{nameof(msg_id)}: {msg_id}");
             message["GUID"] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
             message["PossDup"] = false;
-            //message[WritersAgent.Constant.SolaceDestinationNameKey] = "";
+            message["WritersAgent.Constant.SolaceDestinationNameKey"] = "";
 
             ProcessDictionaryMessage(message);
         }
@@ -332,7 +332,7 @@ public class HttpSocketClient : IDisposable
             }
             try
             {
-                OnNext(message);
+                ProcessPayload(message);
             }
             catch (Exception exception)
             {
@@ -341,6 +341,22 @@ public class HttpSocketClient : IDisposable
         }
         SourceHost.Information($"{nameof(ProcessInternalQueue)} ended.");
         transit_collection.Dispose();
+    }
+    private void ProcessPayload(IDictionary<string, object> message)
+    {
+        string payload = $"{message["WritersAgent.Constant.SolaceMessagePayloadKey"]}";
+        //remove it from map? same on OnNext(message) ?
+
+        //message["GUID"] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
+        //message["PossDup"] = false;
+        //message["WritersAgent.Constant.SolaceDestinationNameKey"] = "";
+
+        var jsonarray = deserialize(payload);
+        foreach (var jsonmap in jsonarray)
+        {
+            jsonmap.Aggregate(message, (whole, next) => { whole[next.Key] = next.Value; return whole; });
+            OnNext(message);
+        }
     }
 
     void check_running(string taskname, Task _t)
