@@ -31,7 +31,7 @@ public class HttpSocketClient : IDisposable
     {
         ReceivedMessageCount = 0UL;
         received_count = 0U;
-        ThroughputPerSecondMin = ThroughputPerSecondMax = ThroughputPerSecondAvg = ThroughputPerSecondSum = 0D;
+        ReceptionThroughputMin = ReceptionThroughputMax = ReceptionThroughputAvg = ReceptionThroughputSum = 0D;
         watch = null;
         Address = $"{Configuration[nameof(Address)]}";
         InitialMessage = $"{Configuration[nameof(InitialMessage)]}";
@@ -70,9 +70,9 @@ public class HttpSocketClient : IDisposable
             if (Running) transit_collection.CompleteAdding();
             watch?.Stop();
             SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount,9:N0} msgs");
-            SourceHost.Information($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin,9:N2} msg/s");
-            SourceHost.Information($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg,9:N2} msg/s");
-            SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax,9:N2} msg/s");
+            SourceHost.Information($"{nameof(ReceptionThroughputMin)}:\t{ReceptionThroughputMin,9:N2} msg/s");
+            SourceHost.Information($"{nameof(ReceptionThroughputAvg)}:\t{ReceptionThroughputAvg,9:N2} msg/s");
+            SourceHost.Information($"{nameof(ReceptionThroughputMax)}:\t{ReceptionThroughputMax,9:N2} msg/s");
             SourceHost.Information($"Time elapsed:\t\t{watch?.Elapsed,9} ({watch?.ElapsedMilliseconds:N0}ms)");
         }
         finally
@@ -93,7 +93,7 @@ public class HttpSocketClient : IDisposable
 
     private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
     internal string Address, InitialMessage, Topic, SubscribePayload;
-    internal double ThroughputPerSecondMin, ThroughputPerSecondMax, ThroughputPerSecondAvg, ThroughputPerSecondSum;
+    internal double ReceptionThroughputMin, ReceptionThroughputMax, ReceptionThroughputAvg, ReceptionThroughputSum;
     internal Stopwatch watch;
     private uint received_count;
     private BlockingCollection<IDictionary<string, object>> transit_collection;
@@ -306,13 +306,13 @@ public class HttpSocketClient : IDisposable
             var current_ReceivedMessageCount = ReceivedMessageCount;
             var dx = current_ReceivedMessageCount - prev_count;
             double throughput_per_second = (double)dx / ((double)CheckStateDelay / 1_000D);
-            if (ThroughputPerSecondMin == 0D) ThroughputPerSecondMin = throughput_per_second;
-            ThroughputPerSecondMin = Math.MinMagnitude(throughput_per_second, ThroughputPerSecondMin);
-            ThroughputPerSecondMax = Math.MaxMagnitude(throughput_per_second, ThroughputPerSecondMax);
-            ThroughputPerSecondSum += throughput_per_second;
+            if (ReceptionThroughputMin == 0D) ReceptionThroughputMin = throughput_per_second;
+            ReceptionThroughputMin = Math.MinMagnitude(throughput_per_second, ReceptionThroughputMin);
+            ReceptionThroughputMax = Math.MaxMagnitude(throughput_per_second, ReceptionThroughputMax);
+            ReceptionThroughputSum += throughput_per_second;
             ++avg_count;
-            ThroughputPerSecondAvg = ThroughputPerSecondSum / avg_count;
-            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {prev_count}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ThroughputPerSecondMin:N2} {ThroughputPerSecondAvg:N2} {ThroughputPerSecondMax:N2} msg/s]");
+            ReceptionThroughputAvg = ReceptionThroughputSum / avg_count;
+            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {prev_count}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ReceptionThroughputMin:N2} {ReceptionThroughputAvg:N2} {ReceptionThroughputMax:N2} msg/s]");
             prev_count = current_ReceivedMessageCount;
             await Task.Delay(CheckStateDelay, cancel.Token);
         }
