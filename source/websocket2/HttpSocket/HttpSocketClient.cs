@@ -70,9 +70,9 @@ public class HttpSocketClient : IDisposable
             if (Running) transit_collection.CompleteAdding();
             watch?.Stop();
             SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount,9:N0} msgs");
-            SourceHost.Information($"{nameof(ReceptionThroughputMin)}:\t{ReceptionThroughputMin,9:N2} msg/s");
-            SourceHost.Information($"{nameof(ReceptionThroughputAvg)}:\t{ReceptionThroughputAvg,9:N2} msg/s");
-            SourceHost.Information($"{nameof(ReceptionThroughputMax)}:\t{ReceptionThroughputMax,9:N2} msg/s");
+            SourceHost.Information($"{nameof(ReceptionThroughputMin)}:\t{ReceptionThroughputMin,9:N2} msgs/s");
+            SourceHost.Information($"{nameof(ReceptionThroughputAvg)}:\t{ReceptionThroughputAvg,9:N2} msgs/s");
+            SourceHost.Information($"{nameof(ReceptionThroughputMax)}:\t{ReceptionThroughputMax,9:N2} msgs/s");
             SourceHost.Information($"Time elapsed:\t\t{watch?.Elapsed,9} ({watch?.ElapsedMilliseconds:N0}ms)");
         }
         finally
