@@ -15,7 +15,7 @@ public class HttpSocketClient : IDisposable
     public const string CheckStateDelayConfigKey = $"{nameof(CheckStateDelay)}";
     public const string BufferSizeConfigKey = $"{nameof(BufferSize)}";
     public const int CheckStateDelayDefault = 15_000;
-    public const int BufferSizeDefault = 1_024 * 4;
+    public const int BufferSizeDefault = 1_024 * 8;
 
     public ISourceProcessorHost SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
@@ -69,11 +69,11 @@ public class HttpSocketClient : IDisposable
             _ = DisconnectFromServerAsync();
             if (Running) transit_collection.CompleteAdding();
             watch?.Stop();
-            SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount:N0} msgs");
-            SourceHost.Information($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin:N2} msg/s");
-            SourceHost.Information($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg:N2} msg/s");
-            SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax:N2} msg/s");
-            SourceHost.Information($"Time elapsed:\t{watch?.Elapsed} ({watch?.ElapsedMilliseconds:N0}ms)");
+            SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount,9:N0} msgs");
+            SourceHost.Information($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin,9:N2} msg/s");
+            SourceHost.Information($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg,9:N2} msg/s");
+            SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax,9:N2} msg/s");
+            SourceHost.Information($"Time elapsed:\t\t{watch?.Elapsed,9} ({watch?.ElapsedMilliseconds:N0}ms)");
         }
         finally
         {
