@@ -8,12 +8,13 @@ using System.Diagnostics;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 public class HttpSocketClient : IDisposable
 {
     public const string CheckStateDelayConfigKey = $"{nameof(CheckStateDelay)}";
     public const string BufferSizeConfigKey = $"{nameof(BufferSize)}";
-    public const int CheckStateDelayDefault = 5_000;
+    public const int CheckStateDelayDefault = 15_000;
     public const int BufferSizeDefault = 1_024 * 4;
 
     public ISourceProcessorHost SourceHost { get; set; }
@@ -21,9 +22,15 @@ public class HttpSocketClient : IDisposable
     public CancellationToken Cancellation { get; set; }
     public Action<IDictionary<string, object>> OnNext { get; set; }
 
+    public HttpSocketClient()
+    {
+        encoding = Encoding.UTF8;
+    }
+
     public void Setup()
     {
         ReceivedMessageCount = 0UL;
+        received_count = 0U;
         ThroughputPerSecondMin = ThroughputPerSecondMax = ThroughputPerSecondAvg = ThroughputPerSecondSum = 0D;
         watch = null;
         Address = $"{Configuration[nameof(Address)]}";
@@ -49,22 +56,34 @@ public class HttpSocketClient : IDisposable
     {
         _ = ConnectToServerAsyncGuarded(Address, InitialMessage, SubscribePayload);
         watch = Stopwatch.StartNew();
+        transit_collection = CreateBlockingCollection();
+        SourceHost.Information($"BlockingCollection created from type: [{GetType().FullName}]");
         Running = true;
+        check_running("queuetask", Task.Run(() => ProcessInternalQueue()));
     }
     public void Stop()
     {
-        _ = DisconnectFromServerAsync();
         if (!Running) return;
-        Running = false;
-        watch?.Stop();
-        SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount:N0} msgs");
-        SourceHost.Information($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin:N2} msg/s");
-        SourceHost.Information($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg:N2} msg/s");
-        SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax:N2} msg/s");
-        SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{watch?.Elapsed} ({watch?.ElapsedMilliseconds:N0}ms)");
+        try
+        {
+            _ = DisconnectFromServerAsync();
+            if (Running) transit_collection.CompleteAdding();
+            watch?.Stop();
+            SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount:N0} msgs");
+            SourceHost.Information($"{nameof(ThroughputPerSecondMin)}:\t{ThroughputPerSecondMin:N2} msg/s");
+            SourceHost.Information($"{nameof(ThroughputPerSecondAvg)}:\t{ThroughputPerSecondAvg:N2} msg/s");
+            SourceHost.Information($"{nameof(ThroughputPerSecondMax)}:\t{ThroughputPerSecondMax:N2} msg/s");
+            SourceHost.Information($"Time elapsed:\t{watch?.Elapsed} ({watch?.ElapsedMilliseconds:N0}ms)");
+        }
+        finally
+        {
+            Running = false;
+        }
     }
+    protected virtual BlockingCollection<IDictionary<string, object>> CreateBlockingCollection() => [];
+    protected IDictionary<string, object> deserialize(string message) => Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(message);
 
-    #region WebSocket
+    #region WebSocket FeedHandler reception
     public string ID { get; set; }
     public bool Running { get; private set; }
     public WebSocketState? State { get => client?.State; }
@@ -76,6 +95,72 @@ public class HttpSocketClient : IDisposable
     internal string Address, InitialMessage, Topic, SubscribePayload;
     internal double ThroughputPerSecondMin, ThroughputPerSecondMax, ThroughputPerSecondAvg, ThroughputPerSecondSum;
     internal Stopwatch watch;
+    private uint received_count;
+    private BlockingCollection<IDictionary<string, object>> transit_collection;
+    protected readonly Encoding encoding;
+
+    private void OnMessage(byte[] payload, string id=null)
+    {
+        Stopwatch elapsed = new();
+        try
+        {
+            elapsed.Restart();
+            ProcessMessage(payload, id);
+        }
+        finally
+        {
+            elapsed.Stop();
+            SourceHost.Information($"Msg: {received_count} Wait: {elapsed.ElapsedTicks}");
+        }
+    }
+
+    /*protected string getseqid(byte[] payload)
+    {
+        //[{"ev":"FMV","fmv":509.917,"sym":"MSFT","t":1760646477151120843}]
+       //var map = deserialize(encoding.GetString(payload));
+        var map = deserialize(payload);
+        return $"{map["Sequence"]}/{map["Time"]}";
+    }*/
+    private void ProcessMessage(byte[] payload, string id)
+    {
+        //const int IDTrimLimit = 36;
+        try
+        {
+            ++received_count;
+            if (Cancellation.IsCancellationRequested)
+            {
+                SourceHost.Information("IsCancellationRequested is true");
+                return;
+            }
+            SourceHost.UpdateReceivedCount(received_count);
+
+            Dictionary<string, object> message = [];
+            //message["WritersAgent.Constant.SolaceMessagePayloadKey"] = payload;
+            message["WritersAgent.Constant.SolaceMessagePayloadKey"] = encoding.GetString(payload);
+
+           //var seqid = getseqid(payload);//payload deserializacion is an array: //[{"ev":"FMV","fmv":509.917,"sym":"MSFT","t":1760646477151120843}]
+            var msg_id = $"{received_count}";//$"{received_count}/{seqid}";
+            SourceHost.Information($"{nameof(msg_id)}: {msg_id}/{id}");
+            message["GUID"] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
+            message["PossDup"] = false;
+            //message[WritersAgent.Constant.SolaceDestinationNameKey] = "";
+
+            ProcessDictionaryMessage(message);
+        }
+        catch (Exception exception)
+        {
+            SourceHost.Error(exception, nameof(ProcessMessage));
+        }
+    }
+    private void ProcessDictionaryMessage(IDictionary<string, object> message)
+    {
+        ProcessMessageWithInternalCollection(message);
+    }
+
+    private void ProcessMessageWithInternalCollection(IDictionary<string, object> message)
+    {
+        transit_collection.Add(message);
+    }
 
     private async Task ConnectToServerAsyncGuarded(string address, string initialMessage, string subscription)
     {
@@ -89,7 +174,7 @@ public class HttpSocketClient : IDisposable
             catch (System.Threading.Tasks.TaskCanceledException exception)
             {
                 SourceHost.Error($"{ID} Connect exception: {exception.Message}");
-/*
+                /*
                 Exception ex = exception;
                 StringBuilder logline = new();
                 for (int level = 0; ex != null; ex = ex.InnerException, ++level)
@@ -97,7 +182,7 @@ public class HttpSocketClient : IDisposable
                     logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
                 }
                 SourceHost.Error($"{ID} Connect exception:\n{logline}");
-*/
+                */
                 break;
             }
             catch (Exception exception)
@@ -150,7 +235,7 @@ public class HttpSocketClient : IDisposable
     }
     private async Task SendMessageAsync(string message)
     {
-        var bytes = Encoding.UTF8.GetBytes(message);
+        var bytes = encoding.GetBytes(message);
         await client.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, Cancellation);
     }
 
@@ -190,9 +275,12 @@ public class HttpSocketClient : IDisposable
                         await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server closed", Cancellation);
                         throw new Exception(body);
                     }
-                    var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                    body = $" Received: {message}";
-//Ingest <message> into internal processing (where OnMessage/OnNext? is invoked)
+                   //var message = encoding.GetString(buffer, 0, result.Count);
+                   //body = $" Received: {message}";
+                    var message = new byte[result.Count];
+                    Array.Copy(buffer, message, result.Count);
+                    body = $" Received: {result.Count}";
+                    OnMessage(message);//Ingest <message> into internal processing (where OnMessage/OnNext? is invoked)
                 }
                 finally
                 {
@@ -227,6 +315,47 @@ public class HttpSocketClient : IDisposable
             SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {prev_count}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ThroughputPerSecondMin:N2} {ThroughputPerSecondAvg:N2} {ThroughputPerSecondMax:N2} msg/s]");
             prev_count = current_ReceivedMessageCount;
             await Task.Delay(CheckStateDelay, cancel.Token);
+        }
+    }
+    #endregion
+
+    #region Internal handling to Observer (MessageWriter)
+    private void ProcessInternalQueue()
+    {
+        SourceHost.Information($"{nameof(ProcessInternalQueue)} started.");
+        if (transit_collection == null) { return; }
+        foreach (var message in transit_collection.GetConsumingEnumerable())
+        {
+            if (!Running)
+            {
+                break;
+            }
+            try
+            {
+                OnNext(message);
+            }
+            catch (Exception exception)
+            {
+                SourceHost.Error(exception, nameof(ProcessInternalQueue));
+            }
+        }
+        SourceHost.Information($"{nameof(ProcessInternalQueue)} ended.");
+        transit_collection.Dispose();
+    }
+
+    void check_running(string taskname, Task _t)
+    {
+        const int millisecondsTimeout = 100;
+        while (_t.Status < TaskStatus.Running)
+        {
+            System.Threading.ThreadPool.GetMaxThreads(out int max_worker, out int max_io);
+            System.Threading.ThreadPool.GetAvailableThreads(out int free_worker, out int free_io);
+            SourceHost.Information($"Waiting {taskname} for TaskStatus.Running status ({_t.Status}). Max {max_worker}|{max_io} Available {free_worker}|{free_io}.");
+            System.Threading.Thread.Sleep(millisecondsTimeout);
+        }
+        if (_t.Status != TaskStatus.Running)
+        {
+            throw new Exception($"TaskStatus of {taskname} must be {nameof(TaskStatus.Running)} ({_t.Status}).");
         }
     }
     #endregion
