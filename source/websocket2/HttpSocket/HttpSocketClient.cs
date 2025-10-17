@@ -30,6 +30,8 @@ public class HttpSocketClient : IDisposable
     public void Setup()
     {
         ReceivedMessageCount = 0UL;
+        Previous_ReceivedMessageCount = 0UL;
+        ReceptionThroughputAvgCount = 0UL;
         received_count = 0U;
         ReceptionThroughputMin = ReceptionThroughputMax = ReceptionThroughputAvg = ReceptionThroughputSum = 0D;
         watch = null;
@@ -70,12 +72,14 @@ public class HttpSocketClient : IDisposable
             _ = DisconnectFromServerAsync();
             if (Running) transit_collection.CompleteAdding();
             watch?.Stop();
-            SourceHost.Information($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount,9:N0} msgs");
-            SourceHost.Information($"{nameof(ReceptionThroughputMin)}:\t{ReceptionThroughputMin,9:N2} msgs/s");
-            SourceHost.Information($"{nameof(ReceptionThroughputAvg)}:\t{ReceptionThroughputAvg,9:N2} msgs/s");
-            SourceHost.Information($"{nameof(ReceptionThroughputMax)}:\t{ReceptionThroughputMax,9:N2} msgs/s");
-            SourceHost.Information($"Time elapsed:\t\t{watch?.Elapsed,9} ({watch?.ElapsedMilliseconds:N0}ms)");
-            SourceHost.Information($"\nHTTP Responses:\n\t{string.Join("\n\t", http_responses.Select(k => $"{k.Value,4:N0} : {k.Key}"))}");
+            StringBuilder logline = new();
+            logline.AppendLine($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount,9:N0} msgs");
+            logline.AppendLine($"{nameof(ReceptionThroughputMin)}:\t{ReceptionThroughputMin,9:N2} msgs/s");
+            logline.AppendLine($"{nameof(ReceptionThroughputAvg)}:\t{ReceptionThroughputAvg,9:N2} msgs/s");
+            logline.AppendLine($"{nameof(ReceptionThroughputMax)}:\t{ReceptionThroughputMax,9:N2} msgs/s");
+            logline.AppendLine($"Time elapsed:\t\t{watch?.Elapsed,9} ({watch?.ElapsedMilliseconds:N0}ms)");
+            logline.AppendLine($"\nHTTP Responses:\n\t{string.Join("\n\t", http_responses.Select(k => $"{k.Value,4:N0} : {k.Key}"))}");
+            SourceHost.Information($"{logline}");
         }
         finally
         {
@@ -97,6 +101,7 @@ public class HttpSocketClient : IDisposable
     internal string Address, InitialMessage, Topic, SubscribePayload;
     internal double ReceptionThroughputMin, ReceptionThroughputMax, ReceptionThroughputAvg, ReceptionThroughputSum;
     internal Stopwatch watch;
+    private ulong Previous_ReceivedMessageCount, ReceptionThroughputAvgCount;
     private uint received_count;
     private BlockingCollection<IDictionary<string, object>> transit_collection;
     protected readonly Encoding encoding;
@@ -304,21 +309,23 @@ public class HttpSocketClient : IDisposable
     {
         var taskid = Guid.NewGuid();
         using var cancel = CancellationTokenSource.CreateLinkedTokenSource(Cancellation, checking);
-        ulong prev_count = 0UL;
-        ulong avg_count = 0UL;
         while (!cancel.IsCancellationRequested)
         {
             var current_ReceivedMessageCount = ReceivedMessageCount;
-            var dx = current_ReceivedMessageCount - prev_count;
-            double throughput_per_second = (double)dx / ((double)CheckStateDelay / 1_000D);
-            if (ReceptionThroughputMin == 0D) ReceptionThroughputMin = throughput_per_second;
-            ReceptionThroughputMin = Math.MinMagnitude(throughput_per_second, ReceptionThroughputMin);
-            ReceptionThroughputMax = Math.MaxMagnitude(throughput_per_second, ReceptionThroughputMax);
-            ReceptionThroughputSum += throughput_per_second;
-            ++avg_count;
-            ReceptionThroughputAvg = ReceptionThroughputSum / avg_count;
-            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {prev_count}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ReceptionThroughputMin:N2} {ReceptionThroughputAvg:N2} {ReceptionThroughputMax:N2} msg/s]");
-            prev_count = current_ReceivedMessageCount;
+            double throughput_per_second = 0D;
+            var dx = current_ReceivedMessageCount - Previous_ReceivedMessageCount;
+            if (dx > 0)
+            {
+                throughput_per_second = (double)dx / ((double)CheckStateDelay / 1_000D);
+                if (ReceptionThroughputMin == 0D) ReceptionThroughputMin = throughput_per_second;
+                ReceptionThroughputMin = Math.MinMagnitude(throughput_per_second, ReceptionThroughputMin);
+                ReceptionThroughputMax = Math.MaxMagnitude(throughput_per_second, ReceptionThroughputMax);
+                ReceptionThroughputSum += throughput_per_second;
+                ++ReceptionThroughputAvgCount;
+                ReceptionThroughputAvg = ReceptionThroughputSum / ReceptionThroughputAvgCount;
+            }
+            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {Previous_ReceivedMessageCount}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ReceptionThroughputMin:N2} {ReceptionThroughputAvg:N2} {ReceptionThroughputMax:N2} msgs/s]");
+            Previous_ReceivedMessageCount = current_ReceivedMessageCount;
             await Task.Delay(CheckStateDelay, cancel.Token);
         }
     }
