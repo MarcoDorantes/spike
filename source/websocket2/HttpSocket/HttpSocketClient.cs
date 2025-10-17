@@ -33,6 +33,7 @@ public class HttpSocketClient : IDisposable
         received_count = 0U;
         ReceptionThroughputMin = ReceptionThroughputMax = ReceptionThroughputAvg = ReceptionThroughputSum = 0D;
         watch = null;
+        http_responses = [];
         Address = $"{Configuration[nameof(Address)]}";
         InitialMessage = $"{Configuration[nameof(InitialMessage)]}";
         Topic = $"{Configuration["Topic"]}";
@@ -74,6 +75,7 @@ public class HttpSocketClient : IDisposable
             SourceHost.Information($"{nameof(ReceptionThroughputAvg)}:\t{ReceptionThroughputAvg,9:N2} msgs/s");
             SourceHost.Information($"{nameof(ReceptionThroughputMax)}:\t{ReceptionThroughputMax,9:N2} msgs/s");
             SourceHost.Information($"Time elapsed:\t\t{watch?.Elapsed,9} ({watch?.ElapsedMilliseconds:N0}ms)");
+            SourceHost.Information($"\nHTTP Responses:\n\t{string.Join("\n\t", http_responses.Select(k => $"{k.Value,4:N0} : {k.Key}"))}");
         }
         finally
         {
@@ -98,6 +100,7 @@ public class HttpSocketClient : IDisposable
     private uint received_count;
     private BlockingCollection<IDictionary<string, object>> transit_collection;
     protected readonly Encoding encoding;
+    internal Dictionary<string, uint> http_responses;
 
     private void OnMessage(byte[] payload)
     {
@@ -135,7 +138,6 @@ public class HttpSocketClient : IDisposable
             SourceHost.UpdateReceivedCount(received_count);
 
             Dictionary<string, object> message = [];
-            //message["WritersAgent.Constant.SolaceMessagePayloadKey"] = payload;
             message["WritersAgent.Constant.SolaceMessagePayloadKey"] = encoding.GetString(payload);
 
            //var seqid = getseqid(payload);//payload deserializacion is an array: //[{"ev":"FMV","fmv":509.917,"sym":"MSFT","t":1760646477151120843}]
@@ -265,7 +267,10 @@ public class HttpSocketClient : IDisposable
 //https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
                 ++ReceivedMessageCount;
                 var heads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-                var header = $"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount} {client?.State} {result.MessageType} {result.Count} {result.EndOfMessage} [{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]";
+                var http_response = $"[{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]";
+                if (!http_responses.ContainsKey(http_response)) http_responses[http_response] = 0U;
+                ++http_responses[http_response];
+                var header = $"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount} {client?.State} {result.MessageType} {result.Count} {result.EndOfMessage} {http_response}";
                 string body = null;
                 try
                 {
