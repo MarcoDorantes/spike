@@ -111,6 +111,7 @@ class ConsoleHost(System.IO.TextWriter Writer) : HttpSocket.ISourceProcessorHost
 }
 class Program
 {
+    static ulong received_onnext_count;
     static async Task Main(string[] args)
     {
         nutility.Switch opts = new(args);
@@ -124,6 +125,7 @@ class Program
     }
     static void LaunchClients(nutility.Switch opts)
     {
+        received_onnext_count = 0UL;
         int nclients = opts.Is("count") ? int.Parse(opts["count"]) : 3;
         if (!(nclients > 0)) return;
         using CancellationTokenSource cancel = new();
@@ -178,9 +180,10 @@ class Program
     }
     static void OnNext(IDictionary<string, object> message) //? => foreach(app in Parsed-array-in-message) Observer?.OnNext(app);
     {
+        ++received_onnext_count;
         var payload = message[HttpSocket.HttpSocketClient.MessagePayloadKey] as byte[];
         var keys = $"{string.Join('|', message.Where(k=>k.Key!=HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
-        WriteLine($"Payload ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}");
+        WriteLine($"Payload#{received_onnext_count} ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}");
     }
 
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)

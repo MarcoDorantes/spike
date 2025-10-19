@@ -19,6 +19,7 @@ public class HttpSocketClient : IDisposable
     public const string MessagePayloadKey = $"{nameof(MessagePayloadKey)}";
     public const string DestinationNameKey = $"{nameof(DestinationNameKey)}";
     public const string MessageGuidKey = "GUID";
+    public const string PayloadIdKey = "PayloadID";
 
     public ISourceProcessorHost SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
@@ -32,8 +33,8 @@ public class HttpSocketClient : IDisposable
 
     public void Setup()
     {
-        ReceivedMessageCount = 0UL;
-        Previous_ReceivedMessageCount = 0UL;
+        ReceivedPayloadCount = 0UL;
+        Previous_ReceivedPayloadCount = 0UL;
         ReceptionThroughputAvgCount = 0UL;
         received_count = 0U;
         ReceptionThroughputMin = ReceptionThroughputMax = ReceptionThroughputAvg = ReceptionThroughputSum = 0D;
@@ -76,7 +77,7 @@ public class HttpSocketClient : IDisposable
             if (Running) transit_collection.CompleteAdding();
             watch?.Stop();
             StringBuilder logline = new();
-            logline.AppendLine($"\n{nameof(ReceivedMessageCount)}:\t{ReceivedMessageCount,9:N0} msgs");
+            logline.AppendLine($"\n{nameof(ReceivedPayloadCount)}:\t{ReceivedPayloadCount,9:N0} msgs");
             logline.AppendLine($"{nameof(ReceptionThroughputMin)}:\t{ReceptionThroughputMin,9:N2} msgs/s");
             logline.AppendLine($"{nameof(ReceptionThroughputAvg)}:\t{ReceptionThroughputAvg,9:N2} msgs/s");
             logline.AppendLine($"{nameof(ReceptionThroughputMax)}:\t{ReceptionThroughputMax,9:N2} msgs/s");
@@ -96,7 +97,7 @@ public class HttpSocketClient : IDisposable
     public string ID { get; set; }
     public bool Running { get; private set; }
     public WebSocketState? State { get => client?.State; }
-    public ulong ReceivedMessageCount { get; private set; }
+    public ulong ReceivedPayloadCount { get; private set; }
     public int BufferSize { get; private set; }
     public int CheckStateDelay { get; private set; }
 
@@ -104,24 +105,24 @@ public class HttpSocketClient : IDisposable
     internal string Address, InitialMessage, Topic, SubscribePayload;
     internal double ReceptionThroughputMin, ReceptionThroughputMax, ReceptionThroughputAvg, ReceptionThroughputSum;
     internal Stopwatch watch;
-    private ulong Previous_ReceivedMessageCount, ReceptionThroughputAvgCount;
+    private ulong Previous_ReceivedPayloadCount, ReceptionThroughputAvgCount;
     private uint received_count;
     private BlockingCollection<IDictionary<string, object>> transit_collection;
     protected readonly Encoding encoding;
     internal Dictionary<string, uint> http_responses;
 
-    private void OnMessage(byte[] payload)
+    private void OnPayload(byte[] payload)
     {
         Stopwatch elapsed = new();
         try
         {
             elapsed.Restart();
-            ProcessMessage(payload);
+            ProcessPayload(payload);
         }
         finally
         {
             elapsed.Stop();
-            SourceHost.Information($"Msg: {received_count} Wait: {elapsed.ElapsedTicks}");
+            SourceHost.Information($"Msg: {ReceivedPayloadCount} Wait: {elapsed.ElapsedTicks}");
         }
     }
 
@@ -132,44 +133,44 @@ public class HttpSocketClient : IDisposable
         var map = deserialize(payload);
         return $"{map["Sequence"]}/{map["Time"]}";
     }*/
-    private void ProcessMessage(byte[] payload)
+    private void ProcessPayload(byte[] payload)
     {
-        //const int IDTrimLimit = 36;
         try
         {
-            ++received_count;
+           //++received_count;
             if (Cancellation.IsCancellationRequested)
             {
                 SourceHost.Information("IsCancellationRequested is true");
                 return;
             }
-            SourceHost.UpdateReceivedCount(received_count);
+           //SourceHost.UpdateReceivedCount(received_count);
 
-            Dictionary<string, object> message = [];
-            message[MessagePayloadKey] = payload;
+            Dictionary<string, object> payload_map = [];
+            payload_map[MessagePayloadKey] = payload;
 
            //var seqid = getseqid(payload);//payload deserializacion is an array: //[{"ev":"FMV","fmv":509.917,"sym":"MSFT","t":1760646477151120843}]
-            var msg_id = $"{received_count}";//$"{received_count}/{seqid}";
-            SourceHost.Information($"{nameof(msg_id)}: {msg_id}");
-            message[MessageGuidKey] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
-            message["PossDup"] = false;
-            message[DestinationNameKey] = "";
+           //var msg_id = $"{received_count}";//$"{received_count}/{seqid}";
+           //SourceHost.Information($"{nameof(msg_id)}: {msg_id}");
+           //message[MessageGuidKey] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
+            payload_map["PossDup"] = false;
+            payload_map[PayloadIdKey] = ReceivedPayloadCount;
+            payload_map[DestinationNameKey] = "";
 
-            ProcessDictionaryMessage(message);
+            ProcessDictionaryPayload(payload_map);
         }
         catch (Exception exception)
         {
-            SourceHost.Error(exception, nameof(ProcessMessage));
+            SourceHost.Error(exception, nameof(ProcessPayload));
         }
     }
-    private void ProcessDictionaryMessage(IDictionary<string, object> message)
+    private void ProcessDictionaryPayload(IDictionary<string, object> payload)
     {
-        ProcessMessageWithInternalCollection(message);
+        ProcessPayloadWithInternalCollection(payload);
     }
 
-    private void ProcessMessageWithInternalCollection(IDictionary<string, object> message)
+    private void ProcessPayloadWithInternalCollection(IDictionary<string, object> payload)
     {
-        transit_collection.Add(message);
+        transit_collection.Add(payload);
     }
 
     private async Task ConnectToServerAsyncGuarded(string address, string initialMessage, string subscription)
@@ -217,7 +218,7 @@ public class HttpSocketClient : IDisposable
             await client.ConnectAsync(serverUri, Cancellation);
             SourceHost.Information($"{ID} {client.State} connection to WebSocket server ({address}) {nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
             _ = CheckState(checking.Token);
-            Task receive = ReceiveMessagesAsync();
+            Task receive = ReceivePayloadsAsync();
             await SendMessageAsync(initialMessage);
             await SendSubscribeMessageAsync(subscription);
             await receive;
@@ -231,7 +232,7 @@ public class HttpSocketClient : IDisposable
     private async Task LogFinalState()
     {
         var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-        SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
+        SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedPayloadCount:N0} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
         await Task.Delay(1, Cancellation);
     }
     private async Task DisconnectFromServerAsync()
@@ -260,7 +261,7 @@ public class HttpSocketClient : IDisposable
         else throw new Exception($"{ID} {nameof(SendSubscribeMessageAsync)} found invalid client state ({client?.State}).");
     }
 
-    private async Task ReceiveMessagesAsync()
+    private async Task ReceivePayloadsAsync()
     {
         var buffer = new byte[BufferSize];
         try
@@ -269,16 +270,16 @@ public class HttpSocketClient : IDisposable
             {
                 if (!(client?.State == WebSocketState.Open))
                 {
-                    throw new Exception($"{ID} {nameof(ReceiveMessagesAsync)} found invalid connection state ({client?.State}).");
+                    throw new Exception($"{ID} {nameof(ReceivePayloadsAsync)} found invalid connection state ({client?.State}).");
                 }
                 var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), Cancellation);
 //https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
-                ++ReceivedMessageCount;
+                ++ReceivedPayloadCount;
                 var heads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
                 var http_response = $"[{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]";
                 if (!http_responses.ContainsKey(http_response)) http_responses[http_response] = 0U;
                 ++http_responses[http_response];
-                var header = $"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount} {client?.State} {result.MessageType} {result.Count} {result.EndOfMessage} {http_response}";
+                var header = $"{DateTime.Now:o} {ID} {Topic} Payload#{ReceivedPayloadCount} {client?.State} {result.MessageType} {result.Count} {result.EndOfMessage} {http_response}";
                 string body = null;
                 try
                 {
@@ -293,7 +294,7 @@ public class HttpSocketClient : IDisposable
                     var message = new byte[result.Count];
                     Array.Copy(buffer, message, result.Count);
                     body = $" Received: {result.Count}";
-                    OnMessage(message);//Ingest <message> into internal processing (where OnMessage/OnNext? is invoked)
+                    OnPayload(message);//Ingest <message> into internal processing (where OnMessage/OnNext? is invoked)
                 }
                 finally
                 {
@@ -305,7 +306,7 @@ public class HttpSocketClient : IDisposable
         finally
         {
             var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedMessageCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
+            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedPayloadCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
         }
     }
     private async Task CheckState(CancellationToken checking)
@@ -314,9 +315,9 @@ public class HttpSocketClient : IDisposable
         using var cancel = CancellationTokenSource.CreateLinkedTokenSource(Cancellation, checking);
         while (!cancel.IsCancellationRequested)
         {
-            var current_ReceivedMessageCount = ReceivedMessageCount;
+            var current_ReceivedPayloadCount = ReceivedPayloadCount;
             double throughput_per_second = 0D;
-            var dx = current_ReceivedMessageCount - Previous_ReceivedMessageCount;
+            var dx = current_ReceivedPayloadCount - Previous_ReceivedPayloadCount;
             if (dx > 0)
             {
                 throughput_per_second = (double)dx / ((double)CheckStateDelay / 1_000D);
@@ -327,8 +328,8 @@ public class HttpSocketClient : IDisposable
                 ++ReceptionThroughputAvgCount;
                 ReceptionThroughputAvg = ReceptionThroughputSum / ReceptionThroughputAvgCount;
             }
-            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {Previous_ReceivedMessageCount}/{current_ReceivedMessageCount} {dx} [{throughput_per_second:N2} {ReceptionThroughputMin:N2} {ReceptionThroughputAvg:N2} {ReceptionThroughputMax:N2} msgs/s]");
-            Previous_ReceivedMessageCount = current_ReceivedMessageCount;
+            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} T_{taskid} {nameof(WebSocketState)} = [{client?.State}] {Previous_ReceivedPayloadCount}/{current_ReceivedPayloadCount} {dx} [{throughput_per_second:N2} {ReceptionThroughputMin:N2} {ReceptionThroughputAvg:N2} {ReceptionThroughputMax:N2} msgs/s]");
+            Previous_ReceivedPayloadCount = current_ReceivedPayloadCount;
             await Task.Delay(CheckStateDelay, cancel.Token);
         }
     }
@@ -339,7 +340,7 @@ public class HttpSocketClient : IDisposable
     {
         SourceHost.Information($"{nameof(ProcessInternalQueue)} started.");
         if (transit_collection == null) { return; }
-        foreach (var message in transit_collection.GetConsumingEnumerable())
+        foreach (var payload in transit_collection.GetConsumingEnumerable())
         {
             if (!Running)
             {
@@ -347,20 +348,21 @@ public class HttpSocketClient : IDisposable
             }
             try
             {
-                ProcessPayload(message);
+                ProcessPayload(payload);
             }
             catch (Exception exception)
             {
                 SourceHost.Error(exception, nameof(ProcessInternalQueue));
+//Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: S. Path '', line 0, position 0. (ProcessInternalQueue)
             }
         }
         SourceHost.Information($"{nameof(ProcessInternalQueue)} ended.");
         transit_collection.Dispose();
     }
-    private void ProcessPayload(IDictionary<string, object> message)
+    private void ProcessPayload(IDictionary<string, object> payload_map)
     {
-        byte[] bytes = message.TryGetValue(MessagePayloadKey, out object value) ? value as byte[] : null;
-        if (bytes == null) throw new Exception($"Invalid null payload ({nameof(MessageGuidKey)}:{(message.TryGetValue(MessageGuidKey, out object guid) ? guid : "")}).");
+        byte[] bytes = payload_map.TryGetValue(MessagePayloadKey, out object value) ? value as byte[] : null;
+        if (bytes == null) throw new Exception($"Invalid null payload ({nameof(PayloadIdKey)}:{(payload_map.TryGetValue(PayloadIdKey, out object _id) ? _id : "")}).");
         string payload = encoding.GetString(bytes);
         var jsonarray = deserialize(payload);
         foreach (var jsonmap in jsonarray)
@@ -369,8 +371,9 @@ public class HttpSocketClient : IDisposable
             //message["PossDup"] = false;
             //message[DestinationNameKey] = "";
 
-            jsonmap[MessagePayloadKey] = message[MessagePayloadKey];
-            jsonmap[MessageGuidKey] = message[MessageGuidKey];
+            jsonmap[MessagePayloadKey] = payload_map[MessagePayloadKey];
+            jsonmap[MessageGuidKey] = ++received_count;
+            SourceHost.UpdateReceivedCount(received_count);
             OnNext(jsonmap);
         }
     }
