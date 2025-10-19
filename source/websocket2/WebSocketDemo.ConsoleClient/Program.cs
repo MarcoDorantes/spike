@@ -178,7 +178,9 @@ class Program
     }
     static void OnNext(IDictionary<string, object> message) //? => foreach(app in Parsed-array-in-message) Observer?.OnNext(app);
     {
-        WriteLine($"{string.Join(' ', message.ToList().Select(p => $"/{p.Key}={p.Value}/"))}");
+        var payload = message[HttpSocket.HttpSocketClient.MessagePayloadKey] as byte[];
+        var keys = $"{string.Join('|', message.Where(k=>k.Key!=HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
+        WriteLine($"Payload ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}");
     }
 
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)

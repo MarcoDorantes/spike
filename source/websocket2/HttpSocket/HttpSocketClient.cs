@@ -16,6 +16,9 @@ public class HttpSocketClient : IDisposable
     public const string BufferSizeConfigKey = $"{nameof(BufferSize)}";
     public const int CheckStateDelayDefault = 15_000;
     public const int BufferSizeDefault = 1_024 * 8;
+    public const string MessagePayloadKey = $"{nameof(MessagePayloadKey)}";
+    public const string DestinationNameKey = $"{nameof(DestinationNameKey)}";
+    public const string MessageGuidKey = "GUID";
 
     public ISourceProcessorHost SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
@@ -143,14 +146,14 @@ public class HttpSocketClient : IDisposable
             SourceHost.UpdateReceivedCount(received_count);
 
             Dictionary<string, object> message = [];
-            message["WritersAgent.Constant.SolaceMessagePayloadKey"] = encoding.GetString(payload);
+            message[MessagePayloadKey] = payload;
 
            //var seqid = getseqid(payload);//payload deserializacion is an array: //[{"ev":"FMV","fmv":509.917,"sym":"MSFT","t":1760646477151120843}]
             var msg_id = $"{received_count}";//$"{received_count}/{seqid}";
             SourceHost.Information($"{nameof(msg_id)}: {msg_id}");
-            message["GUID"] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
+            message[MessageGuidKey] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
             message["PossDup"] = false;
-            message["WritersAgent.Constant.SolaceDestinationNameKey"] = "";
+            message[DestinationNameKey] = "";
 
             ProcessDictionaryMessage(message);
         }
@@ -356,18 +359,19 @@ public class HttpSocketClient : IDisposable
     }
     private void ProcessPayload(IDictionary<string, object> message)
     {
-        string payload = $"{message["WritersAgent.Constant.SolaceMessagePayloadKey"]}";
-        //remove it from map? same on OnNext(message) ?
-
-        //message["GUID"] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
-        //message["PossDup"] = false;
-        //message["WritersAgent.Constant.SolaceDestinationNameKey"] = "";
-
+        byte[] bytes = message.TryGetValue(MessagePayloadKey, out object value) ? value as byte[] : null;
+        if (bytes == null) throw new Exception($"Invalid null payload ({nameof(MessageGuidKey)}:{(message.TryGetValue(MessageGuidKey, out object guid) ? guid : "")}).");
+        string payload = encoding.GetString(bytes);
         var jsonarray = deserialize(payload);
         foreach (var jsonmap in jsonarray)
         {
-            jsonmap.Aggregate(message, (whole, next) => { whole[next.Key] = next.Value; return whole; });
-            OnNext(message);
+            //message["GUID"] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
+            //message["PossDup"] = false;
+            //message[DestinationNameKey] = "";
+
+            jsonmap[MessagePayloadKey] = message[MessagePayloadKey];
+            jsonmap[MessageGuidKey] = message[MessageGuidKey];
+            OnNext(jsonmap);
         }
     }
 
