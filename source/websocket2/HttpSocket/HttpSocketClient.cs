@@ -12,14 +12,18 @@ using System.Collections.Concurrent;
 
 public class HttpSocketClient : IDisposable
 {
+    public enum UpdateReceivedOnType { Payload, Message }
+
     public const string CheckStateDelayConfigKey = $"{nameof(CheckStateDelay)}";
     public const string BufferSizeConfigKey = $"{nameof(BufferSize)}";
-    public const int CheckStateDelayDefault = 15_000;
-    public const int BufferSizeDefault = 1_024 * 8;
+    public const string UpdateReceivedOnKey = $"{nameof(UpdateReceivedOn)}";
     public const string MessagePayloadKey = $"{nameof(MessagePayloadKey)}";
     public const string DestinationNameKey = $"{nameof(DestinationNameKey)}";
     public const string MessageGuidKey = "GUID";
     public const string PayloadIdKey = "PayloadID";
+    public const int CheckStateDelayDefault = 15_000;
+    public const int BufferSizeDefault = 1_024 * 8;
+    public const UpdateReceivedOnType UpdateReceivedOnDefault = UpdateReceivedOnType.Message;
 
     public ISourceProcessorHost SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
@@ -33,9 +37,9 @@ public class HttpSocketClient : IDisposable
 
     public void Setup()
     {
-        ReceivedPayloadCount = 0UL;
-        Previous_ReceivedPayloadCount = 0UL;
-        ReceptionThroughputAvgCount = 0UL;
+        ReceivedPayloadCount = 0U;
+        Previous_ReceivedPayloadCount = 0U;
+        ReceptionThroughputAvgCount = 0U;
         received_count = 0U;
         ReceptionThroughputMin = ReceptionThroughputMax = ReceptionThroughputAvg = ReceptionThroughputSum = 0D;
         watch = null;
@@ -58,6 +62,13 @@ public class HttpSocketClient : IDisposable
             CheckStateDelay = delay;
         }
         SourceHost.Information($"{nameof(CheckStateDelay)}: {CheckStateDelay}");
+
+        UpdateReceivedOn = UpdateReceivedOnDefault;
+        if (Configuration.TryGetValue(UpdateReceivedOnKey, out object _updatetype) && Enum.TryParse<UpdateReceivedOnType>($"{_updatetype}", out UpdateReceivedOnType updatetype))
+        {
+            UpdateReceivedOn = updatetype;
+        }
+        SourceHost.Information($"{nameof(UpdateReceivedOn)}: {UpdateReceivedOn}");
     }
     public void Start()
     {
@@ -97,15 +108,16 @@ public class HttpSocketClient : IDisposable
     public string ID { get; set; }
     public bool Running { get; private set; }
     public WebSocketState? State { get => client?.State; }
-    public ulong ReceivedPayloadCount { get; private set; }
+    public uint ReceivedPayloadCount { get; private set; }
     public int BufferSize { get; private set; }
     public int CheckStateDelay { get; private set; }
+    public UpdateReceivedOnType UpdateReceivedOn { get; private set; }
 
     private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
     internal string Address, InitialMessage, Topic, SubscribePayload;
     internal double ReceptionThroughputMin, ReceptionThroughputMax, ReceptionThroughputAvg, ReceptionThroughputSum;
     internal Stopwatch watch;
-    private ulong Previous_ReceivedPayloadCount, ReceptionThroughputAvgCount;
+    private uint Previous_ReceivedPayloadCount, ReceptionThroughputAvgCount;
     private uint received_count;
     private BlockingCollection<IDictionary<string, object>> transit_collection;
     protected readonly Encoding encoding;
@@ -143,7 +155,7 @@ public class HttpSocketClient : IDisposable
                 SourceHost.Information("IsCancellationRequested is true");
                 return;
             }
-           //SourceHost.UpdateReceivedCount(received_count);
+            if(UpdateReceivedOn == UpdateReceivedOnType.Payload) SourceHost.UpdateReceivedCount(ReceivedPayloadCount);
 
             Dictionary<string, object> payload_map = [];
             payload_map[MessagePayloadKey] = payload;
@@ -231,8 +243,7 @@ public class HttpSocketClient : IDisposable
     }
     private async Task LogFinalState()
     {
-        var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-        SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedPayloadCount:N0} {client?.State} Connect task final {client?.HttpStatusCode}/{finalheads}");
+        SourceHost.Information(GetClientTaskFinalLogline("Connect"));
         await Task.Delay(1, Cancellation);
     }
     private async Task DisconnectFromServerAsync()
@@ -305,9 +316,13 @@ public class HttpSocketClient : IDisposable
         }
         finally
         {
-            var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Payload#{ReceivedPayloadCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
+            SourceHost.Information(GetClientTaskFinalLogline("Receive"));
         }
+    }
+    private string GetClientTaskFinalLogline(string task)
+    {
+        var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
+        return $"{DateTime.Now:o} {ID} {Topic} Payload#{ReceivedPayloadCount:N0} {client?.State} {task} task final {client?.HttpStatusCode}/{finalheads}";
     }
     private async Task CheckState(CancellationToken checking)
     {
@@ -373,7 +388,7 @@ public class HttpSocketClient : IDisposable
 
             jsonmap[MessagePayloadKey] = payload_map[MessagePayloadKey];
             jsonmap[MessageGuidKey] = ++received_count;
-            SourceHost.UpdateReceivedCount(received_count);
+            if(UpdateReceivedOn == UpdateReceivedOnType.Message) SourceHost.UpdateReceivedCount(received_count);
             OnNext(jsonmap);
         }
     }

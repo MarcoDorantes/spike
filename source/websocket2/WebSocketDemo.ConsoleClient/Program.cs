@@ -160,10 +160,11 @@ class Program
     {
         Dictionary<string, object> config = new()
         {
-            {nameof(Config.Address),Config.Address},
-            {nameof(Config.InitialMessage),Config.InitialMessage},
-            {"Topic",topic},
-            {"SubscribePayload",Config.GetSubscribePayload(topic)}
+            {nameof(Config.Address),Config.Address}
+            ,{nameof(Config.InitialMessage),Config.InitialMessage}
+            ,{"Topic",topic}
+            ,{"SubscribePayload",Config.GetSubscribePayload(topic)}
+           //,{HttpSocket.HttpSocketClient.UpdateReceivedOnKey,HttpSocket.HttpSocketClient.UpdateReceivedOnType.Payload}
         };
         if (opts.Is(HttpSocket.HttpSocketClient.CheckStateDelayConfigKey)) config[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey] = opts[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey];
         HttpSocket.HttpSocketClient client = new()
@@ -183,7 +184,7 @@ class Program
         ++received_onnext_count;
         var payload = message[HttpSocket.HttpSocketClient.MessagePayloadKey] as byte[];
         var keys = $"{string.Join('|', message.Where(k=>k.Key!=HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
-        WriteLine($"Payload#{received_onnext_count} ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}");
+        WriteLine($"Msg#{received_onnext_count} ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}");
     }
 
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
