@@ -306,7 +306,7 @@ public class HttpSocketClient : IDisposable
         finally
         {
             var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
-            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Msg#{ReceivedPayloadCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
+            SourceHost.Information($"{DateTime.Now:o} {ID} {Topic} Payload#{ReceivedPayloadCount:N0} {client?.State} Receive task final {client?.HttpStatusCode}/{finalheads}");
         }
     }
     private async Task CheckState(CancellationToken checking)
