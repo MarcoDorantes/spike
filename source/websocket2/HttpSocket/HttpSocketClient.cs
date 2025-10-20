@@ -286,7 +286,7 @@ public class HttpSocketClient : IDisposable
                 var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), Cancellation);
 //https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
                 ++ReceivedPayloadCount;
-                var heads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
+                var heads = GetResponseHeaders();
                 var http_response = $"[{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]";
                 if (!http_responses.ContainsKey(http_response)) http_responses[http_response] = 0U;
                 ++http_responses[http_response];
@@ -319,9 +319,10 @@ public class HttpSocketClient : IDisposable
             SourceHost.Information(GetClientTaskFinalLogline("Receive"));
         }
     }
+    private string GetResponseHeaders() => $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
     private string GetClientTaskFinalLogline(string task)
     {
-        var finalheads = $"{client?.HttpResponseHeaders?.Aggregate(new StringBuilder(), (whole, next) => whole.AppendFormat("{0}={1}|", next.Key, string.Join('\\', next.Value)))}";
+        var finalheads = GetResponseHeaders();
         return $"{DateTime.Now:o} {ID} {Topic} Payload#{ReceivedPayloadCount:N0} {client?.State} {task} task final {client?.HttpStatusCode}/{finalheads}";
     }
     private async Task CheckState(CancellationToken checking)

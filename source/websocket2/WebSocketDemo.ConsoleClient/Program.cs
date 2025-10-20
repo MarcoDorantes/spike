@@ -99,6 +99,12 @@ internal static partial class Config
 class Input { public string[] Topics { get; set; } }
 class ConsoleHost(System.IO.TextWriter Writer) : HttpSocket.ISourceProcessorHost
 {
+    private HttpSocket.HttpSocketClient.UpdateReceivedOnType updateReceivedOn;
+    public HttpSocket.HttpSocketClient.UpdateReceivedOnType UpdateReceivedOn
+    {
+        get => updateReceivedOn;
+        set {updateReceivedOn=value; UpdateReceivedCountLabel = " " + (value == HttpSocket.HttpSocketClient.UpdateReceivedOnType.Message ? "app-level-msgs" : "payloads");}
+    }
     void HttpSocket.ISourceProcessorHost.Information(string information) => Writer.WriteLine(information);
     void HttpSocket.ISourceProcessorHost.Warning(string details_for_diagnostic) => Writer.WriteLine(details_for_diagnostic);
     void HttpSocket.ISourceProcessorHost.Error(string details_for_diagnostic) => Writer.WriteLine(details_for_diagnostic);
@@ -107,7 +113,8 @@ class ConsoleHost(System.IO.TextWriter Writer) : HttpSocket.ISourceProcessorHost
     void HttpSocket.ISourceProcessorHost.StartTopicSubscription(string name, string vpnName, string host, string userName, string password, string sourceTopicPath, Action<IDictionary<string, object>> onmessage, string payloadFormat /*= "JSON"*/) => throw new NotImplementedException();
     void HttpSocket.ISourceProcessorHost.SendNotification(string subject, string[] lines, IList<KeyValuePair<string, string>> attachs /*= null*/, bool error /*= false*/, string[] to /*= null*/, System.Text.Encoding encoding /*= null*/) => throw new NotImplementedException();
     void HttpSocket.ISourceProcessorHost.SendNotification(string subject, string[] lines, IList<KeyValuePair<string, byte[]>> attachs /*= null*/, bool error /*= false*/, string[] to /*= null*/) => throw new NotImplementedException();
-    void HttpSocket.ISourceProcessorHost.UpdateReceivedCount(uint received_count) => Writer.WriteLine($"{nameof(HttpSocket.ISourceProcessorHost.UpdateReceivedCount)}: {received_count}");
+    void HttpSocket.ISourceProcessorHost.UpdateReceivedCount(uint received_count) => Writer.WriteLine($"{nameof(HttpSocket.ISourceProcessorHost.UpdateReceivedCount)}: {received_count}{UpdateReceivedCountLabel}");
+    internal string UpdateReceivedCountLabel;
 }
 class Program
 {
@@ -167,15 +174,17 @@ class Program
            //,{HttpSocket.HttpSocketClient.UpdateReceivedOnKey,HttpSocket.HttpSocketClient.UpdateReceivedOnType.Payload}
         };
         if (opts.Is(HttpSocket.HttpSocketClient.CheckStateDelayConfigKey)) config[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey] = opts[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey];
+        ConsoleHost host = new(Out);
         HttpSocket.HttpSocketClient client = new()
         {
             ID = id,
-            SourceHost = new ConsoleHost(Out),
+            SourceHost = host,
             Configuration = config,
             Cancellation = cancel,
             OnNext = OnNext
         };
         client.Setup();
+        host.UpdateReceivedOn = client.UpdateReceivedOn;
         client.Start();
         return client;
     }
