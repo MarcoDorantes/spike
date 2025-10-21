@@ -165,6 +165,7 @@ class Program
     }
     static HttpSocket.HttpSocketClient LaunchClient(string id, CancellationToken cancel, string topic, nutility.Switch opts)
     {
+        //Add all these to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
         Dictionary<string, object> config = new()
         {
             {nameof(Config.Address),Config.Address}

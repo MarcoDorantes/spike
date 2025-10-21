@@ -34,7 +34,8 @@ async Task HandleWebSocketAsync(WebSocket webSocket)
 {
     var buffer = new byte[1024 * 8];
     var receiveResult = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-    var chat = args?.Any(x=>x=="chat");
+    var chat = args?.Any(x => x == "chat");
+    uint sent_count = 0U;
 
     while (!receiveResult.CloseStatus.HasValue)
     {
@@ -51,6 +52,7 @@ async Task HandleWebSocketAsync(WebSocket webSocket)
                 WebSocketMessageType.Text,
                 true,
                 CancellationToken.None);
+            WriteLine($"Server sent ({++sent_count}): {responseMessage}");
             await Task.Delay(3_000);
         }
         receiveResult = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);

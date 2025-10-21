@@ -69,6 +69,34 @@ public class HttpSocketClient : IDisposable
             UpdateReceivedOn = updatetype;
         }
         SourceHost.Information($"{nameof(UpdateReceivedOn)}: {UpdateReceivedOn}");
+
+        KeepAliveInterval = WebSocket.DefaultKeepAliveInterval;
+        if (Configuration.TryGetValue(nameof(KeepAliveInterval), out object _interval) && TimeSpan.TryParse($"{_interval}", out TimeSpan interval))
+        {
+            KeepAliveInterval = interval;
+        }
+        SourceHost.Information($"{nameof(KeepAliveInterval)}: {KeepAliveInterval}");
+
+        KeepAliveTimeout = WebSocket.DefaultKeepAliveInterval;
+        if (Configuration.TryGetValue(nameof(KeepAliveTimeout), out object _timeout) && TimeSpan.TryParse($"{_timeout}", out TimeSpan timeout))
+        {
+            KeepAliveTimeout = timeout;
+        }
+        SourceHost.Information($"{nameof(KeepAliveTimeout)}: {KeepAliveTimeout}");
+
+        CollectHttpResponseDetails = false;
+        if (Configuration.TryGetValue(nameof(CollectHttpResponseDetails), out object _details) && bool.TryParse($"{_details}", out bool details) && details)
+        {
+            CollectHttpResponseDetails = details;
+        }
+        SourceHost.Information($"{nameof(CollectHttpResponseDetails)}: {CollectHttpResponseDetails}");
+
+        SlowSubscriber = false;
+        if (Configuration.TryGetValue(nameof(SlowSubscriber), out object _slow) && bool.TryParse($"{_slow}", out bool slow) && slow)
+        {
+            SlowSubscriber = slow;
+        }
+        SourceHost.Information($"{nameof(SlowSubscriber)}: {SlowSubscriber}");
     }
     public void Start()
     {
@@ -112,8 +140,13 @@ public class HttpSocketClient : IDisposable
     public int BufferSize { get; private set; }
     public int CheckStateDelay { get; private set; }
     public UpdateReceivedOnType UpdateReceivedOn { get; private set; }
+    public TimeSpan KeepAliveInterval { get; private set; }
+    public TimeSpan KeepAliveTimeout { get; private set; }
+    public bool CollectHttpResponseDetails { get; private set; }
 
-    private ClientWebSocket client;//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate?view=net-8.0
+    //https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/websockets
+    //https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate
+    private ClientWebSocket client;
     internal string Address, InitialMessage, Topic, SubscribePayload;
     internal double ReceptionThroughputMin, ReceptionThroughputMax, ReceptionThroughputAvg, ReceptionThroughputSum;
     internal Stopwatch watch;
@@ -122,6 +155,7 @@ public class HttpSocketClient : IDisposable
     private BlockingCollection<IDictionary<string, object>> transit_collection;
     protected readonly Encoding encoding;
     internal Dictionary<string, uint> http_responses;
+    private bool SlowSubscriber;
 
     private void OnPayload(byte[] payload)
     {
@@ -226,9 +260,12 @@ public class HttpSocketClient : IDisposable
         try
         {
             client = new();
+            client.Options.KeepAliveInterval = KeepAliveInterval;
+            client.Options.KeepAliveTimeout = KeepAliveTimeout;
+            client.Options.CollectHttpResponseDetails = CollectHttpResponseDetails;
             Uri serverUri = new(address);
             await client.ConnectAsync(serverUri, Cancellation);
-            SourceHost.Information($"{ID} {client.State} connection to WebSocket server ({address}) {nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval}");
+            SourceHost.Information($"{ID} {client.State} connection to WebSocket server ({address}) {nameof(client.Options.KeepAliveInterval)}: {client.Options.KeepAliveInterval} {nameof(client.Options.KeepAliveTimeout)}: {client.Options.KeepAliveTimeout} {nameof(client.Options.CollectHttpResponseDetails)}: {client.Options.CollectHttpResponseDetails}");
             _ = CheckState(checking.Token);
             Task receive = ReceivePayloadsAsync();
             await SendMessageAsync(initialMessage);
@@ -284,7 +321,7 @@ public class HttpSocketClient : IDisposable
                     throw new Exception($"{ID} {nameof(ReceivePayloadsAsync)} found invalid connection state ({client?.State}).");
                 }
                 var result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), Cancellation);
-//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-8.0
+//https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketclosestatus?view=net-9.0
                 ++ReceivedPayloadCount;
                 var heads = GetResponseHeaders();
                 var http_response = $"[{result.CloseStatus}/{result.CloseStatusDescription}/{client?.HttpStatusCode}/{heads}]";
@@ -312,6 +349,7 @@ public class HttpSocketClient : IDisposable
                     var logline = $"{header}{body}";
                     SourceHost.Information(logline);
                 }
+                if (SlowSubscriber && ReceivedPayloadCount % 50 == 0) await Task.Delay(TimeSpan.Parse("00:01:00"), Cancellation);
             }
         }
         finally
