@@ -196,8 +196,9 @@ class Program
     {
         ++received_onnext_count;
         var payload = message[HttpSocket.HttpSocketClient.MessagePayloadKey] as byte[];
-        var keys = $"{string.Join('|', message.Where(k=>k.Key!=HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
-        WriteLine($"Msg#{received_onnext_count} ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}");
+        var keys = $"{string.Join('|', message.Where(k => k.Key != HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
+        var payload_detail = Config.PayloadLogEnabled ? $" ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}" : "";
+        WriteLine($"Msg#{received_onnext_count}{payload_detail}");
     }
 
     static async Task ConnectToServerAsync(nutility.Switch opts, bool batch)
