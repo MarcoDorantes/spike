@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="nSwitch" Version="3.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.10" />
   </ItemGroup>
 
   <ItemGroup>

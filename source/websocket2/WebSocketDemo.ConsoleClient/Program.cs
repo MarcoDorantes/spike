@@ -165,13 +165,16 @@ class Program
     }
     static HttpSocket.HttpSocketClient LaunchClient(string id, CancellationToken cancel, string topic, nutility.Switch opts)
     {
-        //Add all these to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
+        //Add all configuration keys to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
         Dictionary<string, object> config = new()
         {
             {nameof(Config.Address),Config.Address}
             ,{nameof(Config.InitialMessage),Config.InitialMessage}
             ,{"Topic",topic}
-            ,{"SubscribePayload",Config.GetSubscribePayload(topic)}
+            ,{"SubscribePayload",Config.GetSubscribePayload(topic) }
+            ,{nameof(Config.KeepAliveInterval),Config.KeepAliveInterval}
+            ,{nameof(Config.KeepAliveTimeout),Config.KeepAliveTimeout}
+            ,{nameof(Config.SlowSubscriber),Config.SlowSubscriber}
            //,{HttpSocket.HttpSocketClient.UpdateReceivedOnKey,HttpSocket.HttpSocketClient.UpdateReceivedOnType.Payload}
         };
         if (opts.Is(HttpSocket.HttpSocketClient.CheckStateDelayConfigKey)) config[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey] = opts[HttpSocket.HttpSocketClient.CheckStateDelayConfigKey];
