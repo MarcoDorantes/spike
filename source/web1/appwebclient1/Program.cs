@@ -15,36 +15,49 @@ using System.ComponentModel.DataAnnotations;
     var uri = appsettings["uri"];
     var result = await reader.GetString(uri, CancellationToken.None);
     WriteLine(result);
-    return;
 }
 await getstring();*/
 
-var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-HttpPayloadRequest.HttpPayloadReader reader = new();
-var prefix = appsettings["prefix"];
-var suffix = appsettings["suffix"];
-List<Dictionary<string, JsonElement>> results = [];
-do
+async Task getquote()
 {
-    var uri = prefix + suffix;
-    var result = await reader.GetCatalog<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
-    results.Add(result);
-    WriteLine(string.Join('|', result.Select(k => k.Key)));
-    if (result.ContainsKey("next_url"))
-    {
-        prefix = result["next_url"].GetString();
-        //WriteLine(uri);
-    }
-    else { WriteLine("no next_url"); break; }
-} while (true);
-WriteLine($"results = {results.Count}\nstatus = {string.Join('|', results.Select(k => k["status"].GetString()).Distinct())}");
-var r = results.First();
-//WriteLine(r["results"].ValueKind);
-var rr = JsonSerializer.Deserialize<Dictionary<string, object>[]>(r["results"]);
-var symbol = rr.First();
-WriteLine(string.Join('|', symbol.Select(k => $"{k.Key}:{k.Value}")));
-//WriteLine(r["results"]);
+    var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+    HttpPayloadRequest.HttpPayloadReader reader = new();
+    var uri = appsettings["uri"];
+    var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+    var quote = JsonSerializer.Deserialize<Dictionary<string, object>>(result["results"]);
+    WriteLine(string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}")));
+}
+await getquote();
 
+/*async Task getcatalog()
+{
+    var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+    HttpPayloadRequest.HttpPayloadReader reader = new();
+    var prefix = appsettings["prefix"];
+    var suffix = appsettings["suffix"];
+    List<Dictionary<string, JsonElement>> results = [];
+    do
+    {
+        var uri = prefix + suffix;
+        var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+        results.Add(result);
+        WriteLine(string.Join('|', result.Select(k => k.Key)));
+        if (result.ContainsKey("next_url"))
+        {
+            prefix = result["next_url"].GetString();
+            //WriteLine(uri);
+        }
+        else { WriteLine("no next_url"); break; }
+    } while (true);
+    WriteLine($"results = {results.Count}\nstatus = {string.Join('|', results.Select(k => k["status"].GetString()).Distinct())}");
+    var r = results.First();
+    //WriteLine(r["results"].ValueKind);
+    var rr = JsonSerializer.Deserialize<Dictionary<string, object>[]>(r["results"]);
+    var map = rr.First();
+    WriteLine(string.Join('|', map.Select(k => $"{k.Key}:{k.Value}")));
+    //WriteLine(r["results"]);
+}
+await getcatalog();*/
 /*
 https://devblogs.microsoft.com/dotnet/dotnet9-openapi
 How to process output from a REST API in net9.0?

@@ -16,7 +16,7 @@ public class HttpPayloadReader
         return await response.Content.ReadAsStringAsync(cancel);
     }
 
-    public async Task<T> GetCatalog<T>(string uri, CancellationToken cancel)
+    public async Task<T> GetObject<T>(string uri, CancellationToken cancel)
     {
         using HttpClient client = new();
         /*var jsonOptions = new JsonSerializerOptions
