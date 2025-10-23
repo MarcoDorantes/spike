@@ -1,13 +1,50 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Linq;
+using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using static System.Console;
+using System.ComponentModel.DataAnnotations;
+
+/*async Task getstring()
+{
+    var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+    HttpPayloadRequest.HttpPayloadReader reader = new();
+    var uri = appsettings["uri"];
+    var result = await reader.GetString(uri, CancellationToken.None);
+    WriteLine(result);
+    return;
+}
+await getstring();*/
 
 var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-HttpPayloadRequest.HttpPayloadReader c = new();
-var uri = appsettings["uri"];
-var result = await c.GetString(uri, CancellationToken.None);
-WriteLine(result);
+HttpPayloadRequest.HttpPayloadReader reader = new();
+var prefix = appsettings["prefix"];
+var suffix = appsettings["suffix"];
+List<Dictionary<string, JsonElement>> results = [];
+do
+{
+    var uri = prefix + suffix;
+    var result = await reader.GetCatalog<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+    results.Add(result);
+    WriteLine(string.Join('|', result.Select(k => k.Key)));
+    if (result.ContainsKey("next_url"))
+    {
+        prefix = result["next_url"].GetString();
+        //WriteLine(uri);
+    }
+    else { WriteLine("no next_url"); break; }
+} while (true);
+WriteLine($"results = {results.Count}\nstatus = {string.Join('|', results.Select(k => k["status"].GetString()).Distinct())}");
+var r = results.First();
+//WriteLine(r["results"].ValueKind);
+var rr = JsonSerializer.Deserialize<Dictionary<string, object>[]>(r["results"]);
+var symbol = rr.First();
+WriteLine(string.Join('|', symbol.Select(k => $"{k.Key}:{k.Value}")));
+//WriteLine(r["results"]);
+
 /*
 https://devblogs.microsoft.com/dotnet/dotnet9-openapi
 How to process output from a REST API in net9.0?
