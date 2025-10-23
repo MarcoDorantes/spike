@@ -12,7 +12,7 @@ static class MessageProvider
         var chat = args?.Any(x=>x=="chat");
         if(chat == false && message?.Contains("action") == true)
         {
-            FileInfo payloads = new("payload.txt");
+            FileInfo payloads = new("payload.log");
             if(payloads.Exists) result.AddRange(System.IO.File.ReadAllLines(payloads.FullName));
             else WriteLine($"Payloads NOT FOUND ({payloads.FullName}).");
         }

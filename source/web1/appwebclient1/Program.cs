@@ -24,11 +24,19 @@ async Task getquote()
     HttpPayloadRequest.HttpPayloadReader reader = new();
     var uri = appsettings["uri"];
     var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+    var status = result["status"].GetString();
     var quote = JsonSerializer.Deserialize<Dictionary<string, object>>(result["results"]);
-    WriteLine(string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}")));
+    WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))}");
 }
-await getquote();
-
+//await getquote();
+CancellationTokenSource cancel = new();
+async Task poll(CancellationToken cancel)
+{
+    while(!cancel.IsCancellationRequested) { await getquote(); await Task.Delay(1000); }
+}
+_ = poll(cancel.Token);
+ReadLine();
+cancel.Cancel();
 /*async Task getcatalog()
 {
     var appsettings = System.Configuration.ConfigurationManager.AppSettings;
