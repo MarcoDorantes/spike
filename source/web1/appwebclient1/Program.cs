@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using static System.Console;
-using System.ComponentModel.DataAnnotations;
 
+void log(Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
 /*async Task getstring()
 {
     var appsettings = System.Configuration.ConfigurationManager.AppSettings;
@@ -17,7 +18,7 @@ using System.ComponentModel.DataAnnotations;
     WriteLine(result);
 }
 await getstring();*/
-
+/*
 async Task getquote()
 {
     var appsettings = System.Configuration.ConfigurationManager.AppSettings;
@@ -28,16 +29,19 @@ async Task getquote()
     var quote = JsonSerializer.Deserialize<Dictionary<string, object>>(result["results"]);
     WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))}");
 }
-//await getquote();
+//try { await getquote(); } catch (Exception ex) { log(ex); }
 CancellationTokenSource cancel = new();
 async Task poll(CancellationToken cancel)
 {
-    while(!cancel.IsCancellationRequested) { await getquote(); await Task.Delay(1000); }
+    while(!cancel.IsCancellationRequested)
+    try { await getquote(); await Task.Delay(1000); } catch (Exception ex) { log(ex); }
 }
 _ = poll(cancel.Token);
 ReadLine();
 cancel.Cancel();
-/*async Task getcatalog()
+*/
+
+async Task getcatalog()
 {
     var appsettings = System.Configuration.ConfigurationManager.AppSettings;
     HttpPayloadRequest.HttpPayloadReader reader = new();
@@ -49,7 +53,7 @@ cancel.Cancel();
         var uri = prefix + suffix;
         var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
         results.Add(result);
-        WriteLine(string.Join('|', result.Select(k => k.Key)));
+        WriteLine(string.Join('|', result.Select(k => k.Key == "status" || k.Key == "count" ? $"{k.Key}={k.Value}" : k.Key)));
         if (result.ContainsKey("next_url"))
         {
             prefix = result["next_url"].GetString();
@@ -57,15 +61,29 @@ cancel.Cancel();
         }
         else { WriteLine("no next_url"); break; }
     } while (true);
-    WriteLine($"results = {results.Count}\nstatus = {string.Join('|', results.Select(k => k["status"].GetString()).Distinct())}");
+    var ticker_results = results.Aggregate(new List<Dictionary<string, object>[]>(), (whole, next) => { whole.Add(JsonSerializer.Deserialize<Dictionary<string, object>[]>(next["results"])); return whole; });
+    var tickers = ticker_results.SelectMany(ticket_result => ticket_result.Select(ticker => ticker));
+    var found_keys = tickers.SelectMany(t => t.Keys).Distinct();
+
+    WriteLine(string.Join(',', found_keys));
+    tickers.Aggregate(Out, (whole, next) => { whole.WriteLine(string.Join(',', next.Values)); return whole; });
+
+    WriteLine($"\nresults = {results.Count}\nstatus = {string.Join('|', results.Select(k => k["status"].GetString()).Distinct())}");
+
     var r = results.First();
     //WriteLine(r["results"].ValueKind);
     var rr = JsonSerializer.Deserialize<Dictionary<string, object>[]>(r["results"]);
     var map = rr.First();
     WriteLine(string.Join('|', map.Select(k => $"{k.Key}:{k.Value}")));
-    //WriteLine(r["results"]);
+
+    WriteLine($"Keys found ({map.Keys.Count}:{found_keys.Count()}): {string.Join('|', found_keys)}");
+
+    WriteLine(ticker_results.Count);
+    WriteLine(ticker_results.Sum(a => a.Length));
+    WriteLine(tickers.Count());
 }
-await getcatalog();*/
+try { await getcatalog(); } catch (Exception ex) { log(ex); }
+
 /*
 https://devblogs.microsoft.com/dotnet/dotnet9-openapi
 How to process output from a REST API in net9.0?
