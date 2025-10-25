@@ -8,82 +8,112 @@ using System.Collections.Generic;
 
 using static System.Console;
 
-void log(Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
-/*async Task getstring()
+class ConsoleHost(System.IO.TextWriter Writer) : HttpPayloadRequest.ISourceProcessorHost
 {
-    var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-    HttpPayloadRequest.HttpPayloadReader reader = new();
-    var uri = appsettings["uri"];
-    var result = await reader.GetString(uri, CancellationToken.None);
-    WriteLine(result);
+    void HttpPayloadRequest.ISourceProcessorHost.Information(string information) => Writer.WriteLine(information);
+    void HttpPayloadRequest.ISourceProcessorHost.Warning(string details_for_diagnostic) => Writer.WriteLine(details_for_diagnostic);
+    void HttpPayloadRequest.ISourceProcessorHost.Error(string details_for_diagnostic) => Writer.WriteLine(details_for_diagnostic);
+    void HttpPayloadRequest.ISourceProcessorHost.Error(Exception exception, string details_for_diagnostic) => Writer.WriteLine($"{exception.GetType().FullName}: {exception.Message} ({details_for_diagnostic})");
+    void HttpPayloadRequest.ISourceProcessorHost.NotifyState(string state) => Writer.WriteLine(state);
+    void HttpPayloadRequest.ISourceProcessorHost.StartTopicSubscription(string name, string vpnName, string host, string userName, string password, string sourceTopicPath, Action<IDictionary<string, object>> onmessage, string payloadFormat /*= "JSON"*/) => throw new NotImplementedException();
+    void HttpPayloadRequest.ISourceProcessorHost.SendNotification(string subject, string[] lines, IList<KeyValuePair<string, string>> attachs /*= null*/, bool error /*= false*/, string[] to /*= null*/, System.Text.Encoding encoding /*= null*/) => throw new NotImplementedException();
+    void HttpPayloadRequest.ISourceProcessorHost.SendNotification(string subject, string[] lines, IList<KeyValuePair<string, byte[]>> attachs /*= null*/, bool error /*= false*/, string[] to /*= null*/) => throw new NotImplementedException();
+    void HttpPayloadRequest.ISourceProcessorHost.UpdateReceivedCount(uint received_count) => Writer.WriteLine($"{nameof(HttpPayloadRequest.ISourceProcessorHost.UpdateReceivedCount)}: {received_count}");
 }
-await getstring();*/
-/*
-async Task getquote()
-{
-    var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-    HttpPayloadRequest.HttpPayloadReader reader = new();
-    var uri = appsettings["uri"];
-    var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
-    var status = result["status"].GetString();
-    var quote = JsonSerializer.Deserialize<Dictionary<string, object>>(result["results"]);
-    WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))}");
-}
-//try { await getquote(); } catch (Exception ex) { log(ex); }
-CancellationTokenSource cancel = new();
-async Task poll(CancellationToken cancel)
-{
-    while(!cancel.IsCancellationRequested)
-    try { await getquote(); await Task.Delay(1000); } catch (Exception ex) { log(ex); }
-}
-_ = poll(cancel.Token);
-ReadLine();
-cancel.Cancel();
-*/
 
-async Task getcatalog()
+class Program
 {
-    var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-    HttpPayloadRequest.HttpPayloadReader reader = new();
-    var prefix = appsettings["prefix"];
-    var suffix = appsettings["suffix"];
-    List<Dictionary<string, JsonElement>> results = [];
-    do
+    static void log(Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
+    static async Task Main(string[] args)
     {
-        var uri = prefix + suffix;
-        var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
-        results.Add(result);
-        WriteLine(string.Join('|', result.Select(k => k.Key == "status" || k.Key == "count" ? $"{k.Key}={k.Value}" : k.Key)));
-        if (result.ContainsKey("next_url"))
+        nutility.Switch opts = new(args);
+        /*
+        if (opts.Is("client")) { LaunchClients(opts); }
+        else
         {
-            prefix = result["next_url"].GetString();
-            //WriteLine(uri);
-        }
-        else { WriteLine("no next_url"); break; }
-    } while (true);
-    var ticker_results = results.Aggregate(new List<Dictionary<string, object>[]>(), (whole, next) => { whole.Add(JsonSerializer.Deserialize<Dictionary<string, object>[]>(next["results"])); return whole; });
-    var tickers = ticker_results.SelectMany(ticket_result => ticket_result.Select(ticker => ticker));
-    var found_keys = tickers.SelectMany(t => t.Keys).Distinct();
+            var batch = opts.Is("batch");
+            if (!batch) WriteLine("Console WebSocket Client");
+            await ConnectToServerAsync(opts, batch);
+        } */
+        if (opts.Is("getstring")) await getstring();
+        else if (opts.Is("getquotes")) await getquotes();
+        else if(opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
+    }
+    static async Task getstring()
+    {
+        var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+        HttpPayloadRequest.HttpPayloadReader reader = new();
+        var uri = appsettings["uri"];
+        var result = await reader.GetString(uri, CancellationToken.None);
+        WriteLine(result);
+    }
+    static async Task getquote()
+    {
+        var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+        HttpPayloadRequest.HttpPayloadReader reader = new();
+        var uri = appsettings["uri"];
+        var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+        var status = result["status"].GetString();
+        var quote = JsonSerializer.Deserialize<Dictionary<string, object>>(result["results"]);
+        var t = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse($"{quote["t"]}") / 1_000_000L).ToLocalTime();
+        WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))} {t:o}");
+    }
+    static async Task poll_quotes(CancellationToken cancel)
+    {
+        while (!cancel.IsCancellationRequested)
+            try { await getquote(); await Task.Delay(1000); } catch (Exception ex) { log(ex); }
+    }
+    static async Task getquotes()
+    {
+        //try { await getquote(); } catch (Exception ex) { log(ex); }
+        CancellationTokenSource cancel = new();
+        _ = poll_quotes(cancel.Token);
+        ReadLine();
+        cancel.Cancel();
+        await Task.Delay(50);
+    }
+    static async Task getcatalog()
+    {
+        var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+        HttpPayloadRequest.HttpPayloadReader reader = new();
+        var prefix = appsettings["prefix"];
+        var suffix = appsettings["suffix"];
+        List<Dictionary<string, JsonElement>> results = [];
+        do
+        {
+            var uri = prefix + suffix;
+            var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+            results.Add(result);
+            WriteLine(string.Join('|', result.Select(k => k.Key == "status" || k.Key == "count" ? $"{k.Key}={k.Value}" : k.Key)));
+            if (result.ContainsKey("next_url"))
+            {
+                prefix = result["next_url"].GetString();
+                //WriteLine(uri);
+            }
+            else { WriteLine("no next_url"); break; }
+        } while (true);
+        var ticker_results = results.Aggregate(new List<Dictionary<string, object>[]>(), (whole, next) => { whole.Add(JsonSerializer.Deserialize<Dictionary<string, object>[]>(next["results"])); return whole; });
+        var tickers = ticker_results.SelectMany(ticket_result => ticket_result.Select(ticker => ticker));
+        var found_keys = tickers.SelectMany(t => t.Keys).Distinct();
 
-    WriteLine(string.Join(',', found_keys));
-    tickers.Aggregate(Out, (whole, next) => { whole.WriteLine(string.Join(',', next.Values)); return whole; });
+        WriteLine(string.Join(',', found_keys));
+        tickers.Aggregate(Out, (whole, next) => { whole.WriteLine(string.Join(',', next.Values)); return whole; });
 
-    WriteLine($"\nresults = {results.Count}\nstatus = {string.Join('|', results.Select(k => k["status"].GetString()).Distinct())}");
+        WriteLine($"\nresults = {results.Count}\nstatus = {string.Join('|', results.Select(k => k["status"].GetString()).Distinct())}");
 
-    var r = results.First();
-    //WriteLine(r["results"].ValueKind);
-    var rr = JsonSerializer.Deserialize<Dictionary<string, object>[]>(r["results"]);
-    var map = rr.First();
-    WriteLine(string.Join('|', map.Select(k => $"{k.Key}:{k.Value}")));
+        var r = results.First();
+        //WriteLine(r["results"].ValueKind);
+        var rr = JsonSerializer.Deserialize<Dictionary<string, object>[]>(r["results"]);
+        var map = rr.First();
+        WriteLine(string.Join('|', map.Select(k => $"{k.Key}:{k.Value}")));
 
-    WriteLine($"Keys found ({map.Keys.Count}:{found_keys.Count()}): {string.Join('|', found_keys)}");
+        WriteLine($"Keys found ({map.Keys.Count}:{found_keys.Count()}): {string.Join('|', found_keys)}");
 
-    WriteLine(ticker_results.Count);
-    WriteLine(ticker_results.Sum(a => a.Length));
-    WriteLine(tickers.Count());
+        WriteLine(ticker_results.Count);
+        WriteLine(ticker_results.Sum(a => a.Length));
+        WriteLine(tickers.Count());
+    }
 }
-try { await getcatalog(); } catch (Exception ex) { log(ex); }
-
 /*
 https://devblogs.microsoft.com/dotnet/dotnet9-openapi
 How to process output from a REST API in net9.0?
