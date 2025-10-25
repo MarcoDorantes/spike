@@ -24,20 +24,60 @@ class ConsoleHost(System.IO.TextWriter Writer) : HttpPayloadRequest.ISourceProce
 class Program
 {
     static void log(Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
+    static ulong received_onnext_count;
     static async Task Main(string[] args)
     {
         nutility.Switch opts = new(args);
-        /*
-        if (opts.Is("client")) { LaunchClients(opts); }
-        else
-        {
-            var batch = opts.Is("batch");
-            if (!batch) WriteLine("Console WebSocket Client");
-            await ConnectToServerAsync(opts, batch);
-        } */
+        if (opts.Is("reader")) { LaunchReaders(opts); }
         if (opts.Is("getstring")) await getstring();
         else if (opts.Is("getquotes")) await getquotes();
-        else if(opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
+        else if (opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
+    }
+    static void LaunchReaders(nutility.Switch opts)
+    {
+        using CancellationTokenSource cancel = new();
+        List<HttpPayloadRequest.HttpPayloadReader> readers = [];
+        try
+        {
+            readers.Add(LaunchReader("1", cancel.Token, opts));
+            ReadLine();
+            cancel.Cancel();
+            readers.ForEach(c => c.Stop());
+            readers.ForEach(c => c.Dispose());
+            Thread.Sleep(3_000);
+        }
+        finally
+        {
+            readers.ForEach(c => c.Dispose());
+        }
+    }
+    static HttpPayloadRequest.HttpPayloadReader LaunchReader(string id, CancellationToken cancel, nutility.Switch opts)
+    {
+        //Add all configuration keys to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
+        Dictionary<string, object> config = new()
+        {
+        };
+        ConsoleHost host = new(Out);
+        HttpPayloadRequest.HttpPayloadReader reader = new()
+        {
+            ID = id,
+            SourceHost = host,
+            Configuration = config,
+            Cancellation = cancel,
+            OnNext = OnNext
+        };
+        reader.Setup();
+        reader.Start();
+        return reader;
+    }
+    static void OnNext(IDictionary<string, object> message)
+    {
+        ++received_onnext_count;
+        // var payload = message[HttpSocket.HttpSocketClient.MessagePayloadKey] as byte[];
+        // var keys = $"{string.Join('|', message.Where(k => k.Key != HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
+        // var payload_detail = Config.PayloadLogEnabled ? $" ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}" : "";
+        var payload_detail = "";
+        WriteLine($"Msg#{received_onnext_count}{payload_detail}");
     }
     static async Task getstring()
     {
