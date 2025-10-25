@@ -5,13 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Net.Http;
 using System.Threading;
-//using System.Text.Json;
+using System.Text.Json;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
 public class HttpPayloadReader : IDisposable
 {
+    public const string MessagePayloadKey = $"{nameof(MessagePayloadKey)}";
+    public const string DestinationNameKey = $"{nameof(DestinationNameKey)}";
+
     public ISourceProcessorHost SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
     public CancellationToken Cancellation { get; set; }
@@ -20,6 +23,7 @@ public class HttpPayloadReader : IDisposable
     public string ID { get; set; }
     public bool Running { get; private set; }
     public uint ReceivedPayloadCount { get; private set; }
+    public string URL { get; private set; }
 
     public HttpPayloadReader()
     {
@@ -88,9 +92,12 @@ public class HttpPayloadReader : IDisposable
             SlowSubscriber = slow;
         }
         SourceHost.Information($"{nameof(SlowSubscriber)}: {SlowSubscriber}");*/
+
+        URL = $"{Configuration["uri"]}";
     }
     public void Start()
     {
+        _ = InvokeHttpRequestAsyncGuarded();
         /*_ = ConnectToServerAsyncGuarded(Address, InitialMessage, SubscribePayload);
         watch = Stopwatch.StartNew();
         transit_collection = CreateBlockingCollection();
@@ -103,6 +110,10 @@ public class HttpPayloadReader : IDisposable
         if (!Running) return;
         try
         {
+            StringBuilder logline = new();
+            logline.AppendLine($"\n{nameof(ReceivedPayloadCount)}:\t{ReceivedPayloadCount,9:N0} msgs");
+            SourceHost.Information($"{logline}");
+
             /*_ = DisconnectFromServerAsync();
             if (Running) transit_collection.CompleteAdding();
             watch?.Stop();
@@ -121,7 +132,64 @@ public class HttpPayloadReader : IDisposable
         }
     }
 
-    public async Task<string> GetString(string uri, CancellationToken cancel)
+    private async Task InvokeHttpRequestAsyncGuarded()
+    {
+        do
+        {
+            try
+            {
+                await InvokeHttpRequestAsync();
+                break;
+            }
+            catch (System.Threading.Tasks.TaskCanceledException exception)
+            {
+                SourceHost.Error($"{ID} Connect exception: {exception.Message}");
+                /*
+                Exception ex = exception;
+                StringBuilder logline = new();
+                for (int level = 0; ex != null; ex = ex.InnerException, ++level)
+                {
+                    logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
+                }
+                SourceHost.Error($"{ID} Connect exception:\n{logline}");
+                */
+                break;
+            }
+            catch (Exception exception)
+            {
+                Exception ex = exception;
+                StringBuilder logline = new();
+                for (int level = 0; ex != null; ex = ex.InnerException, ++level)
+                {
+                    logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
+                }
+                SourceHost.Error($"{ID} Connect exception:\n{logline}");
+            }
+        } while (true);
+    }
+    private async Task InvokeHttpRequestAsync()
+    {
+        while (!Cancellation.IsCancellationRequested)
+        {
+            var quote = await getquote(URL);
+            ++ReceivedPayloadCount;
+            OnNext(quote);
+            await Task.Delay(2000);
+        }
+    }
+    private async Task<IDictionary<string, object>> getquote(string uri)
+    {
+        var result = await GetObject<Dictionary<string, JsonElement>>(uri, Cancellation);
+        var status = result["status"].GetString();
+        var quote = JsonSerializer.Deserialize<Dictionary<string, object>>(result["results"]);
+        var t = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse($"{quote["t"]}") / 1_000_000L).ToLocalTime();
+        quote.Add("status", status);
+        quote.Add("LOCALTIMESTAMP", t);
+        return quote;
+    }
+
+    #region Access to HttpClient
+    public static async Task<string> GetString(string uri, CancellationToken cancel)
     {
         using HttpClient client = new();
         var response = await client.GetAsync(uri, cancel);
@@ -129,7 +197,7 @@ public class HttpPayloadReader : IDisposable
         return await response.Content.ReadAsStringAsync(cancel);
     }
 
-    public async Task<T> GetObject<T>(string uri, CancellationToken cancel)
+    public static async Task<T> GetObject<T>(string uri, CancellationToken cancel)
     {
         using HttpClient client = new();
         /*var jsonOptions = new JsonSerializerOptions
@@ -139,7 +207,7 @@ public class HttpPayloadReader : IDisposable
         };*/
         return await client.GetFromJsonAsync<T>(uri, /*jsonOptions,*/ cancel);
     }
-
+    #endregion
     #region IDisposable support
     private bool disposedValue;
     protected virtual void Dispose(bool disposing)

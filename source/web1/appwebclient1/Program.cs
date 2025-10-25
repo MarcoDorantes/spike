@@ -54,8 +54,10 @@ class Program
     static HttpPayloadRequest.HttpPayloadReader LaunchReader(string id, CancellationToken cancel, nutility.Switch opts)
     {
         //Add all configuration keys to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
+        var appsettings = System.Configuration.ConfigurationManager.AppSettings;
         Dictionary<string, object> config = new()
         {
+            {"uri",appsettings["uri"]}
         };
         ConsoleHost host = new(Out);
         HttpPayloadRequest.HttpPayloadReader reader = new()
@@ -73,26 +75,28 @@ class Program
     static void OnNext(IDictionary<string, object> message)
     {
         ++received_onnext_count;
-        // var payload = message[HttpSocket.HttpSocketClient.MessagePayloadKey] as byte[];
+        // var payload = message[HttpPayloadRequest.HttpPayloadReader.MessagePayloadKey] as byte[];
+
         // var keys = $"{string.Join('|', message.Where(k => k.Key != HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
         // var payload_detail = Config.PayloadLogEnabled ? $" ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}" : "";
-        var payload_detail = "";
+        var payload_detail = $" {string.Join('|', message.Select(k => $"{k.Key}:{k.Value}"))}";
         WriteLine($"Msg#{received_onnext_count}{payload_detail}");
+        //WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))} {t:o}");
     }
     static async Task getstring()
     {
         var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-        HttpPayloadRequest.HttpPayloadReader reader = new();
+        //HttpPayloadRequest.HttpPayloadReader reader = new();
         var uri = appsettings["uri"];
-        var result = await reader.GetString(uri, CancellationToken.None);
+        var result = await HttpPayloadRequest.HttpPayloadReader.GetString(uri, CancellationToken.None);
         WriteLine(result);
     }
     static async Task getquote()
     {
         var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-        HttpPayloadRequest.HttpPayloadReader reader = new();
+        //HttpPayloadRequest.HttpPayloadReader reader = new();
         var uri = appsettings["uri"];
-        var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+        var result = await HttpPayloadRequest.HttpPayloadReader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
         var status = result["status"].GetString();
         var quote = JsonSerializer.Deserialize<Dictionary<string, object>>(result["results"]);
         var t = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse($"{quote["t"]}") / 1_000_000L).ToLocalTime();
@@ -115,14 +119,14 @@ class Program
     static async Task getcatalog()
     {
         var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-        HttpPayloadRequest.HttpPayloadReader reader = new();
+        //HttpPayloadRequest.HttpPayloadReader reader = new();
         var prefix = appsettings["prefix"];
         var suffix = appsettings["suffix"];
         List<Dictionary<string, JsonElement>> results = [];
         do
         {
             var uri = prefix + suffix;
-            var result = await reader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+            var result = await HttpPayloadRequest.HttpPayloadReader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
             results.Add(result);
             WriteLine(string.Join('|', result.Select(k => k.Key == "status" || k.Key == "count" ? $"{k.Key}={k.Value}" : k.Key)));
             if (result.ContainsKey("next_url"))
