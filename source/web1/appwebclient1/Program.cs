@@ -32,6 +32,7 @@ class Program
         if (opts.Is("getstring")) await getstring();
         else if (opts.Is("getquotes")) await getquotes();
         else if (opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
+        else if (opts.Is("snap")) try { await getsnap(); } catch (Exception ex) { log(ex); }
     }
     static void LaunchReaders(nutility.Switch opts)
     {
@@ -156,6 +157,51 @@ class Program
         WriteLine(ticker_results.Count);
         WriteLine(ticker_results.Sum(a => a.Length));
         WriteLine(tickers.Count());
+    }
+    static async Task getsnap()
+    {
+        var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+        var uri = appsettings["snap"];
+        var result = await HttpPayloadRequest.HttpPayloadReader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+        WriteLine(result["status"]);
+        /*var ticker = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(result["ticker"]);
+        WriteLine(ticker["ticker"].GetString());
+        foreach (JsonProperty p in result["ticker"].EnumerateObject())
+        {
+            WriteLine($"{p.Name} ({p.Value.ValueKind})");
+        }
+        var values = result["ticker"].EnumerateObject().Where(p => p.Value.ValueKind != JsonValueKind.Object && p.Value.ValueKind != JsonValueKind.Array);
+        var maps = result["ticker"].EnumerateObject().Where(p => p.Value.ValueKind == JsonValueKind.Object);
+        var arrays = result["ticker"].EnumerateObject().Where(p => p.Value.ValueKind == JsonValueKind.Array);
+        WriteLine();
+        foreach (var p in values) WriteLine($"{p.Name}:" + $"{p.Value}");
+        foreach (var p in maps)
+        {
+            var m = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(p.Value);
+            WriteLine(string.Join('|', m.Select(k => $"{k.Key}:{k.Value}")));
+        }*/
+        WriteLine();
+        Dictionary<string, object> flat = result["ticker"].EnumerateObject().Aggregate(new Dictionary<string, object>(), (whole, next) =>
+        {
+            switch (next.Value.ValueKind)
+            {
+                case JsonValueKind.Array:
+                    whole[next.Name] = string.Join(' ', next.Value.EnumerateArray());
+                    break;
+                case JsonValueKind.Object:
+                    next.Value.EnumerateObject().Aggregate(whole, (w, n) =>
+                    {
+                        w[$"{next.Name} ({n.Name})"] = n.Value.ValueKind == JsonValueKind.Array ? string.Join(' ', n.Value.EnumerateArray()) : $"{n.Value}";
+                        return w;
+                    });
+                    break;
+                default:
+                    whole[next.Name] = $"{next.Value}";
+                    break;
+            }
+            return whole;
+        });
+        WriteLine(string.Join('\n', flat.Select(k => $"{k.Key}:{k.Value}")));
     }
 }
 /*
