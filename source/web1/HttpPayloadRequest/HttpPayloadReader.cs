@@ -171,9 +171,11 @@ public class HttpPayloadReader : IDisposable
     {
         while (!Cancellation.IsCancellationRequested)
         {
-            var quote = await getquote(URL);
+            //var next = await getquote(URL);
+            var next = await getsnap(URL);
+
             ++ReceivedPayloadCount;
-            OnNext(quote);
+            OnNext(next);
             await Task.Delay(2000);
         }
     }
@@ -186,6 +188,36 @@ public class HttpPayloadReader : IDisposable
         quote.Add("status", status);
         quote.Add("LOCALTIMESTAMP", t);
         return quote;
+    }
+    private async Task<IDictionary<string, object>> getsnap(string uri)
+    {
+        var result = await GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+        var status = result["status"].GetString();
+        Dictionary<string, object> flat = result["ticker"].EnumerateObject().Aggregate(new Dictionary<string, object>(), (whole, next) =>
+        {
+            switch (next.Value.ValueKind)
+            {
+                case JsonValueKind.Array:
+                    whole[next.Name] = string.Join(' ', next.Value.EnumerateArray());
+                    break;
+                case JsonValueKind.Object:
+                    next.Value.EnumerateObject().Aggregate(whole, (w, n) =>
+                    {
+                        w[$"{next.Name} ({n.Name})"] = n.Value.ValueKind == JsonValueKind.Array ? string.Join(' ', n.Value.EnumerateArray()) : $"{n.Value}";
+                        return w;
+                    });
+                    break;
+                default:
+                    whole[next.Name] = $"{next.Value}";
+                    break;
+            }
+            return whole;
+        });
+        //updated:1761350400003149384
+        var updated = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse($"{flat["updated"]}") / 1_000_000L).ToLocalTime();
+        flat.Add("status", status);
+        flat.Add("LOCALTIMESTAMP", updated);
+        return flat;
     }
 
     #region Access to HttpClient

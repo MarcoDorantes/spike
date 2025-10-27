@@ -29,7 +29,7 @@ class Program
     {
         nutility.Switch opts = new(args);
         if (opts.Is("reader")) { LaunchReaders(opts); }
-        if (opts.Is("getstring")) await getstring();
+        if (opts.Is("getstring")) await getstring(opts);
         else if (opts.Is("getquotes")) await getquotes();
         else if (opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
         else if (opts.Is("snap")) try { await getsnap(); } catch (Exception ex) { log(ex); }
@@ -55,10 +55,13 @@ class Program
     static HttpPayloadRequest.HttpPayloadReader LaunchReader(string id, CancellationToken cancel, nutility.Switch opts)
     {
         //Add all configuration keys to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
+        var key = "uri";
+        if (opts.Is("key")) key = opts["key"];
         var appsettings = System.Configuration.ConfigurationManager.AppSettings;
+        var uri = appsettings[key];
         Dictionary<string, object> config = new()
         {
-            {"uri",appsettings["uri"]}
+            {"uri",uri}
         };
         ConsoleHost host = new(Out);
         HttpPayloadRequest.HttpPayloadReader reader = new()
@@ -84,11 +87,13 @@ class Program
         WriteLine($"Msg#{received_onnext_count}{payload_detail}");
         //WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))} {t:o}");
     }
-    static async Task getstring()
+    static async Task getstring(nutility.Switch opts)
     {
         var appsettings = System.Configuration.ConfigurationManager.AppSettings;
         //HttpPayloadRequest.HttpPayloadReader reader = new();
-        var uri = appsettings["uri"];
+        var key = "uri";
+        if (opts.Is("key")) key = opts["key"];
+        var uri = appsettings[key];
         var result = await HttpPayloadRequest.HttpPayloadReader.GetString(uri, CancellationToken.None);
         WriteLine(result);
     }
@@ -163,7 +168,8 @@ class Program
         var appsettings = System.Configuration.ConfigurationManager.AppSettings;
         var uri = appsettings["snap"];
         var result = await HttpPayloadRequest.HttpPayloadReader.GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
-        WriteLine(result["status"]);
+        var status = result["status"].GetString();
+        WriteLine(status);
         /*var ticker = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(result["ticker"]);
         WriteLine(ticker["ticker"].GetString());
         foreach (JsonProperty p in result["ticker"].EnumerateObject())
@@ -201,6 +207,11 @@ class Program
             }
             return whole;
         });
+        var updated = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse($"{flat["updated"]}") / 1_000_000L).ToLocalTime();
+        var qt = flat.TryGetValue("lastQuote (t)",out object _t) ? $"{DateTimeOffset.FromUnixTimeMilliseconds(long.Parse($"{_t}") / 1_000_000L).ToLocalTime():o}" : "";
+        flat.Add("status", status);
+        flat.Add("LOCALTIMESTAMP", updated);
+        flat.Add("QUOTELOCALTIMESTAMP", qt);
         WriteLine(string.Join('\n', flat.Select(k => $"{k.Key}:{k.Value}")));
     }
 }
