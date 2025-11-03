@@ -12,8 +12,12 @@ using System.Collections.Generic;
 
 public class HttpPayloadReader : IDisposable
 {
-    public const string MessagePayloadKey = $"{nameof(MessagePayloadKey)}";
-    public const string DestinationNameKey = $"{nameof(DestinationNameKey)}";
+    public const string MessagePayloadKey = nameof(MessagePayloadKey);
+    public const string DestinationNameKey = nameof(DestinationNameKey);
+    public const string URLKey = nameof(URLValue);
+    public const string DestinationNamePrefixKey = nameof(DestinationNamePrefixValue);
+    public const string BusinessEntityIDTagKey = nameof(BusinessEntityIDTagValue);//"T"
+    public const string BusinessEntityIDTagValueDefault = nameof(BusinessEntityIDTagValueDefault);
 
     public ISourceProcessorHost SourceHost { get; set; }
     public IDictionary<string, object> Configuration { get; set; }
@@ -23,7 +27,9 @@ public class HttpPayloadReader : IDisposable
     public string ID { get; set; }
     public bool Running { get; private set; }
     public uint ReceivedPayloadCount { get; private set; }
-    public string URL { get; private set; }
+    public string URLValue { get; private set; }
+    public string DestinationNamePrefixValue { get; private set; }// = "dat/GBM/R/L2/MEX/E/BMV/";
+    public string BusinessEntityIDTagValue { get; private set; }
 
     public HttpPayloadReader()
     {
@@ -33,6 +39,28 @@ public class HttpPayloadReader : IDisposable
     public void Setup()
     {
         ReceivedPayloadCount = 0U;
+
+        URLValue = null;
+        if (Configuration.TryGetValue(URLKey, out object _url) && !string.IsNullOrWhiteSpace($"{_url}"))
+        {
+            URLValue = $"{_url}";
+        }
+        SourceHost.Information($"{URLKey}: {URLValue}");
+
+        DestinationNamePrefixValue = null;
+        if (Configuration.TryGetValue(DestinationNamePrefixKey, out object _prefix) && !string.IsNullOrWhiteSpace($"{_prefix}"))
+        {
+            DestinationNamePrefixValue = $"{_prefix}";
+        }
+        SourceHost.Information($"{DestinationNamePrefixKey}: {DestinationNamePrefixValue}");
+
+        BusinessEntityIDTagValue = null;
+        if (Configuration.TryGetValue(BusinessEntityIDTagKey, out object _symboltag) && !string.IsNullOrWhiteSpace($"{_symboltag}"))
+        {
+            BusinessEntityIDTagValue = $"{_symboltag}";
+        }
+        SourceHost.Information($"{BusinessEntityIDTagKey}: {BusinessEntityIDTagValue}");
+
         /*Previous_ReceivedPayloadCount = 0U;
         ReceivedThroughputAvgCount = 0U;
         received_count = 0U;
@@ -92,8 +120,6 @@ public class HttpPayloadReader : IDisposable
             SlowSubscriber = slow;
         }
         SourceHost.Information($"{nameof(SlowSubscriber)}: {SlowSubscriber}");*/
-
-        URL = $"{Configuration["uri"]}";
     }
     public void Start()
     {
@@ -171,11 +197,15 @@ public class HttpPayloadReader : IDisposable
     {
         while (!Cancellation.IsCancellationRequested)
         {
-            //var next = await getquote(URL);
-            var next = await getsnap(URL);
+            var next = await getquote(URLValue);
+            //var next = await getsnap(URL);
 
-            ++ReceivedPayloadCount;
+            var symbol = next.TryGetValue(BusinessEntityIDTagValue, out object _value) ? $"{_value}" : BusinessEntityIDTagValueDefault;
+            /*add prefix and symbol-key to config*/next.Add(DestinationNameKey, $"{DestinationNamePrefixValue}{symbol}");
+
+            SourceHost.UpdateReceivedCount(++ReceivedPayloadCount);
             OnNext(next);
+          //OnNext?.Invoke(next);
             await Task.Delay(2000);
         }
     }

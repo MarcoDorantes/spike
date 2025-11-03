@@ -55,13 +55,21 @@ class Program
     static HttpPayloadRequest.HttpPayloadReader LaunchReader(string id, CancellationToken cancel, nutility.Switch opts)
     {
         //Add all configuration keys to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
-        var key = "uri";
-        if (opts.Is("key")) key = opts["key"];
+        var urlkey = HttpPayloadRequest.HttpPayloadReader.URLKey;
+        var symbolkey = HttpPayloadRequest.HttpPayloadReader.BusinessEntityIDTagKey;
+        var prefixkey = HttpPayloadRequest.HttpPayloadReader.DestinationNamePrefixKey;
+        if (opts.Is(nameof(urlkey))) urlkey = opts[nameof(urlkey)];
+        if (opts.Is(nameof(symbolkey))) urlkey = opts[nameof(symbolkey)];
+        if (opts.Is(nameof(prefixkey))) prefixkey = opts[nameof(prefixkey)];
         var appsettings = System.Configuration.ConfigurationManager.AppSettings;
-        var uri = appsettings[key];
+        var url_value = appsettings[urlkey];
+        var symbol_tag = appsettings[symbolkey];
+        var prefix_value = appsettings[prefixkey];
         Dictionary<string, object> config = new()
         {
-            {"uri",uri}
+            {HttpPayloadRequest.HttpPayloadReader.URLKey,url_value},
+            {HttpPayloadRequest.HttpPayloadReader.BusinessEntityIDTagKey,symbol_tag},
+            {HttpPayloadRequest.HttpPayloadReader.DestinationNamePrefixKey,prefix_value}
         };
         ConsoleHost host = new(Out);
         HttpPayloadRequest.HttpPayloadReader reader = new()
