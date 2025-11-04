@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 using static System.Console;
 
@@ -25,22 +26,33 @@ class Program
 {
     static void log(Exception ex) { for (int level = 0; ex != null; ex = ex.InnerException, ++level) WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}"); }
     static ulong received_onnext_count;
+    static NameValueCollection appsettings;
     static async Task Main(string[] args)
     {
-        nutility.Switch opts = new(args);
-        if (opts.Is("reader")) { LaunchReaders(opts); }
-        if (opts.Is("getstring")) await getstring(opts);
-        else if (opts.Is("getquotes")) await getquotes();
-        else if (opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
-        else if (opts.Is("snap")) try { await getsnap(); } catch (Exception ex) { log(ex); }
+        try
+        {
+            nutility.Switch opts = new(args);
+            appsettings = System.Configuration.ConfigurationManager.AppSettings;
+            if (opts.Is("reader")) { LaunchReaders(opts); }
+            if (opts.Is("getstring")) await getstring(opts);
+            else if (opts.Is("getquotes")) await getquotes();
+            else if (opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
+            else if (opts.Is("snap")) try { await getsnap(); } catch (Exception ex) { log(ex); }
+        }
+        catch (Exception ex) { log(ex); }
     }
     static void LaunchReaders(nutility.Switch opts)
     {
+        var IDs = appsettings["IDs"]?.Split('|');
+        int count = 1;
+        if (opts.Is(nameof(count))) count = int.Parse(opts[nameof(count)]);
+        if (count < 1) { WriteLine($"Invalid count ({count})."); return; }
+        if (!(count < IDs?.Length == true)) throw new Exception($"Invalid index and IDs length ({count},{IDs?.Length}).");
         using CancellationTokenSource cancel = new();
         List<HttpPayloadRequest.HttpPayloadReader> readers = [];
         try
         {
-            readers.Add(LaunchReader("1", cancel.Token, opts));
+            for (int k = 0; k < count; ++k) readers.Add(LaunchReader(k, IDs, cancel.Token, opts));
             ReadLine();
             cancel.Cancel();
             readers.ForEach(c => c.Stop());
@@ -52,7 +64,7 @@ class Program
             readers.ForEach(c => c.Dispose());
         }
     }
-    static HttpPayloadRequest.HttpPayloadReader LaunchReader(string id, CancellationToken cancel, nutility.Switch opts)
+    static HttpPayloadRequest.HttpPayloadReader LaunchReader(int index, string[] IDs, CancellationToken cancel, nutility.Switch opts)
     {
         //Add all configuration keys to the AppSettingsKey? No: the host must arrange these from hosting AppSettings environment.
         var urlkey = HttpPayloadRequest.HttpPayloadReader.URLKey;
@@ -61,20 +73,19 @@ class Program
         if (opts.Is(nameof(urlkey))) urlkey = opts[nameof(urlkey)];
         if (opts.Is(nameof(symbolkey))) urlkey = opts[nameof(symbolkey)];
         if (opts.Is(nameof(prefixkey))) prefixkey = opts[nameof(prefixkey)];
-        var appsettings = System.Configuration.ConfigurationManager.AppSettings;
         var url_value = appsettings[urlkey];
         var symbol_tag = appsettings[symbolkey];
         var prefix_value = appsettings[prefixkey];
         Dictionary<string, object> config = new()
         {
-            {HttpPayloadRequest.HttpPayloadReader.URLKey,url_value},
+            {HttpPayloadRequest.HttpPayloadReader.URLKey,string.Format(url_value,IDs[index])},
             {HttpPayloadRequest.HttpPayloadReader.BusinessEntityIDTagKey,symbol_tag},
             {HttpPayloadRequest.HttpPayloadReader.DestinationNamePrefixKey,prefix_value}
         };
         ConsoleHost host = new(Out);
         HttpPayloadRequest.HttpPayloadReader reader = new()
         {
-            ID = id,
+            ID = $"{index}",
             SourceHost = host,
             Configuration = config,
             Cancellation = cancel,

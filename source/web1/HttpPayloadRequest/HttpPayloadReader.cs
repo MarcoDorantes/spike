@@ -169,7 +169,7 @@ public class HttpPayloadReader : IDisposable
             }
             catch (System.Threading.Tasks.TaskCanceledException exception)
             {
-                SourceHost.Error($"{ID} Connect exception: {exception.Message}");
+                SourceHost.Error($"{ID} Request exception: {exception.Message}");
                 /*
                 Exception ex = exception;
                 StringBuilder logline = new();
@@ -177,7 +177,7 @@ public class HttpPayloadReader : IDisposable
                 {
                     logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
                 }
-                SourceHost.Error($"{ID} Connect exception:\n{logline}");
+                SourceHost.Error($"{ID} Request exception:\n{logline}");
                 */
                 break;
             }
@@ -189,7 +189,7 @@ public class HttpPayloadReader : IDisposable
                 {
                     logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
                 }
-                SourceHost.Error($"{ID} Connect exception:\n{logline}");
+                SourceHost.Error($"{ID} Request exception:\n{logline}");
             }
         } while (true);
     }
