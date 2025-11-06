@@ -117,6 +117,22 @@ https://github.com/OfficeDev/ews-managed-api/blob/master/README.md
 */
 static class orgmail
 {
+  class ReceivedMessages
+  {
+    public ReceivedMessages()
+    {
+      Received = [];
+    }
+    public string Status, StatusDescription, Folder, SearchSubject;
+    public List<ReceivedMessage> Received;
+  }
+  class ReceivedMessage
+  {
+    public string Subject,From;
+    public DateTimeOffset Received;
+    public bool IsRead;
+    public int Count;
+  }
   class Input
   {
     private const string To = "to";
@@ -136,6 +152,7 @@ static class orgmail
     private Microsoft.Exchange.WebServices.Data.SearchFilter filter;
     private Microsoft.Exchange.WebServices.Data.DeleteMode delete_mode;
     private string informative_subject;
+    private bool batch_mode;
 
     public void latest()
     {
@@ -149,7 +166,7 @@ static class orgmail
       SetFilter();
 
       WriteLine($"Folder: [{folder}]");
-      WriteLine($"subject{(exact?" (exact)":"")}: [{subject}]");
+      WriteLine($"subject{(exact ? " (exact)" : "")}: [{subject}]");
 
       bool moreItems = true;
       int count = 0;
@@ -178,6 +195,64 @@ static class orgmail
         }
       }
     }
+    public void latestjson()
+    {
+      var found_batch_mode = batch_mode;
+      batch_mode = true;
+      ReceivedMessages received = new() { Status = "unset" };
+      try
+      {
+        if (pageSize == 0) pageSize = 10;
+        var _allpages = allPages ?? false;
+        if (string.IsNullOrWhiteSpace(folder)) folder = "Inbox";
+
+        var exchange = GetExchangeService();
+        var target_folder = GetTargetFolder(exchange, folder);
+        SetView();
+        SetFilter();
+
+        received.Folder = folder;
+        received.SearchSubject = $"{(exact ? "(exact)" : "")}[{subject}]";
+
+        bool moreItems = true;
+        int count = 0;
+        while (moreItems)
+        {
+          var found = string.IsNullOrWhiteSpace(subject) ? exchange.FindItems(target_folder.Id, view) : exchange.FindItems(target_folder.Id, filter, view);
+          if (found.Any() == false) break;
+          moreItems = found.MoreAvailable && _allpages;
+          if (moreItems)
+          {
+            view.Offset += pageSize;
+          }
+          foreach (Microsoft.Exchange.WebServices.Data.EmailMessage item in found.OrderBy(i => i.DateTimeReceived))
+          {
+            ReceivedMessage msg = new()
+            {
+              IsRead = item.IsRead,
+              From = item.From.Name,
+              Subject = item.Subject,
+              Received = item.DateTimeReceived,
+              Count = ++count
+            };
+            received.Received.Add(msg);
+          }
+        }
+        received.Status = "OK";
+      }
+      catch (Exception ex)
+      {
+        received.Status = "error";
+        StringBuilder logline = new();
+        for (int level = 0; ex != null; ex = ex.InnerException, ++level) logline.AppendLine($"[Level {level}] {ex.GetType().FullName} : {ex.Message}");
+        received.StatusDescription = $"{logline}";
+      }
+      finally
+      {
+        batch_mode = found_batch_mode;
+        WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(received));
+      }
+    }
     public void excep()
     {
       if (pageSize == 0) pageSize = 10;
@@ -192,7 +267,7 @@ static class orgmail
       WriteLine($"Folder: [{folder}]");
       if (subject != null)
       {
-        WriteLine($"subject{(exact?" (exact)":"")}: [{subject}]");
+        WriteLine($"subject{(exact ? " (exact)" : "")}: [{subject}]");
       }
       if (informative_subject != null)
       {
@@ -629,7 +704,7 @@ static class orgmail
     }
     Microsoft.Exchange.WebServices.Data.Folder listfolders(Microsoft.Exchange.WebServices.Data.ExchangeService exchange, string foldername, Microsoft.Exchange.WebServices.Data.FolderId parentfolder = null)
     {
-      WriteLine($"\n{nameof(listfolders)}:");
+      if(!batch_mode) WriteLine($"\n{nameof(listfolders)}:");
 
       var view = new Microsoft.Exchange.WebServices.Data.FolderView(50);
       view.PropertySet = new Microsoft.Exchange.WebServices.Data.PropertySet(
@@ -642,7 +717,7 @@ static class orgmail
       var found = parentfolder == null ? exchange.FindFolders(Microsoft.Exchange.WebServices.Data.WellKnownFolderName.MsgFolderRoot, filter, view) : exchange.FindFolders(parentfolder, filter, view);
       foreach (Microsoft.Exchange.WebServices.Data.Folder f in found.Folders)
       {
-        WriteLine($"[{f.DisplayName,-30}]");//\t{f.Id}
+        if(!batch_mode) WriteLine($"[{f.DisplayName,-30}]");//\t{f.Id}
         if (f.DisplayName == foldername) return f;
       }
       return null;
