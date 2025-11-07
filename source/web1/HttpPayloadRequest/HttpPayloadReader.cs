@@ -16,7 +16,7 @@ public class HttpPayloadReader : IDisposable
     public const string DestinationNameKey = nameof(DestinationNameKey);
     public const string URLKey = nameof(URLValue);
     public const string DestinationNamePrefixKey = nameof(DestinationNamePrefixValue);
-    public const string BusinessEntityIDTagKey = nameof(BusinessEntityIDTagValue);//"T"
+    public const string BusinessEntityIDTagKey = nameof(BusinessEntityIDTagValue);
     public const string BusinessEntityIDTagValueDefault = nameof(BusinessEntityIDTagValueDefault);
 
     public ISourceProcessorHost SourceHost { get; set; }
@@ -27,8 +27,11 @@ public class HttpPayloadReader : IDisposable
     public string ID { get; set; }
     public bool Running { get; private set; }
     public uint ReceivedPayloadCount { get; private set; }
+    public IEnumerable<string> IDs { get; private set; }
+    public string URLPrefix { get; private set; }
+    public string URLSuffix { get; private set; }
     public string URLValue { get; private set; }
-    public string DestinationNamePrefixValue { get; private set; }// = "dat/GBM/R/L2/MEX/E/BMV/";
+    public string DestinationNamePrefixValue { get; private set; }
     public string BusinessEntityIDTagValue { get; private set; }
 
     public HttpPayloadReader()
@@ -40,12 +43,16 @@ public class HttpPayloadReader : IDisposable
     {
         ReceivedPayloadCount = 0U;
 
-        URLValue = null;
+        /*URLValue = null;
         if (Configuration.TryGetValue(URLKey, out object _url) && !string.IsNullOrWhiteSpace($"{_url}"))
         {
             URLValue = $"{_url}";
         }
-        SourceHost.Information($"{URLKey}: {URLValue}");
+        SourceHost.Information($"{URLKey}: {URLValue}");*/
+
+        IDs = Configuration["IDs"] as IEnumerable<string>;
+        URLPrefix = $"{Configuration["URLPrefix"]}";
+        URLSuffix = $"{Configuration["URLSuffix"]}";
 
         DestinationNamePrefixValue = null;
         if (Configuration.TryGetValue(DestinationNamePrefixKey, out object _prefix) && !string.IsNullOrWhiteSpace($"{_prefix}"))
@@ -195,20 +202,28 @@ public class HttpPayloadReader : IDisposable
     }
     private async Task InvokeHttpRequestAsync()
     {
-        while (!Cancellation.IsCancellationRequested)
+        do
         {
-            var next = await getquote(URLValue);
-            //var next = await getsnap(URL);
+            foreach (var id in IDs)
+            {
+                if (Cancellation.IsCancellationRequested) break;
+                var url = GetURL(id);
+                var next = await getquote(url);
+                //var next = await getsnap(URL);
 
-            var symbol = next.TryGetValue(BusinessEntityIDTagValue, out object _value) ? $"{_value}" : BusinessEntityIDTagValueDefault;
-            /*add prefix and symbol-key to config*/next.Add(DestinationNameKey, $"{DestinationNamePrefixValue}{symbol}");
+                var symbol = next.TryGetValue(BusinessEntityIDTagValue, out object _value) ? $"{_value}" : BusinessEntityIDTagValueDefault;
+                /*add prefix and symbol-key to config*/
+                next.Add(DestinationNameKey, $"{DestinationNamePrefixValue}{symbol}");
 
-            SourceHost.UpdateReceivedCount(++ReceivedPayloadCount);
-            OnNext(next);
-          //OnNext?.Invoke(next);
+                SourceHost.UpdateReceivedCount(++ReceivedPayloadCount);
+                OnNext(next);
+                //OnNext?.Invoke(next);
+                await Task.Delay(50);
+            }
             await Task.Delay(2000);
-        }
+        } while (!Cancellation.IsCancellationRequested);
     }
+    protected virtual string GetURL(string id) => $"{URLPrefix}{id}{URLSuffix}";
     private async Task<IDictionary<string, object>> getquote(string uri)
     {
         var result = await GetObject<Dictionary<string, JsonElement>>(uri, Cancellation);
@@ -270,6 +285,7 @@ public class HttpPayloadReader : IDisposable
         return await client.GetFromJsonAsync<T>(uri, /*jsonOptions,*/ cancel);
     }
     #endregion
+
     #region IDisposable support
     private bool disposedValue;
     protected virtual void Dispose(bool disposing)

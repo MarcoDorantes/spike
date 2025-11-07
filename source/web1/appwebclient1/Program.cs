@@ -78,7 +78,9 @@ class Program
         var prefix_value = appsettings[prefixkey];
         Dictionary<string, object> config = new()
         {
-            {HttpPayloadRequest.HttpPayloadReader.URLKey,string.Format(url_value,IDs[index])},
+            {"IDs",IDs},
+            {"URLPrefix",appsettings["URLPrefix"]},
+            {"URLSuffix",appsettings["URLSuffix"]},
             {HttpPayloadRequest.HttpPayloadReader.BusinessEntityIDTagKey,symbol_tag},
             {HttpPayloadRequest.HttpPayloadReader.DestinationNamePrefixKey,prefix_value}
         };
