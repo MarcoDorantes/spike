@@ -17,6 +17,7 @@ public class HttpSocketClient : IDisposable
     public const string CheckStateDelayConfigKey = $"{nameof(CheckStateDelay)}";
     public const string BufferSizeConfigKey = $"{nameof(BufferSize)}";
     public const string UpdateReceivedOnKey = $"{nameof(UpdateReceivedOn)}";
+    public const string DestinationNamePrefixKey = nameof(DestinationNamePrefixValue);
     public const string MessagePayloadKey = $"{nameof(MessagePayloadKey)}";
     public const string DestinationNameKey = $"{nameof(DestinationNameKey)}";
     public const string MessageGuidKey = "GUID";
@@ -97,6 +98,13 @@ public class HttpSocketClient : IDisposable
             SlowSubscriber = slow;
         }
         SourceHost.Information($"{nameof(SlowSubscriber)}: {SlowSubscriber}");
+
+        DestinationNamePrefixValue = null;
+        if (Configuration.TryGetValue(DestinationNamePrefixKey, out object _prefix) && !string.IsNullOrWhiteSpace($"{_prefix}"))
+        {
+            DestinationNamePrefixValue = $"{_prefix}";
+        }
+        SourceHost.Information($"{DestinationNamePrefixKey}: {DestinationNamePrefixValue}");
     }
     public void Start()
     {
@@ -143,6 +151,7 @@ public class HttpSocketClient : IDisposable
     public TimeSpan KeepAliveInterval { get; private set; }
     public TimeSpan KeepAliveTimeout { get; private set; }
     public bool CollectHttpResponseDetails { get; private set; }
+    public string DestinationNamePrefixValue { get; private set; }
 
     //https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/websockets
     //https://learn.microsoft.com/en-us/dotnet/api/system.net.websockets.websocketstate
@@ -200,7 +209,7 @@ public class HttpSocketClient : IDisposable
            //message[MessageGuidKey] = msg_id;//.Substring(0, msg_id.Length > IDTrimLimit ? IDTrimLimit : msg_id.Length);
             payload_map["PossDup"] = false;
             payload_map[PayloadIdKey] = ReceivedPayloadCount;
-            payload_map[DestinationNameKey] = "";
+            //payload_map[DestinationNameKey] = "";
 
             ProcessDictionaryPayload(payload_map);
         }
@@ -427,7 +436,9 @@ public class HttpSocketClient : IDisposable
 
             jsonmap[MessagePayloadKey] = payload_map[MessagePayloadKey];
             jsonmap[MessageGuidKey] = ++received_count;
-            if(UpdateReceivedOn == UpdateReceivedOnType.Message) SourceHost.UpdateReceivedCount(received_count);
+            var symbol = jsonmap.TryGetValue("sym", out object _sym) ? $"{_sym}" : "CTRLNOSYM";
+            jsonmap.Add(DestinationNameKey, $"{DestinationNamePrefixValue}{symbol}");
+            if (UpdateReceivedOn == UpdateReceivedOnType.Message) SourceHost.UpdateReceivedCount(received_count);
             OnNext(jsonmap);
         }
     }
