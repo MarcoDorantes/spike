@@ -49,6 +49,12 @@ https://learn.microsoft.com/en-us/entra/identity-platform/sample-v2-code?tabs=ap
 https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/tree/master/1-Call-MSGraph
 https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/blob/master/1-Call-MSGraph/daemon-console/Program.cs
 
+As noticed Oct-2026
+https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-ews-exchange-online
+https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-api-mapping
+https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-overview?source=recommendations
+https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-authentication
+
 https://aka.ms/AAgzk1b | https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online
 https://developer.microsoft.com/en-us/graph/blogs/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/
 https://techcommunity.microsoft.com/t5/exchange-team-blog/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/ba-p/608055
