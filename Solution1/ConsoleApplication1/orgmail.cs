@@ -54,6 +54,8 @@ https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online
 https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-api-mapping
 https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-overview?source=recommendations
 https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-authentication
+https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis
+https://learn.microsoft.com/en-us/graph/permissions-reference
 
 https://aka.ms/AAgzk1b | https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online
 https://developer.microsoft.com/en-us/graph/blogs/upcoming-changes-to-exchange-web-services-ews-api-for-office-365/
