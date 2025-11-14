@@ -34,6 +34,7 @@ class Program
             nutility.Switch opts = new(args);
             appsettings = System.Configuration.ConfigurationManager.AppSettings;
             if (opts.Is("reader")) { LaunchReaders(opts); }
+            if (opts.Is("composer")) { LaunchComposers(opts); }
             if (opts.Is("getstring")) await getstring(opts);
             else if (opts.Is("getquotes")) await getquotes();
             else if (opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
@@ -96,6 +97,19 @@ class Program
         reader.Setup();
         reader.Start();
         return reader;
+    }
+    static void LaunchComposers(nutility.Switch opts)
+    {
+        ConsoleHost host = new(Out);
+        CancellationTokenSource cancellation=new();
+        _ = LaunchComposer(opts, host, cancellation.Token, System.Configuration.ConfigurationManager.AppSettings);
+        ReadLine();
+        cancellation.Cancel();
+        Thread.Sleep(3_000);
+    }
+    static async Task LaunchComposer(nutility.Switch opts,HttpPayloadRequest.ISourceProcessorHost host, CancellationToken cancel, NameValueCollection appsettings)
+    {
+        await foreach(var next in HttpPayloadRequest.MessageComposer.SL_MessageComposer(host,cancel,appsettings)) OnNext(next);
     }
     static void OnNext(IDictionary<string, object> message)
     {

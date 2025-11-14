@@ -31343,5 +31343,186 @@ The Visual Studio Team</p>
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">7</slash:comments>
       <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/05/Extensions_purple-1.jpg" type="image/jpeg" />
     </item>
+    <item>
+      <title>Introducing Copilot auto model selection (preview)</title>
+      <link>https://devblogs.microsoft.com/visualstudio/introducing-copilot-auto-model-selection-preview/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/introducing-copilot-auto-model-selection-preview/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel, Nhu Do]]></dc:creator>
+      <pubDate>Wed, 12 Nov 2025 17:38:43 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Models]]></category>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[Auto]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254879</guid>
+      <description><![CDATA[<p>Faster responses, a lower chance of rate limiting, and 10% off premium requests for paid users &#8211; auto picks the best available model for each request based on current capacity and performance. With auto, you don&#8217;t need to choose a specific model. Copilot automatically selects the best one for your task. Auto model selection in [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-copilot-auto-model-selection-preview/">Introducing Copilot auto model selection (preview)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Faster responses, a lower chance of rate limiting, and 10% off premium requests for paid users &#8211; auto picks the best available model for each request based on current capacity and performance. With <a href="https://docs.github.com/en/copilot/concepts/auto-model-selection">auto</a>, you don&#8217;t need to choose a specific model. Copilot automatically selects the best one for your task. Auto model selection in Chat is rolling out in preview to all GitHub Copilot users.</p>
+<h2>How auto model selection works</h2>
+<p>Auto selects the best model to ensure that you get the optimal performance and reduce the likelihood of rate limits. Auto will choose between GPT-5, GPT-5 mini, GPT-4.1, Sonnet 4.5, and Haiku 4.5 and other models, unless your organization has <a href="https://docs.github.com/en/copilot/how-tos/use-ai-models/configure-access-to-ai-models">disabled access to these models</a>. Once auto picks a model, it uses that same model for the entire chat session. As we introduce picking models based on task complexity, this behavior will change over the next iterations.</p>
+<p>For paid users, we currently primarily rely on Claude Sonnet 4.5 as the model powering auto.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/auto-1.webp"><img fetchpriority="high" decoding="async" class="alignnone size-full wp-image-254882" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/auto-1.webp" alt="auto image" width="1035" height="290" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/auto-1.webp 1035w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/auto-1-300x84.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/auto-1-1024x287.webp 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/auto-1-768x215.webp 768w" sizes="(max-width: 1035px) 100vw, 1035px" /></a></p>
+<p>When using auto model selection, Visual Studio uses a variable <a href="https://docs.github.com/en/copilot/concepts/billing/copilot-requests#model-multipliers">model multiplier</a> based on the automatically selected model. If you are a paid user, auto applies a 10% request discount. For example, if auto selects Sonnet 4.5, it will be counted as 0.9x of a premium request; You can see which model and model multiplier are used by hovering over the chat response.</p>
+<p>If you are a paid user and run out of premium requests, auto will always choose a 0x model (for example, GPT-4.1), so you can continue using auto without interruption.</p>
+<h2>What’s next</h2>
+<p>Our long-term vision for auto. We aim to make auto the best model selection for most users and to achieve this, here&#8217;s what we plan next:</p>
+<ul>
+<li>Dynamically switch between small and large models based on the task &#8211; this flexibility ensures that you get the right balance of performance and efficiency, while saving on requests</li>
+<li>Add more language models to auto</li>
+<li>Let users on a free plan take advantage of the latest models through auto</li>
+<li>Improve the model dropdown to make it more obvious which models and discounts are used</li>
+</ul>
+<p>Thanks <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f60a.png" alt="😊" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/introducing-copilot-auto-model-selection-preview/">Introducing Copilot auto model selection (preview)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/introducing-copilot-auto-model-selection-preview/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/auto-zoom-out.webp" type="image/png" />
+    </item>
+    <item>
+      <title>Visual Studio 2026 is here: faster, smarter, and a hit with early adopters</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-2026-is-here-faster-smarter-and-a-hit-with-early-adopters/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 11 Nov 2025 16:08:47 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Announcement]]></category>
+      <category><![CDATA[Release]]></category>
+      <category><![CDATA[Visual Studio 2026]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254797</guid>
+      <description><![CDATA[<p>Dear developers, We’re thrilled to announce that Visual Studio 2026 is now generally available! This is a moment we’ve built side by side with you. Your feedback has helped shape this release more than any before. Since the introduction of the Insiders Channel in September, more developers have downloaded and tested this preview than any [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2026-is-here-faster-smarter-and-a-hit-with-early-adopters/">Visual Studio 2026 is here: faster, smarter, and a hit with early adopters</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Dear developers,</p>
+<p>We’re thrilled to announce that Visual Studio 2026 is now generally available! This is a moment we’ve built side by side with you. Your feedback has helped shape this release more than any before. Since the introduction of the Insiders Channel in September, more developers have downloaded and tested this preview than any other in Visual Studio’s history.</p>
+<p>In the year leading up to this release, we fixed over <strong>5,000</strong> of your reported bugs and implemented <strong>300</strong> feature requests. That’s the most we’ve ever done, and we’re just getting started!</p>
+<p>With several performance improvements, a redesigned user experience, and a major leap in AI-driven development, this release is built to help developers focus on what truly matters: creating. Every click, keystroke, and compile is now smoother, faster, and more intuitive &#8211; empowering you to turn ideas into code at unprecedented speed.</p>
+<p><div  class="d-flex justify-content-center"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/vs/download" target="_blank">Download Visual Studio 2026</a></div></p>
+<p>You know that sinking feeling when lag interrupts your flow? We’ve worked hard to make that a thing of the past. <strong>Blazing-fast performance</strong> means startup is significantly snappier, and the UI responds so smoothly you’ll barely notice it’s there, cutting hangs by over 50% and giving the IDE a lightweight, effortless vibe, even on massive projects. Whether you’re wrangling enterprise-scale repos or tinkering on smaller codebases, this sets a new bar for getting stuff done.</p>
+<p><figure id="attachment_254801" aria-labelledby="figcaption_attachment_254801" class="wp-caption alignnone" ><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-time.webp"><img decoding="async" class="wp-image-254801 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-time.webp" alt="solution load time image" width="624" height="310" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-time.webp 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-time-300x149.webp 300w" sizes="(max-width: 624px) 100vw, 624px" /></a><figcaption id="figcaption_attachment_254801" class="wp-caption-text"><span style="font-size: 10pt;">Figure 1: Shows large .NET solution load time to interactive is faster than in VS 2022</span></figcaption></figure></p>
+<p>But it’s not just about loading solutions faster. The UI stays more responsive while things are loading too. In fact, those annoying UI freezes have been cut by more than half.</p>
+<p><figure id="attachment_254800" aria-labelledby="figcaption_attachment_254800" class="wp-caption alignnone" ><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-hang-time.webp"><img decoding="async" class="wp-image-254800 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-hang-time.webp" alt="solution load hang time image" width="624" height="292" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-hang-time.webp 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/solution-load-hang-time-300x140.webp 300w" sizes="(max-width: 624px) 100vw, 624px" /></a><figcaption id="figcaption_attachment_254800" class="wp-caption-text"><span style="font-size: 10pt;">Figure 2: Shows the amount of time the UI is unresponsive is less than half of VS 2022 on large solution loads</span></figcaption></figure></p>
+<p>Stats are cool, but what really matters is how it actually feels to use. The IDE just runs way faster, smoother, and more responsive. That’s something you can’t always see in the numbers.</p>
+<p>&nbsp;</p>
+<p style="text-align: center; max-width: 600px; margin: 1em auto;"><span style="font-size: 16pt;">“<em>Wow! I just opened a solution with over 100 projects, and I can&#8217;t believe how fast it came up and was ready! Well done, Visual Studio team!</em>”</span></p>
+<p style="text-align: center;">&#8211; Steve Smith, Principal Software Architect, NimblePros</p>
+<p>&nbsp;</p>
+<p>Visual Studio 2026 is AI-native, making it the world’s first <strong>Intelligent Developer Environment</strong> (IDE). That doesn’t mean changing how you work. It means giving you intelligence when it matters most. If you’re debugging a tricky issue, profiling performance, or modernizing an application, AI steps in to remove friction and surface insights that help you move faster without disrupting your flow. It’s there to elevate the practices you already trust, not replace them.</p>
+<p>This release also brings new C# and C++ agents, designed for professional developers who need precision and speed every day. These capabilities extend what you can do without adding complexity, so you stay in control while accomplishing more in less time. Visual Studio 2026 isn’t AI for the sake of AI, but a natural evolution of the tools you rely on to get the job done while boosting your productivity.</p>
+<p>&nbsp;</p>
+<p><iframe title="YouTube video player" src="https://www.youtube.com/embed/e79NmSjX11c?si=xgBuy32oGSa_T3ug" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>&nbsp;</p>
+<p>This evolution opens doors to possibilities that once felt out of reach, weaving AI naturally into your daily flow. GitHub Copilot has quickly become one of the most used features in Visual Studio, earning praise from developers who rely on it every day.</p>
+<p>&nbsp;</p>
+<p style="text-align: center; max-width: 600px; margin: 1em auto;"><em><span style="font-size: 16pt;">“The Profiler Agent in Visual Studio immediately highlighted the bottlenecks and guided me to faster, cleaner performance &#8211; like having a built-in performance coach.”</span></em></p>
+<p style="text-align: center;">– Roberto Perez, Senior Global Solutions Architect, Redis</p>
+<p>&nbsp;</p>
+<p>When you’re using Visual Studio all day long, every interaction matters. We’ve doubled down on <strong>perfecting the essentials</strong> &#8211; removing friction, fixing those subtle “paper cuts,” and refining the flow of your work. This release introduces a flexible new settings system, a beautifully modern UI redesign, and hundreds of under-the-hood improvements that make the IDE feel better in every way.</p>
+<p><figure id="attachment_254799" aria-labelledby="figcaption_attachment_254799" class="wp-caption alignnone" ><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/feedback-tickets-fixed.webp"><img decoding="async" class="wp-image-254799 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/feedback-tickets-fixed.webp" alt="feedback tickets fixed image" width="625" height="282" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/feedback-tickets-fixed.webp 625w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/feedback-tickets-fixed-300x135.webp 300w" sizes="(max-width: 625px) 100vw, 625px" /></a><figcaption id="figcaption_attachment_254799" class="wp-caption-text"><span style="font-size: 10pt;">Figure 3: The amount of feedback tickets implemented by the Visual Studio team in the past 12 months</span></figcaption></figure></p>
+<p>Over the past 12 months, your feedback has helped us fix more than <strong>5,000 bugs</strong> and added over <strong>300 feature requests</strong>. Our biggest push leading up to a major Visual Studio release yet, and the momentum is still growing. With AI-driven tools accelerating how we identify and resolve issues, we’re delivering improvements faster than ever before.</p>
+<p>&nbsp;</p>
+<p style="text-align: center; max-width: 600px; margin: 1em auto;"><em><span style="font-size: 16pt;">“What I love most about Visual Studio 2026 is the performance and the fresh and crisp UI &#8211; and support for Mermaid diagrams is the icing on the cake.”</span></em></p>
+<p style="text-align: center;">&#8211; Erik Ejlskov Jensen, Context&amp; A/S</p>
+<p>&nbsp;</p>
+<p>Here’s the best part: <strong>Visual Studio 2026 is fully compatible with your projects and extensions from Visual Studio 2022</strong>. Open your existing solutions and start coding immediately. No migration steps, no surprises. All your favorite extensions are available too, so your workspace, tools, and projects transition seamlessly, making the IDE feel like home from the very first launch.</p>
+<p>The over <a href="https://marketplace.visualstudio.com/search?target=VS&amp;category=All%20categories&amp;vsVersion=vs2026&amp;sortBy=Installs">4,000 extensions</a> that works with Visual Studio 2022 today, all work with Visual Studio 2026 too. You can upgrade with peace of mind, and your setup will feel just as stable and familiar as ever.</p>
+<p>&nbsp;</p>
+<p style="text-align: center; max-width: 600px; margin: 1em auto;"><em><span style="font-size: 16pt;">“Getting the extensions from Visual Studio 2022 was a definitive plus: I was ready to use VS 2026 immediately”</span></em></p>
+<p style="text-align: center;">&#8211; Didier Donner, Principal Software Engineer, Aspen Technology</p>
+<p>&nbsp;</p>
+<p>Plus, with GitHub Copilot app modernization, upgrades to .NET 10 and the latest C++ build tools are accelerated and guided with expertise, so you&#8217;re ready to take full advantage of all the latest performance enhancements and features. GitHub Copilot&#8217;s new C++ capabilities are <a href="https://devblogs.microsoft.com/cppblog/new-github-copilot-capabilities-for-c-developers-upgrade-msvc-improve-build-performance-and-refactor-c-code">available now in Private Preview</a>.</p>
+<p>For a long time, updating Visual Studio meant you also had to upgrade your .NET and C++ build tools, since those were tightly linked to the IDE. That often made things tricky, because you’d want the latest features and bug fixes, but the update could mess with your existing projects or force you into toolchain changes you weren’t ready for.</p>
+<p>Visual Studio 2026 changes all that. Now the IDE is decoupled from its build tools, so you can update Visual Studio itself any time you want without affecting your .NET or C++ compilers. Even better, you’ll get <strong>automatic monthly updates</strong> with fresh features, design tweaks, and productivity boosts delivered right to your IDE, while keeping your toolchains stable for as long as you need.</p>
+<p>If you like to try out new features before everyone else, the <strong>Insiders Channel</strong> is for you. It receives frequent updates and allows you to evaluate the newest features without impacting your primary setup, as it can be installed alongside the Stable version. Many people already use it to stay up to date. Join the <a href="https://microsoft.sharepoint.com/teams/VisualStudioProductTeam/Shared%20Documents/Blogs/VS%20blog%20drafts/2025%20(Dev18)/aka.ms/vs/insiders">Insiders Channel</a> to always have the newest features first.</p>
+<p>Curious about what else to find in this new version? Check out the <a href="https://aka.ms/vs/relnotes">Release Notes</a> for the full scoop.</p>
+<p><a href="https://aka.ms/vs/download">Download Visual Studio 2026</a> now and swing by the Visual Studio <a href="https://aka.ms/devcom">Developer Community</a> to share what’s working, what you’re creating, or where we can step it up. We’re listening.</p>
+<h2>What to expect next</h2>
+<p>If you’re a Visual Studio subscriber, simply sign in to Visual Studio 2026 and your license will activate automatically.</p>
+<p>Subscribers who use product keys can retrieve them anytime at <a href="https://my.visualstudio.com">my.visualstudio.com</a>.</p>
+<p>For developers who want to purchase a stand-alone Professional license, Visual Studio 2026 will be available through the Microsoft Store starting <strong>December 1, 2025</strong>.</p>
+<p><div  class="d-flex justify-content-center"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/vs/download" target="_blank">Download Visual Studio 2026</a></div></p>
+<p>Huge thanks to our Insiders and MVPs for making this release something special. Let’s keep building the future of coding together.</p>
+<p>With gratitude,</p>
+<p>The Visual Studio Team</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-2026-is-here-faster-smarter-and-a-hit-with-early-adopters/">Visual Studio 2026 is here: faster, smarter, and a hit with early adopters</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/09/vscom-share-image.jpg" type="image/jpeg" />
+    </item>
+    <item>
+      <title>Roadmap for AI in Visual Studio (November)</title>
+      <link>https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-november/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-november/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel]]></dc:creator>
+      <pubDate>Wed, 05 Nov 2025 19:32:56 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Roadmap]]></category>
+      <category><![CDATA[AI Agents]]></category>
+      <category><![CDATA[Artificial Intelligence]]></category>
+      <category><![CDATA[GitHub]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=254781</guid>
+      <description><![CDATA[<p>Today, we’re excited to share our public roadmap, which outlines the next steps in evolving Visual Studio with AI-powered agentic experiences. With every month, we aim to deliver smarter, faster, and more intuitive tools that enhance your coding experience. Disclaimer: The items outlined here represent ongoing work for the month. They are not commitments or [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-november/">Roadmap for AI in Visual Studio (November)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Today, we’re excited to share our public roadmap, which outlines the next steps in evolving Visual Studio with AI-powered agentic experiences. With every month, we aim to deliver smarter, faster, and more intuitive tools that enhance your coding experience.</p>
+<p><em>Disclaimer: The items outlined here represent ongoing work for the month. They are not commitments or guarantees for delivery within the current month. U</em>pvote the features you or your organization care about most, so we know what to prioritize. With that said, here is what we are working on!</p>
+<h3><strong>New Agents</strong></h3>
+<p>We’re streamlining how you find and switch between modes and making sure both built-in and extension-provided agents can handle more complex workflows. New agents are in progress:</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Custom-modes-for-Copilot-Chat/10950930?q=custom+modes">User Created custom agents</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Copilot-Test-Agent-in-Visual-Studio/10977071"><span data-teams="true">GitHub Copilot testing for .NET</span></a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Copilot-Debugging--Agent-in-Visual-Studi/10951168?">Debugger agent</a></li>
+</ul>
+<p>We are even working on supporting multiple agents at once</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Investigate-being-able-to-run-multiple-V/10992995">Investigate being able to run multiple VS Agents concurrently</a></li>
+</ul>
+<h3><strong>Agent Mode/Chat:                             </strong></h3>
+<p>We’ve been listening to your feedback on Agent Mode and Chat, and we’re making some big improvements.</p>
+<ul>
+<li class="RichTicketDescription___StyledH-sc-r1tklb-16 cytYEK" tabindex="0"><a href="https://developercommunity.visualstudio.com/t/Slash-Commands-%E2%80%94-Unified-and-Extensible/10992996"><span aria-hidden="true">Slash Commands &#8211; Invoke Prompts and Manage Chats</span></a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Memories-Improvements-in-Chat/10993002">Memories Improvements in Chat &#8211; Developer Community</a></li>
+</ul>
+<p>Tool call improvements</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Dynamic-tool-calling-in-Chat/10975291">Dynamic tool calling in Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Summarize-thread-history-when-limits-are/10975263">Summarize thread history to continue in thread</a></li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p>Planning lead development</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Make-Planning-in-Chat-Read-Only/10993007">Make Planning in Chat, Read-Only </a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Improve-Planning-UX-Inline-Preview-in-C/10993009">Improve Planning UX, Inline Preview in Chat</a></li>
+</ul>
+<h3><strong>Model Context Protocol (MCP)</strong></h3>
+<p>We want you to bring your entire development stack into Visual Studio, backed by the same security, governance, and trust you already expect from our product. This sprint, we’re focused on reaching MCP full spec, improving UX and enhancing your governance controls.</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Move-MCP-Sampling-Window-to-In-chat-expe/10993000">Improve MCP Sampling Window UX</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Performance-and-token-usage-optimization/10993001">Performance and token usage optimizations for MCP servers</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Visual-Studio-enables-governance-to-supp/10951779?sort=relevance&amp;scope=follow">Visual Studio enables governance for MCP servers</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/MCP-Unified-UX-Experience/10975289?sort=relevance&amp;scope=follow">MCP Unified UX Experience </a></li>
+</ul>
+<h3><strong>Models</strong></h3>
+<p>We’re committed to giving you access to the latest models, and in Visual Studio we carefully evaluate them to make sure you get the best possible experience. We are continuing to expand even further.</p>
+<ul>
+<li><a href="https://developercommunity.visualstudio.com/t/Auto-model-for-Copilot-Chat/10975254">Auto model in Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Add-GPT-5-Codex-in-Copilot-Chat/10975261">GPT 5 Codex in Chat</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Improve-Model-UX-for-Soon-to-be-Deprecat/10992997">Improve Model UX for Soon to be Deprecated Models</a></li>
+<li><a href="https://developercommunity.visualstudio.com/t/Different-System-prompts-per-model/10992999">Different System prompts per model</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>To make Visual Studio a truly AI-integrated IDE, we want to ensure that Copilot is seamlessly available at every step of your development workflow—not just for writing code, but also for searching, fixing errors, writing unit tests, and even committing and pushing your changes.</p>
+<p>We’re excited for you to try these new experiences soon. If you have feedback, post it in the developer community ticket linked above. For other ideas or suggestions, drop a comment below or create a new ticket—our team reviews them all.</p>
+<p>Thanks <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f60a.png" alt="😊" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-november/">Roadmap for AI in Visual Studio (November)</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/roadmap-for-ai-in-visual-studio-november/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2025/11/roadmap-nov.webp" type="image/png" />
+    </item>
   </channel>
 </rss>
