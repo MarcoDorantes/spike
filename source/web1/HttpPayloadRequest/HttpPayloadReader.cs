@@ -34,6 +34,8 @@ public class HttpPayloadReader : IDisposable
     public string DestinationNamePrefixValue { get; private set; }
     public string BusinessEntityIDTagValue { get; private set; }
 
+    protected IEnumerator<string> IDs_iterator;
+
     public HttpPayloadReader()
     {
         encoding = Encoding.UTF8;
@@ -42,6 +44,7 @@ public class HttpPayloadReader : IDisposable
     public void Setup()
     {
         ReceivedPayloadCount = 0U;
+        IDs_iterator = null;
 
         /*URLValue = null;
         if (Configuration.TryGetValue(URLKey, out object _url) && !string.IsNullOrWhiteSpace($"{_url}"))
@@ -53,6 +56,9 @@ public class HttpPayloadReader : IDisposable
         IDs = Configuration["IDs"] as IEnumerable<string>;
         URLPrefix = $"{Configuration["URLPrefix"]}";
         URLSuffix = $"{Configuration["URLSuffix"]}";
+        SourceHost.Information($"IDs: [{string.Join('|', IDs)}]");
+        SourceHost.Information($"URLPrefix : [{URLPrefix}]");
+        SourceHost.Information($"URLSuffix : [{URLSuffix}]");
 
         DestinationNamePrefixValue = null;
         if (Configuration.TryGetValue(DestinationNamePrefixKey, out object _prefix) && !string.IsNullOrWhiteSpace($"{_prefix}"))
@@ -161,6 +167,7 @@ public class HttpPayloadReader : IDisposable
         }
         finally
         {
+            IDs_iterator = null;
             Running = false;
         }
     }
@@ -174,9 +181,10 @@ public class HttpPayloadReader : IDisposable
                 await InvokeHttpRequestAsync();
                 break;
             }
-            catch (System.Threading.Tasks.TaskCanceledException exception)
+            catch (System.Threading.Tasks.TaskCanceledException/*exception*/)
             {
-                SourceHost.Error($"{ID} Request exception: {exception.Message}");
+                SourceHost.Information($"{ID} Request task cancelled.");
+              //SourceHost.Error($"{ID} Task request exception: {exception.Message}");
                 /*
                 Exception ex = exception;
                 StringBuilder logline = new();
@@ -184,7 +192,7 @@ public class HttpPayloadReader : IDisposable
                 {
                     logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
                 }
-                SourceHost.Error($"{ID} Request exception:\n{logline}");
+                SourceHost.Error($"{ID} Task request exception: {logline}");
                 */
                 break;
             }
@@ -196,32 +204,46 @@ public class HttpPayloadReader : IDisposable
                 {
                     logline.AppendLine($"\t[Level {level}] {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}");
                 }
-                SourceHost.Error($"{ID} Request exception:\n{logline}");
+                SourceHost.Error(exception, $"{ID} Exception: {logline}");
             }
         } while (true);
     }
     private async Task InvokeHttpRequestAsync()
     {
-        do
+        bool url_logged = false;
+        while (!Cancellation.IsCancellationRequested)
         {
-            foreach (var id in IDs)
+            bool is_next = false;
+            if (IDs_iterator != null)
             {
-                if (Cancellation.IsCancellationRequested) break;
-                var url = GetURL(id);
-                var next = await getquote(url);
-                //var next = await getsnap(URL);
-
-                var symbol = next.TryGetValue(BusinessEntityIDTagValue, out object _value) ? $"{_value}" : BusinessEntityIDTagValueDefault;
-                /*add prefix and symbol-key to config*/
-                next.Add(DestinationNameKey, $"{DestinationNamePrefixValue}{symbol}");
-
-                SourceHost.UpdateReceivedCount(++ReceivedPayloadCount);
-                OnNext(next);
-                //OnNext?.Invoke(next);
-                await Task.Delay(50);
+                is_next = IDs_iterator.MoveNext();
+                if (!is_next)
+                {
+                    url_logged = true;
+                    await Task.Delay(2000);
+                }
             }
-            await Task.Delay(2000);
-        } while (!Cancellation.IsCancellationRequested);
+            if (!is_next)
+            {
+                IDs_iterator = IDs.GetEnumerator();
+                is_next = IDs_iterator?.MoveNext() ?? false;
+            }
+            string id = is_next ? IDs_iterator.Current : null;
+            if(string.IsNullOrWhiteSpace(id)) throw new Exception($"Invalid symbol ({id}) from iterator.");
+            var url = GetURL(id);
+            if (!url_logged) SourceHost.Information($"{id} URL: [{url}]");
+            var next = await getquote(url);
+            //var next = await getsnap(URL);
+
+            var symbol = next.TryGetValue(BusinessEntityIDTagValue, out object _value) ? $"{_value}" : BusinessEntityIDTagValueDefault;
+            /*add prefix and symbol-key to config*/
+            next.Add(DestinationNameKey, $"{DestinationNamePrefixValue}{symbol}");
+
+            SourceHost.UpdateReceivedCount(++ReceivedPayloadCount);
+            OnNext(next);
+            //OnNext?.Invoke(next);
+            await Task.Delay(50);
+        }
     }
     protected virtual string GetURL(string id) => $"{URLPrefix}{id}{URLSuffix}";
     private async Task<IDictionary<string, object>> getquote(string uri)
