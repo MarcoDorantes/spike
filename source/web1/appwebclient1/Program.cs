@@ -109,7 +109,16 @@ class Program
     }
     static async Task LaunchComposer(nutility.Switch opts,HttpPayloadRequest.ISourceProcessorHost host, CancellationToken cancel, NameValueCollection appsettings)
     {
-        await foreach(var next in HttpPayloadRequest.MessageComposer.SL_MessageComposer(host,cancel,appsettings)) OnNext(next);
+       //await foreach(var next in HttpPayloadRequest.MessageComposer.SL_MessageComposer(host,cancel,appsettings)) OnNext(next);
+        IAsyncEnumerable<IDictionary<string,object>> collection = HttpPayloadRequest.MessageComposer.SL_MessageComposer(host,cancel,appsettings);
+        IAsyncEnumerator<IDictionary<string,object>> iterator = collection.GetAsyncEnumerator(cancel);
+        while(!cancel.IsCancellationRequested)
+        {
+            bool is_next = await iterator.MoveNextAsync();
+            if(!is_next) break;
+            IDictionary<string,object> next = iterator.Current;
+            WriteLine(next.Count);
+        }
     }
     static void OnNext(IDictionary<string, object> message)
     {
