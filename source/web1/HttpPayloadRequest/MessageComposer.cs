@@ -382,18 +382,18 @@ public class SymbolCatalog(HttpPayloadRequest.ISourceProcessorHost host, Cancell
         ints.StartObservableActivity();
     }
 
-    class QuoteProvider:IObservable<IDictionary<string,object>>
+    class SymbolProvider:IObservable<IDictionary<string,object>>
     {
         CancellationToken cancel;
-        public QuoteProvider(CancellationToken cancel)
+        public SymbolProvider(CancellationToken cancel)
         {
             this.cancel=cancel;
         }
-        class Unsubscriber(QuoteProvider observable) : IDisposable
+        class Unsubscriber(SymbolProvider observable) : IDisposable
         {
             public void Dispose()
             {
-                observable.observer=null;
+                if(observable?.observer != null) observable.observer = null;
             }
         }
         internal IObserver<IDictionary<string,object>> observer;
@@ -402,7 +402,7 @@ public class SymbolCatalog(HttpPayloadRequest.ISourceProcessorHost host, Cancell
             this.observer = observer;
             return new Unsubscriber(this);
         }
-        public async Task StartObservableActivity(string uri,string suffix)
+        public async Task StartObservableActivityAsync(string uri,string suffix)
         {
             while (!cancel.IsCancellationRequested)
             {
@@ -418,9 +418,9 @@ public class SymbolCatalog(HttpPayloadRequest.ISourceProcessorHost host, Cancell
                             var symbol = JsonSerializer.Deserialize<Dictionary<string, object>>(result);
                             if($"{symbol["ticker"]}"=="ACAD")throw new Exception("Faked");
                             symbol.Add("status", status);
-                            observer.OnNext(symbol);
+                            observer?.OnNext(symbol);
                         }
-                        catch(Exception ex){observer.OnError(ex);}
+                        catch(Exception ex){observer?.OnError(ex);}
                     }
                     if (response.TryGetValue("next_url", out JsonElement next_url) && next_url.ValueKind != JsonValueKind.Null)
                     {
@@ -448,31 +448,41 @@ public class SymbolCatalog(HttpPayloadRequest.ISourceProcessorHost host, Cancell
     }
     void IObserver<IDictionary<string,object>>.OnCompleted()
     {
-        quotes_unsubscription.Dispose();
-        quotes_unsubscription=null;
+        watch?.Stop();
+        symbols_unsubscription?.Dispose();
+        symbols_unsubscription=null;
+        host.Information($"Completed observable activity (Elapsed: {watch?.Elapsed})");
     }
-    QuoteProvider quote_provider;
-    IDisposable quotes_unsubscription;
+    SymbolProvider symbol_provider;
+    IDisposable symbols_unsubscription;
+    System.Diagnostics.Stopwatch watch;
     public void StartObserver2()
     {
-        quote_provider=new(cancel);
-        quotes_unsubscription=quote_provider.Subscribe(this);
-        _ = Observe2Guarded();
+        watch=System.Diagnostics.Stopwatch.StartNew();
+        symbol_provider=new(cancel);
+        symbols_unsubscription=symbol_provider.Subscribe(this);
+        _ = Observe2GuardedAsync();
         host.Information("Started");
     }
-    private async Task Observe2Guarded()
+    public void StopObserver2()
+    {
+        symbols_unsubscription?.Dispose();
+        symbols_unsubscription=null;
+        host.Information($"Stopped (Elapsed observable activity: {watch?.Elapsed})");
+    }
+    private async Task Observe2GuardedAsync()
     {
         do
         {
             try
             {
-                await Observe2();
+                await Observe2Async();
                 break;
             }catch(Exception ex){ ++ExceptionCount; host.Error(ex,nameof(ObserveGuarded));}
         }while(true);
     }
-    private async Task Observe2()
+    private async Task Observe2Async()
     {
-        await quote_provider.StartObservableActivity(appsettings["list"], appsettings["ASuffix"]);
+        await symbol_provider.StartObservableActivityAsync(appsettings["list"], appsettings["ASuffix"]);
     }
 }

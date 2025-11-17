@@ -192,7 +192,7 @@ class Program
         symbols.StartObserver2();
         ReadLine();
         cancellation.Cancel();
-        //symbols.Stop();
+        symbols.StopObserver2();
         WriteLine($"\n{nameof(symbols.SymbolCount)}: {symbols.SymbolCount}\n{nameof(symbols.ExceptionCount)}: {symbols.ExceptionCount}");
     }
     static async Task getstring(nutility.Switch opts)
