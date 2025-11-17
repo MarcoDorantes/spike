@@ -33,14 +33,30 @@ class Program
         {
             nutility.Switch opts = new(args);
             appsettings = System.Configuration.ConfigurationManager.AppSettings;
-            if (opts.Is("reader")) { LaunchReaders(opts); }
-            if (opts.Is("composer")) { LaunchComposers(opts); }
-            if (opts.Is("getstring")) await getstring(opts);
+            if (opts.Is("reader")) LaunchReaders(opts);
+            else if (opts.Is("composer")) LaunchComposers(opts);
+            else if (opts.Is("symbols")) LaunchSymbols(opts);
+            else if (opts.Is("getstring")) await getstring(opts);
             else if (opts.Is("getquotes")) await getquotes();
             else if (opts.Is("getcatalog")) try { await getcatalog(); } catch (Exception ex) { log(ex); }
             else if (opts.Is("snap")) try { await getsnap(); } catch (Exception ex) { log(ex); }
+            else if(opts.Is("iter")) iter();
+            else if(opts.Is("iter2")) iter2();
+            else if(opts.Is("observer")) observer();
+            else if(opts.Is("observer2")) observer2();
         }
         catch (Exception ex) { log(ex); }
+    }
+    static void OnNext(IDictionary<string, object> message)
+    {
+        ++received_onnext_count;
+        // var payload = message[HttpPayloadRequest.HttpPayloadReader.MessagePayloadKey] as byte[];
+
+        // var keys = $"{string.Join('|', message.Where(k => k.Key != HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
+        // var payload_detail = Config.PayloadLogEnabled ? $" ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}" : "";
+        var payload_detail = $" {string.Join('|', message.Select(k => $"{k.Key}:{k.Value}"))}";
+        WriteLine($"Msg#{received_onnext_count}{payload_detail}");
+        //WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))} {t:o}");
     }
     static void LaunchReaders(nutility.Switch opts)
     {
@@ -110,26 +126,74 @@ class Program
     static async Task LaunchComposer(nutility.Switch opts,HttpPayloadRequest.ISourceProcessorHost host, CancellationToken cancel, NameValueCollection appsettings)
     {
        //await foreach(var next in HttpPayloadRequest.MessageComposer.SL_MessageComposer(host,cancel,appsettings)) OnNext(next);
+
         IAsyncEnumerable<IDictionary<string,object>> collection = HttpPayloadRequest.MessageComposer.SL_MessageComposer(host,cancel,appsettings);
         IAsyncEnumerator<IDictionary<string,object>> iterator = collection.GetAsyncEnumerator(cancel);
+
         while(!cancel.IsCancellationRequested)
         {
             bool is_next = await iterator.MoveNextAsync();
             if(!is_next) break;
             IDictionary<string,object> next = iterator.Current;
-            WriteLine(next.Count);
+            next?.Aggregate(Out,(w,n)=>{w.Write($"{n.Key}:{n.Value} ");return w;});
+            WriteLine();
         }
     }
-    static void OnNext(IDictionary<string, object> message)
+    static void LaunchSymbols(nutility.Switch opts)
     {
-        ++received_onnext_count;
-        // var payload = message[HttpPayloadRequest.HttpPayloadReader.MessagePayloadKey] as byte[];
-
-        // var keys = $"{string.Join('|', message.Where(k => k.Key != HttpSocket.HttpSocketClient.MessagePayloadKey).Select(p => $"{p.Key}={p.Value}"))}";
-        // var payload_detail = Config.PayloadLogEnabled ? $" ({payload.GetType().Name}):{Encoding.UTF8.GetString(payload)}|{keys}" : "";
-        var payload_detail = $" {string.Join('|', message.Select(k => $"{k.Key}:{k.Value}"))}";
-        WriteLine($"Msg#{received_onnext_count}{payload_detail}");
-        //WriteLine($"{nameof(status)}:{status} {string.Join('|', quote.Select(k => $"{k.Key}:{k.Value}"))} {t:o}");
+        ConsoleHost host = new(Out);
+        CancellationTokenSource cancellation=new();
+        HttpPayloadRequest.SymbolCatalog symbols=new(host, cancellation.Token, System.Configuration.ConfigurationManager.AppSettings);
+        symbols.Start();
+        ReadLine();
+        cancellation.Cancel();
+        //symbols.Stop();
+        WriteLine($"\n{nameof(symbols.SymbolCount)}: {symbols.SymbolCount}\n{nameof(symbols.ExceptionCount)}: {symbols.ExceptionCount}");
+        Thread.Sleep(3_000);
+    }
+    static void iter()
+    {
+        ConsoleHost host = new(Out);
+        CancellationTokenSource cancellation=new();
+        HttpPayloadRequest.SymbolCatalog symbols=new(host, cancellation.Token, System.Configuration.ConfigurationManager.AppSettings);
+        symbols.StartIterator();
+        ReadLine();
+        cancellation.Cancel();
+        //symbols.Stop();
+        WriteLine($"\n{nameof(symbols.SymbolCount)}: {symbols.SymbolCount}\n{nameof(symbols.ExceptionCount)}: {symbols.ExceptionCount}");
+    }
+    static void iter2()
+    {
+        ConsoleHost host = new(Out);
+        CancellationTokenSource cancellation=new();
+        HttpPayloadRequest.SymbolCatalog symbols=new(host, cancellation.Token, System.Configuration.ConfigurationManager.AppSettings);
+        symbols.StartIterator2();
+        ReadLine();
+        cancellation.Cancel();
+        //symbols.Stop();
+        WriteLine($"\n{nameof(symbols.SymbolCount)}: {symbols.SymbolCount}\n{nameof(symbols.ExceptionCount)}: {symbols.ExceptionCount}");
+    }    
+    static void observer()
+    {
+        ConsoleHost host = new(Out);
+        CancellationTokenSource cancellation=new();
+        HttpPayloadRequest.SymbolCatalog symbols=new(host, cancellation.Token, System.Configuration.ConfigurationManager.AppSettings);
+        symbols.StartObserver();
+        ReadLine();
+        cancellation.Cancel();
+        //symbols.Stop();
+        WriteLine($"\n{nameof(symbols.SymbolCount)}: {symbols.SymbolCount}\n{nameof(symbols.ExceptionCount)}: {symbols.ExceptionCount}");
+    }
+    static void observer2()
+    {
+        ConsoleHost host = new(Out);
+        CancellationTokenSource cancellation=new();
+        HttpPayloadRequest.SymbolCatalog symbols=new(host, cancellation.Token, System.Configuration.ConfigurationManager.AppSettings);
+        symbols.StartObserver2();
+        ReadLine();
+        cancellation.Cancel();
+        //symbols.Stop();
+        WriteLine($"\n{nameof(symbols.SymbolCount)}: {symbols.SymbolCount}\n{nameof(symbols.ExceptionCount)}: {symbols.ExceptionCount}");
     }
     static async Task getstring(nutility.Switch opts)
     {

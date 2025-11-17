@@ -136,7 +136,7 @@ public class HttpPayloadReader : IDisposable
     }
     public void Start()
     {
-        _ = InvokeHttpRequestAsyncGuarded();
+        _ = InvokeHttpRequestGuardedAsync();
         /*_ = ConnectToServerAsyncGuarded(Address, InitialMessage, SubscribePayload);
         watch = Stopwatch.StartNew();
         transit_collection = CreateBlockingCollection();
@@ -172,7 +172,7 @@ public class HttpPayloadReader : IDisposable
         }
     }
 
-    private async Task InvokeHttpRequestAsyncGuarded()
+    private async Task InvokeHttpRequestGuardedAsync()
     {
         do
         {
@@ -258,7 +258,7 @@ public class HttpPayloadReader : IDisposable
     }
     private async Task<IDictionary<string, object>> getsnap(string uri)
     {
-        var result = await GetObject<Dictionary<string, JsonElement>>(uri, CancellationToken.None);
+        var result = await GetObject<Dictionary<string, JsonElement>>(uri, Cancellation);
         var status = result["status"].GetString();
         Dictionary<string, object> flat = result["ticker"].EnumerateObject().Aggregate(new Dictionary<string, object>(), (whole, next) =>
         {
@@ -305,6 +305,11 @@ public class HttpPayloadReader : IDisposable
             WriteIndented = false
         };*/
         return await client.GetFromJsonAsync<T>(uri, /*jsonOptions,*/ cancel);
+    }
+    public static async Task<T> GetObject<T>(Uri uri, CancellationToken cancel)
+    {
+        using HttpClient client = new();
+        return await client.GetFromJsonAsync<T>(uri, cancel);
     }
     #endregion
 
