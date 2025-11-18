@@ -415,6 +415,7 @@ public class SymbolCatalog(HttpPayloadRequest.ISourceProcessorHost host, Cancell
                     {
                         try
                         {
+                            if(cancel.IsCancellationRequested) break;
                             var symbol = JsonSerializer.Deserialize<Dictionary<string, object>>(result);
                             if($"{symbol["ticker"]}"=="ACAD")throw new Exception("Faked");
                             symbol.Add("status", status);
@@ -422,7 +423,7 @@ public class SymbolCatalog(HttpPayloadRequest.ISourceProcessorHost host, Cancell
                         }
                         catch(Exception ex){observer?.OnError(ex);}
                     }
-                    if (response.TryGetValue("next_url", out JsonElement next_url) && next_url.ValueKind != JsonValueKind.Null)
+                    if (!cancel.IsCancellationRequested && response.TryGetValue("next_url", out JsonElement next_url) && next_url.ValueKind != JsonValueKind.Null)
                     {
                         uri = $"{next_url.GetString()}{suffix}";
                     }
@@ -431,9 +432,9 @@ public class SymbolCatalog(HttpPayloadRequest.ISourceProcessorHost host, Cancell
                         break;
                     }
                 }
-                catch(Exception ex){observer.OnError(ex);}
+                catch(Exception ex){observer?.OnError(ex);}
             }
-            observer.OnCompleted();
+            observer?.OnCompleted();
         }
     }
     void IObserver<IDictionary<string,object>>.OnNext(IDictionary<string,object> next)
