@@ -21,6 +21,9 @@ https://docs.microsoft.com/en-us/graph/overview
 https://docs.microsoft.com/en-us/learn/paths/m365-msgraph-fundamentals
 https://graph.microsoft.com
 https://graph.microsoft.com/v1.0/me/messages
+https://learn.microsoft.com/en-us/graph/tutorials/#app-only-authentication
+  https://github.com/microsoftgraph/msgraph-training-dotnet/tree/main/app-auth
+  https://learn.microsoft.com/en-us/answers/questions/1664762/unable-to-get-get-a-client-id-in-microsoft-graph-q
 http://aka.ms/graph
 https://developer.microsoft.com/en-us/graph
 https://developer.microsoft.com/graph/graph-explorer
