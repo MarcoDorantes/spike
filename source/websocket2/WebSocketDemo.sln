@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notes", "notes", "{59D919E5
 		notes.txt = notes.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpSocket", "HttpSocket\HttpSocket.csproj", "{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,18 @@ Global
 		{36D81FD9-6A16-4870-B847-FA3229E537B6}.Release|x64.Build.0 = Release|Any CPU
 		{36D81FD9-6A16-4870-B847-FA3229E537B6}.Release|x86.ActiveCfg = Release|Any CPU
 		{36D81FD9-6A16-4870-B847-FA3229E537B6}.Release|x86.Build.0 = Release|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Debug|x64.Build.0 = Debug|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Debug|x86.Build.0 = Debug|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Release|x64.ActiveCfg = Release|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Release|x64.Build.0 = Release|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Release|x86.ActiveCfg = Release|Any CPU
+		{87B19BDC-DC5C-4CFD-BF43-6C1518E34307}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

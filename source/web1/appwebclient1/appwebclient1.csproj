@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HttpSocket\HttpSocket.csproj" />
+    <ProjectReference Include="..\HttpPayloadRequest\HttpPayloadRequest.csproj" />
   </ItemGroup>
 
 </Project>
