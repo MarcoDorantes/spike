@@ -18,23 +18,30 @@ switch ($machine) {
 }
 */
 using System;
+using static System.Console;
 
 var p=System.Diagnostics.Process.GetCurrentProcess();
+var child=false;
+var output=Console.Out;
+
 //var cpu=p.StartInfo?.Environment?.TryGetValue("PROCESSOR_ARCHITECTURE", out string _v) == true ? _v : null;
+try{var s = p.StartInfo;WriteLine($"Keys: [{s?.Environment?.Count}]");child=true;}catch(Exception ex){for(int level=0;ex!=null;ex=ex.InnerException,++level)output.WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}");}
+var input=child?(new System.IO.StringReader(string.Join(Environment.NewLine,[1..2]))):Console.In;
+
 var cpu=Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
 var role=string.Join(' ',args);
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor host started {role}");
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Setup begun {role}");
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Setup ended {role}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor host started {role}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Setup begun {role}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Setup ended {role}");
 
-var input1=Console.ReadLine();//Pipe receive
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Input received {input1}");
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Start begun {role}");
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Start ended {role}");
+var input1=input.ReadLine();//Pipe receive
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Input received {input1}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Start begun {role}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Start ended {role}");
 
-var input2=Console.ReadLine();//Pipe receive
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Input received {input2}");
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Stop begun {role}");
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Stop ended {role}");
+var input2=input.ReadLine();//Pipe receive
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Input received {input2}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Stop begun {role}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor Stop ended {role}");
 
-Console.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor host stopped {role}");
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} CPU {cpu}] Processor host stopped {role}");
