@@ -18,6 +18,7 @@ switch ($machine) {
 }
 */
 using System;
+using System.Linq;
 using static System.Console;
 
 var p=System.Diagnostics.Process.GetCurrentProcess();
@@ -25,8 +26,9 @@ var child=false;
 var output=Console.Out;
 
 //var cpu=p.StartInfo?.Environment?.TryGetValue("PROCESSOR_ARCHITECTURE", out string _v) == true ? _v : null;
-try{var s = p.StartInfo;WriteLine($"Keys: [{s?.Environment?.Count}]");child=true;}catch(Exception ex){for(int level=0;ex!=null;ex=ex.InnerException,++level)output.WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}");}
-var input=child?(new System.IO.StringReader(string.Join(Environment.NewLine,[1..2]))):Console.In;
+try{var s = p.StartInfo;WriteLine($"Keys: [{s?.Environment?.Count}]");}catch(Exception ex){child=true;for(int level=0;ex!=null;ex=ex.InnerException,++level)output.WriteLine($"[Level {level}] {ex.GetType().FullName}: {ex.Message}");}
+output.WriteLine($"{DateTime.Now:s} [PID {p.Id} child:{child}]");
+var input=child?(new System.IO.StringReader(string.Join(null,System.Linq.Enumerable.Range(0,2).Select(n=>$"{n}{Environment.NewLine}")))):Console.In;
 
 var cpu=Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
 var role=string.Join(' ',args);

@@ -1,27 +1,33 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
+using System.Linq;
+using static System.Console;
 
 var p=System.Diagnostics.Process.GetCurrentProcess();
 var cpu=Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
 var processor_host=@"E:\temp\app1\app1.exe";
 System.IO.FileInfo file=new(processor_host);
-var role="";
-Console.WriteLine($"[PID {p.Id} CPU {cpu}] ServiceHost started {string.Join(' ',args)}");
+var role="processor1";
+WriteLine($"[PID {p.Id} CPU {cpu}] ServiceHost started {string.Join(' ',args)}");
 
+var input=new System.IO.StringReader(string.Join(null,System.Linq.Enumerable.Range(0,2).Select(n=>$"{n}{Environment.NewLine}")));
 string output = null;
 string error = null;
-using var collect = new System.Diagnostics.Process();
+using System.Diagnostics.Process collect = new();
 collect.StartInfo = new(file.FullName, role)
 {
     CreateNoWindow = true,
     UseShellExecute = false,
-    RedirectStandardInput = true,
+    RedirectStandardInput = false,
     RedirectStandardOutput = true,
     RedirectStandardError = true
 };
 collect.Start();
-output = collect.StandardOutput.ReadToEnd();
-error = collect.StandardError.ReadToEnd();
+if(collect.StartInfo.RedirectStandardInput) collect.StandardInput.Write(input);
+var subcpu=collect.StartInfo?.Environment?.TryGetValue("PROCESSOR_ARCHITECTURE", out string _v) == true ? _v : null;
+WriteLine($"[PID {p.Id} CPU {cpu}] Sub-process PID {collect.Id} CPU {subcpu} {string.Join(' ',args)}");
+if(collect.StartInfo.RedirectStandardOutput) output = collect.StandardOutput.ReadToEnd();
+if(collect.StartInfo.RedirectStandardError) error = collect.StandardError.ReadToEnd();
 
 const int mm = 60;
 collect.WaitForExit(mm * 60 * 1000);
@@ -36,10 +42,10 @@ payload.AppendLine();
 payload.AppendLine($"This email was sent at: {when:s}");
 payload.AppendLine($"This email was sent from: {System.Net.Dns.GetHostName()}");
 var body = $"{payload}";
-Console.WriteLine(body);
+WriteLine(body);
 
-Console.ReadLine();
-Console.WriteLine($"[PID {p.Id} CPU {cpu}] ServiceHost stopped {string.Join(' ',args)}");
+ReadLine();
+WriteLine($"[PID {p.Id} CPU {cpu}] ServiceHost stopped {string.Join(' ',args)}");
 /*
 https://learn.microsoft.com/en-us/dotnet/standard/io/pipe-operations
 https://learn.microsoft.com/en-us/dotnet/api/system.io.pipes?view=net-10.0
