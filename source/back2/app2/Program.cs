@@ -495,4 +495,159 @@ class Program
 - If parent is another custom process, it was programmatically executed
 - The parent process may have already exited, causing `GetProcessById` to throw an exception
 - This approach works on Windows but isn't cross-platform
+---
+Using .NET 10 on Windows 10, how the current process can determine if it was executed interactively or as a batch or backend process?
+
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+public class SessionDetector
+{
+    [DllImport("kernel32.dll")]
+    private static extern IntPtr GetConsoleWindow();
+
+    [DllImport("kernel32.dll")]
+    private static extern uint GetConsoleProcessList(uint[] processList, uint processCount);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool AttachConsole(uint dwProcessId);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool FreeConsole();
+
+    public static SessionInfo DetectSession()
+    {
+        var info = new SessionInfo
+        {
+            UserInteractive = Environment.UserInteractive,
+            HasConsoleWindow = GetConsoleWindow() != IntPtr.Zero,
+            IsInputRedirected = Console.IsInputRedirected,
+            IsOutputRedirected = Console.IsOutputRedirected,
+            IsErrorRedirected = Console.IsErrorRedirected,
+            SessionId = Process.GetCurrentProcess().SessionId
+        };
+
+        // Get console process count
+        uint[] processList = new uint[64];
+        info.ConsoleProcessCount = (int)GetConsoleProcessList(processList, (uint)processList.Length);
+
+        // Determine execution mode
+        info.ExecutionMode = DetermineExecutionMode(info);
+
+        return info;
+    }
+
+    private static ExecutionMode DetermineExecutionMode(SessionInfo info)
+    {
+        // Windows Service or system process
+        if (!info.UserInteractive)
+        {
+            return ExecutionMode.Service;
+        }
+
+        // No console window = GUI app or background
+        if (!info.HasConsoleWindow)
+        {
+            return ExecutionMode.GUI;
+        }
+
+        // Input/output redirected = batch, pipe, or scheduled task
+        if (info.IsInputRedirected || info.IsOutputRedirected)
+        {
+            return ExecutionMode.Batch;
+        }
+
+        // Session 0 = system/service context
+        if (info.SessionId == 0)
+        {
+            return ExecutionMode.Service;
+        }
+
+        // Has console, not redirected, user interactive = interactive
+        return ExecutionMode.Interactive;
+    }
+}
+
+public class SessionInfo
+{
+    public bool UserInteractive { get; set; }
+    public bool HasConsoleWindow { get; set; }
+    public bool IsInputRedirected { get; set; }
+    public bool IsOutputRedirected { get; set; }
+    public bool IsErrorRedirected { get; set; }
+    public int ConsoleProcessCount { get; set; }
+    public int SessionId { get; set; }
+    public ExecutionMode ExecutionMode { get; set; }
+
+    public override string ToString()
+    {
+        return $@"Session Information:
+  Execution Mode: {ExecutionMode}
+  User Interactive: {UserInteractive}
+  Has Console: {HasConsoleWindow}
+  Input Redirected: {IsInputRedirected}
+  Output Redirected: {IsOutputRedirected}
+  Error Redirected: {IsErrorRedirected}
+  Console Processes: {ConsoleProcessCount}
+  Session ID: {SessionId}";
+    }
+}
+
+public enum ExecutionMode
+{
+    Interactive,    // User ran from console/terminal
+    Batch,          // Batch file, scheduled task, or redirected I/O
+    Service,        // Windows Service or system process
+    GUI             // GUI application (no console)
+}
+
+// Usage
+class Program
+{
+    static void Main(string[] args)
+    {
+        var session = SessionDetector.DetectSession();
+        Console.WriteLine(session);
+
+        // Use the detection
+        if (session.ExecutionMode == ExecutionMode.Interactive)
+        {
+            Console.WriteLine("\nRunning interactively - can prompt user");
+        }
+        else if (session.ExecutionMode == ExecutionMode.Batch)
+        {
+            Console.WriteLine("\nRunning as batch - use default values");
+        }
+    }
+}
+```
+
+**Key Indicators:**
+
+1. **`Environment.UserInteractive`**: 
+   - `true` for interactive sessions
+   - `false` for Windows Services, IIS, etc.
+
+2. **Console I/O Redirection**:
+   - `Console.IsInputRedirected` - stdin redirected (piped input)
+   - `Console.IsOutputRedirected` - stdout redirected (piped output)
+   - `Console.IsErrorRedirected` - stderr redirected
+
+3. **Console Window Presence**:
+   - `GetConsoleWindow()` returns handle if console exists
+   - No console = GUI app or detached process
+
+4. **Session ID**:
+   - Session 0 = services and system processes
+   - Session 1+ = user sessions
+
+**Common Scenarios:**
+```
+Interactive:        myapp.exe
+Batch/Redirected:   myapp.exe > output.txt
+Piped:              type input.txt | myapp.exe
+Scheduled Task:     Usually batch mode (no console, redirected)
+Windows Service:    Environment.UserInteractive = false
+Double-clicked:     Interactive with console window
 */

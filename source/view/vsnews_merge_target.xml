@@ -32660,5 +32660,123 @@ Need an Azure CLI command? Just ask. Copilot translates intent into precise az c
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">10</slash:comments>
       <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/01/VS-logo-featured-image.webp" type="image/png" />
     </item>
+    <item>
+      <title>Visual Studio February Update</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-february-update/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visual-studio-february-update/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mark Downie]]></dc:creator>
+      <pubDate>Tue, 24 Feb 2026 22:16:30 +0000</pubDate>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[Productivity]]></category>
+      <category><![CDATA[.NET]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=255690</guid>
+      <description><![CDATA[<p>This month’s Visual Studio update continues our focus on helping you move faster and stay in flow, with practical improvements across AI assistance, debugging, testing, and modernization. Building on the momentum from January’s editor updates, the February release brings smarter diagnostics and targeted support for real world development scenarios, from WinForms maintenance to C++ modernization. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-february-update/">Visual Studio February Update</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>This month’s Visual Studio update continues our focus on helping you move faster and stay in flow, with practical improvements across AI assistance, debugging, testing, and modernization. Building on the momentum from January’s editor updates, the February release brings smarter diagnostics and targeted support for real world development scenarios, from WinForms maintenance to C++ modernization.</p>
+<p>All of the features highlighted are available in the Visual Studio 2026 Stable Channel as part of the February 2026 feature update (18.3). Please update to the latest version to try out these new features!</p>
+<h3>WinForms Expert Agent</h3>
+<p>The WinForms Expert agent provides a focused guide for handling key challenges in WinForms development. It covers several important areas:
+Designer vs. regular code: Understand which C# features apply to designer-generated code and business logic.</p>
+<ul>
+<li>Modern .NET patterns: Updated for .NET 8-10, including MVVM with Community Toolkit, async/await with proper InvokeAsync overloads, Dark mode with high-DPI support, and nullable reference types.</li>
+<li>Layout: Advice on using TableLayoutPanel and FlowLayoutPanel for responsive, cross-device design.</li>
+<li>CodeDOM serialization: Rules for property serialization and avoiding common issues with [DefaultValue] and ShouldSerialize*() methods.</li>
+<li>Exception handling: Patterns for async event handlers and robust application-level error handling.</li>
+</ul>
+<p>The agent serves as an expert reviewer for your WinForms code, providing comprehensive guidance on everything from naming controls to ensuring accessibility. The WinForms Agent is automatically implemented and included in the system prompt when necessary.</p>
+<h3>Smarter Test Generation with GitHub Copilot</h3>
+<p>Visual Studio now includes intelligent <a href="https://devblogs.microsoft.com/dotnet/github-copilot-testing-for-dotnet-available-in-visual-studio/">test generation with GitHub Copilot</a>, making it faster to create and refine unit tests for your C# code. This purpose-built workflow works seamlessly with xUnit, NUnit, and MSTest.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/prompt-image-intro.webp"><img fetchpriority="high" decoding="async" class="alignnone wp-image-255691 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/prompt-image-intro.webp" alt="GitHub Copilot Chat pane in Visual Studio showing a new chat thread. The Copilot Chat welcome screen appears with a message about checking accuracy, a prompt asking ‘generate tests for my entire solution,’ and the selected model labeled Claude Haiku 4.5. The input box includes a reference button and test generation command." width="316" height="410" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/prompt-image-intro.webp 316w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/prompt-image-intro-231x300.webp 231w" sizes="(max-width: 316px) 100vw, 316px" /></a></p>
+<p>Simply type <code>@Test</code> in GitHub Copilot Chat, describe what you want to test, and Copilot generates the test code for you. Whether you&#8217;re starting fresh or improving coverage on existing projects, this feature helps you write tests faster without leaving your workflow.</p>
+<h3>Slash Commands for Custom Prompts</h3>
+<p>Invoke your favorite custom prompts faster using slash commands in Copilot Chat. Type <code>/</code> and your custom prompts appear at the top of the list, marked with a bookmark icon for easy identification.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/slash-commands.webp"><img decoding="async" class="alignnone wp-image-255698 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/slash-commands.webp" alt="Copilot Chat slash command menu in Visual Studio showing available commands such as quality check, clear, explain, fix, and generate, with Agent mode enabled and Claude Sonnet 4.5 selected in the chat input area." width="576" height="373" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/slash-commands.webp 576w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/slash-commands-300x194.webp 300w" sizes="(max-width: 576px) 100vw, 576px" /></a></p>
+<p>We&#8217;ve also added two additional commands:</p>
+<p>&#8211; <code><strong>/generateInstructions</strong></code>: Automatically generate a copilot-instructions.md file for your repository using project context like coding style and preferences</p>
+<p>&#8211; <code><strong>/savePrompt</strong></code>: Extract a reusable prompt from your current chat thread and save it for later use via <code>/</code> commands</p>
+<p>These shortcuts make it easier to build and reuse your workflow patterns.</p>
+<h3>C++ App Modernization</h3>
+<p><a href="https://devblogs.microsoft.com/cppblog/github-copilot-app-modernization-cpp-public-preview/">GitHub Copilot app modernization for C++</a> is now available in Public Preview. GitHub Copilot app modernization for C++ helps you update your C++ projects to use the latest versions of MSVC and to resolve upgrade-related issues. You can find our <a href="https://learn.microsoft.com/cpp/porting/copilot-app-modernization-cpp?view=msvc-170">user documentation on Microsoft Learn</a>.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/assesment-markdown.webp"><img decoding="async" class="alignnone wp-image-255692 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/assesment-markdown.webp" alt="Split view in Visual Studio showing a Markdown file on the left and a rendered preview on the right with an Executive Summary and Key Findings for an MSVC Build Tools upgrade including errors and warnings." width="1428" height="531" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/assesment-markdown.webp 1428w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/assesment-markdown-300x112.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/assesment-markdown-1024x381.webp 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/assesment-markdown-768x286.webp 768w" sizes="(max-width: 1428px) 100vw, 1428px" /></a></p>
+<h3>DataTips in IEnumerable Visualizer</h3>
+<p>You can now use DataTips in the IEnumerable Visualizer while debugging. Just hover over any cell in the grid to see the full object behind that value, the same DataTip experience you’re used to in the editor or Watch window.</p>
+<p>When you hover over a cell, a DataTip shows all the object’s properties in one place. This makes it much easier to debug collections with complex or nested data. Whether it’s a <code>List&lt;T&gt;</code> of objects or a dictionary with structured values, one hover lets you quickly inspect everything inside.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/IEnumerableVisualizer.webp"><img decoding="async" class="alignnone wp-image-255709" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/IEnumerableVisualizer.webp" alt="Visual Studio IEnumerable Visualizer showing the expression lpvm.Posts. A table displays one row with columns for PostViewModel properties, including Categories with a count of one, AllCategories, NewCategory, and AllowComments set to True. A tooltip shows a CategoryViewModel object with an option to view raw data." width="642" height="360" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/IEnumerableVisualizer.webp 1107w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/IEnumerableVisualizer-300x168.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/IEnumerableVisualizer-1024x574.webp 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/IEnumerableVisualizer-768x431.webp 768w" sizes="(max-width: 642px) 100vw, 642px" /></a></p>
+<h3>Analyze Call Stack with Copilot</h3>
+<p>You can now <strong>Analyze Call Stack with Copilot</strong> to help you quickly understand what your app is doing when debugging stops. When you pause execution, you can select <strong>Analyze with Copilot</strong> in the Call Stack window. Copilot reviews the current stack and explains why the app isn’t progressing whether the thread is waiting on work, looping, or blocked by something.</p>
+<p>This makes the call stack more than just a list of frames. It becomes a helpful guide that shows what’s happening in your app so you can move faster toward the real fix.</p>
+<p><div style="width: 3800px;" class="wp-video"><video class="wp-video-shortcode" id="video-255690-1" width="3800" height="1982" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/callstackanalysis.mp4?_=1" /><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/callstackanalysis.mp4">https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/callstackanalysis.mp4</a></video></div></p>
+<h3>Profiler agent with Unit Test support</h3>
+<p>The Profiler Agent (<code>@profiler</code>) now works with unit tests. You can use your existing tests to check performance improvements, making it easier to measure and optimize your code in more situations. The agent can discovers relevant unit tests/BenchmarkDotNet benchmarks that exercise performance-critical code paths.</p>
+<p>If no good tests or benchmarks are available, it automatically creates a small measurement setup so you can capture a baseline and compare results after changes. This unit-test-focused approach also makes the Profiler Agent useful for C++ projects, where benchmarks aren’t always practical, but unit tests often already exist.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/copilot-profiler-chat-1.webp"><img decoding="async" class="alignnone wp-image-255715" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/copilot-profiler-chat-1.webp" alt="GitHub Copilot Chat showing profiler suggestion to optimize code step identify scope message requesting permission to run CPU performance profiler with confirm and deny buttons and model selector visible" width="390" height="489" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/copilot-profiler-chat-1.webp 499w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/copilot-profiler-chat-1-239x300.webp 239w" sizes="(max-width: 390px) 100vw, 390px" /></a></p>
+<h3>Faster and More Reliable Razor Hot Reload</h3>
+<p>Hot Reload for Razor files are now faster and more reliable. By hosting the Razor compiler inside the Roslyn process, edits to <em>.razor</em> files apply more quickly and avoid delays that previously slowed Blazor workflows. We also reduced the number of blocked edits, with more changes now applying without requiring a rebuild, including file renames and several previously unsupported code edits. When a rebuild is still required, Hot Reload can now automatically restart the app instead of ending the debug session, helping you stay in flow.</p>
+<p>We are continuing to invest in features that help you understand, test, and improve existing code, not just write new code. Try these updates in the Visual Studio 2026 Stable Channel and <a href="https://developercommunity.visualstudio.com/VisualStudio">let us know what is working well and where we can improve</a>. Your feedback directly shapes what we build next.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-february-update/">Visual Studio February Update</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visual-studio-february-update/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+      <enclosure url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/callstackanalysis.mp4" length="1732737" type="video/mp4" />
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/visual-studio-2026-february-update-scaled.webp" type="image/png" />
+    </item>
+    <item>
+      <title>Custom Agents in Visual Studio: Built in and Build-Your-Own agents</title>
+      <link>https://devblogs.microsoft.com/visualstudio/custom-agents-in-visual-studio-built-in-and-build-your-own-agents/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/custom-agents-in-visual-studio-built-in-and-build-your-own-agents/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Rhea Patel, Kelly Fam]]></dc:creator>
+      <pubDate>Thu, 19 Feb 2026 21:02:13 +0000</pubDate>
+      <category><![CDATA[Copilot]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <category><![CDATA[agents]]></category>
+      <category><![CDATA[custom agents]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=255658</guid>
+      <description><![CDATA[<p>Agents in Visual Studio now go beyond a single general-purpose assistant. We&#8217;re shipping a set of curated preset agents that tap into deep IDE capabilities; debugging, profiling, testing alongside a framework for building your own custom agents tailored to how your team works. Built in agents Each preset agent is designed around a specific developer [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/custom-agents-in-visual-studio-built-in-and-build-your-own-agents/">Custom Agents in Visual Studio: Built in and Build-Your-Own agents</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Agents in Visual Studio now go beyond a single general-purpose assistant. We&#8217;re shipping a set of curated preset agents that tap into deep IDE capabilities; debugging, profiling, testing alongside a framework for building your own custom agents tailored to how your team works.</p>
+<h1>Built in agents</h1>
+<p>Each preset agent is designed around a specific developer workflow and integrates with Visual Studio&#8217;s native tooling in ways that a generic assistant can&#8217;t.</p>
+<ul>
+<li><strong>Debugger</strong> &#8211; Goes beyond &#8220;read the error message.&#8221; Uses your call stacks, variable state, and diagnostic tools to walk through error diagnosis systematically across your solution.</li>
+<li><strong>Profiler</strong> &#8211; Connects to Visual Studio&#8217;s profiling infrastructure to identify bottlenecks and suggest targeted optimizations grounded in your codebase, not generic advice.</li>
+<li><strong>Test</strong> – (when solution is loaded) Generates unit tests tuned to your project&#8217;s framework and patterns, not boilerplate that your CI will reject.</li>
+<li><strong>Modernize</strong> (.NET and C++ only) -Framework and dependency upgrades with awareness of your actual project graph. Flags breaking changes, generates migration code, and follows your existing patterns.</li>
+</ul>
+<p>Access them through the agent picker in the chat panel or using ‘@’ in chat.</p>
+<h1>Bring your own: custom agents (preview)</h1>
+<p>The presets cover workflows we think matter most, but your team knows your workflow better than we do. Custom agents let you build your own using the same foundation—workspace awareness, code understanding, tools accessed by your prompts, your preferred model, and your tools.</p>
+<p>Where it gets powerful is MCP. You can connect custom agents to external knowledge sources internal documentation, design systems, APIs, and databases so the agent isn&#8217;t limited to what&#8217;s in your repo.</p>
+<p>A few patterns we&#8217;re seeing from teams:</p>
+<ul>
+<li><strong>Code review</strong> that checks PRs against your actual conventions, connected via MCP to your style guide or ADR repository</li>
+<li><strong>Design system enforcement</strong> connected to your Figma files or component libraries to catch UI drift before it ships</li>
+<li><strong>Planning</strong> helps you think through a feature or task before any code is written. Gathers requirements, asks clarifying questions, and builds out a plan that you can hand off</li>
+</ul>
+<p>The <a href="https://github.com/github/awesome-copilot">awesome-copilot repo</a> has community-contributed agent configurations you can use as starting points.</p>
+<h4><strong>Get started</strong></h4>
+<p>Custom agents are defined as .agent.md files in your repository&#8217;s .github/agents/ folder:</p>
+<pre>your-repo/
+└── .github/
+    └── agents/
+        └── code-reviewer.agent.md</pre>
+<p>A few things to note:</p>
+<ul>
+<li>This is a preview feature; the format of these files may change over to support different capabilities</li>
+<li>If you don&#8217;t specify a model, the agent uses whatever is selected in the model picker</li>
+<li>Tool names vary across GitHub Copilot platforms- check the tools available in Visual Studio specifically to make sure your agent works as expected</li>
+<li>Configurations from the awesome-copilot repo are a great starting point, but verify tool names before using them in VS</li>
+</ul>
+<h4><strong>Tell us what you&#8217;re building</strong></h4>
+<p>Share your configurations in the <a href="https://github.com/github/awesome-copilot">awesome-copilot repo</a> or file feedback <a href="https://developercommunity.microsoft.com/t/Custom-modes-for-Copilot-Chat/10950930?q=custom+">here</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/custom-agents-in-visual-studio-built-in-and-build-your-own-agents/">Custom Agents in Visual Studio: Built in and Build-Your-Own agents</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/custom-agents-in-visual-studio-built-in-and-build-your-own-agents/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/Screenshot-2026-02-19-125547.webp" type="image/png" />
+    </item>
   </channel>
 </rss>
