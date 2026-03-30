@@ -32778,5 +32778,299 @@ Designer vs. regular code: Understand which C# features apply to designer-genera
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
       <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/02/Screenshot-2026-02-19-125547.webp" type="image/png" />
     </item>
+    <item>
+      <title>Unlock More Power in Your Development Workflow: Syncfusion for Visual Studio Subscribers </title>
+      <link>https://devblogs.microsoft.com/visualstudio/syncfusion-for-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/syncfusion-for-visual-studio/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Tue, 24 Mar 2026 15:00:12 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio Subscriptions]]></category>
+      <category><![CDATA[Syncfusion]]></category>
+      <category><![CDATA[Visual Studio Dev Essentials]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=255908</guid>
+      <description><![CDATA[<p>A few months ago, I was talking with a developer who said something that stuck with me:  “I love building apps. I just don’t love rebuilding the same UI controls over and over again.”  That’s the reality for a lot of teams. You want to focus on your business logic, your architecture, your differentiation. Instead, you burn cycles wiring up [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/syncfusion-for-visual-studio/">Unlock More Power in Your Development Workflow: Syncfusion for Visual Studio Subscribers </a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="auto">A few months ago, I was talking with a developer who said something that stuck with me:</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">“I love building apps. I just don’t love rebuilding the same UI controls over and over again.”</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">That’s the reality for a lot of teams. You want to focus on your business logic, your architecture, your differentiation. Instead, you burn cycles wiring up grids, charts, document exports, dashboards, and signing workflows.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">If you’re a Visual Studio subscriber, there’s a benefit waiting for you that can change that: </span><b><span data-contrast="auto">Syncfusion</span></b><span data-contrast="auto">.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">And it’s included at no additional cost for eligible subscribers.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Let me walk you through why this one matters.</span><span data-ccp-props="{}"> </span></p>
+<h3><b><span data-contrast="auto">Why Syncfusion?</span></b><span data-ccp-props="{}"> </span></h3>
+<p><span data-contrast="auto">Syncfusion delivers a comprehensive suite of:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">1,600+ UI components</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Cross-platform controls for .NET, JavaScript, XAML, MAUI, Blazor, and more</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Document processing SDKs for PDF, Word, Excel, and PowerPoint</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Data visualization and analytics tools</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Digital signature APIs</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">In short, it helps you ship polished, enterprise-grade applications faster, without reinventing the wheel.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Depending on your Visual Studio subscription level, you get 6 to 12 months of access to </span><a href="https://www.syncfusion.com/explore/visual-studio-subscription-benefits/" target="_blank" rel="noopener"><span data-contrast="none">powerful editions of these tools</span></a><span data-contrast="auto">.</span><span data-ccp-props="{}"> </span></p>
+<h2><b><span data-contrast="auto"><a href="https://www.syncfusion.com/explore/visual-studio-subscription-benefits/" target="_blank" rel="noopener"><img fetchpriority="high" decoding="async" class="size-full wp-image-255911 aligncenter" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/Option-1-VSS_Sync_NewBenefits_blog-banner.webp" alt="Option 1 VSS Sync NewBenefits blog banner image" width="800" height="200" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/Option-1-VSS_Sync_NewBenefits_blog-banner.webp 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/Option-1-VSS_Sync_NewBenefits_blog-banner-300x75.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/Option-1-VSS_Sync_NewBenefits_blog-banner-768x192.webp 768w" sizes="(max-width: 800px) 100vw, 800px" /></a></span></b></h2>
+<h2><b><span data-contrast="auto">For Visual Studio Professional &amp; Enterprise Subscribers</span></b><span data-ccp-props="{}"> </span></h2>
+<p><span data-contrast="auto">If you’re on Visual Studio Professional or Enterprise, here’s what’s included.</span><span data-ccp-props="{}"> </span></p>
+<h3><b><span data-contrast="auto">Essential Studio Enterprise Edition</span></b><span data-ccp-props="{}"> </span></h3>
+<p><b><span data-contrast="auto">Duration: 12 months</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">This is the full suite.</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">1,600+ UI controls across platforms</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">High-performance grids, charts, schedulers, data visualization</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Cross-platform development for web, desktop, and mobile</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Document Solutions SDKs for PDF, Word, Excel, and PowerPoint processing</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">No need for Microsoft Office or Adobe installed</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Potential 15% renewal discount after the benefit term</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">If you’re building line-of-business apps, SaaS products, internal dashboards, or customer solutions, this can dramatically accelerate your delivery timeline.</span><span data-ccp-props="{}"> </span></p>
+<h3><b><span data-contrast="auto">BoldSign – E-Signature API</span></b><span data-ccp-props="{}"> </span></h3>
+<p><b><span data-contrast="auto">Enterprise Subscribers | 12 months</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Modern applications increasingly require digital signing workflows. BoldSign gives you:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">12-month subscription</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Unlimited templates</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">API access</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Audit trails and team management</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">50 API document credits included</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Additional usage at $0.75 per document</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Auto-renews at $5/month unless canceled</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">This is ideal for integrating secure, automated signing directly into your application workflows.</span><span data-ccp-props="{}"> </span></p>
+<h3><span data-ccp-props="{}"> </span><b><span data-contrast="auto">Bold BI</span></b><span data-ccp-props="{}"> </span></h3>
+<p><b><span data-contrast="auto">Professional &amp; Enterprise | 6 months</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Need dashboards and analytics without building everything from scratch?</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Bold BI includes:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">120+ data source connectors</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">AI-powered analytics</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Scheduling and export capabilities</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Unlimited users</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">GDPR, SOC 2, and HIPAA compliance</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">If you’ve ever built custom reporting and thought, “There has to be a faster way,” this is it.</span><span data-ccp-props="{}"> </span></p>
+<h2><b><span data-contrast="auto">For Visual Studio Dev Essentials Members</span></b><span data-ccp-props="{}"> </span></h2>
+<p><span data-contrast="auto">If you’re part of </span><b><span data-contrast="auto">Visual Studio Dev Essentials</span></b><span data-contrast="auto">, you’re not left out.</span><span data-ccp-props="{}"> </span></p>
+<h3><b><span data-contrast="auto">Essential Studio UI Edition</span></b><span data-ccp-props="{}"> </span></h3>
+<p><b><span data-contrast="auto">Duration: 6 months</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">A curated subset of Syncfusion’s UI components designed for cross-platform app development.</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">1,600+ high-performance components</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Full source code</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Priority support</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">Perfect for Visual Studio Community and VS Code developers building serious applications.</span><span data-ccp-props="{}"> </span></p>
+<h3><b><span data-contrast="auto">Syncfusion Succinctly Series</span></b><span data-ccp-props="{}"> </span></h3>
+<p><b><span data-contrast="auto">Ongoing access</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">You also get access to 20 curated developer eBooks covering:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">C#</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Python</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">JavaScript</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Azure</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Git</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Docker</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Machine Learning</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">And more</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">This benefit does not expire.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Acceptable Use Guidelines</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">You can use these benefits to build:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">Internal tools</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Customer solutions</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Demos and proofs of concept</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Reference implementations</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">You cannot:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">Redistribute the libraries</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Share license keys</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Use them for unrelated personal redistribution projects</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">As always, check the detailed terms when activating your benefit.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">A Quick Note on Eligibility</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">These benefits apply to eligible Visual Studio Enterprise and Professional subscribers, as well as Dev Essentials members, depending on the specific offer and duration.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Exclusions include certain subscription types such as Enterprise FTE, NFR, MVP, RD, MAICPP, MPN, ISV, Bug Bounty, MCT, Student Ambassadors, Alumni, Xbox NFR Basic, Azure DevOps Tools for Teaching, Startups, We. Comms, and Open Source Heroes.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Learn more about benefit eligibility details </span><a href="https://learn.microsoft.com/visualstudio/subscriptions/syncfusion" target="_blank" rel="noopener"><span data-contrast="none">here</span></a><span data-contrast="auto">.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Don’t Leave This on the Table</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">I’ve said this before about subscriber benefits: you’re already paying for the subscription. The worst thing you can do is not activate what’s included.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Between:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">1,600+ UI components</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Enterprise-grade document SDKs</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Embedded e-signature APIs</span><span data-ccp-props="{}"> </span></li>
+<li><span data-contrast="auto">Production-ready analytics dashboards</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">This is thousands of dollars in tooling, available to you right now.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">If you’re a Visual Studio subscriber, sign in at:</span><span data-ccp-props="{}"> </span></p>
+<p><div  class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://my.visualstudio.com/benefits " target="_blank">my.visualstudio.com/benefits </a></div></p>
+<p><span data-contrast="auto">Activate your Syncfusion benefit and start building faster.</span><span data-ccp-props="{}"> </span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/syncfusion-for-visual-studio/">Unlock More Power in Your Development Workflow: Syncfusion for Visual Studio Subscribers </a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/syncfusion-for-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">2</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/01/VS-logo-featured-image.webp" type="image/png" />
+    </item>
+    <item>
+      <title>Get the Inside Scoop on Visual Studio Subscriptions, Straight to Your Inbox</title>
+      <link>https://devblogs.microsoft.com/visualstudio/vss-newsletter-opt-in/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/vss-newsletter-opt-in/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Mon, 16 Mar 2026 14:59:12 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Visual Studio Subscriptions]]></category>
+      <category><![CDATA[VSS Newsletter]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=255821</guid>
+      <description><![CDATA[<p>Get the Inside Scoop on Visual Studio Subscriptions, Straight to Your Inbox  A few weeks ago I was talking with a Visual Studio Enterprise subscriber. Seasoned .NET developer. Ships production code. Knows his stack inside and out.  During the conversation I mentioned one of the training benefits included in his subscription.  He stopped me.  “I didn’t even [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vss-newsletter-opt-in/">Get the Inside Scoop on Visual Studio Subscriptions, Straight to Your Inbox</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><a href="https://aka.ms/VSSOptin" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-255824 size-full" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Newsletter-Opt-in-Blog-Banner.webp" alt="VSS Newsletter Opt in Blog Banner image" width="800" height="200" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Newsletter-Opt-in-Blog-Banner.webp 800w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Newsletter-Opt-in-Blog-Banner-300x75.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Newsletter-Opt-in-Blog-Banner-768x192.webp 768w" sizes="(max-width: 800px) 100vw, 800px" /></a></p>
+<p><b><span data-contrast="auto">Get the Inside Scoop on Visual Studio Subscriptions, Straight to Your Inbox</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">A few weeks ago I was talking with a Visual Studio Enterprise subscriber. Seasoned .NET developer. Ships production code. Knows his stack inside and out.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">During the conversation I mentioned one of the training benefits included in his subscription.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">He stopped me.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">“I didn’t even know that was included.”</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">That is exactly why we created the Visual Studio Subscriptions monthly email newsletter.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Why We Launched It</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Visual Studio Professional and Enterprise subscriptions include far more than just the IDE. For example:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="5" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Professional or Enterprise IDE downloads</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="5" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Monthly Azure credits</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="5" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Azure Dev/Test pricing</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="5" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="auto">Training platforms like Pluralsight and Cloud Academy</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="5" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="5" data-aria-level="1"><span data-contrast="auto">Discounts on Visual Studio Live! events</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="5" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="6" data-aria-level="1"><span data-contrast="auto">Additional partner offers</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">That is real value. But most developers are focused on building, shipping, and supporting applications. You’re not signing in to my.visualstudio.com every week to see what changed. And you shouldn’t have to.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">The Visual Studio newsletter delivers the signal directly to you, once a month, in a format that is concise, relevant, and actionable.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">What You’ll Get</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">This is not a generic marketing email. It’s built specifically for Visual Studio subscribers.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Each edition includes exclusive resources you will not find anywhere else, including:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Hot off the press updates</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Insider tips to level up your code</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Carefully curated on-demand content</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="auto">Clear explanations of subscriber benefits</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="5" data-aria-level="1"><span data-contrast="auto">Coupon codes</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="6" data-aria-level="1"><span data-contrast="auto">Event announcements</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="7" data-aria-level="1"><span data-contrast="auto">Practical insights from the Visual Studio team</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">If you have ever wondered whether you’re fully using your subscription, this newsletter makes it easy to know.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Why It Matters</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Technology moves fast. AI is changing development workflows. .NET continues to evolve. Azure adds capabilities every month.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Staying current does not mean reading everything. It means reading the right things.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">The newsletter helps you:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Discover new and updated subscriber benefits</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><span data-contrast="auto">Activate learning resources you may not know about</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><span data-contrast="auto">Take advantage of exclusive discounts</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="auto">Stay ahead on tools like GitHub Copilot, Azure, and .NET</span><span data-ccp-props="{}"> </span></li>
+</ul>
+<p><span data-contrast="auto">Small, consistent updates compound over time.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Want In?</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">If you’re a Visual Studio subscriber and want the inside track on updates, benefits, and exclusive resources, opt in here:</span><span data-ccp-props="{}"> </span></p>
+<p><div  class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/VSSOptin " target="_blank">Get the VSS Newsletter</a></div></p>
+<p><span data-contrast="auto">When you reach the preferences page, make sure these two boxes are checked:</span><span data-ccp-props="{}"> </span></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vss-opt-in.webp">
+<img decoding="async" class="alignleft wp-image-255832 size-large" style="border: 4px solid #000;" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vss-opt-in-1024x501.webp" alt="vss opt in image" width="1024" height="501" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vss-opt-in-1024x501.webp 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vss-opt-in-300x147.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vss-opt-in-768x376.webp 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vss-opt-in-1536x752.webp 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vss-opt-in.webp 1795w" sizes="(max-width: 1024px) 100vw, 1024px" />
+</a></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/vss-newsletter-opt-in/">Get the Inside Scoop on Visual Studio Subscriptions, Straight to Your Inbox</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/vss-newsletter-opt-in/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">2</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Newsletter-Opt-in-Blog_tile.webp" type="image/png" />
+    </item>
+    <item>
+      <title>Visual Studio Dev Essentials: Free, Practical Tools for Every Developer </title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-dev-essentials-free-practical-tools-for-every-developer/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/visual-studio-dev-essentials-free-practical-tools-for-every-developer/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Mon, 09 Mar 2026 15:35:00 +0000</pubDate>
+      <category><![CDATA[Visual Studio Subscriptions]]></category>
+      <category><![CDATA[Dev Essentials]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=255802</guid>
+      <description><![CDATA[<p>When I first found Visual Studio Dev Essentials, it felt like discovering a hidden door in the developer toolkit world. I’d heard about free tools and cloud credits, but I wasn’t sure if it would really matter in day-to-day coding life. The short answer: it absolutely does.  What struck me most was how the program was built with real developers in mind, and the fact [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-dev-essentials-free-practical-tools-for-every-developer/">Visual Studio Dev Essentials: Free, Practical Tools for Every Developer </a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="auto">When I first found </span><b><span data-contrast="auto">Visual Studio Dev Essentials</span></b><span data-contrast="auto">, it felt like discovering a hidden door in the developer toolkit world. I’d heard about free tools and cloud credits, but I wasn’t sure if it would really matter in day-to-day coding life. The short answer: it absolutely does.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">What struck me most was how the program was built with </span><b><span data-contrast="auto">real developers in mind</span></b><span data-contrast="auto">, and the fact that it’s completely free makes it accessible to anyone with a Microsoft account.</span></p>
+<p><b><span data-contrast="auto">Why Dev Essentials Matters</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Dev Essentials is not a trial version or a limited sneak-peek. It’s a </span><b><span data-contrast="auto">free developer membership</span></b><span data-contrast="auto"> that brings together the tools, cloud services, downloads, and training you need to build apps for any platform. That means macOS, Linux, Windows, web, mobile, backend services, and even cloud workloads.</span></p>
+<p><span data-contrast="auto">That breadth is what makes it valuable. You’re not signing up for one isolated tool or service. You’re unlocking a </span><b><span data-contrast="auto">suite of practical development benefits</span></b><span data-contrast="auto"> you can use right now.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Who It’s For</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">This is </span><i><span data-contrast="auto">exactly</span></i><span data-contrast="auto"> the program I wish I’d known about earlier in my career:</span><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><b><span data-contrast="auto">Visual Studio Community developers</span></b><span data-contrast="auto"> get access to a wider set of tools, training, and cloud credits through Dev Essentials.</span></li>
+<li><b><span data-contrast="auto">VS Code users</span></b><span data-contrast="auto"> can augment their lightweight editor with cloud and training resources that make exploring new stacks easier.</span></li>
+<li><b><span data-contrast="auto">Students and hobbyists</span></b><span data-contrast="auto"> can experiment freely, learn at their own pace, and build real projects without budget constraints. </span></li>
+</ul>
+<p><span data-contrast="auto">That doesn’t mean paid subscriptions aren’t valuable. If you use </span><b><span data-contrast="auto">Visual Studio Professional</span></b><span data-contrast="auto"> or </span><b><span data-contrast="auto">Enterprise</span></b><span data-contrast="auto">, your subscription already includes Dev Essentials benefits plus more extensive tools and services for team development, enterprise workflows, and advanced features. </span><span data-contrast="auto">But Dev Essentials itself is </span><b><span data-contrast="auto">not a limited version of a paid subscription</span></b><span data-contrast="auto">. It stands on its own as a free program for developers of all kinds. </span></p>
+<p><a href="https://visualstudio.microsoft.com/dev-essentials" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-255805 size-large" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Dev-Essentials-1024x604.webp" alt="VSS Dev Essentials image" width="1024" height="604" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Dev-Essentials-1024x604.webp 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Dev-Essentials-300x177.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Dev-Essentials-768x453.webp 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Dev-Essentials-1536x906.webp 1536w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS-Dev-Essentials-2048x1208.webp 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p><span data-ccp-props="{}"> </span><div  class="d-flex justify-content-Center"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/dev-essentials" target="_blank">JOIN DEV ESSENTIALS - IT'S FREE!</a></div></p>
+<p><b><span data-contrast="auto">What You Get with Dev Essentials</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">Once you join, these are the kinds of benefits you’ll find in your dashboard:</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">Developer Tools</span></b><span data-ccp-props="{}"> </span></p>
+<ul>
+<li><span data-contrast="auto">Visual Studio Community — a powerful IDE for individuals, open source, and small teams. </span></li>
+<li><span data-contrast="auto">Visual Studio Code — lightweight, cross-platform editor that adapts to your workflow.</span></li>
+</ul>
+<p><b><span data-contrast="auto">Cloud Services</span></b><span data-ccp-props="{}"> </span></p>
+<ul>
+<li>Azure Free Account<span data-contrast="auto"> with <strong>$200 in credit</strong> for the first month and a 12-month set of free services you can experiment with.</span></li>
+<li><span data-contrast="auto">Azure DevOps for planning, CI/CD, and collaboration without added cost. </span></li>
+<li><span data-contrast="auto">Power Apps Community Plan to build and test low-code business apps. </span></li>
+</ul>
+<p><b><span data-contrast="auto">Software &amp; Downloads</span></b><span data-ccp-props="{}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">SQL Server Developer Edition, Power BI, Office Online apps, and other downloadable offerings you can use as part of your development toolkit.</span></li>
+</ul>
+<p><b><span data-contrast="auto">Learning &amp; Training</span></b><span data-ccp-props="{}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="5" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><span data-contrast="auto">Access to Pluralsight and other curated learning content that helps you upskill and stay current without added cost. </span></li>
+</ul>
+<p><b><span data-contrast="auto">My Experience</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">For me, Dev Essentials changed how I approached areas I was curious about but hadn’t prioritized because of time or cost. Cloud services that used to feel intimidating became something to </span><i><span data-contrast="auto">play with</span></i><span data-contrast="auto"> and experiment on without worrying about budget. Training paths that I always meant to explore were suddenly easy to access.</span><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">It’s like having a sandbox for your skills and tools — a place where you can build, break, and learn without consequences.</span><span data-ccp-props="{}"> </span></p>
+<p><b><span data-contrast="auto">How to Get Started</span></b><span data-ccp-props="{}"> </span></p>
+<p><span data-contrast="auto">If you haven’t already, visit the <a href="https://visualstudio.microsoft.com/dev-essentials/" target="_blank" rel="noopener">Dev Essentials</a> page, sign in with your Microsoft account, and activate the benefits you want.</span></p>
+<p><span data-contrast="auto">Once you’re in, you’ll see all your tools, cloud credits, software downloads, and training resources in one place. Start with what you’re curious about — whether that’s a new language, a cloud service, or a developer workflow improvement.</span><span data-ccp-props="{}"> </span></p>
+<p><div  class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://visualstudio.microsoft.com/dev-essentials" target="_blank">JOIN DEV ESSENTIALS - IT'S FREE!</a></div></p>
+<p><span data-contrast="auto">Dev Essentials isn’t just a list of freebies. It’s a </span><b><span data-contrast="auto">practical, developer-focused toolkit</span></b><span data-contrast="auto"> that meets you where you are and helps you build what’s next. </span><span data-ccp-props="{}"> </span></p>
+<p><span data-ccp-props="{}"> </span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-dev-essentials-free-practical-tools-for-every-developer/">Visual Studio Dev Essentials: Free, Practical Tools for Every Developer </a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/visual-studio-dev-essentials-free-practical-tools-for-every-developer/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">7</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS_DevEssentials-png.webp" type="image/png" />
+    </item>
   </channel>
 </rss>
