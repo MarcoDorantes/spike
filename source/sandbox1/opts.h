@@ -87,8 +87,11 @@ namespace wn
 
         void print(std::ostream& out)
         {
-            auto display = [&](const wn::wnstring& s) { out << "s.c_str()" << "\n"; };
-            std::for_each(v.cbegin(), v.cend(), display);
+          //auto display = [&](const wn::wnstring& s) { out << s.c_str() << "\n"; };
+          //std::for_each(v.cbegin(), v.cend(), display);
+
+            auto display = [&](wn::wnstring& s) { out << s.c_str() << "\n"; };
+            std::for_each(v.begin(), v.end(), display);
 
           //std::for_each(v.cbegin(), v.cend(), FF);
         }
