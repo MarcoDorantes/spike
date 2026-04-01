@@ -7,7 +7,9 @@
 #include <algorithm>
 #include "wnstring.h"
 
-//      void FF(const wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
+//void FF(const wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
+//void FF(wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
+void FF(auto& s) { std::cout << s.c_str() << "\n"; };
 
 namespace wn
 {
@@ -89,11 +91,12 @@ namespace wn
         {
           //auto display = [&](const wn::wnstring& s) { out << s.c_str() << "\n"; };
           //std::for_each(v.cbegin(), v.cend(), display);
-
+/*
             auto display = [&](wn::wnstring& s) { out << s.c_str() << "\n"; };
             std::for_each(v.begin(), v.end(), display);
-
+*/
           //std::for_each(v.cbegin(), v.cend(), FF);
+            std::for_each(v.begin(), v.end(), FF);
         }
     };
 }
