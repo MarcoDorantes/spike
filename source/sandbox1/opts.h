@@ -7,9 +7,11 @@
 #include <algorithm>
 #include "wnstring.h"
 
-//void FF(const wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
-//void FF(wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
-void FF(auto& s) { std::cout << s.c_str() << "\n"; };
+void F1(wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
+void F2(const wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
+
+void F3(auto& s) { std::cout << s.c_str() << "\n"; };
+template<typename T> void F4(T& t) { std::cout << t.c_str() << "\n"; };
 
 namespace wn
 {
@@ -89,14 +91,26 @@ namespace wn
 
         void print(std::ostream& out)
         {
-          //auto display = [&](const wn::wnstring& s) { out << s.c_str() << "\n"; };
-          //std::for_each(v.cbegin(), v.cend(), display);
-/*
-            auto display = [&](wn::wnstring& s) { out << s.c_str() << "\n"; };
-            std::for_each(v.begin(), v.end(), display);
-*/
-          //std::for_each(v.cbegin(), v.cend(), FF);
-            std::for_each(v.begin(), v.end(), FF);
+            auto display1 = [&](const wn::wnstring& s) { out << s.c_str() << "\n"; };
+            std::for_each(v.cbegin(), v.cend(), display1);
+
+            auto display2 = [&out](wn::wnstring& s) { out << s.c_str() << "\n"; };
+            std::for_each(v.begin(), v.end(), display2);
+
+            std::for_each(v.begin(), v.end(), F1);
+            std::for_each(v.cbegin(), v.cend(), F2);
+
+            wn::wnstring& s1 = v.back();
+            F3(s1);
+            F4(s1);
+
+            const wn::wnstring& s2 = v.back();
+            F3(s2);
+            F4(s2);
+
+            auto& s3 = v.back();
+            F3(s3);
+            F4(s3);
         }
     };
 }

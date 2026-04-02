@@ -27,6 +27,6 @@ namespace wn
             std::cout << "\t"<<ctor<<" ~wnstring("<<p<<")\n";
         }
 
-        const char* c_str() { return p; }
+        const char* c_str() const { return p; }
     };
 }
