@@ -89,7 +89,7 @@ namespace wn
             }
         }
 
-        void print(std::ostream& out)
+        void print0(std::ostream& out)
         {
             auto display1 = [&](const wn::wnstring& s) { out << s.c_str() << "\n"; };
             std::for_each(v.cbegin(), v.cend(), display1);
@@ -99,6 +99,11 @@ namespace wn
 
             std::for_each(v.begin(), v.end(), F1);
             std::for_each(v.cbegin(), v.cend(), F2);
+
+            std::ranges::for_each(v, [&out](const wn::wnstring& s) { out << s.c_str() << "\n"; });
+            std::ranges::for_each(v, [&out](wn::wnstring& s) { out << s.c_str() << "\n"; });
+            std::ranges::for_each(v, display1);
+            std::ranges::for_each(v, display2);
 
             wn::wnstring& s1 = v.back();
             F3(s1);
@@ -111,6 +116,21 @@ namespace wn
             auto& s3 = v.back();
             F3(s3);
             F4(s3);
+        }
+
+        void print1(std::ostream& out)
+        {
+            auto r = std::ranges::all_of(v, [](const wn::wnstring& s) { return s.c_str() != nullptr; });
+            out << (r ? "OK" : "Invalid") << "\n";
+
+            std::list<std::string> _v;
+            std::ranges::for_each(v, [&_v](const wn::wnstring& s) { _v.push_back(std::string(s.c_str())); });
+            const std::string x{"A"};
+            if(auto f = std::ranges::find(_v, x); f != _v.end())
+            {
+                out << "FOUND " << x << "\n";
+            }
+            else out << "NOT FOUND " << x << "\n";
         }
     };
 }

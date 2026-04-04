@@ -7,24 +7,24 @@ namespace wn
     class wnstring //?: public std::string
     {
         const char* p;
-        int ctor;
+        char ctor;
 
     public:
         wnstring(const char* s) : p(s)
         {
-            ctor = 0;
+            ctor = 'A';
             std::cout << "\twnstring(const char* "<<s<<")\n";
         }
 
         wnstring(const wnstring& other) : p(other.p)
         {
-            ctor = 1;
+            ctor = 'B';
             std::cout << "\twnstring(const wnstring& "<<p<<")\n";
         }
 
         ~wnstring()
         {
-            std::cout << "\t"<<ctor<<" ~wnstring("<<p<<")\n";
+            std::cout << "\t["<<ctor<<"] ~wnstring("<<p<<")\n";
         }
 
         const char* c_str() const { return p; }

@@ -101,7 +101,7 @@ void f9(int argc, char** argv)
 {
     wn::optslist opt = {argc, argv};
     wn::optslist *p = &opt;
-    p->print(std::cout);
+    p->print0(std::cout);
 }
 
 void f10()
@@ -122,6 +122,12 @@ void func3()
     for(const auto& x : output2) std::cout << x << "\n";
 }
 
+void f11(int argc, char** argv)
+{
+    wn::optslist opt = {argc, argv};
+    opt.print1(std::cout);
+}
+
 int main(int argc, char** argv)
 {
   //std::cout << argc << std::endl;
@@ -133,7 +139,8 @@ int main(int argc, char** argv)
   //f6(argc, argv);
   //f7(argc, argv);
   //f8(argc, argv);
-    f9(argc, argv);
+  //f9(argc, argv);
   //f10();
   //func3();
+    f11(argc, argv);
 }
