@@ -22,6 +22,17 @@ namespace wn
             std::cout << "\twnstring(const wnstring& "<<p<<")\n";
         }
 
+        // Simple move constructor ??
+        wnstring(wnstring&& x) : p(std::move(x.p)), ctor('C') {}
+ 
+        // Simple move assignment operator ??
+        wnstring& operator=(wnstring&& other)
+        {
+            p = std::move(other.p);
+            ctor = 'C';
+            return *this;
+        }
+
         ~wnstring()
         {
             std::cout << "\t["<<ctor<<"] ~wnstring("<<p<<")\n";

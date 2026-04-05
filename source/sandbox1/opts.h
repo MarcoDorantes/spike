@@ -5,6 +5,8 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <numeric>
+#include <ranges>
 #include "wnstring.h"
 
 void F1(wn::wnstring& s) { std::cout << s.c_str() << "\n"; };
@@ -26,7 +28,7 @@ namespace wn
             for(int k=0; k<argc; ++k)
             {
                 wn::wnstring s{argv[k]};
-                v.push_back(s);
+                v.push_back(std::move(s));
 
               //v.push_back(wn::wnstring(argv[k]));
               //v.push_back(wn::wnstring{argv[k]});
@@ -123,14 +125,27 @@ namespace wn
             auto r = std::ranges::all_of(v, [](const wn::wnstring& s) { return s.c_str() != nullptr; });
             out << (r ? "OK" : "Invalid") << "\n";
 
+            const std::string x{"A"};
+/*
             std::list<std::string> _v;
             std::ranges::for_each(v, [&_v](const wn::wnstring& s) { _v.push_back(std::string(s.c_str())); });
-            const std::string x{"A"};
             if(auto f = std::ranges::find(_v, x); f != _v.end())
             {
                 out << "FOUND " << x << "\n";
             }
             else out << "NOT FOUND " << x << "\n";
+*/
+          //std::list<std::string> v2 = std::accumulate(v.begin(), v.end(), std::list<std::string>{}, [](auto whole, const auto& next){whole.push_back(std::string{next.c_str()}); return whole;});
+          //std::list<std::string> v2 = std::accumulate(v.begin(), v.end(), std::list<std::string>{}, [](std::list<std::string> whole, const wn::wnstring& next){whole.push_back(std::string{next.c_str()}); return whole;});
+            auto v2 = std::accumulate(v.begin(), v.end(), std::list<std::string>(), [](std::list<std::string> whole, const wn::wnstring& next){whole.push_back(std::string{next.c_str()}); return whole;});
+            if(auto f = std::ranges::find(v2, x); f != v2.end())
+            {
+                out << "FOUND " << x << "\n";
+            }
+            else out << "NOT FOUND " << x << "\n";
+
+            auto part = v2 | std::views::filter([](const std::string& s) { return s.find("B") != std::string::npos; });
+            for(const auto& a : part) out << "\tFOUND: " << a << "\n";
         }
     };
 }
