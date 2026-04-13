@@ -8,6 +8,7 @@ namespace wn
     {
         const char* p;
         char ctor;
+      //std::string
 
     public:
         wnstring(const char* s) : p(s)
