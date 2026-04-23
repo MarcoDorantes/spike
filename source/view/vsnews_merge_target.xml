@@ -33072,5 +33072,363 @@ Designer vs. regular code: Understand which C# features apply to designer-genera
       <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">7</slash:comments>
       <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/VSS_DevEssentials-png.webp" type="image/png" />
     </item>
+    <item>
+      <title>From AI to .NET: 20 VS Live! Las Vegas Sessions You Can Watch Now</title>
+      <link>https://devblogs.microsoft.com/visualstudio/from-ai-to-net-20-vs-live-las-vegas-sessions-you-can-watch-now/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/from-ai-to-net-20-vs-live-las-vegas-sessions-you-can-watch-now/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Jim Harrer]]></dc:creator>
+      <pubDate>Thu, 16 Apr 2026 15:00:04 +0000</pubDate>
+      <category><![CDATA[Events]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[on-demand]]></category>
+      <category><![CDATA[videos]]></category>
+      <category><![CDATA[vslive]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=256100</guid>
+      <description><![CDATA[<p>In March 2026, developers came together at VS Live! Las Vegas for a full week of technical learning, hands-on exploration, and a lot of great conversations about where software development is headed next. From AI-assisted development to modern .NET, cloud-native apps, and developer productivity, one thing was clear: the pace of change is not slowing [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/from-ai-to-net-20-vs-live-las-vegas-sessions-you-can-watch-now/">From AI to .NET: 20 VS Live! Las Vegas Sessions You Can Watch Now</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p data-start="206" data-end="563">In March 2026, developers came together at VS Live! Las Vegas for a full week of technical learning, hands-on exploration, and a lot of great conversations about where software development is headed next. From AI-assisted development to modern .NET, cloud-native apps, and developer productivity, one thing was clear: the pace of change is not slowing down.</p>
+<p data-start="565" data-end="764">If you were not able to attend, or if you want to revisit some of the strongest content from the event, we are now publishing 20 sessions from VS Live! Las Vegas on the <a href="https://aka.ms/VSLiveLV26" target="_blank" rel="noopener">Visual Studio YouTube channel.</a></p>
+<p data-start="766" data-end="899">We are releasing about two sessions per day, so you can watch them at your own pace and jump into the topics that matter most to you.</p>
+<h2 data-section-id="16hre6i" data-start="901" data-end="935">What you’ll find in this series</h2>
+<p data-start="937" data-end="1018">These sessions reflect the topics developers are focused on right now, including:</p>
+<ul data-start="1020" data-end="1196">
+<li data-section-id="efxebt" data-start="1020" data-end="1058">AI and Copilot-powered development</li>
+<li data-section-id="24ggbx" data-start="1059" data-end="1081">Modern .NET and C#</li>
+<li data-section-id="ufml1x" data-start="1082" data-end="1113">Cloud-native apps and Azure</li>
+<li data-section-id="i5t9od" data-start="1114" data-end="1152">Developer productivity and tooling</li>
+<li data-section-id="1qona4a" data-start="1153" data-end="1196">Real-world architecture and engineering</li>
+</ul>
+<p data-start="1198" data-end="1368">You’ll hear directly from Microsoft engineers helping build these tools, along with industry experts who are using them to solve real problems and ship real applications.</p>
+<h2 data-section-id="cynfce" data-start="1370" data-end="1400">A few sessions to check out</h2>
+<p data-start="1402" data-end="1505">This lineup includes a strong mix of practical guidance, technical depth, and forward-looking keynotes.</p>
+<p data-start="1507" data-end="1519"><strong data-start="1507" data-end="1519">Keynotes</strong></p>
+<ul data-start="1521" data-end="1708">
+<li data-section-id="qtq850" data-start="1521" data-end="1609"><strong data-start="1523" data-end="1589">The Road to Visual Studio 2027: Building a Faster, Smarter IDE &#8211; </strong><em>Mads Kristensen</em></li>
+<li data-section-id="w0ry7y" data-start="1611" data-end="1708"><strong data-start="1613" data-end="1667">Knowledge is the Key: The Path for AI Applications &#8211; </strong><em>Jerry Nixon and Drew Skwiers-Koballa</em></li>
+</ul>
+<p data-start="1710" data-end="1731"><strong data-start="1710" data-end="1731">Featured sessions</strong></p>
+<ul data-start="1733" data-end="2451">
+<li data-section-id="tk2q8z" data-start="1733" data-end="1830"><strong data-start="1735" data-end="1809">AI’s Not Magic: A Developer’s Guide to Using AI Tools Without the Hype &#8211; </strong><em>Brian A. Randell</em></li>
+<li data-section-id="1078rnx" data-start="1832" data-end="1901"><strong data-start="1834" data-end="1885">Building an AI Agent to Work with Your Own Data &#8211; </strong><em>Jerry Nixon</em></li>
+<li data-section-id="1watyiz" data-start="1903" data-end="1991"><strong data-start="1905" data-end="1974">Building Intelligent .NET Applications: From AI to Implementation &#8211; </strong><em>Jon Galloway</em></li>
+<li data-section-id="7i4xgl" data-start="1993" data-end="2030"><strong data-start="1995" data-end="2015">What’s New in C# &#8211; </strong><em>Jason Bock</em></li>
+<li data-section-id="15zk3w4" data-start="2032" data-end="2100"><strong data-start="2034" data-end="2081">Building RESTful Services with ASP.NET Core &#8211; </strong><em>Philip Japikse</em></li>
+<li data-section-id="xrvkfx" data-start="2102" data-end="2152"><strong data-start="2104" data-end="2132">GitHub Actions in Action &#8211; </strong><em>Marcel de Vries</em></li>
+<li data-section-id="1zgmjy" data-start="2154" data-end="2242"><strong data-start="2156" data-end="2222">The Forgotten Features of Visual Studio You NEED In Your Life! &#8211; </strong><em>Mads Kristensen</em></li>
+<li data-section-id="wc4umf" data-start="2244" data-end="2300"><strong data-start="2246" data-end="2285">Fast Focus: Caching Options in .NET &#8211; </strong><em>Jason Bock</em></li>
+<li data-section-id="s5foum" data-start="2302" data-end="2371"><strong data-start="2304" data-end="2350">VS Code and Visual Studio, Better Together &#8211; </strong><em>Brian A. Randell</em></li>
+<li data-section-id="1oinuei" data-start="2373" data-end="2451"><strong data-start="2375" data-end="2434">Modernizing .NET Applications Faster with Visual Studio &#8211; </strong><em>Jon Galloway</em></li>
+</ul>
+<p data-start="2453" data-end="2721">What I like about this set of sessions is that it is not just theory. These talks focus on real-world scenarios, whether you are exploring AI in existing apps, modernizing older .NET solutions, improving performance, or just looking for better ways to work day to day.</p>
+<h2 data-section-id="js1ywc" data-start="2723" data-end="2740">Start watching</h2>
+<p data-start="2742" data-end="2926">Whether you are catching up on what you missed or diving in for the first time, this is an easy way to experience some of the best content from VS Live! Las Vegas on your own schedule.</p>
+<p data-start="2928" data-end="3013"><div  class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/VSLiveLV26" target="_blank">VS Live! Las Vegas YouTube Playlist</a></div></p>
+<p data-start="2928" data-end="3013">We will continue publishing sessions daily, so check back often and subscribe to the Visual Studio YouTube channel to stay up to date.</p>
+<h2 data-section-id="ew1xe4" data-start="3151" data-end="3205">Want the full VS Live! experience? Attend in person</h2>
+<p data-start="3207" data-end="3456">Watching online is a great way to learn, but there is still nothing like attending a VS Live! event in person. You get the sessions, the hands-on labs, the hallway conversations, and direct access to speakers, product experts, and fellow developers.</p>
+<p data-start="3458" data-end="3775">If you are a Visual Studio subscriber, you may already have access to exclusive event pricing through <strong data-start="3560" data-end="3583">my.visualstudio.com</strong>. Just sign in, head to the Benefits page, and look for the Visual Studio Live! Events tile to get your priority code. Depending on the event, that can save you up to <strong data-start="3750" data-end="3758">$900</strong> on registration.</p>
+<p data-start="3777" data-end="3921">If you are not a subscriber, you can still save. As a Visual Studio Blog reader, use priority code <strong data-start="3876" data-end="3885">VSLMS</strong> at checkout to save up to <strong data-start="3912" data-end="3920">$600</strong>.</p>
+<p data-start="3923" data-end="4103">Each event includes a full week of expert-led sessions and hands-on labs, plus the chance to connect directly with the people behind Visual Studio, .NET, Azure, and GitHub Copilot.</p>
+<h2 data-section-id="b25n0" data-start="4105" data-end="4132">Upcoming VS Live! events</h2>
+<ul data-start="4134" data-end="4324">
+<li data-section-id="v9e7i7" data-start="4134" data-end="4186"><strong data-start="4136" data-end="4162">Microsoft HQ (Redmond)</strong> | July 27 to 31, 2026</li>
+<li data-section-id="rcsz16" data-start="4187" data-end="4231"><strong data-start="4189" data-end="4202">San Diego</strong> | September 14 to 18, 2026</li>
+<li data-section-id="1sq8yam" data-start="4232" data-end="4283"><strong data-start="4234" data-end="4255">Live! 360 Orlando</strong> | November 15 to 20, 2026</li>
+<li data-section-id="1juh5kd" data-start="4284" data-end="4324"><strong data-start="4286" data-end="4299">Las Vegas</strong> | March 22 to 26, 2027</li>
+</ul>
+<p data-start="4326" data-end="4393"><div  class="d-flex justify-content-left"><a class="cta_button_link btn-primary mb-24" href="https://aka.ms/VSLiveEvents" target="_blank">Explore All VS Live Events</a></div></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/from-ai-to-net-20-vs-live-las-vegas-sessions-you-can-watch-now/">From AI to .NET: 20 VS Live! Las Vegas Sessions You Can Watch Now</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/from-ai-to-net-20-vs-live-las-vegas-sessions-you-can-watch-now/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">1</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/playlist.webp" type="image/jpeg" />
+    </item>
+    <item>
+      <title>Azure MCP tools now ship built into Visual Studio 2022 — no extension required</title>
+      <link>https://devblogs.microsoft.com/visualstudio/azure-mcp-tools-now-ship-built-into-visual-studio-2022-no-extension-required/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/azure-mcp-tools-now-ship-built-into-visual-studio-2022-no-extension-required/#respond</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Yun Jung Choi]]></dc:creator>
+      <pubDate>Wed, 15 Apr 2026 17:30:28 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=256084</guid>
+      <description><![CDATA[<p>Azure MCP tools now ship built into Visual Studio 2022 — no extension required Azure MCP tools are now built into Visual Studio 2022 as part of the Azure development workload — no separate extension to find, install, or update. You can enable over 230 tools across 45 Azure services directly in GitHub Copilot Chat [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/azure-mcp-tools-now-ship-built-into-visual-studio-2022-no-extension-required/">Azure MCP tools now ship built into Visual Studio 2022 — no extension required</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<article>
+<h1>Azure MCP tools now ship built into Visual Studio 2022 — no extension required</h1>
+<p>Azure MCP tools are now built into Visual Studio 2022 as part of the Azure development workload — no separate extension to find, install, or update. You can enable over 230 tools across 45 Azure services directly in GitHub Copilot Chat and manage Azure resources, deployments, and diagnostics without leaving your IDE. If you already have the Azure development workload installed, you&#8217;re one click away from getting started.</p>
+<h2>What changed</h2>
+<p>Previously, using Azure MCP tools in Visual Studio 2022 required you to install the &#8220;GitHub Copilot for Azure (VS 2022)&#8221; extension from the Visual Studio Marketplace, walk through the VSIX installer dialog, and restart Visual Studio. If something went wrong, you had to uninstall and reinstall the extension entirely. That friction added up.</p>
+<p>Starting now, Azure MCP tools ship as part of the <strong>Azure development</strong> workload in Visual Studio 2022. There&#8217;s no separate extension to manage. When you install or already have the Azure development workload, the Azure MCP Server is available directly in GitHub Copilot Chat. You enable it once, and it stays enabled across sessions.</p>
+<p>This change means fewer installation steps, no version mismatches between the extension and the IDE, and a single update path through the Visual Studio Installer. The Azure MCP Server version gets updated with regular Visual Studio releases, so you always receive the latest tools as part of your normal update cycle.</p>
+<blockquote><p><strong>Note:</strong> VS-specific tools available in Visual Studio 2026 are not included in Visual Studio 2022.</p></blockquote>
+<h2>What you get</h2>
+<p>The Azure MCP Server surfaces over 230 tools across 45 Azure services through GitHub Copilot Chat. These tools interact with various Azure services to support developers across the entire development lifecycle. Key scenarios include:</p>
+<ul>
+<li><strong>Learn</strong> — Ask questions about Azure services, best practices, and architecture patterns.</li>
+<li><strong>Design &amp; develop</strong> — Get recommendations for Azure services and configure your application code.</li>
+<li><strong>Deploy</strong> — Provision resources and deploy your application directly from the IDE.</li>
+<li><strong>Troubleshoot</strong> — Query logs, check resource health, and diagnose issues in production.</li>
+</ul>
+<p>The tools appear in <strong>all tools</strong> mode within GitHub Copilot Chat. You pick which tools to enable, and Copilot calls them automatically when your prompts relate to Azure.</p>
+<h2>See it in action</h2>
+<p>Here are a few examples that show how you can use the Azure MCP tools directly from GitHub Copilot Chat in Visual Studio 2022. Each prompt triggers one or more Azure MCP tool calls behind the scenes.</p>
+<h3>Explore your Azure resources</h3>
+<pre><code>List my storage accounts in my current subscription.</code></pre>
+<p>Copilot calls the Azure MCP tools to query your subscriptions and storage accounts, then returns a list of your storage accounts with their names, locations, and SKUs — right in the chat window. No portal tab needed.</p>
+<h3>Deploy your app</h3>
+<pre><code>Deploy my ASP.NET Core app to Azure.</code></pre>
+<p>Copilot identifies your project, walks you through creating an App Service resource, and initiates the deployment via azd. You can track progress directly in the chat output.</p>
+<h3>Diagnose issues</h3>
+<pre><code>Help diagnose my App Service resource.</code></pre>
+<p>Copilot uses AppLens and resource health tools to analyze your App Service, check for availability issues, and surface actionable recommendations — all without leaving the IDE.</p>
+<h3>Query your logs</h3>
+<pre><code>Query my Log Analytics workspace for exceptions.</code></pre>
+<p>Copilot generates and runs a KQL query against your Log Analytics workspace, returning recent exceptions with timestamps, messages, and stack traces. You can refine the query in follow-up prompts to narrow down the root cause.</p>
+<p>These are just a few examples. With over 230 tools across 45 Azure services, you can learn about Azure features, provision resources, deploy applications, and troubleshoot issues — all from a single chat window in Visual Studio 2022.</p>
+<h2>How to enable Azure MCP tools</h2>
+<p>The Azure MCP tools ship with the Azure development workload in Visual Studio 2022 version 17.14.30 or higher, but are <strong>disabled by default</strong>. Follow these steps to enable them:</p>
+<ol>
+<li><strong>Update Visual Studio 2022</strong> — Open the Visual Studio Installer and make sure you&#8217;re running version 17.14.30 or higher. If not, select <strong>Update</strong>.</li>
+<li><strong>Install the Azure development workload</strong> — In the Visual Studio Installer, select <strong>Modify</strong> for your Visual Studio 2022 installation and check the <strong>Azure development</strong> workload. Select <strong>Modify</strong> again to apply.</li>
+<li><strong>Launch Visual Studio 2022</strong> — Open or create a project, then open <strong>GitHub Copilot Chat</strong>.</li>
+<li><strong>Sign in</strong> — Make sure you&#8217;re signed in to both your GitHub account (for Copilot) and your Azure account (for resource access).</li>
+<li><strong>Enable the Azure MCP Server</strong> — In the Copilot Chat window, select the <strong>Select tools</strong> button (the two wrenches icon). Find <strong>Azure MCP Server</strong> in the list and toggle it on.</li>
+</ol>
+<p><!-- Screenshot: Visual Studio 2022 Copilot Chat showing the "Select tools" dialog with Azure MCP Server enabled --></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/visual-studio-2022-enable-tools.webp"><img fetchpriority="high" decoding="async" class="alignnone size-medium wp-image-256090" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/visual-studio-2022-enable-tools-224x300.webp" alt="visual studio 2022 enable tools image" width="224" height="300" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/visual-studio-2022-enable-tools-224x300.webp 224w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/visual-studio-2022-enable-tools.webp 487w" sizes="(max-width: 224px) 100vw, 224px" /></a></p>
+<p>Once enabled, the Azure MCP tools are available in every Copilot Chat session. You don&#8217;t need to re-enable them after restarting Visual Studio 2022.</p>
+<h2>Things to know</h2>
+<p>Keep these details in mind:</p>
+<ul>
+<li>Azure MCP tools are <strong>disabled by default</strong> — you need to enable them manually in the <strong>Select tools</strong> dialog.</li>
+<li>Tools specific to Visual Studio 2026 are not available in Visual Studio 2022.</li>
+<li>Tool availability depends on your Azure subscription permissions — if you can&#8217;t perform an action in the Azure portal, you can&#8217;t perform it through MCP tools either.</li>
+<li>This feature requires an active GitHub Copilot subscription and an Azure account.</li>
+<li>The Azure MCP Server version is updated with regular Visual Studio releases.</li>
+</ul>
+<h2>Learn more</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/developer/github-copilot-azure/introduction?tabs=vscode">GitHub Copilot for Azure Documentation</a></li>
+<li><a href="https://aka.ms/azmcp/docs">Azure MCP Server Documentation</a></li>
+<li><a href="https://aka.ms/azmcp">Azure MCP Server Repo</a></li>
+</ul>
+<p>Share your feedback through <strong>Help &gt; Send Feedback</strong> in Visual Studio 2022 or file issues on the <a href="https://github.com/microsoft/mcp">Azure MCP Server GitHub repository</a>.</p>
+</article>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/azure-mcp-tools-now-ship-built-into-visual-studio-2022-no-extension-required/">Azure MCP tools now ship built into Visual Studio 2022 — no extension required</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/azure-mcp-tools-now-ship-built-into-visual-studio-2022-no-extension-required/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">0</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/01/VS-logo-featured-image.webp" type="image/png" />
+    </item>
+    <item>
+      <title>Stop Hunting Bugs: Meet the New Visual Studio Debugger Agent Workflow</title>
+      <link>https://devblogs.microsoft.com/visualstudio/stop-hunting-bugs-meet-the-new-visual-studio-debugger-agent/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/stop-hunting-bugs-meet-the-new-visual-studio-debugger-agent/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Harshada Hole]]></dc:creator>
+      <pubDate>Wed, 15 Apr 2026 16:00:15 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=256073</guid>
+      <description><![CDATA[<p>We’ve all been there: a bug report lands in your inbox with a title like &#8220;App crashes sometimes&#8221; and zero reproduction steps. Your morning, which was supposed to be spent building new features, is now a forensic investigation. You’re setting scattershot breakpoints, staring at the call stack, and trying to guess what the original reporter was thinking.  Debugging isn&#8217;t just about fixing code; it’s about reducing uncertainty. [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/stop-hunting-bugs-meet-the-new-visual-studio-debugger-agent/">Stop Hunting Bugs: Meet the New Visual Studio Debugger Agent Workflow</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p><span data-contrast="auto">We’ve all been there: a bug report lands in your inbox with a title like </span><i><span data-contrast="auto">&#8220;App crashes sometimes&#8221;</span></i><span data-contrast="auto"> and zero reproduction steps. Your morning, which was supposed to be spent building new features, is now a forensic investigation. You’re setting scattershot breakpoints, staring at the call stack, and trying to guess what the original reporter was thinking.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">Debugging isn&#8217;t just about fixing code; it’s about </span><b><span data-contrast="auto">reducing uncertainty</span></b><span data-contrast="auto">. Today, we’re taking a massive leap toward solving that problem by introducing a new, upgraded, guided workflow within our existing </span><b><span data-contrast="auto">Debugger Agent</span></b><span data-contrast="auto"> in Visual Studio.</span></p>
+<p><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> <a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent-.webp"><img decoding="async" class="alignnone size-full wp-image-256071" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent-.webp" alt="debugger agent image" width="741" height="521" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent-.webp 741w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent--300x211.webp 300w" sizes="(max-width: 741px) 100vw, 741px" /></a></span></p>
+<h3 aria-level="2"><b><span data-contrast="auto">Ending the &#8220;Guessing Game&#8221; with a Guided Debugger Loop</span></b><span data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:40,&quot;335559739&quot;:0}"> </span></h3>
+<p><span data-contrast="auto">Let’s be honest: traditional debugging is full of friction. You manually parse a vague report, hunt for the right file, and spend twenty minutes just trying to see if you’re in the right ballpark. This new workflow flips the script, transforming the </span><b><span data-contrast="auto">Debugger Agent</span></b><span data-contrast="auto"> from a chatbot into an interactive partner plugged directly into your </span><b><span data-contrast="auto">live runtime</span></b><span data-contrast="auto">.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">To get started, simply open your solution in Visual Studio, switch to </span><b><span data-contrast="auto">Debugger</span></b><span data-contrast="auto"> mode in Copilot Chat, and point it to the problem with a GitHub/ADO URL or a quick sentence like:</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto"> </span><i><span data-contrast="auto">&#8220;The app crashes when saving a file.&#8221;</span></i></p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent1-.webp"><img decoding="async" class="alignnone size-full wp-image-256070" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent1-.webp" alt="debugger agent1 image" width="853" height="195" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent1-.webp 853w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent1--300x69.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent1--768x176.webp 768w" sizes="(max-width: 853px) 100vw, 853px" /></a>
+<span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="auto">The workflow is </span><b><span data-contrast="auto">interactive and powered by runtime debugging, </span></b><span data-contrast="auto">meaning the Agent doesn&#8217;t just read your code; it feels how it’s running. It immediately builds a mental model of the failure and walks you through a structured, real-time process:</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="35" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><b><span data-contrast="auto">Hypothesis &amp; Preparation:</span></b><span data-contrast="auto"> The Agent analyzes the issue and proposes a root cause. If the reasoning looks solid, it sets intelligent breakpoints and prepares to launch your project.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<p><i><span data-contrast="auto">Note: If your project can&#8217;t be started automatically, just manually start your code, attach the debugger, and tell the Agent you’re ready.</span></i><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="35" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><b><span data-contrast="auto">Active Reproduction:</span></b><span data-contrast="auto"> The Agent stays &#8220;on the line&#8221; while you trigger the bug, watching the runtime state as you move through the repro steps.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="35" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><b><span data-contrast="auto">Real-Time Validation:</span></b><span data-contrast="auto"> As breakpoints hit, the Agent evaluates variables and the call stack to systematically confirm its hypothesis or eliminate potential causes.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="35" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><b><span data-contrast="auto">The Final Fix:</span></b><span data-contrast="auto"> Once the root cause is isolated, the Agent proposes a solution. If you approve, it applies the fix and reruns the session to validate the resolution.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></li>
+</ul>
+<p><span data-contrast="auto">This iterative flow is designed to keep you &#8220;in the zone.&#8221; By handling the manual setup and state analysis, the Agent lets you move from a bug report to a verified fix with significantly less mental context switching.</span>
+<span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-ccp-props="{}"> <iframe src="//www.youtube.com/embed/VzSbXASu_oM" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></span></p>
+<h3><b><span data-contrast="auto">Our Vision: Foundational Quality and Beyond</span></b><span data-ccp-props="{}"> </span></h3>
+<p><span data-contrast="auto">18.5 GA releases deliver the foundational experience of the guided workflow, specifically optimized for high-value, reproducible scenarios like </span><b><span data-contrast="auto">exceptions, logic inconsistencies, and state corruption</span></b><span data-contrast="auto">. </span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240,&quot;335559740&quot;:259}"> </span></p>
+<p><span data-contrast="auto">As we look forward, we are already evolving this foundation to be even more robust. Our goal is to progressively automate the end-to-end workflow, maturing the Debugger Agent into a comprehensive, seamless debugging companion that anticipates your needs.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<h3 aria-level="3"><b><span data-contrast="auto">Debug Smarter, Not Harder</span></b><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:281,&quot;335559739&quot;:281}"> </span></h3>
+<p><span data-contrast="auto">The new workflow in the Debugger Agent represents a fundamental shift in how we think about IDEs. We’re excited to see how you use this in your own workflows whether you&#8217;re untangling a complex race condition in a multi-threaded service or simply trying to figure out why a UI element isn&#8217;t updating as expected.</span><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-contrast="none">Stay connected with the Visual Studio team by following us on </span><a href="https://twitter.com/VS_Debugger"><span data-contrast="none">Twitter @VS_Debugger</span></a><span data-contrast="none">, </span><a href="https://twitter.com/VisualStudio"><span data-contrast="none">Twitter @VisualStudio</span></a><span data-contrast="none">, YouTube, and </span><a href="https://www.linkedin.com/showcase/microsoft-visual-studio/"><span data-contrast="none">LinkedIn.</span></a><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335559738&quot;:240,&quot;335559739&quot;:240}"> </span></p>
+<p><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:240,&quot;335559740&quot;:240}"> </span></p>
+<p><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:240,&quot;335559740&quot;:240}"> </span></p>
+<p><span data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:240}"> </span></p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/stop-hunting-bugs-meet-the-new-visual-studio-debugger-agent/">Stop Hunting Bugs: Meet the New Visual Studio Debugger Agent Workflow</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/stop-hunting-bugs-meet-the-new-visual-studio-debugger-agent/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">4</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/debugger-agent-.webp" type="image/png" />
+    </item>
+    <item>
+      <title>Take full control of your floating windows in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/take-full-control-of-your-floating-windows-in-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/take-full-control-of-your-floating-windows-in-visual-studio/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Tue, 07 Apr 2026 14:00:39 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=256030</guid>
+      <description><![CDATA[<p>Make Visual Studio floating windows work perfectly with PowerToys FancyZones. Flip one option to get independent windows, better snapping, and less friction.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/take-full-control-of-your-floating-windows-in-visual-studio/">Take full control of your floating windows in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>If you work with multiple monitors like I do, you’ve probably grown to love floating tool windows and documents in Visual Studio. Being able to pull out Solution Explorer, the debugger, or your code files onto a second (or third) screen can be a huge productivity boost.</p>
+<p>But there’s always been a bit of friction with how these floating windows behave.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/VSFancyZones.gif"><img decoding="async" class="alignnone size-full wp-image-256032" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/VSFancyZones.gif" alt="VSFancyZones image" width="800" height="450" /></a></p>
+<p>By default, floating windows are “owned” by the main Visual Studio window. That means they don’t show up as separate buttons in your Windows taskbar, they disappear when you minimize the main IDE, and they always stay on top of everything else — even when you don’t want them to.</p>
+<p>For some workflows that’s exactly what you want. For others, it gets annoying fast.</p>
+<p>Fortunately, there’s a little-known setting that lets you decide exactly how much control Visual Studio has over your floating windows.</p>
+<p><strong>The setting is here:</strong> <strong>Tools &gt; Options &gt; Environment &gt; Windows &gt; Floating Windows</strong></p>
+<p>You’ll see this dialog:</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/floating-windows-tools-options.webp"><img decoding="async" class="alignnone size-full wp-image-256031" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/floating-windows-tools-options.webp" alt="floating windows tools options image" width="657" height="207" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/floating-windows-tools-options.webp 657w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/floating-windows-tools-options-300x95.webp 300w" sizes="(max-width: 657px) 100vw, 657px" /></a></p>
+<p>The dropdown is labeled “These floating windows are owned by the main window” and gives you three choices:</p>
+<ul>
+<li><strong>None</strong></li>
+<li><strong>Tool Windows</strong> (the default)</li>
+<li><strong>Documents and Tool Windows</strong></li>
+</ul>
+<p>Changing this one setting can completely transform how you work with floating windows.</p>
+<h2>My favorite scenario: PowerToys FancyZones</h2>
+<p>This setting really shines when you combine it with <a href="https://aka.ms/installpowertoys"><strong>Microsoft PowerToys</strong></a> and its excellent <a href="https://learn.microsoft.com/windows/powertoys/fancyzones"><strong>FancyZones</strong> feature</a>.</p>
+<p>I like to set it to <strong>None</strong> and then use FancyZones to create custom layouts across my monitors. Suddenly all my floating tool windows and documents behave like normal application windows — they appear in the taskbar, stay visible even if I minimize the main Visual Studio window, and I can snap them perfectly into my FancyZones layouts without them forcing themselves to the front all the time.</p>
+<p>It feels much more natural and gives me the clean multi-monitor setup I’ve always wanted.</p>
+<h2>When to choose each option</h2>
+<ul>
+<li><strong>None</strong>: Maximum independence. Everything gets its own taskbar entry and full window behavior. Perfect for heavy multi-monitor users with PowerToys.</li>
+<li><strong>Tool Windows</strong>: A nice middle ground — keep your documents floating freely while tool windows stay tied to the IDE.</li>
+<li><strong>Documents and Tool Windows</strong>: The classic Visual Studio behavior.</li>
+</ul>
+<p>Pro tip: Combine this with the Ctrl + double-click trick on any tool window title bar (see our earlier post on <a href="https://devblogs.microsoft.com/visualstudio/easily-dock-and-float-tool-windows/">easily docking and floating tool windows</a>) for lightning-fast layout switching. No restart required.</p>
+<p>Have you played with this setting before? What option do you prefer: None, Tool Windows, or the default? Let me know in the comments. I’m always curious how other developers set up multi-monitor workspaces.</p>
+<p>Happy coding!</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/take-full-control-of-your-floating-windows-in-visual-studio/">Take full control of your floating windows in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/take-full-control-of-your-floating-windows-in-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">6</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/VSFancyZones.gif" type="image/gif" />
+    </item>
+    <item>
+      <title>Bookmark Studio: evolving bookmarks in Visual Studio</title>
+      <link>https://devblogs.microsoft.com/visualstudio/bookmark-studio-evolving-bookmarks-in-visual-studio/</link>
+      <comments>https://devblogs.microsoft.com/visualstudio/bookmark-studio-evolving-bookmarks-in-visual-studio/#comments</comments>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mads Kristensen]]></dc:creator>
+      <pubDate>Wed, 01 Apr 2026 14:09:58 +0000</pubDate>
+      <category><![CDATA[Extensibility]]></category>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Extensions]]></category>
+      <category><![CDATA[Navigate through code]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=255992</guid>
+      <description><![CDATA[<p>Bookmarks in Visual Studio have always been a simple, reliable feature. Many developers use them regularly, and over the years we’ve heard consistent feedback from those users. Bookmarks were useful, but there were a few core gaps that kept them from being as effective and relevant as they could be. Navigation was one of the [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/bookmark-studio-evolving-bookmarks-in-visual-studio/">Bookmark Studio: evolving bookmarks in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>Bookmarks in Visual Studio have always been a simple, reliable feature. Many developers use them regularly, and over the years we’ve heard consistent feedback from those users. Bookmarks were useful, but there were a few core gaps that kept them from being as effective and relevant as they could be.</p>
+<p>Navigation was one of the biggest pain points. You could move between bookmarks, but there was no easy way to jump directly to a specific bookmark using the keyboard. That made bookmarks harder to rely on once you had more than a few. Another common request was sharing. Bookmarks worked well for personal, local navigation, but there was no good way to share them with teammates or reuse them across repos, branches, or pull requests.</p>
+<p>That feedback is what led to <a href="https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BookmarkStudio">Bookmark Studio</a>, a new experimental Visual Studio extension that builds on the existing bookmark experience by filling in those missing pieces, without changing how bookmarks fundamentally work.</p>
+<h2>Faster, more intentional navigation</h2>
+<p>One of the core additions in Bookmark Studio is <strong>slot‑based navigation</strong>.</p>
+<p>Bookmarks can be assigned to slots 1 through 9 and jumped to directly using simple keyboard shortcuts like <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>1</kbd> through <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>9</kbd>. This makes bookmarks feel more deliberate and easier to rely on when you want fast access to a handful of important locations.</p>
+<p><img decoding="async" src="https://madskristensen.gallerycdn.vsassets.io/extensions/madskristensen/bookmarkstudio/1.0.58/1774373928867/art/toolbar.png" alt="Toolbar" /></p>
+<p>New bookmarks are automatically assigned the next available slot when possible, so fast navigation often works without any extra setup. Bookmark Studio also integrates with Visual Studio’s existing bookmark commands, which means your current shortcuts and muscle memory continue to work as expected.</p>
+<h2>A single place to work with bookmarks</h2>
+<p>Bookmark Studio also adds a dedicated <strong>Bookmark Manager</strong> tool window.</p>
+<p><img decoding="async" src="https://madskristensen.gallerycdn.vsassets.io/extensions/madskristensen/bookmarkstudio/1.0.58/1774373928867/art/bookmark-manager.png" alt="Tool window" /></p>
+<p>The manager shows all bookmarks in one place and makes it easy to browse, search, and navigate between them. You can filter by name, file, location, color, or slot, and jump directly to a bookmark with a double‑click or keyboard navigation. It’s designed to make bookmarks easier to revisit, especially when switching context or coming back to code later.</p>
+<h2>Optional structure, when you need it</h2>
+<p>Another piece of feedback we heard was the need for just a bit more organization.</p>
+<p>With Bookmark Studio, bookmarks can have labels, colors, and folders. None of this is required, and you can keep using bookmarks exactly as you do today. But when you’re debugging, refactoring, reviewing code, or exploring unfamiliar areas of a codebase, that extra context can make bookmarks more useful and easier to reason about.</p>
+<p><img decoding="async" src="https://madskristensen.gallerycdn.vsassets.io/extensions/madskristensen/bookmarkstudio/1.0.58/1774373928867/art/set-color.png" alt="Glyphs" /></p>
+<p>All bookmark metadata is stored per solution, so it stays with your work across sessions.</p>
+<h2>Bookmarks you can share and reuse</h2>
+<p>Bookmarks are often most valuable when they capture intent, not just location.</p>
+<p>Bookmark Studio makes it easy to export bookmarks as plain text, Markdown, or CSV. That means you can include bookmarks in pull requests, share investigation paths with teammates, or move useful bookmark sets between repos. Instead of being a purely personal tool, bookmarks can become a lightweight way to communicate context and decisions.</p>
+<h2>Bookmarks that stay put as code changes</h2>
+<p>Bookmark Studio tracks bookmarks as text moves during editing, so they stay attached to the relevant code instead of drifting to the wrong line. This makes bookmarks more dependable during active development, especially when files are changing frequently.</p>
+<p><img decoding="async" src="https://madskristensen.gallerycdn.vsassets.io/extensions/madskristensen/bookmarkstudio/1.0.58/1774373928867/art/glyph-drag-drop.gif" alt="Drag and drop of glyph" /></p>
+<h2>A focused improvement, not a reinvention</h2>
+<p>Bookmark Studio doesn’t try to replace tasks, TODO comments, or issue tracking. It doesn’t introduce a new workflow you have to learn. Instead, it fills in the gaps that many bookmark users have pointed out over time, making bookmarks easier to navigate, easier to share, and more useful as part of everyday development.</p>
+<p>If you already use bookmarks in Visual Studio, Bookmark Studio should feel familiar within minutes. And if you’ve ever wished bookmarks could do just a little more, this extension is worth a look.</p>
+<p>You can download <strong>Bookmark Studio</strong> today from the <a href="https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BookmarkStudio">Visual Studio Marketplace</a>. As always, feedback and pull requests are welcome on the <a href="https://github.com/madskristensen/BookmarkStudio">GitHub repo</a>.</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/bookmark-studio-evolving-bookmarks-in-visual-studio/">Bookmark Studio: evolving bookmarks in Visual Studio</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <wfw:commentRss xmlns:wfw="http://wellformedweb.org/CommentAPI/">https://devblogs.microsoft.com/visualstudio/bookmark-studio-evolving-bookmarks-in-visual-studio/feed/</wfw:commentRss>
+      <slash:comments xmlns:slash="http://purl.org/rss/1.0/modules/slash/">8</slash:comments>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/04/bookmark-manager.webp" type="image/png" />
+    </item>
+    <item>
+      <title>Visual Studio March Update – Build Your Own Custom Agents</title>
+      <link>https://devblogs.microsoft.com/visualstudio/visual-studio-march-update-build-your-own-custom-agents/</link>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"><![CDATA[Mark Downie]]></dc:creator>
+      <pubDate>Tue, 31 Mar 2026 16:00:18 +0000</pubDate>
+      <category><![CDATA[Visual Studio]]></category>
+      <category><![CDATA[Debugging and Diagnostics]]></category>
+      <category><![CDATA[GitHub Copilot]]></category>
+      <guid isPermaLink="false">https://devblogs.microsoft.com/visualstudio/?p=255938</guid>
+      <description><![CDATA[<p>This month&#8217;s Visual Studio update gives you new ways to customize GitHub Copilot. Custom agents allow you to build specialized Copilot agents tailored to your team&#8217;s workflow, backed by the tools and knowledge sources that matter to your project. Alongside that, agent skills bring reusable instruction sets, and a new find_symbol tool gives agents language-aware [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-march-update-build-your-own-custom-agents/">Visual Studio March Update &#8211; Build Your Own Custom Agents</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[<p>This month&#8217;s Visual Studio update gives you new ways to customize GitHub Copilot. Custom agents allow you to build specialized Copilot agents tailored to your team&#8217;s workflow, backed by the tools and knowledge sources that matter to your project. Alongside that, agent skills bring reusable instruction sets, and a new <em>find_symbol</em> tool gives agents language-aware navigation across your codebase.</p>
+<p>Beyond agents, we&#8217;re continuing to invest in the diagnostics experience with Copilot-powered profiling directly from Test Explorer and real-time perf tips during debugging. Security gets a boost too, with Copilot now helping you fix NuGet vulnerabilities right from Solution Explorer.</p>
+<p>Download <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio 2026 Insiders</a> to try these features today.</p>
+<div>
+<h3>Build your own custom agents</h3>
+<p>Want Copilot to follow your team&#8217;s coding standards, run your build pipeline, or query your internal docs? Custom agents make that possible. They&#8217;re specialized Copilot agents defined as <em>.agent.md</em> files in your repository, with full access to workspace awareness, code understanding, tools, your preferred model, and MCP connections to external knowledge sources.</p>
+<p>Drop an <em>.agent.md</em> file into <em>.github/agents/</em> in your repo, and it shows up in the agent picker ready to use.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_custom-agents.webp"><img decoding="async" class="alignnone size-full wp-image-255945" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_custom-agents.webp" alt="vs18 4 custom agents image" width="268" height="310" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_custom-agents.webp 268w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_custom-agents-259x300.webp 259w" sizes="(max-width: 268px) 100vw, 268px" /></a></p>
+<p>A few things to keep in mind: if you don&#8217;t specify a model, the agent uses whatever you&#8217;ve selected in the model picker. Tool names can vary across GitHub Copilot platforms, so check the tools available in Visual Studio to make sure your agent works as expected. The <a href="https://github.com/github/awesome-copilot">awesome-copilot</a> repo has community-contributed agent configurations you can use as starting points.</p>
+</div>
+<div>
+<h3>Use agent skills</h3>
+</div>
+<p>Skills are picked up automatically from several locations in your repository (such as <em>.github/skills/</em>) or your user profile (such as <em>~/.copilot/skills/</em>). Each skill lives in its own directory with a `SKILL.md` file that follows the <a href="https://agentskills.io/specification">Agent Skills specification</a>. When a skill is activated, it appears in the chat so you know it&#8217;s being applied.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_agent-skills.webp"><img decoding="async" class="alignnone size-full wp-image-255943" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_agent-skills.webp" alt="vs18 4 agent skills image" width="624" height="333" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_agent-skills.webp 624w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_agent-skills-300x160.webp 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></p>
+<p>Check out the <a href="https://github.com/github/awesome-copilot">awesome-copilot</a> repo for community-shared skills, and look for more user-friendly flows for browsing and creating skills inside Visual Studio in upcoming releases.</p>
+<h3>Find_symbol tool for agent mode</h3>
+<p>Copilot&#8217;s agent mode now has language-aware symbol navigation. The new <code>find_symbol</code> tool lets the agent find all references to symbols across your project and access metadata like type information, declarations, and scope. This means when you ask Copilot to refactor a method or update a parameter across call sites, it can actually see your code&#8217;s structure rather than guessing from text.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol.webp"><img decoding="async" class="alignnone wp-image-255946 size-medium" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-300x283.webp" alt="vs18 4 find symbol image" width="300" height="283" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-300x283.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-24x24.webp 24w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol.webp 743w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>Enable the tool, and Copilot uses it automatically when answering questions or suggesting code changes. The difference is noticeable: instead of searching for text patterns, the agent navigates your code using language services.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-example.webp"><img decoding="async" class="alignnone wp-image-255947 size-medium" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-example-300x283.webp" alt="vs18 4 find symbol example image" width="300" height="283" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-example-300x283.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-example-768x724.webp 768w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-example-24x24.webp 24w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_find-symbol-example.webp 995w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>Supported languages include C++, C#, Razor, and TypeScript, plus any language with a supported LSP extension installed. For best results, use AI models that support tool-calling. Learn more at <a href="https://docs.github.com/copilot/reference/ai-models/model-comparison">AI model comparison</a>.</p>
+<h3>Enterprise MCP governance</h3>
+<p>MCP server usage in Visual Studio now respects allowlist policies set through GitHub. Admins can specify which MCP servers are allowed within their organizations. When an allowlist is configured, only approved servers can be connected. If you try to use an unauthorized server, you&#8217;ll see an error explaining the restriction. This helps organizations control which MCP servers process sensitive data and maintain compliance with security policies.</p>
+<h3>Profile Tests with Copilot</h3>
+<p>Ever wanted to profile a specific test without wrestling with profiler configuration? There&#8217;s now a <strong>Profile with Copilot</strong> command right in the Test Explorer context menu.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profile-test-with-copilot.webp"><img decoding="async" class="alignnone size-full wp-image-255950" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profile-test-with-copilot.webp" alt="vs18 4 profile test with copilot image" width="1044" height="555" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profile-test-with-copilot.webp 1044w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profile-test-with-copilot-300x159.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profile-test-with-copilot-1024x544.webp 1024w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profile-test-with-copilot-768x408.webp 768w" sizes="(max-width: 1044px) 100vw, 1044px" /></a></p>
+<p>When selected, the Profiling Agent automatically runs the chosen test and analyzes its performance, combining CPU usage and instrumentation data to deliver actionable insights. By default, it uses Instrumentation profiling and is currently supported in .NET. If you need deeper analysis, you can launch the selected test directly from the Copilot chat window and choose additional profiling tools.</p>
+<h3>Perf tips powered by live profiling</h3>
+<p>Performance optimization now happens while you debug, not after. As you step through code, Visual Studio shows execution time and performance signals inline for each step. When you spot a slow line, just click the Perf Tip and ask Copilot for optimization suggestions on the spot.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profiler-agent-perf-tip.webp"><img decoding="async" class="alignnone wp-image-255949 size-medium" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profiler-agent-perf-tip-300x169.webp" alt="vs18 4 profiler agent perf tip image" width="300" height="169" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profiler-agent-perf-tip-300x169.webp 300w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_profiler-agent-perf-tip.webp 766w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>The Profiler Agent captures runtime data during debugging automatically: elapsed time, CPU usage, and memory behavior. Copilot uses this data to pinpoint performance hot spots and suggest targeted fixes. This keeps optimization part of your regular debugging workflow instead of something you tackle later.</p>
+<h3>Fix vulnerabilities with Copilot</h3>
+<p>Spotted a NuGet package vulnerability? Copilot can now help you fix it directly from Solution Explorer. When a vulnerability is detected, you&#8217;ll see a notification with a <strong>Fix with GitHub Copilot</strong> link. Click through, and Copilot analyzes the vulnerability, recommends and implements targeted dependency updates that keep your packages secure without disrupting your workflow.</p>
+<p><a href="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_fix-with-copilot-link.webp"><img decoding="async" class="alignnone size-full wp-image-255948" src="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_fix-with-copilot-link.webp" alt="vs18 4 fix with copilot link image" width="407" height="348" srcset="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_fix-with-copilot-link.webp 407w, https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/vs18.4_fix-with-copilot-link-300x257.webp 300w" sizes="(max-width: 407px) 100vw, 407px" /></a></p>
+<p>No more manual vulnerability research or hunting down correct package versions. You address security issues right when they&#8217;re discovered.</p>
+<h3>HTML rich copy/cut</h3>
+<p>Need to paste code into a presentation, an Azure DevOps work item, or a web-based document? Visual Studio now supports HTML clipboard format when cutting or copying code from the editor. Syntax highlighting and formatting carry over when you paste into HTML-based applications. It&#8217;s turned on by default. To customize, go to <em><strong>Tools &gt; Options &gt; Text Editor &gt; Advanced</strong></em> where you can toggle <strong>Copy rich text on copy/cut</strong> and set the max length.</p>
+<div>
+<div></div>
+<div>From our entire team, thank you for choosing Visual Studio! For the latest updates, resources, and news, check out the <a href="https://aka.ms/vshub">Visual Studio Hub</a> and stay in touch.</div>
+<div></div>
+<div>
+<p><strong>Happy coding!</strong></p>
+<div>The Visual Studio team</div>
+</div>
+</div>
+<p>The post <a href="https://devblogs.microsoft.com/visualstudio/visual-studio-march-update-build-your-own-custom-agents/">Visual Studio March Update &#8211; Build Your Own Custom Agents</a> appeared first on <a href="https://devblogs.microsoft.com/visualstudio">Visual Studio Blog</a>.</p>
+]]></content:encoded>
+      <image url="https://devblogs.microsoft.com/visualstudio/wp-content/uploads/sites/4/2026/03/hero-image-scaled-e1774973502526.webp" type="image/jpeg" />
+    </item>
   </channel>
 </rss>
