@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/RunTime/" />
+  <Folder Name="/RunTime/Cross-platform RunTime/">
+    <Project Path="ConsoleNETCoreApp/ConsoleNETCoreApp.csproj" />
+    <Project Path="LibNETStandard/LibNETStandard.csproj" />
+    <Project Path="SharedLibNETStandard/SharedLibNETStandard.csproj" />
+  </Folder>
+  <Folder Name="/RunTime/Windows RunTime/">
+    <Project Path="ConsoleNETFrameworkApp/ConsoleNETFrameworkApp.csproj" />
+    <Project Path="LibNETFramework/LibNETFramework.csproj" />
+  </Folder>
+  <Folder Name="/Windows DesignTime/">
+    <Project Path="ModelGenerator/ModelGenerator.csproj" />
+  </Folder>
+</Solution>
