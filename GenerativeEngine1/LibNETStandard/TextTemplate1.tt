@@ -1,6 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(SolutionDir)ModelGenerator\bin\$(Configuration)\ModelGenerator.dll" #>
+<#@ assembly name="$(SolutionDir)ModelGenerator\bin\$(Configuration)\net48\ModelGenerator.dll" #>
 
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
