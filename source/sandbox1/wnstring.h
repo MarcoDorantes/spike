@@ -30,7 +30,7 @@ namespace wn
         wnstring& operator=(wnstring&& other)
         {
             p = std::move(other.p);
-            ctor = 'C';
+            ctor = 'D';
             return *this;
         }
 

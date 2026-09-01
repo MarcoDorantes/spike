@@ -76,7 +76,8 @@ namespace wn
             for(int k=0; k<argc; ++k)
             {
                 wn::wnstring s{argv[k]};
-                v.push_back(s);
+              //v.push_back(s);
+                v.push_back(std::move(s));
 
               //v.push_back(wn::wnstring(argv[k]));
               //v.push_back(wn::wnstring{argv[k]});

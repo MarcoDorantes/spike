@@ -1,5 +1,8 @@
 //cl /EHsc /std:c++20 aprog.cpp
- 
+/*
+ls 'C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.50.35717\include' -file -Recurse|select-string -Pattern 'requires' -SimpleMatch
+ls 'C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.50.35717\include' -file -Recurse|select-string -Pattern 'concept' -SimpleMatch
+*/
 #include <iostream>
 #include <string>
 #include <vector>
